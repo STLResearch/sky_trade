@@ -5,6 +5,6 @@ ThemeData get appTheme => ThemeData.from(
       useMaterial3: true,
       colorScheme: ColorScheme.fromSeed(
         seedColor: seedColor,
-        brightness: Brightness.dark,
+        brightness: Brightness.light,
       ),
     );
