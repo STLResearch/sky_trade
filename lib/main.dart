@@ -4,7 +4,6 @@ import 'package:hydrated_bloc/hydrated_bloc.dart'
     show HydratedBloc, HydratedStorage;
 import 'package:path_provider/path_provider.dart'
     show getApplicationDocumentsDirectory;
-
 import 'package:sky_ways/app.dart';
 import 'package:sky_ways/injection_container.dart';
 
