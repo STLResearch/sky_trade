@@ -1,0 +1,35 @@
+name: Update inactive branches
+
+on:
+  push:
+    branches:
+      - 'dev'
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out this repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: '0'
+
+      - name: Get latest refs
+        run: |
+          git fetch
+
+      - name: Checkout the 'ci/update-inactive-branches-workflow' branch, pull from 'dev' and push to the origin of the checked out branch
+        run: |
+          git checkout ci/update-inactive-branches-workflow
+          git pull origin dev
+          git push -u origin ci/update-inactive-branches-workflow
+
+      - name: Checkout the 'implementation/structure' branch, pull from 'dev' and push to the origin of the checked out branch
+        run: |
+          git checkout implementation/structure
+          git pull origin dev
+          git push -u origin implementation/structure
