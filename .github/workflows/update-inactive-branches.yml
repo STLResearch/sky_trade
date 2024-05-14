@@ -33,3 +33,9 @@ jobs:
           git checkout implementation/structure
           git pull origin dev
           git push -u origin implementation/structure
+
+      - name: Checkout the 'implementation/web3-auth' branch, pull from 'dev' and push to the origin of the checked out branch
+        run: |
+          git checkout implementation/web3-auth
+          git pull origin dev
+          git push -u origin implementation/web3-auth
