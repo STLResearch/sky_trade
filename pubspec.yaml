@@ -22,9 +22,10 @@ dependencies:
   json_annotation: ^4.9.0
   flutter_localizations:
     sdk: flutter
-  intl: ^0.18.1
+  intl: ^0.19.0
   flutter_dotenv: ^5.1.0
-  web3auth_flutter: ^3.1.7
+  web3auth_flutter: ^4.0.0
+  mapbox_maps_flutter: ^2.0.0
 
 dev_dependencies:
   flutter_test:

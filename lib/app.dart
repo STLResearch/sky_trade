@@ -10,7 +10,7 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => MaterialApp(
-        locale: AppLocalizations.supportedLocales.first,
+        locale: AppLocalizations.supportedLocales.last,
         theme: appTheme,
         localizationsDelegates: AppLocalizations.localizationsDelegates,
         supportedLocales: AppLocalizations.supportedLocales,
