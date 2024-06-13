@@ -34,6 +34,7 @@ dev_dependencies:
   very_good_analysis: ^5.1.0
   mockito: ^5.4.4
   json_serializable: ^6.8.0
+  package_rename_plus: ^1.0.1
 
 flutter:
   generate: true
