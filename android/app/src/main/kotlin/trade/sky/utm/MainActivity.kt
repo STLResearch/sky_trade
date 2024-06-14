@@ -1,4 +1,4 @@
-package com.skytrade.sky_ways
+package trade.sky.utm
 
 import io.flutter.embedding.android.FlutterActivity
 
