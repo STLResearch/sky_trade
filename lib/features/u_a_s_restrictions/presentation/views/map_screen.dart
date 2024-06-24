@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart' show dotenv;
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:mapbox_maps_flutter/mapbox_maps_flutter.dart';
+import 'package:mapbox_maps_flutter/mapbox_maps_flutter.dart'
+    show MapWidget, MapboxMap, MapboxOptions;
 import 'package:sky_ways/core/resources/strings/secret_keys.dart'
     show mapboxMapsPublicKey, mapboxMapsStyleUri;
 
