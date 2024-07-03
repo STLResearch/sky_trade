@@ -1,4 +1,4 @@
-const assetImagesPath = 'assets/images/';
+const assetImagesPath = 'assets/images';
 
 const accountAssetPath = '$assetImagesPath/account.svg';
 const communityAssetPath = '$assetImagesPath/community.svg';
