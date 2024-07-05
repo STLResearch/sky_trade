@@ -20,6 +20,12 @@ class RegisterScreen extends StatefulWidget {
 }
 
 class _RegisterScreenState extends State<RegisterScreen> {
+  // Standard padding for most sections
+  final EdgeInsets standardPadding = const EdgeInsets.symmetric(horizontal: 16);
+
+  // Checkbox has a default padding of 8.0 on each side.
+  // Reduce padding as needed
+  final EdgeInsets subscribePadding = const EdgeInsets.symmetric(horizontal: 4);
 
   @override
   Widget build(BuildContext context) {
@@ -27,43 +33,59 @@ class _RegisterScreenState extends State<RegisterScreen> {
       resizeToAvoidBottomInset: false,
       backgroundColor: Colors.white,
       body: Center(
-        child: Padding(
-          padding: const EdgeInsets.all(
-            16,
-          ),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              const LogoWidget(),
-              const SizedBox(
-                height: 40,
-              ),
-              TitleWidget(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Padding(
+              padding: standardPadding,
+              child: const LogoWidget(),
+            ),
+            const SizedBox(
+              height: 40,
+            ),
+            Padding(
+              padding: standardPadding,
+              child: TitleWidget(
                 title: AppLocalizations.of(context)!.welcomebacktoskytrade,
               ),
-              const SizedBox(
-                height: 15,
-              ),
-              SubTitleWidget(
+            ),
+            const SizedBox(
+              height: 15,
+            ),
+            Padding(
+              padding: standardPadding,
+              child: SubTitleWidget(
                 title: AppLocalizations.of(context)!.register,
               ),
-              const SizedBox(
-                height: 15,
-              ),
-              const EmailFieldWidget(),
-              const SizedBox(
-                height: 5,
-              ),
-              const SubscribeWidget(),
-              const SizedBox(
-                height: 5,
-              ),
-              const GetStartedButtonWidget(),
-              const SizedBox(
-                height: 15,
-              ),
-              Row(
+            ),
+            const SizedBox(
+              height: 15,
+            ),
+            Padding(
+              padding: standardPadding,
+              child: const EmailFieldWidget(),
+            ),
+            const SizedBox(
+              height: 5,
+            ),
+            Padding(
+              padding: subscribePadding,
+              child: const SubscribeWidget(),
+            ),
+            const SizedBox(
+              height: 5,
+            ),
+            Padding(
+              padding: standardPadding,
+              child: const GetStartedButtonWidget(),
+            ),
+            const SizedBox(
+              height: 15,
+            ),
+            Padding(
+              padding: standardPadding,
+              child: Row(
                 children: [
                   const Expanded(
                     child: Divider(
@@ -92,29 +114,41 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   ),
                 ],
               ),
-              const SizedBox(
-                height: 15,
-              ),
-              SocialMediaButtonWidget(
+            ),
+            const SizedBox(
+              height: 15,
+            ),
+            Padding(
+              padding: standardPadding,
+              child: SocialMediaButtonWidget(
                 text: AppLocalizations.of(context)!.connectwithgoogle,
                 imagePath: SvgPicture.asset(
                   'assets/images/google.svg',
                   semanticsLabel: 'Google logo',
                 ),
               ),
-              const SizedBox(
-                height: 15,
-              ),
-              MoreOptionsMediaButtonWidget(
+            ),
+            const SizedBox(
+              height: 15,
+            ),
+            Padding(
+              padding: standardPadding,
+              child: MoreOptionsMediaButtonWidget(
                 text: AppLocalizations.of(context)!.moreoptions,
               ),
-              const SizedBox(
-                height: 15,
-              ),
-              const TermsAndConditionsWidget(),
-              const FooterWidget(),
-            ],
-          ),
+            ),
+            const SizedBox(
+              height: 15,
+            ),
+            Padding(
+              padding: standardPadding,
+              child: const TermsAndConditionsWidget(),
+            ),
+            Padding(
+              padding: standardPadding,
+              child: const FooterWidget(),
+            ),
+          ],
         ),
       ),
     );
