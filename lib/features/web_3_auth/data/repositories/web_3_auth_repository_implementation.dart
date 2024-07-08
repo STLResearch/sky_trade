@@ -12,7 +12,7 @@ import 'package:sky_ways/core/resources/strings/networking.dart'
         web3AuthWhitelistOriginIos;
 import 'package:sky_ways/core/resources/strings/secret_keys.dart'
     show web3AuthClientId;
-import 'package:sky_ways/core/utils/enums/enums.dart' show AuthProvider;
+import 'package:sky_ways/core/utils/enums/networking.dart' show AuthProvider;
 import 'package:sky_ways/features/web_3_auth/domain/entities/user_entity.dart';
 import 'package:sky_ways/features/web_3_auth/domain/repositories/web_3_auth_repository.dart';
 import 'package:web3auth_flutter/enums.dart' show Network, Provider;

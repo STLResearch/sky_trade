@@ -1,6 +1,15 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/material.dart' show Color;
 
-const seedColor = Color(0xFF0653EA);
+const hex0653EA = Color(0xFF0653EA);
 const hex4285F4 = Color(0xFF4285F4);
 const hex5D7285 = Color(0xFF5D7285);
 const hexFFFFFF = Color(0xFFFFFFFF);
+const hex87878D = Color(0xFF87878D);
+const hex222222 = Color(0xFF222222);
+const hexB8B8B8 = Color(0xFFB8B8B8);
+const hex838187 = Color(0xFF838187);
+const hex595959 = Color(0xFF595959);
+const hex00000033 = Color(0x00000033);
+const hexCCCCCC = Color(0xFFCCCCCC);
+const hex0754E9 = Color(0xFF0754E9);
+const hexE04F64 = Color(0xFFE04F64);

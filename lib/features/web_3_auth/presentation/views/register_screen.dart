@@ -1,156 +1,124 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/material.dart'
+    show
+        BuildContext,
+        EdgeInsetsDirectional,
+        Form,
+        FormState,
+        GlobalKey,
+        SizedBox,
+        State,
+        StatefulWidget,
+        TextEditingController,
+        ValueNotifier,
+        Widget;
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:flutter_svg/flutter_svg.dart' show SvgPicture;
-import 'package:sky_ways/features/web_3_auth/presentation/widgets/email_field_widget.dart';
-import 'package:sky_ways/features/web_3_auth/presentation/widgets/footer_widget.dart';
-import 'package:sky_ways/features/web_3_auth/presentation/widgets/get_started_button_widget.dart';
-import 'package:sky_ways/features/web_3_auth/presentation/widgets/logo_widget.dart';
-import 'package:sky_ways/features/web_3_auth/presentation/widgets/more_options_media_button_widget.dart';
-import 'package:sky_ways/features/web_3_auth/presentation/widgets/social_media_button_widget.dart';
-import 'package:sky_ways/features/web_3_auth/presentation/widgets/sub_title_widget.dart';
-import 'package:sky_ways/features/web_3_auth/presentation/widgets/subscribe_widget.dart';
-import 'package:sky_ways/features/web_3_auth/presentation/widgets/terms_and_conditions_widget.dart';
-import 'package:sky_ways/features/web_3_auth/presentation/widgets/title_widget.dart';
+import 'package:sky_ways/core/resources/numbers.dart'
+    show fifteenDotNil, tenDotNil, thirtyDotNil;
+import 'package:sky_ways/core/utils/enums/ui.dart' show AuthButtonType;
+import 'package:sky_ways/features/web_3_auth/presentation/widgets/agreement_section.dart';
+import 'package:sky_ways/features/web_3_auth/presentation/widgets/auth_button.dart';
+import 'package:sky_ways/features/web_3_auth/presentation/widgets/auth_screen.dart';
+import 'package:sky_ways/features/web_3_auth/presentation/widgets/email_field.dart';
+import 'package:sky_ways/features/web_3_auth/presentation/widgets/footer_section.dart';
+import 'package:sky_ways/features/web_3_auth/presentation/widgets/or_section.dart';
+import 'package:sky_ways/features/web_3_auth/presentation/widgets/subscribe_section.dart';
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({super.key});
 
   @override
-  State<StatefulWidget> createState() => _RegisterScreenState();
+  State<RegisterScreen> createState() => _RegisterScreenState();
 }
 
 class _RegisterScreenState extends State<RegisterScreen> {
-  // Standard padding for most sections
-  final EdgeInsets standardPadding = const EdgeInsets.symmetric(horizontal: 16);
-
-  // Checkbox has a default padding of 8.0 on each side.
-  // Reduce padding as needed
-  final EdgeInsets subscribePadding = const EdgeInsets.symmetric(horizontal: 4);
+  late final GlobalKey<FormState> _formKey;
+  late final TextEditingController _emailController;
+  late final ValueNotifier<bool> _subscribeToNewsletterCheckboxNotifier;
 
   @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      resizeToAvoidBottomInset: false,
-      backgroundColor: Colors.white,
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Padding(
-              padding: standardPadding,
-              child: const LogoWidget(),
-            ),
-            const SizedBox(
-              height: 40,
-            ),
-            Padding(
-              padding: standardPadding,
-              child: TitleWidget(
-                title: AppLocalizations.of(context)!.welcomebacktoskytrade,
-              ),
-            ),
-            const SizedBox(
-              height: 15,
-            ),
-            Padding(
-              padding: standardPadding,
-              child: SubTitleWidget(
-                title: AppLocalizations.of(context)!.register,
-              ),
-            ),
-            const SizedBox(
-              height: 15,
-            ),
-            Padding(
-              padding: standardPadding,
-              child: const EmailFieldWidget(),
-            ),
-            const SizedBox(
-              height: 5,
-            ),
-            Padding(
-              padding: subscribePadding,
-              child: const SubscribeWidget(),
-            ),
-            const SizedBox(
-              height: 5,
-            ),
-            Padding(
-              padding: standardPadding,
-              child: const GetStartedButtonWidget(),
-            ),
-            const SizedBox(
-              height: 15,
-            ),
-            Padding(
-              padding: standardPadding,
-              child: Row(
-                children: [
-                  const Expanded(
-                    child: Divider(
-                      color: Color(0xFFCCCCCC),
-                    ),
-                  ),
-                  const SizedBox(
-                    width: 15,
-                  ),
-                  Text(
-                    AppLocalizations.of(context)!.or,
-                    style: const TextStyle(
-                      fontSize: 14,
-                      fontFamily: 'Poppins',
-                      fontWeight: FontWeight.w400,
-                      color: Color(0xFFCCCCCC),
-                    ),
-                  ),
-                  const SizedBox(
-                    width: 15,
-                  ),
-                  const Expanded(
-                    child: Divider(
-                      color: Color(0xFFCCCCCC),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            const SizedBox(
-              height: 15,
-            ),
-            Padding(
-              padding: standardPadding,
-              child: SocialMediaButtonWidget(
-                text: AppLocalizations.of(context)!.connectwithgoogle,
-                imagePath: SvgPicture.asset(
-                  'assets/images/google.svg',
-                  semanticsLabel: 'Google logo',
-                ),
-              ),
-            ),
-            const SizedBox(
-              height: 15,
-            ),
-            Padding(
-              padding: standardPadding,
-              child: MoreOptionsMediaButtonWidget(
-                text: AppLocalizations.of(context)!.moreoptions,
-              ),
-            ),
-            const SizedBox(
-              height: 15,
-            ),
-            Padding(
-              padding: standardPadding,
-              child: const TermsAndConditionsWidget(),
-            ),
-            Padding(
-              padding: standardPadding,
-              child: const FooterWidget(),
-            ),
-          ],
-        ),
-      ),
+  void initState() {
+    _formKey = GlobalKey<FormState>();
+    _emailController = TextEditingController();
+    _subscribeToNewsletterCheckboxNotifier = ValueNotifier<bool>(
+      false,
     );
+
+    super.initState();
   }
+
+  @override
+  void dispose() {
+    _emailController.dispose();
+    _subscribeToNewsletterCheckboxNotifier.dispose();
+
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) => AuthScreen(
+        title: AppLocalizations.of(context)!.welcomeToSkyTrade,
+        subtitle: AppLocalizations.of(context)!.register,
+        padding: const EdgeInsetsDirectional.all(
+          thirtyDotNil,
+        ),
+        children: [
+          Form(
+            key: _formKey,
+            child: EmailField(
+              emailController: _emailController,
+              enabled: true,
+            ),
+          ),
+          const SizedBox(
+            height: tenDotNil,
+          ),
+          SubscribeSection(
+            checkboxNotifier: _subscribeToNewsletterCheckboxNotifier,
+          ),
+          const SizedBox(
+            height: fifteenDotNil,
+          ),
+          AuthButton(
+            authButtonType: AuthButtonType.getStarted,
+            onPressed: () {
+              if (_formKey.currentState?.validate() ?? false) {
+                //
+              }
+            },
+          ),
+          const SizedBox(
+            height: fifteenDotNil,
+          ),
+          const OrSection(),
+          const SizedBox(
+            height: fifteenDotNil,
+          ),
+          AuthButton(
+            authButtonType: AuthButtonType.connectWithGoogle,
+            onPressed: () {},
+          ),
+          const SizedBox(
+            height: fifteenDotNil,
+          ),
+          AuthButton(
+            authButtonType: AuthButtonType.moreOptions,
+            onPressed: () {},
+          ),
+          const SizedBox(
+            height: fifteenDotNil,
+          ),
+          AgreementSection(
+            onTermsAndConditionsTap: () {},
+            onPrivacyPolicyTap: () {},
+          ),
+          const SizedBox(
+            height: fifteenDotNil,
+          ),
+          FooterSection(
+            text: AppLocalizations.of(context)!.dontHaveAnAccountYet,
+            clickableText: AppLocalizations.of(context)!.register,
+            onClickableTextTap: () {},
+          ),
+        ],
+      );
 }
