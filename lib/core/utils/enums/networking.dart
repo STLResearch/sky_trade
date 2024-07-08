@@ -3,5 +3,3 @@ enum AuthProvider {
   google,
   emailPasswordless,
 }
-
-
