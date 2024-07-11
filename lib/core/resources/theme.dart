@@ -9,6 +9,7 @@ import 'package:flutter/material.dart'
         CheckboxThemeData,
         Color,
         ColorScheme,
+        EdgeInsetsDirectional,
         ElevatedButtonThemeData,
         FontStyle,
         FontWeight,
@@ -41,6 +42,7 @@ import 'package:sky_ways/core/resources/numbers.dart'
         elevenDotNil,
         fifteenDotNil,
         fiftyFiveDotNil,
+        fourteenDotNil,
         nilDotNil,
         nilDotNilOne,
         sixteenDotFive,
@@ -51,14 +53,10 @@ import 'package:sky_ways/core/resources/numbers.dart'
         twentyFourDotNil,
         twentyOneDotThreeSeven,
         twentyTwoDotFive,
+        twentyTwoDotNil,
         two,
         twoDotNil;
 import 'package:sky_ways/core/resources/strings/fonts.dart' show poppins;
-
-// ThemeData get appTheme => ThemeData.from(
-//       useMaterial3: true,
-//       colorScheme: ColorScheme.dark(),
-//     );
 
 ThemeData get lightTheme => ThemeData(
       useMaterial3: true,
@@ -68,6 +66,10 @@ ThemeData get lightTheme => ThemeData(
       scaffoldBackgroundColor: hexFFFFFF,
       inputDecorationTheme: InputDecorationTheme(
         errorMaxLines: two,
+        contentPadding: const EdgeInsetsDirectional.symmetric(
+          vertical: fourteenDotNil,
+          horizontal: twentyTwoDotNil,
+        ),
         border: OutlineInputBorder(
           borderSide: const BorderSide(
             color: hex87878D,

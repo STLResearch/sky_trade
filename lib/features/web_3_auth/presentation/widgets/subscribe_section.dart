@@ -20,10 +20,12 @@ import 'package:sky_ways/core/resources/numbers.dart'
 final class SubscribeSection extends StatelessWidget {
   const SubscribeSection({
     required this.checkboxNotifier,
+    required this.checkboxEnabled,
     super.key,
   });
 
   final ValueNotifier<bool> checkboxNotifier;
+  final bool checkboxEnabled;
 
   @override
   Widget build(BuildContext context) => Row(
@@ -38,8 +40,11 @@ final class SubscribeSection extends StatelessWidget {
                 vertical: minusFourDotNil,
               ),
               value: checkboxNotifierValue,
-              onChanged: (value) =>
-                  checkboxNotifier.value = value ?? checkboxNotifierValue,
+              onChanged: switch (checkboxEnabled) {
+                true => (value) =>
+                    checkboxNotifier.value = value ?? checkboxNotifierValue,
+                false => null,
+              },
             ),
           ),
           const SizedBox(

@@ -5,16 +5,23 @@ import 'package:flutter/material.dart'
         Form,
         FormState,
         GlobalKey,
+        Navigator,
         SizedBox,
         State,
         StatefulWidget,
         TextEditingController,
         ValueNotifier,
         Widget;
+import 'package:flutter_bloc/flutter_bloc.dart' show BlocBuilder, ReadContext;
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:sky_ways/core/resources/numbers.dart'
     show fifteenDotNil, tenDotNil, thirtyDotNil;
+import 'package:sky_ways/core/resources/strings/routes.dart'
+    show loginRoutePath;
+import 'package:sky_ways/core/utils/enums/networking.dart' show AuthProvider;
 import 'package:sky_ways/core/utils/enums/ui.dart' show AuthButtonType;
+import 'package:sky_ways/features/web_3_auth/presentation/blocs/web_3_auth_register_bloc/web_3_auth_register_bloc.dart'
+    show Web3AuthRegisterBloc, Web3AuthRegisterEvent, Web3AuthRegisterState;
 import 'package:sky_ways/features/web_3_auth/presentation/widgets/agreement_section.dart';
 import 'package:sky_ways/features/web_3_auth/presentation/widgets/auth_button.dart';
 import 'package:sky_ways/features/web_3_auth/presentation/widgets/auth_screen.dart';
@@ -64,27 +71,49 @@ class _RegisterScreenState extends State<RegisterScreen> {
         children: [
           Form(
             key: _formKey,
-            child: EmailField(
-              emailController: _emailController,
-              enabled: true,
+            child: BlocBuilder<Web3AuthRegisterBloc, Web3AuthRegisterState>(
+              builder: (_, web3AuthRegisterState) => EmailField(
+                controller: _emailController,
+                enabled: web3AuthRegisterState.maybeWhen(
+                  registering: () => false,
+                  orElse: () => true,
+                ),
+              ),
             ),
           ),
           const SizedBox(
             height: tenDotNil,
           ),
-          SubscribeSection(
-            checkboxNotifier: _subscribeToNewsletterCheckboxNotifier,
+          BlocBuilder<Web3AuthRegisterBloc, Web3AuthRegisterState>(
+            builder: (_, web3AuthRegisterState) => SubscribeSection(
+              checkboxNotifier: _subscribeToNewsletterCheckboxNotifier,
+              checkboxEnabled: web3AuthRegisterState.maybeWhen(
+                registering: () => false,
+                orElse: () => true,
+              ),
+            ),
           ),
           const SizedBox(
             height: fifteenDotNil,
           ),
-          AuthButton(
-            authButtonType: AuthButtonType.getStarted,
-            onPressed: () {
-              if (_formKey.currentState?.validate() ?? false) {
-                //
-              }
-            },
+          BlocBuilder<Web3AuthRegisterBloc, Web3AuthRegisterState>(
+            builder: (_, web3AuthRegisterState) => AuthButton(
+              type: AuthButtonType.getStarted,
+              enabled: web3AuthRegisterState.maybeWhen(
+                registering: () => false,
+                orElse: () => true,
+              ),
+              onPressed: () {
+                if (_formKey.currentState?.validate() ?? false) {
+                  context.read<Web3AuthRegisterBloc>().add(
+                        Web3AuthRegisterEvent.register(
+                          provider: AuthProvider.emailPasswordless,
+                          credential: _emailController.text,
+                        ),
+                      );
+                }
+              },
+            ),
           ),
           const SizedBox(
             height: fifteenDotNil,
@@ -93,16 +122,32 @@ class _RegisterScreenState extends State<RegisterScreen> {
           const SizedBox(
             height: fifteenDotNil,
           ),
-          AuthButton(
-            authButtonType: AuthButtonType.connectWithGoogle,
-            onPressed: () {},
+          BlocBuilder<Web3AuthRegisterBloc, Web3AuthRegisterState>(
+            builder: (_, web3AuthRegisterState) => AuthButton(
+              type: AuthButtonType.connectWithGoogle,
+              enabled: web3AuthRegisterState.maybeWhen(
+                registering: () => false,
+                orElse: () => true,
+              ),
+              onPressed: () => context.read<Web3AuthRegisterBloc>().add(
+                    const Web3AuthRegisterEvent.register(
+                      provider: AuthProvider.google,
+                    ),
+                  ),
+            ),
           ),
           const SizedBox(
             height: fifteenDotNil,
           ),
-          AuthButton(
-            authButtonType: AuthButtonType.moreOptions,
-            onPressed: () {},
+          BlocBuilder<Web3AuthRegisterBloc, Web3AuthRegisterState>(
+            builder: (_, web3AuthRegisterState) => AuthButton(
+              type: AuthButtonType.moreOptions,
+              enabled: web3AuthRegisterState.maybeWhen(
+                registering: () => false,
+                orElse: () => true,
+              ),
+              onPressed: () {},
+            ),
           ),
           const SizedBox(
             height: fifteenDotNil,
@@ -114,10 +159,19 @@ class _RegisterScreenState extends State<RegisterScreen> {
           const SizedBox(
             height: fifteenDotNil,
           ),
-          FooterSection(
-            text: AppLocalizations.of(context)!.dontHaveAnAccountYet,
-            clickableText: AppLocalizations.of(context)!.register,
-            onClickableTextTap: () {},
+          BlocBuilder<Web3AuthRegisterBloc, Web3AuthRegisterState>(
+            builder: (_, web3AuthRegisterState) => FooterSection(
+              text: AppLocalizations.of(context)!.alreadyHaveAnAccount,
+              clickableText: AppLocalizations.of(context)!.login,
+              clickableTextEnabled: web3AuthRegisterState.maybeWhen(
+                registering: () => false,
+                orElse: () => true,
+              ),
+              onClickableTextTap: () =>
+                  Navigator.of(context).pushReplacementNamed(
+                loginRoutePath,
+              ),
+            ),
           ),
         ],
       );

@@ -28,20 +28,25 @@ import 'package:sky_ways/core/utils/enums/ui.dart' show AuthButtonType;
 
 final class AuthButton extends StatelessWidget {
   const AuthButton({
-    required this.authButtonType,
+    required this.type,
+    required this.enabled,
     required this.onPressed,
     super.key,
   });
 
-  final AuthButtonType authButtonType;
+  final AuthButtonType type;
+  final bool enabled;
   final VoidCallback onPressed;
 
   @override
   Widget build(BuildContext context) => LayoutBuilder(
         builder: (_, constraints) => ElevatedButton(
-          onPressed: onPressed,
+          onPressed: switch (enabled) {
+            true => onPressed,
+            false => null,
+          },
           style: Theme.of(context).elevatedButtonTheme.style?.copyWith(
-                backgroundColor: switch (authButtonType) {
+                backgroundColor: switch (type) {
                   AuthButtonType.getStarted => null,
                   AuthButtonType.connectWithGoogle ||
                   AuthButtonType.moreOptions =>
@@ -55,7 +60,7 @@ final class AuthButton extends StatelessWidget {
                     fiftyFiveDotNil,
                   ),
                 ),
-                side: switch (authButtonType) {
+                side: switch (type) {
                   AuthButtonType.getStarted => null,
                   AuthButtonType.connectWithGoogle ||
                   AuthButtonType.moreOptions =>
@@ -66,7 +71,7 @@ final class AuthButton extends StatelessWidget {
                     ),
                 },
               ),
-          child: switch (authButtonType) {
+          child: switch (type) {
             AuthButtonType.getStarted ||
             AuthButtonType.moreOptions =>
               _buildTextWith(
@@ -98,7 +103,7 @@ final class AuthButton extends StatelessWidget {
     BuildContext context,
   ) =>
       Text(
-        switch (authButtonType) {
+        switch (type) {
           AuthButtonType.getStarted => AppLocalizations.of(context)!.getStarted,
           AuthButtonType.connectWithGoogle =>
             AppLocalizations.of(context)!.connectWithGoogle,
@@ -108,7 +113,7 @@ final class AuthButton extends StatelessWidget {
         style: Theme.of(context).textTheme.bodyMedium?.copyWith(
               fontSize: fifteenDotNil,
               height: twentyTwoDotFive / fifteenDotNil,
-              color: switch (authButtonType) {
+              color: switch (type) {
                 AuthButtonType.getStarted => hexFFFFFF,
                 AuthButtonType.connectWithGoogle ||
                 AuthButtonType.moreOptions =>

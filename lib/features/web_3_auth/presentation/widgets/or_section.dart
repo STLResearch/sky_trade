@@ -22,7 +22,7 @@ final class OrSection extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           const SectionDivider(
-            expand: true,
+            fillWidth: true,
           ),
           Padding(
             padding: const EdgeInsetsDirectional.symmetric(
@@ -36,7 +36,7 @@ final class OrSection extends StatelessWidget {
             ),
           ),
           const SectionDivider(
-            expand: true,
+            fillWidth: true,
           ),
         ],
       );

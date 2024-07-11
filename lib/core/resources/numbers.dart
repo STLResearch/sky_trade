@@ -28,6 +28,7 @@ const eighteenDotNil = 18.0;
 const twentyDotNil = 20.0;
 const twentyOneDotNil = 21.0;
 const twentyOneDotThreeSeven = 21.37;
+const twentyTwoDotNil = 22.0;
 const twentyTwoDotFive = 22.5;
 const twentyFourDotNil = 24.0;
 const thirtyDotNil = 30.0;

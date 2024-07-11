@@ -5,6 +5,7 @@ import 'package:flutter/material.dart'
         Form,
         FormState,
         GlobalKey,
+        Navigator,
         SizedBox,
         State,
         StatefulWidget,
@@ -13,10 +14,16 @@ import 'package:flutter/material.dart'
         TextEditingController,
         Theme,
         Widget;
+import 'package:flutter_bloc/flutter_bloc.dart' show BlocBuilder, ReadContext;
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:sky_ways/core/resources/numbers.dart'
     show fifteenDotNil, fiveDotNil, thirtyDotNil;
+import 'package:sky_ways/core/resources/strings/routes.dart'
+    show registerRoutePath;
+import 'package:sky_ways/core/utils/enums/networking.dart' show AuthProvider;
 import 'package:sky_ways/core/utils/enums/ui.dart' show AuthButtonType;
+import 'package:sky_ways/features/web_3_auth/presentation/blocs/web_3_auth_login_bloc/web_3_auth_login_bloc.dart'
+    show Web3AuthLoginBloc, Web3AuthLoginEvent, Web3AuthLoginState;
 import 'package:sky_ways/features/web_3_auth/presentation/widgets/auth_button.dart';
 import 'package:sky_ways/features/web_3_auth/presentation/widgets/auth_screen.dart';
 import 'package:sky_ways/features/web_3_auth/presentation/widgets/email_field.dart';
@@ -67,21 +74,37 @@ class _LoginScreenState extends State<LoginScreen> {
           ),
           Form(
             key: _formKey,
-            child: EmailField(
-              emailController: _emailController,
-              enabled: true,
+            child: BlocBuilder<Web3AuthLoginBloc, Web3AuthLoginState>(
+              builder: (_, web3AuthLoginState) => EmailField(
+                controller: _emailController,
+                enabled: web3AuthLoginState.maybeWhen(
+                  loggingIn: () => false,
+                  orElse: () => true,
+                ),
+              ),
             ),
           ),
           const SizedBox(
             height: fifteenDotNil,
           ),
-          AuthButton(
-            authButtonType: AuthButtonType.getStarted,
-            onPressed: () {
-              if (_formKey.currentState?.validate() ?? false) {
-                //
-              }
-            },
+          BlocBuilder<Web3AuthLoginBloc, Web3AuthLoginState>(
+            builder: (_, web3AuthLoginState) => AuthButton(
+              type: AuthButtonType.getStarted,
+              enabled: web3AuthLoginState.maybeWhen(
+                loggingIn: () => false,
+                orElse: () => true,
+              ),
+              onPressed: () {
+                if (_formKey.currentState?.validate() ?? false) {
+                  context.read<Web3AuthLoginBloc>().add(
+                        Web3AuthLoginEvent.login(
+                          provider: AuthProvider.emailPasswordless,
+                          credential: _emailController.text,
+                        ),
+                      );
+                }
+              },
+            ),
           ),
           const SizedBox(
             height: fifteenDotNil,
@@ -90,24 +113,49 @@ class _LoginScreenState extends State<LoginScreen> {
           const SizedBox(
             height: fifteenDotNil,
           ),
-          AuthButton(
-            authButtonType: AuthButtonType.connectWithGoogle,
-            onPressed: () {},
+          BlocBuilder<Web3AuthLoginBloc, Web3AuthLoginState>(
+            builder: (_, web3AuthLoginState) => AuthButton(
+              type: AuthButtonType.connectWithGoogle,
+              enabled: web3AuthLoginState.maybeWhen(
+                loggingIn: () => false,
+                orElse: () => true,
+              ),
+              onPressed: () => context.read<Web3AuthLoginBloc>().add(
+                    const Web3AuthLoginEvent.login(
+                      provider: AuthProvider.google,
+                    ),
+                  ),
+            ),
           ),
           const SizedBox(
             height: fifteenDotNil,
           ),
-          AuthButton(
-            authButtonType: AuthButtonType.moreOptions,
-            onPressed: () {},
+          BlocBuilder<Web3AuthLoginBloc, Web3AuthLoginState>(
+            builder: (_, web3AuthLoginState) => AuthButton(
+              type: AuthButtonType.moreOptions,
+              enabled: web3AuthLoginState.maybeWhen(
+                loggingIn: () => false,
+                orElse: () => true,
+              ),
+              onPressed: () {},
+            ),
           ),
           const SizedBox(
             height: fifteenDotNil,
           ),
-          FooterSection(
-            text: AppLocalizations.of(context)!.dontHaveAnAccountYet,
-            clickableText: AppLocalizations.of(context)!.register,
-            onClickableTextTap: () {},
+          BlocBuilder<Web3AuthLoginBloc, Web3AuthLoginState>(
+            builder: (_, web3AuthLoginState) => FooterSection(
+              text: AppLocalizations.of(context)!.dontHaveAnAccountYet,
+              clickableText: AppLocalizations.of(context)!.register,
+              clickableTextEnabled: web3AuthLoginState.maybeWhen(
+                loggingIn: () => false,
+                orElse: () => true,
+              ),
+              onClickableTextTap: () =>
+                  Navigator.of(context).pushReplacementNamed(
+                registerRoutePath,
+              ), // => context.go(location),
+            ),
           ),
         ],
       );

@@ -1,12 +1,14 @@
 import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart' show WidgetsFlutterBinding, runApp;
 import 'package:flutter_dotenv/flutter_dotenv.dart' show dotenv;
+import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart'
-    show HydratedBloc, HydratedStorage;
+    show Bloc, HydratedBloc, HydratedStorage;
 import 'package:path_provider/path_provider.dart'
     show getApplicationDocumentsDirectory;
 import 'package:sky_ways/app.dart';
-import 'package:sky_ways/injection_container.dart';
+import 'package:sky_ways/app_bloc_observer.dart';
+import 'package:sky_ways/injection_container.dart' show registerServices;
 
 void main() => _initializeImportantResources().then(
       (_) => runApp(
@@ -15,7 +17,11 @@ void main() => _initializeImportantResources().then(
     );
 
 Future<void> _initializeImportantResources() async {
-  WidgetsFlutterBinding.ensureInitialized();
+  final widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
+
+  FlutterNativeSplash.preserve(
+    widgetsBinding: widgetsBinding,
+  );
 
   await dotenv.load();
 
@@ -27,4 +33,6 @@ Future<void> _initializeImportantResources() async {
   );
 
   await registerServices();
+
+  Bloc.observer = const AppBlocObserver();
 }
