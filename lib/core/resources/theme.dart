@@ -17,8 +17,11 @@ import 'package:flutter/material.dart'
         InputDecorationTheme,
         OutlineInputBorder,
         OutlinedBorder,
+        ProgressIndicatorThemeData,
         RoundedRectangleBorder,
         Size,
+        SnackBarBehavior,
+        SnackBarThemeData,
         TextStyle,
         TextTheme,
         ThemeData,
@@ -206,6 +209,11 @@ ThemeData get lightTheme => ThemeData(
           ),
         ),
       ),
+      progressIndicatorTheme: const ProgressIndicatorThemeData(
+        linearTrackColor: hex0653EA,
+        circularTrackColor: hex0653EA,
+        refreshBackgroundColor: hex0653EA,
+      ),
       dividerColor: hex00000033,
       bottomNavigationBarTheme: const BottomNavigationBarThemeData(
         type: BottomNavigationBarType.fixed,
@@ -233,6 +241,17 @@ ThemeData get lightTheme => ThemeData(
           fontSize: elevenDotNil,
           height: twentyOneDotThreeSeven / elevenDotNil,
           letterSpacing: nilDotNilOne,
+        ),
+      ),
+      snackBarTheme: const SnackBarThemeData(
+        backgroundColor: hex0653EA,
+        behavior: SnackBarBehavior.floating,
+        contentTextStyle: TextStyle(
+          fontFamily: poppins,
+          fontWeight: FontWeight.w400,
+          fontSize: twelveDotNil,
+          height: eighteenDotNil / twelveDotNil,
+          color: hexFFFFFF,
         ),
       ),
     );

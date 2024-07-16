@@ -1,4 +1,4 @@
-import 'package:bloc/bloc.dart' show Bloc;
+import 'package:bloc/bloc.dart' show Bloc, Emitter;
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:sky_ways/core/errors/failure.dart'
     show Web3AuthAuthenticationFailure;
@@ -21,48 +21,36 @@ class Web3AuthRegisterBloc
           const Web3AuthRegisterState.initial(),
         ) {
     on<_Register>(
-      (event, emit) async {
-        emit(
-          const Web3AuthRegisterState.registering(),
-        );
-
-        final result =
-            await _web3AuthRepository.authenticateUserWith(
-          authProvider: event.provider,
-          credential: event.credential,
-        );
-
-        result.fold(
-          (web3AuthAuthenticationFailure) => add(
-            Web3AuthRegisterEvent.registerFailure(
-              web3AuthAuthenticationFailure: web3AuthAuthenticationFailure,
-            ),
-          ),
-          (userEntity) => add(
-            Web3AuthRegisterEvent.registerSuccess(
-              userEntity: userEntity,
-            ),
-          ),
-        );
-      },
-    );
-
-    on<_RegisterFailure>(
-      (event, emit) => emit(
-        Web3AuthRegisterState.failedToRegister(
-          web3AuthAuthenticationFailure: event.web3AuthAuthenticationFailure,
-        ),
-      ),
-    );
-
-    on<_RegisterSuccess>(
-      (event, emit) => emit(
-        Web3AuthRegisterState.registered(
-          userEntity: event.userEntity,
-        ),
-      ),
+      _register,
     );
   }
 
   final Web3AuthRepository _web3AuthRepository;
+
+  Future<void> _register(
+    _Register event,
+    Emitter<Web3AuthRegisterState> emit,
+  ) async {
+    emit(
+      const Web3AuthRegisterState.registering(),
+    );
+
+    final result = await _web3AuthRepository.authenticateUserWith(
+      authProvider: event.provider,
+      credential: event.credential,
+    );
+
+    result.fold(
+      (web3AuthAuthenticationFailure) => emit(
+        Web3AuthRegisterState.failedToRegister(
+          web3AuthAuthenticationFailure: web3AuthAuthenticationFailure,
+        ),
+      ),
+      (userEntity) => emit(
+        Web3AuthRegisterState.registered(
+          userEntity: userEntity,
+        ),
+      ),
+    );
+  }
 }

@@ -16,56 +16,44 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$Web3AuthRegisterEvent {
+  AuthProvider get provider => throw _privateConstructorUsedError;
+  String? get credential => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(AuthProvider provider, String? credential)
         register,
-    required TResult Function(UserEntity userEntity) registerSuccess,
-    required TResult Function(
-            Web3AuthAuthenticationFailure web3AuthAuthenticationFailure)
-        registerFailure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(AuthProvider provider, String? credential)? register,
-    TResult? Function(UserEntity userEntity)? registerSuccess,
-    TResult? Function(
-            Web3AuthAuthenticationFailure web3AuthAuthenticationFailure)?
-        registerFailure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(AuthProvider provider, String? credential)? register,
-    TResult Function(UserEntity userEntity)? registerSuccess,
-    TResult Function(
-            Web3AuthAuthenticationFailure web3AuthAuthenticationFailure)?
-        registerFailure,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Register value) register,
-    required TResult Function(_RegisterSuccess value) registerSuccess,
-    required TResult Function(_RegisterFailure value) registerFailure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Register value)? register,
-    TResult? Function(_RegisterSuccess value)? registerSuccess,
-    TResult? Function(_RegisterFailure value)? registerFailure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Register value)? register,
-    TResult Function(_RegisterSuccess value)? registerSuccess,
-    TResult Function(_RegisterFailure value)? registerFailure,
     required TResult orElse(),
   }) =>
+      throw _privateConstructorUsedError;
+
+  @JsonKey(ignore: true)
+  $Web3AuthRegisterEventCopyWith<Web3AuthRegisterEvent> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -74,6 +62,8 @@ abstract class $Web3AuthRegisterEventCopyWith<$Res> {
   factory $Web3AuthRegisterEventCopyWith(Web3AuthRegisterEvent value,
           $Res Function(Web3AuthRegisterEvent) then) =
       _$Web3AuthRegisterEventCopyWithImpl<$Res, Web3AuthRegisterEvent>;
+  @useResult
+  $Res call({AuthProvider provider, String? credential});
 }
 
 /// @nodoc
@@ -86,13 +76,33 @@ class _$Web3AuthRegisterEventCopyWithImpl<$Res,
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? provider = null,
+    Object? credential = freezed,
+  }) {
+    return _then(_value.copyWith(
+      provider: null == provider
+          ? _value.provider
+          : provider // ignore: cast_nullable_to_non_nullable
+              as AuthProvider,
+      credential: freezed == credential
+          ? _value.credential
+          : credential // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ) as $Val);
+  }
 }
 
 /// @nodoc
-abstract class _$$RegisterImplCopyWith<$Res> {
+abstract class _$$RegisterImplCopyWith<$Res>
+    implements $Web3AuthRegisterEventCopyWith<$Res> {
   factory _$$RegisterImplCopyWith(
           _$RegisterImpl value, $Res Function(_$RegisterImpl) then) =
       __$$RegisterImplCopyWithImpl<$Res>;
+  @override
   @useResult
   $Res call({AuthProvider provider, String? credential});
 }
@@ -164,10 +174,6 @@ class _$RegisterImpl implements _Register {
   TResult when<TResult extends Object?>({
     required TResult Function(AuthProvider provider, String? credential)
         register,
-    required TResult Function(UserEntity userEntity) registerSuccess,
-    required TResult Function(
-            Web3AuthAuthenticationFailure web3AuthAuthenticationFailure)
-        registerFailure,
   }) {
     return register(provider, credential);
   }
@@ -176,10 +182,6 @@ class _$RegisterImpl implements _Register {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(AuthProvider provider, String? credential)? register,
-    TResult? Function(UserEntity userEntity)? registerSuccess,
-    TResult? Function(
-            Web3AuthAuthenticationFailure web3AuthAuthenticationFailure)?
-        registerFailure,
   }) {
     return register?.call(provider, credential);
   }
@@ -188,10 +190,6 @@ class _$RegisterImpl implements _Register {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(AuthProvider provider, String? credential)? register,
-    TResult Function(UserEntity userEntity)? registerSuccess,
-    TResult Function(
-            Web3AuthAuthenticationFailure web3AuthAuthenticationFailure)?
-        registerFailure,
     required TResult orElse(),
   }) {
     if (register != null) {
@@ -204,8 +202,6 @@ class _$RegisterImpl implements _Register {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Register value) register,
-    required TResult Function(_RegisterSuccess value) registerSuccess,
-    required TResult Function(_RegisterFailure value) registerFailure,
   }) {
     return register(this);
   }
@@ -214,8 +210,6 @@ class _$RegisterImpl implements _Register {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Register value)? register,
-    TResult? Function(_RegisterSuccess value)? registerSuccess,
-    TResult? Function(_RegisterFailure value)? registerFailure,
   }) {
     return register?.call(this);
   }
@@ -224,8 +218,6 @@ class _$RegisterImpl implements _Register {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Register value)? register,
-    TResult Function(_RegisterSuccess value)? registerSuccess,
-    TResult Function(_RegisterFailure value)? registerFailure,
     required TResult orElse(),
   }) {
     if (register != null) {
@@ -240,311 +232,13 @@ abstract class _Register implements Web3AuthRegisterEvent {
       {required final AuthProvider provider,
       final String? credential}) = _$RegisterImpl;
 
+  @override
   AuthProvider get provider;
+  @override
   String? get credential;
+  @override
   @JsonKey(ignore: true)
   _$$RegisterImplCopyWith<_$RegisterImpl> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$$RegisterSuccessImplCopyWith<$Res> {
-  factory _$$RegisterSuccessImplCopyWith(_$RegisterSuccessImpl value,
-          $Res Function(_$RegisterSuccessImpl) then) =
-      __$$RegisterSuccessImplCopyWithImpl<$Res>;
-  @useResult
-  $Res call({UserEntity userEntity});
-}
-
-/// @nodoc
-class __$$RegisterSuccessImplCopyWithImpl<$Res>
-    extends _$Web3AuthRegisterEventCopyWithImpl<$Res, _$RegisterSuccessImpl>
-    implements _$$RegisterSuccessImplCopyWith<$Res> {
-  __$$RegisterSuccessImplCopyWithImpl(
-      _$RegisterSuccessImpl _value, $Res Function(_$RegisterSuccessImpl) _then)
-      : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? userEntity = null,
-  }) {
-    return _then(_$RegisterSuccessImpl(
-      userEntity: null == userEntity
-          ? _value.userEntity
-          : userEntity // ignore: cast_nullable_to_non_nullable
-              as UserEntity,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$RegisterSuccessImpl implements _RegisterSuccess {
-  const _$RegisterSuccessImpl({required this.userEntity});
-
-  @override
-  final UserEntity userEntity;
-
-  @override
-  String toString() {
-    return 'Web3AuthRegisterEvent.registerSuccess(userEntity: $userEntity)';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$RegisterSuccessImpl &&
-            (identical(other.userEntity, userEntity) ||
-                other.userEntity == userEntity));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, userEntity);
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$RegisterSuccessImplCopyWith<_$RegisterSuccessImpl> get copyWith =>
-      __$$RegisterSuccessImplCopyWithImpl<_$RegisterSuccessImpl>(
-          this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(AuthProvider provider, String? credential)
-        register,
-    required TResult Function(UserEntity userEntity) registerSuccess,
-    required TResult Function(
-            Web3AuthAuthenticationFailure web3AuthAuthenticationFailure)
-        registerFailure,
-  }) {
-    return registerSuccess(userEntity);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(AuthProvider provider, String? credential)? register,
-    TResult? Function(UserEntity userEntity)? registerSuccess,
-    TResult? Function(
-            Web3AuthAuthenticationFailure web3AuthAuthenticationFailure)?
-        registerFailure,
-  }) {
-    return registerSuccess?.call(userEntity);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(AuthProvider provider, String? credential)? register,
-    TResult Function(UserEntity userEntity)? registerSuccess,
-    TResult Function(
-            Web3AuthAuthenticationFailure web3AuthAuthenticationFailure)?
-        registerFailure,
-    required TResult orElse(),
-  }) {
-    if (registerSuccess != null) {
-      return registerSuccess(userEntity);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Register value) register,
-    required TResult Function(_RegisterSuccess value) registerSuccess,
-    required TResult Function(_RegisterFailure value) registerFailure,
-  }) {
-    return registerSuccess(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Register value)? register,
-    TResult? Function(_RegisterSuccess value)? registerSuccess,
-    TResult? Function(_RegisterFailure value)? registerFailure,
-  }) {
-    return registerSuccess?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Register value)? register,
-    TResult Function(_RegisterSuccess value)? registerSuccess,
-    TResult Function(_RegisterFailure value)? registerFailure,
-    required TResult orElse(),
-  }) {
-    if (registerSuccess != null) {
-      return registerSuccess(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _RegisterSuccess implements Web3AuthRegisterEvent {
-  const factory _RegisterSuccess({required final UserEntity userEntity}) =
-      _$RegisterSuccessImpl;
-
-  UserEntity get userEntity;
-  @JsonKey(ignore: true)
-  _$$RegisterSuccessImplCopyWith<_$RegisterSuccessImpl> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$$RegisterFailureImplCopyWith<$Res> {
-  factory _$$RegisterFailureImplCopyWith(_$RegisterFailureImpl value,
-          $Res Function(_$RegisterFailureImpl) then) =
-      __$$RegisterFailureImplCopyWithImpl<$Res>;
-  @useResult
-  $Res call({Web3AuthAuthenticationFailure web3AuthAuthenticationFailure});
-}
-
-/// @nodoc
-class __$$RegisterFailureImplCopyWithImpl<$Res>
-    extends _$Web3AuthRegisterEventCopyWithImpl<$Res, _$RegisterFailureImpl>
-    implements _$$RegisterFailureImplCopyWith<$Res> {
-  __$$RegisterFailureImplCopyWithImpl(
-      _$RegisterFailureImpl _value, $Res Function(_$RegisterFailureImpl) _then)
-      : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? web3AuthAuthenticationFailure = null,
-  }) {
-    return _then(_$RegisterFailureImpl(
-      web3AuthAuthenticationFailure: null == web3AuthAuthenticationFailure
-          ? _value.web3AuthAuthenticationFailure
-          : web3AuthAuthenticationFailure // ignore: cast_nullable_to_non_nullable
-              as Web3AuthAuthenticationFailure,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$RegisterFailureImpl implements _RegisterFailure {
-  const _$RegisterFailureImpl({required this.web3AuthAuthenticationFailure});
-
-  @override
-  final Web3AuthAuthenticationFailure web3AuthAuthenticationFailure;
-
-  @override
-  String toString() {
-    return 'Web3AuthRegisterEvent.registerFailure(web3AuthAuthenticationFailure: $web3AuthAuthenticationFailure)';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$RegisterFailureImpl &&
-            (identical(other.web3AuthAuthenticationFailure,
-                    web3AuthAuthenticationFailure) ||
-                other.web3AuthAuthenticationFailure ==
-                    web3AuthAuthenticationFailure));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, web3AuthAuthenticationFailure);
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$RegisterFailureImplCopyWith<_$RegisterFailureImpl> get copyWith =>
-      __$$RegisterFailureImplCopyWithImpl<_$RegisterFailureImpl>(
-          this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(AuthProvider provider, String? credential)
-        register,
-    required TResult Function(UserEntity userEntity) registerSuccess,
-    required TResult Function(
-            Web3AuthAuthenticationFailure web3AuthAuthenticationFailure)
-        registerFailure,
-  }) {
-    return registerFailure(web3AuthAuthenticationFailure);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(AuthProvider provider, String? credential)? register,
-    TResult? Function(UserEntity userEntity)? registerSuccess,
-    TResult? Function(
-            Web3AuthAuthenticationFailure web3AuthAuthenticationFailure)?
-        registerFailure,
-  }) {
-    return registerFailure?.call(web3AuthAuthenticationFailure);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(AuthProvider provider, String? credential)? register,
-    TResult Function(UserEntity userEntity)? registerSuccess,
-    TResult Function(
-            Web3AuthAuthenticationFailure web3AuthAuthenticationFailure)?
-        registerFailure,
-    required TResult orElse(),
-  }) {
-    if (registerFailure != null) {
-      return registerFailure(web3AuthAuthenticationFailure);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Register value) register,
-    required TResult Function(_RegisterSuccess value) registerSuccess,
-    required TResult Function(_RegisterFailure value) registerFailure,
-  }) {
-    return registerFailure(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Register value)? register,
-    TResult? Function(_RegisterSuccess value)? registerSuccess,
-    TResult? Function(_RegisterFailure value)? registerFailure,
-  }) {
-    return registerFailure?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Register value)? register,
-    TResult Function(_RegisterSuccess value)? registerSuccess,
-    TResult Function(_RegisterFailure value)? registerFailure,
-    required TResult orElse(),
-  }) {
-    if (registerFailure != null) {
-      return registerFailure(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _RegisterFailure implements Web3AuthRegisterEvent {
-  const factory _RegisterFailure(
-      {required final Web3AuthAuthenticationFailure
-          web3AuthAuthenticationFailure}) = _$RegisterFailureImpl;
-
-  Web3AuthAuthenticationFailure get web3AuthAuthenticationFailure;
-  @JsonKey(ignore: true)
-  _$$RegisterFailureImplCopyWith<_$RegisterFailureImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 

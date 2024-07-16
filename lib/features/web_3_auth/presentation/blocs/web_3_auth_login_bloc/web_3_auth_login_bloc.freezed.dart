@@ -16,55 +16,43 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$Web3AuthLoginEvent {
+  AuthProvider get provider => throw _privateConstructorUsedError;
+  String? get credential => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(AuthProvider provider, String? credential) login,
-    required TResult Function(UserEntity userEntity) loginSuccess,
-    required TResult Function(
-            Web3AuthAuthenticationFailure web3AuthAuthenticationFailure)
-        loginFailure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(AuthProvider provider, String? credential)? login,
-    TResult? Function(UserEntity userEntity)? loginSuccess,
-    TResult? Function(
-            Web3AuthAuthenticationFailure web3AuthAuthenticationFailure)?
-        loginFailure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(AuthProvider provider, String? credential)? login,
-    TResult Function(UserEntity userEntity)? loginSuccess,
-    TResult Function(
-            Web3AuthAuthenticationFailure web3AuthAuthenticationFailure)?
-        loginFailure,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Login value) login,
-    required TResult Function(_LoginSuccess value) loginSuccess,
-    required TResult Function(_LoginFailure value) loginFailure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Login value)? login,
-    TResult? Function(_LoginSuccess value)? loginSuccess,
-    TResult? Function(_LoginFailure value)? loginFailure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Login value)? login,
-    TResult Function(_LoginSuccess value)? loginSuccess,
-    TResult Function(_LoginFailure value)? loginFailure,
     required TResult orElse(),
   }) =>
+      throw _privateConstructorUsedError;
+
+  @JsonKey(ignore: true)
+  $Web3AuthLoginEventCopyWith<Web3AuthLoginEvent> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -73,6 +61,8 @@ abstract class $Web3AuthLoginEventCopyWith<$Res> {
   factory $Web3AuthLoginEventCopyWith(
           Web3AuthLoginEvent value, $Res Function(Web3AuthLoginEvent) then) =
       _$Web3AuthLoginEventCopyWithImpl<$Res, Web3AuthLoginEvent>;
+  @useResult
+  $Res call({AuthProvider provider, String? credential});
 }
 
 /// @nodoc
@@ -84,13 +74,33 @@ class _$Web3AuthLoginEventCopyWithImpl<$Res, $Val extends Web3AuthLoginEvent>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? provider = null,
+    Object? credential = freezed,
+  }) {
+    return _then(_value.copyWith(
+      provider: null == provider
+          ? _value.provider
+          : provider // ignore: cast_nullable_to_non_nullable
+              as AuthProvider,
+      credential: freezed == credential
+          ? _value.credential
+          : credential // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ) as $Val);
+  }
 }
 
 /// @nodoc
-abstract class _$$LoginImplCopyWith<$Res> {
+abstract class _$$LoginImplCopyWith<$Res>
+    implements $Web3AuthLoginEventCopyWith<$Res> {
   factory _$$LoginImplCopyWith(
           _$LoginImpl value, $Res Function(_$LoginImpl) then) =
       __$$LoginImplCopyWithImpl<$Res>;
+  @override
   @useResult
   $Res call({AuthProvider provider, String? credential});
 }
@@ -161,10 +171,6 @@ class _$LoginImpl implements _Login {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(AuthProvider provider, String? credential) login,
-    required TResult Function(UserEntity userEntity) loginSuccess,
-    required TResult Function(
-            Web3AuthAuthenticationFailure web3AuthAuthenticationFailure)
-        loginFailure,
   }) {
     return login(provider, credential);
   }
@@ -173,10 +179,6 @@ class _$LoginImpl implements _Login {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(AuthProvider provider, String? credential)? login,
-    TResult? Function(UserEntity userEntity)? loginSuccess,
-    TResult? Function(
-            Web3AuthAuthenticationFailure web3AuthAuthenticationFailure)?
-        loginFailure,
   }) {
     return login?.call(provider, credential);
   }
@@ -185,10 +187,6 @@ class _$LoginImpl implements _Login {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(AuthProvider provider, String? credential)? login,
-    TResult Function(UserEntity userEntity)? loginSuccess,
-    TResult Function(
-            Web3AuthAuthenticationFailure web3AuthAuthenticationFailure)?
-        loginFailure,
     required TResult orElse(),
   }) {
     if (login != null) {
@@ -201,8 +199,6 @@ class _$LoginImpl implements _Login {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Login value) login,
-    required TResult Function(_LoginSuccess value) loginSuccess,
-    required TResult Function(_LoginFailure value) loginFailure,
   }) {
     return login(this);
   }
@@ -211,8 +207,6 @@ class _$LoginImpl implements _Login {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Login value)? login,
-    TResult? Function(_LoginSuccess value)? loginSuccess,
-    TResult? Function(_LoginFailure value)? loginFailure,
   }) {
     return login?.call(this);
   }
@@ -221,8 +215,6 @@ class _$LoginImpl implements _Login {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Login value)? login,
-    TResult Function(_LoginSuccess value)? loginSuccess,
-    TResult Function(_LoginFailure value)? loginFailure,
     required TResult orElse(),
   }) {
     if (login != null) {
@@ -237,307 +229,13 @@ abstract class _Login implements Web3AuthLoginEvent {
       {required final AuthProvider provider,
       final String? credential}) = _$LoginImpl;
 
+  @override
   AuthProvider get provider;
+  @override
   String? get credential;
+  @override
   @JsonKey(ignore: true)
   _$$LoginImplCopyWith<_$LoginImpl> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$$LoginSuccessImplCopyWith<$Res> {
-  factory _$$LoginSuccessImplCopyWith(
-          _$LoginSuccessImpl value, $Res Function(_$LoginSuccessImpl) then) =
-      __$$LoginSuccessImplCopyWithImpl<$Res>;
-  @useResult
-  $Res call({UserEntity userEntity});
-}
-
-/// @nodoc
-class __$$LoginSuccessImplCopyWithImpl<$Res>
-    extends _$Web3AuthLoginEventCopyWithImpl<$Res, _$LoginSuccessImpl>
-    implements _$$LoginSuccessImplCopyWith<$Res> {
-  __$$LoginSuccessImplCopyWithImpl(
-      _$LoginSuccessImpl _value, $Res Function(_$LoginSuccessImpl) _then)
-      : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? userEntity = null,
-  }) {
-    return _then(_$LoginSuccessImpl(
-      userEntity: null == userEntity
-          ? _value.userEntity
-          : userEntity // ignore: cast_nullable_to_non_nullable
-              as UserEntity,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$LoginSuccessImpl implements _LoginSuccess {
-  const _$LoginSuccessImpl({required this.userEntity});
-
-  @override
-  final UserEntity userEntity;
-
-  @override
-  String toString() {
-    return 'Web3AuthLoginEvent.loginSuccess(userEntity: $userEntity)';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$LoginSuccessImpl &&
-            (identical(other.userEntity, userEntity) ||
-                other.userEntity == userEntity));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, userEntity);
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$LoginSuccessImplCopyWith<_$LoginSuccessImpl> get copyWith =>
-      __$$LoginSuccessImplCopyWithImpl<_$LoginSuccessImpl>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(AuthProvider provider, String? credential) login,
-    required TResult Function(UserEntity userEntity) loginSuccess,
-    required TResult Function(
-            Web3AuthAuthenticationFailure web3AuthAuthenticationFailure)
-        loginFailure,
-  }) {
-    return loginSuccess(userEntity);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(AuthProvider provider, String? credential)? login,
-    TResult? Function(UserEntity userEntity)? loginSuccess,
-    TResult? Function(
-            Web3AuthAuthenticationFailure web3AuthAuthenticationFailure)?
-        loginFailure,
-  }) {
-    return loginSuccess?.call(userEntity);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(AuthProvider provider, String? credential)? login,
-    TResult Function(UserEntity userEntity)? loginSuccess,
-    TResult Function(
-            Web3AuthAuthenticationFailure web3AuthAuthenticationFailure)?
-        loginFailure,
-    required TResult orElse(),
-  }) {
-    if (loginSuccess != null) {
-      return loginSuccess(userEntity);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Login value) login,
-    required TResult Function(_LoginSuccess value) loginSuccess,
-    required TResult Function(_LoginFailure value) loginFailure,
-  }) {
-    return loginSuccess(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Login value)? login,
-    TResult? Function(_LoginSuccess value)? loginSuccess,
-    TResult? Function(_LoginFailure value)? loginFailure,
-  }) {
-    return loginSuccess?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Login value)? login,
-    TResult Function(_LoginSuccess value)? loginSuccess,
-    TResult Function(_LoginFailure value)? loginFailure,
-    required TResult orElse(),
-  }) {
-    if (loginSuccess != null) {
-      return loginSuccess(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _LoginSuccess implements Web3AuthLoginEvent {
-  const factory _LoginSuccess({required final UserEntity userEntity}) =
-      _$LoginSuccessImpl;
-
-  UserEntity get userEntity;
-  @JsonKey(ignore: true)
-  _$$LoginSuccessImplCopyWith<_$LoginSuccessImpl> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$$LoginFailureImplCopyWith<$Res> {
-  factory _$$LoginFailureImplCopyWith(
-          _$LoginFailureImpl value, $Res Function(_$LoginFailureImpl) then) =
-      __$$LoginFailureImplCopyWithImpl<$Res>;
-  @useResult
-  $Res call({Web3AuthAuthenticationFailure web3AuthAuthenticationFailure});
-}
-
-/// @nodoc
-class __$$LoginFailureImplCopyWithImpl<$Res>
-    extends _$Web3AuthLoginEventCopyWithImpl<$Res, _$LoginFailureImpl>
-    implements _$$LoginFailureImplCopyWith<$Res> {
-  __$$LoginFailureImplCopyWithImpl(
-      _$LoginFailureImpl _value, $Res Function(_$LoginFailureImpl) _then)
-      : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? web3AuthAuthenticationFailure = null,
-  }) {
-    return _then(_$LoginFailureImpl(
-      web3AuthAuthenticationFailure: null == web3AuthAuthenticationFailure
-          ? _value.web3AuthAuthenticationFailure
-          : web3AuthAuthenticationFailure // ignore: cast_nullable_to_non_nullable
-              as Web3AuthAuthenticationFailure,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$LoginFailureImpl implements _LoginFailure {
-  const _$LoginFailureImpl({required this.web3AuthAuthenticationFailure});
-
-  @override
-  final Web3AuthAuthenticationFailure web3AuthAuthenticationFailure;
-
-  @override
-  String toString() {
-    return 'Web3AuthLoginEvent.loginFailure(web3AuthAuthenticationFailure: $web3AuthAuthenticationFailure)';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$LoginFailureImpl &&
-            (identical(other.web3AuthAuthenticationFailure,
-                    web3AuthAuthenticationFailure) ||
-                other.web3AuthAuthenticationFailure ==
-                    web3AuthAuthenticationFailure));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, web3AuthAuthenticationFailure);
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$LoginFailureImplCopyWith<_$LoginFailureImpl> get copyWith =>
-      __$$LoginFailureImplCopyWithImpl<_$LoginFailureImpl>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(AuthProvider provider, String? credential) login,
-    required TResult Function(UserEntity userEntity) loginSuccess,
-    required TResult Function(
-            Web3AuthAuthenticationFailure web3AuthAuthenticationFailure)
-        loginFailure,
-  }) {
-    return loginFailure(web3AuthAuthenticationFailure);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(AuthProvider provider, String? credential)? login,
-    TResult? Function(UserEntity userEntity)? loginSuccess,
-    TResult? Function(
-            Web3AuthAuthenticationFailure web3AuthAuthenticationFailure)?
-        loginFailure,
-  }) {
-    return loginFailure?.call(web3AuthAuthenticationFailure);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(AuthProvider provider, String? credential)? login,
-    TResult Function(UserEntity userEntity)? loginSuccess,
-    TResult Function(
-            Web3AuthAuthenticationFailure web3AuthAuthenticationFailure)?
-        loginFailure,
-    required TResult orElse(),
-  }) {
-    if (loginFailure != null) {
-      return loginFailure(web3AuthAuthenticationFailure);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Login value) login,
-    required TResult Function(_LoginSuccess value) loginSuccess,
-    required TResult Function(_LoginFailure value) loginFailure,
-  }) {
-    return loginFailure(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Login value)? login,
-    TResult? Function(_LoginSuccess value)? loginSuccess,
-    TResult? Function(_LoginFailure value)? loginFailure,
-  }) {
-    return loginFailure?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Login value)? login,
-    TResult Function(_LoginSuccess value)? loginSuccess,
-    TResult Function(_LoginFailure value)? loginFailure,
-    required TResult orElse(),
-  }) {
-    if (loginFailure != null) {
-      return loginFailure(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _LoginFailure implements Web3AuthLoginEvent {
-  const factory _LoginFailure(
-      {required final Web3AuthAuthenticationFailure
-          web3AuthAuthenticationFailure}) = _$LoginFailureImpl;
-
-  Web3AuthAuthenticationFailure get web3AuthAuthenticationFailure;
-  @JsonKey(ignore: true)
-  _$$LoginFailureImplCopyWith<_$LoginFailureImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 

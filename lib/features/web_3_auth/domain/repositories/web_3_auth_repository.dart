@@ -18,5 +18,7 @@ abstract interface class Web3AuthRepository {
 
   Future<bool> sessionExists();
 
+  Future<void> captureWhenCustomTabsClosed();
+
   Future<Either<Web3AuthLogoutFailure, void>> logoutCurrentUser();
 }

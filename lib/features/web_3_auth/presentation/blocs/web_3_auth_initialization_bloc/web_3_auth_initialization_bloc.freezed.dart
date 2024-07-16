@@ -19,50 +19,32 @@ mixin _$Web3AuthInitializationEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initialize,
-    required TResult Function() initializeSuccess,
-    required TResult Function(
-            Web3AuthInitializationFailure web3AuthInitializationFailure)
-        initializeFailure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initialize,
-    TResult? Function()? initializeSuccess,
-    TResult? Function(
-            Web3AuthInitializationFailure web3AuthInitializationFailure)?
-        initializeFailure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initialize,
-    TResult Function()? initializeSuccess,
-    TResult Function(
-            Web3AuthInitializationFailure web3AuthInitializationFailure)?
-        initializeFailure,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initialize value) initialize,
-    required TResult Function(_InitializeSuccess value) initializeSuccess,
-    required TResult Function(_InitializeFailure value) initializeFailure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initialize value)? initialize,
-    TResult? Function(_InitializeSuccess value)? initializeSuccess,
-    TResult? Function(_InitializeFailure value)? initializeFailure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initialize value)? initialize,
-    TResult Function(_InitializeSuccess value)? initializeSuccess,
-    TResult Function(_InitializeFailure value)? initializeFailure,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -128,10 +110,6 @@ class _$InitializeImpl implements _Initialize {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initialize,
-    required TResult Function() initializeSuccess,
-    required TResult Function(
-            Web3AuthInitializationFailure web3AuthInitializationFailure)
-        initializeFailure,
   }) {
     return initialize();
   }
@@ -140,10 +118,6 @@ class _$InitializeImpl implements _Initialize {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initialize,
-    TResult? Function()? initializeSuccess,
-    TResult? Function(
-            Web3AuthInitializationFailure web3AuthInitializationFailure)?
-        initializeFailure,
   }) {
     return initialize?.call();
   }
@@ -152,10 +126,6 @@ class _$InitializeImpl implements _Initialize {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initialize,
-    TResult Function()? initializeSuccess,
-    TResult Function(
-            Web3AuthInitializationFailure web3AuthInitializationFailure)?
-        initializeFailure,
     required TResult orElse(),
   }) {
     if (initialize != null) {
@@ -168,8 +138,6 @@ class _$InitializeImpl implements _Initialize {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initialize value) initialize,
-    required TResult Function(_InitializeSuccess value) initializeSuccess,
-    required TResult Function(_InitializeFailure value) initializeFailure,
   }) {
     return initialize(this);
   }
@@ -178,8 +146,6 @@ class _$InitializeImpl implements _Initialize {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initialize value)? initialize,
-    TResult? Function(_InitializeSuccess value)? initializeSuccess,
-    TResult? Function(_InitializeFailure value)? initializeFailure,
   }) {
     return initialize?.call(this);
   }
@@ -188,8 +154,6 @@ class _$InitializeImpl implements _Initialize {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initialize value)? initialize,
-    TResult Function(_InitializeSuccess value)? initializeSuccess,
-    TResult Function(_InitializeFailure value)? initializeFailure,
     required TResult orElse(),
   }) {
     if (initialize != null) {
@@ -201,273 +165,6 @@ class _$InitializeImpl implements _Initialize {
 
 abstract class _Initialize implements Web3AuthInitializationEvent {
   const factory _Initialize() = _$InitializeImpl;
-}
-
-/// @nodoc
-abstract class _$$InitializeSuccessImplCopyWith<$Res> {
-  factory _$$InitializeSuccessImplCopyWith(_$InitializeSuccessImpl value,
-          $Res Function(_$InitializeSuccessImpl) then) =
-      __$$InitializeSuccessImplCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$InitializeSuccessImplCopyWithImpl<$Res>
-    extends _$Web3AuthInitializationEventCopyWithImpl<$Res,
-        _$InitializeSuccessImpl>
-    implements _$$InitializeSuccessImplCopyWith<$Res> {
-  __$$InitializeSuccessImplCopyWithImpl(_$InitializeSuccessImpl _value,
-      $Res Function(_$InitializeSuccessImpl) _then)
-      : super(_value, _then);
-}
-
-/// @nodoc
-
-class _$InitializeSuccessImpl implements _InitializeSuccess {
-  const _$InitializeSuccessImpl();
-
-  @override
-  String toString() {
-    return 'Web3AuthInitializationEvent.initializeSuccess()';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$InitializeSuccessImpl);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() initialize,
-    required TResult Function() initializeSuccess,
-    required TResult Function(
-            Web3AuthInitializationFailure web3AuthInitializationFailure)
-        initializeFailure,
-  }) {
-    return initializeSuccess();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initialize,
-    TResult? Function()? initializeSuccess,
-    TResult? Function(
-            Web3AuthInitializationFailure web3AuthInitializationFailure)?
-        initializeFailure,
-  }) {
-    return initializeSuccess?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initialize,
-    TResult Function()? initializeSuccess,
-    TResult Function(
-            Web3AuthInitializationFailure web3AuthInitializationFailure)?
-        initializeFailure,
-    required TResult orElse(),
-  }) {
-    if (initializeSuccess != null) {
-      return initializeSuccess();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Initialize value) initialize,
-    required TResult Function(_InitializeSuccess value) initializeSuccess,
-    required TResult Function(_InitializeFailure value) initializeFailure,
-  }) {
-    return initializeSuccess(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initialize value)? initialize,
-    TResult? Function(_InitializeSuccess value)? initializeSuccess,
-    TResult? Function(_InitializeFailure value)? initializeFailure,
-  }) {
-    return initializeSuccess?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initialize value)? initialize,
-    TResult Function(_InitializeSuccess value)? initializeSuccess,
-    TResult Function(_InitializeFailure value)? initializeFailure,
-    required TResult orElse(),
-  }) {
-    if (initializeSuccess != null) {
-      return initializeSuccess(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _InitializeSuccess implements Web3AuthInitializationEvent {
-  const factory _InitializeSuccess() = _$InitializeSuccessImpl;
-}
-
-/// @nodoc
-abstract class _$$InitializeFailureImplCopyWith<$Res> {
-  factory _$$InitializeFailureImplCopyWith(_$InitializeFailureImpl value,
-          $Res Function(_$InitializeFailureImpl) then) =
-      __$$InitializeFailureImplCopyWithImpl<$Res>;
-  @useResult
-  $Res call({Web3AuthInitializationFailure web3AuthInitializationFailure});
-}
-
-/// @nodoc
-class __$$InitializeFailureImplCopyWithImpl<$Res>
-    extends _$Web3AuthInitializationEventCopyWithImpl<$Res,
-        _$InitializeFailureImpl>
-    implements _$$InitializeFailureImplCopyWith<$Res> {
-  __$$InitializeFailureImplCopyWithImpl(_$InitializeFailureImpl _value,
-      $Res Function(_$InitializeFailureImpl) _then)
-      : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? web3AuthInitializationFailure = null,
-  }) {
-    return _then(_$InitializeFailureImpl(
-      web3AuthInitializationFailure: null == web3AuthInitializationFailure
-          ? _value.web3AuthInitializationFailure
-          : web3AuthInitializationFailure // ignore: cast_nullable_to_non_nullable
-              as Web3AuthInitializationFailure,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$InitializeFailureImpl implements _InitializeFailure {
-  const _$InitializeFailureImpl({required this.web3AuthInitializationFailure});
-
-  @override
-  final Web3AuthInitializationFailure web3AuthInitializationFailure;
-
-  @override
-  String toString() {
-    return 'Web3AuthInitializationEvent.initializeFailure(web3AuthInitializationFailure: $web3AuthInitializationFailure)';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$InitializeFailureImpl &&
-            (identical(other.web3AuthInitializationFailure,
-                    web3AuthInitializationFailure) ||
-                other.web3AuthInitializationFailure ==
-                    web3AuthInitializationFailure));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, web3AuthInitializationFailure);
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$InitializeFailureImplCopyWith<_$InitializeFailureImpl> get copyWith =>
-      __$$InitializeFailureImplCopyWithImpl<_$InitializeFailureImpl>(
-          this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() initialize,
-    required TResult Function() initializeSuccess,
-    required TResult Function(
-            Web3AuthInitializationFailure web3AuthInitializationFailure)
-        initializeFailure,
-  }) {
-    return initializeFailure(web3AuthInitializationFailure);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initialize,
-    TResult? Function()? initializeSuccess,
-    TResult? Function(
-            Web3AuthInitializationFailure web3AuthInitializationFailure)?
-        initializeFailure,
-  }) {
-    return initializeFailure?.call(web3AuthInitializationFailure);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initialize,
-    TResult Function()? initializeSuccess,
-    TResult Function(
-            Web3AuthInitializationFailure web3AuthInitializationFailure)?
-        initializeFailure,
-    required TResult orElse(),
-  }) {
-    if (initializeFailure != null) {
-      return initializeFailure(web3AuthInitializationFailure);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Initialize value) initialize,
-    required TResult Function(_InitializeSuccess value) initializeSuccess,
-    required TResult Function(_InitializeFailure value) initializeFailure,
-  }) {
-    return initializeFailure(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initialize value)? initialize,
-    TResult? Function(_InitializeSuccess value)? initializeSuccess,
-    TResult? Function(_InitializeFailure value)? initializeFailure,
-  }) {
-    return initializeFailure?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initialize value)? initialize,
-    TResult Function(_InitializeSuccess value)? initializeSuccess,
-    TResult Function(_InitializeFailure value)? initializeFailure,
-    required TResult orElse(),
-  }) {
-    if (initializeFailure != null) {
-      return initializeFailure(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _InitializeFailure implements Web3AuthInitializationEvent {
-  const factory _InitializeFailure(
-      {required final Web3AuthInitializationFailure
-          web3AuthInitializationFailure}) = _$InitializeFailureImpl;
-
-  Web3AuthInitializationFailure get web3AuthInitializationFailure;
-  @JsonKey(ignore: true)
-  _$$InitializeFailureImplCopyWith<_$InitializeFailureImpl> get copyWith =>
-      throw _privateConstructorUsedError;
 }
 
 /// @nodoc

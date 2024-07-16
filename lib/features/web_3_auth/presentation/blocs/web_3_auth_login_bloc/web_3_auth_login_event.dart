@@ -6,12 +6,4 @@ class Web3AuthLoginEvent with _$Web3AuthLoginEvent {
     required AuthProvider provider,
     String? credential,
   }) = _Login;
-
-  const factory Web3AuthLoginEvent.loginSuccess({
-    required UserEntity userEntity,
-  }) = _LoginSuccess;
-
-  const factory Web3AuthLoginEvent.loginFailure({
-    required Web3AuthAuthenticationFailure web3AuthAuthenticationFailure,
-  }) = _LoginFailure;
 }

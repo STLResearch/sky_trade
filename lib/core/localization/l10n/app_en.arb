@@ -25,5 +25,7 @@
   "and": "and",
   "privacyPolicy": "Privacy Policy",
   "agreement": "agreement",
-  "alreadyHaveAnAccount": "Already have an account?"
+  "alreadyHaveAnAccount": "Already have an account?",
+  "weCouldNotLogYouInPleaseTryAgain": "We could not log you in. Please try again",
+  "weCouldNotRegisterYourAccountPleaseTryAgain": "We could not register your account. Please try again"
 }

@@ -21,7 +21,11 @@ import 'package:sky_ways/features/web_3_auth/domain/entities/user_entity.dart';
 import 'package:sky_ways/features/web_3_auth/domain/repositories/web_3_auth_repository.dart';
 import 'package:web3auth_flutter/enums.dart' show Network, Provider;
 import 'package:web3auth_flutter/input.dart'
-    show ExtraLoginOptions, LoginParams, Web3AuthOptions;
+    show
+        ExtraLoginOptions,
+        LoginParams,
+        UserCancelledException,
+        Web3AuthOptions;
 import 'package:web3auth_flutter/output.dart' show Web3AuthResponse;
 import 'package:web3auth_flutter/web3auth_flutter.dart';
 
@@ -95,6 +99,10 @@ final class Web3AuthRepositoryImplementation implements Web3AuthRepository {
       return Right(
         userEntity,
       );
+    } on UserCancelledException {
+      return Left(
+        Web3AuthAuthenticationFailure(),
+      );
     } catch (error) {
       return Left(
         Web3AuthAuthenticationFailure(),
@@ -160,6 +168,10 @@ final class Web3AuthRepositoryImplementation implements Web3AuthRepository {
 
     return ed25519PrivateKey.isNotEmpty;
   }
+
+  @override
+  Future<void> captureWhenCustomTabsClosed() =>
+      Web3AuthFlutter.setCustomTabsClosed();
 
   @override
   Future<Either<Web3AuthLogoutFailure, void>> logoutCurrentUser() async {

@@ -1,4 +1,4 @@
-import 'package:bloc/bloc.dart' show Bloc;
+import 'package:bloc/bloc.dart' show Bloc, Emitter;
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:sky_ways/core/errors/failure.dart'
     show Web3AuthAuthenticationFailure;
@@ -20,47 +20,36 @@ class Web3AuthLoginBloc extends Bloc<Web3AuthLoginEvent, Web3AuthLoginState> {
           const Web3AuthLoginState.initial(),
         ) {
     on<_Login>(
-      (event, emit) async {
-        emit(
-          const Web3AuthLoginState.loggingIn(),
-        );
-
-        final result = await _web3AuthRepository.authenticateUserWith(
-          authProvider: event.provider,
-          credential: event.credential,
-        );
-
-        result.fold(
-          (web3AuthAuthenticationFailure) => add(
-            Web3AuthLoginEvent.loginFailure(
-              web3AuthAuthenticationFailure: web3AuthAuthenticationFailure,
-            ),
-          ),
-          (userEntity) => add(
-            Web3AuthLoginEvent.loginSuccess(
-              userEntity: userEntity,
-            ),
-          ),
-        );
-      },
-    );
-
-    on<_LoginFailure>(
-      (event, emit) => emit(
-        Web3AuthLoginState.failedToLogIn(
-          web3AuthAuthenticationFailure: event.web3AuthAuthenticationFailure,
-        ),
-      ),
-    );
-
-    on<_LoginSuccess>(
-      (event, emit) => emit(
-        Web3AuthLoginState.loggedIn(
-          userEntity: event.userEntity,
-        ),
-      ),
+      _login,
     );
   }
 
   final Web3AuthRepository _web3AuthRepository;
+
+  Future<void> _login(
+    _Login event,
+    Emitter<Web3AuthLoginState> emit,
+  ) async {
+    emit(
+      const Web3AuthLoginState.loggingIn(),
+    );
+
+    final result = await _web3AuthRepository.authenticateUserWith(
+      authProvider: event.provider,
+      credential: event.credential,
+    );
+
+    result.fold(
+      (web3AuthAuthenticationFailure) => emit(
+        Web3AuthLoginState.failedToLogIn(
+          web3AuthAuthenticationFailure: web3AuthAuthenticationFailure,
+        ),
+      ),
+      (userEntity) => emit(
+        Web3AuthLoginState.loggedIn(
+          userEntity: userEntity,
+        ),
+      ),
+    );
+  }
 }

@@ -1,4 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart' show BlocProvider;
+import 'package:sky_ways/features/web_3_auth/presentation/blocs/web_3_auth_capture_custom_tabs_closed_bloc/web_3_auth_capture_custom_tabs_closed_bloc.dart'
+    show Web3AuthCaptureCustomTabsClosedBloc;
 import 'package:sky_ways/features/web_3_auth/presentation/blocs/web_3_auth_initialization_bloc/web_3_auth_initialization_bloc.dart'
     show Web3AuthInitializationBloc;
 import 'package:sky_ways/features/web_3_auth/presentation/blocs/web_3_auth_login_bloc/web_3_auth_login_bloc.dart'
@@ -10,6 +12,9 @@ import 'package:sky_ways/features/web_3_auth/presentation/blocs/web_3_auth_user_
 import 'package:sky_ways/injection_container.dart' show sl;
 
 List<BlocProvider> get appBlocProvider => [
+      BlocProvider<Web3AuthCaptureCustomTabsClosedBloc>(
+        create: (_) => sl(),
+      ),
       BlocProvider<Web3AuthInitializationBloc>(
         create: (_) => sl(),
       ),
