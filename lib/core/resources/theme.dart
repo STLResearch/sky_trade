@@ -1,29 +1,220 @@
 import 'package:flutter/material.dart'
     show
+        BorderRadius,
+        BorderSide,
         BottomNavigationBarThemeData,
         BottomNavigationBarType,
         Brightness,
+        ButtonStyle,
+        CheckboxThemeData,
+        Color,
         ColorScheme,
+        EdgeInsetsDirectional,
+        ElevatedButtonThemeData,
+        FontStyle,
         FontWeight,
+        IconThemeData,
+        InputDecorationTheme,
+        OutlineInputBorder,
+        OutlinedBorder,
+        ProgressIndicatorThemeData,
+        RoundedRectangleBorder,
+        Size,
+        SnackBarBehavior,
+        SnackBarThemeData,
         TextStyle,
-        ThemeData;
-import 'package:flutter/widgets.dart';
+        TextTheme,
+        ThemeData,
+        WidgetStatePropertyAll;
 import 'package:sky_ways/core/resources/colors.dart'
-    show hex4285F4, hex5D7285, hexFFFFFF, seedColor;
+    show
+        hex00000033,
+        hex0653EA,
+        hex222222,
+        hex4285F4,
+        hex5D7285,
+        hex87878D,
+        hexB8B8B8,
+        hexCCCCCC,
+        hexE04F64,
+        hexFFFFFF;
 import 'package:sky_ways/core/resources/numbers.dart'
-    show elevenDotNil, nilDotNilOne, twentyFourDotNil, twentyOneDotThreeSeven;
+    show
+        eightDotNil,
+        eighteenDotNil,
+        elevenDotNil,
+        fifteenDotNil,
+        fiftyFiveDotNil,
+        fourteenDotNil,
+        nilDotNil,
+        nilDotNilOne,
+        sixteenDotFive,
+        sixteenDotNil,
+        thirtyDotNil,
+        twelveDotNil,
+        twentyDotNil,
+        twentyFourDotNil,
+        twentyOneDotThreeSeven,
+        twentyTwoDotFive,
+        twentyTwoDotNil,
+        two,
+        twoDotNil;
 import 'package:sky_ways/core/resources/strings/fonts.dart' show poppins;
-
-// ThemeData get appTheme => ThemeData.from(
-//       useMaterial3: true,
-//       colorScheme: ColorScheme.dark(),
-//     );
 
 ThemeData get lightTheme => ThemeData(
       useMaterial3: true,
       colorScheme: ColorScheme.fromSeed(
-        seedColor: seedColor,
+        seedColor: hex0653EA,
       ),
+      scaffoldBackgroundColor: hexFFFFFF,
+      inputDecorationTheme: InputDecorationTheme(
+        errorMaxLines: two,
+        contentPadding: const EdgeInsetsDirectional.symmetric(
+          vertical: fourteenDotNil,
+          horizontal: twentyTwoDotNil,
+        ),
+        border: OutlineInputBorder(
+          borderSide: const BorderSide(
+            color: hex87878D,
+          ),
+          borderRadius: BorderRadius.circular(
+            eightDotNil,
+          ),
+        ),
+        enabledBorder: OutlineInputBorder(
+          borderSide: const BorderSide(
+            color: hex87878D,
+          ),
+          borderRadius: BorderRadius.circular(
+            eightDotNil,
+          ),
+        ),
+        disabledBorder: OutlineInputBorder(
+          borderSide: const BorderSide(
+            color: hexCCCCCC,
+          ),
+          borderRadius: BorderRadius.circular(
+            eightDotNil,
+          ),
+        ),
+        focusedBorder: OutlineInputBorder(
+          borderSide: const BorderSide(
+            color: hex87878D,
+          ),
+          borderRadius: BorderRadius.circular(
+            eightDotNil,
+          ),
+        ),
+        errorBorder: OutlineInputBorder(
+          borderSide: const BorderSide(
+            color: hexE04F64,
+          ),
+          borderRadius: BorderRadius.circular(
+            eightDotNil,
+          ),
+        ),
+        focusedErrorBorder: OutlineInputBorder(
+          borderSide: const BorderSide(
+            color: hexE04F64,
+          ),
+          borderRadius: BorderRadius.circular(
+            eightDotNil,
+          ),
+        ),
+        hintStyle: const TextStyle(
+          fontFamily: poppins,
+          fontWeight: FontWeight.w400,
+          fontSize: twelveDotNil,
+          height: eighteenDotNil / twelveDotNil,
+          color: hexB8B8B8,
+        ),
+        errorStyle: const TextStyle(
+          fontFamily: poppins,
+          fontWeight: FontWeight.w400,
+          fontStyle: FontStyle.italic,
+          fontSize: elevenDotNil,
+          height: sixteenDotFive / elevenDotNil,
+          color: hexE04F64,
+        ),
+      ),
+      textTheme: const TextTheme(
+        bodySmall: TextStyle(
+          fontFamily: poppins,
+          fontWeight: FontWeight.w400,
+          fontSize: twelveDotNil,
+          height: eighteenDotNil / twelveDotNil,
+          color: hex87878D,
+        ),
+        bodyMedium: TextStyle(
+          fontFamily: poppins,
+          fontWeight: FontWeight.w400,
+          fontSize: sixteenDotNil,
+          height: twentyFourDotNil / sixteenDotNil,
+          color: hex222222,
+        ),
+        bodyLarge: TextStyle(
+          fontFamily: poppins,
+          fontWeight: FontWeight.w500,
+          fontSize: twentyDotNil,
+          height: thirtyDotNil / twentyDotNil,
+          color: hex222222,
+        ),
+      ),
+      checkboxTheme: CheckboxThemeData(
+        checkColor: const WidgetStatePropertyAll<Color>(
+          hexFFFFFF,
+        ),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(
+            twoDotNil,
+          ),
+          side: const BorderSide(
+            color: hex87878D,
+            width: twoDotNil,
+          ),
+        ),
+        side: const BorderSide(
+          color: hex87878D,
+          width: twoDotNil,
+        ),
+      ),
+      elevatedButtonTheme: ElevatedButtonThemeData(
+        style: ButtonStyle(
+          backgroundColor: const WidgetStatePropertyAll<Color>(
+            hex0653EA,
+          ),
+          textStyle: const WidgetStatePropertyAll<TextStyle>(
+            TextStyle(
+              fontFamily: poppins,
+              fontWeight: FontWeight.w400,
+              fontSize: fifteenDotNil,
+              height: twentyTwoDotFive / fifteenDotNil,
+              color: hexFFFFFF,
+            ),
+          ),
+          shape: WidgetStatePropertyAll<OutlinedBorder>(
+            RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(
+                eightDotNil,
+              ),
+            ),
+          ),
+          elevation: const WidgetStatePropertyAll<double>(
+            nilDotNil,
+          ),
+          fixedSize: const WidgetStatePropertyAll<Size>(
+            Size.fromHeight(
+              fiftyFiveDotNil,
+            ),
+          ),
+        ),
+      ),
+      progressIndicatorTheme: const ProgressIndicatorThemeData(
+        linearTrackColor: hex0653EA,
+        circularTrackColor: hex0653EA,
+        refreshBackgroundColor: hex0653EA,
+      ),
+      dividerColor: hex00000033,
       bottomNavigationBarTheme: const BottomNavigationBarThemeData(
         type: BottomNavigationBarType.fixed,
         backgroundColor: hexFFFFFF,
@@ -52,12 +243,23 @@ ThemeData get lightTheme => ThemeData(
           letterSpacing: nilDotNilOne,
         ),
       ),
+      snackBarTheme: const SnackBarThemeData(
+        backgroundColor: hex0653EA,
+        behavior: SnackBarBehavior.floating,
+        contentTextStyle: TextStyle(
+          fontFamily: poppins,
+          fontWeight: FontWeight.w400,
+          fontSize: twelveDotNil,
+          height: eighteenDotNil / twelveDotNil,
+          color: hexFFFFFF,
+        ),
+      ),
     );
 
 ThemeData get darkTheme => ThemeData(
       useMaterial3: true,
       colorScheme: ColorScheme.fromSeed(
-        seedColor: seedColor,
+        seedColor: hex0653EA,
         brightness: Brightness.dark,
       ),
     );

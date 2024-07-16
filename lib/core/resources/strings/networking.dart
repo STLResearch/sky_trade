@@ -12,4 +12,3 @@ const web3AuthPath = '/auth';
 // Additional params keys and values for extra login options for Web3Auth
 const flowTypeKey = 'flow_type';
 const linkValue = 'link';
-
