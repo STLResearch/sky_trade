@@ -1,8 +1,12 @@
-import 'dart:io';
+import 'dart:io' show Platform;
 
 import 'package:dartz/dartz.dart' show Either, Left, Right;
 import 'package:flutter_dotenv/flutter_dotenv.dart' show dotenv;
-import 'package:sky_ways/core/errors/failure.dart' show AuthFailure;
+import 'package:sky_ways/core/errors/failure.dart'
+    show
+        Web3AuthAuthenticationFailure,
+        Web3AuthInitializationFailure,
+        Web3AuthLogoutFailure;
 import 'package:sky_ways/core/resources/strings/networking.dart'
     show
         flowTypeKey,
@@ -17,13 +21,18 @@ import 'package:sky_ways/features/web_3_auth/domain/entities/user_entity.dart';
 import 'package:sky_ways/features/web_3_auth/domain/repositories/web_3_auth_repository.dart';
 import 'package:web3auth_flutter/enums.dart' show Network, Provider;
 import 'package:web3auth_flutter/input.dart'
-    show ExtraLoginOptions, LoginParams, Web3AuthOptions;
-import 'package:web3auth_flutter/output.dart';
+    show
+        ExtraLoginOptions,
+        LoginParams,
+        UserCancelledException,
+        Web3AuthOptions;
+import 'package:web3auth_flutter/output.dart' show Web3AuthResponse;
 import 'package:web3auth_flutter/web3auth_flutter.dart';
 
 final class Web3AuthRepositoryImplementation implements Web3AuthRepository {
   @override
-  Future<void> initializeWeb3Auth() async {
+  Future<Either<Web3AuthInitializationFailure, void>>
+      initializeWeb3Auth() async {
     final web3AuthOptions = Web3AuthOptions(
       clientId: dotenv.env[web3AuthClientId]!,
       network: Network.sapphire_devnet,
@@ -34,7 +43,17 @@ final class Web3AuthRepositoryImplementation implements Web3AuthRepository {
       web3AuthOptions,
     );
 
-    await Web3AuthFlutter.initialize();
+    try {
+      await Web3AuthFlutter.initialize();
+
+      return const Right(
+        null,
+      );
+    } catch (error) {
+      return Left(
+        Web3AuthInitializationFailure(),
+      );
+    }
   }
 
   Uri get _redirectUrl {
@@ -53,7 +72,8 @@ final class Web3AuthRepositoryImplementation implements Web3AuthRepository {
   }
 
   @override
-  Future<Either<AuthFailure, UserEntity>> authenticateUserWith({
+  Future<Either<Web3AuthAuthenticationFailure, UserEntity>>
+      authenticateUserWith({
     required AuthProvider authProvider,
     String? credential,
   }) async {
@@ -72,16 +92,20 @@ final class Web3AuthRepositoryImplementation implements Web3AuthRepository {
         loginParameters,
       );
 
-      final userModel = _computeUserEntityFrom(
+      final userEntity = _computeUserEntityFrom(
         web3AuthResponse,
       );
 
       return Right(
-        userModel,
+        userEntity,
       );
-    } catch (_) {
+    } on UserCancelledException {
       return Left(
-        AuthFailure(),
+        Web3AuthAuthenticationFailure(),
+      );
+    } catch (error) {
+      return Left(
+        Web3AuthAuthenticationFailure(),
       );
     }
   }
@@ -137,4 +161,29 @@ final class Web3AuthRepositoryImplementation implements Web3AuthRepository {
         ed25519CoreKitKey: web3AuthResponse.coreKitEd25519PrivKey,
         error: web3AuthResponse.error,
       );
+
+  @override
+  Future<bool> sessionExists() async {
+    final ed25519PrivateKey = await Web3AuthFlutter.getEd25519PrivKey();
+
+    return ed25519PrivateKey.isNotEmpty;
+  }
+
+  @override
+  Future<void> captureWhenCustomTabsClosed() =>
+      Web3AuthFlutter.setCustomTabsClosed();
+
+  @override
+  Future<Either<Web3AuthLogoutFailure, void>> logoutCurrentUser() async {
+    try {
+      await Web3AuthFlutter.logout();
+      return const Right(
+        null,
+      );
+    } catch (error) {
+      return Left(
+        Web3AuthLogoutFailure(),
+      );
+    }
+  }
 }

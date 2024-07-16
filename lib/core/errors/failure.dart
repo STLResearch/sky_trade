@@ -1,16 +1,18 @@
-import 'package:equatable/equatable.dart';
+import 'package:equatable/equatable.dart' show Equatable;
 
-abstract base class Failure extends Equatable {
-  const Failure({
-    this.message,
-  });
+abstract base class Failure extends Equatable {}
 
-  final String? message;
-
+final class Web3AuthInitializationFailure extends Failure {
   @override
-  List<Object?> get props => [
-        message,
-      ];
+  List<Object?> get props => [];
 }
 
-final class AuthFailure extends Failure {}
+final class Web3AuthAuthenticationFailure extends Failure {
+  @override
+  List<Object?> get props => [];
+}
+
+final class Web3AuthLogoutFailure extends Failure {
+  @override
+  List<Object?> get props => [];
+}

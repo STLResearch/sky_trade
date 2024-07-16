@@ -23,19 +23,21 @@ final class FooterSection extends StatelessWidget {
   const FooterSection({
     required this.text,
     required this.clickableText,
+    required this.clickableTextEnabled,
     required this.onClickableTextTap,
     super.key,
   });
 
   final String text;
   final String clickableText;
+  final bool clickableTextEnabled;
   final VoidCallback onClickableTextTap;
 
   @override
   Widget build(BuildContext context) => Column(
         children: [
           const SectionDivider(
-            expand: false,
+            fillWidth: false,
           ),
           const SizedBox(
             height: fifteenDotNil,
@@ -54,7 +56,10 @@ final class FooterSection extends StatelessWidget {
                 SpannableText.buildWith(
                   context,
                   text: clickableText,
-                  onTap: onClickableTextTap,
+                  onTap: switch (clickableTextEnabled) {
+                    true => onClickableTextTap,
+                    false => null,
+                  },
                   textStyle: Theme.of(context).textTheme.bodySmall?.copyWith(
                         fontWeight: FontWeight.w700,
                         fontSize: fourteenDotNil,

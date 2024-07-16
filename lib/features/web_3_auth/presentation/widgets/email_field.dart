@@ -17,7 +17,6 @@ import 'package:flutter/material.dart'
         Theme,
         ValueListenableBuilder,
         Widget;
-import 'package:flutter/src/widgets/basic.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:sky_ways/core/resources/colors.dart'
     show hex222222, hex838187, hex87878D, hexE04F64;
@@ -30,12 +29,12 @@ import 'package:sky_ways/core/resources/strings/special_characters.dart'
 
 final class EmailField extends StatelessWidget {
   const EmailField({
-    required this.emailController,
+    required this.controller,
     required this.enabled,
     super.key,
   });
 
-  final TextEditingController emailController;
+  final TextEditingController controller;
   final bool enabled;
 
   @override
@@ -45,7 +44,7 @@ final class EmailField extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               ValueListenableBuilder<TextEditingValue>(
-                valueListenable: emailController,
+                valueListenable: controller,
                 builder: (_, emailControllerValue, __) => Text(
                   AppLocalizations.of(context)!.email,
                   style: Theme.of(context).textTheme.bodySmall?.copyWith(
@@ -77,7 +76,7 @@ final class EmailField extends StatelessWidget {
           ),
           TextFormField(
             autovalidateMode: AutovalidateMode.onUserInteraction,
-            controller: emailController,
+            controller: controller,
             enabled: enabled,
             cursorColor: hex87878D,
             cursorErrorColor: hexE04F64,

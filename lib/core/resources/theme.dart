@@ -9,6 +9,7 @@ import 'package:flutter/material.dart'
         CheckboxThemeData,
         Color,
         ColorScheme,
+        EdgeInsetsDirectional,
         ElevatedButtonThemeData,
         FontStyle,
         FontWeight,
@@ -16,8 +17,11 @@ import 'package:flutter/material.dart'
         InputDecorationTheme,
         OutlineInputBorder,
         OutlinedBorder,
+        ProgressIndicatorThemeData,
         RoundedRectangleBorder,
         Size,
+        SnackBarBehavior,
+        SnackBarThemeData,
         TextStyle,
         TextTheme,
         ThemeData,
@@ -41,6 +45,7 @@ import 'package:sky_ways/core/resources/numbers.dart'
         elevenDotNil,
         fifteenDotNil,
         fiftyFiveDotNil,
+        fourteenDotNil,
         nilDotNil,
         nilDotNilOne,
         sixteenDotFive,
@@ -51,14 +56,10 @@ import 'package:sky_ways/core/resources/numbers.dart'
         twentyFourDotNil,
         twentyOneDotThreeSeven,
         twentyTwoDotFive,
+        twentyTwoDotNil,
         two,
         twoDotNil;
 import 'package:sky_ways/core/resources/strings/fonts.dart' show poppins;
-
-// ThemeData get appTheme => ThemeData.from(
-//       useMaterial3: true,
-//       colorScheme: ColorScheme.dark(),
-//     );
 
 ThemeData get lightTheme => ThemeData(
       useMaterial3: true,
@@ -68,6 +69,10 @@ ThemeData get lightTheme => ThemeData(
       scaffoldBackgroundColor: hexFFFFFF,
       inputDecorationTheme: InputDecorationTheme(
         errorMaxLines: two,
+        contentPadding: const EdgeInsetsDirectional.symmetric(
+          vertical: fourteenDotNil,
+          horizontal: twentyTwoDotNil,
+        ),
         border: OutlineInputBorder(
           borderSide: const BorderSide(
             color: hex87878D,
@@ -204,6 +209,11 @@ ThemeData get lightTheme => ThemeData(
           ),
         ),
       ),
+      progressIndicatorTheme: const ProgressIndicatorThemeData(
+        linearTrackColor: hex0653EA,
+        circularTrackColor: hex0653EA,
+        refreshBackgroundColor: hex0653EA,
+      ),
       dividerColor: hex00000033,
       bottomNavigationBarTheme: const BottomNavigationBarThemeData(
         type: BottomNavigationBarType.fixed,
@@ -231,6 +241,17 @@ ThemeData get lightTheme => ThemeData(
           fontSize: elevenDotNil,
           height: twentyOneDotThreeSeven / elevenDotNil,
           letterSpacing: nilDotNilOne,
+        ),
+      ),
+      snackBarTheme: const SnackBarThemeData(
+        backgroundColor: hex0653EA,
+        behavior: SnackBarBehavior.floating,
+        contentTextStyle: TextStyle(
+          fontFamily: poppins,
+          fontWeight: FontWeight.w400,
+          fontSize: twelveDotNil,
+          height: eighteenDotNil / twelveDotNil,
+          color: hexFFFFFF,
         ),
       ),
     );

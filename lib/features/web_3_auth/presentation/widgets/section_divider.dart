@@ -4,14 +4,14 @@ import 'package:sky_ways/core/resources/numbers.dart' show oneDotNil;
 
 final class SectionDivider extends StatelessWidget {
   const SectionDivider({
-    required this.expand,
+    required this.fillWidth,
     super.key,
   });
 
-  final bool expand;
+  final bool fillWidth;
 
   @override
-  Widget build(BuildContext context) => switch (expand) {
+  Widget build(BuildContext context) => switch (fillWidth) {
         true => Expanded(
             child: _buildDivider(),
           ),
