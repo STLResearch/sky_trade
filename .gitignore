@@ -46,4 +46,4 @@ app.*.map.json
 .fvm/
 
 # Environment variable
-*.env
+*.env.*
