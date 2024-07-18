@@ -20,7 +20,7 @@ import 'package:flutter/material.dart'
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:sky_ways/core/resources/colors.dart'
     show hex222222, hex838187, hex87878D, hexE04F64;
-import 'package:sky_ways/core/resources/numbers.dart'
+import 'package:sky_ways/core/resources/numbers/ui.dart'
     show fiveDotNil, fourteenDotNil, twentyOneDotNil;
 import 'package:sky_ways/core/resources/strings/regex_patterns.dart'
     show emailRegexPatternRawString;

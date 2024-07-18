@@ -1,5 +1,5 @@
-// Google maps
-const googleMapsApiKey = 'GOOGLE_MAPS_API_KEY';
+// Dotenv
+const envFileName = '.env';
 
 // Mapbox maps
 const mapboxMapsPublicKey = 'MAPBOX_MAPS_PUBLIC_KEY';

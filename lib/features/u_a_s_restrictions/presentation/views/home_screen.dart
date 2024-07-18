@@ -20,7 +20,7 @@ import 'package:flutter_svg/flutter_svg.dart' show SvgPicture;
 import 'package:mapbox_maps_flutter/mapbox_maps_flutter.dart'
     show CameraOptions, MapWidget, MapboxMap, MapboxOptions, Point, Position;
 import 'package:sky_ways/core/resources/colors.dart' show hex4285F4, hex5D7285;
-import 'package:sky_ways/core/resources/numbers.dart'
+import 'package:sky_ways/core/resources/numbers/ui.dart'
     show
         five,
         forty,
@@ -41,7 +41,7 @@ import 'package:sky_ways/core/resources/strings/asset_paths.dart'
         indicatorAssetPath,
         mapAssetPath,
         weatherAssetPath;
-import 'package:sky_ways/core/resources/strings/secret_keys.dart'
+import 'package:sky_ways/core/resources/strings/secrets.dart'
     show mapboxMapsPublicKey, mapboxMapsStyleUri;
 import 'package:sky_ways/features/u_a_s_restrictions/presentation/views/map_annotations.dart';
 
@@ -103,9 +103,10 @@ class _HomeScreenState extends State<HomeScreen> {
             _mapboxMap = mapboxMap;
             _mapAnnotations = MapAnnotations(_mapboxMap, _polygonCoordinates);
             // Wait for the style to load before adding annotations
-            _mapAnnotations..createPolygonAnnotation()
-            // Create a circle annotation with a radius of pixels or meters
-            ..createCircleAnnotation(50);
+            _mapAnnotations
+              ..createPolygonAnnotation()
+              // Create a circle annotation with a radius of pixels or meters
+              ..createCircleAnnotation(50);
 
             // Set the camera position to focus on location
             _mapboxMap!.setCamera(
@@ -162,7 +163,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       forty,
                   duration: const Duration(
                     milliseconds: oneHundred,
-                  ), // minimize the width of dash
+                  ),
                   child: SvgPicture.asset(
                     indicatorAssetPath,
                   ),

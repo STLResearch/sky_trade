@@ -22,7 +22,7 @@ import 'package:flutter/material.dart'
 import 'package:flutter_bloc/flutter_bloc.dart'
     show BlocBuilder, BlocListener, ReadContext;
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:sky_ways/core/resources/numbers.dart'
+import 'package:sky_ways/core/resources/numbers/ui.dart'
     show fifteenDotNil, fiveDotNil, thirtyDotNil;
 import 'package:sky_ways/core/resources/strings/routes.dart'
     show homeRoutePath, registerRoutePath;

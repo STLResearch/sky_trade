@@ -12,7 +12,7 @@ import 'package:flutter/material.dart'
         VoidCallback,
         Widget;
 import 'package:sky_ways/core/resources/colors.dart' show hex0653EA;
-import 'package:sky_ways/core/resources/numbers.dart'
+import 'package:sky_ways/core/resources/numbers/ui.dart'
     show fifteenDotNil, fourteenDotNil, twentyOneDotNil;
 import 'package:sky_ways/core/resources/strings/special_characters.dart'
     show whiteSpace;

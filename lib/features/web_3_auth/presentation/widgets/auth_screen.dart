@@ -15,7 +15,7 @@ import 'package:flutter/material.dart'
         Theme,
         Widget;
 import 'package:flutter_svg/flutter_svg.dart' show SvgPicture;
-import 'package:sky_ways/core/resources/numbers.dart'
+import 'package:sky_ways/core/resources/numbers/ui.dart'
     show fifteenDotNil, fortyDotNil, tenDotNil;
 import 'package:sky_ways/core/resources/strings/asset_paths.dart'
     show skyTradeLogoAssetPath;
