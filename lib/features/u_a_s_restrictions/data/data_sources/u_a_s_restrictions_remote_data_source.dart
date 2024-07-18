@@ -2,10 +2,9 @@ import 'package:dio/dio.dart' show Response;
 import 'package:sky_ways/core/errors/exceptions/u_a_s_restrictions_exception.dart';
 import 'package:sky_ways/core/resources/strings/networking.dart'
     show
-        getCeramicDroneDataPath,
         northEastLatitudeKey,
         northEastLongitudeKey,
-        remoteIdentifierPath,
+        restrictionsPath,
         southWestLatitudeKey,
         southWestLongitudeKey;
 import 'package:sky_ways/core/utils/clients/network_client.dart'
@@ -24,10 +23,10 @@ abstract interface class UASRestrictionsRemoteDataSource {
   });
 }
 
-final class UASRestrictionsRepositoryImplementation
+final class UASRestrictionsRemoteDataSourceImplementation
     with ResponseHandler
     implements UASRestrictionsRemoteDataSource {
-  const UASRestrictionsRepositoryImplementation(
+  const UASRestrictionsRemoteDataSourceImplementation(
     NetworkClient<Response> networkClient,
   ) : _networkClient = networkClient;
 
@@ -44,7 +43,7 @@ final class UASRestrictionsRepositoryImplementation
           List<RestrictionModel>>(
         requestInitiator: _networkClient.request(
           requestMethod: RequestMethod.get,
-          path: remoteIdentifierPath + getCeramicDroneDataPath,
+          path: restrictionsPath,
           queryParameters: {
             southWestLatitudeKey: southWestLatitude,
             southWestLongitudeKey: southWestLongitude,

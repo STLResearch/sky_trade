@@ -14,7 +14,7 @@ import 'package:sky_ways/core/resources/strings/networking.dart'
         web3AuthPath,
         web3AuthWhitelistOriginAndroid,
         web3AuthWhitelistOriginIos;
-import 'package:sky_ways/core/resources/strings/secrets.dart'
+import 'package:sky_ways/core/resources/strings/secret_keys.dart'
     show web3AuthClientId;
 import 'package:sky_ways/core/utils/enums/networking.dart' show AuthProvider;
 import 'package:sky_ways/features/web_3_auth/domain/entities/user_entity.dart';

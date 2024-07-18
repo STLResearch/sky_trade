@@ -8,8 +8,9 @@ part of 'restriction_model.dart';
 
 RestrictionModel _$RestrictionModelFromJson(Map<String, dynamic> json) =>
     RestrictionModel(
-      mAdditionLinks: AdditionalLinksModel.fromJson(
-          json['additional_links'] as Map<String, dynamic>),
+      mAdditionLinks: (json['additional_links'] as List<dynamic>)
+          .map((e) => AdditionalLinkModel.fromJson(e as Map<String, dynamic>))
+          .toList(),
       mCountry: json['country'] as String,
       mLowerLimit: json['lower_limit'] as String,
       mMessage: json['message'] as String,
@@ -35,15 +36,14 @@ const _$RestrictionTypeEnumMap = {
   RestrictionType.restricted: 'Restricted',
 };
 
-AdditionalLinksModel _$AdditionalLinksModelFromJson(
-        Map<String, dynamic> json) =>
-    AdditionalLinksModel(
+AdditionalLinkModel _$AdditionalLinkModelFromJson(Map<String, dynamic> json) =>
+    AdditionalLinkModel(
       mLink: json['link'] as String,
       mName: json['name'] as String,
     );
 
-Map<String, dynamic> _$AdditionalLinksModelToJson(
-        AdditionalLinksModel instance) =>
+Map<String, dynamic> _$AdditionalLinkModelToJson(
+        AdditionalLinkModel instance) =>
     <String, dynamic>{
       'link': instance.mLink,
       'name': instance.mName,

@@ -13,8 +13,7 @@ const linkValue = 'link';
 // Base URL
 const skyTradeServerBaseUrl = 'SKYTRADE_SERVER_BASE_URL';
 // Paths
-const remoteIdentifierPath = '/remoteIdentifier';
-const getCeramicDroneDataPath = '/get-ceramic-drone-data';
+const restrictionsPath = '/restrictions';
 
 // Request and response header and body keys and values
 // Headers

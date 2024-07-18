@@ -12,10 +12,10 @@ final class UASRestrictionsRepositoryImplementation
     with DataHandler
     implements UASRestrictionsRepository {
   const UASRestrictionsRepositoryImplementation(
-    UASRestrictionsRemoteDataSource uasRestrictionsRemoteDataSource,
-  ) : _uasRestrictionsRemoteDataSource = uasRestrictionsRemoteDataSource;
+    UASRestrictionsRemoteDataSource uASRestrictionsRemoteDataSource,
+  ) : _uASRestrictionsRemoteDataSource = uASRestrictionsRemoteDataSource;
 
-  final UASRestrictionsRemoteDataSource _uasRestrictionsRemoteDataSource;
+  final UASRestrictionsRemoteDataSource _uASRestrictionsRemoteDataSource;
 
   @override
   Future<Either<UASRestrictionsFailure, List<RestrictionEntity>>>
@@ -27,7 +27,7 @@ final class UASRestrictionsRepositoryImplementation
   }) =>
           handleData<UASRestrictionsFailure, List<RestrictionEntity>>(
             dataSourceOperation:
-                _uasRestrictionsRemoteDataSource.getRestrictionsWithin(
+                _uASRestrictionsRemoteDataSource.getRestrictionsWithin(
               southWestLatitude: southWestLatitude,
               southWestLongitude: southWestLongitude,
               northEastLatitude: northEastLatitude,

@@ -13,7 +13,7 @@ base class RestrictionEntity extends Equatable {
     required this.upperLimit,
   });
 
-  final AdditionalLinksEntity additionLinks;
+  final List<AdditionalLinkEntity> additionLinks;
   final String country;
   final String lowerLimit;
   final String message;
@@ -33,8 +33,8 @@ base class RestrictionEntity extends Equatable {
       ];
 }
 
-base class AdditionalLinksEntity extends Equatable {
-  const AdditionalLinksEntity({
+base class AdditionalLinkEntity extends Equatable {
+  const AdditionalLinkEntity({
     required this.link,
     required this.name,
   });

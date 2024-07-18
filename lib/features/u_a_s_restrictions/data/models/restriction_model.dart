@@ -1,5 +1,4 @@
-import 'package:json_annotation/json_annotation.dart'
-    show JsonKey, JsonSerializable;
+import 'package:json_annotation/json_annotation.dart';
 import 'package:sky_ways/core/resources/strings/networking.dart'
     show
         additionalLinks,
@@ -42,7 +41,7 @@ final class RestrictionModel extends RestrictionEntity {
       _$RestrictionModelFromJson(json);
 
   @JsonKey(name: additionalLinks)
-  final AdditionalLinksModel mAdditionLinks;
+  final List<AdditionalLinkModel> mAdditionLinks;
 
   @JsonKey(name: countryKey)
   final String mCountry;
@@ -66,8 +65,8 @@ final class RestrictionModel extends RestrictionEntity {
 }
 
 @JsonSerializable()
-final class AdditionalLinksModel extends AdditionalLinksEntity {
-  const AdditionalLinksModel({
+final class AdditionalLinkModel extends AdditionalLinkEntity {
+  const AdditionalLinkModel({
     required this.mLink,
     required this.mName,
   }) : super(
@@ -75,8 +74,8 @@ final class AdditionalLinksModel extends AdditionalLinksEntity {
           name: mName,
         );
 
-  factory AdditionalLinksModel.fromJson(Map<String, dynamic> json) =>
-      _$AdditionalLinksModelFromJson(json);
+  factory AdditionalLinkModel.fromJson(Map<String, dynamic> json) =>
+      _$AdditionalLinkModelFromJson(json);
 
   @JsonKey(name: linkKey)
   final String mLink;
@@ -84,7 +83,7 @@ final class AdditionalLinksModel extends AdditionalLinksEntity {
   @JsonKey(name: nameKey)
   final String mName;
 
-  Map<String, dynamic> toJson() => _$AdditionalLinksModelToJson(this);
+  Map<String, dynamic> toJson() => _$AdditionalLinkModelToJson(this);
 }
 
 @JsonSerializable()

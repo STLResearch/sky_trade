@@ -14,13 +14,11 @@ mixin class ResponseHandler {
     try {
       final response = await requestInitiator;
 
-      final json = jsonDecode(
-        response.data as String,
-      ) as T;
+      final data = response.data as T;
 
       return switch (response.statusCode) {
         createdStatusCode || okayStatusCode => onSuccess(
-            json,
+            data,
           ),
         _ => throw Exception(),
       };

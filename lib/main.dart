@@ -10,7 +10,8 @@ import 'package:sky_ways/app.dart';
 import 'package:sky_ways/app_bloc_observer.dart';
 import 'package:sky_ways/core/resources/strings/environments.dart'
     show devEnvironment, flavours;
-import 'package:sky_ways/core/resources/strings/secrets.dart' show envFileName;
+import 'package:sky_ways/core/resources/strings/environments.dart'
+    show environmentVariablesFileName;
 import 'package:sky_ways/core/resources/strings/special_characters.dart'
     show fullStop;
 import 'package:sky_ways/injection_container.dart' show registerServices;
@@ -29,7 +30,7 @@ Future<void> _initializeImportantResources() async {
   );
 
   await dotenv.load(
-    fileName: envFileName +
+    fileName: environmentVariablesFileName +
         fullStop +
         const String.fromEnvironment(
           flavours,
