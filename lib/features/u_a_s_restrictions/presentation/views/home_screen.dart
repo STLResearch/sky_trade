@@ -19,13 +19,7 @@ import 'package:flutter_dotenv/flutter_dotenv.dart' show dotenv;
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_svg/flutter_svg.dart' show SvgPicture;
 import 'package:mapbox_maps_flutter/mapbox_maps_flutter.dart'
-    show
-        CameraOptions,
-        MapWidget,
-        MapboxMap,
-        MapboxOptions,
-        Point,
-        Position;
+    show CameraOptions, MapWidget, MapboxMap, MapboxOptions, Point, Position;
 import 'package:sky_ways/core/resources/colors.dart' show hex4285F4, hex5D7285;
 import 'package:sky_ways/core/resources/numbers/ui.dart'
     show
@@ -116,35 +110,35 @@ class _HomeScreenState extends State<HomeScreen> {
                 zoom: 9,
               );
 
-              mapboxMap.flyTo(
+              mapboxMap.easeTo(
                 cameraOptions,
                 null,
               );
-
-              mapboxMap
-                  .coordinateBoundsForCameraUnwrapped(
-                cameraOptions,
-              )
-                  .then(
-                (coordinateBounds) {
-                  context.read<UASRestrictionsBloc>().add(
-                        UASRestrictionsEvent.getRestrictions(
-                          southWestLatitude: coordinateBounds
-                              .southwest.coordinates.lat
-                              .toDouble(),
-                          southWestLongitude: coordinateBounds
-                              .southwest.coordinates.lng
-                              .toDouble(),
-                          northEastLatitude: coordinateBounds
-                              .northeast.coordinates.lat
-                              .toDouble(),
-                          northEastLongitude: coordinateBounds
-                              .northeast.coordinates.lng
-                              .toDouble(),
-                        ),
-                      );
-                },
-              );
+              //
+              // mapboxMap
+              //     .coordinateBoundsForCameraUnwrapped(
+              //   cameraOptions,
+              // )
+              //     .then(
+              //   (coordinateBounds) {
+              //     context.read<UASRestrictionsBloc>().add(
+              //           UASRestrictionsEvent.getRestrictions(
+              //             southWestLatitude: coordinateBounds
+              //                 .southwest.coordinates.lat
+              //                 .toDouble(),
+              //             southWestLongitude: coordinateBounds
+              //                 .southwest.coordinates.lng
+              //                 .toDouble(),
+              //             northEastLatitude: coordinateBounds
+              //                 .northeast.coordinates.lat
+              //                 .toDouble(),
+              //             northEastLongitude: coordinateBounds
+              //                 .northeast.coordinates.lng
+              //                 .toDouble(),
+              //           ),
+              //         );
+              //   },
+              // );
             },
           ),
           bottomNavigationBar: ValueListenableBuilder<int>(
