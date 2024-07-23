@@ -38,7 +38,7 @@ import 'package:sky_ways/core/resources/colors.dart'
         hexCCCCCC,
         hexE04F64,
         hexFFFFFF;
-import 'package:sky_ways/core/resources/numbers.dart'
+import 'package:sky_ways/core/resources/numbers/ui.dart'
     show
         eightDotNil,
         eighteenDotNil,

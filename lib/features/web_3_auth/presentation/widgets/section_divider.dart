@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart'
     show BuildContext, Divider, Expanded, StatelessWidget, Widget;
-import 'package:sky_ways/core/resources/numbers.dart' show oneDotNil;
+import 'package:sky_ways/core/resources/numbers/ui.dart' show oneDotNil;
 
 final class SectionDivider extends StatelessWidget {
   const SectionDivider({

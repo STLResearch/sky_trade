@@ -1,5 +1,5 @@
 import 'package:dartz/dartz.dart' show Either;
-import 'package:sky_ways/core/errors/failure.dart'
+import 'package:sky_ways/core/errors/failures/web_3_auth_failure.dart'
     show
         Web3AuthAuthenticationFailure,
         Web3AuthInitializationFailure,

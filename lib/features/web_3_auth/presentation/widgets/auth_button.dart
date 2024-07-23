@@ -22,7 +22,7 @@ import 'package:flutter/material.dart'
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_svg/flutter_svg.dart' show SvgPicture;
 import 'package:sky_ways/core/resources/colors.dart' show hex595959, hexFFFFFF;
-import 'package:sky_ways/core/resources/numbers.dart'
+import 'package:sky_ways/core/resources/numbers/ui.dart'
     show
         fifteenDotNil,
         fiftyFiveDotNil,

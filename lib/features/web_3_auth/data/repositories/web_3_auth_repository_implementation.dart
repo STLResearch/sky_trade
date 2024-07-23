@@ -2,7 +2,7 @@ import 'dart:io' show Platform;
 
 import 'package:dartz/dartz.dart' show Either, Left, Right;
 import 'package:flutter_dotenv/flutter_dotenv.dart' show dotenv;
-import 'package:sky_ways/core/errors/failure.dart'
+import 'package:sky_ways/core/errors/failures/web_3_auth_failure.dart'
     show
         Web3AuthAuthenticationFailure,
         Web3AuthInitializationFailure,

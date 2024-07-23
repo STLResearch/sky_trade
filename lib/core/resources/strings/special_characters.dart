@@ -3,11 +3,11 @@
 // const tabSpace = '  ';
 const whiteSpace = ' ';
 const asterisk = '*';
+const fullStop = '.';
 // const centerDot = '᛫';
 // const emptyString = '';
 // const threeDots = '...';
 // const comma = ',';
-// const fullStop = '.';
 // const equals = '=';
 // const ampersand = '&';
 // const pound = '#';
