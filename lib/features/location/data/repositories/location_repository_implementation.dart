@@ -1,8 +1,13 @@
-import 'dart:async';
+import 'dart:async' show StreamController, StreamSubscription;
 
 import 'package:dartz/dartz.dart' show Either, Left, Right;
 import 'package:geolocator/geolocator.dart'
-    show Geolocator, LocationSettings, Position, ServiceStatus;
+    show
+        Geolocator,
+        LocationPermission,
+        LocationSettings,
+        Position,
+        ServiceStatus;
 import 'package:sky_ways/core/errors/failures/location_failure.dart';
 import 'package:sky_ways/features/location/domain/entities/location_entity.dart';
 import 'package:sky_ways/features/location/domain/repositories/location_repository.dart';
@@ -92,5 +97,27 @@ final class LocationRepositoryImplementation implements LocationRepository {
     );
 
     return locationServiceStatusStreamController.stream;
+  }
+
+  @override
+  Future<Either<LocationPermissionFailure, LocationPermissionEntity>>
+      requestLocationPermission() async {
+    final permissionResult = await Geolocator.requestPermission();
+
+    return switch (permissionResult) {
+      LocationPermission.always || LocationPermission.whileInUse => const Right(
+          LocationPermissionEntity(
+            granted: true,
+          ),
+        ),
+      LocationPermission.denied => const Right(
+          LocationPermissionEntity(
+            granted: false,
+          ),
+        ),
+      _ => Left(
+          LocationPermissionFailure(),
+        ),
+    };
   }
 }

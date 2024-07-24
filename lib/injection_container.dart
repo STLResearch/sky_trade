@@ -1,6 +1,14 @@
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart' show GetIt;
 import 'package:sky_ways/core/utils/clients/network_client.dart';
+import 'package:sky_ways/features/location/data/repositories/location_repository_implementation.dart';
+import 'package:sky_ways/features/location/domain/repositories/location_repository.dart';
+import 'package:sky_ways/features/location/presentation/blocs/location_permission_bloc/location_permission_bloc.dart'
+    show LocationPermissionBloc;
+import 'package:sky_ways/features/location/presentation/blocs/location_position_bloc/location_position_bloc.dart'
+    show LocationPositionBloc;
+import 'package:sky_ways/features/location/presentation/blocs/location_service_status_bloc/location_service_status_bloc.dart'
+    show LocationServiceStatusBloc;
 import 'package:sky_ways/features/u_a_s_restrictions/data/data_sources/u_a_s_restrictions_remote_data_source.dart';
 import 'package:sky_ways/features/u_a_s_restrictions/data/repositories/u_a_s_restrictions_repository_implementation.dart';
 import 'package:sky_ways/features/u_a_s_restrictions/domain/repositories/u_a_s_restrictions_repository.dart';
@@ -24,6 +32,21 @@ final sl = GetIt.I;
 Future<void> registerServices() async {
   sl
     // BLoCs
+    ..registerFactory<LocationPermissionBloc>(
+      () => LocationPermissionBloc(
+        sl(),
+      ),
+    )
+    ..registerFactory<LocationPositionBloc>(
+      () => LocationPositionBloc(
+        sl(),
+      ),
+    )
+    ..registerFactory<LocationServiceStatusBloc>(
+      () => LocationServiceStatusBloc(
+        sl(),
+      ),
+    )
     ..registerFactory<UASRestrictionsBloc>(
       () => UASRestrictionsBloc(
         sl(),
@@ -56,6 +79,9 @@ Future<void> registerServices() async {
     )
 
     // Repositories
+    ..registerLazySingleton<LocationRepository>(
+      LocationRepositoryImplementation.new,
+    )
     ..registerLazySingleton<UASRestrictionsRepository>(
       () => UASRestrictionsRepositoryImplementation(
         sl(),

@@ -5,6 +5,14 @@ class LocationPositionEvent with _$LocationPositionEvent {
   const factory LocationPositionEvent.listenLocationPosition() =
       _ListenLocationPosition;
 
+  const factory LocationPositionEvent.locationPositionGotten({
+    required LocationPositionEntity locationPositionEntity,
+  }) = _LocationPositionGotten;
+
+  const factory LocationPositionEvent.locationPositionNotGotten({
+    required LocationPositionFailure locationPositionFailure,
+  }) = _LocationPositionNotGotten;
+
   const factory LocationPositionEvent.stopListeningLocationPosition() =
       _StopListeningLocationPosition;
 }

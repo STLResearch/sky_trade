@@ -9,3 +9,8 @@ final class LocationServiceStatusFailure extends Equatable {
   @override
   List<Object?> get props => [];
 }
+
+final class LocationPermissionFailure extends Equatable {
+  @override
+  List<Object?> get props => [];
+}

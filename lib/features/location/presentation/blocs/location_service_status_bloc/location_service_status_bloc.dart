@@ -28,6 +28,14 @@ class LocationServiceStatusBloc
       _listenLocationServiceStatus,
     );
 
+    on<_LocationServiceStatusGotten>(
+      _locationServiceStatusGotten,
+    );
+
+    on<_LocationServiceStatusNotGotten>(
+      _locationServiceStatusNotGotten,
+    );
+
     on<_StopListeningLocationServiceStatus>(
       _stopListeningLocationServiceStatus,
     );
@@ -40,7 +48,7 @@ class LocationServiceStatusBloc
       _locationServiceStatusStreamSubscription;
 
   Future<void> _listenLocationServiceStatus(
-    _ListenLocationServiceStatus event,
+    _ListenLocationServiceStatus _,
     Emitter<LocationServiceStatusState> emit,
   ) async {
     await _cancelListeningLocationServiceStatus(
@@ -70,15 +78,35 @@ class LocationServiceStatusBloc
     required Emitter<LocationServiceStatusState> emit,
   }) =>
       locationServiceStatusFailureOrEntity.fold(
-        (locationServiceStatusFailure) => emit(
-          LocationServiceStatusState.failedToGetLocationServiceStatus(
+        (locationServiceStatusFailure) => add(
+          LocationServiceStatusEvent.locationServiceStatusNotGotten(
             locationServiceStatusFailure: locationServiceStatusFailure,
           ),
         ),
-        (locationServiceStatusEntity) => emit(
-          LocationServiceStatusState.gotLocationServiceStatus(
+        (locationServiceStatusEntity) => add(
+          LocationServiceStatusEvent.locationServiceStatusGotten(
             locationServiceStatusEntity: locationServiceStatusEntity,
           ),
+        ),
+      );
+
+  void _locationServiceStatusNotGotten(
+    _LocationServiceStatusNotGotten event,
+    Emitter<LocationServiceStatusState> emit,
+  ) =>
+      emit(
+        LocationServiceStatusState.failedToGetLocationServiceStatus(
+          locationServiceStatusFailure: event.locationServiceStatusFailure,
+        ),
+      );
+
+  void _locationServiceStatusGotten(
+    _LocationServiceStatusGotten event,
+    Emitter<LocationServiceStatusState> emit,
+  ) =>
+      emit(
+        LocationServiceStatusState.gotLocationServiceStatus(
+          locationServiceStatusEntity: event.locationServiceStatusEntity,
         ),
       );
 

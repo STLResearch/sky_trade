@@ -19,18 +19,33 @@ mixin _$LocationServiceStatusEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() listenLocationServiceStatus,
+    required TResult Function(
+            LocationServiceStatusEntity locationServiceStatusEntity)
+        locationServiceStatusGotten,
+    required TResult Function(
+            LocationServiceStatusFailure locationServiceStatusFailure)
+        locationServiceStatusNotGotten,
     required TResult Function() stopListeningLocationServiceStatus,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? listenLocationServiceStatus,
+    TResult? Function(LocationServiceStatusEntity locationServiceStatusEntity)?
+        locationServiceStatusGotten,
+    TResult? Function(
+            LocationServiceStatusFailure locationServiceStatusFailure)?
+        locationServiceStatusNotGotten,
     TResult? Function()? stopListeningLocationServiceStatus,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? listenLocationServiceStatus,
+    TResult Function(LocationServiceStatusEntity locationServiceStatusEntity)?
+        locationServiceStatusGotten,
+    TResult Function(LocationServiceStatusFailure locationServiceStatusFailure)?
+        locationServiceStatusNotGotten,
     TResult Function()? stopListeningLocationServiceStatus,
     required TResult orElse(),
   }) =>
@@ -39,6 +54,10 @@ mixin _$LocationServiceStatusEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(_ListenLocationServiceStatus value)
         listenLocationServiceStatus,
+    required TResult Function(_LocationServiceStatusGotten value)
+        locationServiceStatusGotten,
+    required TResult Function(_LocationServiceStatusNotGotten value)
+        locationServiceStatusNotGotten,
     required TResult Function(_StopListeningLocationServiceStatus value)
         stopListeningLocationServiceStatus,
   }) =>
@@ -47,6 +66,10 @@ mixin _$LocationServiceStatusEvent {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_ListenLocationServiceStatus value)?
         listenLocationServiceStatus,
+    TResult? Function(_LocationServiceStatusGotten value)?
+        locationServiceStatusGotten,
+    TResult? Function(_LocationServiceStatusNotGotten value)?
+        locationServiceStatusNotGotten,
     TResult? Function(_StopListeningLocationServiceStatus value)?
         stopListeningLocationServiceStatus,
   }) =>
@@ -55,6 +78,10 @@ mixin _$LocationServiceStatusEvent {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_ListenLocationServiceStatus value)?
         listenLocationServiceStatus,
+    TResult Function(_LocationServiceStatusGotten value)?
+        locationServiceStatusGotten,
+    TResult Function(_LocationServiceStatusNotGotten value)?
+        locationServiceStatusNotGotten,
     TResult Function(_StopListeningLocationServiceStatus value)?
         stopListeningLocationServiceStatus,
     required TResult orElse(),
@@ -126,6 +153,12 @@ class _$ListenLocationServiceStatusImpl
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() listenLocationServiceStatus,
+    required TResult Function(
+            LocationServiceStatusEntity locationServiceStatusEntity)
+        locationServiceStatusGotten,
+    required TResult Function(
+            LocationServiceStatusFailure locationServiceStatusFailure)
+        locationServiceStatusNotGotten,
     required TResult Function() stopListeningLocationServiceStatus,
   }) {
     return listenLocationServiceStatus();
@@ -135,6 +168,11 @@ class _$ListenLocationServiceStatusImpl
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? listenLocationServiceStatus,
+    TResult? Function(LocationServiceStatusEntity locationServiceStatusEntity)?
+        locationServiceStatusGotten,
+    TResult? Function(
+            LocationServiceStatusFailure locationServiceStatusFailure)?
+        locationServiceStatusNotGotten,
     TResult? Function()? stopListeningLocationServiceStatus,
   }) {
     return listenLocationServiceStatus?.call();
@@ -144,6 +182,10 @@ class _$ListenLocationServiceStatusImpl
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? listenLocationServiceStatus,
+    TResult Function(LocationServiceStatusEntity locationServiceStatusEntity)?
+        locationServiceStatusGotten,
+    TResult Function(LocationServiceStatusFailure locationServiceStatusFailure)?
+        locationServiceStatusNotGotten,
     TResult Function()? stopListeningLocationServiceStatus,
     required TResult orElse(),
   }) {
@@ -158,6 +200,10 @@ class _$ListenLocationServiceStatusImpl
   TResult map<TResult extends Object?>({
     required TResult Function(_ListenLocationServiceStatus value)
         listenLocationServiceStatus,
+    required TResult Function(_LocationServiceStatusGotten value)
+        locationServiceStatusGotten,
+    required TResult Function(_LocationServiceStatusNotGotten value)
+        locationServiceStatusNotGotten,
     required TResult Function(_StopListeningLocationServiceStatus value)
         stopListeningLocationServiceStatus,
   }) {
@@ -169,6 +215,10 @@ class _$ListenLocationServiceStatusImpl
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_ListenLocationServiceStatus value)?
         listenLocationServiceStatus,
+    TResult? Function(_LocationServiceStatusGotten value)?
+        locationServiceStatusGotten,
+    TResult? Function(_LocationServiceStatusNotGotten value)?
+        locationServiceStatusNotGotten,
     TResult? Function(_StopListeningLocationServiceStatus value)?
         stopListeningLocationServiceStatus,
   }) {
@@ -180,6 +230,10 @@ class _$ListenLocationServiceStatusImpl
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_ListenLocationServiceStatus value)?
         listenLocationServiceStatus,
+    TResult Function(_LocationServiceStatusGotten value)?
+        locationServiceStatusGotten,
+    TResult Function(_LocationServiceStatusNotGotten value)?
+        locationServiceStatusNotGotten,
     TResult Function(_StopListeningLocationServiceStatus value)?
         stopListeningLocationServiceStatus,
     required TResult orElse(),
@@ -195,6 +249,364 @@ abstract class _ListenLocationServiceStatus
     implements LocationServiceStatusEvent {
   const factory _ListenLocationServiceStatus() =
       _$ListenLocationServiceStatusImpl;
+}
+
+/// @nodoc
+abstract class _$$LocationServiceStatusGottenImplCopyWith<$Res> {
+  factory _$$LocationServiceStatusGottenImplCopyWith(
+          _$LocationServiceStatusGottenImpl value,
+          $Res Function(_$LocationServiceStatusGottenImpl) then) =
+      __$$LocationServiceStatusGottenImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({LocationServiceStatusEntity locationServiceStatusEntity});
+}
+
+/// @nodoc
+class __$$LocationServiceStatusGottenImplCopyWithImpl<$Res>
+    extends _$LocationServiceStatusEventCopyWithImpl<$Res,
+        _$LocationServiceStatusGottenImpl>
+    implements _$$LocationServiceStatusGottenImplCopyWith<$Res> {
+  __$$LocationServiceStatusGottenImplCopyWithImpl(
+      _$LocationServiceStatusGottenImpl _value,
+      $Res Function(_$LocationServiceStatusGottenImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? locationServiceStatusEntity = null,
+  }) {
+    return _then(_$LocationServiceStatusGottenImpl(
+      locationServiceStatusEntity: null == locationServiceStatusEntity
+          ? _value.locationServiceStatusEntity
+          : locationServiceStatusEntity // ignore: cast_nullable_to_non_nullable
+              as LocationServiceStatusEntity,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$LocationServiceStatusGottenImpl
+    implements _LocationServiceStatusGotten {
+  const _$LocationServiceStatusGottenImpl(
+      {required this.locationServiceStatusEntity});
+
+  @override
+  final LocationServiceStatusEntity locationServiceStatusEntity;
+
+  @override
+  String toString() {
+    return 'LocationServiceStatusEvent.locationServiceStatusGotten(locationServiceStatusEntity: $locationServiceStatusEntity)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$LocationServiceStatusGottenImpl &&
+            (identical(other.locationServiceStatusEntity,
+                    locationServiceStatusEntity) ||
+                other.locationServiceStatusEntity ==
+                    locationServiceStatusEntity));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, locationServiceStatusEntity);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$LocationServiceStatusGottenImplCopyWith<_$LocationServiceStatusGottenImpl>
+      get copyWith => __$$LocationServiceStatusGottenImplCopyWithImpl<
+          _$LocationServiceStatusGottenImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() listenLocationServiceStatus,
+    required TResult Function(
+            LocationServiceStatusEntity locationServiceStatusEntity)
+        locationServiceStatusGotten,
+    required TResult Function(
+            LocationServiceStatusFailure locationServiceStatusFailure)
+        locationServiceStatusNotGotten,
+    required TResult Function() stopListeningLocationServiceStatus,
+  }) {
+    return locationServiceStatusGotten(locationServiceStatusEntity);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? listenLocationServiceStatus,
+    TResult? Function(LocationServiceStatusEntity locationServiceStatusEntity)?
+        locationServiceStatusGotten,
+    TResult? Function(
+            LocationServiceStatusFailure locationServiceStatusFailure)?
+        locationServiceStatusNotGotten,
+    TResult? Function()? stopListeningLocationServiceStatus,
+  }) {
+    return locationServiceStatusGotten?.call(locationServiceStatusEntity);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? listenLocationServiceStatus,
+    TResult Function(LocationServiceStatusEntity locationServiceStatusEntity)?
+        locationServiceStatusGotten,
+    TResult Function(LocationServiceStatusFailure locationServiceStatusFailure)?
+        locationServiceStatusNotGotten,
+    TResult Function()? stopListeningLocationServiceStatus,
+    required TResult orElse(),
+  }) {
+    if (locationServiceStatusGotten != null) {
+      return locationServiceStatusGotten(locationServiceStatusEntity);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_ListenLocationServiceStatus value)
+        listenLocationServiceStatus,
+    required TResult Function(_LocationServiceStatusGotten value)
+        locationServiceStatusGotten,
+    required TResult Function(_LocationServiceStatusNotGotten value)
+        locationServiceStatusNotGotten,
+    required TResult Function(_StopListeningLocationServiceStatus value)
+        stopListeningLocationServiceStatus,
+  }) {
+    return locationServiceStatusGotten(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_ListenLocationServiceStatus value)?
+        listenLocationServiceStatus,
+    TResult? Function(_LocationServiceStatusGotten value)?
+        locationServiceStatusGotten,
+    TResult? Function(_LocationServiceStatusNotGotten value)?
+        locationServiceStatusNotGotten,
+    TResult? Function(_StopListeningLocationServiceStatus value)?
+        stopListeningLocationServiceStatus,
+  }) {
+    return locationServiceStatusGotten?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_ListenLocationServiceStatus value)?
+        listenLocationServiceStatus,
+    TResult Function(_LocationServiceStatusGotten value)?
+        locationServiceStatusGotten,
+    TResult Function(_LocationServiceStatusNotGotten value)?
+        locationServiceStatusNotGotten,
+    TResult Function(_StopListeningLocationServiceStatus value)?
+        stopListeningLocationServiceStatus,
+    required TResult orElse(),
+  }) {
+    if (locationServiceStatusGotten != null) {
+      return locationServiceStatusGotten(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _LocationServiceStatusGotten
+    implements LocationServiceStatusEvent {
+  const factory _LocationServiceStatusGotten(
+      {required final LocationServiceStatusEntity
+          locationServiceStatusEntity}) = _$LocationServiceStatusGottenImpl;
+
+  LocationServiceStatusEntity get locationServiceStatusEntity;
+  @JsonKey(ignore: true)
+  _$$LocationServiceStatusGottenImplCopyWith<_$LocationServiceStatusGottenImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$LocationServiceStatusNotGottenImplCopyWith<$Res> {
+  factory _$$LocationServiceStatusNotGottenImplCopyWith(
+          _$LocationServiceStatusNotGottenImpl value,
+          $Res Function(_$LocationServiceStatusNotGottenImpl) then) =
+      __$$LocationServiceStatusNotGottenImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({LocationServiceStatusFailure locationServiceStatusFailure});
+}
+
+/// @nodoc
+class __$$LocationServiceStatusNotGottenImplCopyWithImpl<$Res>
+    extends _$LocationServiceStatusEventCopyWithImpl<$Res,
+        _$LocationServiceStatusNotGottenImpl>
+    implements _$$LocationServiceStatusNotGottenImplCopyWith<$Res> {
+  __$$LocationServiceStatusNotGottenImplCopyWithImpl(
+      _$LocationServiceStatusNotGottenImpl _value,
+      $Res Function(_$LocationServiceStatusNotGottenImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? locationServiceStatusFailure = null,
+  }) {
+    return _then(_$LocationServiceStatusNotGottenImpl(
+      locationServiceStatusFailure: null == locationServiceStatusFailure
+          ? _value.locationServiceStatusFailure
+          : locationServiceStatusFailure // ignore: cast_nullable_to_non_nullable
+              as LocationServiceStatusFailure,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$LocationServiceStatusNotGottenImpl
+    implements _LocationServiceStatusNotGotten {
+  const _$LocationServiceStatusNotGottenImpl(
+      {required this.locationServiceStatusFailure});
+
+  @override
+  final LocationServiceStatusFailure locationServiceStatusFailure;
+
+  @override
+  String toString() {
+    return 'LocationServiceStatusEvent.locationServiceStatusNotGotten(locationServiceStatusFailure: $locationServiceStatusFailure)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$LocationServiceStatusNotGottenImpl &&
+            (identical(other.locationServiceStatusFailure,
+                    locationServiceStatusFailure) ||
+                other.locationServiceStatusFailure ==
+                    locationServiceStatusFailure));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, locationServiceStatusFailure);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$LocationServiceStatusNotGottenImplCopyWith<
+          _$LocationServiceStatusNotGottenImpl>
+      get copyWith => __$$LocationServiceStatusNotGottenImplCopyWithImpl<
+          _$LocationServiceStatusNotGottenImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() listenLocationServiceStatus,
+    required TResult Function(
+            LocationServiceStatusEntity locationServiceStatusEntity)
+        locationServiceStatusGotten,
+    required TResult Function(
+            LocationServiceStatusFailure locationServiceStatusFailure)
+        locationServiceStatusNotGotten,
+    required TResult Function() stopListeningLocationServiceStatus,
+  }) {
+    return locationServiceStatusNotGotten(locationServiceStatusFailure);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? listenLocationServiceStatus,
+    TResult? Function(LocationServiceStatusEntity locationServiceStatusEntity)?
+        locationServiceStatusGotten,
+    TResult? Function(
+            LocationServiceStatusFailure locationServiceStatusFailure)?
+        locationServiceStatusNotGotten,
+    TResult? Function()? stopListeningLocationServiceStatus,
+  }) {
+    return locationServiceStatusNotGotten?.call(locationServiceStatusFailure);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? listenLocationServiceStatus,
+    TResult Function(LocationServiceStatusEntity locationServiceStatusEntity)?
+        locationServiceStatusGotten,
+    TResult Function(LocationServiceStatusFailure locationServiceStatusFailure)?
+        locationServiceStatusNotGotten,
+    TResult Function()? stopListeningLocationServiceStatus,
+    required TResult orElse(),
+  }) {
+    if (locationServiceStatusNotGotten != null) {
+      return locationServiceStatusNotGotten(locationServiceStatusFailure);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_ListenLocationServiceStatus value)
+        listenLocationServiceStatus,
+    required TResult Function(_LocationServiceStatusGotten value)
+        locationServiceStatusGotten,
+    required TResult Function(_LocationServiceStatusNotGotten value)
+        locationServiceStatusNotGotten,
+    required TResult Function(_StopListeningLocationServiceStatus value)
+        stopListeningLocationServiceStatus,
+  }) {
+    return locationServiceStatusNotGotten(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_ListenLocationServiceStatus value)?
+        listenLocationServiceStatus,
+    TResult? Function(_LocationServiceStatusGotten value)?
+        locationServiceStatusGotten,
+    TResult? Function(_LocationServiceStatusNotGotten value)?
+        locationServiceStatusNotGotten,
+    TResult? Function(_StopListeningLocationServiceStatus value)?
+        stopListeningLocationServiceStatus,
+  }) {
+    return locationServiceStatusNotGotten?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_ListenLocationServiceStatus value)?
+        listenLocationServiceStatus,
+    TResult Function(_LocationServiceStatusGotten value)?
+        locationServiceStatusGotten,
+    TResult Function(_LocationServiceStatusNotGotten value)?
+        locationServiceStatusNotGotten,
+    TResult Function(_StopListeningLocationServiceStatus value)?
+        stopListeningLocationServiceStatus,
+    required TResult orElse(),
+  }) {
+    if (locationServiceStatusNotGotten != null) {
+      return locationServiceStatusNotGotten(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _LocationServiceStatusNotGotten
+    implements LocationServiceStatusEvent {
+  const factory _LocationServiceStatusNotGotten(
+      {required final LocationServiceStatusFailure
+          locationServiceStatusFailure}) = _$LocationServiceStatusNotGottenImpl;
+
+  LocationServiceStatusFailure get locationServiceStatusFailure;
+  @JsonKey(ignore: true)
+  _$$LocationServiceStatusNotGottenImplCopyWith<
+          _$LocationServiceStatusNotGottenImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -241,6 +653,12 @@ class _$StopListeningLocationServiceStatusImpl
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() listenLocationServiceStatus,
+    required TResult Function(
+            LocationServiceStatusEntity locationServiceStatusEntity)
+        locationServiceStatusGotten,
+    required TResult Function(
+            LocationServiceStatusFailure locationServiceStatusFailure)
+        locationServiceStatusNotGotten,
     required TResult Function() stopListeningLocationServiceStatus,
   }) {
     return stopListeningLocationServiceStatus();
@@ -250,6 +668,11 @@ class _$StopListeningLocationServiceStatusImpl
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? listenLocationServiceStatus,
+    TResult? Function(LocationServiceStatusEntity locationServiceStatusEntity)?
+        locationServiceStatusGotten,
+    TResult? Function(
+            LocationServiceStatusFailure locationServiceStatusFailure)?
+        locationServiceStatusNotGotten,
     TResult? Function()? stopListeningLocationServiceStatus,
   }) {
     return stopListeningLocationServiceStatus?.call();
@@ -259,6 +682,10 @@ class _$StopListeningLocationServiceStatusImpl
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? listenLocationServiceStatus,
+    TResult Function(LocationServiceStatusEntity locationServiceStatusEntity)?
+        locationServiceStatusGotten,
+    TResult Function(LocationServiceStatusFailure locationServiceStatusFailure)?
+        locationServiceStatusNotGotten,
     TResult Function()? stopListeningLocationServiceStatus,
     required TResult orElse(),
   }) {
@@ -273,6 +700,10 @@ class _$StopListeningLocationServiceStatusImpl
   TResult map<TResult extends Object?>({
     required TResult Function(_ListenLocationServiceStatus value)
         listenLocationServiceStatus,
+    required TResult Function(_LocationServiceStatusGotten value)
+        locationServiceStatusGotten,
+    required TResult Function(_LocationServiceStatusNotGotten value)
+        locationServiceStatusNotGotten,
     required TResult Function(_StopListeningLocationServiceStatus value)
         stopListeningLocationServiceStatus,
   }) {
@@ -284,6 +715,10 @@ class _$StopListeningLocationServiceStatusImpl
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_ListenLocationServiceStatus value)?
         listenLocationServiceStatus,
+    TResult? Function(_LocationServiceStatusGotten value)?
+        locationServiceStatusGotten,
+    TResult? Function(_LocationServiceStatusNotGotten value)?
+        locationServiceStatusNotGotten,
     TResult? Function(_StopListeningLocationServiceStatus value)?
         stopListeningLocationServiceStatus,
   }) {
@@ -295,6 +730,10 @@ class _$StopListeningLocationServiceStatusImpl
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_ListenLocationServiceStatus value)?
         listenLocationServiceStatus,
+    TResult Function(_LocationServiceStatusGotten value)?
+        locationServiceStatusGotten,
+    TResult Function(_LocationServiceStatusNotGotten value)?
+        locationServiceStatusNotGotten,
     TResult Function(_StopListeningLocationServiceStatus value)?
         stopListeningLocationServiceStatus,
     required TResult orElse(),

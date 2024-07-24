@@ -28,6 +28,14 @@ class LocationPositionBloc
       _listenLocationPosition,
     );
 
+    on<_LocationPositionGotten>(
+      _locationPositionGotten,
+    );
+
+    on<_LocationPositionNotGotten>(
+      _locationPositionNotGotten,
+    );
+
     on<_StopListeningLocationPosition>(
       _stopListeningLocationPosition,
     );
@@ -39,7 +47,7 @@ class LocationPositionBloc
       _locationPositionStreamSubscription;
 
   Future<void> _listenLocationPosition(
-    _ListenLocationPosition event,
+    _ListenLocationPosition _,
     Emitter<LocationPositionState> emit,
   ) async {
     await _cancelListeningLocationPosition(
@@ -68,15 +76,35 @@ class LocationPositionBloc
     required Emitter<LocationPositionState> emit,
   }) =>
       locationPositionFailureOrEntity.fold(
-        (locationPositionFailure) => emit(
-          LocationPositionState.failedToGetLocationPosition(
+        (locationPositionFailure) => add(
+          LocationPositionEvent.locationPositionNotGotten(
             locationPositionFailure: locationPositionFailure,
           ),
         ),
-        (locationPositionEntity) => emit(
-          LocationPositionState.gotLocationPosition(
-            locationPosition: locationPositionEntity,
+        (locationPositionEntity) => add(
+          LocationPositionEvent.locationPositionGotten(
+            locationPositionEntity: locationPositionEntity,
           ),
+        ),
+      );
+
+  void _locationPositionNotGotten(
+    _LocationPositionNotGotten event,
+    Emitter<LocationPositionState> emit,
+  ) =>
+      emit(
+        LocationPositionState.failedToGetLocationPosition(
+          locationPositionFailure: event.locationPositionFailure,
+        ),
+      );
+
+  void _locationPositionGotten(
+    _LocationPositionGotten event,
+    Emitter<LocationPositionState> emit,
+  ) =>
+      emit(
+        LocationPositionState.gotLocationPosition(
+          locationPositionEntity: event.locationPositionEntity,
         ),
       );
 

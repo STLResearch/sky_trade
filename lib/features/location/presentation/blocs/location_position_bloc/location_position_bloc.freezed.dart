@@ -19,18 +19,30 @@ mixin _$LocationPositionEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() listenLocationPosition,
+    required TResult Function(LocationPositionEntity locationPositionEntity)
+        locationPositionGotten,
+    required TResult Function(LocationPositionFailure locationPositionFailure)
+        locationPositionNotGotten,
     required TResult Function() stopListeningLocationPosition,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? listenLocationPosition,
+    TResult? Function(LocationPositionEntity locationPositionEntity)?
+        locationPositionGotten,
+    TResult? Function(LocationPositionFailure locationPositionFailure)?
+        locationPositionNotGotten,
     TResult? Function()? stopListeningLocationPosition,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? listenLocationPosition,
+    TResult Function(LocationPositionEntity locationPositionEntity)?
+        locationPositionGotten,
+    TResult Function(LocationPositionFailure locationPositionFailure)?
+        locationPositionNotGotten,
     TResult Function()? stopListeningLocationPosition,
     required TResult orElse(),
   }) =>
@@ -39,6 +51,10 @@ mixin _$LocationPositionEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(_ListenLocationPosition value)
         listenLocationPosition,
+    required TResult Function(_LocationPositionGotten value)
+        locationPositionGotten,
+    required TResult Function(_LocationPositionNotGotten value)
+        locationPositionNotGotten,
     required TResult Function(_StopListeningLocationPosition value)
         stopListeningLocationPosition,
   }) =>
@@ -46,6 +62,9 @@ mixin _$LocationPositionEvent {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_ListenLocationPosition value)? listenLocationPosition,
+    TResult? Function(_LocationPositionGotten value)? locationPositionGotten,
+    TResult? Function(_LocationPositionNotGotten value)?
+        locationPositionNotGotten,
     TResult? Function(_StopListeningLocationPosition value)?
         stopListeningLocationPosition,
   }) =>
@@ -53,6 +72,9 @@ mixin _$LocationPositionEvent {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_ListenLocationPosition value)? listenLocationPosition,
+    TResult Function(_LocationPositionGotten value)? locationPositionGotten,
+    TResult Function(_LocationPositionNotGotten value)?
+        locationPositionNotGotten,
     TResult Function(_StopListeningLocationPosition value)?
         stopListeningLocationPosition,
     required TResult orElse(),
@@ -122,6 +144,10 @@ class _$ListenLocationPositionImpl implements _ListenLocationPosition {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() listenLocationPosition,
+    required TResult Function(LocationPositionEntity locationPositionEntity)
+        locationPositionGotten,
+    required TResult Function(LocationPositionFailure locationPositionFailure)
+        locationPositionNotGotten,
     required TResult Function() stopListeningLocationPosition,
   }) {
     return listenLocationPosition();
@@ -131,6 +157,10 @@ class _$ListenLocationPositionImpl implements _ListenLocationPosition {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? listenLocationPosition,
+    TResult? Function(LocationPositionEntity locationPositionEntity)?
+        locationPositionGotten,
+    TResult? Function(LocationPositionFailure locationPositionFailure)?
+        locationPositionNotGotten,
     TResult? Function()? stopListeningLocationPosition,
   }) {
     return listenLocationPosition?.call();
@@ -140,6 +170,10 @@ class _$ListenLocationPositionImpl implements _ListenLocationPosition {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? listenLocationPosition,
+    TResult Function(LocationPositionEntity locationPositionEntity)?
+        locationPositionGotten,
+    TResult Function(LocationPositionFailure locationPositionFailure)?
+        locationPositionNotGotten,
     TResult Function()? stopListeningLocationPosition,
     required TResult orElse(),
   }) {
@@ -154,6 +188,10 @@ class _$ListenLocationPositionImpl implements _ListenLocationPosition {
   TResult map<TResult extends Object?>({
     required TResult Function(_ListenLocationPosition value)
         listenLocationPosition,
+    required TResult Function(_LocationPositionGotten value)
+        locationPositionGotten,
+    required TResult Function(_LocationPositionNotGotten value)
+        locationPositionNotGotten,
     required TResult Function(_StopListeningLocationPosition value)
         stopListeningLocationPosition,
   }) {
@@ -164,6 +202,9 @@ class _$ListenLocationPositionImpl implements _ListenLocationPosition {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_ListenLocationPosition value)? listenLocationPosition,
+    TResult? Function(_LocationPositionGotten value)? locationPositionGotten,
+    TResult? Function(_LocationPositionNotGotten value)?
+        locationPositionNotGotten,
     TResult? Function(_StopListeningLocationPosition value)?
         stopListeningLocationPosition,
   }) {
@@ -174,6 +215,9 @@ class _$ListenLocationPositionImpl implements _ListenLocationPosition {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_ListenLocationPosition value)? listenLocationPosition,
+    TResult Function(_LocationPositionGotten value)? locationPositionGotten,
+    TResult Function(_LocationPositionNotGotten value)?
+        locationPositionNotGotten,
     TResult Function(_StopListeningLocationPosition value)?
         stopListeningLocationPosition,
     required TResult orElse(),
@@ -187,6 +231,340 @@ class _$ListenLocationPositionImpl implements _ListenLocationPosition {
 
 abstract class _ListenLocationPosition implements LocationPositionEvent {
   const factory _ListenLocationPosition() = _$ListenLocationPositionImpl;
+}
+
+/// @nodoc
+abstract class _$$LocationPositionGottenImplCopyWith<$Res> {
+  factory _$$LocationPositionGottenImplCopyWith(
+          _$LocationPositionGottenImpl value,
+          $Res Function(_$LocationPositionGottenImpl) then) =
+      __$$LocationPositionGottenImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({LocationPositionEntity locationPositionEntity});
+}
+
+/// @nodoc
+class __$$LocationPositionGottenImplCopyWithImpl<$Res>
+    extends _$LocationPositionEventCopyWithImpl<$Res,
+        _$LocationPositionGottenImpl>
+    implements _$$LocationPositionGottenImplCopyWith<$Res> {
+  __$$LocationPositionGottenImplCopyWithImpl(
+      _$LocationPositionGottenImpl _value,
+      $Res Function(_$LocationPositionGottenImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? locationPositionEntity = null,
+  }) {
+    return _then(_$LocationPositionGottenImpl(
+      locationPositionEntity: null == locationPositionEntity
+          ? _value.locationPositionEntity
+          : locationPositionEntity // ignore: cast_nullable_to_non_nullable
+              as LocationPositionEntity,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$LocationPositionGottenImpl implements _LocationPositionGotten {
+  const _$LocationPositionGottenImpl({required this.locationPositionEntity});
+
+  @override
+  final LocationPositionEntity locationPositionEntity;
+
+  @override
+  String toString() {
+    return 'LocationPositionEvent.locationPositionGotten(locationPositionEntity: $locationPositionEntity)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$LocationPositionGottenImpl &&
+            (identical(other.locationPositionEntity, locationPositionEntity) ||
+                other.locationPositionEntity == locationPositionEntity));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, locationPositionEntity);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$LocationPositionGottenImplCopyWith<_$LocationPositionGottenImpl>
+      get copyWith => __$$LocationPositionGottenImplCopyWithImpl<
+          _$LocationPositionGottenImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() listenLocationPosition,
+    required TResult Function(LocationPositionEntity locationPositionEntity)
+        locationPositionGotten,
+    required TResult Function(LocationPositionFailure locationPositionFailure)
+        locationPositionNotGotten,
+    required TResult Function() stopListeningLocationPosition,
+  }) {
+    return locationPositionGotten(locationPositionEntity);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? listenLocationPosition,
+    TResult? Function(LocationPositionEntity locationPositionEntity)?
+        locationPositionGotten,
+    TResult? Function(LocationPositionFailure locationPositionFailure)?
+        locationPositionNotGotten,
+    TResult? Function()? stopListeningLocationPosition,
+  }) {
+    return locationPositionGotten?.call(locationPositionEntity);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? listenLocationPosition,
+    TResult Function(LocationPositionEntity locationPositionEntity)?
+        locationPositionGotten,
+    TResult Function(LocationPositionFailure locationPositionFailure)?
+        locationPositionNotGotten,
+    TResult Function()? stopListeningLocationPosition,
+    required TResult orElse(),
+  }) {
+    if (locationPositionGotten != null) {
+      return locationPositionGotten(locationPositionEntity);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_ListenLocationPosition value)
+        listenLocationPosition,
+    required TResult Function(_LocationPositionGotten value)
+        locationPositionGotten,
+    required TResult Function(_LocationPositionNotGotten value)
+        locationPositionNotGotten,
+    required TResult Function(_StopListeningLocationPosition value)
+        stopListeningLocationPosition,
+  }) {
+    return locationPositionGotten(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_ListenLocationPosition value)? listenLocationPosition,
+    TResult? Function(_LocationPositionGotten value)? locationPositionGotten,
+    TResult? Function(_LocationPositionNotGotten value)?
+        locationPositionNotGotten,
+    TResult? Function(_StopListeningLocationPosition value)?
+        stopListeningLocationPosition,
+  }) {
+    return locationPositionGotten?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_ListenLocationPosition value)? listenLocationPosition,
+    TResult Function(_LocationPositionGotten value)? locationPositionGotten,
+    TResult Function(_LocationPositionNotGotten value)?
+        locationPositionNotGotten,
+    TResult Function(_StopListeningLocationPosition value)?
+        stopListeningLocationPosition,
+    required TResult orElse(),
+  }) {
+    if (locationPositionGotten != null) {
+      return locationPositionGotten(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _LocationPositionGotten implements LocationPositionEvent {
+  const factory _LocationPositionGotten(
+          {required final LocationPositionEntity locationPositionEntity}) =
+      _$LocationPositionGottenImpl;
+
+  LocationPositionEntity get locationPositionEntity;
+  @JsonKey(ignore: true)
+  _$$LocationPositionGottenImplCopyWith<_$LocationPositionGottenImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$LocationPositionNotGottenImplCopyWith<$Res> {
+  factory _$$LocationPositionNotGottenImplCopyWith(
+          _$LocationPositionNotGottenImpl value,
+          $Res Function(_$LocationPositionNotGottenImpl) then) =
+      __$$LocationPositionNotGottenImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({LocationPositionFailure locationPositionFailure});
+}
+
+/// @nodoc
+class __$$LocationPositionNotGottenImplCopyWithImpl<$Res>
+    extends _$LocationPositionEventCopyWithImpl<$Res,
+        _$LocationPositionNotGottenImpl>
+    implements _$$LocationPositionNotGottenImplCopyWith<$Res> {
+  __$$LocationPositionNotGottenImplCopyWithImpl(
+      _$LocationPositionNotGottenImpl _value,
+      $Res Function(_$LocationPositionNotGottenImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? locationPositionFailure = null,
+  }) {
+    return _then(_$LocationPositionNotGottenImpl(
+      locationPositionFailure: null == locationPositionFailure
+          ? _value.locationPositionFailure
+          : locationPositionFailure // ignore: cast_nullable_to_non_nullable
+              as LocationPositionFailure,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$LocationPositionNotGottenImpl implements _LocationPositionNotGotten {
+  const _$LocationPositionNotGottenImpl(
+      {required this.locationPositionFailure});
+
+  @override
+  final LocationPositionFailure locationPositionFailure;
+
+  @override
+  String toString() {
+    return 'LocationPositionEvent.locationPositionNotGotten(locationPositionFailure: $locationPositionFailure)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$LocationPositionNotGottenImpl &&
+            (identical(
+                    other.locationPositionFailure, locationPositionFailure) ||
+                other.locationPositionFailure == locationPositionFailure));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, locationPositionFailure);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$LocationPositionNotGottenImplCopyWith<_$LocationPositionNotGottenImpl>
+      get copyWith => __$$LocationPositionNotGottenImplCopyWithImpl<
+          _$LocationPositionNotGottenImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() listenLocationPosition,
+    required TResult Function(LocationPositionEntity locationPositionEntity)
+        locationPositionGotten,
+    required TResult Function(LocationPositionFailure locationPositionFailure)
+        locationPositionNotGotten,
+    required TResult Function() stopListeningLocationPosition,
+  }) {
+    return locationPositionNotGotten(locationPositionFailure);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? listenLocationPosition,
+    TResult? Function(LocationPositionEntity locationPositionEntity)?
+        locationPositionGotten,
+    TResult? Function(LocationPositionFailure locationPositionFailure)?
+        locationPositionNotGotten,
+    TResult? Function()? stopListeningLocationPosition,
+  }) {
+    return locationPositionNotGotten?.call(locationPositionFailure);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? listenLocationPosition,
+    TResult Function(LocationPositionEntity locationPositionEntity)?
+        locationPositionGotten,
+    TResult Function(LocationPositionFailure locationPositionFailure)?
+        locationPositionNotGotten,
+    TResult Function()? stopListeningLocationPosition,
+    required TResult orElse(),
+  }) {
+    if (locationPositionNotGotten != null) {
+      return locationPositionNotGotten(locationPositionFailure);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_ListenLocationPosition value)
+        listenLocationPosition,
+    required TResult Function(_LocationPositionGotten value)
+        locationPositionGotten,
+    required TResult Function(_LocationPositionNotGotten value)
+        locationPositionNotGotten,
+    required TResult Function(_StopListeningLocationPosition value)
+        stopListeningLocationPosition,
+  }) {
+    return locationPositionNotGotten(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_ListenLocationPosition value)? listenLocationPosition,
+    TResult? Function(_LocationPositionGotten value)? locationPositionGotten,
+    TResult? Function(_LocationPositionNotGotten value)?
+        locationPositionNotGotten,
+    TResult? Function(_StopListeningLocationPosition value)?
+        stopListeningLocationPosition,
+  }) {
+    return locationPositionNotGotten?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_ListenLocationPosition value)? listenLocationPosition,
+    TResult Function(_LocationPositionGotten value)? locationPositionGotten,
+    TResult Function(_LocationPositionNotGotten value)?
+        locationPositionNotGotten,
+    TResult Function(_StopListeningLocationPosition value)?
+        stopListeningLocationPosition,
+    required TResult orElse(),
+  }) {
+    if (locationPositionNotGotten != null) {
+      return locationPositionNotGotten(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _LocationPositionNotGotten implements LocationPositionEvent {
+  const factory _LocationPositionNotGotten(
+          {required final LocationPositionFailure locationPositionFailure}) =
+      _$LocationPositionNotGottenImpl;
+
+  LocationPositionFailure get locationPositionFailure;
+  @JsonKey(ignore: true)
+  _$$LocationPositionNotGottenImplCopyWith<_$LocationPositionNotGottenImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -233,6 +611,10 @@ class _$StopListeningLocationPositionImpl
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() listenLocationPosition,
+    required TResult Function(LocationPositionEntity locationPositionEntity)
+        locationPositionGotten,
+    required TResult Function(LocationPositionFailure locationPositionFailure)
+        locationPositionNotGotten,
     required TResult Function() stopListeningLocationPosition,
   }) {
     return stopListeningLocationPosition();
@@ -242,6 +624,10 @@ class _$StopListeningLocationPositionImpl
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? listenLocationPosition,
+    TResult? Function(LocationPositionEntity locationPositionEntity)?
+        locationPositionGotten,
+    TResult? Function(LocationPositionFailure locationPositionFailure)?
+        locationPositionNotGotten,
     TResult? Function()? stopListeningLocationPosition,
   }) {
     return stopListeningLocationPosition?.call();
@@ -251,6 +637,10 @@ class _$StopListeningLocationPositionImpl
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? listenLocationPosition,
+    TResult Function(LocationPositionEntity locationPositionEntity)?
+        locationPositionGotten,
+    TResult Function(LocationPositionFailure locationPositionFailure)?
+        locationPositionNotGotten,
     TResult Function()? stopListeningLocationPosition,
     required TResult orElse(),
   }) {
@@ -265,6 +655,10 @@ class _$StopListeningLocationPositionImpl
   TResult map<TResult extends Object?>({
     required TResult Function(_ListenLocationPosition value)
         listenLocationPosition,
+    required TResult Function(_LocationPositionGotten value)
+        locationPositionGotten,
+    required TResult Function(_LocationPositionNotGotten value)
+        locationPositionNotGotten,
     required TResult Function(_StopListeningLocationPosition value)
         stopListeningLocationPosition,
   }) {
@@ -275,6 +669,9 @@ class _$StopListeningLocationPositionImpl
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_ListenLocationPosition value)? listenLocationPosition,
+    TResult? Function(_LocationPositionGotten value)? locationPositionGotten,
+    TResult? Function(_LocationPositionNotGotten value)?
+        locationPositionNotGotten,
     TResult? Function(_StopListeningLocationPosition value)?
         stopListeningLocationPosition,
   }) {
@@ -285,6 +682,9 @@ class _$StopListeningLocationPositionImpl
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_ListenLocationPosition value)? listenLocationPosition,
+    TResult Function(_LocationPositionGotten value)? locationPositionGotten,
+    TResult Function(_LocationPositionNotGotten value)?
+        locationPositionNotGotten,
     TResult Function(_StopListeningLocationPosition value)?
         stopListeningLocationPosition,
     required TResult orElse(),
@@ -307,7 +707,7 @@ mixin _$LocationPositionState {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() gettingLocationPosition,
-    required TResult Function(LocationPositionEntity locationPosition)
+    required TResult Function(LocationPositionEntity locationPositionEntity)
         gotLocationPosition,
     required TResult Function(LocationPositionFailure locationPositionFailure)
         failedToGetLocationPosition,
@@ -317,7 +717,7 @@ mixin _$LocationPositionState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? gettingLocationPosition,
-    TResult? Function(LocationPositionEntity locationPosition)?
+    TResult? Function(LocationPositionEntity locationPositionEntity)?
         gotLocationPosition,
     TResult? Function(LocationPositionFailure locationPositionFailure)?
         failedToGetLocationPosition,
@@ -327,7 +727,7 @@ mixin _$LocationPositionState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? gettingLocationPosition,
-    TResult Function(LocationPositionEntity locationPosition)?
+    TResult Function(LocationPositionEntity locationPositionEntity)?
         gotLocationPosition,
     TResult Function(LocationPositionFailure locationPositionFailure)?
         failedToGetLocationPosition,
@@ -424,7 +824,7 @@ class _$InitialImpl implements _Initial {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() gettingLocationPosition,
-    required TResult Function(LocationPositionEntity locationPosition)
+    required TResult Function(LocationPositionEntity locationPositionEntity)
         gotLocationPosition,
     required TResult Function(LocationPositionFailure locationPositionFailure)
         failedToGetLocationPosition,
@@ -437,7 +837,7 @@ class _$InitialImpl implements _Initial {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? gettingLocationPosition,
-    TResult? Function(LocationPositionEntity locationPosition)?
+    TResult? Function(LocationPositionEntity locationPositionEntity)?
         gotLocationPosition,
     TResult? Function(LocationPositionFailure locationPositionFailure)?
         failedToGetLocationPosition,
@@ -450,7 +850,7 @@ class _$InitialImpl implements _Initial {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? gettingLocationPosition,
-    TResult Function(LocationPositionEntity locationPosition)?
+    TResult Function(LocationPositionEntity locationPositionEntity)?
         gotLocationPosition,
     TResult Function(LocationPositionFailure locationPositionFailure)?
         failedToGetLocationPosition,
@@ -552,7 +952,7 @@ class _$GettingLocationPositionImpl implements _GettingLocationPosition {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() gettingLocationPosition,
-    required TResult Function(LocationPositionEntity locationPosition)
+    required TResult Function(LocationPositionEntity locationPositionEntity)
         gotLocationPosition,
     required TResult Function(LocationPositionFailure locationPositionFailure)
         failedToGetLocationPosition,
@@ -565,7 +965,7 @@ class _$GettingLocationPositionImpl implements _GettingLocationPosition {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? gettingLocationPosition,
-    TResult? Function(LocationPositionEntity locationPosition)?
+    TResult? Function(LocationPositionEntity locationPositionEntity)?
         gotLocationPosition,
     TResult? Function(LocationPositionFailure locationPositionFailure)?
         failedToGetLocationPosition,
@@ -578,7 +978,7 @@ class _$GettingLocationPositionImpl implements _GettingLocationPosition {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? gettingLocationPosition,
-    TResult Function(LocationPositionEntity locationPosition)?
+    TResult Function(LocationPositionEntity locationPositionEntity)?
         gotLocationPosition,
     TResult Function(LocationPositionFailure locationPositionFailure)?
         failedToGetLocationPosition,
@@ -642,7 +1042,7 @@ abstract class _$$GotLocationPositionImplCopyWith<$Res> {
           $Res Function(_$GotLocationPositionImpl) then) =
       __$$GotLocationPositionImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({LocationPositionEntity locationPosition});
+  $Res call({LocationPositionEntity locationPositionEntity});
 }
 
 /// @nodoc
@@ -656,12 +1056,12 @@ class __$$GotLocationPositionImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? locationPosition = null,
+    Object? locationPositionEntity = null,
   }) {
     return _then(_$GotLocationPositionImpl(
-      locationPosition: null == locationPosition
-          ? _value.locationPosition
-          : locationPosition // ignore: cast_nullable_to_non_nullable
+      locationPositionEntity: null == locationPositionEntity
+          ? _value.locationPositionEntity
+          : locationPositionEntity // ignore: cast_nullable_to_non_nullable
               as LocationPositionEntity,
     ));
   }
@@ -670,14 +1070,14 @@ class __$$GotLocationPositionImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$GotLocationPositionImpl implements _GotLocationPosition {
-  const _$GotLocationPositionImpl({required this.locationPosition});
+  const _$GotLocationPositionImpl({required this.locationPositionEntity});
 
   @override
-  final LocationPositionEntity locationPosition;
+  final LocationPositionEntity locationPositionEntity;
 
   @override
   String toString() {
-    return 'LocationPositionState.gotLocationPosition(locationPosition: $locationPosition)';
+    return 'LocationPositionState.gotLocationPosition(locationPositionEntity: $locationPositionEntity)';
   }
 
   @override
@@ -685,12 +1085,12 @@ class _$GotLocationPositionImpl implements _GotLocationPosition {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$GotLocationPositionImpl &&
-            (identical(other.locationPosition, locationPosition) ||
-                other.locationPosition == locationPosition));
+            (identical(other.locationPositionEntity, locationPositionEntity) ||
+                other.locationPositionEntity == locationPositionEntity));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, locationPosition);
+  int get hashCode => Object.hash(runtimeType, locationPositionEntity);
 
   @JsonKey(ignore: true)
   @override
@@ -704,12 +1104,12 @@ class _$GotLocationPositionImpl implements _GotLocationPosition {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() gettingLocationPosition,
-    required TResult Function(LocationPositionEntity locationPosition)
+    required TResult Function(LocationPositionEntity locationPositionEntity)
         gotLocationPosition,
     required TResult Function(LocationPositionFailure locationPositionFailure)
         failedToGetLocationPosition,
   }) {
-    return gotLocationPosition(locationPosition);
+    return gotLocationPosition(locationPositionEntity);
   }
 
   @override
@@ -717,12 +1117,12 @@ class _$GotLocationPositionImpl implements _GotLocationPosition {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? gettingLocationPosition,
-    TResult? Function(LocationPositionEntity locationPosition)?
+    TResult? Function(LocationPositionEntity locationPositionEntity)?
         gotLocationPosition,
     TResult? Function(LocationPositionFailure locationPositionFailure)?
         failedToGetLocationPosition,
   }) {
-    return gotLocationPosition?.call(locationPosition);
+    return gotLocationPosition?.call(locationPositionEntity);
   }
 
   @override
@@ -730,14 +1130,14 @@ class _$GotLocationPositionImpl implements _GotLocationPosition {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? gettingLocationPosition,
-    TResult Function(LocationPositionEntity locationPosition)?
+    TResult Function(LocationPositionEntity locationPositionEntity)?
         gotLocationPosition,
     TResult Function(LocationPositionFailure locationPositionFailure)?
         failedToGetLocationPosition,
     required TResult orElse(),
   }) {
     if (gotLocationPosition != null) {
-      return gotLocationPosition(locationPosition);
+      return gotLocationPosition(locationPositionEntity);
     }
     return orElse();
   }
@@ -786,10 +1186,10 @@ class _$GotLocationPositionImpl implements _GotLocationPosition {
 
 abstract class _GotLocationPosition implements LocationPositionState {
   const factory _GotLocationPosition(
-          {required final LocationPositionEntity locationPosition}) =
+          {required final LocationPositionEntity locationPositionEntity}) =
       _$GotLocationPositionImpl;
 
-  LocationPositionEntity get locationPosition;
+  LocationPositionEntity get locationPositionEntity;
   @JsonKey(ignore: true)
   _$$GotLocationPositionImplCopyWith<_$GotLocationPositionImpl> get copyWith =>
       throw _privateConstructorUsedError;
@@ -869,7 +1269,7 @@ class _$FailedToGetLocationPositionImpl
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() gettingLocationPosition,
-    required TResult Function(LocationPositionEntity locationPosition)
+    required TResult Function(LocationPositionEntity locationPositionEntity)
         gotLocationPosition,
     required TResult Function(LocationPositionFailure locationPositionFailure)
         failedToGetLocationPosition,
@@ -882,7 +1282,7 @@ class _$FailedToGetLocationPositionImpl
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? gettingLocationPosition,
-    TResult? Function(LocationPositionEntity locationPosition)?
+    TResult? Function(LocationPositionEntity locationPositionEntity)?
         gotLocationPosition,
     TResult? Function(LocationPositionFailure locationPositionFailure)?
         failedToGetLocationPosition,
@@ -895,7 +1295,7 @@ class _$FailedToGetLocationPositionImpl
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? gettingLocationPosition,
-    TResult Function(LocationPositionEntity locationPosition)?
+    TResult Function(LocationPositionEntity locationPositionEntity)?
         gotLocationPosition,
     TResult Function(LocationPositionFailure locationPositionFailure)?
         failedToGetLocationPosition,

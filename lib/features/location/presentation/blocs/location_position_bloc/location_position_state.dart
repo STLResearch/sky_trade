@@ -8,7 +8,7 @@ class LocationPositionState with _$LocationPositionState {
       _GettingLocationPosition;
 
   const factory LocationPositionState.gotLocationPosition({
-    required LocationPositionEntity locationPosition,
+    required LocationPositionEntity locationPositionEntity,
   }) = _GotLocationPosition;
 
   const factory LocationPositionState.failedToGetLocationPosition({

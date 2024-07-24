@@ -31,3 +31,16 @@ final class LocationServiceStatusEntity extends Equatable {
         enabled,
       ];
 }
+
+final class LocationPermissionEntity extends Equatable {
+  const LocationPermissionEntity({
+    required this.granted,
+  });
+
+  final bool granted;
+
+  @override
+  List<Object?> get props => [
+        granted,
+      ];
+}
