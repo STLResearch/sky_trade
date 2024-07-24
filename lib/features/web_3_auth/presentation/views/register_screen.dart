@@ -39,6 +39,7 @@ import 'package:sky_ways/features/web_3_auth/presentation/widgets/email_field.da
 import 'package:sky_ways/features/web_3_auth/presentation/widgets/footer_section.dart';
 import 'package:sky_ways/features/web_3_auth/presentation/widgets/or_section.dart';
 import 'package:sky_ways/features/web_3_auth/presentation/widgets/subscribe_section.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({super.key});
@@ -89,6 +90,20 @@ class _RegisterScreenState extends State<RegisterScreen>
             const Web3AuthCaptureCustomTabsClosedEvent
                 .captureWhenCustomTabsClosed(),
           );
+    }
+  }
+
+  Future<void> _launchTermsOfService() async {
+    final url = Uri.parse('https://docs.sky.trade/terms.htm');
+    if (!await launchUrl(url)) {
+      throw Exception('Could not launch $url');
+    }
+  }
+
+  Future<void> _launchPrivacyPolicy() async {
+    final url = Uri.parse('https://docs.sky.trade/privacy.htm');
+    if (!await launchUrl(url)) {
+      throw Exception('Could not launch $url');
     }
   }
 
@@ -240,8 +255,8 @@ class _RegisterScreenState extends State<RegisterScreen>
               height: fifteenDotNil,
             ),
             AgreementSection(
-              onTermsAndConditionsTap: () {},
-              onPrivacyPolicyTap: () {},
+              onTermsAndConditionsTap: _launchTermsOfService,
+              onPrivacyPolicyTap: _launchPrivacyPolicy,
             ),
             const SizedBox(
               height: fifteenDotNil,
