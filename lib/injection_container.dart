@@ -1,6 +1,12 @@
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart' show GetIt;
 import 'package:sky_ways/core/utils/clients/network_client.dart';
+import 'package:sky_ways/features/link_handler/data/repositories/link_handler_repository_implementation.dart';
+import 'package:sky_ways/features/link_handler/domain/repositories/link_handler_repository.dart';
+import 'package:sky_ways/features/link_handler/presentation/blocs/check_link_bloc/check_link_bloc.dart'
+    show CheckLinkBloc;
+import 'package:sky_ways/features/link_handler/presentation/blocs/handle_link_bloc/handle_link_bloc.dart'
+    show HandleLinkBloc;
 import 'package:sky_ways/features/location/data/repositories/location_repository_implementation.dart';
 import 'package:sky_ways/features/location/domain/repositories/location_repository.dart';
 import 'package:sky_ways/features/location/presentation/blocs/location_permission_bloc/location_permission_bloc.dart'
@@ -32,6 +38,16 @@ final sl = GetIt.I;
 Future<void> registerServices() async {
   sl
     // BLoCs
+    ..registerFactory<CheckLinkBloc>(
+      () => CheckLinkBloc(
+        sl(),
+      ),
+    )
+    ..registerFactory<HandleLinkBloc>(
+      () => HandleLinkBloc(
+        sl(),
+      ),
+    )
     ..registerFactory<LocationPermissionBloc>(
       () => LocationPermissionBloc(
         sl(),
@@ -79,6 +95,9 @@ Future<void> registerServices() async {
     )
 
     // Repositories
+    ..registerLazySingleton<LinkHandlerRepository>(
+      LinkHandlerRepositoryImplementation.new,
+    )
     ..registerLazySingleton<LocationRepository>(
       LocationRepositoryImplementation.new,
     )

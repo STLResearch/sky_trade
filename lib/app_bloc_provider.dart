@@ -1,4 +1,8 @@
 import 'package:flutter_bloc/flutter_bloc.dart' show BlocProvider;
+import 'package:sky_ways/features/link_handler/presentation/blocs/check_link_bloc/check_link_bloc.dart'
+    show CheckLinkBloc;
+import 'package:sky_ways/features/link_handler/presentation/blocs/handle_link_bloc/handle_link_bloc.dart'
+    show HandleLinkBloc;
 import 'package:sky_ways/features/location/presentation/blocs/location_permission_bloc/location_permission_bloc.dart'
     show LocationPermissionBloc;
 import 'package:sky_ways/features/location/presentation/blocs/location_position_bloc/location_position_bloc.dart'
@@ -20,6 +24,12 @@ import 'package:sky_ways/features/web_3_auth/presentation/blocs/web_3_auth_user_
 import 'package:sky_ways/injection_container.dart' show sl;
 
 List<BlocProvider> get appBlocProvider => [
+      BlocProvider<CheckLinkBloc>(
+        create: (_) => sl(),
+      ),
+      BlocProvider<HandleLinkBloc>(
+        create: (_) => sl(),
+      ),
       BlocProvider<LocationPermissionBloc>(
         create: (_) => sl(),
       ),

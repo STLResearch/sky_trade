@@ -33,7 +33,7 @@ final class UASRestrictionsRepositoryImplementation
               northEastLatitude: northEastLatitude,
               northEastLongitude: northEastLongitude,
             ),
-            onSuccess: (restrictionsList) => restrictionsList,
+            onSuccess: (restrictionEntities) => restrictionEntities,
             onFailure: UASRestrictionsFailure.new,
           );
 }
