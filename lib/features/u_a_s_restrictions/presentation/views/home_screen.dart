@@ -65,7 +65,7 @@ import 'package:sky_ways/features/location/presentation/blocs/location_service_s
         LocationServiceStatusEvent,
         LocationServiceStatusState;
 import 'package:sky_ways/features/u_a_s_restrictions/presentation/blocs/u_a_s_restrictions_bloc/u_a_s_restrictions_bloc.dart'
-    show UASRestrictionsBloc, UASRestrictionsState;
+    show UASRestrictionsBloc, UASRestrictionsEvent, UASRestrictionsState;
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -161,28 +161,11 @@ class _HomeScreenState extends State<HomeScreen> {
           BlocListener<LocationPositionBloc, LocationPositionState>(
             listener: (_, locationPositionState) {
               locationPositionState.maybeWhen(
-                gotLocationPosition: (locationPositionEntity) {
-                  _mapboxMap
-                    ?..easeTo(
-                      CameraOptions(
-                        center: Point(
-                          coordinates: Position(
-                            locationPositionEntity.longitude,
-                            locationPositionEntity.latitude,
-                          ),
-                        ),
-                        zoom: fourteenDotNil,
-                      ),
-                      MapAnimationOptions(
-                        duration: oneThousand,
-                      ),
-                    )
-                    ..location.updateSettings(
-                      LocationComponentSettings(
-                        enabled: true,
-                      ),
-                    );
-                },
+                gotLocationPosition: (locationPositionEntity) =>
+                    _mapboxMap?.followUser(
+                  latitude: locationPositionEntity.latitude,
+                  longitude: locationPositionEntity.longitude,
+                ),
                 orElse: () {},
               );
             },
@@ -206,6 +189,37 @@ class _HomeScreenState extends State<HomeScreen> {
           body: MapWidget(
             styleUri: dotenv.env[mapboxMapsStyleUri]!,
             onMapCreated: (mapboxMap) => _mapboxMap = mapboxMap,
+            onCameraChangeListener: (_) {
+              context.read<LocationPositionBloc>().state.maybeWhen(
+                    gotLocationPosition: (
+                      locationPositionEntity,
+                    ) =>
+                        _mapboxMap?.computeBoundingBoxForCoordinates(
+                      latitude: locationPositionEntity.latitude,
+                      longitude: locationPositionEntity.longitude,
+                      onBoundsComputed: (coordinateBounds) {
+                        // Optimize this code
+                        context.read<UASRestrictionsBloc>().add(
+                              UASRestrictionsEvent.getRestrictions(
+                                southWestLatitude: coordinateBounds
+                                    .southwest.coordinates.lat
+                                    .toDouble(),
+                                southWestLongitude: coordinateBounds
+                                    .southwest.coordinates.lng
+                                    .toDouble(),
+                                northEastLatitude: coordinateBounds
+                                    .northeast.coordinates.lat
+                                    .toDouble(),
+                                northEastLongitude: coordinateBounds
+                                    .northeast.coordinates.lng
+                                    .toDouble(),
+                              ),
+                            );
+                      },
+                    ),
+                    orElse: () {},
+                  );
+            },
           ),
           bottomNavigationBar: ValueListenableBuilder<int>(
             valueListenable: _selectedBottomNavigationBarItemIndex,

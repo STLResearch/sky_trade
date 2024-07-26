@@ -9,7 +9,12 @@ const web3AuthPath = '/auth';
 const flowTypeKey = 'flow_type';
 const linkValue = 'link';
 
-// SkyTrade endpoint
+// SkyTrade
+// Privacy policy
+const skyTradePrivacyPolicyUrl = 'https://docs.sky.trade/privacy.htm';
+// Terms of service
+const skyTradeTermsOfServiceUrl = 'https://docs.sky.trade/terms.htm';
+// Endpoints
 // Base URL
 const skyTradeServerBaseUrl = 'SKYTRADE_SERVER_BASE_URL';
 // Paths
