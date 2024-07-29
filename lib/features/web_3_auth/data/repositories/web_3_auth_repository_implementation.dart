@@ -1,6 +1,6 @@
 import 'dart:io' show Platform;
 
-import 'package:dartz/dartz.dart' show Either, Left, Right;
+import 'package:dartz/dartz.dart' show Either, Left, Right, Unit, unit;
 import 'package:flutter_dotenv/flutter_dotenv.dart' show dotenv;
 import 'package:sky_ways/core/errors/failures/web_3_auth_failure.dart'
     show
@@ -31,7 +31,7 @@ import 'package:web3auth_flutter/web3auth_flutter.dart';
 
 final class Web3AuthRepositoryImplementation implements Web3AuthRepository {
   @override
-  Future<Either<Web3AuthInitializationFailure, void>>
+  Future<Either<Web3AuthInitializationFailure, Unit>>
       initializeWeb3Auth() async {
     final web3AuthOptions = Web3AuthOptions(
       clientId: dotenv.env[web3AuthClientId]!,
@@ -47,7 +47,7 @@ final class Web3AuthRepositoryImplementation implements Web3AuthRepository {
       await Web3AuthFlutter.initialize();
 
       return const Right(
-        null,
+        unit,
       );
     } catch (error) {
       return Left(
@@ -174,11 +174,11 @@ final class Web3AuthRepositoryImplementation implements Web3AuthRepository {
       Web3AuthFlutter.setCustomTabsClosed();
 
   @override
-  Future<Either<Web3AuthLogoutFailure, void>> logoutCurrentUser() async {
+  Future<Either<Web3AuthLogoutFailure, Unit>> logoutCurrentUser() async {
     try {
       await Web3AuthFlutter.logout();
       return const Right(
-        null,
+        unit,
       );
     } catch (error) {
       return Left(
