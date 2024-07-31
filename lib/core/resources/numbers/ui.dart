@@ -8,6 +8,7 @@ const five = 5;
 const ten = 10;
 const forty = 40;
 const oneHundred = 100;
+const oneThousand = 1000;
 
 // Doubles
 const minusFourDotNil = -4.0;

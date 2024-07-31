@@ -14,13 +14,16 @@ import 'package:flutter/material.dart'
         ValueListenableBuilder,
         ValueNotifier,
         Widget;
-import 'package:flutter_bloc/flutter_bloc.dart' show BlocListener, ReadContext;
+import 'package:flutter_bloc/flutter_bloc.dart'
+    show BlocListener, MultiBlocListener, ReadContext;
 import 'package:flutter_dotenv/flutter_dotenv.dart' show dotenv;
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_svg/flutter_svg.dart' show SvgPicture;
 import 'package:mapbox_maps_flutter/mapbox_maps_flutter.dart'
     show
         CameraOptions,
+        LocationComponentSettings,
+        MapAnimationOptions,
         MapWidget,
         MapboxMap,
         MapboxOptions,
@@ -31,9 +34,11 @@ import 'package:sky_ways/core/resources/numbers/ui.dart'
     show
         five,
         forty,
+        fourteenDotNil,
         nilDotNil,
         one,
         oneHundred,
+        oneThousand,
         sixteenDotNil,
         ten,
         three,
@@ -51,6 +56,14 @@ import 'package:sky_ways/core/resources/strings/asset_paths.dart'
 import 'package:sky_ways/core/resources/strings/secret_keys.dart'
     show mapboxMapsPublicKey, mapboxMapsStyleUri;
 import 'package:sky_ways/core/utils/extensions/mapbox_map_extensions.dart';
+import 'package:sky_ways/features/location/presentation/blocs/location_permission_bloc/location_permission_bloc.dart';
+import 'package:sky_ways/features/location/presentation/blocs/location_position_bloc/location_position_bloc.dart'
+    show LocationPositionBloc, LocationPositionEvent, LocationPositionState;
+import 'package:sky_ways/features/location/presentation/blocs/location_service_status_bloc/location_service_status_bloc.dart'
+    show
+        LocationServiceStatusBloc,
+        LocationServiceStatusEvent,
+        LocationServiceStatusState;
 import 'package:sky_ways/features/u_a_s_restrictions/presentation/blocs/u_a_s_restrictions_bloc/u_a_s_restrictions_bloc.dart'
     show UASRestrictionsBloc, UASRestrictionsEvent, UASRestrictionsState;
 
@@ -73,9 +86,34 @@ class _HomeScreenState extends State<HomeScreen> {
     _selectedBottomNavigationBarItemIndex = ValueNotifier<int>(
       zero,
     );
+    _requestLocationPermission();
 
     super.initState();
   }
+
+  void _requestLocationPermission() =>
+      context.read<LocationPermissionBloc>().add(
+            const LocationPermissionEvent.requestPermission(),
+          );
+
+  @override
+  void deactivate() {
+    _stopListeningLocationPosition();
+    _stopListeningLocationServiceStatus();
+
+    super.deactivate();
+  }
+
+  void _stopListeningLocationPosition() =>
+      context.read<LocationPositionBloc>().add(
+            const LocationPositionEvent.stopListeningLocationPosition(),
+          );
+
+  void _stopListeningLocationServiceStatus() => context
+      .read<LocationServiceStatusBloc>()
+      .add(
+        const LocationServiceStatusEvent.stopListeningLocationServiceStatus(),
+      );
 
   @override
   void dispose() {
@@ -86,65 +124,101 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   @override
-  Widget build(BuildContext context) =>
-      BlocListener<UASRestrictionsBloc, UASRestrictionsState>(
-        listener: (_, uASRestrictionsState) {
-          uASRestrictionsState.maybeWhen(
-            gotRestrictions: (restrictionEntities) {
-              for (final restrictionEntity in restrictionEntities) {
-                _mapboxMap?.drawPolygonUsing(
-                  vertices: restrictionEntity.region.coordinates,
-                );
-              }
+  Widget build(BuildContext context) => MultiBlocListener(
+        listeners: [
+          BlocListener<LocationPermissionBloc, LocationPermissionState>(
+            listener: (_, locationPermissionState) {
+              locationPermissionState.maybeWhen(
+                maybeGrantedPermission: (locationPermissionEntity) {
+                  if (locationPermissionEntity.granted) {
+                    context.read<LocationServiceStatusBloc>().add(
+                          const LocationServiceStatusEvent
+                              .listenLocationServiceStatus(),
+                        );
+                  }
+                },
+                orElse: () {},
+              );
             },
-            orElse: () {},
-          );
-        },
+          ),
+          BlocListener<LocationServiceStatusBloc, LocationServiceStatusState>(
+            listener: (_, locationServiceStatusState) {
+              locationServiceStatusState.maybeWhen(
+                gotLocationServiceStatus: (locationServiceStatusEntity) {
+                  context.read<LocationPositionBloc>().add(
+                        switch (locationServiceStatusEntity.enabled) {
+                          true => const LocationPositionEvent
+                              .listenLocationPosition(),
+                          false => const LocationPositionEvent
+                              .stopListeningLocationPosition(),
+                        },
+                      );
+                },
+                orElse: () {},
+              );
+            },
+          ),
+          BlocListener<LocationPositionBloc, LocationPositionState>(
+            listener: (_, locationPositionState) {
+              locationPositionState.maybeWhen(
+                gotLocationPosition: (locationPositionEntity) =>
+                    _mapboxMap?.followUser(
+                  latitude: locationPositionEntity.latitude,
+                  longitude: locationPositionEntity.longitude,
+                ),
+                orElse: () {},
+              );
+            },
+          ),
+          BlocListener<UASRestrictionsBloc, UASRestrictionsState>(
+            listener: (_, uASRestrictionsState) {
+              uASRestrictionsState.maybeWhen(
+                gotRestrictions: (restrictionEntities) {
+                  for (final restrictionEntity in restrictionEntities) {
+                    _mapboxMap?.drawPolygonUsing(
+                      vertices: restrictionEntity.region.coordinates,
+                    );
+                  }
+                },
+                orElse: () {},
+              );
+            },
+          ),
+        ],
         child: Scaffold(
           body: MapWidget(
             styleUri: dotenv.env[mapboxMapsStyleUri]!,
-            onMapCreated: (mapboxMap) {
-              _mapboxMap = mapboxMap;
-
-              final cameraOptions = CameraOptions(
-                center: Point(
-                  coordinates: Position(
-                    -0.1425366,
-                    51.5161597,
-                  ),
-                ),
-                zoom: 9,
-              );
-
-              mapboxMap.flyTo(
-                cameraOptions,
-                null,
-              );
-
-              mapboxMap
-                  .coordinateBoundsForCameraUnwrapped(
-                cameraOptions,
-              )
-                  .then(
-                (coordinateBounds) {
-                  context.read<UASRestrictionsBloc>().add(
-                        UASRestrictionsEvent.getRestrictions(
-                          southWestLatitude: coordinateBounds
-                              .southwest.coordinates.lat
-                              .toDouble(),
-                          southWestLongitude: coordinateBounds
-                              .southwest.coordinates.lng
-                              .toDouble(),
-                          northEastLatitude: coordinateBounds
-                              .northeast.coordinates.lat
-                              .toDouble(),
-                          northEastLongitude: coordinateBounds
-                              .northeast.coordinates.lng
-                              .toDouble(),
-                        ),
-                      );
-                },
-              );
+            onMapCreated: (mapboxMap) => _mapboxMap = mapboxMap,
+            onCameraChangeListener: (_) {
+              context.read<LocationPositionBloc>().state.maybeWhen(
+                    gotLocationPosition: (
+                      locationPositionEntity,
+                    ) =>
+                        _mapboxMap?.computeBoundingBoxForCoordinates(
+                      latitude: locationPositionEntity.latitude,
+                      longitude: locationPositionEntity.longitude,
+                      onBoundsComputed: (coordinateBounds) {
+                        // Optimize this code
+                        context.read<UASRestrictionsBloc>().add(
+                              UASRestrictionsEvent.getRestrictions(
+                                southWestLatitude: coordinateBounds
+                                    .southwest.coordinates.lat
+                                    .toDouble(),
+                                southWestLongitude: coordinateBounds
+                                    .southwest.coordinates.lng
+                                    .toDouble(),
+                                northEastLatitude: coordinateBounds
+                                    .northeast.coordinates.lat
+                                    .toDouble(),
+                                northEastLongitude: coordinateBounds
+                                    .northeast.coordinates.lng
+                                    .toDouble(),
+                              ),
+                            );
+                      },
+                    ),
+                    orElse: () {},
+                  );
             },
           ),
           bottomNavigationBar: ValueListenableBuilder<int>(
@@ -158,7 +232,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     items: List<BottomNavigationBarItem>.generate(
                       five,
                       (index) => BottomNavigationBarItem(
-                        label: computeBottomNavigationBarLabelFrom(
+                        label: _computeBottomNavigationBarLabelFrom(
                           index,
                         ),
                         icon: Padding(
@@ -166,7 +240,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             top: sixteenDotNil,
                           ),
                           child: SvgPicture.asset(
-                            computeBottomNavigationBarSvgAssetPathFrom(
+                            _computeBottomNavigationBarSvgAssetPathFrom(
                               index,
                             ),
                             width: twentyFourDotNil,
@@ -205,7 +279,7 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
       );
 
-  String computeBottomNavigationBarLabelFrom(
+  String _computeBottomNavigationBarLabelFrom(
     int index,
   ) =>
       switch (index) {
@@ -216,7 +290,7 @@ class _HomeScreenState extends State<HomeScreen> {
         _ => AppLocalizations.of(context)!.account,
       };
 
-  String computeBottomNavigationBarSvgAssetPathFrom(
+  String _computeBottomNavigationBarSvgAssetPathFrom(
     int index,
   ) =>
       switch (index) {

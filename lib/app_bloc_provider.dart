@@ -1,4 +1,15 @@
 import 'package:flutter_bloc/flutter_bloc.dart' show BlocProvider;
+import 'package:get_it/get_it.dart' show GetIt;
+import 'package:sky_ways/features/link_handler/presentation/blocs/check_link_bloc/check_link_bloc.dart'
+    show CheckLinkBloc;
+import 'package:sky_ways/features/link_handler/presentation/blocs/handle_link_bloc/handle_link_bloc.dart'
+    show HandleLinkBloc;
+import 'package:sky_ways/features/location/presentation/blocs/location_permission_bloc/location_permission_bloc.dart'
+    show LocationPermissionBloc;
+import 'package:sky_ways/features/location/presentation/blocs/location_position_bloc/location_position_bloc.dart'
+    show LocationPositionBloc;
+import 'package:sky_ways/features/location/presentation/blocs/location_service_status_bloc/location_service_status_bloc.dart'
+    show LocationServiceStatusBloc;
 import 'package:sky_ways/features/u_a_s_restrictions/presentation/blocs/u_a_s_restrictions_bloc/u_a_s_restrictions_bloc.dart'
     show UASRestrictionsBloc;
 import 'package:sky_ways/features/web_3_auth/presentation/blocs/web_3_auth_capture_custom_tabs_closed_bloc/web_3_auth_capture_custom_tabs_closed_bloc.dart'
@@ -11,25 +22,41 @@ import 'package:sky_ways/features/web_3_auth/presentation/blocs/web_3_auth_regis
     show Web3AuthRegisterBloc;
 import 'package:sky_ways/features/web_3_auth/presentation/blocs/web_3_auth_user_session_bloc/web_3_auth_user_session_bloc.dart'
     show Web3AuthUserSessionBloc;
-import 'package:sky_ways/injection_container.dart' show sl;
+
+final _sl = GetIt.I;
 
 List<BlocProvider> get appBlocProvider => [
+      BlocProvider<CheckLinkBloc>(
+        create: (_) => _sl(),
+      ),
+      BlocProvider<HandleLinkBloc>(
+        create: (_) => _sl(),
+      ),
+      BlocProvider<LocationPermissionBloc>(
+        create: (_) => _sl(),
+      ),
+      BlocProvider<LocationPositionBloc>(
+        create: (_) => _sl(),
+      ),
+      BlocProvider<LocationServiceStatusBloc>(
+        create: (_) => _sl(),
+      ),
       BlocProvider<UASRestrictionsBloc>(
-        create: (_) => sl(),
+        create: (_) => _sl(),
       ),
       BlocProvider<Web3AuthCaptureCustomTabsClosedBloc>(
-        create: (_) => sl(),
+        create: (_) => _sl(),
       ),
       BlocProvider<Web3AuthInitializationBloc>(
-        create: (_) => sl(),
+        create: (_) => _sl(),
       ),
       BlocProvider<Web3AuthLoginBloc>(
-        create: (_) => sl(),
+        create: (_) => _sl(),
       ),
       BlocProvider<Web3AuthRegisterBloc>(
-        create: (_) => sl(),
+        create: (_) => _sl(),
       ),
       BlocProvider<Web3AuthUserSessionBloc>(
-        create: (_) => sl(),
+        create: (_) => _sl(),
       ),
     ];

@@ -1,4 +1,4 @@
-import 'package:dartz/dartz.dart' show Either;
+import 'package:dartz/dartz.dart' show Either, Unit;
 import 'package:sky_ways/core/errors/failures/web_3_auth_failure.dart'
     show
         Web3AuthAuthenticationFailure,
@@ -8,7 +8,7 @@ import 'package:sky_ways/core/utils/enums/networking.dart' show AuthProvider;
 import 'package:sky_ways/features/web_3_auth/domain/entities/user_entity.dart';
 
 abstract interface class Web3AuthRepository {
-  Future<Either<Web3AuthInitializationFailure, void>> initializeWeb3Auth();
+  Future<Either<Web3AuthInitializationFailure, Unit>> initializeWeb3Auth();
 
   Future<Either<Web3AuthAuthenticationFailure, UserEntity>>
       authenticateUserWith({
@@ -20,5 +20,5 @@ abstract interface class Web3AuthRepository {
 
   Future<void> captureWhenCustomTabsClosed();
 
-  Future<Either<Web3AuthLogoutFailure, void>> logoutCurrentUser();
+  Future<Either<Web3AuthLogoutFailure, Unit>> logoutCurrentUser();
 }

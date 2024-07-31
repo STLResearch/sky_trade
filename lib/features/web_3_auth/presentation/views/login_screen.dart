@@ -217,20 +217,6 @@ class _LoginScreenState extends State<LoginScreen> with WidgetsBindingObserver {
               height: fifteenDotNil,
             ),
             BlocBuilder<Web3AuthLoginBloc, Web3AuthLoginState>(
-              builder: (_, web3AuthLoginState) => AuthButton(
-                type: AuthButtonType.moreOptions,
-                enabled: web3AuthLoginState.maybeWhen(
-                  loggingIn: () => false,
-                  orElse: () => true,
-                ),
-                indicateProgress: false,
-                onPressed: () {},
-              ),
-            ),
-            const SizedBox(
-              height: fifteenDotNil,
-            ),
-            BlocBuilder<Web3AuthLoginBloc, Web3AuthLoginState>(
               builder: (_, web3AuthLoginState) => FooterSection(
                 text: AppLocalizations.of(context)!.dontHaveAnAccountYet,
                 clickableText: AppLocalizations.of(context)!.register,

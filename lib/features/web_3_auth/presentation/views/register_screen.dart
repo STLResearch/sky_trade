@@ -21,10 +21,14 @@ import 'package:flutter_bloc/flutter_bloc.dart'
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:sky_ways/core/resources/numbers/ui.dart'
     show fifteenDotNil, tenDotNil, thirtyDotNil;
+import 'package:sky_ways/core/resources/strings/networking.dart'
+    show skyTradePrivacyPolicyUrl, skyTradeTermsOfServiceUrl;
 import 'package:sky_ways/core/resources/strings/routes.dart'
     show homeRoutePath, loginRoutePath;
 import 'package:sky_ways/core/utils/enums/networking.dart' show AuthProvider;
 import 'package:sky_ways/core/utils/enums/ui.dart' show AuthButtonType;
+import 'package:sky_ways/features/link_handler/presentation/blocs/handle_link_bloc/handle_link_bloc.dart'
+    show HandleLinkBloc, HandleLinkEvent;
 import 'package:sky_ways/features/web_3_auth/presentation/blocs/web_3_auth_capture_custom_tabs_closed_bloc/web_3_auth_capture_custom_tabs_closed_bloc.dart'
     show
         Web3AuthCaptureCustomTabsClosedBloc,
@@ -225,23 +229,17 @@ class _RegisterScreenState extends State<RegisterScreen>
             const SizedBox(
               height: fifteenDotNil,
             ),
-            BlocBuilder<Web3AuthRegisterBloc, Web3AuthRegisterState>(
-              builder: (_, web3AuthRegisterState) => AuthButton(
-                type: AuthButtonType.moreOptions,
-                enabled: web3AuthRegisterState.maybeWhen(
-                  registering: () => false,
-                  orElse: () => true,
-                ),
-                indicateProgress: false,
-                onPressed: () {},
-              ),
-            ),
-            const SizedBox(
-              height: fifteenDotNil,
-            ),
             AgreementSection(
-              onTermsAndConditionsTap: () {},
-              onPrivacyPolicyTap: () {},
+              onTermsAndConditionsTap: () => context.read<HandleLinkBloc>().add(
+                    const HandleLinkEvent.handle(
+                      link: skyTradeTermsOfServiceUrl,
+                    ),
+                  ),
+              onPrivacyPolicyTap: () => context.read<HandleLinkBloc>().add(
+                    const HandleLinkEvent.handle(
+                      link: skyTradePrivacyPolicyUrl,
+                    ),
+                  ),
             ),
             const SizedBox(
               height: fifteenDotNil,
