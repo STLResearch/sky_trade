@@ -1,11 +1,17 @@
-import 'package:get_it/get_it.dart';
-import 'package:sky_ways/features/web_3_auth/data/repositories/web_3_auth_repository_implementation.dart';
-import 'package:sky_ways/features/web_3_auth/domain/repositories/web_3_auth_repository.dart';
-
-final _sl = GetIt.I;
+import 'package:sky_ways/core/injection_container/core.dart';
+import 'package:sky_ways/core/injection_container/link_handler.dart';
+import 'package:sky_ways/core/injection_container/location.dart';
+import 'package:sky_ways/core/injection_container/u_a_s_restrictions.dart';
+import 'package:sky_ways/core/injection_container/web_3_auth.dart';
 
 Future<void> registerServices() async {
-  _sl.registerLazySingleton<Web3AuthRepository>(
-    Web3AuthRepositoryImplementation.new,
-  );
+  await registerLinkHandlerServices();
+
+  await registerLocationServices();
+
+  await registerUASRestrictionsServices();
+
+  await registerWeb3AuthServices();
+
+  await registerCoreServices();
 }

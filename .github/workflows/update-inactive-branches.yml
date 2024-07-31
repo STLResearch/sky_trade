@@ -34,8 +34,20 @@ jobs:
           git pull origin dev
           git push -u origin implementation/structure
 
-      - name: Checkout the 'implementation/web3-auth' branch, pull from 'dev' and push to the origin of the checked out branch
+      - name: Checkout the 'feature/web-3-auth' branch, pull from 'dev' and push to the origin of the checked out branch
         run: |
-          git checkout implementation/web3-auth
+          git checkout feature/web-3-auth
           git pull origin dev
-          git push -u origin implementation/web3-auth
+          git push -u origin feature/web-3-auth
+
+      - name: Checkout the 'feature/u-a-s-restrictions' branch, pull from 'dev' and push to the origin of the checked out branch
+        run: |
+          git checkout feature/u-a-s-restrictions
+          git pull origin dev
+          git push -u origin feature/u-a-s-restrictions
+
+      - name: Checkout the 'docs/read-me' branch, pull from 'dev' and push to the origin of the checked out branch
+        run: |
+          git checkout docs/read-me
+          git pull origin dev
+          git push -u origin docs/read-me

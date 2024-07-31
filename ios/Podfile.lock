@@ -2,17 +2,21 @@ PODS:
   - BigInt (5.2.0)
   - curvelib.swift (1.0.1)
   - Flutter (1.0.0)
-  - KeychainSwift (20.0.0)
-  - mapbox_maps_flutter (2.0.0):
+  - flutter_native_splash (0.0.1):
     - Flutter
-    - MapboxMaps (~> 11.4.0)
+  - geolocator_apple (1.2.0):
+    - Flutter
+  - KeychainSwift (20.0.0)
+  - mapbox_maps_flutter (2.1.0):
+    - Flutter
+    - MapboxMaps (~> 11.5.1)
     - Turf (= 2.8.0)
-  - MapboxCommon (24.4.0)
-  - MapboxCoreMaps (11.4.0):
-    - MapboxCommon (~> 24.4)
-  - MapboxMaps (11.4.0):
-    - MapboxCommon (= 24.4.0)
-    - MapboxCoreMaps (= 11.4.0)
+  - MapboxCommon (24.5.0)
+  - MapboxCoreMaps (11.5.1):
+    - MapboxCommon (~> 24.5)
+  - MapboxMaps (11.5.1):
+    - MapboxCommon (= 24.5.0)
+    - MapboxCoreMaps (= 11.5.1)
     - Turf (= 2.8.0)
   - path_provider_foundation (0.0.1):
     - Flutter
@@ -21,19 +25,24 @@ PODS:
     - curvelib.swift (~> 1.0.1)
     - KeychainSwift (~> 20.0.0)
   - Turf (2.8.0)
-  - Web3Auth (8.3.0):
+  - url_launcher_ios (0.0.1):
+    - Flutter
+  - Web3Auth (9.0.0):
     - BigInt (~> 5.2.0)
     - curvelib.swift (~> 1.0.1)
     - KeychainSwift (~> 20.0.0)
     - TorusSessionManager (~> 4.0.2)
   - web3auth_flutter (2.0.1):
     - Flutter
-    - Web3Auth (~> 8.3.0)
+    - Web3Auth (~> 9.0.0)
 
 DEPENDENCIES:
   - Flutter (from `Flutter`)
+  - flutter_native_splash (from `.symlinks/plugins/flutter_native_splash/ios`)
+  - geolocator_apple (from `.symlinks/plugins/geolocator_apple/ios`)
   - mapbox_maps_flutter (from `.symlinks/plugins/mapbox_maps_flutter/ios`)
   - path_provider_foundation (from `.symlinks/plugins/path_provider_foundation/darwin`)
+  - url_launcher_ios (from `.symlinks/plugins/url_launcher_ios/ios`)
   - web3auth_flutter (from `.symlinks/plugins/web3auth_flutter/ios`)
 
 SPEC REPOS:
@@ -51,10 +60,16 @@ SPEC REPOS:
 EXTERNAL SOURCES:
   Flutter:
     :path: Flutter
+  flutter_native_splash:
+    :path: ".symlinks/plugins/flutter_native_splash/ios"
+  geolocator_apple:
+    :path: ".symlinks/plugins/geolocator_apple/ios"
   mapbox_maps_flutter:
     :path: ".symlinks/plugins/mapbox_maps_flutter/ios"
   path_provider_foundation:
     :path: ".symlinks/plugins/path_provider_foundation/darwin"
+  url_launcher_ios:
+    :path: ".symlinks/plugins/url_launcher_ios/ios"
   web3auth_flutter:
     :path: ".symlinks/plugins/web3auth_flutter/ios"
 
@@ -62,17 +77,20 @@ SPEC CHECKSUMS:
   BigInt: f668a80089607f521586bbe29513d708491ef2f7
   curvelib.swift: d0746ae82bee34016c06da3567a97e493b3c979f
   Flutter: e0871f40cf51350855a761d2e70bf5af5b9b5de7
+  flutter_native_splash: edf599c81f74d093a4daf8e17bd7a018854bc778
+  geolocator_apple: 6cbaf322953988e009e5ecb481f07efece75c450
   KeychainSwift: 0ce6a4d13f7228054d1a71bb1b500448fb2ab837
-  mapbox_maps_flutter: 6b7ea767ed02514e0b796d5a2e48ba83b71bac01
-  MapboxCommon: 6acbd8ff41d66abf498e1558b0739f25c562945a
-  MapboxCoreMaps: f306bb1b10ebe995a2247b40e99322ab7f9b8071
-  MapboxMaps: 82044383ae19ec124ff444ec4b5d3ce82cb36ba5
+  mapbox_maps_flutter: c7e9ddad4b3e7e68397fc0f8643ff408913dc44f
+  MapboxCommon: c69a04a1accd77650372c96d8978a15ed1d95186
+  MapboxCoreMaps: 9d8833b738b94d63ee842722641e8cfdc1fa1191
+  MapboxMaps: 24a52620178b5390373489c083d4a3acd319c1d3
   path_provider_foundation: 2b6b4c569c0fb62ec74538f866245ac84301af46
   TorusSessionManager: 05a1a8f3265d0949a1a342c4ba2c52882445b614
   Turf: aa2ede4298009639d10db36aba1a7ebaad072a5e
-  Web3Auth: 98ec9787e52e813c7ee83f73fa10ba5f52187907
-  web3auth_flutter: 96419124086e0083994e390b0c7cc86e441c3006
+  url_launcher_ios: 5334b05cef931de560670eeae103fd3e431ac3fe
+  Web3Auth: 086b5152a43df347ceff196c0ce67f6330838884
+  web3auth_flutter: bc5ffefe573c72f7fb1814573269952b045b7b22
 
-PODFILE CHECKSUM: 1959d098c91d8a792531a723c4a9d7e9f6a01e38
+PODFILE CHECKSUM: 604a63cda5e7efe03719255062cb33cd146cc26a
 
 COCOAPODS: 1.15.2

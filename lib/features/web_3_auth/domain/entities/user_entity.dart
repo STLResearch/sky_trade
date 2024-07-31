@@ -1,6 +1,6 @@
-import 'package:equatable/equatable.dart';
+import 'package:equatable/equatable.dart' show Equatable;
 
-base class UserEntity extends Equatable {
+final class UserEntity extends Equatable {
   const UserEntity({
     this.name,
     this.email,
