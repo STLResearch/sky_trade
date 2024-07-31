@@ -45,3 +45,9 @@ jobs:
           git checkout feature/u-a-s-restrictions
           git pull origin dev
           git push -u origin feature/u-a-s-restrictions
+
+      - name: Checkout the 'docs/read-me' branch, pull from 'dev' and push to the origin of the checked out branch
+        run: |
+          git checkout docs/read-me
+          git pull origin dev
+          git push -u origin docs/read-me
