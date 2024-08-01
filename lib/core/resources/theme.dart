@@ -4,11 +4,13 @@ import 'package:flutter/material.dart'
         BorderSide,
         BottomNavigationBarThemeData,
         BottomNavigationBarType,
+        BottomSheetThemeData,
         Brightness,
         ButtonStyle,
         CheckboxThemeData,
         Color,
         ColorScheme,
+        DividerThemeData,
         EdgeInsetsDirectional,
         ElevatedButtonThemeData,
         FontStyle,
@@ -36,7 +38,9 @@ import 'package:sky_ways/core/resources/colors.dart'
         hex87878D,
         hexB8B8B8,
         hexCCCCCC,
+        hexD9D9D9,
         hexE04F64,
+        hexEBEBEB,
         hexFFFFFF;
 import 'package:sky_ways/core/resources/numbers/ui.dart'
     show
@@ -48,6 +52,7 @@ import 'package:sky_ways/core/resources/numbers/ui.dart'
         fourteenDotNil,
         nilDotNil,
         nilDotNilOne,
+        oneDotNil,
         sixteenDotFive,
         sixteenDotNil,
         thirtyDotNil,
@@ -253,6 +258,15 @@ ThemeData get lightTheme => ThemeData(
           height: eighteenDotNil / twelveDotNil,
           color: hexFFFFFF,
         ),
+      ),
+      bottomSheetTheme: const BottomSheetThemeData(
+        backgroundColor: hexFFFFFF,
+        showDragHandle: false,
+        dragHandleColor: hexD9D9D9,
+      ),
+      dividerTheme: const DividerThemeData(
+        color: hexEBEBEB,
+        thickness: oneDotNil,
       ),
     );
 
