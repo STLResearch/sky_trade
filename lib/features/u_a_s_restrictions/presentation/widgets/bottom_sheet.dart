@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_svg/svg.dart' show SvgPicture;
 import 'package:sky_ways/core/resources/colors.dart'
-    show hex1E1E1E, hex9D9D9D, hexEBEBEB, hexF4F4F4, hexFFFFFF;
+    show hex1E1E1E, hex9D9D9D, hexD9D9D9, hexEBEBEB, hexF4F4F4, hexFFFFFF;
 import 'package:sky_ways/core/resources/numbers/ui.dart'
     show
         eightDotNil,
@@ -25,7 +25,7 @@ import 'package:sky_ways/core/resources/numbers/ui.dart'
         twentyTwoDotNil,
         twoHundredFortyNineDotSevenNine;
 import 'package:sky_ways/core/resources/strings/asset_paths.dart'
-    show arrowAssetPath, exitAssetPath, locationAssetPath, rectangleAssetPath;
+    show arrowAssetPath, exitAssetPath, locationAssetPath;
 
 class BottomSheet extends StatelessWidget {
   const BottomSheet({super.key});
@@ -61,10 +61,13 @@ class BottomSheetState extends StatelessWidget {
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                SvgPicture.asset(
-                  rectangleAssetPath,
+                Container(
                   width: seventyDotNil,
                   height: nineDotNil,
+                  decoration: BoxDecoration(
+                    color: hexD9D9D9,
+                    borderRadius: BorderRadius.circular(tenDotNil),
+                  ),
                 ),
                 const SizedBox(height: fifteenDotNil),
                 Row(

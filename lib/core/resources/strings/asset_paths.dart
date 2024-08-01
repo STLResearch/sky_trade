@@ -11,4 +11,3 @@ const weatherAssetPath = '$assetImagesPath/weather.svg';
 const locationAssetPath = '$assetImagesPath/location.svg';
 const exitAssetPath = '$assetImagesPath/exit.svg';
 const arrowAssetPath = '$assetImagesPath/arrow.svg';
-const rectangleAssetPath = '$assetImagesPath/rectangle.svg';
