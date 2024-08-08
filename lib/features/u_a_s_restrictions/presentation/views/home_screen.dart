@@ -1,62 +1,37 @@
 import 'package:flutter/material.dart'
     show
-        AnimatedPositioned,
-        BottomNavigationBar,
-        BottomNavigationBarItem,
+        AlignmentDirectional,
         BuildContext,
-        EdgeInsetsDirectional,
-        LayoutBuilder,
-        Padding,
         Scaffold,
         Stack,
         State,
         StatefulWidget,
-        ValueListenableBuilder,
         ValueNotifier,
         Widget;
 import 'package:flutter_bloc/flutter_bloc.dart'
     show BlocListener, MultiBlocListener, ReadContext;
 import 'package:flutter_dotenv/flutter_dotenv.dart' show dotenv;
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:flutter_svg/flutter_svg.dart' show SvgPicture;
 import 'package:mapbox_maps_flutter/mapbox_maps_flutter.dart'
-    show
-        CameraOptions,
-        LocationComponentSettings,
-        MapAnimationOptions,
-        MapWidget,
-        MapboxMap,
-        MapboxOptions,
-        Point,
-        Position;
-import 'package:sky_ways/core/resources/colors.dart' show hex4285F4, hex5D7285;
-import 'package:sky_ways/core/resources/numbers/ui.dart'
-    show
-        five,
-        forty,
-        fourteenDotNil,
-        nilDotNil,
-        one,
-        oneHundred,
-        oneThousand,
-        sixteenDotNil,
-        ten,
-        three,
-        twentyFourDotNil,
-        two,
-        zero;
-import 'package:sky_ways/core/resources/strings/asset_paths.dart'
-    show
-        accountAssetPath,
-        communityAssetPath,
-        flightAssetPath,
-        indicatorAssetPath,
-        mapAssetPath,
-        weatherAssetPath;
+    show MapboxMap, MapboxOptions;
+import 'package:sky_ways/core/resources/numbers/ui.dart' show zero;
 import 'package:sky_ways/core/resources/strings/secret_keys.dart'
     show mapboxMapsPublicKey, mapboxMapsStyleUri;
+import 'package:sky_ways/core/utils/enums/local.dart' show FileType;
+import 'package:sky_ways/core/utils/extensions/file_entity_extensions.dart';
 import 'package:sky_ways/core/utils/extensions/mapbox_map_extensions.dart';
-import 'package:sky_ways/features/location/presentation/blocs/location_permission_bloc/location_permission_bloc.dart';
+import 'package:sky_ways/core/utils/typedefs/ui.dart'
+    show
+        PointAnnotationManagerPointAnnotationTuple,
+        PolygonAnnotationManagerPolygonAnnotationTuple;
+import 'package:sky_ways/features/file_manager/presentation/blocs/save_file_bloc/save_file_bloc.dart'
+    show SaveFileBloc, SaveFileEvent, SaveFileState;
+import 'package:sky_ways/features/file_manager/presentation/blocs/saved_file_bloc/saved_file_bloc.dart'
+    show SavedFileBloc, SavedFileEvent, SavedFileState;
+import 'package:sky_ways/features/location/presentation/blocs/location_permission_bloc/location_permission_bloc.dart'
+    show
+        LocationPermissionBloc,
+        LocationPermissionEvent,
+        LocationPermissionState;
 import 'package:sky_ways/features/location/presentation/blocs/location_position_bloc/location_position_bloc.dart'
     show LocationPositionBloc, LocationPositionEvent, LocationPositionState;
 import 'package:sky_ways/features/location/presentation/blocs/location_service_status_bloc/location_service_status_bloc.dart'
@@ -64,8 +39,15 @@ import 'package:sky_ways/features/location/presentation/blocs/location_service_s
         LocationServiceStatusBloc,
         LocationServiceStatusEvent,
         LocationServiceStatusState;
+import 'package:sky_ways/features/u_a_s_restrictions/domain/entities/restriction_entity.dart'
+    show RestrictionEntity;
+import 'package:sky_ways/features/u_a_s_restrictions/presentation/blocs/geo_hash_bloc/geo_hash_bloc.dart'
+    show GeoHashBloc, GeoHashEvent, GeoHashState;
 import 'package:sky_ways/features/u_a_s_restrictions/presentation/blocs/u_a_s_restrictions_bloc/u_a_s_restrictions_bloc.dart'
     show UASRestrictionsBloc, UASRestrictionsEvent, UASRestrictionsState;
+import 'package:sky_ways/features/u_a_s_restrictions/presentation/widgets/bottom_bar.dart';
+import 'package:sky_ways/features/u_a_s_restrictions/presentation/widgets/map_view.dart';
+import 'package:sky_ways/features/u_a_s_restrictions/presentation/widgets/restriction_indicator.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -77,6 +59,9 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   late final MapboxMap? _mapboxMap;
   late final ValueNotifier<int> _selectedBottomNavigationBarItemIndex;
+  List<PolygonAnnotationManagerPolygonAnnotationTuple>? _polygons;
+  PointAnnotationManagerPointAnnotationTuple? _marker;
+  late final ValueNotifier<RestrictionEntity?> _clickedRestriction;
 
   @override
   void initState() {
@@ -85,6 +70,9 @@ class _HomeScreenState extends State<HomeScreen> {
     );
     _selectedBottomNavigationBarItemIndex = ValueNotifier<int>(
       zero,
+    );
+    _clickedRestriction = ValueNotifier<RestrictionEntity?>(
+      null,
     );
     _requestLocationPermission();
 
@@ -119,6 +107,7 @@ class _HomeScreenState extends State<HomeScreen> {
   void dispose() {
     _mapboxMap?.dispose();
     _selectedBottomNavigationBarItemIndex.dispose();
+    _clickedRestriction.dispose();
 
     super.dispose();
   }
@@ -128,7 +117,7 @@ class _HomeScreenState extends State<HomeScreen> {
         listeners: [
           BlocListener<LocationPermissionBloc, LocationPermissionState>(
             listener: (_, locationPermissionState) {
-              locationPermissionState.maybeWhen(
+              locationPermissionState.whenOrNull(
                 maybeGrantedPermission: (locationPermissionEntity) {
                   if (locationPermissionEntity.granted) {
                     context.read<LocationServiceStatusBloc>().add(
@@ -137,13 +126,12 @@ class _HomeScreenState extends State<HomeScreen> {
                         );
                   }
                 },
-                orElse: () {},
               );
             },
           ),
           BlocListener<LocationServiceStatusBloc, LocationServiceStatusState>(
             listener: (_, locationServiceStatusState) {
-              locationServiceStatusState.maybeWhen(
+              locationServiceStatusState.whenOrNull(
                 gotLocationServiceStatus: (locationServiceStatusEntity) {
                   context.read<LocationPositionBloc>().add(
                         switch (locationServiceStatusEntity.enabled) {
@@ -154,31 +142,129 @@ class _HomeScreenState extends State<HomeScreen> {
                         },
                       );
                 },
-                orElse: () {},
               );
             },
           ),
           BlocListener<LocationPositionBloc, LocationPositionState>(
             listener: (_, locationPositionState) {
-              locationPositionState.maybeWhen(
+              locationPositionState.whenOrNull(
                 gotLocationPosition: (locationPositionEntity) =>
                     _mapboxMap?.followUser(
                   latitude: locationPositionEntity.latitude,
                   longitude: locationPositionEntity.longitude,
                 ),
-                orElse: () {},
               );
             },
           ),
           BlocListener<UASRestrictionsBloc, UASRestrictionsState>(
             listener: (_, uASRestrictionsState) {
-              uASRestrictionsState.maybeWhen(
-                gotRestrictions: (restrictionEntities) {
-                  for (final restrictionEntity in restrictionEntities) {
-                    _mapboxMap?.drawPolygonUsing(
-                      vertices: restrictionEntity.region.coordinates,
-                    );
-                  }
+              uASRestrictionsState.whenOrNull(
+                gotRestrictions: (restrictionEntities) async {
+                  context.read<GeoHashBloc>().state.whenOrNull(
+                    computedGeoHash: (geoHash) {
+                      context.read<SaveFileBloc>().add(
+                            SaveFileEvent.saveToFile(
+                              name: geoHash,
+                              content: restrictionEntities,
+                              type: FileType.jsonList,
+                            ),
+                          );
+                    },
+                  );
+                },
+              );
+            },
+          ),
+          BlocListener<SaveFileBloc, SaveFileState>(
+            listener: (_, saveFileState) {
+              saveFileState.whenOrNull(
+                saved: (name, type) {
+                  context.read<SavedFileBloc>().add(
+                        SavedFileEvent.getSavedFile(
+                          name: name,
+                          type: type,
+                        ),
+                      );
+                },
+              );
+            },
+          ),
+          BlocListener<GeoHashBloc, GeoHashState>(
+            listener: (_, geoHashState) {
+              geoHashState.whenOrNull(
+                computedGeoHash: (geoHash) {
+                  context.read<SavedFileBloc>().add(
+                        SavedFileEvent.getSavedFile(
+                          name: geoHash,
+                          type: FileType.jsonList,
+                        ),
+                      );
+                },
+              );
+            },
+          ),
+          BlocListener<SavedFileBloc, SavedFileState>(
+            listener: (_, savedFileState) {
+              savedFileState.maybeWhen(
+                fileExists: (fileEntity) async {
+                  await _mapboxMap?.removeAllPolygons(
+                    _polygons,
+                  );
+
+                  RestrictionEntity? iosMultiplePolygonClickIssueWorkAround;
+
+                  await _mapboxMap
+                      ?.drawRestrictionsPolygonsConsidering(
+                        restrictionEntities: fileEntity.restrictionEntities,
+                        onPolygonClick: (
+                          polygonAnnotation,
+                          clickedRestrictionEntity,
+                        ) async {
+                          _clickedRestriction.value = clickedRestrictionEntity;
+
+                          // final a = clickedRestrictionEntity;
+                          // final b = iosMultiplePolygonClickIssueWorkAround;
+                          //
+                          // final c = a == b;
+                          //
+                          // if (clickedRestrictionEntity ==
+                          //     iosMultiplePolygonClickIssueWorkAround) {
+                          //   return;
+                          // }
+
+                          print('on polygon click called');
+
+                          // iosMultiplePolygonClickIssueWorkAround =
+                          //     clickedRestrictionEntity;
+                          // await _mapboxMap.removePreviousMarker(
+                          //   _marker,
+                          // );
+                          //
+                          // await _mapboxMap
+                          //     .addMarkerWithTextOnTopRestrictionPolygonUsing(
+                          //       polygonAnnotation: polygonAnnotation,
+                          //       clickedRestrictionEntity:
+                          //           clickedRestrictionEntity,
+                          //     )
+                          //     .then(
+                          //       (marker) => _marker = marker,
+                          //     );
+                        },
+                      )
+                      .then(
+                        (polygons) => _polygons = polygons,
+                      );
+                },
+                fileNotExist: () {
+                  context.read<GeoHashBloc>().state.whenOrNull(
+                    computedGeoHash: (geoHash) {
+                      context.read<UASRestrictionsBloc>().add(
+                            UASRestrictionsEvent.getRestrictions(
+                              geoHash: geoHash,
+                            ),
+                          );
+                    },
+                  );
                 },
                 orElse: () {},
               );
@@ -186,118 +272,37 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ],
         child: Scaffold(
-          body: MapWidget(
-            styleUri: dotenv.env[mapboxMapsStyleUri]!,
-            onMapCreated: (mapboxMap) => _mapboxMap = mapboxMap,
-            onCameraChangeListener: (_) {
-              context.read<LocationPositionBloc>().state.maybeWhen(
+          body: Stack(
+            alignment: AlignmentDirectional.center,
+            children: [
+              MapView(
+                mapStyleUri: dotenv.env[mapboxMapsStyleUri]!,
+                onTap: (_) => _clickedRestriction.value = null,
+                onCreated: (mapboxMap) => _mapboxMap = mapboxMap,
+                onCameraChanged: (_) {
+                  context.read<LocationPositionBloc>().state.whenOrNull(
                     gotLocationPosition: (
                       locationPositionEntity,
-                    ) =>
-                        _mapboxMap?.computeBoundingBoxForCoordinates(
-                      latitude: locationPositionEntity.latitude,
-                      longitude: locationPositionEntity.longitude,
-                      onBoundsComputed: (coordinateBounds) {
-                        // Optimize this code
-                        context.read<UASRestrictionsBloc>().add(
-                              UASRestrictionsEvent.getRestrictions(
-                                southWestLatitude: coordinateBounds
-                                    .southwest.coordinates.lat
-                                    .toDouble(),
-                                southWestLongitude: coordinateBounds
-                                    .southwest.coordinates.lng
-                                    .toDouble(),
-                                northEastLatitude: coordinateBounds
-                                    .northeast.coordinates.lat
-                                    .toDouble(),
-                                northEastLongitude: coordinateBounds
-                                    .northeast.coordinates.lng
-                                    .toDouble(),
-                              ),
-                            );
-                      },
-                    ),
-                    orElse: () {},
-                  );
-            },
-          ),
-          bottomNavigationBar: ValueListenableBuilder<int>(
-            valueListenable: _selectedBottomNavigationBarItemIndex,
-            builder: (_, selectedBottomNavigationBarItemIndexValue, __) =>
-                LayoutBuilder(
-              builder: (___, constraints) => Stack(
-                children: [
-                  BottomNavigationBar(
-                    currentIndex: selectedBottomNavigationBarItemIndexValue,
-                    items: List<BottomNavigationBarItem>.generate(
-                      five,
-                      (index) => BottomNavigationBarItem(
-                        label: _computeBottomNavigationBarLabelFrom(
-                          index,
-                        ),
-                        icon: Padding(
-                          padding: const EdgeInsetsDirectional.only(
-                            top: sixteenDotNil,
-                          ),
-                          child: SvgPicture.asset(
-                            _computeBottomNavigationBarSvgAssetPathFrom(
-                              index,
+                    ) {
+                      context.read<GeoHashBloc>().add(
+                            GeoHashEvent.computeGeoHash(
+                              latitude: locationPositionEntity.latitude,
+                              longitude: locationPositionEntity.longitude,
                             ),
-                            width: twentyFourDotNil,
-                            height: twentyFourDotNil,
-                            color: switch (
-                                selectedBottomNavigationBarItemIndexValue ==
-                                    index) {
-                              true => hex4285F4,
-                              false => hex5D7285,
-                            },
-                          ),
-                        ),
-                      ),
-                    ),
-                    onTap: (index) =>
-                        _selectedBottomNavigationBarItemIndex.value = index,
-                  ),
-                  AnimatedPositioned(
-                    top: nilDotNil,
-                    left: constraints.maxWidth /
-                            five *
-                            selectedBottomNavigationBarItemIndexValue +
-                        (constraints.maxWidth / ten) -
-                        forty,
-                    duration: const Duration(
-                      milliseconds: oneHundred,
-                    ),
-                    child: SvgPicture.asset(
-                      indicatorAssetPath,
-                    ),
-                  ),
-                ],
+                          );
+                    },
+                  );
+                },
               ),
-            ),
+              RestrictionIndicator(
+                clickedRestriction: _clickedRestriction,
+              ),
+            ],
+          ),
+          bottomNavigationBar: BottomBar(
+            selectedBottomNavigationBarItemIndex:
+                _selectedBottomNavigationBarItemIndex,
           ),
         ),
       );
-
-  String _computeBottomNavigationBarLabelFrom(
-    int index,
-  ) =>
-      switch (index) {
-        zero => AppLocalizations.of(context)!.flight,
-        one => AppLocalizations.of(context)!.map,
-        two => AppLocalizations.of(context)!.weather,
-        three => AppLocalizations.of(context)!.community,
-        _ => AppLocalizations.of(context)!.account,
-      };
-
-  String _computeBottomNavigationBarSvgAssetPathFrom(
-    int index,
-  ) =>
-      switch (index) {
-        zero => flightAssetPath,
-        one => mapAssetPath,
-        two => weatherAssetPath,
-        three => communityAssetPath,
-        _ => accountAssetPath,
-      };
 }

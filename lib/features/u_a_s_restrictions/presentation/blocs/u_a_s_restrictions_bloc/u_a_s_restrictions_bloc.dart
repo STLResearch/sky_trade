@@ -5,11 +5,11 @@ import 'package:sky_ways/features/u_a_s_restrictions/domain/entities/restriction
     show RestrictionEntity;
 import 'package:sky_ways/features/u_a_s_restrictions/domain/repositories/u_a_s_restrictions_repository.dart';
 
+part 'u_a_s_restrictions_bloc.freezed.dart';
+
 part 'u_a_s_restrictions_event.dart';
 
 part 'u_a_s_restrictions_state.dart';
-
-part 'u_a_s_restrictions_bloc.freezed.dart';
 
 class UASRestrictionsBloc
     extends Bloc<UASRestrictionsEvent, UASRestrictionsState> {
@@ -34,11 +34,8 @@ class UASRestrictionsBloc
       const UASRestrictionsState.gettingRestrictions(),
     );
 
-    final result = await _uASRestrictionsRepository.getRestrictionsWithin(
-      southWestLatitude: event.southWestLatitude,
-      southWestLongitude: event.southWestLongitude,
-      northEastLatitude: event.northEastLatitude,
-      northEastLongitude: event.northEastLongitude,
+    final result = await _uASRestrictionsRepository.getRestrictionsUsing(
+      geoHash: event.geoHash,
     );
 
     result.fold(
