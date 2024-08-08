@@ -9,9 +9,7 @@ import 'package:path_provider/path_provider.dart'
 import 'package:sky_ways/app.dart';
 import 'package:sky_ways/app_bloc_observer.dart';
 import 'package:sky_ways/core/resources/strings/environments.dart'
-    show devEnvironment, flavours;
-import 'package:sky_ways/core/resources/strings/environments.dart'
-    show environmentVariablesFileName;
+    show devEnvironment, environmentVariablesFileName, flavours;
 import 'package:sky_ways/core/resources/strings/special_characters.dart'
     show fullStop;
 import 'package:sky_ways/injection_container.dart' show registerServices;
