@@ -8,7 +8,6 @@ import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:sky_ways/core/resources/strings/routes.dart'
     show baseRoutePath, homeRoutePath, loginRoutePath, registerRoutePath;
 import 'package:sky_ways/features/u_a_s_restrictions/presentation/views/home_screen.dart';
-import 'package:sky_ways/features/u_a_s_restrictions/presentation/widgets/bottom_sheet.dart';
 import 'package:sky_ways/features/web_3_auth/presentation/blocs/web_3_auth_initialization_bloc/web_3_auth_initialization_bloc.dart'
     show
         Web3AuthInitializationBloc,
@@ -25,8 +24,7 @@ import 'package:sky_ways/features/web_3_auth/presentation/views/register_screen.
 Route routes(RouteSettings settings) => MaterialPageRoute(
       builder: (context) {
         FlutterNativeSplash.remove();
-        // return const HomeScreen();
-        return const BottomSheet();
+        return const HomeScreen();
         // switch (settings.name) {
         //   case baseRoutePath:
         //     context.read<Web3AuthInitializationBloc>().add(

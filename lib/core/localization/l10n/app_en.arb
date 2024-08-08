@@ -30,7 +30,6 @@
   "weCouldNotRegisterYourAccountPleaseTryAgain": "We could not register your account. Please try again",
   "flightRestrictedAirspace": "Flight Restricted Airspace",
   "address": "Address",
-  "specificAddress": "2972 Westheimer Rd. Santa Ana, Illinois 85486",
-  "bottomSheetParagraph": "No person may operate a small unmanned aircraft in restricted airspace unless that person has permission from the appropriate authority. Individuals violating any of these restrictions may be subject to FAA and/or law enforcement action.",
-  "federalAviationAdministration": "Federal Aviation Administration"
+  "controlledAirspace": "Controlled Airspace",
+  "specialUseAirspace": "Special Use Airspace"
 }
