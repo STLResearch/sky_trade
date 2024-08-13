@@ -18,19 +18,23 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$GeoHashEvent {
   double get latitude => throw _privateConstructorUsedError;
   double get longitude => throw _privateConstructorUsedError;
+  int? get precision => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(double latitude, double longitude) computeGeoHash,
+    required TResult Function(double latitude, double longitude, int? precision)
+        computeGeoHash,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(double latitude, double longitude)? computeGeoHash,
+    TResult? Function(double latitude, double longitude, int? precision)?
+        computeGeoHash,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(double latitude, double longitude)? computeGeoHash,
+    TResult Function(double latitude, double longitude, int? precision)?
+        computeGeoHash,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -62,7 +66,7 @@ abstract class $GeoHashEventCopyWith<$Res> {
           GeoHashEvent value, $Res Function(GeoHashEvent) then) =
       _$GeoHashEventCopyWithImpl<$Res, GeoHashEvent>;
   @useResult
-  $Res call({double latitude, double longitude});
+  $Res call({double latitude, double longitude, int? precision});
 }
 
 /// @nodoc
@@ -80,6 +84,7 @@ class _$GeoHashEventCopyWithImpl<$Res, $Val extends GeoHashEvent>
   $Res call({
     Object? latitude = null,
     Object? longitude = null,
+    Object? precision = freezed,
   }) {
     return _then(_value.copyWith(
       latitude: null == latitude
@@ -90,6 +95,10 @@ class _$GeoHashEventCopyWithImpl<$Res, $Val extends GeoHashEvent>
           ? _value.longitude
           : longitude // ignore: cast_nullable_to_non_nullable
               as double,
+      precision: freezed == precision
+          ? _value.precision
+          : precision // ignore: cast_nullable_to_non_nullable
+              as int?,
     ) as $Val);
   }
 }
@@ -102,7 +111,7 @@ abstract class _$$ComputeGeoHashImplCopyWith<$Res>
       __$$ComputeGeoHashImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({double latitude, double longitude});
+  $Res call({double latitude, double longitude, int? precision});
 }
 
 /// @nodoc
@@ -118,6 +127,7 @@ class __$$ComputeGeoHashImplCopyWithImpl<$Res>
   $Res call({
     Object? latitude = null,
     Object? longitude = null,
+    Object? precision = freezed,
   }) {
     return _then(_$ComputeGeoHashImpl(
       latitude: null == latitude
@@ -128,6 +138,10 @@ class __$$ComputeGeoHashImplCopyWithImpl<$Res>
           ? _value.longitude
           : longitude // ignore: cast_nullable_to_non_nullable
               as double,
+      precision: freezed == precision
+          ? _value.precision
+          : precision // ignore: cast_nullable_to_non_nullable
+              as int?,
     ));
   }
 }
@@ -135,16 +149,19 @@ class __$$ComputeGeoHashImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$ComputeGeoHashImpl implements _ComputeGeoHash {
-  const _$ComputeGeoHashImpl({required this.latitude, required this.longitude});
+  const _$ComputeGeoHashImpl(
+      {required this.latitude, required this.longitude, this.precision});
 
   @override
   final double latitude;
   @override
   final double longitude;
+  @override
+  final int? precision;
 
   @override
   String toString() {
-    return 'GeoHashEvent.computeGeoHash(latitude: $latitude, longitude: $longitude)';
+    return 'GeoHashEvent.computeGeoHash(latitude: $latitude, longitude: $longitude, precision: $precision)';
   }
 
   @override
@@ -155,11 +172,13 @@ class _$ComputeGeoHashImpl implements _ComputeGeoHash {
             (identical(other.latitude, latitude) ||
                 other.latitude == latitude) &&
             (identical(other.longitude, longitude) ||
-                other.longitude == longitude));
+                other.longitude == longitude) &&
+            (identical(other.precision, precision) ||
+                other.precision == precision));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, latitude, longitude);
+  int get hashCode => Object.hash(runtimeType, latitude, longitude, precision);
 
   @JsonKey(ignore: true)
   @override
@@ -171,27 +190,30 @@ class _$ComputeGeoHashImpl implements _ComputeGeoHash {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(double latitude, double longitude) computeGeoHash,
+    required TResult Function(double latitude, double longitude, int? precision)
+        computeGeoHash,
   }) {
-    return computeGeoHash(latitude, longitude);
+    return computeGeoHash(latitude, longitude, precision);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(double latitude, double longitude)? computeGeoHash,
+    TResult? Function(double latitude, double longitude, int? precision)?
+        computeGeoHash,
   }) {
-    return computeGeoHash?.call(latitude, longitude);
+    return computeGeoHash?.call(latitude, longitude, precision);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(double latitude, double longitude)? computeGeoHash,
+    TResult Function(double latitude, double longitude, int? precision)?
+        computeGeoHash,
     required TResult orElse(),
   }) {
     if (computeGeoHash != null) {
-      return computeGeoHash(latitude, longitude);
+      return computeGeoHash(latitude, longitude, precision);
     }
     return orElse();
   }
@@ -228,12 +250,15 @@ class _$ComputeGeoHashImpl implements _ComputeGeoHash {
 abstract class _ComputeGeoHash implements GeoHashEvent {
   const factory _ComputeGeoHash(
       {required final double latitude,
-      required final double longitude}) = _$ComputeGeoHashImpl;
+      required final double longitude,
+      final int? precision}) = _$ComputeGeoHashImpl;
 
   @override
   double get latitude;
   @override
   double get longitude;
+  @override
+  int? get precision;
   @override
   @JsonKey(ignore: true)
   _$$ComputeGeoHashImplCopyWith<_$ComputeGeoHashImpl> get copyWith =>
