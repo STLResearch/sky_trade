@@ -1,26 +1,26 @@
 import 'package:equatable/equatable.dart' show Equatable;
 
-abstract final class FileFailure extends Equatable {
+abstract final class CacheFailure extends Equatable {
   @override
   List<Object?> get props => [];
 }
 
-final class WriteFileFailure extends FileFailure {
+final class WriteDataFailure extends CacheFailure {
   @override
   List<Object?> get props => [];
 }
 
-final class ReadFileFailure extends FileFailure {
+final class ReadDataFailure extends CacheFailure {
   @override
   List<Object?> get props => [];
 }
 
-final class FileNotFoundFailure extends FileFailure {
+final class DataNotFoundFailure extends CacheFailure {
   @override
   List<Object?> get props => [];
 }
 
-final class FileStaleFailure extends FileFailure {
+final class DataStaleFailure extends CacheFailure {
   @override
   List<Object?> get props => [];
 }

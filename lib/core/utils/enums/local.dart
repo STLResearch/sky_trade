@@ -1,18 +1,18 @@
 import 'package:sky_ways/core/resources/strings/local.dart'
     show jsonFileEnding, txtFileEnding;
 
-enum FileType {
-  json(
+enum CacheType {
+  jsonFile(
     jsonFileEnding,
   ),
-  jsonList(
+  jsonListFile(
     jsonFileEnding,
   ),
-  txt(
+  txtFile(
     txtFileEnding,
   );
 
-  const FileType(
+  const CacheType(
     this.ending,
   );
 

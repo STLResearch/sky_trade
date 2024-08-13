@@ -6,28 +6,28 @@ import 'dart:io' show File, FileSystemException, PathNotFoundException;
 import 'package:dartz/dartz.dart' show Either;
 import 'package:path_provider/path_provider.dart'
     show getApplicationDocumentsDirectory;
-import 'package:sky_ways/core/errors/exceptions/file_exception.dart';
-import 'package:sky_ways/core/errors/failures/file_failure.dart';
+import 'package:sky_ways/core/errors/exceptions/cache_exception.dart';
+import 'package:sky_ways/core/errors/failures/cache_failure.dart';
 import 'package:sky_ways/core/resources/numbers/ui.dart' show twentyFour;
 import 'package:sky_ways/core/resources/strings/special_characters.dart'
     show forwardSlash;
 import 'package:sky_ways/core/utils/clients/data_handler.dart';
-import 'package:sky_ways/core/utils/enums/local.dart' show FileType;
-import 'package:sky_ways/features/file_manager/domain/entities/file_entity.dart';
-import 'package:sky_ways/features/file_manager/domain/repositories/file_manager_repository.dart';
+import 'package:sky_ways/core/utils/enums/local.dart' show CacheType;
+import 'package:sky_ways/features/cache_manager/domain/entities/cache_entity.dart';
+import 'package:sky_ways/features/cache_manager/domain/repositories/cache_manager_repository.dart';
 
-final class FileManagerRepositoryImplementation
+final class CacheManagerRepositoryImplementation
     with DataHandler
-    implements FileManagerRepository {
+    implements CacheManagerRepository {
   @override
-  Future<Either<FileFailure, FileEntity>> read({
+  Future<Either<CacheFailure, CacheEntity>> read({
     required String name,
-    required FileType type,
+    required CacheType type,
     Duration staleAfter = const Duration(
       hours: twentyFour,
     ),
   }) =>
-      handleData<FileFailure, FileEntity>(
+      handleData<CacheFailure, CacheEntity>(
         dataSourceOperation: () async {
           final file = await _getFile(
             name: name + type.ending,
@@ -43,40 +43,40 @@ final class FileManagerRepositoryImplementation
                 DateTime.now(),
               );
 
-          if (isStale) throw FileStaleException();
+          if (isStale) throw DataStaleException();
 
           final content = await file.readAsString();
 
-          return FileEntity(
+          return CacheEntity(
             name: name + type.ending,
             content: switch (type) {
-              FileType.json => json.decode(
+              CacheType.jsonFile => json.decode(
                   content,
                 ) as Map<String, dynamic>,
-              FileType.jsonList => json.decode(
+              CacheType.jsonListFile => json.decode(
                   content,
                 ) as List<dynamic>,
-              FileType.txt => content,
+              CacheType.txtFile => content,
             },
             type: type,
             lastModified: await file.lastModified(),
           );
         },
-        onSuccess: (fileEntity) => fileEntity,
+        onSuccess: (cacheEntity) => cacheEntity,
         onFailure: (object) => switch (object.runtimeType) {
-          FileSystemException || PathNotFoundException => FileNotFoundFailure(),
-          FileStaleException => FileStaleFailure(),
-          _ => ReadFileFailure(),
+          FileSystemException || PathNotFoundException => DataNotFoundFailure(),
+          DataStaleException => DataStaleFailure(),
+          _ => ReadDataFailure(),
         },
       );
 
   @override
-  Future<Either<WriteFileFailure, FileEntity>> write({
+  Future<Either<WriteDataFailure, CacheEntity>> write({
     required String name,
     required Object content,
-    required FileType type,
+    required CacheType type,
   }) =>
-      handleData<WriteFileFailure, FileEntity>(
+      handleData<WriteDataFailure, CacheEntity>(
         dataSourceOperation: () async {
           final file = await _getFile(
             name: name + type.ending,
@@ -84,25 +84,22 @@ final class FileManagerRepositoryImplementation
 
           await file.writeAsString(
             switch (type) {
-              FileType.json => json.encode(
+              CacheType.jsonFile || CacheType.jsonListFile => json.encode(
                   content,
                 ),
-              FileType.jsonList => json.encode(
-                  content,
-                ),
-              FileType.txt => content.toString(),
+              CacheType.txtFile => content as String,
             },
           );
 
-          return FileEntity(
+          return CacheEntity(
             name: name,
             content: content,
             type: type,
             lastModified: await file.lastModified(),
           );
         },
-        onSuccess: (unit) => unit,
-        onFailure: (_) => WriteFileFailure(),
+        onSuccess: (cacheEntity) => cacheEntity,
+        onFailure: (_) => WriteDataFailure(),
       );
 
   Future<File> _getFile({

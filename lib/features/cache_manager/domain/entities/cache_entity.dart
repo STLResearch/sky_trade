@@ -1,8 +1,8 @@
 import 'package:equatable/equatable.dart' show Equatable;
 import 'package:sky_ways/core/utils/enums/local.dart';
 
-final class FileEntity extends Equatable {
-  const FileEntity({
+final class CacheEntity extends Equatable {
+  const CacheEntity({
     required this.name,
     required this.content,
     required this.type,
@@ -11,13 +11,14 @@ final class FileEntity extends Equatable {
 
   final String name;
   final Object content;
-  final FileType type;
+  final CacheType type;
   final DateTime lastModified;
 
   @override
   List<Object?> get props => [
         name,
         content,
+        type,
         lastModified,
       ];
 }
