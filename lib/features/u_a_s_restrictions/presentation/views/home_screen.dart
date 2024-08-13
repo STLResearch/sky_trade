@@ -27,6 +27,8 @@ import 'package:sky_ways/features/file_manager/presentation/blocs/save_file_bloc
     show SaveFileBloc, SaveFileEvent, SaveFileState;
 import 'package:sky_ways/features/file_manager/presentation/blocs/saved_file_bloc/saved_file_bloc.dart'
     show SavedFileBloc, SavedFileEvent, SavedFileState;
+import 'package:sky_ways/features/geo_hash/presentation/blocs/geo_hash_bloc/geo_hash_bloc.dart'
+    show GeoHashBloc, GeoHashEvent, GeoHashState;
 import 'package:sky_ways/features/location/presentation/blocs/location_permission_bloc/location_permission_bloc.dart'
     show
         LocationPermissionBloc,
@@ -41,8 +43,6 @@ import 'package:sky_ways/features/location/presentation/blocs/location_service_s
         LocationServiceStatusState;
 import 'package:sky_ways/features/u_a_s_restrictions/domain/entities/restriction_entity.dart'
     show RestrictionEntity;
-import 'package:sky_ways/features/u_a_s_restrictions/presentation/blocs/geo_hash_bloc/geo_hash_bloc.dart'
-    show GeoHashBloc, GeoHashEvent, GeoHashState;
 import 'package:sky_ways/features/u_a_s_restrictions/presentation/blocs/u_a_s_restrictions_bloc/u_a_s_restrictions_bloc.dart'
     show UASRestrictionsBloc, UASRestrictionsEvent, UASRestrictionsState;
 import 'package:sky_ways/features/u_a_s_restrictions/presentation/widgets/bottom_bar.dart';

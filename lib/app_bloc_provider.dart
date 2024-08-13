@@ -14,7 +14,7 @@ import 'package:sky_ways/features/location/presentation/blocs/location_position_
     show LocationPositionBloc;
 import 'package:sky_ways/features/location/presentation/blocs/location_service_status_bloc/location_service_status_bloc.dart'
     show LocationServiceStatusBloc;
-import 'package:sky_ways/features/u_a_s_restrictions/presentation/blocs/geo_hash_bloc/geo_hash_bloc.dart'
+import 'package:sky_ways/features/geo_hash/presentation/blocs/geo_hash_bloc/geo_hash_bloc.dart'
     show GeoHashBloc;
 import 'package:sky_ways/features/u_a_s_restrictions/presentation/blocs/u_a_s_restrictions_bloc/u_a_s_restrictions_bloc.dart'
     show UASRestrictionsBloc;
@@ -36,6 +36,9 @@ List<BlocProvider> get appBlocProvider => [
         create: (_) => _sl(),
       ),
       BlocProvider<SavedFileBloc>(
+        create: (_) => _sl(),
+      ),
+      BlocProvider<GeoHashBloc>(
         create: (_) => _sl(),
       ),
       BlocProvider<CheckLinkBloc>(

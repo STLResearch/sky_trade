@@ -5,5 +5,6 @@ class GeoHashEvent with _$GeoHashEvent {
   const factory GeoHashEvent.computeGeoHash({
     required double latitude,
     required double longitude,
+    int? precision,
   }) = _ComputeGeoHash;
 }
