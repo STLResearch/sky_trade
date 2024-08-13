@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'save_file_bloc.dart';
+part of 'cache_data_bloc.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -15,62 +15,62 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
-mixin _$SaveFileEvent {
+mixin _$CacheDataEvent {
   String get name => throw _privateConstructorUsedError;
   Object get content => throw _privateConstructorUsedError;
-  FileType get type => throw _privateConstructorUsedError;
+  CacheType get type => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String name, Object content, FileType type)
-        saveToFile,
+    required TResult Function(String name, Object content, CacheType type)
+        cacheData,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String name, Object content, FileType type)? saveToFile,
+    TResult? Function(String name, Object content, CacheType type)? cacheData,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String name, Object content, FileType type)? saveToFile,
+    TResult Function(String name, Object content, CacheType type)? cacheData,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_SaveToFile value) saveToFile,
+    required TResult Function(_CacheData value) cacheData,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_SaveToFile value)? saveToFile,
+    TResult? Function(_CacheData value)? cacheData,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_SaveToFile value)? saveToFile,
+    TResult Function(_CacheData value)? cacheData,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
-  $SaveFileEventCopyWith<SaveFileEvent> get copyWith =>
+  $CacheDataEventCopyWith<CacheDataEvent> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $SaveFileEventCopyWith<$Res> {
-  factory $SaveFileEventCopyWith(
-          SaveFileEvent value, $Res Function(SaveFileEvent) then) =
-      _$SaveFileEventCopyWithImpl<$Res, SaveFileEvent>;
+abstract class $CacheDataEventCopyWith<$Res> {
+  factory $CacheDataEventCopyWith(
+          CacheDataEvent value, $Res Function(CacheDataEvent) then) =
+      _$CacheDataEventCopyWithImpl<$Res, CacheDataEvent>;
   @useResult
-  $Res call({String name, Object content, FileType type});
+  $Res call({String name, Object content, CacheType type});
 }
 
 /// @nodoc
-class _$SaveFileEventCopyWithImpl<$Res, $Val extends SaveFileEvent>
-    implements $SaveFileEventCopyWith<$Res> {
-  _$SaveFileEventCopyWithImpl(this._value, this._then);
+class _$CacheDataEventCopyWithImpl<$Res, $Val extends CacheDataEvent>
+    implements $CacheDataEventCopyWith<$Res> {
+  _$CacheDataEventCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -93,28 +93,28 @@ class _$SaveFileEventCopyWithImpl<$Res, $Val extends SaveFileEvent>
       type: null == type
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
-              as FileType,
+              as CacheType,
     ) as $Val);
   }
 }
 
 /// @nodoc
-abstract class _$$SaveToFileImplCopyWith<$Res>
-    implements $SaveFileEventCopyWith<$Res> {
-  factory _$$SaveToFileImplCopyWith(
-          _$SaveToFileImpl value, $Res Function(_$SaveToFileImpl) then) =
-      __$$SaveToFileImplCopyWithImpl<$Res>;
+abstract class _$$CacheDataImplCopyWith<$Res>
+    implements $CacheDataEventCopyWith<$Res> {
+  factory _$$CacheDataImplCopyWith(
+          _$CacheDataImpl value, $Res Function(_$CacheDataImpl) then) =
+      __$$CacheDataImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String name, Object content, FileType type});
+  $Res call({String name, Object content, CacheType type});
 }
 
 /// @nodoc
-class __$$SaveToFileImplCopyWithImpl<$Res>
-    extends _$SaveFileEventCopyWithImpl<$Res, _$SaveToFileImpl>
-    implements _$$SaveToFileImplCopyWith<$Res> {
-  __$$SaveToFileImplCopyWithImpl(
-      _$SaveToFileImpl _value, $Res Function(_$SaveToFileImpl) _then)
+class __$$CacheDataImplCopyWithImpl<$Res>
+    extends _$CacheDataEventCopyWithImpl<$Res, _$CacheDataImpl>
+    implements _$$CacheDataImplCopyWith<$Res> {
+  __$$CacheDataImplCopyWithImpl(
+      _$CacheDataImpl _value, $Res Function(_$CacheDataImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -124,7 +124,7 @@ class __$$SaveToFileImplCopyWithImpl<$Res>
     Object? content = null,
     Object? type = null,
   }) {
-    return _then(_$SaveToFileImpl(
+    return _then(_$CacheDataImpl(
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -133,15 +133,15 @@ class __$$SaveToFileImplCopyWithImpl<$Res>
       type: null == type
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
-              as FileType,
+              as CacheType,
     ));
   }
 }
 
 /// @nodoc
 
-class _$SaveToFileImpl implements _SaveToFile {
-  const _$SaveToFileImpl(
+class _$CacheDataImpl implements _CacheData {
+  const _$CacheDataImpl(
       {required this.name, required this.content, required this.type});
 
   @override
@@ -149,18 +149,18 @@ class _$SaveToFileImpl implements _SaveToFile {
   @override
   final Object content;
   @override
-  final FileType type;
+  final CacheType type;
 
   @override
   String toString() {
-    return 'SaveFileEvent.saveToFile(name: $name, content: $content, type: $type)';
+    return 'CacheDataEvent.cacheData(name: $name, content: $content, type: $type)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$SaveToFileImpl &&
+            other is _$CacheDataImpl &&
             (identical(other.name, name) || other.name == name) &&
             const DeepCollectionEquality().equals(other.content, content) &&
             (identical(other.type, type) || other.type == type));
@@ -173,34 +173,34 @@ class _$SaveToFileImpl implements _SaveToFile {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$SaveToFileImplCopyWith<_$SaveToFileImpl> get copyWith =>
-      __$$SaveToFileImplCopyWithImpl<_$SaveToFileImpl>(this, _$identity);
+  _$$CacheDataImplCopyWith<_$CacheDataImpl> get copyWith =>
+      __$$CacheDataImplCopyWithImpl<_$CacheDataImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String name, Object content, FileType type)
-        saveToFile,
+    required TResult Function(String name, Object content, CacheType type)
+        cacheData,
   }) {
-    return saveToFile(name, content, type);
+    return cacheData(name, content, type);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String name, Object content, FileType type)? saveToFile,
+    TResult? Function(String name, Object content, CacheType type)? cacheData,
   }) {
-    return saveToFile?.call(name, content, type);
+    return cacheData?.call(name, content, type);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String name, Object content, FileType type)? saveToFile,
+    TResult Function(String name, Object content, CacheType type)? cacheData,
     required TResult orElse(),
   }) {
-    if (saveToFile != null) {
-      return saveToFile(name, content, type);
+    if (cacheData != null) {
+      return cacheData(name, content, type);
     }
     return orElse();
   }
@@ -208,115 +208,115 @@ class _$SaveToFileImpl implements _SaveToFile {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_SaveToFile value) saveToFile,
+    required TResult Function(_CacheData value) cacheData,
   }) {
-    return saveToFile(this);
+    return cacheData(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_SaveToFile value)? saveToFile,
+    TResult? Function(_CacheData value)? cacheData,
   }) {
-    return saveToFile?.call(this);
+    return cacheData?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_SaveToFile value)? saveToFile,
+    TResult Function(_CacheData value)? cacheData,
     required TResult orElse(),
   }) {
-    if (saveToFile != null) {
-      return saveToFile(this);
+    if (cacheData != null) {
+      return cacheData(this);
     }
     return orElse();
   }
 }
 
-abstract class _SaveToFile implements SaveFileEvent {
-  const factory _SaveToFile(
+abstract class _CacheData implements CacheDataEvent {
+  const factory _CacheData(
       {required final String name,
       required final Object content,
-      required final FileType type}) = _$SaveToFileImpl;
+      required final CacheType type}) = _$CacheDataImpl;
 
   @override
   String get name;
   @override
   Object get content;
   @override
-  FileType get type;
+  CacheType get type;
   @override
   @JsonKey(ignore: true)
-  _$$SaveToFileImplCopyWith<_$SaveToFileImpl> get copyWith =>
+  _$$CacheDataImplCopyWith<_$CacheDataImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-mixin _$SaveFileState {
+mixin _$CacheDataState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function() saving,
-    required TResult Function(String name, FileType type) saved,
-    required TResult Function() failedToSave,
+    required TResult Function() caching,
+    required TResult Function(String name, CacheType type) cached,
+    required TResult Function() failedToCache,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function()? saving,
-    TResult? Function(String name, FileType type)? saved,
-    TResult? Function()? failedToSave,
+    TResult? Function()? caching,
+    TResult? Function(String name, CacheType type)? cached,
+    TResult? Function()? failedToCache,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function()? saving,
-    TResult Function(String name, FileType type)? saved,
-    TResult Function()? failedToSave,
+    TResult Function()? caching,
+    TResult Function(String name, CacheType type)? cached,
+    TResult Function()? failedToCache,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
-    required TResult Function(_Saving value) saving,
-    required TResult Function(_Saved value) saved,
-    required TResult Function(_FailedToSave value) failedToSave,
+    required TResult Function(_Caching value) caching,
+    required TResult Function(_Cached value) cached,
+    required TResult Function(_FailedToCache value) failedToCache,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
-    TResult? Function(_Saving value)? saving,
-    TResult? Function(_Saved value)? saved,
-    TResult? Function(_FailedToSave value)? failedToSave,
+    TResult? Function(_Caching value)? caching,
+    TResult? Function(_Cached value)? cached,
+    TResult? Function(_FailedToCache value)? failedToCache,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(_Saving value)? saving,
-    TResult Function(_Saved value)? saved,
-    TResult Function(_FailedToSave value)? failedToSave,
+    TResult Function(_Caching value)? caching,
+    TResult Function(_Cached value)? cached,
+    TResult Function(_FailedToCache value)? failedToCache,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $SaveFileStateCopyWith<$Res> {
-  factory $SaveFileStateCopyWith(
-          SaveFileState value, $Res Function(SaveFileState) then) =
-      _$SaveFileStateCopyWithImpl<$Res, SaveFileState>;
+abstract class $CacheDataStateCopyWith<$Res> {
+  factory $CacheDataStateCopyWith(
+          CacheDataState value, $Res Function(CacheDataState) then) =
+      _$CacheDataStateCopyWithImpl<$Res, CacheDataState>;
 }
 
 /// @nodoc
-class _$SaveFileStateCopyWithImpl<$Res, $Val extends SaveFileState>
-    implements $SaveFileStateCopyWith<$Res> {
-  _$SaveFileStateCopyWithImpl(this._value, this._then);
+class _$CacheDataStateCopyWithImpl<$Res, $Val extends CacheDataState>
+    implements $CacheDataStateCopyWith<$Res> {
+  _$CacheDataStateCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -333,7 +333,7 @@ abstract class _$$InitialImplCopyWith<$Res> {
 
 /// @nodoc
 class __$$InitialImplCopyWithImpl<$Res>
-    extends _$SaveFileStateCopyWithImpl<$Res, _$InitialImpl>
+    extends _$CacheDataStateCopyWithImpl<$Res, _$InitialImpl>
     implements _$$InitialImplCopyWith<$Res> {
   __$$InitialImplCopyWithImpl(
       _$InitialImpl _value, $Res Function(_$InitialImpl) _then)
@@ -347,7 +347,7 @@ class _$InitialImpl implements _Initial {
 
   @override
   String toString() {
-    return 'SaveFileState.initial()';
+    return 'CacheDataState.initial()';
   }
 
   @override
@@ -363,9 +363,9 @@ class _$InitialImpl implements _Initial {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function() saving,
-    required TResult Function(String name, FileType type) saved,
-    required TResult Function() failedToSave,
+    required TResult Function() caching,
+    required TResult Function(String name, CacheType type) cached,
+    required TResult Function() failedToCache,
   }) {
     return initial();
   }
@@ -374,9 +374,9 @@ class _$InitialImpl implements _Initial {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function()? saving,
-    TResult? Function(String name, FileType type)? saved,
-    TResult? Function()? failedToSave,
+    TResult? Function()? caching,
+    TResult? Function(String name, CacheType type)? cached,
+    TResult? Function()? failedToCache,
   }) {
     return initial?.call();
   }
@@ -385,9 +385,9 @@ class _$InitialImpl implements _Initial {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function()? saving,
-    TResult Function(String name, FileType type)? saved,
-    TResult Function()? failedToSave,
+    TResult Function()? caching,
+    TResult Function(String name, CacheType type)? cached,
+    TResult Function()? failedToCache,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -400,9 +400,9 @@ class _$InitialImpl implements _Initial {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
-    required TResult Function(_Saving value) saving,
-    required TResult Function(_Saved value) saved,
-    required TResult Function(_FailedToSave value) failedToSave,
+    required TResult Function(_Caching value) caching,
+    required TResult Function(_Cached value) cached,
+    required TResult Function(_FailedToCache value) failedToCache,
   }) {
     return initial(this);
   }
@@ -411,9 +411,9 @@ class _$InitialImpl implements _Initial {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
-    TResult? Function(_Saving value)? saving,
-    TResult? Function(_Saved value)? saved,
-    TResult? Function(_FailedToSave value)? failedToSave,
+    TResult? Function(_Caching value)? caching,
+    TResult? Function(_Cached value)? cached,
+    TResult? Function(_FailedToCache value)? failedToCache,
   }) {
     return initial?.call(this);
   }
@@ -422,9 +422,9 @@ class _$InitialImpl implements _Initial {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(_Saving value)? saving,
-    TResult Function(_Saved value)? saved,
-    TResult Function(_FailedToSave value)? failedToSave,
+    TResult Function(_Caching value)? caching,
+    TResult Function(_Cached value)? cached,
+    TResult Function(_FailedToCache value)? failedToCache,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -434,40 +434,40 @@ class _$InitialImpl implements _Initial {
   }
 }
 
-abstract class _Initial implements SaveFileState {
+abstract class _Initial implements CacheDataState {
   const factory _Initial() = _$InitialImpl;
 }
 
 /// @nodoc
-abstract class _$$SavingImplCopyWith<$Res> {
-  factory _$$SavingImplCopyWith(
-          _$SavingImpl value, $Res Function(_$SavingImpl) then) =
-      __$$SavingImplCopyWithImpl<$Res>;
+abstract class _$$CachingImplCopyWith<$Res> {
+  factory _$$CachingImplCopyWith(
+          _$CachingImpl value, $Res Function(_$CachingImpl) then) =
+      __$$CachingImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$SavingImplCopyWithImpl<$Res>
-    extends _$SaveFileStateCopyWithImpl<$Res, _$SavingImpl>
-    implements _$$SavingImplCopyWith<$Res> {
-  __$$SavingImplCopyWithImpl(
-      _$SavingImpl _value, $Res Function(_$SavingImpl) _then)
+class __$$CachingImplCopyWithImpl<$Res>
+    extends _$CacheDataStateCopyWithImpl<$Res, _$CachingImpl>
+    implements _$$CachingImplCopyWith<$Res> {
+  __$$CachingImplCopyWithImpl(
+      _$CachingImpl _value, $Res Function(_$CachingImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$SavingImpl implements _Saving {
-  const _$SavingImpl();
+class _$CachingImpl implements _Caching {
+  const _$CachingImpl();
 
   @override
   String toString() {
-    return 'SaveFileState.saving()';
+    return 'CacheDataState.caching()';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$SavingImpl);
+        (other.runtimeType == runtimeType && other is _$CachingImpl);
   }
 
   @override
@@ -477,35 +477,35 @@ class _$SavingImpl implements _Saving {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function() saving,
-    required TResult Function(String name, FileType type) saved,
-    required TResult Function() failedToSave,
+    required TResult Function() caching,
+    required TResult Function(String name, CacheType type) cached,
+    required TResult Function() failedToCache,
   }) {
-    return saving();
+    return caching();
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function()? saving,
-    TResult? Function(String name, FileType type)? saved,
-    TResult? Function()? failedToSave,
+    TResult? Function()? caching,
+    TResult? Function(String name, CacheType type)? cached,
+    TResult? Function()? failedToCache,
   }) {
-    return saving?.call();
+    return caching?.call();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function()? saving,
-    TResult Function(String name, FileType type)? saved,
-    TResult Function()? failedToSave,
+    TResult Function()? caching,
+    TResult Function(String name, CacheType type)? cached,
+    TResult Function()? failedToCache,
     required TResult orElse(),
   }) {
-    if (saving != null) {
-      return saving();
+    if (caching != null) {
+      return caching();
     }
     return orElse();
   }
@@ -514,59 +514,59 @@ class _$SavingImpl implements _Saving {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
-    required TResult Function(_Saving value) saving,
-    required TResult Function(_Saved value) saved,
-    required TResult Function(_FailedToSave value) failedToSave,
+    required TResult Function(_Caching value) caching,
+    required TResult Function(_Cached value) cached,
+    required TResult Function(_FailedToCache value) failedToCache,
   }) {
-    return saving(this);
+    return caching(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
-    TResult? Function(_Saving value)? saving,
-    TResult? Function(_Saved value)? saved,
-    TResult? Function(_FailedToSave value)? failedToSave,
+    TResult? Function(_Caching value)? caching,
+    TResult? Function(_Cached value)? cached,
+    TResult? Function(_FailedToCache value)? failedToCache,
   }) {
-    return saving?.call(this);
+    return caching?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(_Saving value)? saving,
-    TResult Function(_Saved value)? saved,
-    TResult Function(_FailedToSave value)? failedToSave,
+    TResult Function(_Caching value)? caching,
+    TResult Function(_Cached value)? cached,
+    TResult Function(_FailedToCache value)? failedToCache,
     required TResult orElse(),
   }) {
-    if (saving != null) {
-      return saving(this);
+    if (caching != null) {
+      return caching(this);
     }
     return orElse();
   }
 }
 
-abstract class _Saving implements SaveFileState {
-  const factory _Saving() = _$SavingImpl;
+abstract class _Caching implements CacheDataState {
+  const factory _Caching() = _$CachingImpl;
 }
 
 /// @nodoc
-abstract class _$$SavedImplCopyWith<$Res> {
-  factory _$$SavedImplCopyWith(
-          _$SavedImpl value, $Res Function(_$SavedImpl) then) =
-      __$$SavedImplCopyWithImpl<$Res>;
+abstract class _$$CachedImplCopyWith<$Res> {
+  factory _$$CachedImplCopyWith(
+          _$CachedImpl value, $Res Function(_$CachedImpl) then) =
+      __$$CachedImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({String name, FileType type});
+  $Res call({String name, CacheType type});
 }
 
 /// @nodoc
-class __$$SavedImplCopyWithImpl<$Res>
-    extends _$SaveFileStateCopyWithImpl<$Res, _$SavedImpl>
-    implements _$$SavedImplCopyWith<$Res> {
-  __$$SavedImplCopyWithImpl(
-      _$SavedImpl _value, $Res Function(_$SavedImpl) _then)
+class __$$CachedImplCopyWithImpl<$Res>
+    extends _$CacheDataStateCopyWithImpl<$Res, _$CachedImpl>
+    implements _$$CachedImplCopyWith<$Res> {
+  __$$CachedImplCopyWithImpl(
+      _$CachedImpl _value, $Res Function(_$CachedImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -575,7 +575,7 @@ class __$$SavedImplCopyWithImpl<$Res>
     Object? name = null,
     Object? type = null,
   }) {
-    return _then(_$SavedImpl(
+    return _then(_$CachedImpl(
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -583,31 +583,31 @@ class __$$SavedImplCopyWithImpl<$Res>
       type: null == type
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
-              as FileType,
+              as CacheType,
     ));
   }
 }
 
 /// @nodoc
 
-class _$SavedImpl implements _Saved {
-  const _$SavedImpl({required this.name, required this.type});
+class _$CachedImpl implements _Cached {
+  const _$CachedImpl({required this.name, required this.type});
 
   @override
   final String name;
   @override
-  final FileType type;
+  final CacheType type;
 
   @override
   String toString() {
-    return 'SaveFileState.saved(name: $name, type: $type)';
+    return 'CacheDataState.cached(name: $name, type: $type)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$SavedImpl &&
+            other is _$CachedImpl &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.type, type) || other.type == type));
   }
@@ -618,42 +618,42 @@ class _$SavedImpl implements _Saved {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$SavedImplCopyWith<_$SavedImpl> get copyWith =>
-      __$$SavedImplCopyWithImpl<_$SavedImpl>(this, _$identity);
+  _$$CachedImplCopyWith<_$CachedImpl> get copyWith =>
+      __$$CachedImplCopyWithImpl<_$CachedImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function() saving,
-    required TResult Function(String name, FileType type) saved,
-    required TResult Function() failedToSave,
+    required TResult Function() caching,
+    required TResult Function(String name, CacheType type) cached,
+    required TResult Function() failedToCache,
   }) {
-    return saved(name, type);
+    return cached(name, type);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function()? saving,
-    TResult? Function(String name, FileType type)? saved,
-    TResult? Function()? failedToSave,
+    TResult? Function()? caching,
+    TResult? Function(String name, CacheType type)? cached,
+    TResult? Function()? failedToCache,
   }) {
-    return saved?.call(name, type);
+    return cached?.call(name, type);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function()? saving,
-    TResult Function(String name, FileType type)? saved,
-    TResult Function()? failedToSave,
+    TResult Function()? caching,
+    TResult Function(String name, CacheType type)? cached,
+    TResult Function()? failedToCache,
     required TResult orElse(),
   }) {
-    if (saved != null) {
-      return saved(name, type);
+    if (cached != null) {
+      return cached(name, type);
     }
     return orElse();
   }
@@ -662,81 +662,82 @@ class _$SavedImpl implements _Saved {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
-    required TResult Function(_Saving value) saving,
-    required TResult Function(_Saved value) saved,
-    required TResult Function(_FailedToSave value) failedToSave,
+    required TResult Function(_Caching value) caching,
+    required TResult Function(_Cached value) cached,
+    required TResult Function(_FailedToCache value) failedToCache,
   }) {
-    return saved(this);
+    return cached(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
-    TResult? Function(_Saving value)? saving,
-    TResult? Function(_Saved value)? saved,
-    TResult? Function(_FailedToSave value)? failedToSave,
+    TResult? Function(_Caching value)? caching,
+    TResult? Function(_Cached value)? cached,
+    TResult? Function(_FailedToCache value)? failedToCache,
   }) {
-    return saved?.call(this);
+    return cached?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(_Saving value)? saving,
-    TResult Function(_Saved value)? saved,
-    TResult Function(_FailedToSave value)? failedToSave,
+    TResult Function(_Caching value)? caching,
+    TResult Function(_Cached value)? cached,
+    TResult Function(_FailedToCache value)? failedToCache,
     required TResult orElse(),
   }) {
-    if (saved != null) {
-      return saved(this);
+    if (cached != null) {
+      return cached(this);
     }
     return orElse();
   }
 }
 
-abstract class _Saved implements SaveFileState {
-  const factory _Saved(
-      {required final String name, required final FileType type}) = _$SavedImpl;
+abstract class _Cached implements CacheDataState {
+  const factory _Cached(
+      {required final String name,
+      required final CacheType type}) = _$CachedImpl;
 
   String get name;
-  FileType get type;
+  CacheType get type;
   @JsonKey(ignore: true)
-  _$$SavedImplCopyWith<_$SavedImpl> get copyWith =>
+  _$$CachedImplCopyWith<_$CachedImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$FailedToSaveImplCopyWith<$Res> {
-  factory _$$FailedToSaveImplCopyWith(
-          _$FailedToSaveImpl value, $Res Function(_$FailedToSaveImpl) then) =
-      __$$FailedToSaveImplCopyWithImpl<$Res>;
+abstract class _$$FailedToCacheImplCopyWith<$Res> {
+  factory _$$FailedToCacheImplCopyWith(
+          _$FailedToCacheImpl value, $Res Function(_$FailedToCacheImpl) then) =
+      __$$FailedToCacheImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$FailedToSaveImplCopyWithImpl<$Res>
-    extends _$SaveFileStateCopyWithImpl<$Res, _$FailedToSaveImpl>
-    implements _$$FailedToSaveImplCopyWith<$Res> {
-  __$$FailedToSaveImplCopyWithImpl(
-      _$FailedToSaveImpl _value, $Res Function(_$FailedToSaveImpl) _then)
+class __$$FailedToCacheImplCopyWithImpl<$Res>
+    extends _$CacheDataStateCopyWithImpl<$Res, _$FailedToCacheImpl>
+    implements _$$FailedToCacheImplCopyWith<$Res> {
+  __$$FailedToCacheImplCopyWithImpl(
+      _$FailedToCacheImpl _value, $Res Function(_$FailedToCacheImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$FailedToSaveImpl implements _FailedToSave {
-  const _$FailedToSaveImpl();
+class _$FailedToCacheImpl implements _FailedToCache {
+  const _$FailedToCacheImpl();
 
   @override
   String toString() {
-    return 'SaveFileState.failedToSave()';
+    return 'CacheDataState.failedToCache()';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$FailedToSaveImpl);
+        (other.runtimeType == runtimeType && other is _$FailedToCacheImpl);
   }
 
   @override
@@ -746,35 +747,35 @@ class _$FailedToSaveImpl implements _FailedToSave {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function() saving,
-    required TResult Function(String name, FileType type) saved,
-    required TResult Function() failedToSave,
+    required TResult Function() caching,
+    required TResult Function(String name, CacheType type) cached,
+    required TResult Function() failedToCache,
   }) {
-    return failedToSave();
+    return failedToCache();
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function()? saving,
-    TResult? Function(String name, FileType type)? saved,
-    TResult? Function()? failedToSave,
+    TResult? Function()? caching,
+    TResult? Function(String name, CacheType type)? cached,
+    TResult? Function()? failedToCache,
   }) {
-    return failedToSave?.call();
+    return failedToCache?.call();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function()? saving,
-    TResult Function(String name, FileType type)? saved,
-    TResult Function()? failedToSave,
+    TResult Function()? caching,
+    TResult Function(String name, CacheType type)? cached,
+    TResult Function()? failedToCache,
     required TResult orElse(),
   }) {
-    if (failedToSave != null) {
-      return failedToSave();
+    if (failedToCache != null) {
+      return failedToCache();
     }
     return orElse();
   }
@@ -783,40 +784,40 @@ class _$FailedToSaveImpl implements _FailedToSave {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
-    required TResult Function(_Saving value) saving,
-    required TResult Function(_Saved value) saved,
-    required TResult Function(_FailedToSave value) failedToSave,
+    required TResult Function(_Caching value) caching,
+    required TResult Function(_Cached value) cached,
+    required TResult Function(_FailedToCache value) failedToCache,
   }) {
-    return failedToSave(this);
+    return failedToCache(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
-    TResult? Function(_Saving value)? saving,
-    TResult? Function(_Saved value)? saved,
-    TResult? Function(_FailedToSave value)? failedToSave,
+    TResult? Function(_Caching value)? caching,
+    TResult? Function(_Cached value)? cached,
+    TResult? Function(_FailedToCache value)? failedToCache,
   }) {
-    return failedToSave?.call(this);
+    return failedToCache?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(_Saving value)? saving,
-    TResult Function(_Saved value)? saved,
-    TResult Function(_FailedToSave value)? failedToSave,
+    TResult Function(_Caching value)? caching,
+    TResult Function(_Cached value)? cached,
+    TResult Function(_FailedToCache value)? failedToCache,
     required TResult orElse(),
   }) {
-    if (failedToSave != null) {
-      return failedToSave(this);
+    if (failedToCache != null) {
+      return failedToCache(this);
     }
     return orElse();
   }
 }
 
-abstract class _FailedToSave implements SaveFileState {
-  const factory _FailedToSave() = _$FailedToSaveImpl;
+abstract class _FailedToCache implements CacheDataState {
+  const factory _FailedToCache() = _$FailedToCacheImpl;
 }

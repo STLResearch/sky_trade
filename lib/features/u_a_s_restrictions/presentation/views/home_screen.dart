@@ -16,17 +16,17 @@ import 'package:mapbox_maps_flutter/mapbox_maps_flutter.dart'
 import 'package:sky_ways/core/resources/numbers/ui.dart' show zero;
 import 'package:sky_ways/core/resources/strings/secret_keys.dart'
     show mapboxMapsPublicKey, mapboxMapsStyleUri;
-import 'package:sky_ways/core/utils/enums/local.dart' show FileType;
-import 'package:sky_ways/core/utils/extensions/file_entity_extensions.dart';
+import 'package:sky_ways/core/utils/enums/local.dart' show CacheType;
+import 'package:sky_ways/core/utils/extensions/cache_entity_extensions.dart';
 import 'package:sky_ways/core/utils/extensions/mapbox_map_extensions.dart';
 import 'package:sky_ways/core/utils/typedefs/ui.dart'
     show
         PointAnnotationManagerPointAnnotationTuple,
         PolygonAnnotationManagerPolygonAnnotationTuple;
-import 'package:sky_ways/features/file_manager/presentation/blocs/save_file_bloc/save_file_bloc.dart'
-    show SaveFileBloc, SaveFileEvent, SaveFileState;
-import 'package:sky_ways/features/file_manager/presentation/blocs/saved_file_bloc/saved_file_bloc.dart'
-    show SavedFileBloc, SavedFileEvent, SavedFileState;
+import 'package:sky_ways/features/cache_manager/presentation/blocs/cache_data_bloc/cache_data_bloc.dart'
+    show CacheDataBloc, CacheDataEvent, CacheDataState;
+import 'package:sky_ways/features/cache_manager/presentation/blocs/cached_data_bloc/cached_data_bloc.dart'
+    show CachedDataBloc, CachedDataEvent, CachedDataState;
 import 'package:sky_ways/features/geo_hash/presentation/blocs/geo_hash_bloc/geo_hash_bloc.dart'
     show GeoHashBloc, GeoHashEvent, GeoHashState;
 import 'package:sky_ways/features/location/presentation/blocs/location_permission_bloc/location_permission_bloc.dart'
@@ -162,11 +162,11 @@ class _HomeScreenState extends State<HomeScreen> {
                 gotRestrictions: (restrictionEntities) async {
                   context.read<GeoHashBloc>().state.whenOrNull(
                     computedGeoHash: (geoHash) {
-                      context.read<SaveFileBloc>().add(
-                            SaveFileEvent.saveToFile(
+                      context.read<CacheDataBloc>().add(
+                            CacheDataEvent.cacheData(
                               name: geoHash,
                               content: restrictionEntities,
-                              type: FileType.jsonList,
+                              type: CacheType.jsonListFile,
                             ),
                           );
                     },
@@ -175,12 +175,12 @@ class _HomeScreenState extends State<HomeScreen> {
               );
             },
           ),
-          BlocListener<SaveFileBloc, SaveFileState>(
-            listener: (_, saveFileState) {
-              saveFileState.whenOrNull(
-                saved: (name, type) {
-                  context.read<SavedFileBloc>().add(
-                        SavedFileEvent.getSavedFile(
+          BlocListener<CacheDataBloc, CacheDataState>(
+            listener: (_, cacheDataState) {
+              cacheDataState.whenOrNull(
+                cached: (name, type) {
+                  context.read<CachedDataBloc>().add(
+                        CachedDataEvent.getCachedData(
                           name: name,
                           type: type,
                         ),
@@ -193,20 +193,20 @@ class _HomeScreenState extends State<HomeScreen> {
             listener: (_, geoHashState) {
               geoHashState.whenOrNull(
                 computedGeoHash: (geoHash) {
-                  context.read<SavedFileBloc>().add(
-                        SavedFileEvent.getSavedFile(
+                  context.read<CachedDataBloc>().add(
+                        CachedDataEvent.getCachedData(
                           name: geoHash,
-                          type: FileType.jsonList,
+                          type: CacheType.jsonListFile,
                         ),
                       );
                 },
               );
             },
           ),
-          BlocListener<SavedFileBloc, SavedFileState>(
-            listener: (_, savedFileState) {
-              savedFileState.maybeWhen(
-                fileExists: (fileEntity) async {
+          BlocListener<CachedDataBloc, CachedDataState>(
+            listener: (_, cachedDataState) {
+              cachedDataState.maybeWhen(
+                cacheExists: (cacheEntity) async {
                   await _mapboxMap?.removeAllPolygons(
                     _polygons,
                   );
@@ -215,7 +215,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
                   await _mapboxMap
                       ?.drawRestrictionsPolygonsConsidering(
-                        restrictionEntities: fileEntity.restrictionEntities,
+                        restrictionEntities: cacheEntity.restrictionEntities,
                         onPolygonClick: (
                           polygonAnnotation,
                           clickedRestrictionEntity,
@@ -255,7 +255,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         (polygons) => _polygons = polygons,
                       );
                 },
-                fileNotExist: () {
+                cacheNotExist: () {
                   context.read<GeoHashBloc>().state.whenOrNull(
                     computedGeoHash: (geoHash) {
                       context.read<UASRestrictionsBloc>().add(
