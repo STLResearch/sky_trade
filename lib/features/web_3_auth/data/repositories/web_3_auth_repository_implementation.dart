@@ -7,6 +7,8 @@ import 'package:sky_ways/core/errors/failures/web_3_auth_failure.dart'
         Web3AuthAuthenticationFailure,
         Web3AuthInitializationFailure,
         Web3AuthLogoutFailure;
+import 'package:sky_ways/core/resources/strings/environments.dart'
+    show devEnvironment, flavours, liveEnvironment;
 import 'package:sky_ways/core/resources/strings/networking.dart'
     show
         flowTypeKey,
@@ -35,7 +37,7 @@ final class Web3AuthRepositoryImplementation implements Web3AuthRepository {
       initializeWeb3Auth() async {
     final web3AuthOptions = Web3AuthOptions(
       clientId: dotenv.env[web3AuthClientId]!,
-      network: Network.sapphire_devnet,
+      network: _network,
       redirectUrl: _redirectUrl,
     );
 
@@ -54,6 +56,19 @@ final class Web3AuthRepositoryImplementation implements Web3AuthRepository {
         Web3AuthInitializationFailure(),
       );
     }
+  }
+
+  Network get _network {
+    const environment = String.fromEnvironment(
+      flavours,
+      defaultValue: devEnvironment,
+    );
+
+    if (environment != liveEnvironment) {
+      return Network.sapphire_devnet;
+    }
+
+    return Network.cyan;
   }
 
   Uri get _redirectUrl {
