@@ -1,5 +1,8 @@
 PODS:
   - BigInt (5.2.0)
+  - connectivity_plus (0.0.1):
+    - Flutter
+    - FlutterMacOS
   - curvelib.swift (1.0.1)
   - Flutter (1.0.0)
   - flutter_native_splash (0.0.1):
@@ -12,11 +15,11 @@ PODS:
     - MapboxMaps (~> 11.5.1)
     - Turf (= 2.8.0)
   - MapboxCommon (24.5.0)
-  - MapboxCoreMaps (11.5.1):
+  - MapboxCoreMaps (11.5.3):
     - MapboxCommon (~> 24.5)
-  - MapboxMaps (11.5.1):
+  - MapboxMaps (11.5.2):
     - MapboxCommon (= 24.5.0)
-    - MapboxCoreMaps (= 11.5.1)
+    - MapboxCoreMaps (= 11.5.3)
     - Turf (= 2.8.0)
   - path_provider_foundation (0.0.1):
     - Flutter
@@ -37,6 +40,7 @@ PODS:
     - Web3Auth (~> 9.0.0)
 
 DEPENDENCIES:
+  - connectivity_plus (from `.symlinks/plugins/connectivity_plus/darwin`)
   - Flutter (from `Flutter`)
   - flutter_native_splash (from `.symlinks/plugins/flutter_native_splash/ios`)
   - geolocator_apple (from `.symlinks/plugins/geolocator_apple/ios`)
@@ -58,6 +62,8 @@ SPEC REPOS:
     - Web3Auth
 
 EXTERNAL SOURCES:
+  connectivity_plus:
+    :path: ".symlinks/plugins/connectivity_plus/darwin"
   Flutter:
     :path: Flutter
   flutter_native_splash:
@@ -75,6 +81,7 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   BigInt: f668a80089607f521586bbe29513d708491ef2f7
+  connectivity_plus: ddd7f30999e1faaef5967c23d5b6d503d10434db
   curvelib.swift: d0746ae82bee34016c06da3567a97e493b3c979f
   Flutter: e0871f40cf51350855a761d2e70bf5af5b9b5de7
   flutter_native_splash: edf599c81f74d093a4daf8e17bd7a018854bc778
@@ -82,8 +89,8 @@ SPEC CHECKSUMS:
   KeychainSwift: 0ce6a4d13f7228054d1a71bb1b500448fb2ab837
   mapbox_maps_flutter: c7e9ddad4b3e7e68397fc0f8643ff408913dc44f
   MapboxCommon: c69a04a1accd77650372c96d8978a15ed1d95186
-  MapboxCoreMaps: 9d8833b738b94d63ee842722641e8cfdc1fa1191
-  MapboxMaps: 24a52620178b5390373489c083d4a3acd319c1d3
+  MapboxCoreMaps: 127a3a6f68bc54d21008835b1bdf94be7a79792a
+  MapboxMaps: c781bae1bcb8b17dd63b0f130ef80605ceb72ac9
   path_provider_foundation: 2b6b4c569c0fb62ec74538f866245ac84301af46
   TorusSessionManager: 05a1a8f3265d0949a1a342c4ba2c52882445b614
   Turf: aa2ede4298009639d10db36aba1a7ebaad072a5e

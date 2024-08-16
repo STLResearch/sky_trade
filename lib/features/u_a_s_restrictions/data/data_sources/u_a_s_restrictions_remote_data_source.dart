@@ -1,3 +1,5 @@
+// ignore_for_file: strict_raw_type
+
 import 'package:dio/dio.dart' show Response;
 import 'package:sky_ways/core/errors/exceptions/u_a_s_restrictions_exception.dart';
 import 'package:sky_ways/core/resources/strings/networking.dart'

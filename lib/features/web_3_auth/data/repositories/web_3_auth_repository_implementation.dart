@@ -13,7 +13,6 @@ import 'package:sky_ways/core/resources/strings/networking.dart'
     show
         flowTypeKey,
         linkValue,
-        web3AuthPath,
         web3AuthWhitelistOriginAndroid,
         web3AuthWhitelistOriginIos;
 import 'package:sky_ways/core/resources/strings/secret_keys.dart'
@@ -73,8 +72,7 @@ final class Web3AuthRepositoryImplementation implements Web3AuthRepository {
 
   Uri get _redirectUrl {
     final iosRedirect = dotenv.env[web3AuthWhitelistOriginIos]!;
-    final androidRedirect =
-        dotenv.env[web3AuthWhitelistOriginAndroid]! + web3AuthPath;
+    final androidRedirect = dotenv.env[web3AuthWhitelistOriginAndroid]!;
 
     final redirectUrl = Uri.parse(
       switch (Platform.isIOS) {

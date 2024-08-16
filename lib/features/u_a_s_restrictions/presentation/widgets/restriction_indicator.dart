@@ -69,7 +69,7 @@ class RestrictionIndicator extends StatelessWidget {
                         width: fortyFourDotNil,
                         height: fortyFourDotNil,
                         decoration: BoxDecoration(
-                          color: clickedRestrictionValue!.fillColor,
+                          color: clickedRestrictionValue!.indicatorFillColor,
                           borderRadius: BorderRadiusDirectional.circular(
                             eightDotNil,
                           ),

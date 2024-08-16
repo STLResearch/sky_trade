@@ -6,6 +6,8 @@ import 'package:sky_ways/features/cache_manager/presentation/blocs/cached_data_b
     show CachedDataBloc;
 import 'package:sky_ways/features/geo_hash/presentation/blocs/geo_hash_bloc/geo_hash_bloc.dart'
     show GeoHashBloc;
+import 'package:sky_ways/features/internet_connection_checker/presentation/blocs/internet_connection_checker_bloc/internet_connection_checker_bloc.dart'
+    show InternetConnectionCheckerBloc;
 import 'package:sky_ways/features/link_handler/presentation/blocs/check_link_bloc/check_link_bloc.dart'
     show CheckLinkBloc;
 import 'package:sky_ways/features/link_handler/presentation/blocs/handle_link_bloc/handle_link_bloc.dart'
@@ -39,6 +41,9 @@ List<BlocProvider> get appBlocProvider => [
         create: (_) => _sl(),
       ),
       BlocProvider<GeoHashBloc>(
+        create: (_) => _sl(),
+      ),
+      BlocProvider<InternetConnectionCheckerBloc>(
         create: (_) => _sl(),
       ),
       BlocProvider<CheckLinkBloc>(

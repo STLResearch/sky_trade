@@ -19,6 +19,7 @@ const hex9D9D9D = Color(0xFF9D9D9D);
 const hexF4F4F4 = Color(0xFFF4F4F4);
 const hexD9D9D9 = Color(0xFFD9D9D9);
 const hexA9143A = Color(0xFFA9143A);
+const hexB3FFFFFF = Color(0xB3FFFFFF);
 
 const rawHexB3F68351 = 0xB3F68351;
 const rawHex33F68351 = 0x33F68351;

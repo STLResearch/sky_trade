@@ -31,5 +31,12 @@
   "flightRestrictedAirspace": "Flight Restricted Airspace",
   "address": "Address",
   "controlledAirspace": "Controlled Airspace",
-  "specialUseAirspace": "Special Use Airspace"
+  "specialUseAirspace": "Special Use Airspace",
+  "searchLocation": "Search Location",
+  "twenty": "20",
+  "degrees": "°",
+  "oopsSomethingWentWrong": "Oops!\nSomething Went Wrong",
+  "itLooksLikeWereHavingTroubleInitializingYourSession": "It looks like we’re having trouble initializing your session.",
+  "anUnexpectedErrorOccurredPleaseTryRefreshingThePageIfTheIssueContinuesYouMayWantToCheckYourConnectionOrTryAgainLater": "An unexpected error occurred. Please try refreshing the page. If the issue continues, you may want to check your connection or try again later.\n\nFor further assistance, feel free to contact our support team.",
+  "refreshPage": "Refresh Page"
 }

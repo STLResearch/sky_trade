@@ -6,23 +6,25 @@ import 'package:flutter/material.dart'
         Stack,
         State,
         StatefulWidget,
+        ValueListenableBuilder,
         ValueNotifier,
         Widget;
 import 'package:flutter_bloc/flutter_bloc.dart'
     show BlocListener, MultiBlocListener, ReadContext;
 import 'package:flutter_dotenv/flutter_dotenv.dart' show dotenv;
 import 'package:mapbox_maps_flutter/mapbox_maps_flutter.dart'
-    show MapboxMap, MapboxOptions;
-import 'package:sky_ways/core/resources/numbers/ui.dart' show zero;
+    show CompassSettings, MapboxMap, MapboxOptions, ScaleBarSettings;
 import 'package:sky_ways/core/resources/strings/secret_keys.dart'
-    show mapboxMapsPublicKey, mapboxMapsStyleUri;
+    show
+        mapboxMapsDarkStyleUri,
+        mapboxMapsPublicKey,
+        mapboxMapsSatelliteStyleUri;
 import 'package:sky_ways/core/utils/enums/local.dart' show CacheType;
+import 'package:sky_ways/core/utils/enums/ui.dart' show MapStyle;
 import 'package:sky_ways/core/utils/extensions/cache_entity_extensions.dart';
 import 'package:sky_ways/core/utils/extensions/mapbox_map_extensions.dart';
 import 'package:sky_ways/core/utils/typedefs/ui.dart'
-    show
-        PointAnnotationManagerPointAnnotationTuple,
-        PolygonAnnotationManagerPolygonAnnotationTuple;
+    show PointAnnotationManagerPointAnnotationTuple;
 import 'package:sky_ways/features/cache_manager/presentation/blocs/cache_data_bloc/cache_data_bloc.dart'
     show CacheDataBloc, CacheDataEvent, CacheDataState;
 import 'package:sky_ways/features/cache_manager/presentation/blocs/cached_data_bloc/cached_data_bloc.dart'
@@ -45,7 +47,7 @@ import 'package:sky_ways/features/u_a_s_restrictions/domain/entities/restriction
     show RestrictionEntity;
 import 'package:sky_ways/features/u_a_s_restrictions/presentation/blocs/u_a_s_restrictions_bloc/u_a_s_restrictions_bloc.dart'
     show UASRestrictionsBloc, UASRestrictionsEvent, UASRestrictionsState;
-import 'package:sky_ways/features/u_a_s_restrictions/presentation/widgets/bottom_bar.dart';
+import 'package:sky_ways/features/u_a_s_restrictions/presentation/widgets/map_overlay.dart';
 import 'package:sky_ways/features/u_a_s_restrictions/presentation/widgets/map_view.dart';
 import 'package:sky_ways/features/u_a_s_restrictions/presentation/widgets/restriction_indicator.dart';
 
@@ -57,23 +59,30 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  late final MapboxMap? _mapboxMap;
-  late final ValueNotifier<int> _selectedBottomNavigationBarItemIndex;
-  List<PolygonAnnotationManagerPolygonAnnotationTuple>? _polygons;
+  MapboxMap? _mapboxMap;
   PointAnnotationManagerPointAnnotationTuple? _marker;
   late final ValueNotifier<RestrictionEntity?> _clickedRestriction;
+  late final ValueNotifier<bool> _centerLocationNotifier;
+  late final ValueNotifier<MapStyle> _mapStyleNotifier;
 
   @override
   void initState() {
     MapboxOptions.setAccessToken(
       dotenv.env[mapboxMapsPublicKey]!,
     );
-    _selectedBottomNavigationBarItemIndex = ValueNotifier<int>(
-      zero,
-    );
+
     _clickedRestriction = ValueNotifier<RestrictionEntity?>(
       null,
     );
+
+    _centerLocationNotifier = ValueNotifier<bool>(
+      false,
+    );
+
+    _mapStyleNotifier = ValueNotifier<MapStyle>(
+      MapStyle.satellite,
+    );
+
     _requestLocationPermission();
 
     super.initState();
@@ -106,8 +115,9 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   void dispose() {
     _mapboxMap?.dispose();
-    _selectedBottomNavigationBarItemIndex.dispose();
     _clickedRestriction.dispose();
+    _centerLocationNotifier.dispose();
+    _mapStyleNotifier.dispose();
 
     super.dispose();
   }
@@ -133,13 +143,22 @@ class _HomeScreenState extends State<HomeScreen> {
             listener: (_, locationServiceStatusState) {
               locationServiceStatusState.whenOrNull(
                 gotLocationServiceStatus: (locationServiceStatusEntity) {
+                  late final LocationPositionEvent locationPositionEvent;
+
+                  if (locationServiceStatusEntity.enabled) {
+                    locationPositionEvent =
+                        const LocationPositionEvent.listenLocationPosition();
+
+                    _centerLocationNotifier.value = true;
+                  } else {
+                    locationPositionEvent = const LocationPositionEvent
+                        .stopListeningLocationPosition();
+
+                    _centerLocationNotifier.value = false;
+                  }
+
                   context.read<LocationPositionBloc>().add(
-                        switch (locationServiceStatusEntity.enabled) {
-                          true => const LocationPositionEvent
-                              .listenLocationPosition(),
-                          false => const LocationPositionEvent
-                              .stopListeningLocationPosition(),
-                        },
+                        locationPositionEvent,
                       );
                 },
               );
@@ -148,11 +167,14 @@ class _HomeScreenState extends State<HomeScreen> {
           BlocListener<LocationPositionBloc, LocationPositionState>(
             listener: (_, locationPositionState) {
               locationPositionState.whenOrNull(
-                gotLocationPosition: (locationPositionEntity) =>
+                gotLocationPosition: (locationPositionEntity) {
+                  if (_centerLocationNotifier.value) {
                     _mapboxMap?.followUser(
-                  latitude: locationPositionEntity.latitude,
-                  longitude: locationPositionEntity.longitude,
-                ),
+                      latitude: locationPositionEntity.latitude,
+                      longitude: locationPositionEntity.longitude,
+                    );
+                  }
+                },
               );
             },
           ),
@@ -205,55 +227,42 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
           BlocListener<CachedDataBloc, CachedDataState>(
             listener: (_, cachedDataState) {
-              cachedDataState.maybeWhen(
+              cachedDataState.whenOrNull(
                 cacheExists: (cacheEntity) async {
-                  await _mapboxMap?.removeAllPolygons(
-                    _polygons,
-                  );
+                  await _mapboxMap?.drawRestrictionsPolygonsConsidering(
+                    restrictionEntities: cacheEntity.asRestrictionEntities,
+                    onPolygonClick: (
+                      polygonAnnotation,
+                      clickedRestrictionEntity,
+                    ) async {
+                      _clickedRestriction.value = clickedRestrictionEntity;
 
-                  RestrictionEntity? iosMultiplePolygonClickIssueWorkAround;
+                      // final a = clickedRestrictionEntity;
+                      // final b = iosMultiplePolygonClickIssueWorkAround;
+                      //
+                      // final c = a == b;
+                      //
+                      // if (clickedRestrictionEntity ==
+                      //     iosMultiplePolygonClickIssueWorkAround) {
+                      //   return;
+                      // }
 
-                  await _mapboxMap
-                      ?.drawRestrictionsPolygonsConsidering(
-                        restrictionEntities: cacheEntity.restrictionEntities,
-                        onPolygonClick: (
-                          polygonAnnotation,
-                          clickedRestrictionEntity,
-                        ) async {
-                          _clickedRestriction.value = clickedRestrictionEntity;
-
-                          // final a = clickedRestrictionEntity;
-                          // final b = iosMultiplePolygonClickIssueWorkAround;
-                          //
-                          // final c = a == b;
-                          //
-                          // if (clickedRestrictionEntity ==
-                          //     iosMultiplePolygonClickIssueWorkAround) {
-                          //   return;
-                          // }
-
-                          print('on polygon click called');
-
-                          // iosMultiplePolygonClickIssueWorkAround =
-                          //     clickedRestrictionEntity;
-                          // await _mapboxMap.removePreviousMarker(
-                          //   _marker,
-                          // );
-                          //
-                          // await _mapboxMap
-                          //     .addMarkerWithTextOnTopRestrictionPolygonUsing(
-                          //       polygonAnnotation: polygonAnnotation,
-                          //       clickedRestrictionEntity:
-                          //           clickedRestrictionEntity,
-                          //     )
-                          //     .then(
-                          //       (marker) => _marker = marker,
-                          //     );
-                        },
-                      )
-                      .then(
-                        (polygons) => _polygons = polygons,
+                      // iosMultiplePolygonClickIssueWorkAround =
+                      //     clickedRestrictionEntity;
+                      await _mapboxMap?.removePreviousMarker(
+                        _marker,
                       );
+
+                      await _mapboxMap
+                          ?.addMarkerWithTextOnTopRestrictionPolygonUsing(
+                            polygonAnnotation: polygonAnnotation,
+                            clickedRestrictionEntity: clickedRestrictionEntity,
+                          )
+                          .then(
+                            (marker) => _marker = marker,
+                          );
+                    },
+                  );
                 },
                 cacheNotExist: () {
                   context.read<GeoHashBloc>().state.whenOrNull(
@@ -266,7 +275,6 @@ class _HomeScreenState extends State<HomeScreen> {
                     },
                   );
                 },
-                orElse: () {},
               );
             },
           ),
@@ -276,20 +284,45 @@ class _HomeScreenState extends State<HomeScreen> {
             alignment: AlignmentDirectional.center,
             children: [
               MapView(
-                mapStyleUri: dotenv.env[mapboxMapsStyleUri]!,
+                mapStyleUri: dotenv.env[mapboxMapsSatelliteStyleUri]!,
                 onTap: (_) => _clickedRestriction.value = null,
-                onCreated: (mapboxMap) => _mapboxMap = mapboxMap,
+                onScroll: (_) => _centerLocationNotifier.value = false,
+                onCreated: (mapboxMap) {
+                  mapboxMap.compass.updateSettings(
+                    CompassSettings(
+                      enabled: false,
+                    ),
+                  );
+
+                  mapboxMap.scaleBar.updateSettings(
+                    ScaleBarSettings(
+                      enabled: false,
+                    ),
+                  );
+
+                  _mapboxMap = mapboxMap;
+                },
                 onCameraChanged: (_) {
-                  context.read<LocationPositionBloc>().state.whenOrNull(
-                    gotLocationPosition: (
-                      locationPositionEntity,
-                    ) {
-                      context.read<GeoHashBloc>().add(
-                            GeoHashEvent.computeGeoHash(
-                              latitude: locationPositionEntity.latitude,
-                              longitude: locationPositionEntity.longitude,
-                            ),
-                          );
+                  context.read<LocationPermissionBloc>().state.whenOrNull(
+                    maybeGrantedPermission: (locationPermissionEntity) {
+                      if (locationPermissionEntity.granted) {
+                        _mapboxMap?.getCameraState().then(
+                          (cameraState) {
+                            context.read<GeoHashBloc>().add(
+                                  GeoHashEvent.computeGeoHash(
+                                    coordinates: (
+                                      latitude: cameraState
+                                          .center.coordinates.lat
+                                          .toDouble(),
+                                      longitude: cameraState
+                                          .center.coordinates.lng
+                                          .toDouble(),
+                                    ),
+                                  ),
+                                );
+                          },
+                        );
+                      }
                     },
                   );
                 },
@@ -297,11 +330,62 @@ class _HomeScreenState extends State<HomeScreen> {
               RestrictionIndicator(
                 clickedRestriction: _clickedRestriction,
               ),
+              ValueListenableBuilder<bool>(
+                valueListenable: _centerLocationNotifier,
+                builder: (_, centerLocationNotifierValue, __) =>
+                    ValueListenableBuilder<MapStyle>(
+                  valueListenable: _mapStyleNotifier,
+                  builder: (_, mapStyleNotifierValue, __) => MapOverlay(
+                    myLocationFollowed: centerLocationNotifierValue,
+                    mapStyle: mapStyleNotifierValue,
+                    onMyLocationIconTap: () {
+                      context.read<LocationPermissionBloc>().state.whenOrNull(
+                        maybeGrantedPermission: (locationPermissionEntity) {
+                          if (locationPermissionEntity.granted) {
+                            context
+                                .read<LocationServiceStatusBloc>()
+                                .state
+                                .whenOrNull(
+                              gotLocationServiceStatus:
+                                  (locationServiceStatusEntity) {
+                                if (locationServiceStatusEntity.enabled) {
+                                  _centerLocationNotifier.value =
+                                      !_centerLocationNotifier.value;
+
+                                  if (_centerLocationNotifier.value) {
+                                    context.read<LocationPositionBloc>().add(
+                                          const LocationPositionEvent
+                                              .getLocationPosition(),
+                                        );
+                                  }
+                                }
+                              },
+                            );
+                          }
+                        },
+                      );
+                    },
+                    onMapLayerIconTap: () {
+                      switch (mapStyleNotifierValue) {
+                        case MapStyle.dark:
+                          _mapboxMap?.style.setStyleURI(
+                            dotenv.env[mapboxMapsSatelliteStyleUri]!,
+                          );
+
+                          _mapStyleNotifier.value = MapStyle.satellite;
+
+                        case MapStyle.satellite:
+                          _mapboxMap?.style.setStyleURI(
+                            dotenv.env[mapboxMapsDarkStyleUri]!,
+                          );
+
+                          _mapStyleNotifier.value = MapStyle.dark;
+                      }
+                    },
+                  ),
+                ),
+              ),
             ],
-          ),
-          bottomNavigationBar: BottomBar(
-            selectedBottomNavigationBarItemIndex:
-                _selectedBottomNavigationBarItemIndex,
           ),
         ),
       );

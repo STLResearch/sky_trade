@@ -1,3 +1,5 @@
+// ignore_for_file: strict_raw_type
+
 import 'package:dio/dio.dart' show BaseOptions, Dio, Options, Response;
 import 'package:flutter_dotenv/flutter_dotenv.dart' show dotenv;
 import 'package:sky_ways/core/resources/numbers/networking.dart'
