@@ -1,6 +1,7 @@
 import 'package:dartz/dartz.dart' show Function1, Function2;
 import 'package:flutter/services.dart' show rootBundle;
-import 'package:geodart/geometries.dart' as geo_dart;
+import 'package:geodart/geometries.dart' as geo_dart
+    show Coordinate, LinearRing, Polygon;
 import 'package:mapbox_maps_flutter/mapbox_maps_flutter.dart'
     show
         CameraOptions,
@@ -19,7 +20,7 @@ import 'package:mapbox_maps_flutter/mapbox_maps_flutter.dart'
         Position;
 import 'package:sky_ways/core/resources/colors.dart' show rawHex2A60C4;
 import 'package:sky_ways/core/resources/numbers/ui.dart'
-    show fiftyDotNil, one, oneThousand, tenDotNil, threeDotNil, zero;
+    show fiftyDotNil, fourteenDotNil, one, oneThousand, threeDotNil, zero;
 import 'package:sky_ways/core/resources/strings/asset_paths.dart'
     show locationPuckAssetPath, locationPuckShadowAssetPath;
 import 'package:sky_ways/core/utils/extensions/restriction_entity_extensions.dart';
@@ -37,7 +38,9 @@ extension MapboxMapExtensions on MapboxMap {
     if (polygons == null) return;
 
     for (final polygonAnnotationManagerPolygonAnnotationTuple in polygons) {
-      await polygonAnnotationManagerPolygonAnnotationTuple.$1.deleteAll();
+      await polygonAnnotationManagerPolygonAnnotationTuple
+          .polygonAnnotationManager
+          .deleteAll();
     }
   }
 
@@ -86,8 +89,8 @@ extension MapboxMapExtensions on MapboxMap {
 
       polygons.add(
         (
-          polygonAnnotationManager,
-          polygonAnnotation,
+          polygonAnnotationManager: polygonAnnotationManager,
+          polygonAnnotation: polygonAnnotation,
         ),
       );
     }
@@ -145,8 +148,8 @@ extension MapboxMapExtensions on MapboxMap {
     );
 
     return (
-      pointAnnotationManager,
-      pointAnnotation,
+      pointAnnotationManager: pointAnnotationManager,
+      pointAnnotation: pointAnnotation,
     );
   }
 
@@ -155,11 +158,7 @@ extension MapboxMapExtensions on MapboxMap {
   ) async {
     if (marker == null) return;
 
-    await marker.$1.deleteAll();
-
-    // for (final pointAnnotationManagerPointAnnotationTuple in markers) {
-    //   await pointAnnotationManagerPointAnnotationTuple.$1.deleteAll();
-    // }
+    await marker.pointAnnotationManager.deleteAll();
   }
 
   Future<void> followUser({
@@ -174,7 +173,7 @@ extension MapboxMapExtensions on MapboxMap {
             latitude,
           ),
         ),
-        zoom: tenDotNil,
+        zoom: fourteenDotNil,
       ),
       MapAnimationOptions(
         duration: oneThousand,

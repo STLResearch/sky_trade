@@ -8,6 +8,7 @@ class MapView extends StatelessWidget {
   const MapView({
     required this.mapStyleUri,
     required this.onTap,
+    required this.onScroll,
     required this.onCreated,
     required this.onCameraChanged,
     super.key,
@@ -15,6 +16,7 @@ class MapView extends StatelessWidget {
 
   final String mapStyleUri;
   final Function1<MapContentGestureContext, void> onTap;
+  final Function1<MapContentGestureContext, void> onScroll;
   final Function1<MapboxMap, void> onCreated;
   final Function1<CameraChangedEventData, void> onCameraChanged;
 
@@ -22,6 +24,7 @@ class MapView extends StatelessWidget {
   Widget build(BuildContext context) => MapWidget(
         styleUri: mapStyleUri,
         onTapListener: onTap,
+        onScrollListener: onScroll,
         onMapCreated: onCreated,
         onCameraChangeListener: onCameraChanged,
       );

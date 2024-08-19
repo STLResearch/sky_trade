@@ -1,5 +1,4 @@
 import 'package:bloc/bloc.dart' show Bloc, Emitter;
-import 'package:dartz/dartz.dart' show Either;
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:sky_ways/core/errors/failures/location_failure.dart'
     show LocationPermissionFailure;

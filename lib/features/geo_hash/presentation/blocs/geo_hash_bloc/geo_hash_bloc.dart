@@ -2,6 +2,7 @@ import 'package:bloc/bloc.dart' show Bloc, Emitter, EventTransformer;
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:rxdart/rxdart.dart' show DebounceExtensions;
 import 'package:sky_ways/core/resources/numbers/ui.dart' show three;
+import 'package:sky_ways/core/utils/typedefs/ui.dart' show Bounds, LatLng;
 import 'package:sky_ways/features/geo_hash/domain/repositories/geo_hash_repository.dart';
 
 part 'geo_hash_bloc.freezed.dart';
@@ -29,11 +30,24 @@ class GeoHashBloc extends Bloc<GeoHashEvent, GeoHashState> {
     _ComputeGeoHash event,
     Emitter<GeoHashState> emit,
   ) async {
-    final result = _geoHashRepository.geoHashForCoordinates(
-      latitude: event.latitude,
-      longitude: event.longitude,
-      precision: event.precision,
-    );
+    if (event.coordinates == null && event.bounds == null) {
+      emit(
+        const GeoHashState.failedToComputeGeoHash(),
+      );
+
+      return;
+    }
+
+    final result = switch (event.coordinates != null) {
+      true => _geoHashRepository.geoHashForCoordinates(
+          coordinates: event.coordinates!,
+          precision: event.precision,
+        ),
+      false => _geoHashRepository.geoHashForBounds(
+          bounds: event.bounds!,
+          precision: event.precision,
+        ),
+    };
 
     emit(
       GeoHashState.computedGeoHash(

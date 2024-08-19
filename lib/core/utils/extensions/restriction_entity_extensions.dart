@@ -42,7 +42,7 @@ extension RestrictionEntityExtensions on RestrictionEntity {
         RestrictionType.restricted => rawHexF68351,
       };
 
-  Color get fillColor => Color(
+  Color get indicatorFillColor => Color(
         switch (type) {
           RestrictionType.danger => rawHexB3BBBD48,
           RestrictionType.prohibited => rawHexB3E04F64,

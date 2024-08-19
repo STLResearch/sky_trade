@@ -3,3 +3,8 @@ enum AuthButtonType {
   connectWithGoogle,
   moreOptions,
 }
+
+enum MapStyle {
+  dark,
+  satellite;
+}

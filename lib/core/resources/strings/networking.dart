@@ -4,7 +4,6 @@ const web3AuthRpcUrl = 'WEB_3_AUTH_RPC_URL';
 const web3AuthWhitelistOriginIos = 'WEB_3_AUTH_WHITELIST_ORIGIN_IOS';
 const web3AuthWhitelistOriginAndroid = 'WEB_3_AUTH_WHITELIST_ORIGIN_ANDROID';
 // Paths
-const web3AuthPath = '/auth';
 // Param keys and values for extra login options
 const flowTypeKey = 'flow_type';
 const linkValue = 'link';
