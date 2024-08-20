@@ -1,12 +1,9 @@
+// ignore_for_file: strict_raw_type
+
 import 'package:dio/dio.dart' show Response;
 import 'package:sky_ways/core/errors/exceptions/u_a_s_restrictions_exception.dart';
 import 'package:sky_ways/core/resources/strings/networking.dart'
-    show
-        northEastLatitudeKey,
-        northEastLongitudeKey,
-        restrictionsPath,
-        southWestLatitudeKey,
-        southWestLongitudeKey;
+    show geoHashKey, restrictionsPath;
 import 'package:sky_ways/core/utils/clients/network_client.dart'
     show NetworkClient;
 import 'package:sky_ways/core/utils/clients/response_handler.dart';
@@ -15,11 +12,8 @@ import 'package:sky_ways/features/u_a_s_restrictions/data/models/restriction_mod
     show RestrictionModel;
 
 abstract interface class UASRestrictionsRemoteDataSource {
-  Future<List<RestrictionModel>> getRestrictionsWithin({
-    required double southWestLatitude,
-    required double southWestLongitude,
-    required double northEastLatitude,
-    required double northEastLongitude,
+  Future<List<RestrictionModel>> getRestrictionsUsing({
+    required String geoHash,
   });
 }
 
@@ -33,11 +27,8 @@ final class UASRestrictionsRemoteDataSourceImplementation
   final NetworkClient<Response> _networkClient;
 
   @override
-  Future<List<RestrictionModel>> getRestrictionsWithin({
-    required double southWestLatitude,
-    required double southWestLongitude,
-    required double northEastLatitude,
-    required double northEastLongitude,
+  Future<List<RestrictionModel>> getRestrictionsUsing({
+    required String geoHash,
   }) async =>
       (await handleResponse<UASRestrictionsException, List<dynamic>,
           List<RestrictionModel>>(
@@ -45,10 +36,7 @@ final class UASRestrictionsRemoteDataSourceImplementation
           requestMethod: RequestMethod.get,
           path: restrictionsPath,
           queryParameters: {
-            southWestLatitudeKey: southWestLatitude,
-            southWestLongitudeKey: southWestLongitude,
-            northEastLatitudeKey: northEastLatitude,
-            northEastLongitudeKey: northEastLongitude,
+            geoHashKey: geoHash,
           },
         ),
         onSuccess: (jsonList) => jsonList

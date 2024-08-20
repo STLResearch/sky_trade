@@ -7,11 +7,12 @@ import 'package:sky_ways/core/errors/failures/web_3_auth_failure.dart'
         Web3AuthAuthenticationFailure,
         Web3AuthInitializationFailure,
         Web3AuthLogoutFailure;
+import 'package:sky_ways/core/resources/strings/environments.dart'
+    show devEnvironment, flavours, liveEnvironment;
 import 'package:sky_ways/core/resources/strings/networking.dart'
     show
         flowTypeKey,
         linkValue,
-        web3AuthPath,
         web3AuthWhitelistOriginAndroid,
         web3AuthWhitelistOriginIos;
 import 'package:sky_ways/core/resources/strings/secret_keys.dart'
@@ -35,7 +36,7 @@ final class Web3AuthRepositoryImplementation implements Web3AuthRepository {
       initializeWeb3Auth() async {
     final web3AuthOptions = Web3AuthOptions(
       clientId: dotenv.env[web3AuthClientId]!,
-      network: Network.sapphire_devnet,
+      network: _network,
       redirectUrl: _redirectUrl,
     );
 
@@ -56,10 +57,22 @@ final class Web3AuthRepositoryImplementation implements Web3AuthRepository {
     }
   }
 
+  Network get _network {
+    const environment = String.fromEnvironment(
+      flavours,
+      defaultValue: devEnvironment,
+    );
+
+    if (environment != liveEnvironment) {
+      return Network.sapphire_devnet;
+    }
+
+    return Network.cyan;
+  }
+
   Uri get _redirectUrl {
     final iosRedirect = dotenv.env[web3AuthWhitelistOriginIos]!;
-    final androidRedirect =
-        dotenv.env[web3AuthWhitelistOriginAndroid]! + web3AuthPath;
+    final androidRedirect = dotenv.env[web3AuthWhitelistOriginAndroid]!;
 
     final redirectUrl = Uri.parse(
       switch (Platform.isIOS) {

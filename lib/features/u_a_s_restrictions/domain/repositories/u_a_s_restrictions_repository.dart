@@ -5,10 +5,7 @@ import 'package:sky_ways/features/u_a_s_restrictions/domain/entities/restriction
 
 abstract interface class UASRestrictionsRepository {
   Future<Either<UASRestrictionsFailure, List<RestrictionEntity>>>
-      getRestrictionsWithin({
-    required double southWestLatitude,
-    required double southWestLongitude,
-    required double northEastLatitude,
-    required double northEastLongitude,
+      getRestrictionsUsing({
+    required String geoHash,
   });
 }

@@ -1,5 +1,13 @@
 import 'package:flutter_bloc/flutter_bloc.dart' show BlocProvider;
 import 'package:get_it/get_it.dart' show GetIt;
+import 'package:sky_ways/features/cache_manager/presentation/blocs/cache_data_bloc/cache_data_bloc.dart'
+    show CacheDataBloc;
+import 'package:sky_ways/features/cache_manager/presentation/blocs/cached_data_bloc/cached_data_bloc.dart'
+    show CachedDataBloc;
+import 'package:sky_ways/features/geo_hash/presentation/blocs/geo_hash_bloc/geo_hash_bloc.dart'
+    show GeoHashBloc;
+import 'package:sky_ways/features/internet_connection_checker/presentation/blocs/internet_connection_checker_bloc/internet_connection_checker_bloc.dart'
+    show InternetConnectionCheckerBloc;
 import 'package:sky_ways/features/link_handler/presentation/blocs/check_link_bloc/check_link_bloc.dart'
     show CheckLinkBloc;
 import 'package:sky_ways/features/link_handler/presentation/blocs/handle_link_bloc/handle_link_bloc.dart'
@@ -26,6 +34,18 @@ import 'package:sky_ways/features/web_3_auth/presentation/blocs/web_3_auth_user_
 final _sl = GetIt.I;
 
 List<BlocProvider> get appBlocProvider => [
+      BlocProvider<CacheDataBloc>(
+        create: (_) => _sl(),
+      ),
+      BlocProvider<CachedDataBloc>(
+        create: (_) => _sl(),
+      ),
+      BlocProvider<GeoHashBloc>(
+        create: (_) => _sl(),
+      ),
+      BlocProvider<InternetConnectionCheckerBloc>(
+        create: (_) => _sl(),
+      ),
       BlocProvider<CheckLinkBloc>(
         create: (_) => _sl(),
       ),

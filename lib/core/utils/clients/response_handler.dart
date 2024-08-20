@@ -1,4 +1,4 @@
-import 'dart:convert';
+// ignore_for_file: strict_raw_type
 
 import 'package:dartz/dartz.dart' show Function0, Function1;
 import 'package:dio/dio.dart' show Response;

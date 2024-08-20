@@ -14,6 +14,29 @@ import 'package:sky_ways/features/location/domain/repositories/location_reposito
 
 final class LocationRepositoryImplementation implements LocationRepository {
   @override
+  Future<LocationPositionEntity> get locationPosition async {
+    final lastKnownPosition = await Geolocator.getLastKnownPosition();
+
+    if (lastKnownPosition != null) {
+      return LocationPositionEntity(
+        latitude: lastKnownPosition.latitude,
+        longitude: lastKnownPosition.longitude,
+        heading: lastKnownPosition.heading,
+      );
+    }
+
+    final currentPosition = await Geolocator.getCurrentPosition(
+      locationSettings: const LocationSettings(),
+    );
+
+    return LocationPositionEntity(
+      latitude: currentPosition.latitude,
+      longitude: currentPosition.longitude,
+      heading: currentPosition.heading,
+    );
+  }
+
+  @override
   Stream<Either<LocationPositionFailure, LocationPositionEntity>>
       get locationPositionStream {
     late final StreamController<

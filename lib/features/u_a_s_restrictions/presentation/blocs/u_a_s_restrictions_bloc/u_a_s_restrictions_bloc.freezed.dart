@@ -16,32 +16,20 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$UASRestrictionsEvent {
-  double get southWestLatitude => throw _privateConstructorUsedError;
-  double get southWestLongitude => throw _privateConstructorUsedError;
-  double get northEastLatitude => throw _privateConstructorUsedError;
-  double get northEastLongitude => throw _privateConstructorUsedError;
+  String get geoHash => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(
-            double southWestLatitude,
-            double southWestLongitude,
-            double northEastLatitude,
-            double northEastLongitude)
-        getRestrictions,
+    required TResult Function(String geoHash) getRestrictions,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(double southWestLatitude, double southWestLongitude,
-            double northEastLatitude, double northEastLongitude)?
-        getRestrictions,
+    TResult? Function(String geoHash)? getRestrictions,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(double southWestLatitude, double southWestLongitude,
-            double northEastLatitude, double northEastLongitude)?
-        getRestrictions,
+    TResult Function(String geoHash)? getRestrictions,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -73,11 +61,7 @@ abstract class $UASRestrictionsEventCopyWith<$Res> {
           $Res Function(UASRestrictionsEvent) then) =
       _$UASRestrictionsEventCopyWithImpl<$Res, UASRestrictionsEvent>;
   @useResult
-  $Res call(
-      {double southWestLatitude,
-      double southWestLongitude,
-      double northEastLatitude,
-      double northEastLongitude});
+  $Res call({String geoHash});
 }
 
 /// @nodoc
@@ -94,28 +78,13 @@ class _$UASRestrictionsEventCopyWithImpl<$Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? southWestLatitude = null,
-    Object? southWestLongitude = null,
-    Object? northEastLatitude = null,
-    Object? northEastLongitude = null,
+    Object? geoHash = null,
   }) {
     return _then(_value.copyWith(
-      southWestLatitude: null == southWestLatitude
-          ? _value.southWestLatitude
-          : southWestLatitude // ignore: cast_nullable_to_non_nullable
-              as double,
-      southWestLongitude: null == southWestLongitude
-          ? _value.southWestLongitude
-          : southWestLongitude // ignore: cast_nullable_to_non_nullable
-              as double,
-      northEastLatitude: null == northEastLatitude
-          ? _value.northEastLatitude
-          : northEastLatitude // ignore: cast_nullable_to_non_nullable
-              as double,
-      northEastLongitude: null == northEastLongitude
-          ? _value.northEastLongitude
-          : northEastLongitude // ignore: cast_nullable_to_non_nullable
-              as double,
+      geoHash: null == geoHash
+          ? _value.geoHash
+          : geoHash // ignore: cast_nullable_to_non_nullable
+              as String,
     ) as $Val);
   }
 }
@@ -128,11 +97,7 @@ abstract class _$$GetRestrictionsImplCopyWith<$Res>
       __$$GetRestrictionsImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {double southWestLatitude,
-      double southWestLongitude,
-      double northEastLatitude,
-      double northEastLongitude});
+  $Res call({String geoHash});
 }
 
 /// @nodoc
@@ -146,28 +111,13 @@ class __$$GetRestrictionsImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? southWestLatitude = null,
-    Object? southWestLongitude = null,
-    Object? northEastLatitude = null,
-    Object? northEastLongitude = null,
+    Object? geoHash = null,
   }) {
     return _then(_$GetRestrictionsImpl(
-      southWestLatitude: null == southWestLatitude
-          ? _value.southWestLatitude
-          : southWestLatitude // ignore: cast_nullable_to_non_nullable
-              as double,
-      southWestLongitude: null == southWestLongitude
-          ? _value.southWestLongitude
-          : southWestLongitude // ignore: cast_nullable_to_non_nullable
-              as double,
-      northEastLatitude: null == northEastLatitude
-          ? _value.northEastLatitude
-          : northEastLatitude // ignore: cast_nullable_to_non_nullable
-              as double,
-      northEastLongitude: null == northEastLongitude
-          ? _value.northEastLongitude
-          : northEastLongitude // ignore: cast_nullable_to_non_nullable
-              as double,
+      geoHash: null == geoHash
+          ? _value.geoHash
+          : geoHash // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -175,24 +125,14 @@ class __$$GetRestrictionsImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$GetRestrictionsImpl implements _GetRestrictions {
-  const _$GetRestrictionsImpl(
-      {required this.southWestLatitude,
-      required this.southWestLongitude,
-      required this.northEastLatitude,
-      required this.northEastLongitude});
+  const _$GetRestrictionsImpl({required this.geoHash});
 
   @override
-  final double southWestLatitude;
-  @override
-  final double southWestLongitude;
-  @override
-  final double northEastLatitude;
-  @override
-  final double northEastLongitude;
+  final String geoHash;
 
   @override
   String toString() {
-    return 'UASRestrictionsEvent.getRestrictions(southWestLatitude: $southWestLatitude, southWestLongitude: $southWestLongitude, northEastLatitude: $northEastLatitude, northEastLongitude: $northEastLongitude)';
+    return 'UASRestrictionsEvent.getRestrictions(geoHash: $geoHash)';
   }
 
   @override
@@ -200,19 +140,11 @@ class _$GetRestrictionsImpl implements _GetRestrictions {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$GetRestrictionsImpl &&
-            (identical(other.southWestLatitude, southWestLatitude) ||
-                other.southWestLatitude == southWestLatitude) &&
-            (identical(other.southWestLongitude, southWestLongitude) ||
-                other.southWestLongitude == southWestLongitude) &&
-            (identical(other.northEastLatitude, northEastLatitude) ||
-                other.northEastLatitude == northEastLatitude) &&
-            (identical(other.northEastLongitude, northEastLongitude) ||
-                other.northEastLongitude == northEastLongitude));
+            (identical(other.geoHash, geoHash) || other.geoHash == geoHash));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, southWestLatitude,
-      southWestLongitude, northEastLatitude, northEastLongitude);
+  int get hashCode => Object.hash(runtimeType, geoHash);
 
   @JsonKey(ignore: true)
   @override
@@ -224,39 +156,27 @@ class _$GetRestrictionsImpl implements _GetRestrictions {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(
-            double southWestLatitude,
-            double southWestLongitude,
-            double northEastLatitude,
-            double northEastLongitude)
-        getRestrictions,
+    required TResult Function(String geoHash) getRestrictions,
   }) {
-    return getRestrictions(southWestLatitude, southWestLongitude,
-        northEastLatitude, northEastLongitude);
+    return getRestrictions(geoHash);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(double southWestLatitude, double southWestLongitude,
-            double northEastLatitude, double northEastLongitude)?
-        getRestrictions,
+    TResult? Function(String geoHash)? getRestrictions,
   }) {
-    return getRestrictions?.call(southWestLatitude, southWestLongitude,
-        northEastLatitude, northEastLongitude);
+    return getRestrictions?.call(geoHash);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(double southWestLatitude, double southWestLongitude,
-            double northEastLatitude, double northEastLongitude)?
-        getRestrictions,
+    TResult Function(String geoHash)? getRestrictions,
     required TResult orElse(),
   }) {
     if (getRestrictions != null) {
-      return getRestrictions(southWestLatitude, southWestLongitude,
-          northEastLatitude, northEastLongitude);
+      return getRestrictions(geoHash);
     }
     return orElse();
   }
@@ -291,20 +211,11 @@ class _$GetRestrictionsImpl implements _GetRestrictions {
 }
 
 abstract class _GetRestrictions implements UASRestrictionsEvent {
-  const factory _GetRestrictions(
-      {required final double southWestLatitude,
-      required final double southWestLongitude,
-      required final double northEastLatitude,
-      required final double northEastLongitude}) = _$GetRestrictionsImpl;
+  const factory _GetRestrictions({required final String geoHash}) =
+      _$GetRestrictionsImpl;
 
   @override
-  double get southWestLatitude;
-  @override
-  double get southWestLongitude;
-  @override
-  double get northEastLatitude;
-  @override
-  double get northEastLongitude;
+  String get geoHash;
   @override
   @JsonKey(ignore: true)
   _$$GetRestrictionsImplCopyWith<_$GetRestrictionsImpl> get copyWith =>

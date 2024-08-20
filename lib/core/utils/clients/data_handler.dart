@@ -3,21 +3,21 @@ import 'package:dartz/dartz.dart'
 
 mixin class DataHandler {
   Future<Either<L, R>> handleData<L, R>({
-    required Future<R> dataSourceOperation,
+    required Function0<Future<R>> dataSourceOperation,
     required Function1<R, R> onSuccess,
-    required Function0<L> onFailure,
+    required Function1<Object, L> onFailure,
   }) async {
     try {
-      final result = await dataSourceOperation;
+      final result = await dataSourceOperation();
 
       return Right(
         onSuccess(
           result,
         ),
       );
-    } catch (_) {
+    } catch (o) {
       return Left(
-        onFailure(),
+        onFailure(o),
       );
     }
   }

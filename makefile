@@ -27,3 +27,10 @@ f-np: ## Creates a feature with no presentation layer
 
 	@echo "Creating domain layer repositories"
 	cd lib/features/example/domain/repositories && touch repository.dart
+
+clean: ## Cleans project
+	rm -f pubspec.lock
+	rm -f ios/Podfile.lock
+	flutter clean
+	flutter pub get
+	cd ios && pod install && cd ..

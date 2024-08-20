@@ -13,7 +13,7 @@ final class LinkHandlerRepositoryImplementation
     required String link,
   }) =>
       handleData<CheckLinkFailure, LinkEntity>(
-        dataSourceOperation: canLaunchUrl(
+        dataSourceOperation: () => canLaunchUrl(
           Uri.parse(
             link,
           ),
@@ -23,7 +23,7 @@ final class LinkHandlerRepositoryImplementation
           ),
         ),
         onSuccess: (linkEntity) => linkEntity,
-        onFailure: CheckLinkFailure.new,
+        onFailure: (_) => CheckLinkFailure(),
       );
 
   @override
@@ -31,7 +31,7 @@ final class LinkHandlerRepositoryImplementation
     required String link,
   }) =>
       handleData<HandleLinkFailure, LinkEntity>(
-        dataSourceOperation: launchUrl(
+        dataSourceOperation: () => launchUrl(
           Uri.parse(
             link,
           ),
@@ -41,6 +41,6 @@ final class LinkHandlerRepositoryImplementation
           ),
         ),
         onSuccess: (linkEntity) => linkEntity,
-        onFailure: HandleLinkFailure.new,
+        onFailure: (_) => HandleLinkFailure(),
       );
 }

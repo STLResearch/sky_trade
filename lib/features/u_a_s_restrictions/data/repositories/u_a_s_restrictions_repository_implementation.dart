@@ -19,21 +19,15 @@ final class UASRestrictionsRepositoryImplementation
 
   @override
   Future<Either<UASRestrictionsFailure, List<RestrictionEntity>>>
-      getRestrictionsWithin({
-    required double southWestLatitude,
-    required double southWestLongitude,
-    required double northEastLatitude,
-    required double northEastLongitude,
+      getRestrictionsUsing({
+    required String geoHash,
   }) =>
           handleData<UASRestrictionsFailure, List<RestrictionEntity>>(
-            dataSourceOperation:
-                _uASRestrictionsRemoteDataSource.getRestrictionsWithin(
-              southWestLatitude: southWestLatitude,
-              southWestLongitude: southWestLongitude,
-              northEastLatitude: northEastLatitude,
-              northEastLongitude: northEastLongitude,
+            dataSourceOperation: () =>
+                _uASRestrictionsRemoteDataSource.getRestrictionsUsing(
+              geoHash: geoHash,
             ),
             onSuccess: (restrictionEntities) => restrictionEntities,
-            onFailure: UASRestrictionsFailure.new,
+            onFailure: (_) => UASRestrictionsFailure(),
           );
 }

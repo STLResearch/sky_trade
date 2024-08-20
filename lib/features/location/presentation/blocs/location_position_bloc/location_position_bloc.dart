@@ -24,6 +24,10 @@ class LocationPositionBloc
         super(
           const LocationPositionState.initial(),
         ) {
+    on<_GetLocationPosition>(
+      _getLocationPosition,
+    );
+
     on<_ListenLocationPosition>(
       _listenLocationPosition,
     );
@@ -42,6 +46,23 @@ class LocationPositionBloc
   }
 
   final LocationRepository _locationRepository;
+
+  Future<void> _getLocationPosition(
+    _GetLocationPosition _,
+    Emitter<LocationPositionState> emit,
+  ) async {
+    emit(
+      const LocationPositionState.gettingLocationPosition(),
+    );
+
+    final result = await _locationRepository.locationPosition;
+
+    add(
+      LocationPositionEvent.locationPositionGotten(
+        locationPositionEntity: result,
+      ),
+    );
+  }
 
   StreamSubscription<Either<LocationPositionFailure, LocationPositionEntity>>?
       _locationPositionStreamSubscription;
