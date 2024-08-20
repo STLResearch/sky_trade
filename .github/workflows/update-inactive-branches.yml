@@ -1,0 +1,75 @@
+name: Update inactive branches
+
+on:
+  push:
+    branches:
+      - 'dev'
+      - 'main'
+
+permissions:
+  contents: write
+
+jobs:
+  update-inactive-branches-on-push-to-dev:
+    if: github.ref == 'refs/heads/dev'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out this repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: '0'
+
+      - name: Get latest refs
+        run: |
+          git fetch
+
+      - name: Checkout the 'ci/update-inactive-branches-workflow' branch, pull from 'dev' and push to the origin of the checked out branch
+        run: |
+          git checkout ci/update-inactive-branches-workflow
+          git pull origin dev
+          git push -u origin ci/update-inactive-branches-workflow
+
+      - name: Checkout the 'implementation/structure' branch, pull from 'dev' and push to the origin of the checked out branch
+        run: |
+          git checkout implementation/structure
+          git pull origin dev
+          git push -u origin implementation/structure
+
+      - name: Checkout the 'feature/web-3-auth' branch, pull from 'dev' and push to the origin of the checked out branch
+        run: |
+          git checkout feature/web-3-auth
+          git pull origin dev
+          git push -u origin feature/web-3-auth
+
+      - name: Checkout the 'feature/u-a-s-restrictions' branch, pull from 'dev' and push to the origin of the checked out branch
+        run: |
+          git checkout feature/u-a-s-restrictions
+          git pull origin dev
+          git push -u origin feature/u-a-s-restrictions
+
+      - name: Checkout the 'docs/read-me' branch, pull from 'dev' and push to the origin of the checked out branch
+        run: |
+          git checkout docs/read-me
+          git pull origin dev
+          git push -u origin docs/read-me
+
+  update-dev-on-push-to-main:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out this repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: '0'
+
+      - name: Get latest refs
+        run: |
+          git fetch
+
+      - name: Checkout the 'dev' branch, pull from 'main' and push to the origin of the checked out branch
+        run: |
+          git checkout dev
+          git pull origin main
+          git push -u origin dev
