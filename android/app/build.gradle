@@ -72,21 +72,21 @@ android {
     flavorDimensions "environment"
     productFlavors {
         dev {
+            versionNameSuffix ".dev"
             dimension "environment"
             resValue "string", "app_version", "${defaultConfig.versionName}${versionNameSuffix}"
-            applicationIdSuffix ".dev"
             signingConfig signingConfigs.debug
         }
         stage {
+            versionNameSuffix ".stage"
             dimension "environment"
             resValue "string", "app_version", "${defaultConfig.versionName}${versionNameSuffix}"
-            applicationIdSuffix ".stage"
             signingConfig signingConfigs.release
         }
         live {
+            versionNameSuffix ".live"
             dimension "environment"
             resValue "string", "app_version", "${defaultConfig.versionName}${versionNameSuffix}"
-            applicationIdSuffix ".live"
             signingConfig signingConfigs.release
         }
     }
