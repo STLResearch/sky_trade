@@ -4,12 +4,14 @@ on:
   push:
     branches:
       - 'dev'
+      - 'main'
 
 permissions:
   contents: write
 
 jobs:
-  build:
+  update-inactive-branches-on-push-to-dev:
+    if: github.ref == 'refs/heads/dev'
     runs-on: ubuntu-latest
 
     steps:
@@ -51,3 +53,23 @@ jobs:
           git checkout docs/read-me
           git pull origin dev
           git push -u origin docs/read-me
+
+  update-dev-on-push-to-main:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out this repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: '0'
+
+      - name: Get latest refs
+        run: |
+          git fetch
+
+      - name: Checkout the 'dev' branch, pull from 'main' and push to the origin of the checked out branch
+        run: |
+          git checkout dev
+          git pull origin main
+          git push -u origin dev
