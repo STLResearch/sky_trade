@@ -1,12 +1,12 @@
 package_rename_config:
   android:
     app_name: SkyTrade
-    package_name: trade.sky.utm
-    override_old_package: com.skytrade.sky_ways
+    package_name: trade.sky
+    override_old_package: trade.sky.utm
     lang: kotlin
 
   ios:
     app_name: SkyTrade
-    bundle_name: utm
-    override_old_package: com.skytrade.skyWays
-    package_name: trade.sky.utm
+    bundle_name: sky
+    override_old_package: trade.sky.utm
+    package_name: trade.sky
