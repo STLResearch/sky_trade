@@ -15,7 +15,8 @@ const skyTradePrivacyPolicyUrl = 'https://docs.sky.trade/privacy.htm';
 const skyTradeTermsOfServiceUrl = 'https://docs.sky.trade/terms.htm';
 // Endpoints
 // Base URL
-const skyTradeServerBaseUrl = 'SKYTRADE_SERVER_BASE_URL';
+const skyTradeServerHttpBaseUrl = 'SKYTRADE_SERVER_HTTP_BASE_URL';
+const skyTradeServerWebSocketBaseUrl = 'SKYTRADE_SERVER_WEB_SOCKET_BASE_URL';
 // Paths
 const restrictionsPath = '/restrictions';
 

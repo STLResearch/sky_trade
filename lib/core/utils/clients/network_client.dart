@@ -15,28 +15,50 @@ import 'package:sky_ways/core/resources/strings/networking.dart'
         bearerValue,
         contentTypeKey,
         contentTypeValue,
-        skyTradeServerBaseUrl;
+        skyTradeServerHttpBaseUrl,
+        skyTradeServerWebSocketBaseUrl;
 import 'package:sky_ways/core/resources/strings/special_characters.dart'
     show whiteSpace;
 import 'package:sky_ways/core/utils/enums/networking.dart' show RequestMethod;
+import 'package:web_socket_client/web_socket_client.dart' show WebSocket;
 
-abstract interface class NetworkClient<T> {
-  Future<T> request({
-    required RequestMethod requestMethod,
-    required String path,
-    Map<String, dynamic>? data,
-    Map<String, dynamic>? queryParameters,
-    String? bearerToken,
-  });
+final class WebSocketClient {
+  factory WebSocketClient() => WebSocketClient._();
+
+  WebSocketClient._()
+      : _webSocket = WebSocket(
+          Uri.parse(
+            dotenv.env[skyTradeServerWebSocketBaseUrl]!,
+          ),
+          timeout: const Duration(
+            seconds: requestConnectTimeoutSeconds,
+          ),
+        );
+
+  final WebSocket _webSocket;
+
+  Stream get messages => _webSocket.messages;
+
+  void send<T>(
+    T message,
+  ) {
+    _webSocket.send(
+      message,
+    );
+  }
+
+  void close() {
+    _webSocket.close();
+  }
 }
 
-final class HttpClient implements NetworkClient<Response> {
+final class HttpClient {
   factory HttpClient() => HttpClient._();
 
   HttpClient._()
       : _dio = Dio(
           BaseOptions(
-            baseUrl: dotenv.env[skyTradeServerBaseUrl]!,
+            baseUrl: dotenv.env[skyTradeServerHttpBaseUrl]!,
             connectTimeout: const Duration(
               seconds: requestConnectTimeoutSeconds,
             ),
@@ -55,7 +77,6 @@ final class HttpClient implements NetworkClient<Response> {
 
   final Dio _dio;
 
-  @override
   Future<Response> request({
     required RequestMethod requestMethod,
     required String path,
