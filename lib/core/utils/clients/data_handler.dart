@@ -1,3 +1,5 @@
+import 'dart:async' show StreamController, StreamSubscription;
+
 import 'package:dartz/dartz.dart'
     show Either, Function0, Function1, Left, Right;
 
@@ -15,10 +17,49 @@ mixin class DataHandler {
           result,
         ),
       );
-    } catch (o) {
+    } catch (e) {
       return Left(
-        onFailure(o),
+        onFailure(
+          e,
+        ),
       );
     }
+  }
+
+  Stream<Either<L, R>> transformData<L, T, R>({
+    required Function0<Stream<T>> dataSourceStream,
+    required Function1<T, R> onData,
+    required Function0<L> onError,
+    Function0<void>? onCancel,
+  }) {
+    late final StreamController<Either<L, R>> streamController;
+    late final StreamSubscription<T> streamSubscription;
+
+    streamController = StreamController<Either<L, R>>(
+      onListen: () {
+        streamSubscription = dataSourceStream().listen(
+          (result) => streamController.add(
+            Right(
+              onData(
+                result,
+              ),
+            ),
+          ),
+          onError: (_) => streamController.add(
+            Left(
+              onError(),
+            ),
+          ),
+        );
+      },
+      onCancel: () {
+        if (onCancel != null) onCancel();
+
+        streamController.close();
+        streamSubscription.cancel();
+      },
+    );
+
+    return streamController.stream;
   }
 }

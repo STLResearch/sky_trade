@@ -8,6 +8,8 @@ abstract interface class LocationRepository {
   Stream<Either<LocationPositionFailure, LocationPositionEntity>>
       get locationPositionStream;
 
+  Future<LocationServiceStatusEntity> get locationServiceStatus;
+
   Stream<Either<LocationServiceStatusFailure, LocationServiceStatusEntity>>
       get locationServiceStatusStream;
 
