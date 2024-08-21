@@ -8,7 +8,7 @@ import 'package:sky_ways/core/errors/failures/web_3_auth_failure.dart'
         Web3AuthInitializationFailure,
         Web3AuthLogoutFailure;
 import 'package:sky_ways/core/resources/strings/environments.dart'
-    show devEnvironment, flavours, liveEnvironment;
+    show devEnvironment, flavours;
 import 'package:sky_ways/core/resources/strings/networking.dart'
     show
         flowTypeKey,
@@ -63,7 +63,7 @@ final class Web3AuthRepositoryImplementation implements Web3AuthRepository {
       defaultValue: devEnvironment,
     );
 
-    if (environment != liveEnvironment) {
+    if (environment == devEnvironment) {
       return Network.sapphire_devnet;
     }
 
