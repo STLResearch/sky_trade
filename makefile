@@ -33,4 +33,4 @@ clean: ## Cleans project
 	rm -f ios/Podfile.lock
 	flutter clean
 	flutter pub get
-	cd ios && pod install && cd ..
+	cd ios && pod repo update && pod install && cd ..
