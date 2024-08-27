@@ -12,10 +12,10 @@ import 'package:flutter/material.dart'
         ValueNotifier,
         VisualDensity,
         Widget;
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:sky_ways/core/resources/colors.dart' show hex0653EA, hex87878D;
 import 'package:sky_ways/core/resources/numbers/ui.dart'
     show eightDotNil, fourteenDotNil, minusFourDotNil, twentyOneDotNil;
+import 'package:sky_ways/core/utils/extensions/build_context_extensions.dart';
 
 final class SubscribeSection extends StatelessWidget {
   const SubscribeSection({
@@ -51,7 +51,7 @@ final class SubscribeSection extends StatelessWidget {
             width: eightDotNil,
           ),
           Text(
-            AppLocalizations.of(context)!.subscribeToNewsletter,
+            context.localize.subscribeToNewsletter,
             style: Theme.of(context).textTheme.bodySmall?.copyWith(
                   fontSize: fourteenDotNil,
                   height: twentyOneDotNil / fourteenDotNil,

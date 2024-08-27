@@ -2,7 +2,6 @@ import 'dart:typed_data' show Uint8List;
 
 import 'package:flutter/material.dart' show BuildContext, Color;
 import 'package:flutter/services.dart' show rootBundle;
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:sky_ways/core/resources/colors.dart'
     show
         rawHex33BBBD48,
@@ -27,6 +26,7 @@ import 'package:sky_ways/core/resources/strings/asset_paths.dart'
         markerRestrictedAssetPath,
         prohibitedAssetPath;
 import 'package:sky_ways/core/utils/enums/networking.dart' show RestrictionType;
+import 'package:sky_ways/core/utils/extensions/build_context_extensions.dart';
 import 'package:sky_ways/features/u_a_s_restrictions/domain/entities/restriction_entity.dart';
 
 extension RestrictionEntityExtensions on RestrictionEntity {
@@ -72,12 +72,9 @@ extension RestrictionEntityExtensions on RestrictionEntity {
     required BuildContext context,
   }) =>
       switch (type) {
-        RestrictionType.danger =>
-          AppLocalizations.of(context)!.specialUseAirspace,
-        RestrictionType.prohibited =>
-          AppLocalizations.of(context)!.flightRestrictedAirspace,
-        RestrictionType.restricted =>
-          AppLocalizations.of(context)!.controlledAirspace,
+        RestrictionType.danger => context.localize.specialUseAirspace,
+        RestrictionType.prohibited => context.localize.flightRestrictedAirspace,
+        RestrictionType.restricted => context.localize.controlledAirspace,
       };
 
   String get restrictionSheetTitleInfoAssetPath => switch (type) {

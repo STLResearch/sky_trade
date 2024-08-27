@@ -19,7 +19,6 @@ import 'package:flutter/material.dart'
         VoidCallback,
         Widget,
         WidgetStatePropertyAll;
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_svg/flutter_svg.dart' show SvgPicture;
 import 'package:sky_ways/core/resources/colors.dart' show hex595959, hexFFFFFF;
 import 'package:sky_ways/core/resources/numbers/ui.dart'
@@ -33,6 +32,7 @@ import 'package:sky_ways/core/resources/numbers/ui.dart'
 import 'package:sky_ways/core/resources/strings/asset_paths.dart'
     show googleAssetPath;
 import 'package:sky_ways/core/utils/enums/ui.dart' show AuthButtonType;
+import 'package:sky_ways/core/utils/extensions/build_context_extensions.dart';
 
 final class AuthButton extends StatelessWidget {
   const AuthButton({
@@ -133,11 +133,10 @@ final class AuthButton extends StatelessWidget {
   ) =>
       Text(
         switch (type) {
-          AuthButtonType.getStarted => AppLocalizations.of(context)!.getStarted,
+          AuthButtonType.getStarted => context.localize.getStarted,
           AuthButtonType.connectWithGoogle =>
-            AppLocalizations.of(context)!.connectWithGoogle,
-          AuthButtonType.moreOptions =>
-            AppLocalizations.of(context)!.moreOptions,
+            context.localize.connectWithGoogle,
+          AuthButtonType.moreOptions => context.localize.moreOptions,
         },
         style: Theme.of(context).textTheme.bodyMedium?.copyWith(
               fontSize: fifteenDotNil,

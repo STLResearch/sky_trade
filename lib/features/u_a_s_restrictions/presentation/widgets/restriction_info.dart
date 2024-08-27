@@ -22,7 +22,6 @@ import 'package:flutter/material.dart'
         Theme,
         Widget;
 import 'package:flutter_bloc/flutter_bloc.dart' show ReadContext;
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_svg/svg.dart' show SvgPicture;
 import 'package:sky_ways/core/resources/colors.dart'
     show hex1E1E1E, hex9D9D9D, hexF4F4F4;
@@ -47,6 +46,7 @@ import 'package:sky_ways/core/resources/numbers/ui.dart'
         twentyTwoDotNil;
 import 'package:sky_ways/core/resources/strings/asset_paths.dart'
     show arrowAssetPath;
+import 'package:sky_ways/core/utils/extensions/build_context_extensions.dart';
 import 'package:sky_ways/core/utils/extensions/restriction_entity_extensions.dart';
 import 'package:sky_ways/features/link_handler/presentation/blocs/handle_link_bloc/handle_link_bloc.dart'
     show HandleLinkBloc, HandleLinkEvent;
@@ -160,7 +160,7 @@ class RestrictionInfo extends StatelessWidget {
                       mainAxisSize: MainAxisSize.min,
                       children: [
                         Text(
-                          AppLocalizations.of(context)!.address,
+                          context.localize.address,
                           style:
                               Theme.of(context).textTheme.bodySmall?.copyWith(
                                     color: hex9D9D9D,

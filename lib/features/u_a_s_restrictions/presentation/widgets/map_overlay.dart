@@ -16,7 +16,6 @@ import 'package:flutter/material.dart'
         Text,
         Theme,
         Widget;
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_svg/svg.dart' show SvgPicture;
 import 'package:sky_ways/core/resources/colors.dart' show hex222222;
 import 'package:sky_ways/core/resources/numbers/ui.dart'
@@ -36,6 +35,7 @@ import 'package:sky_ways/core/resources/strings/asset_paths.dart'
         myLocationNotFollowedAssetPath,
         sunAssetPath;
 import 'package:sky_ways/core/utils/enums/ui.dart' show MapStyle;
+import 'package:sky_ways/core/utils/extensions/build_context_extensions.dart';
 import 'package:sky_ways/features/u_a_s_restrictions/presentation/widgets/options_card.dart';
 
 class MapOverlay extends StatelessWidget {
@@ -109,8 +109,7 @@ class MapOverlay extends StatelessWidget {
                           sunAssetPath,
                         ),
                         Text(
-                          AppLocalizations.of(context)!.twenty +
-                              AppLocalizations.of(context)!.degrees,
+                          context.localize.twenty + context.localize.degrees,
                           style: Theme.of(context)
                               .textTheme
                               .bodySmall
