@@ -375,10 +375,10 @@ packages:
     dependency: transitive
     description:
       name: flutter_plugin_android_lifecycle
-      sha256: "9d98bd47ef9d34e803d438f17fd32b116d31009f534a6fa5ce3a1167f189a6de"
+      sha256: "9ee02950848f61c4129af3d6ec84a1cfc0e47931abc746b03e7a3bc3e8ff6eda"
       url: "https://pub.dev"
     source: hosted
-    version: "2.0.21"
+    version: "2.0.22"
   flutter_svg:
     dependency: "direct main"
     description:
@@ -681,10 +681,10 @@ packages:
     dependency: transitive
     description:
       name: mime
-      sha256: "2e123074287cc9fd6c09de8336dae606d1ddb88d9ac47358826db698c176a1f2"
+      sha256: "801fd0b26f14a4a58ccb09d5892c3fbdeff209594300a542492cf13fba9d247a"
       url: "https://pub.dev"
     source: hosted
-    version: "1.0.5"
+    version: "1.0.6"
   mockito:
     dependency: "direct dev"
     description:
@@ -882,6 +882,22 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.99"
+  socket_io_client:
+    dependency: "direct main"
+    description:
+      name: socket_io_client
+      sha256: "15c9deae04e2b21065adbe864a641e0a5fc2499ff4c89e98a3877aea22ce841c"
+      url: "https://pub.dev"
+    source: hosted
+    version: "3.0.0-beta.2"
+  socket_io_common:
+    dependency: transitive
+    description:
+      name: socket_io_common
+      sha256: "5ad0f12e1b17f4300b0d6a27feaf1b7c1153ca21498ba307f0297b81449f7a44"
+      url: "https://pub.dev"
+    source: hosted
+    version: "3.0.0-beta.0"
   source_gen:
     dependency: transitive
     description:
@@ -1170,22 +1186,22 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "5.0.3"
+  web_socket:
+    dependency: transitive
+    description:
+      name: web_socket
+      sha256: "3c12d96c0c9a4eec095246debcea7b86c0324f22df69893d538fcc6f1b8cce83"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.1.6"
   web_socket_channel:
     dependency: transitive
     description:
       name: web_socket_channel
-      sha256: d88238e5eac9a42bb43ca4e721edba3c08c6354d4a53063afaa568516217621b
+      sha256: "9f187088ed104edd8662ca07af4b124465893caf063ba29758f97af57e61da8f"
       url: "https://pub.dev"
     source: hosted
-    version: "2.4.0"
-  web_socket_client:
-    dependency: "direct main"
-    description:
-      name: web_socket_client
-      sha256: de52c9b3acf1f9fafb2951aa2764dd67c7d99d70be70c7c1fd791fae8f632f98
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.1.0"
+    version: "3.0.1"
   xdg_directories:
     dependency: transitive
     description:

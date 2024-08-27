@@ -32,7 +32,7 @@ mixin class ResponseHandler {
   }
 
   Stream<S> transformResponse<E extends Exception, T, S>({
-    required Function0<Stream<T>> communicationInitiator,
+    required Function0<Stream<T>> source,
     required Function1<T, S> onData,
     required Function0<E> onError,
     Function0<void>? onCancel,
@@ -42,7 +42,7 @@ mixin class ResponseHandler {
 
     streamController = StreamController<S>(
       onListen: () {
-        streamSubscription = communicationInitiator().listen(
+        streamSubscription = source().listen(
           (result) => streamController.add(
             onData(
               result,

@@ -8,8 +8,8 @@ final _sl = GetIt.I;
 Future<void> registerCoreServices() async {
   _sl
     // Clients
-    ..registerLazySingleton<WebSocketClient>(
-      WebSocketClient.new,
+    ..registerLazySingleton<SocketIOClient>(
+      SocketIOClient.new,
     )
     ..registerLazySingleton<HttpClient>(
       HttpClient.new,

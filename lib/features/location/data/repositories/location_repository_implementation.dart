@@ -41,7 +41,7 @@ final class LocationRepositoryImplementation
   Stream<Either<LocationPositionFailure, LocationPositionEntity>>
       get locationPositionStream => transformData<LocationPositionFailure,
               Position, LocationPositionEntity>(
-            dataSourceStream: () => Geolocator.getPositionStream(
+            sourceStream: () => Geolocator.getPositionStream(
               locationSettings: const LocationSettings(),
             ),
             onData: (position) => LocationPositionEntity(
@@ -66,7 +66,7 @@ final class LocationRepositoryImplementation
               LocationServiceStatusFailure,
               ServiceStatus,
               LocationServiceStatusEntity>(
-            dataSourceStream: Geolocator.getServiceStatusStream,
+            sourceStream: Geolocator.getServiceStatusStream,
             onData: (serviceStatus) => LocationServiceStatusEntity(
               enabled: serviceStatus == ServiceStatus.enabled,
             ),

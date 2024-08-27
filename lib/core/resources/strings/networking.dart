@@ -16,9 +16,19 @@ const skyTradeTermsOfServiceUrl = 'https://docs.sky.trade/terms.htm';
 // Endpoints
 // Base URL
 const skyTradeServerHttpBaseUrl = 'SKYTRADE_SERVER_HTTP_BASE_URL';
-const skyTradeServerWebSocketBaseUrl = 'SKYTRADE_SERVER_WEB_SOCKET_BASE_URL';
+const skyTradeServerSocketIOBaseUrl = 'SKYTRADE_SERVER_SOCKET_IO_BASE_URL';
 // Paths
 const restrictionsPath = '/restrictions';
+
+// Socket IO
+const websocketTransport = 'websocket';
+
+const uasActivityEvent = 'get-sql-drone-data-response';
+const uasActivityRoom = 'get-sql-drone-data';
+
+const connectionTimeoutEvent = 'connect_timeout';
+const connectingEvent = 'connecting';
+const reconnectingEvent = 'reconnecting';
 
 // Request and response header and body keys and values
 // Headers

@@ -49,3 +49,12 @@ enum RegionType {
   @JsonValue(multiPolygonValue)
   multiPolygon,
 }
+
+enum ConnectionState {
+  connected,
+  connectionError,
+  connectionTimeout,
+  connecting,
+  disconnected,
+  error,
+}

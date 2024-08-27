@@ -27,7 +27,7 @@ mixin class DataHandler {
   }
 
   Stream<Either<L, R>> transformData<L, T, R>({
-    required Function0<Stream<T>> dataSourceStream,
+    required Function0<Stream<T>> sourceStream,
     required Function1<T, R> onData,
     required Function0<L> onError,
     Function0<void>? onCancel,
@@ -37,7 +37,7 @@ mixin class DataHandler {
 
     streamController = StreamController<Either<L, R>>(
       onListen: () {
-        streamSubscription = dataSourceStream().listen(
+        streamSubscription = sourceStream().listen(
           (result) => streamController.add(
             Right(
               onData(
