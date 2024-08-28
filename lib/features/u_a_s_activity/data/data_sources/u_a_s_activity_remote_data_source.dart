@@ -38,7 +38,7 @@ final class UASActivityRemoteDataSourceImplementation
         onResponse: (response) {
           final jsonList = response[dataKey] as List<dynamic>;
 
-          final uasModelList = jsonList
+          final uasModels = jsonList
               .map(
                 (json) => UASModel.fromJson(
                   json as Map<String, dynamic>,
@@ -47,7 +47,7 @@ final class UASActivityRemoteDataSourceImplementation
               .toList();
 
           onUASActivitiesGotten(
-            uasModelList,
+            uasModels,
           );
         },
         onConnectionChanged: onConnectionChanged,
