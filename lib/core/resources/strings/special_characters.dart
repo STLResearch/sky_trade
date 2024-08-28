@@ -5,7 +5,7 @@ const whiteSpace = ' ';
 const asterisk = '*';
 const fullStop = '.';
 // const centerDot = '᛫';
-// const emptyString = '';
+const emptyString = '';
 // const threeDots = '...';
 // const comma = ',';
 // const equals = '=';
