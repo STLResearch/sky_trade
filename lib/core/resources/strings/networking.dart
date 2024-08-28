@@ -19,6 +19,8 @@ const skyTradeServerHttpBaseUrl = 'SKYTRADE_SERVER_HTTP_BASE_URL';
 const skyTradeServerSocketIOBaseUrl = 'SKYTRADE_SERVER_SOCKET_IO_BASE_URL';
 // Paths
 const restrictionsPath = '/restrictions';
+const remoteIdentifierPath = '/remoteIdentifier';
+const getSqlDroneDataPath = '/get-sql-drone-data';
 
 // Socket IO
 const websocketTransport = 'websocket';

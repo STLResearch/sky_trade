@@ -18,6 +18,8 @@ import 'package:sky_ways/features/location/presentation/blocs/location_position_
     show LocationPositionBloc;
 import 'package:sky_ways/features/location/presentation/blocs/location_service_status_bloc/location_service_status_bloc.dart'
     show LocationServiceStatusBloc;
+import 'package:sky_ways/features/u_a_s_activity/presentation/blocs/u_a_s_activity_bloc/u_a_s_activity_bloc.dart'
+    show UASActivityBloc;
 import 'package:sky_ways/features/u_a_s_restrictions/presentation/blocs/u_a_s_restrictions_bloc/u_a_s_restrictions_bloc.dart'
     show UASRestrictionsBloc;
 import 'package:sky_ways/features/web_3_auth/presentation/blocs/web_3_auth_capture_custom_tabs_closed_bloc/web_3_auth_capture_custom_tabs_closed_bloc.dart'
@@ -59,6 +61,9 @@ List<BlocProvider> get appBlocProvider => [
         create: (_) => _sl(),
       ),
       BlocProvider<LocationServiceStatusBloc>(
+        create: (_) => _sl(),
+      ),
+      BlocProvider<UASActivityBloc>(
         create: (_) => _sl(),
       ),
       BlocProvider<UASRestrictionsBloc>(
