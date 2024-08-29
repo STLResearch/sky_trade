@@ -1,5 +1,7 @@
 // ignore_for_file: unnecessary_null_checks
 
+import 'package:firebase_analytics/firebase_analytics.dart' show FirebaseAnalytics;
+import 'package:firebase_core/firebase_core.dart' show Firebase;
 import 'package:flutter/foundation.dart' show VoidCallback, kIsWeb;
 import 'package:flutter/material.dart' show WidgetsFlutterBinding, runApp;
 import 'package:flutter_dotenv/flutter_dotenv.dart' show dotenv;
@@ -18,6 +20,7 @@ import 'package:sky_ways/core/resources/strings/secret_keys.dart'
     show sentryDsn;
 import 'package:sky_ways/core/resources/strings/special_characters.dart'
     show fullStop;
+import 'package:sky_ways/firebase_options.dart';
 import 'package:sky_ways/injection_container.dart' show registerServices;
 
 void main() => _loadEnv().then(
@@ -58,6 +61,14 @@ Future<void> _initializeImportantResources() async {
 
   FlutterNativeSplash.preserve(
     widgetsBinding: widgetsBinding,
+  );
+
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+
+  await FirebaseAnalytics.instance.setAnalyticsCollectionEnabled(
+    _environment != devEnvironment,
   );
 
   HydratedBloc.storage = await HydratedStorage.build(
