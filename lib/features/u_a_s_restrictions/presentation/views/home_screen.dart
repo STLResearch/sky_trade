@@ -43,6 +43,8 @@ import 'package:sky_ways/features/location/presentation/blocs/location_service_s
         LocationServiceStatusBloc,
         LocationServiceStatusEvent,
         LocationServiceStatusState;
+import 'package:sky_ways/features/u_a_s_activity/presentation/blocs/u_a_s_activity_bloc/u_a_s_activity_bloc.dart'
+    show UASActivityBloc, UASActivityEvent, UASActivityState;
 import 'package:sky_ways/features/u_a_s_restrictions/domain/entities/restriction_entity.dart'
     show RestrictionEntity;
 import 'package:sky_ways/features/u_a_s_restrictions/presentation/blocs/u_a_s_restrictions_bloc/u_a_s_restrictions_bloc.dart'
@@ -83,10 +85,16 @@ class _HomeScreenState extends State<HomeScreen> {
       MapStyle.satellite,
     );
 
+    _listenUASActivities();
+
     _requestLocationPermission();
 
     super.initState();
   }
+
+  void _listenUASActivities() => context.read<UASActivityBloc>().add(
+        const UASActivityEvent.listenUASActivities(),
+      );
 
   void _requestLocationPermission() =>
       context.read<LocationPermissionBloc>().add(
@@ -95,11 +103,16 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   void deactivate() {
+    _stopListeningUASActivities();
     _stopListeningLocationPosition();
     _stopListeningLocationServiceStatus();
 
     super.deactivate();
   }
+
+  void _stopListeningUASActivities() => context.read<UASActivityBloc>().add(
+        const UASActivityEvent.stopListeningUASActivities(),
+      );
 
   void _stopListeningLocationPosition() =>
       context.read<LocationPositionBloc>().add(
@@ -215,6 +228,12 @@ class _HomeScreenState extends State<HomeScreen> {
             listener: (_, geoHashState) {
               geoHashState.whenOrNull(
                 computedGeoHash: (geoHash) {
+                  context.read<UASActivityBloc>().add(
+                        UASActivityEvent.requestNewUASActivitiesAround(
+                          geoHash: geoHash,
+                        ),
+                      );
+
                   context.read<CachedDataBloc>().add(
                         CachedDataEvent.getCachedData(
                           name: geoHash,
