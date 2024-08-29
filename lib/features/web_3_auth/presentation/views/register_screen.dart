@@ -18,7 +18,6 @@ import 'package:flutter/material.dart'
         WidgetsBindingObserver;
 import 'package:flutter_bloc/flutter_bloc.dart'
     show BlocBuilder, BlocListener, ReadContext;
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:sky_ways/core/resources/numbers/ui.dart'
     show fifteenDotNil, tenDotNil, thirtyDotNil;
 import 'package:sky_ways/core/resources/strings/networking.dart'
@@ -27,6 +26,7 @@ import 'package:sky_ways/core/resources/strings/routes.dart'
     show homeRoutePath, loginRoutePath;
 import 'package:sky_ways/core/utils/enums/networking.dart' show AuthProvider;
 import 'package:sky_ways/core/utils/enums/ui.dart' show AuthButtonType;
+import 'package:sky_ways/core/utils/extensions/build_context_extensions.dart';
 import 'package:sky_ways/features/link_handler/presentation/blocs/handle_link_bloc/handle_link_bloc.dart'
     show HandleLinkBloc, HandleLinkEvent;
 import 'package:sky_ways/features/web_3_auth/presentation/blocs/web_3_auth_capture_custom_tabs_closed_bloc/web_3_auth_capture_custom_tabs_closed_bloc.dart'
@@ -106,8 +106,8 @@ class _RegisterScreenState extends State<RegisterScreen>
 
               AlertSnackBar.show(
                 context,
-                message: AppLocalizations.of(context)!
-                    .weCouldNotRegisterYourAccountPleaseTryAgain,
+                message: context
+                    .localize.weCouldNotRegisterYourAccountPleaseTryAgain,
               );
             },
             registered: (_) {
@@ -121,8 +121,8 @@ class _RegisterScreenState extends State<RegisterScreen>
           );
         },
         child: AuthScreen(
-          title: AppLocalizations.of(context)!.welcomeToSkyTrade,
-          subtitle: AppLocalizations.of(context)!.register,
+          title: context.localize.welcomeToSkyTrade,
+          subtitle: context.localize.register,
           padding: const EdgeInsetsDirectional.all(
             thirtyDotNil,
           ),
@@ -246,8 +246,8 @@ class _RegisterScreenState extends State<RegisterScreen>
             ),
             BlocBuilder<Web3AuthRegisterBloc, Web3AuthRegisterState>(
               builder: (_, web3AuthRegisterState) => FooterSection(
-                text: AppLocalizations.of(context)!.alreadyHaveAnAccount,
-                clickableText: AppLocalizations.of(context)!.login,
+                text: context.localize.alreadyHaveAnAccount,
+                clickableText: context.localize.login,
                 clickableTextEnabled: web3AuthRegisterState.maybeWhen(
                   registering: () => false,
                   orElse: () => true,

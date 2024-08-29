@@ -59,6 +59,14 @@ class LocationServiceStatusBloc
       const LocationServiceStatusState.gettingLocationServiceStatus(),
     );
 
+    final result = await _locationRepository.locationServiceStatus;
+
+    add(
+      LocationServiceStatusEvent.locationServiceStatusGotten(
+        locationServiceStatusEntity: result,
+      ),
+    );
+
     _locationServiceStatusStreamSubscription =
         _locationRepository.locationServiceStatusStream.listen(
       (

@@ -9,9 +9,9 @@ import 'package:flutter/material.dart'
         Text,
         Theme,
         Widget;
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:sky_ways/core/resources/colors.dart' show hexCCCCCC;
 import 'package:sky_ways/core/resources/numbers/ui.dart' show nineDotNil;
+import 'package:sky_ways/core/utils/extensions/build_context_extensions.dart';
 import 'package:sky_ways/features/web_3_auth/presentation/widgets/section_divider.dart';
 
 final class OrSection extends StatelessWidget {
@@ -29,7 +29,7 @@ final class OrSection extends StatelessWidget {
               horizontal: nineDotNil,
             ),
             child: Text(
-              AppLocalizations.of(context)!.or,
+              context.localize.or,
               style: Theme.of(context).textTheme.bodySmall?.copyWith(
                     color: hexCCCCCC,
                   ),

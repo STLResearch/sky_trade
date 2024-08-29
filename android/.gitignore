@@ -16,3 +16,6 @@ key.properties
 # App bundles and apks
 **/*.apk
 **/*.aab
+
+# Firebase
+app/google-services.json

@@ -1,4 +1,4 @@
-package trade.sky.utm
+package trade.sky
 
 import io.flutter.embedding.android.FlutterActivity
 

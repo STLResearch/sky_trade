@@ -8,10 +8,10 @@ import 'package:flutter/material.dart'
         Theme,
         VoidCallback,
         Widget;
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:sky_ways/core/resources/colors.dart' show hex0653EA, hex0754E9;
 import 'package:sky_ways/core/resources/strings/special_characters.dart'
     show whiteSpace;
+import 'package:sky_ways/core/utils/extensions/build_context_extensions.dart';
 import 'package:sky_ways/features/web_3_auth/presentation/widgets/spannable_text.dart';
 
 final class AgreementSection extends StatelessWidget {
@@ -30,13 +30,11 @@ final class AgreementSection extends StatelessWidget {
           children: [
             SpannableText.buildWith(
               context,
-              text:
-                  AppLocalizations.of(context)!.byCreatingAnAccountIAgreeWith +
-                      whiteSpace,
+              text: context.localize.byCreatingAnAccountIAgreeWith + whiteSpace,
             ),
             SpannableText.buildWith(
               context,
-              text: AppLocalizations.of(context)!.termsAndConditions,
+              text: context.localize.termsAndConditions,
               onTap: onTermsAndConditionsTap,
               textStyle: Theme.of(context).textTheme.bodySmall?.copyWith(
                     color: hex0653EA,
@@ -44,11 +42,11 @@ final class AgreementSection extends StatelessWidget {
             ),
             SpannableText.buildWith(
               context,
-              text: whiteSpace + AppLocalizations.of(context)!.and + whiteSpace,
+              text: whiteSpace + context.localize.and + whiteSpace,
             ),
             SpannableText.buildWith(
               context,
-              text: AppLocalizations.of(context)!.privacyPolicy,
+              text: context.localize.privacyPolicy,
               onTap: onPrivacyPolicyTap,
               textStyle: Theme.of(context).textTheme.bodySmall?.copyWith(
                     color: hex0754E9,
@@ -56,7 +54,7 @@ final class AgreementSection extends StatelessWidget {
             ),
             SpannableText.buildWith(
               context,
-              text: whiteSpace + AppLocalizations.of(context)!.agreement,
+              text: whiteSpace + context.localize.agreement,
             ),
           ],
         ),

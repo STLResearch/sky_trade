@@ -21,13 +21,13 @@ import 'package:flutter/material.dart'
         WidgetsBindingObserver;
 import 'package:flutter_bloc/flutter_bloc.dart'
     show BlocBuilder, BlocListener, ReadContext;
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:sky_ways/core/resources/numbers/ui.dart'
     show fifteenDotNil, fiveDotNil, thirtyDotNil;
 import 'package:sky_ways/core/resources/strings/routes.dart'
     show homeRoutePath, registerRoutePath;
 import 'package:sky_ways/core/utils/enums/networking.dart' show AuthProvider;
 import 'package:sky_ways/core/utils/enums/ui.dart' show AuthButtonType;
+import 'package:sky_ways/core/utils/extensions/build_context_extensions.dart';
 import 'package:sky_ways/features/web_3_auth/presentation/blocs/web_3_auth_capture_custom_tabs_closed_bloc/web_3_auth_capture_custom_tabs_closed_bloc.dart'
     show
         Web3AuthCaptureCustomTabsClosedBloc,
@@ -97,8 +97,7 @@ class _LoginScreenState extends State<LoginScreen> with WidgetsBindingObserver {
 
               AlertSnackBar.show(
                 context,
-                message: AppLocalizations.of(context)!
-                    .weCouldNotLogYouInPleaseTryAgain,
+                message: context.localize.weCouldNotLogYouInPleaseTryAgain,
               );
             },
             loggedIn: (_) {
@@ -112,14 +111,14 @@ class _LoginScreenState extends State<LoginScreen> with WidgetsBindingObserver {
           );
         },
         child: AuthScreen(
-          title: AppLocalizations.of(context)!.welcomeBackToSkyTrade,
-          subtitle: AppLocalizations.of(context)!.login,
+          title: context.localize.welcomeBackToSkyTrade,
+          subtitle: context.localize.login,
           padding: const EdgeInsetsDirectional.all(
             thirtyDotNil,
           ),
           children: [
             Text(
-              AppLocalizations.of(context)!.signInEffortlessly,
+              context.localize.signInEffortlessly,
               textAlign: TextAlign.center,
               style: Theme.of(context).textTheme.bodySmall,
             ),
@@ -218,8 +217,8 @@ class _LoginScreenState extends State<LoginScreen> with WidgetsBindingObserver {
             ),
             BlocBuilder<Web3AuthLoginBloc, Web3AuthLoginState>(
               builder: (_, web3AuthLoginState) => FooterSection(
-                text: AppLocalizations.of(context)!.dontHaveAnAccountYet,
-                clickableText: AppLocalizations.of(context)!.register,
+                text: context.localize.dontHaveAnAccountYet,
+                clickableText: context.localize.register,
                 clickableTextEnabled: web3AuthLoginState.maybeWhen(
                   loggingIn: () => false,
                   orElse: () => true,

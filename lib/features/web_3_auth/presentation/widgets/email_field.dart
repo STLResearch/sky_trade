@@ -17,7 +17,6 @@ import 'package:flutter/material.dart'
         Theme,
         ValueListenableBuilder,
         Widget;
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:sky_ways/core/resources/colors.dart'
     show hex222222, hex838187, hex87878D, hexE04F64;
 import 'package:sky_ways/core/resources/numbers/ui.dart'
@@ -26,6 +25,7 @@ import 'package:sky_ways/core/resources/strings/regex_patterns.dart'
     show emailRegexPatternRawString;
 import 'package:sky_ways/core/resources/strings/special_characters.dart'
     show asterisk, whiteSpace;
+import 'package:sky_ways/core/utils/extensions/build_context_extensions.dart';
 
 final class EmailField extends StatelessWidget {
   const EmailField({
@@ -46,7 +46,7 @@ final class EmailField extends StatelessWidget {
               ValueListenableBuilder<TextEditingValue>(
                 valueListenable: controller,
                 builder: (_, emailControllerValue, __) => Text(
-                  AppLocalizations.of(context)!.email,
+                  context.localize.email,
                   style: Theme.of(context).textTheme.bodySmall?.copyWith(
                         fontSize: fourteenDotNil,
                         height: twentyOneDotNil / fourteenDotNil,
@@ -88,7 +88,7 @@ final class EmailField extends StatelessWidget {
                 ),
             keyboardType: TextInputType.emailAddress,
             decoration: InputDecoration(
-              hintText: AppLocalizations.of(context)!.emailAtMailDotCom,
+              hintText: context.localize.emailAtMailDotCom,
             ),
             validator: (value) => _validateEmailUsing(
               context,
@@ -103,7 +103,7 @@ final class EmailField extends StatelessWidget {
     String? email,
   }) =>
       switch (email?.isEmpty ?? true) {
-        true => AppLocalizations.of(context)!.emailFieldCannotBeEmpty,
+        true => context.localize.emailFieldCannotBeEmpty,
         false
             when email!.startsWith(
                   whiteSpace,
@@ -111,14 +111,14 @@ final class EmailField extends StatelessWidget {
                 email.endsWith(
                   whiteSpace,
                 ) =>
-          AppLocalizations.of(context)!.removeWhitespaces,
+          context.localize.removeWhitespaces,
         false
             when !email!.contains(
               RegExp(
                 emailRegexPatternRawString,
               ),
             ) =>
-          AppLocalizations.of(context)!.invalidEmail,
+          context.localize.invalidEmail,
         false => null,
       };
 }

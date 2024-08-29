@@ -15,9 +15,20 @@ const skyTradePrivacyPolicyUrl = 'https://docs.sky.trade/privacy.htm';
 const skyTradeTermsOfServiceUrl = 'https://docs.sky.trade/terms.htm';
 // Endpoints
 // Base URL
-const skyTradeServerBaseUrl = 'SKYTRADE_SERVER_BASE_URL';
+const skyTradeServerHttpBaseUrl = 'SKYTRADE_SERVER_HTTP_BASE_URL';
+const skyTradeServerSocketIOBaseUrl = 'SKYTRADE_SERVER_SOCKET_IO_BASE_URL';
 // Paths
 const restrictionsPath = '/restrictions';
+
+// Socket IO
+const websocketTransport = 'websocket';
+
+const uasActivityEvent = 'get-sql-drone-data-response';
+const uasActivityRoom = 'get-sql-drone-data';
+
+const connectionTimeoutEvent = 'connect_timeout';
+const connectingEvent = 'connecting';
+const reconnectingEvent = 'reconnecting';
 
 // Request and response header and body keys and values
 // Headers
@@ -48,3 +59,56 @@ const multiPointValue = 'MultiPoint';
 const multiLineStringValue = 'MultiLineString';
 const multiPolygonValue = 'MultiPolygon';
 const geoHashKey = 'geoHash';
+const countKey = '_count';
+const dataKey = 'data';
+const idKey = 'id';
+const remoteDataKey = 'remoteData';
+const createdAtKey = 'createdAt';
+const updateAtKey = 'updateAt';
+const selfIdKey = 'selfId';
+const systemKey = 'system';
+const locationKey = 'location';
+const connectionKey = 'connection';
+const macAddressKey = 'macAddress';
+const operatorIdKey = 'operatorId';
+const identification1Key = 'identification1';
+const identification2Key = 'identification2';
+const descriptionTypeKey = 'descriptionType';
+const operationDescriptionKey = 'operationDescription';
+const categoryKey = 'category';
+const areaCountKey = 'areaCount';
+const areaFloorKey = 'areaFloor';
+const areaRadiusKey = 'areaRadius';
+const classValueKey = 'classValue';
+const areaCeilingKey = 'areaCeiling';
+const systemTimestampKey = 'systemTimestamp';
+const operatorLatitudeKey = 'operatorLatitude';
+const operatorLongitudeKey = 'operatorLongitude';
+const classificationTypeKey = 'classificationType';
+const operatorAltitudeGeoKey = 'operatorAltitudeGeo';
+const operatorLocationTypeKey = 'operatorLocationType';
+const heightKey = 'height';
+const statusKey = 'status';
+const distanceKey = 'distance';
+const latitudeKey = 'latitude';
+const directionKey = 'direction';
+const longitudeKey = 'longitude';
+const heightTypeKey = 'heightType';
+const baroAccuracyKey = 'baroAccuracy';
+const timeAccuracyKey = 'timeAccuracy';
+const speedAccuracyKey = 'speedAccuracy';
+const speedVerticalKey = 'speedVertical';
+const speedHorizontalKey = 'speedHorizontal';
+const altitudeGeodeticKey = 'altitudeGeodetic';
+const altitudePressureKey = 'altitudePressure';
+const verticalAccuracyKey = 'verticalAccuracy';
+const locationTimestampKey = 'locationTimestamp';
+const horizontalAccuracyKey = 'horizontalAccuracy';
+const rssiKey = 'rssi';
+const lastSeenKey = 'lastSeen';
+const msgDeltaKey = 'msgDelta';
+const firstSeenKey = 'firstSeen';
+const transportTypeKey = 'transportType';
+const uasIdKey = 'uasId';
+const idTypeKey = 'idType';
+const uaTypeKey = 'uaType';

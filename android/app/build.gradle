@@ -1,5 +1,6 @@
 plugins {
     id "com.android.application"
+    id 'com.google.gms.google-services'
     id "kotlin-android"
     id "dev.flutter.flutter-gradle-plugin"
 }
@@ -28,7 +29,7 @@ if (keyPropertiesFile.exists()) {
 }
 
 android {
-    namespace "trade.sky.utm"
+    namespace "trade.sky"
     compileSdk flutter.compileSdkVersion
     ndkVersion flutter.ndkVersion
 
@@ -46,7 +47,7 @@ android {
     }
 
     defaultConfig {
-        applicationId "trade.sky.utm"
+        applicationId "trade.sky"
         minSdkVersion 24
         targetSdkVersion flutter.targetSdkVersion
         versionCode appVersionCode.toInteger()

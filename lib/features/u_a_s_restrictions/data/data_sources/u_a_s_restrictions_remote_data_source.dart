@@ -1,11 +1,10 @@
 // ignore_for_file: strict_raw_type
 
-import 'package:dio/dio.dart' show Response;
 import 'package:sky_ways/core/errors/exceptions/u_a_s_restrictions_exception.dart';
 import 'package:sky_ways/core/resources/strings/networking.dart'
     show geoHashKey, restrictionsPath;
 import 'package:sky_ways/core/utils/clients/network_client.dart'
-    show NetworkClient;
+    show HttpClient;
 import 'package:sky_ways/core/utils/clients/response_handler.dart';
 import 'package:sky_ways/core/utils/enums/networking.dart' show RequestMethod;
 import 'package:sky_ways/features/u_a_s_restrictions/data/models/restriction_model.dart'
@@ -21,18 +20,18 @@ final class UASRestrictionsRemoteDataSourceImplementation
     with ResponseHandler
     implements UASRestrictionsRemoteDataSource {
   const UASRestrictionsRemoteDataSourceImplementation(
-    NetworkClient<Response> networkClient,
-  ) : _networkClient = networkClient;
+    HttpClient httpClient,
+  ) : _httpClient = httpClient;
 
-  final NetworkClient<Response> _networkClient;
+  final HttpClient _httpClient;
 
   @override
   Future<List<RestrictionModel>> getRestrictionsUsing({
     required String geoHash,
-  }) async =>
-      (await handleResponse<UASRestrictionsException, List<dynamic>,
+  }) =>
+      handleResponse<UASRestrictionsException, List<dynamic>,
           List<RestrictionModel>>(
-        requestInitiator: _networkClient.request(
+        requestInitiator: _httpClient.request(
           requestMethod: RequestMethod.get,
           path: restrictionsPath,
           queryParameters: {
@@ -46,6 +45,6 @@ final class UASRestrictionsRemoteDataSourceImplementation
               ),
             )
             .toList(),
-        onError: () => throw UASRestrictionsException(),
-      ))!;
+        onError: (_) => UASRestrictionsException(),
+      );
 }
