@@ -25,6 +25,12 @@ class UASActivityBloc extends Bloc<UASActivityEvent, UASActivityState> {
     on<_ListenUASActivities>(
       _listenUASActivities,
     );
+    on<_UASActivitiesGotten>(
+      _uASActivitiesGotten,
+    );
+    on<_UASActivitiesListeningStopped>(
+      _uASActivitiesListeningStopped,
+    );
     on<_RequestNewUASActivitiesAround>(
       _requestNewUASActivitiesAround,
     );
@@ -55,8 +61,8 @@ class UASActivityBloc extends Bloc<UASActivityEvent, UASActivityState> {
     _alreadyListeningUASActivities = true;
 
     await _uASActivityRepository.listenUASActivities(
-      onUASActivitiesGotten: (uASEntities) => emit(
-        UASActivityState.gotUASActivities(
+      onUASActivitiesGotten: (uASEntities) => add(
+        UASActivityEvent.uASActivitiesGotten(
           uASEntities: uASEntities,
         ),
       ),
@@ -83,26 +89,41 @@ class UASActivityBloc extends Bloc<UASActivityEvent, UASActivityState> {
           // clean or unclean. Some inherent issues may happen until we
           // implement this
 
-          _alreadyListeningUASActivities = false;
-
           await _cancelListeningGeoHash();
 
-          emit(
-            const UASActivityState.stoppedListeningUASActivities(),
+          add(
+            const UASActivityEvent.uASActivitiesListeningStopped(),
           );
         }
       },
     );
   }
 
-  Future<void> _requestNewUASActivitiesAround(
+  void _uASActivitiesGotten(
+    _UASActivitiesGotten event,
+    Emitter<UASActivityState> emit,
+  ) =>
+      emit(
+        UASActivityState.gotUASActivities(
+          uASEntities: event.uASEntities,
+        ),
+      );
+
+  void _uASActivitiesListeningStopped(
+    _UASActivitiesListeningStopped event,
+    Emitter<UASActivityState> emit,
+  ) =>
+      emit(
+        const UASActivityState.stoppedListeningUASActivities(),
+      );
+
+  void _requestNewUASActivitiesAround(
     _RequestNewUASActivitiesAround event,
     Emitter<UASActivityState> emit,
-  ) async {
-    _geoHashStreamController?.add(
-      event.geoHash,
-    );
-  }
+  ) =>
+      _geoHashStreamController?.add(
+        event.geoHash,
+      );
 
   Future<void> _stopListeningUASActivities(
     _StopListeningUASActivities event,
@@ -125,5 +146,7 @@ class UASActivityBloc extends Bloc<UASActivityEvent, UASActivityState> {
 
     _geoHashStreamController = null;
     _geoHashStreamSubscription = null;
+
+    _alreadyListeningUASActivities = false;
   }
 }
