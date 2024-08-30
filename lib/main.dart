@@ -1,6 +1,7 @@
 // ignore_for_file: unnecessary_null_checks
 
-import 'package:firebase_analytics/firebase_analytics.dart' show FirebaseAnalytics;
+import 'package:firebase_analytics/firebase_analytics.dart'
+    show FirebaseAnalytics;
 import 'package:firebase_core/firebase_core.dart' show Firebase;
 import 'package:flutter/foundation.dart' show VoidCallback, kIsWeb;
 import 'package:flutter/material.dart' show WidgetsFlutterBinding, runApp;
