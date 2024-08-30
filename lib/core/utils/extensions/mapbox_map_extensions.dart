@@ -1,5 +1,5 @@
 import 'package:dartz/dartz.dart' show Function1, Function2;
-import 'package:flutter/services.dart' show rootBundle;
+import 'package:flutter/services.dart' show Uint8List, rootBundle;
 import 'package:geodart/geometries.dart' as geo_dart
     show Coordinate, LinearRing, Polygon;
 import 'package:mapbox_maps_flutter/mapbox_maps_flutter.dart'
@@ -203,6 +203,36 @@ extension MapboxMapExtensions on MapboxMap {
         ),
       ),
     );
+  }
+
+  Future<PointAnnotationManagerPointAnnotationTuple> addMarkerWithDroneIcon({
+    required double latitude,
+    required double longitude,
+    required String imagePath,
+    double rotationAngle = 0,
+  }) async {
+    final pointAnnotationManager =
+        await annotations.createPointAnnotationManager();
+
+    final pointAnnotation = await pointAnnotationManager.create(
+      PointAnnotationOptions(
+        geometry: Point(
+          coordinates: Position(longitude, latitude),
+        ),
+        image: await _loadImageFromAssets(imagePath),
+        iconRotate: rotationAngle, // Use iconRotate instead of rotation
+      ),
+    );
+
+    return (
+      pointAnnotationManager: pointAnnotationManager,
+      pointAnnotation: pointAnnotation,
+    );
+  }
+
+  Future<Uint8List> _loadImageFromAssets(String imagePath) async {
+    final byteData = await rootBundle.load(imagePath);
+    return byteData.buffer.asUint8List();
   }
 }
 

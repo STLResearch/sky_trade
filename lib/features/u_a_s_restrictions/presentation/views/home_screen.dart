@@ -1,3 +1,5 @@
+import 'dart:math' as math;
+
 import 'package:flutter/material.dart'
     show
         AlignmentDirectional,
@@ -293,6 +295,37 @@ class _HomeScreenState extends State<HomeScreen> {
                           );
                     },
                   );
+                },
+              );
+            },
+          ),
+          BlocListener<UASActivityBloc, UASActivityState>(
+            listener: (context, uASActivityState) {
+              uASActivityState.whenOrNull(
+                gotUASActivities: (uASEntities) async {
+                  if (uASEntities.isEmpty) {
+                    // Handle the case when uASEntities is empty
+                    print('No UAS entities available');
+                    return;
+                  }
+                  // Remove all previous markers if any
+                  await _mapboxMap?.removePreviousMarker(_marker);
+
+                  // Extract the direction from the first UASEntity
+                  final direction =
+                      uASEntities.first.remoteData.location.direction;
+
+                  // Convert direction to radians for rotation
+                  final rotationAngle = direction * (math.pi / 180);
+
+                  // Add a new marker with drone icon
+                  final marker = await _mapboxMap?.addMarkerWithDroneIcon(
+                    latitude: uASEntities.first.remoteData.location.latitude,
+                    longitude: uASEntities.first.remoteData.location.longitude,
+                    rotationAngle: rotationAngle,
+                    imagePath: 'assets/images/icon_drone.png',
+                  );
+                  _marker = marker;
                 },
               );
             },
