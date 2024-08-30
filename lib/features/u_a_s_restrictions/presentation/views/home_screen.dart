@@ -63,6 +63,7 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   MapboxMap? _mapboxMap;
   PointAnnotationManagerPointAnnotationTuple? _marker;
+  List<PointAnnotationManagerPointAnnotationTuple>? _markers;
   late final ValueNotifier<RestrictionEntity?> _clickedRestriction;
   late final ValueNotifier<bool> _centerLocationNotifier;
   late final ValueNotifier<MapStyle> _mapStyleNotifier;
@@ -292,6 +293,21 @@ class _HomeScreenState extends State<HomeScreen> {
                             ),
                           );
                     },
+                  );
+                },
+              );
+            },
+          ),
+          BlocListener<UASActivityBloc, UASActivityState>(
+            listener: (context, uASActivityState) {
+              uASActivityState.whenOrNull(
+                gotUASActivities: (uASEntities) async {
+                  await _mapboxMap?.removePreviousMarkers(
+                    _markers,
+                  );
+
+                  _markers = await _mapboxMap?.showUASActivitiesOnMapUsing(
+                    uASEntities: uASEntities,
                   );
                 },
               );

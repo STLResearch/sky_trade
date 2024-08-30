@@ -7,6 +7,7 @@ const cloudAltAssetPath = '$assetImagesPath/cloud_alt.svg';
 const communityAssetPath = '$assetImagesPath/community.svg';
 const flightAssetPath = '$assetImagesPath/flight.svg';
 const googleAssetPath = '$assetImagesPath/google.svg';
+const iconDroneAssetPath = '$assetImagesPath/icon_drone.png';
 const indicatorAssetPath = '$assetImagesPath/indicator.svg';
 const infoAssetPath = '$assetImagesPath/info.svg';
 const infoDangerAssetPath = '$assetImagesPath/info_danger.svg';
