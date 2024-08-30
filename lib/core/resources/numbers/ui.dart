@@ -9,6 +9,7 @@ const ten = 10;
 const twentyFour = 24;
 const forty = 40;
 const oneHundred = 100;
+const oneEighty = 180;
 const oneThousand = 1000;
 
 // Doubles

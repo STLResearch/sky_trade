@@ -65,6 +65,7 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   MapboxMap? _mapboxMap;
   PointAnnotationManagerPointAnnotationTuple? _marker;
+  List<PointAnnotationManagerPointAnnotationTuple>? _markers;
   late final ValueNotifier<RestrictionEntity?> _clickedRestriction;
   late final ValueNotifier<bool> _centerLocationNotifier;
   late final ValueNotifier<MapStyle> _mapStyleNotifier;
@@ -303,29 +304,13 @@ class _HomeScreenState extends State<HomeScreen> {
             listener: (context, uASActivityState) {
               uASActivityState.whenOrNull(
                 gotUASActivities: (uASEntities) async {
-                  if (uASEntities.isEmpty) {
-                    // Handle the case when uASEntities is empty
-                    print('No UAS entities available');
-                    return;
-                  }
-                  // Remove all previous markers if any
-                  await _mapboxMap?.removePreviousMarker(_marker);
-
-                  // Extract the direction from the first UASEntity
-                  final direction =
-                      uASEntities.first.remoteData.location.direction;
-
-                  // Convert direction to radians for rotation
-                  final rotationAngle = direction * (math.pi / 180);
-
-                  // Add a new marker with drone icon
-                  final marker = await _mapboxMap?.addMarkerWithDroneIcon(
-                    latitude: uASEntities.first.remoteData.location.latitude,
-                    longitude: uASEntities.first.remoteData.location.longitude,
-                    rotationAngle: rotationAngle,
-                    imagePath: 'assets/images/icon_drone.png',
+                  await _mapboxMap?.removePreviousMarkers(
+                    _markers,
                   );
-                  _marker = marker;
+
+                  _markers = await _mapboxMap?.showUASActivitiesOnMapUsing(
+                    uASEntities: uASEntities,
+                  );
                 },
               );
             },

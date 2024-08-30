@@ -1,5 +1,7 @@
+import 'dart:math' show pi;
+
 import 'package:dartz/dartz.dart' show Function1, Function2;
-import 'package:flutter/services.dart' show Uint8List, rootBundle;
+import 'package:flutter/services.dart' show rootBundle;
 import 'package:geodart/geometries.dart' as geo_dart
     show Coordinate, LinearRing, Polygon;
 import 'package:mapbox_maps_flutter/mapbox_maps_flutter.dart'
@@ -20,14 +22,23 @@ import 'package:mapbox_maps_flutter/mapbox_maps_flutter.dart'
         Position;
 import 'package:sky_ways/core/resources/colors.dart' show rawHex2A60C4;
 import 'package:sky_ways/core/resources/numbers/ui.dart'
-    show fiftyDotNil, fourteenDotNil, one, oneThousand, threeDotNil, zero;
+    show
+        fiftyDotNil,
+        fourteenDotNil,
+        one,
+        oneEighty,
+        oneThousand,
+        threeDotNil,
+        zero;
 import 'package:sky_ways/core/resources/strings/asset_paths.dart'
-    show locationPuckAssetPath, locationPuckShadowAssetPath;
+    show iconDroneAssetPath, locationPuckAssetPath, locationPuckShadowAssetPath;
 import 'package:sky_ways/core/utils/extensions/restriction_entity_extensions.dart';
 import 'package:sky_ways/core/utils/typedefs/ui.dart'
     show
         PointAnnotationManagerPointAnnotationTuple,
         PolygonAnnotationManagerPolygonAnnotationTuple;
+import 'package:sky_ways/features/u_a_s_activity/domain/entities/u_a_s_entity.dart'
+    show UASEntity;
 import 'package:sky_ways/features/u_a_s_restrictions/domain/entities/restriction_entity.dart'
     show RestrictionEntity;
 
@@ -161,6 +172,16 @@ extension MapboxMapExtensions on MapboxMap {
     await marker.pointAnnotationManager.deleteAll();
   }
 
+  Future<void> removePreviousMarkers(
+    List<PointAnnotationManagerPointAnnotationTuple>? markers,
+  ) async {
+    if (markers == null || markers.isEmpty) return;
+
+    for (final marker in markers) {
+      await marker.pointAnnotationManager.deleteAll();
+    }
+  }
+
   Future<void> followUser({
     required double latitude,
     required double longitude,
@@ -205,34 +226,55 @@ extension MapboxMapExtensions on MapboxMap {
     );
   }
 
-  Future<PointAnnotationManagerPointAnnotationTuple> addMarkerWithDroneIcon({
-    required double latitude,
-    required double longitude,
-    required String imagePath,
-    double rotationAngle = 0,
+  Future<List<PointAnnotationManagerPointAnnotationTuple>>
+      showUASActivitiesOnMapUsing({
+    required List<UASEntity> uASEntities,
   }) async {
-    final pointAnnotationManager =
-        await annotations.createPointAnnotationManager();
+    final pointAnnotationManagerPointAnnotationTuples =
+        List<PointAnnotationManagerPointAnnotationTuple>.empty(
+      growable: true,
+    );
 
-    final pointAnnotation = await pointAnnotationManager.create(
-      PointAnnotationOptions(
-        geometry: Point(
-          coordinates: Position(longitude, latitude),
+    if (uASEntities.isEmpty) {
+      return pointAnnotationManagerPointAnnotationTuples;
+    }
+
+    for (var index = zero; index < uASEntities.length; index++) {
+      final pointAnnotationManager =
+          await annotations.createPointAnnotationManager();
+
+      final pointAnnotation = await pointAnnotationManager.create(
+        PointAnnotationOptions(
+          geometry: Point(
+            coordinates: Position(
+              uASEntities[index].remoteData.location.longitude,
+              uASEntities[index].remoteData.location.latitude,
+            ),
+          ),
+          image: await rootBundle
+              .load(
+                iconDroneAssetPath,
+              )
+              .then(
+                (
+                  byteData,
+                ) =>
+                    byteData.buffer.asUint8List(),
+              ),
+          iconRotate: uASEntities[index].remoteData.location.direction *
+              (pi / oneEighty),
         ),
-        image: await _loadImageFromAssets(imagePath),
-        iconRotate: rotationAngle, // Use iconRotate instead of rotation
-      ),
-    );
+      );
 
-    return (
-      pointAnnotationManager: pointAnnotationManager,
-      pointAnnotation: pointAnnotation,
-    );
-  }
+      pointAnnotationManagerPointAnnotationTuples.add(
+        (
+          pointAnnotationManager: pointAnnotationManager,
+          pointAnnotation: pointAnnotation,
+        ),
+      );
+    }
 
-  Future<Uint8List> _loadImageFromAssets(String imagePath) async {
-    final byteData = await rootBundle.load(imagePath);
-    return byteData.buffer.asUint8List();
+    return pointAnnotationManagerPointAnnotationTuples;
   }
 }
 
