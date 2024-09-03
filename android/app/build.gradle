@@ -13,14 +13,14 @@ if (localPropertiesFile.exists()) {
     }
 }
 
-def appVersionCode = localProperties.getProperty('app.versionCode')
-if (appVersionCode == null) {
-    appVersionCode = '1'
+def flutterVersionCode = localProperties.getProperty('flutter.versionCode')
+if (flutterVersionCode == null) {
+    flutterVersionCode = '1'
 }
 
-def appVersionName = localProperties.getProperty('app.versionName')
-if (appVersionName == null) {
-    appVersionName = '0.0.1'
+def flutterVersionName = localProperties.getProperty('flutter.versionName')
+if (flutterVersionName == null) {
+    flutterVersionName = '0.0.1'
 }
 def keyProperties = new Properties()
 def keyPropertiesFile = rootProject.file('key.properties')
@@ -50,8 +50,8 @@ android {
         applicationId "trade.sky"
         minSdkVersion 24
         targetSdkVersion flutter.targetSdkVersion
-        versionCode appVersionCode.toInteger()
-        versionName appVersionName
+        versionCode flutterVersionCode.toInteger()
+        versionName flutterVersionName
     }
 
     signingConfigs {
