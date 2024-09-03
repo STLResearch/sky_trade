@@ -1,5 +1,3 @@
-# Choice of architecture
-
 The project is built using clean architecture. It is largely divided into two modules - `core`
 and `features`. `core` contains the core elements and `features` contains the individual features
 provided. Each feature is built as a separate submodule however, some features use functionality
@@ -122,3 +120,90 @@ the app. It is further divided into the following submodules:
   named according to the environment in which the type definition is used, e.g
   `core/utils/typdefs/local` for type definitions related to or used in local/on device
   operations and so on
+
+## `features`
+
+Typically a feature is divided into the following layers or submodules:
+
+- `data`
+- `domain`
+- `presentation`
+
+### `data`
+
+The `data` layer is where data manipulation and processing happens. This is where the business logic
+of the app resides. The `data` layer consists of the following submodules:
+
+- `data sources` which may contain a `remote data source` and/or a `local data source`.
+  The `remote data source` contains a contract and an implementation of that contract with logic
+  that fetches and processes data from a remote server. The `local data source` contains a contract
+  and an implementation of that contract with logic that fetches and processes data from cache or
+  some on device storage mechanism. If a feature does not need to fetch data from a remote server or
+  from some on device storage mechanism then such feature does not and will not have a data source.
+  In some cases it is possible that an external dependency can stand in as a data source. A typical
+  scenario is the `location` feature which does not need a data source because the `Geolocator`
+  dependency the feature relies on already serves as its data source. In such a scenario then it
+  makes sense that the feature would not have a data source submodule since this is already handled
+  by the external dependency. `data sources` must either return a `model` or throw an `exception`
+
+- `models` which hold data from the `data sources`. `models` always contain the `fromJson` and
+  `toJson` methods enabling `data sources` to convert results from external APIs to `models` or
+  enabling the `models` themselves to be converted to a format suitable for transmitting data over
+  an external API
+
+- `repositories` (implementation) which contains concrete implementation of the `repositories`
+  (contract) in the domain layer. The `repositories` (implementation) process data from
+  the `data sources` converting the `model`s to business objects or rather `entities`.
+  The `repositories` (implementation) must either return a `Left` `Failure` or a `Right` `Entity`-
+  It must catch `exception`s thrown from the `data sources` and return a `Left` `Failure` or it must
+  process the result from the `data sources` and return a `Right` `Entity`. `repositories`
+  (implementation) will and must never throw
+
+### `domain`
+
+The `domain` layer has little to no business logic but instead depends on the data layer which
+contains implementations of its business logic. The `domain` layer consists of the following
+submodules:
+
+- `entities` which hold data from the `models`. `entities` are pure and domain specific business
+  objects
+
+- `repositories` (contract) which contains contracts that are implemented in the `repositories`
+  (implementation) of the `data` layer
+
+### `presentation`
+
+The `presentation` layer is the highest layer of the architecture. It is the part that makes up the
+user interface of the app. The `presentation` layer consists of the following submodules:
+
+- `blocs` which holds the presentation logic of the app and serves as state manager for the user
+  interface
+
+- `views` which hold the user interface of the app. `views` contain Flutter specific widgets
+
+- `widgets` which hold reusable parts of the `views`
+
+## `app`
+
+`app` is the topmost level of the app. It contains code for setting up theming, routing and
+localization to mention a few
+
+## `app_bloc_observer`
+
+`app_bloc_observer` observes BLoC states and state transitions for debugging purposes. The BLoC
+observer is registered in `main` before the `app` is loaded
+
+## `app_bloc_provider`
+
+`app_bloc_provider` provides BLoC instances to the entire app
+
+## `injection_container`
+
+`injection_container` calls all the services from the different files in `core/injection_container`
+and registers them for dependency injection. It is registered in `main` before the `app` is loaded
+
+## `main`
+
+`main` is the entry point of the entire app. `main` contains some initialization code that needs to
+be run before `app` is loaded- loading `dotenv`, initializing sentry reporting, Firebase analytics,
+hydrated storage, dependency injection and registering the BLoC observer to mention a few
