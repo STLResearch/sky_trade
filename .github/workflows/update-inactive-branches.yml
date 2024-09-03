@@ -28,6 +28,12 @@ jobs:
           git pull origin dev
           git push -u origin ci/update-inactive-branches-workflow
 
+      - name: Checkout the 'docs/architecture' branch, pull from 'dev' and push to the origin of the checked out branch
+        run: |
+          git checkout docs/architecture
+          git pull origin dev
+          git push -u origin docs/architecture
+
       - name: Checkout the 'docs/read-me' branch, pull from 'dev' and push to the origin of the checked out branch
         run: |
           git checkout docs/read-me
