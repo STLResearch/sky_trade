@@ -22,11 +22,17 @@ jobs:
         run: |
           git fetch
 
-      - name: Checkout the 'ci/update-inactive-branches-workflow' branch, pull from 'dev' and push to the origin of the checked out branch
+      - name: Checkout the 'ci/fastlane' branch, pull from 'dev' and push to the origin of the checked out branch
         run: |
-          git checkout ci/update-inactive-branches-workflow
+          git checkout ci/fastlane
           git pull origin dev
-          git push -u origin ci/update-inactive-branches-workflow
+          git push -u origin ci/fastlane
+
+      - name: Checkout the 'ci/github-actions' branch, pull from 'dev' and push to the origin of the checked out branch
+        run: |
+          git checkout ci/github-actions
+          git pull origin dev
+          git push -u origin ci/github-actions
 
       - name: Checkout the 'docs/architecture' branch, pull from 'dev' and push to the origin of the checked out branch
         run: |
