@@ -51,6 +51,3 @@ app.*.map.json
 # Firebase
 lib/firebase_options.dart
 firebase.json
-
-# Fastlane
-fastlane-434609-35eb84f51b27.json

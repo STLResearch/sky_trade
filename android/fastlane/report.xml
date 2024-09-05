@@ -5,12 +5,62 @@
     
     
       
-      <testcase classname="fastlane.lanes" name="0: default_platform" time="0.000282">
+      <testcase classname="fastlane.lanes" name="00: default_platform" time="0.000288">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="1: test" time="332.454202">
+      <testcase classname="fastlane.lanes" name="01: Switch to android clean lane" time="0.000199">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="02: clean assembleLiveRelease" time="74.635107">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="03: Switch to android update_version_name lane" time="0.002012">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="04: increment_version_name" time="0.015696">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="05: Switch to android update_version_code lane" time="0.000157">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="06: google_play_track_version_codes" time="4.138547">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="07: increment_version_code" time="0.001037">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="08: Switch to android build_app_bundle lane" time="6.7e-05">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="09: flutter build appbundle --flavor live" time="69.12661">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="10: Switch to android deploy_to_playstore lane" time="0.00097">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="11: upload_to_play_store" time="121.508134">
         
       </testcase>
     

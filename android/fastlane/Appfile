@@ -1,2 +1,2 @@
-json_key_file("../fastlane-434609-35eb84f51b27.json") # Path to the json secret file - Follow https://docs.fastlane.tools/actions/supply/#setup to get one
-package_name("trade.sky") # e.g. com.krausefx.app
+json_key_file("fastlane-service-account-google-developer-console.json")
+package_name("trade.sky")

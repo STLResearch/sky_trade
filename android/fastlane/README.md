@@ -15,29 +15,53 @@ For _fastlane_ installation instructions, see [Installing _fastlane_](https://do
 
 ## Android
 
-### android test
-
-```sh
-[bundle exec] fastlane android test
-```
-
-Runs all the tests
-
-### android beta
-
-```sh
-[bundle exec] fastlane android beta
-```
-
-Submit a new Beta Build to Crashlytics Beta
-
 ### android deploy
 
 ```sh
 [bundle exec] fastlane android deploy
 ```
 
-Deploy a new version to the Google Play
+Deploy live release app bundle to Playstore
+
+### android clean
+
+```sh
+[bundle exec] fastlane android clean
+```
+
+Clean project
+
+### android update_version_name
+
+```sh
+[bundle exec] fastlane android update_version_name
+```
+
+Update version name
+
+### android update_version_code
+
+```sh
+[bundle exec] fastlane android update_version_code
+```
+
+Update version code
+
+### android build_app_bundle
+
+```sh
+[bundle exec] fastlane android build_app_bundle
+```
+
+Build live release app bundle
+
+### android deploy_to_playstore
+
+```sh
+[bundle exec] fastlane android deploy_to_playstore
+```
+
+Deploy to Playstore
 
 ----
 
