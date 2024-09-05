@@ -19,3 +19,9 @@ key.properties
 
 # Firebase
 app/google-services.json
+
+# Environment variable
+.env
+
+# Fastlane
+fastlane-service-account-google-developer-console.json
