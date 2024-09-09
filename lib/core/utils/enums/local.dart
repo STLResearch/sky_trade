@@ -18,3 +18,8 @@ enum CacheType {
 
   final String ending;
 }
+
+enum PermissionStatus {
+  granted,
+  notGranted,
+}
