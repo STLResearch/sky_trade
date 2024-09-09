@@ -19,7 +19,12 @@ enum CacheType {
   final String ending;
 }
 
-enum PermissionStatus {
-  granted,
-  notGranted,
+enum BluetoothAdapterState {
+  unknown,
+  unavailable,
+  unauthorized,
+  turningOn,
+  on,
+  turningOff,
+  off,
 }

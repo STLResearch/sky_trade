@@ -1,1 +1,13 @@
-abstract interface class BluetoothRepository {}
+import 'package:dartz/dartz.dart' show Either;
+import 'package:sky_ways/core/errors/failures/bluetooth_failure.dart';
+import 'package:sky_ways/features/bluetooth/domain/entities/bluetooth_entity.dart';
+
+abstract interface class BluetoothRepository {
+  BluetoothAdapterStateEntity get bluetoothAdapterState;
+
+  Stream<Either<BluetoothAdapterStateFailure, BluetoothAdapterStateEntity>>
+      get bluetoothAdapterStateStream;
+
+  Future<Either<BluetoothPermissionsFailure, BluetoothPermissionsEntity>>
+      requestBluetoothPermissions();
+}

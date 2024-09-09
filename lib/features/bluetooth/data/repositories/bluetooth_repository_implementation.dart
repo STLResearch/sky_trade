@@ -1,31 +1,93 @@
-import 'package:permission_handler/permission_handler.dart';
+import 'package:dartz/dartz.dart' show Either, Left, Right;
+import 'package:flutter_blue_plus/flutter_blue_plus.dart'
+    show BluetoothAdapterState, FlutterBluePlus;
+import 'package:permission_handler/permission_handler.dart'
+    show Permission, PermissionListActions, PermissionStatus;
+import 'package:sky_ways/core/errors/failures/bluetooth_failure.dart';
+import 'package:sky_ways/core/utils/clients/data_handler.dart';
+import 'package:sky_ways/core/utils/enums/local.dart' as enums
+    show BluetoothAdapterState;
+import 'package:sky_ways/features/bluetooth/domain/entities/bluetooth_entity.dart';
+import 'package:sky_ways/features/bluetooth/domain/repositories/bluetooth_repository.dart';
 
-import 'package:sky_ways/core/utils/enums/local.dart' as enums show PermissionStatus;
+final class BluetoothRepositoryImplementation
+    with DataHandler
+    implements BluetoothRepository {
+  @override
+  BluetoothAdapterStateEntity get bluetoothAdapterState =>
+      BluetoothAdapterStateEntity(
+        adapterState: _computeBluetoothAdapterStateEnum(
+          FlutterBluePlus.adapterStateNow,
+        ),
+      );
 
+  @override
+  Stream<Either<BluetoothAdapterStateFailure, BluetoothAdapterStateEntity>>
+      get bluetoothAdapterStateStream => transformData<
+              BluetoothAdapterStateFailure,
+              BluetoothAdapterState,
+              BluetoothAdapterStateEntity>(
+            sourceStream: () => FlutterBluePlus.adapterState,
+            onData: (bluetoothAdapterState) => BluetoothAdapterStateEntity(
+              adapterState: _computeBluetoothAdapterStateEnum(
+                bluetoothAdapterState,
+              ),
+            ),
+            onError: BluetoothAdapterStateFailure.new,
+          );
 
-final class BluetoothRepositoryImplementation{
-
-  Future<enums.PermissionStatus> requestRequiredPermissions() async {
+  @override
+  Future<Either<BluetoothPermissionsFailure, BluetoothPermissionsEntity>>
+      requestBluetoothPermissions() async {
     final statuses = await [
+      Permission.bluetooth,
       Permission.bluetoothScan,
-      Permission.bluetoothConnect,
     ].request();
 
-    final permissionNotGranted =
-        statuses.containsValue(PermissionStatus.denied) ||
-            statuses.containsValue(PermissionStatus.permanentlyDenied) ||
-            statuses.containsValue(PermissionStatus.restricted);
+    final permissionBlocked = statuses.containsValue(
+          PermissionStatus.permanentlyDenied,
+        ) ||
+        statuses.containsValue(
+          PermissionStatus.restricted,
+        );
 
-    if (permissionNotGranted) {
-      return enums.PermissionStatus.notGranted;
+    final permissionDenied = statuses.containsValue(
+      PermissionStatus.denied,
+    );
+
+    if (permissionBlocked) {
+      return Left(
+        BluetoothPermissionsFailure(),
+      );
+    } else if (permissionDenied) {
+      return const Right(
+        BluetoothPermissionsEntity(
+          granted: false,
+        ),
+      );
+    } else {
+      return const Right(
+        BluetoothPermissionsEntity(
+          granted: true,
+        ),
+      );
     }
-
-    return enums.PermissionStatus.granted;
   }
 
-  Future<bool> checkTechnologiesEnabled() async {
-    return await Permission.bluetooth.serviceStatus.isEnabled &&
-        await Permission.location.serviceStatus.isEnabled;
-  }
-
+  enums.BluetoothAdapterState _computeBluetoothAdapterStateEnum(
+    BluetoothAdapterState bluetoothAdapterState,
+  ) =>
+      switch (bluetoothAdapterState) {
+        BluetoothAdapterState.unknown => enums.BluetoothAdapterState.unknown,
+        BluetoothAdapterState.unavailable =>
+          enums.BluetoothAdapterState.unavailable,
+        BluetoothAdapterState.unauthorized =>
+          enums.BluetoothAdapterState.unauthorized,
+        BluetoothAdapterState.turningOn =>
+          enums.BluetoothAdapterState.turningOn,
+        BluetoothAdapterState.on => enums.BluetoothAdapterState.on,
+        BluetoothAdapterState.turningOff =>
+          enums.BluetoothAdapterState.turningOff,
+        BluetoothAdapterState.off => enums.BluetoothAdapterState.off,
+      };
 }
