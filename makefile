@@ -28,9 +28,21 @@ f-np: ## Creates a feature with no presentation layer
 	@echo "Creating domain layer repositories"
 	cd lib/features/example/domain/repositories && touch repository.dart
 
-clean: ## Cleans project
+c-p: ## Cleans project
 	rm -f pubspec.lock
 	rm -f ios/Podfile.lock
 	flutter clean
 	flutter pub get
 	cd ios && pod repo update && pod install && cd ..
+
+br-w: ## Runs build_runner watch
+	dart run build_runner watch
+
+t: ## Runs all tests with coverage
+	flutter test --coverage
+
+gcr-t: ## Generates HTML coverage report for tests
+	genhtml -o coverage/report coverage/lcov.info
+
+ocr-t: ## Opens HTML coverage report for tests
+	open coverage/report/index.html
