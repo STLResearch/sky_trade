@@ -1,5 +1,9 @@
 import 'package:flutter_bloc/flutter_bloc.dart' show BlocProvider;
 import 'package:get_it/get_it.dart' show GetIt;
+import 'package:sky_ways/features/bluetooth/presentation/blocs/bluetooth_adapter_state_bloc/bluetooth_adapter_state_bloc.dart'
+    show BluetoothAdapterStateBloc;
+import 'package:sky_ways/features/bluetooth/presentation/blocs/bluetooth_permissions_bloc/bluetooth_permissions_bloc.dart'
+    show BluetoothPermissionsBloc;
 import 'package:sky_ways/features/cache_manager/presentation/blocs/cache_data_bloc/cache_data_bloc.dart'
     show CacheDataBloc;
 import 'package:sky_ways/features/cache_manager/presentation/blocs/cached_data_bloc/cached_data_bloc.dart'
@@ -36,6 +40,12 @@ import 'package:sky_ways/features/web_3_auth/presentation/blocs/web_3_auth_user_
 final _sl = GetIt.I;
 
 List<BlocProvider> get appBlocProvider => [
+      BlocProvider<BluetoothAdapterStateBloc>(
+        create: (_) => _sl(),
+      ),
+      BlocProvider<BluetoothPermissionsBloc>(
+        create: (_) => _sl(),
+      ),
       BlocProvider<CacheDataBloc>(
         create: (_) => _sl(),
       ),
