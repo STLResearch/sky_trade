@@ -5,7 +5,7 @@ import 'package:permission_handler/permission_handler.dart'
     show Permission, PermissionListActions, PermissionStatus;
 import 'package:sky_ways/core/errors/failures/bluetooth_failure.dart';
 import 'package:sky_ways/core/utils/clients/data_handler.dart';
-import 'package:sky_ways/core/utils/enums/local.dart' as enums
+import 'package:sky_ways/core/utils/enums/networking.dart' as enums
     show BluetoothAdapterState;
 import 'package:sky_ways/features/bluetooth/domain/entities/bluetooth_entity.dart';
 import 'package:sky_ways/features/bluetooth/domain/repositories/bluetooth_repository.dart';
@@ -39,27 +39,29 @@ final class BluetoothRepositoryImplementation
   @override
   Future<Either<BluetoothPermissionsFailure, BluetoothPermissionsEntity>>
       requestBluetoothPermissions() async {
-    final statuses = await [
+    final bluetoothPermissionsStatuses = await [
       Permission.bluetooth,
       Permission.bluetoothScan,
     ].request();
 
-    final permissionBlocked = statuses.containsValue(
-          PermissionStatus.permanentlyDenied,
-        ) ||
-        statuses.containsValue(
-          PermissionStatus.restricted,
-        );
+    final bluetoothPermissionsBlocked =
+        bluetoothPermissionsStatuses.containsValue(
+              PermissionStatus.permanentlyDenied,
+            ) ||
+            bluetoothPermissionsStatuses.containsValue(
+              PermissionStatus.restricted,
+            );
 
-    final permissionDenied = statuses.containsValue(
+    final bluetoothPermissionsDenied =
+        bluetoothPermissionsStatuses.containsValue(
       PermissionStatus.denied,
     );
 
-    if (permissionBlocked) {
+    if (bluetoothPermissionsBlocked) {
       return Left(
         BluetoothPermissionsFailure(),
       );
-    } else if (permissionDenied) {
+    } else if (bluetoothPermissionsDenied) {
       return const Right(
         BluetoothPermissionsEntity(
           granted: false,

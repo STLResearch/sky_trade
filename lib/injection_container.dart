@@ -8,6 +8,7 @@ import 'package:sky_ways/core/injection_container/location.dart';
 import 'package:sky_ways/core/injection_container/u_a_s_activity.dart';
 import 'package:sky_ways/core/injection_container/u_a_s_restrictions.dart';
 import 'package:sky_ways/core/injection_container/web_3_auth.dart';
+import 'package:sky_ways/core/injection_container/wifi.dart';
 
 Future<void> registerServices() => Future.wait<void>([
       registerBluetoothServices(),
@@ -19,5 +20,6 @@ Future<void> registerServices() => Future.wait<void>([
       registerUASActivityServices(),
       registerUASRestrictionsServices(),
       registerWeb3AuthServices(),
+      registerWifiServices(),
       registerCoreServices(),
     ]);

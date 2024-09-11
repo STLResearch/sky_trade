@@ -1,4 +1,3 @@
-// Web3Auth
 import 'package:json_annotation/json_annotation.dart' show JsonValue;
 import 'package:sky_ways/core/resources/strings/networking.dart'
     show
@@ -10,8 +9,14 @@ import 'package:sky_ways/core/resources/strings/networking.dart'
         pointValue,
         polygonValue,
         prohibitedValue,
-        restrictedValue;
+        restrictedValue,
+        wifiAdapterStateDisabledEnumValue,
+        wifiAdapterStateDisablingEnumValue,
+        wifiAdapterStateEnabledEnumValue,
+        wifiAdapterStateEnablingEnumValue,
+        wifiAdapterStateUnknownEnumValue;
 
+// Web3Auth
 enum AuthProvider {
   google,
   emailPasswordless,
@@ -57,4 +62,38 @@ enum ConnectionState {
   connecting,
   disconnected,
   error,
+}
+
+enum BluetoothAdapterState {
+  unknown,
+  unavailable,
+  unauthorized,
+  turningOn,
+  on,
+  turningOff,
+  off,
+}
+
+enum WifiAdapterState {
+  enabling(
+    wifiAdapterStateEnablingEnumValue,
+  ),
+  enabled(
+    wifiAdapterStateEnabledEnumValue,
+  ),
+  disabling(
+    wifiAdapterStateDisablingEnumValue,
+  ),
+  disabled(
+    wifiAdapterStateDisabledEnumValue,
+  ),
+  unknown(
+    wifiAdapterStateUnknownEnumValue,
+  );
+
+  const WifiAdapterState(
+    this.value,
+  );
+
+  final String value;
 }

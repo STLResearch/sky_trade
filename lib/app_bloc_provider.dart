@@ -36,6 +36,10 @@ import 'package:sky_ways/features/web_3_auth/presentation/blocs/web_3_auth_regis
     show Web3AuthRegisterBloc;
 import 'package:sky_ways/features/web_3_auth/presentation/blocs/web_3_auth_user_session_bloc/web_3_auth_user_session_bloc.dart'
     show Web3AuthUserSessionBloc;
+import 'package:sky_ways/features/wifi/presentation/blocs/wifi_adapter_state_bloc/wifi_adapter_state_bloc.dart'
+    show WifiAdapterStateBloc;
+import 'package:sky_ways/features/wifi/presentation/blocs/wifi_permission_bloc/wifi_permission_bloc.dart'
+    show WifiPermissionBloc;
 
 final _sl = GetIt.I;
 
@@ -92,6 +96,12 @@ List<BlocProvider> get appBlocProvider => [
         create: (_) => _sl(),
       ),
       BlocProvider<Web3AuthUserSessionBloc>(
+        create: (_) => _sl(),
+      ),
+      BlocProvider<WifiAdapterStateBloc>(
+        create: (_) => _sl(),
+      ),
+      BlocProvider<WifiPermissionBloc>(
         create: (_) => _sl(),
       ),
     ];

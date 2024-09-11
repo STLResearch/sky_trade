@@ -1,9 +1,9 @@
 import 'package:equatable/equatable.dart' show Equatable;
 import 'package:sky_ways/core/utils/enums/networking.dart'
-    show BluetoothAdapterState;
+    show WifiAdapterState;
 
-final class BluetoothPermissionsEntity extends Equatable {
-  const BluetoothPermissionsEntity({
+final class WifiPermissionEntity extends Equatable {
+  const WifiPermissionEntity({
     required this.granted,
   });
 
@@ -15,12 +15,12 @@ final class BluetoothPermissionsEntity extends Equatable {
       ];
 }
 
-final class BluetoothAdapterStateEntity extends Equatable {
-  const BluetoothAdapterStateEntity({
+final class WifiAdapterStateEntity extends Equatable {
+  const WifiAdapterStateEntity({
     required this.adapterState,
   });
 
-  final BluetoothAdapterState adapterState;
+  final WifiAdapterState adapterState;
 
   @override
   List<Object?> get props => [
