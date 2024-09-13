@@ -38,7 +38,7 @@ import 'package:sky_ways/features/web_3_auth/presentation/views/register_screen.
 Route routes(RouteSettings settings) => MaterialPageRoute(
       builder: (context) {
         FlutterNativeSplash.remove();
-        return const ReceiverTestScreen();
+        return ReceiverTestScreen();
         // switch (settings.name) {
         //   case baseRoutePath:
         //     context.read<InternetConnectionCheckerBloc>().add(

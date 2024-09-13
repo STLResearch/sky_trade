@@ -37,6 +37,6 @@ class RemoteIDMessage extends MessageContainer {
 
   @override
   bool operator ==(covariant RemoteIDMessage other) {
-    return other.macAddress == macAddress;
+    return macAddress == other.macAddress;
   }
 }

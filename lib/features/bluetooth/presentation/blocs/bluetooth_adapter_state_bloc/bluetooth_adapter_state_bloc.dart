@@ -20,9 +20,7 @@ class BluetoothAdapterStateBloc
   BluetoothAdapterStateBloc(
     BluetoothRepository bluetoothRepository,
   )   : _bluetoothRepository = bluetoothRepository,
-        super(
-          const BluetoothAdapterStateState.initial(),
-        ) {
+        super(const BluetoothAdapterStateState.initial()) {
     on<_ListenBluetoothAdapterState>(
       _listenBluetoothAdapterState,
     );

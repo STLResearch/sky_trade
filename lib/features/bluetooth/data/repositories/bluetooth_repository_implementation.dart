@@ -41,6 +41,7 @@ final class BluetoothRepositoryImplementation
       requestBluetoothPermissions() async {
     final bluetoothPermissionsStatuses = await [
       Permission.bluetooth,
+      Permission.bluetoothConnect,
       Permission.bluetoothScan,
     ].request();
 
