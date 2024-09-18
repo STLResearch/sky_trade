@@ -1,4 +1,4 @@
-// ignore_for_file: deprecated_member_use
+// ignore_for_file: deprecated_member_use_from_same_package
 
 import 'package:flutter/material.dart'
     show
@@ -14,7 +14,8 @@ import 'package:flutter/material.dart'
         ValueListenableBuilder,
         ValueNotifier,
         Widget;
-import 'package:flutter_svg/svg.dart' show SvgPicture;
+import 'package:sky_ways/core/assets/generated/assets.gen.dart'
+    show Assets, SvgGenImage;
 import 'package:sky_ways/core/resources/colors.dart' show hex4285F4, hex5D7285;
 import 'package:sky_ways/core/resources/numbers/ui.dart'
     show
@@ -29,14 +30,6 @@ import 'package:sky_ways/core/resources/numbers/ui.dart'
         twentyFourDotNil,
         two,
         zero;
-import 'package:sky_ways/core/resources/strings/asset_paths.dart'
-    show
-        accountAssetPath,
-        communityAssetPath,
-        flightAssetPath,
-        indicatorAssetPath,
-        mapAssetPath,
-        weatherAssetPath;
 import 'package:sky_ways/core/utils/extensions/build_context_extensions.dart';
 
 class BottomBar extends StatelessWidget {
@@ -67,10 +60,9 @@ class BottomBar extends StatelessWidget {
                       padding: const EdgeInsetsDirectional.only(
                         top: sixteenDotNil,
                       ),
-                      child: SvgPicture.asset(
-                        _computeBottomNavigationBarSvgAssetPathFrom(
-                          index,
-                        ),
+                      child: _computeBottomNavigationBarSvgAssetFrom(
+                        index,
+                      ).svg(
                         width: twentyFourDotNil,
                         height: twentyFourDotNil,
                         color: switch (
@@ -96,9 +88,7 @@ class BottomBar extends StatelessWidget {
                 duration: const Duration(
                   milliseconds: oneHundred,
                 ),
-                child: SvgPicture.asset(
-                  indicatorAssetPath,
-                ),
+                child: Assets.svgs.indicator.svg(),
               ),
             ],
           ),
@@ -117,14 +107,14 @@ class BottomBar extends StatelessWidget {
         _ => context.localize.account,
       };
 
-  String _computeBottomNavigationBarSvgAssetPathFrom(
+  SvgGenImage _computeBottomNavigationBarSvgAssetFrom(
     int index,
   ) =>
       switch (index) {
-        zero => flightAssetPath,
-        one => mapAssetPath,
-        two => weatherAssetPath,
-        three => communityAssetPath,
-        _ => accountAssetPath,
+        zero => Assets.svgs.flight,
+        one => Assets.svgs.map,
+        two => Assets.svgs.weather,
+        three => Assets.svgs.community,
+        _ => Assets.svgs.account,
       };
 }

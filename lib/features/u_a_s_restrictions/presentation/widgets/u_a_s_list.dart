@@ -23,7 +23,7 @@ import 'package:flutter/material.dart'
         Text,
         Theme,
         Widget;
-import 'package:flutter_svg/flutter_svg.dart' show SvgPicture;
+import 'package:sky_ways/core/assets/generated/assets.gen.dart' show Assets;
 import 'package:sky_ways/core/resources/colors.dart' show hex3A4DE9;
 import 'package:sky_ways/core/resources/numbers/ui.dart'
     show
@@ -48,8 +48,6 @@ import 'package:sky_ways/core/resources/numbers/ui.dart'
         twentyOneDotNil,
         twentyTwoDotNil,
         twoDotNil;
-import 'package:sky_ways/core/resources/strings/asset_paths.dart'
-    show arrowRightAssetPath, iconDroneBlackAssetPath;
 import 'package:sky_ways/core/resources/strings/special_characters.dart'
     show whiteSpace;
 import 'package:sky_ways/core/utils/extensions/build_context_extensions.dart';
@@ -159,9 +157,7 @@ class UASList extends StatelessWidget {
                             ),
                             child: Row(
                               children: [
-                                SvgPicture.asset(
-                                  iconDroneBlackAssetPath,
-                                ),
+                                Assets.svgs.iconDroneBlack.svg(),
                                 const SizedBox(
                                   width: tenDotNil,
                                 ),
@@ -184,9 +180,7 @@ class UASList extends StatelessWidget {
                                 const SizedBox(
                                   width: tenDotNil,
                                 ),
-                                SvgPicture.asset(
-                                  arrowRightAssetPath,
-                                ),
+                                Assets.svgs.arrowRight.svg(),
                               ],
                             ),
                           ),

@@ -16,7 +16,7 @@ import 'package:flutter/material.dart'
         Text,
         Theme,
         Widget;
-import 'package:flutter_svg/svg.dart' show SvgPicture;
+import 'package:sky_ways/core/assets/generated/assets.gen.dart' show Assets;
 import 'package:sky_ways/core/resources/colors.dart' show hex222222;
 import 'package:sky_ways/core/resources/numbers/ui.dart'
     show
@@ -27,13 +27,6 @@ import 'package:sky_ways/core/resources/numbers/ui.dart'
         thirteenDotNil,
         twentyOneDotNil,
         twentyOneDotThreeSeven;
-import 'package:sky_ways/core/resources/strings/asset_paths.dart'
-    show
-        mapLayerDarkAssetPath,
-        mapLayerSatelliteAssetPath,
-        myLocationFollowedAssetPath,
-        myLocationNotFollowedAssetPath,
-        sunAssetPath;
 import 'package:sky_ways/core/utils/enums/ui.dart' show MapStyle;
 import 'package:sky_ways/core/utils/extensions/build_context_extensions.dart';
 import 'package:sky_ways/features/u_a_s_restrictions/presentation/widgets/options_card.dart';
@@ -72,24 +65,21 @@ class MapOverlay extends StatelessWidget {
                       children: [
                         InkWell(
                           onTap: onMyLocationIconTap,
-                          child: SvgPicture.asset(
-                            switch (myLocationFollowed) {
-                              true => myLocationFollowedAssetPath,
-                              false => myLocationNotFollowedAssetPath,
-                            },
-                          ),
+                          child: switch (myLocationFollowed) {
+                            true => Assets.svgs.myLocationFollowed.svg(),
+                            false => Assets.svgs.myLocationNotFollowed.svg(),
+                          },
                         ),
                         const SizedBox(
                           height: tenDotNil,
                         ),
                         InkWell(
                           onTap: onMapLayerIconTap,
-                          child: SvgPicture.asset(
-                            switch (mapStyle) {
-                              MapStyle.dark => mapLayerDarkAssetPath,
-                              MapStyle.satellite => mapLayerSatelliteAssetPath,
-                            },
-                          ),
+                          child: switch (mapStyle) {
+                            MapStyle.dark => Assets.svgs.mapLayerDark.svg(),
+                            MapStyle.satellite =>
+                              Assets.svgs.mapLayerSatellite.svg(),
+                          },
                         ),
                       ],
                     ),
@@ -105,9 +95,7 @@ class MapOverlay extends StatelessWidget {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        SvgPicture.asset(
-                          sunAssetPath,
-                        ),
+                        Assets.svgs.sun.svg(),
                         Text(
                           context.localize.twenty + context.localize.degrees,
                           style: Theme.of(context)

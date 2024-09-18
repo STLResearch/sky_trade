@@ -22,7 +22,7 @@ import 'package:flutter/material.dart'
         Widget,
         WidgetStatePropertyAll;
 import 'package:flutter_bloc/flutter_bloc.dart' show BlocListener, ReadContext;
-import 'package:flutter_svg/svg.dart' show SvgPicture;
+import 'package:sky_ways/core/assets/generated/assets.gen.dart' show Assets;
 import 'package:sky_ways/core/resources/colors.dart' show hexFFFFFF;
 import 'package:sky_ways/core/resources/numbers/ui.dart'
     show
@@ -32,8 +32,6 @@ import 'package:sky_ways/core/resources/numbers/ui.dart'
         tenDotNil,
         thirtyDotNil,
         twentyTwoDotFive;
-import 'package:sky_ways/core/resources/strings/asset_paths.dart'
-    show skyTradeLogoAssetPath;
 import 'package:sky_ways/core/resources/strings/routes.dart'
     show loginRoutePath;
 import 'package:sky_ways/core/utils/extensions/build_context_extensions.dart';
@@ -71,9 +69,7 @@ class NoInternetConnectionScreen extends StatelessWidget {
                     const SizedBox(
                       height: tenDotNil,
                     ),
-                    SvgPicture.asset(
-                      skyTradeLogoAssetPath,
-                    ),
+                    Assets.svgs.skyTradeLogo.svg(),
                     const SizedBox(
                       height: fortyDotNil,
                     ),

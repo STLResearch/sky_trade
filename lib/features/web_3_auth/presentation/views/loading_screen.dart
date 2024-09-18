@@ -12,11 +12,9 @@ import 'package:flutter/material.dart'
         StatelessWidget,
         Theme,
         Widget;
-import 'package:flutter_svg/svg.dart' show SvgPicture;
+import 'package:sky_ways/core/assets/generated/assets.gen.dart' show Assets;
 import 'package:sky_ways/core/resources/numbers/ui.dart'
     show fortyDotNil, oneFiftyDotNil, tenDotNil, thirtyDotNil;
-import 'package:sky_ways/core/resources/strings/asset_paths.dart'
-    show skyTradeLogoAssetPath;
 
 class LoadingScreen extends StatelessWidget {
   const LoadingScreen({super.key});
@@ -34,9 +32,7 @@ class LoadingScreen extends StatelessWidget {
                 const SizedBox(
                   height: tenDotNil,
                 ),
-                SvgPicture.asset(
-                  skyTradeLogoAssetPath,
-                ),
+                Assets.svgs.skyTradeLogo.svg(),
                 const SizedBox(
                   height: fortyDotNil,
                 ),

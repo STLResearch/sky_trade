@@ -27,7 +27,7 @@ import 'package:flutter/material.dart'
         Theme,
         Widget;
 import 'package:flutter_bloc/flutter_bloc.dart' show ReadContext;
-import 'package:flutter_svg/svg.dart' show SvgPicture;
+import 'package:sky_ways/core/assets/generated/assets.gen.dart' show Assets;
 import 'package:sky_ways/core/resources/colors.dart'
     show hex1E1E1E, hex9D9D9D, hexF4F4F4;
 import 'package:sky_ways/core/resources/numbers/ui.dart'
@@ -50,8 +50,6 @@ import 'package:sky_ways/core/resources/numbers/ui.dart'
         twentySixDotNil,
         twentyTwoDotNil,
         twoDotNil;
-import 'package:sky_ways/core/resources/strings/asset_paths.dart'
-    show arrowAssetPath;
 import 'package:sky_ways/core/utils/extensions/build_context_extensions.dart';
 import 'package:sky_ways/core/utils/extensions/restriction_entity_extensions.dart';
 import 'package:sky_ways/features/link_handler/presentation/blocs/handle_link_bloc/handle_link_bloc.dart'
@@ -120,9 +118,8 @@ class RestrictionInfo extends StatelessWidget {
                         child: Row(
                           // mainAxisSize: MainAxisSize.min,
                           children: [
-                            SvgPicture.asset(
-                              restrictionEntity
-                                  .restrictionSheetTitleInfoAssetPath,
+                            restrictionEntity.restrictionSheetTitleInfoAsset
+                                .svg(
                               width: twentyFourDotNil,
                               height: twentyFourDotNil,
                             ),
@@ -165,9 +162,8 @@ class RestrictionInfo extends StatelessWidget {
                         ),
                         child: Row(
                           children: [
-                            SvgPicture.asset(
-                              restrictionEntity
-                                  .restrictionSheetAddressInfoAssetPath,
+                            restrictionEntity.restrictionSheetAddressInfoAsset
+                                .svg(
                               width: thirtyDotNil,
                               height: thirtyDotNil,
                             ),
@@ -276,8 +272,7 @@ class RestrictionInfo extends StatelessWidget {
                                                         .link,
                                                   ),
                                                 ),
-                                            child: SvgPicture.asset(
-                                              arrowAssetPath,
+                                            child: Assets.svgs.arrow.svg(
                                               width: twentyFiveDotEightFive,
                                               height: twentySixDotNil,
                                             ),

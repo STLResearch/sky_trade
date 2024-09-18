@@ -11,7 +11,7 @@ import 'package:flutter/material.dart'
         Text,
         Theme,
         Widget;
-import 'package:flutter_svg/svg.dart' show SvgPicture;
+import 'package:sky_ways/core/assets/generated/assets.gen.dart' show Assets;
 import 'package:sky_ways/core/resources/colors.dart' show hex222222;
 import 'package:sky_ways/core/resources/numbers/ui.dart'
     show
@@ -22,8 +22,6 @@ import 'package:sky_ways/core/resources/numbers/ui.dart'
         sixteenDotNil,
         sixtyOneDotNil,
         tenDotNil;
-import 'package:sky_ways/core/resources/strings/asset_paths.dart'
-    show meatballsMenuAssetPath, searchAssetPath;
 import 'package:sky_ways/core/utils/extensions/build_context_extensions.dart';
 
 class SearchCard extends StatelessWidget {
@@ -43,9 +41,7 @@ class SearchCard extends StatelessWidget {
             const SizedBox(
               width: fifteenDotNil,
             ),
-            SvgPicture.asset(
-              searchAssetPath,
-            ),
+            Assets.svgs.search.svg(),
             const SizedBox(
               width: tenDotNil,
             ),
@@ -57,8 +53,7 @@ class SearchCard extends StatelessWidget {
                     ),
               ),
             ),
-            SvgPicture.asset(
-              meatballsMenuAssetPath,
+            Assets.svgs.meatballsMenu.svg(
               width: fourDotNil,
               height: sixteenDotNil,
             ),

@@ -1,4 +1,4 @@
-.PHONY: f-np
+.PHONY: f-np, c-p, br-b, br-w, t, gcr-t, ocr-t
 
 f-np: ## Creates a feature with no presentation layer
 	@echo "Creating new example feature"
@@ -34,6 +34,9 @@ c-p: ## Cleans project
 	flutter clean
 	flutter pub get
 	cd ios && pod repo update && pod install && cd ..
+
+br-b: ## Runs build_runner build
+	dart run build_runner build
 
 br-w: ## Runs build_runner watch
 	dart run build_runner watch

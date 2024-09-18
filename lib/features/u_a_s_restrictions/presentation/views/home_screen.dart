@@ -1,5 +1,14 @@
 import 'package:flutter/material.dart'
-    show AlignmentDirectional, BuildContext, Placeholder, Scaffold, Stack, State, StatefulWidget, ValueListenableBuilder, ValueNotifier, Widget;
+    show
+        AlignmentDirectional,
+        BuildContext,
+        Scaffold,
+        Stack,
+        State,
+        StatefulWidget,
+        ValueListenableBuilder,
+        ValueNotifier,
+        Widget;
 import 'package:flutter_bloc/flutter_bloc.dart'
     show BlocListener, MultiBlocListener, ReadContext;
 import 'package:flutter_dotenv/flutter_dotenv.dart' show dotenv;
@@ -48,12 +57,7 @@ class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
 
   @override
-  State<HomeScreen> createState() => _TestHomeScreenState();
-}
-
-class _TestHomeScreenState extends State<HomeScreen> {
-  @override
-  Widget build(BuildContext context) => const Placeholder();
+  State<HomeScreen> createState() => _HomeScreenState();
 }
 
 class _HomeScreenState extends State<HomeScreen> {
