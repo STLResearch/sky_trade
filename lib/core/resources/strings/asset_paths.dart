@@ -2,12 +2,15 @@ const assetImagesPath = 'assets/images';
 
 const accountAssetPath = '$assetImagesPath/account.svg';
 const arrowAssetPath = '$assetImagesPath/arrow.svg';
+const arrowRightAssetPath = '$assetImagesPath/arrow_right.svg';
+const clearAssetPath = '$assetImagesPath/clear.svg';
 const cloudAssetPath = '$assetImagesPath/cloud.svg';
 const cloudAltAssetPath = '$assetImagesPath/cloud_alt.svg';
 const communityAssetPath = '$assetImagesPath/community.svg';
 const flightAssetPath = '$assetImagesPath/flight.svg';
 const googleAssetPath = '$assetImagesPath/google.svg';
 const iconDroneAssetPath = '$assetImagesPath/icon_drone.png';
+const iconDroneBlackAssetPath = '$assetImagesPath/icon_drone_black.svg';
 const indicatorAssetPath = '$assetImagesPath/indicator.svg';
 const infoAssetPath = '$assetImagesPath/info.svg';
 const infoDangerAssetPath = '$assetImagesPath/info_danger.svg';
