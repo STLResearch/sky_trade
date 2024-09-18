@@ -19,7 +19,7 @@ import 'package:flutter/material.dart'
         VoidCallback,
         Widget,
         WidgetStatePropertyAll;
-import 'package:flutter_svg/flutter_svg.dart' show SvgPicture;
+import 'package:sky_ways/core/assets/generated/assets.gen.dart' show Assets;
 import 'package:sky_ways/core/resources/colors.dart' show hex595959, hexFFFFFF;
 import 'package:sky_ways/core/resources/numbers/ui.dart'
     show
@@ -29,8 +29,6 @@ import 'package:sky_ways/core/resources/numbers/ui.dart'
         twentyFourDotNil,
         twentyTwoDotFive,
         twoDotNil;
-import 'package:sky_ways/core/resources/strings/asset_paths.dart'
-    show googleAssetPath;
 import 'package:sky_ways/core/utils/enums/ui.dart' show AuthButtonType;
 import 'package:sky_ways/core/utils/extensions/build_context_extensions.dart';
 
@@ -111,8 +109,7 @@ final class AuthButton extends StatelessWidget {
         AuthButtonType.connectWithGoogle => Stack(
             alignment: AlignmentDirectional.centerStart,
             children: [
-              SvgPicture.asset(
-                googleAssetPath,
+              Assets.svgs.google.svg(
                 width: twentyFourDotNil,
                 height: twentyFourDotNil,
               ),

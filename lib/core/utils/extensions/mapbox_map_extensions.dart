@@ -20,6 +20,7 @@ import 'package:mapbox_maps_flutter/mapbox_maps_flutter.dart'
         PolygonAnnotationManager,
         PolygonAnnotationOptions,
         Position;
+import 'package:sky_ways/core/assets/generated/assets.gen.dart' show Assets;
 import 'package:sky_ways/core/resources/colors.dart' show rawHex2A60C4;
 import 'package:sky_ways/core/resources/numbers/ui.dart'
     show
@@ -30,8 +31,6 @@ import 'package:sky_ways/core/resources/numbers/ui.dart'
         oneThousand,
         threeDotNil,
         zero;
-import 'package:sky_ways/core/resources/strings/asset_paths.dart'
-    show iconDroneAssetPath, locationPuckAssetPath, locationPuckShadowAssetPath;
 import 'package:sky_ways/core/utils/extensions/restriction_entity_extensions.dart';
 import 'package:sky_ways/core/utils/typedefs/ui.dart'
     show
@@ -202,11 +201,11 @@ extension MapboxMapExtensions on MapboxMap {
     );
 
     final locationPuckByteData = await rootBundle.load(
-      locationPuckAssetPath,
+      Assets.pngs.locationPuck.path,
     );
 
     final locationPuckShadowByteData = await rootBundle.load(
-      locationPuckShadowAssetPath,
+      Assets.pngs.locationPuckShadow.path,
     );
 
     await location.updateSettings(
@@ -253,7 +252,7 @@ extension MapboxMapExtensions on MapboxMap {
           ),
           image: await rootBundle
               .load(
-                iconDroneAssetPath,
+                Assets.pngs.iconDrone.path,
               )
               .then(
                 (

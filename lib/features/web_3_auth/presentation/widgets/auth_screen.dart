@@ -14,11 +14,9 @@ import 'package:flutter/material.dart'
         TextAlign,
         Theme,
         Widget;
-import 'package:flutter_svg/flutter_svg.dart' show SvgPicture;
+import 'package:sky_ways/core/assets/generated/assets.gen.dart' show Assets;
 import 'package:sky_ways/core/resources/numbers/ui.dart'
     show fifteenDotNil, fortyDotNil, tenDotNil;
-import 'package:sky_ways/core/resources/strings/asset_paths.dart'
-    show skyTradeLogoAssetPath;
 
 final class AuthScreen extends StatelessWidget {
   const AuthScreen({
@@ -46,9 +44,7 @@ final class AuthScreen extends StatelessWidget {
                   const SizedBox(
                     height: tenDotNil,
                   ),
-                  SvgPicture.asset(
-                    skyTradeLogoAssetPath,
-                  ),
+                  Assets.svgs.skyTradeLogo.svg(),
                   const SizedBox(
                     height: fortyDotNil,
                   ),

@@ -19,7 +19,6 @@ import 'package:flutter/material.dart'
         ValueNotifier,
         Widget,
         showModalBottomSheet;
-import 'package:flutter_svg/svg.dart' show SvgPicture;
 import 'package:sky_ways/core/resources/numbers/ui.dart'
     show
         eightDotNil,
@@ -79,9 +78,9 @@ class RestrictionIndicator extends StatelessWidget {
                             ),
                           ),
                         ),
-                        child: SvgPicture.asset(
-                          clickedRestrictionValue
-                              .restrictionIndicatorInfoAssetPath,
+                        child: clickedRestrictionValue
+                            .restrictionIndicatorInfoAsset
+                            .svg(
                           width: eighteenDotNil,
                           height: eighteenDotNil,
                         ),

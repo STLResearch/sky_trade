@@ -30,6 +30,7 @@ import 'package:flutter/material.dart'
         TextTheme,
         ThemeData,
         WidgetStatePropertyAll;
+import 'package:sky_ways/core/assets/generated/fonts.gen.dart';
 import 'package:sky_ways/core/resources/colors.dart'
     show
         hex00000033,
@@ -66,7 +67,6 @@ import 'package:sky_ways/core/resources/numbers/ui.dart'
         twentyTwoDotNil,
         two,
         twoDotNil;
-import 'package:sky_ways/core/resources/strings/fonts.dart' show poppins;
 
 ThemeData get lightTheme => ThemeData(
       useMaterial3: true,
@@ -129,14 +129,14 @@ ThemeData get lightTheme => ThemeData(
           ),
         ),
         hintStyle: const TextStyle(
-          fontFamily: poppins,
+          fontFamily: FontFamily.poppins,
           fontWeight: FontWeight.w400,
           fontSize: twelveDotNil,
           height: eighteenDotNil / twelveDotNil,
           color: hexB8B8B8,
         ),
         errorStyle: const TextStyle(
-          fontFamily: poppins,
+          fontFamily: FontFamily.poppins,
           fontWeight: FontWeight.w400,
           fontStyle: FontStyle.italic,
           fontSize: elevenDotNil,
@@ -146,21 +146,21 @@ ThemeData get lightTheme => ThemeData(
       ),
       textTheme: const TextTheme(
         bodySmall: TextStyle(
-          fontFamily: poppins,
+          fontFamily: FontFamily.poppins,
           fontWeight: FontWeight.w400,
           fontSize: twelveDotNil,
           height: eighteenDotNil / twelveDotNil,
           color: hex87878D,
         ),
         bodyMedium: TextStyle(
-          fontFamily: poppins,
+          fontFamily: FontFamily.poppins,
           fontWeight: FontWeight.w400,
           fontSize: sixteenDotNil,
           height: twentyFourDotNil / sixteenDotNil,
           color: hex222222,
         ),
         bodyLarge: TextStyle(
-          fontFamily: poppins,
+          fontFamily: FontFamily.poppins,
           fontWeight: FontWeight.w500,
           fontSize: twentyDotNil,
           height: thirtyDotNil / twentyDotNil,
@@ -192,7 +192,7 @@ ThemeData get lightTheme => ThemeData(
           ),
           textStyle: const WidgetStatePropertyAll<TextStyle>(
             TextStyle(
-              fontFamily: poppins,
+              fontFamily: FontFamily.poppins,
               fontWeight: FontWeight.w400,
               fontSize: fifteenDotNil,
               height: twentyTwoDotFive / fifteenDotNil,
@@ -236,14 +236,14 @@ ThemeData get lightTheme => ThemeData(
         selectedItemColor: hex4285F4,
         unselectedItemColor: hex5D7285,
         selectedLabelStyle: TextStyle(
-          fontFamily: poppins,
+          fontFamily: FontFamily.poppins,
           fontWeight: FontWeight.w600,
           fontSize: elevenDotNil,
           height: twentyOneDotThreeSeven / elevenDotNil,
           letterSpacing: nilDotNilOne,
         ),
         unselectedLabelStyle: TextStyle(
-          fontFamily: poppins,
+          fontFamily: FontFamily.poppins,
           fontWeight: FontWeight.w400,
           fontSize: elevenDotNil,
           height: twentyOneDotThreeSeven / elevenDotNil,
@@ -254,7 +254,7 @@ ThemeData get lightTheme => ThemeData(
         backgroundColor: hex0653EA,
         behavior: SnackBarBehavior.floating,
         contentTextStyle: TextStyle(
-          fontFamily: poppins,
+          fontFamily: FontFamily.poppins,
           fontWeight: FontWeight.w400,
           fontSize: twelveDotNil,
           height: eighteenDotNil / twelveDotNil,
