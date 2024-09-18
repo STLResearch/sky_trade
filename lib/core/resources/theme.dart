@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart'
     show
         BorderRadius,
+        BorderRadiusDirectional,
         BorderSide,
         BottomNavigationBarThemeData,
         BottomNavigationBarType,
@@ -20,6 +21,7 @@ import 'package:flutter/material.dart'
         OutlineInputBorder,
         OutlinedBorder,
         ProgressIndicatorThemeData,
+        Radius,
         RoundedRectangleBorder,
         Size,
         SnackBarBehavior,
@@ -263,6 +265,13 @@ ThemeData get lightTheme => ThemeData(
         backgroundColor: hexFFFFFF,
         showDragHandle: false,
         dragHandleColor: hexD9D9D9,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadiusDirectional.vertical(
+            top: Radius.circular(
+              thirtyDotNil,
+            ),
+          ),
+        ),
       ),
       dividerTheme: const DividerThemeData(
         color: hexEBEBEB,

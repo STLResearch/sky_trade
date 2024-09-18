@@ -38,5 +38,7 @@
   "oopsSomethingWentWrong": "Oops!\nSomething Went Wrong",
   "itLooksLikeWereHavingTroubleInitializingYourSession": "It looks like we’re having trouble initializing your session.",
   "anUnexpectedErrorOccurredPleaseTryRefreshingThePageIfTheIssueContinuesYouMayWantToCheckYourConnectionOrTryAgainLater": "An unexpected error occurred. Please try refreshing the page. If the issue continues, you may want to check your connection or try again later.\n\nFor further assistance, feel free to contact our support team.",
-  "refreshPage": "Refresh Page"
+  "refreshPage": "Refresh Page",
+  "drones": "drones",
+  "drone": "drone"
 }
