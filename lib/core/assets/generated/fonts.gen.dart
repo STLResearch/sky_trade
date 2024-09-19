@@ -10,6 +10,9 @@
 class FontFamily {
   FontFamily._();
 
+  /// Font family: Arial
+  static const String arial = 'Arial';
+
   /// Font family: Poppins
   static const String poppins = 'Poppins';
 }
