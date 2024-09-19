@@ -25,7 +25,7 @@ import 'package:sky_ways/firebase_options.dart';
 import 'package:sky_ways/injection_container.dart' show registerServices;
 
 void main() => _loadEnv().then(
-      (_) => _initializeSentryReporting(
+      (_) => _maybeInitializeSentryReporting(
         then: () => _initializeImportantResources().then(
           (_) => runApp(
             const App(),
@@ -38,24 +38,26 @@ Future<void> _loadEnv() => dotenv.load(
       fileName: environmentVariablesFileName + fullStop + _environment,
     );
 
-Future<void> _initializeSentryReporting({
+Future<void> _maybeInitializeSentryReporting({
   required VoidCallback then,
-}) =>
-    SentryFlutter.init(
-      (options) {
-        options
-          ..environment = _environment
-          ..dsn = dotenv.env[sentryDsn]!
-          ..tracesSampleRate = oneDotNil
-          ..profilesSampleRate = oneDotNil;
-      },
-      appRunner: then,
-    );
+}) async {
+  if (_environment == devEnvironment) {
+    then();
 
-String get _environment => const String.fromEnvironment(
-      flavours,
-      defaultValue: devEnvironment,
-    );
+    return;
+  }
+
+  await SentryFlutter.init(
+    (options) {
+      options
+        ..environment = _environment
+        ..dsn = dotenv.env[sentryDsn]!
+        ..tracesSampleRate = oneDotNil
+        ..profilesSampleRate = oneDotNil;
+    },
+    appRunner: then,
+  );
+}
 
 Future<void> _initializeImportantResources() async {
   final widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
@@ -83,3 +85,8 @@ Future<void> _initializeImportantResources() async {
 
   Bloc.observer = const AppBlocObserver();
 }
+
+String get _environment => const String.fromEnvironment(
+      flavours,
+      defaultValue: devEnvironment,
+    );
