@@ -66,3 +66,5 @@ const sixtyEightDotNil = 68.0;
 const seventyDotNil = 70.0;
 const seventyEightDotNil = 78.0;
 const oneFiftyDotNil = 150.0;
+const twentyFiveDotNil = 25.0;
+const threeThirtyTwoDotNil = 332.0;

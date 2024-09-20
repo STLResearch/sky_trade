@@ -8,6 +8,9 @@ const web3AuthWhitelistOriginAndroid = 'WEB_3_AUTH_WHITELIST_ORIGIN_ANDROID';
 const flowTypeKey = 'flow_type';
 const linkValue = 'link';
 
+// Mapbox maps
+const mapboxMapsSearchBoxBaseUrl = 'MAPBOX_MAPS_SEARCH_BOX_BASE_URL';
+
 // SkyTrade
 // Privacy policy
 const skyTradePrivacyPolicyUrl = 'https://docs.sky.trade/privacy.htm';
@@ -22,6 +25,7 @@ const skyTradeServerSocketIOBaseUrl = 'SKYTRADE_SERVER_SOCKET_IO_BASE_URL';
 const skyTradeServerApiKey = 'SKYTRADE_SERVER_API_KEY';
 // Paths
 const restrictionsPath = '/restrictions';
+const suggestPath = '/suggest';
 const privatePath = '/private';
 const publicPath = '/public';
 const usersPath = '/users';
@@ -133,6 +137,8 @@ const transportTypeKey = 'transportType';
 const uasIdKey = 'uasId';
 const idTypeKey = 'idType';
 const uaTypeKey = 'uaType';
+const placeFormattedKey = 'place_formatted';
+const qKey = 'q';
 const emailKey = 'email';
 const blockchainAddressKey = 'blockchainAddress';
 const newsletterKey = 'newsletter';
