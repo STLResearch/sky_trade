@@ -1,11 +1,10 @@
-
-import 'package:flutter/cupertino.dart';
 import 'package:flutter_opendroneid/models/message_container.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
 @immutable
-class RemoteIDMessage extends MessageContainer {
-  factory RemoteIDMessage(MessageContainer message) {
-    return RemoteIDMessage._internal(
+class RemoteIDEntity extends MessageContainer {
+  factory RemoteIDEntity(MessageContainer message) {
+    return RemoteIDEntity._internal(
       macAddress: message.macAddress,
       lastUpdate: message.lastUpdate,
       source: message.source,
@@ -19,7 +18,7 @@ class RemoteIDMessage extends MessageContainer {
     );
   }
 
-  RemoteIDMessage._internal({
+  RemoteIDEntity._internal({
     required super.macAddress,
     required super.lastUpdate,
     required super.source,
@@ -36,7 +35,7 @@ class RemoteIDMessage extends MessageContainer {
   int get hashCode => macAddress.hashCode;
 
   @override
-  bool operator ==(covariant RemoteIDMessage other) {
+  bool operator ==(covariant RemoteIDEntity other) {
     return macAddress == other.macAddress;
   }
 }

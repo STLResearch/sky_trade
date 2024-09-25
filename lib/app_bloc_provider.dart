@@ -22,6 +22,10 @@ import 'package:sky_ways/features/location/presentation/blocs/location_position_
     show LocationPositionBloc;
 import 'package:sky_ways/features/location/presentation/blocs/location_service_status_bloc/location_service_status_bloc.dart'
     show LocationServiceStatusBloc;
+import 'package:sky_ways/features/remote_i_d_receiver/presentation/blocs/bluetooth_receiver_bloc/bluetooth_receiver_bloc.dart'
+    show BluetoothReceiverBloc;
+import 'package:sky_ways/features/remote_i_d_receiver/presentation/blocs/wifi_receiver_bloc/wifi_receiver_bloc.dart'
+    show WifiReceiverBloc;
 import 'package:sky_ways/features/u_a_s_activity/presentation/blocs/u_a_s_activity_bloc/u_a_s_activity_bloc.dart'
     show UASActivityBloc;
 import 'package:sky_ways/features/u_a_s_restrictions/presentation/blocs/u_a_s_restrictions_bloc/u_a_s_restrictions_bloc.dart'
@@ -75,6 +79,12 @@ List<BlocProvider> get appBlocProvider => [
         create: (_) => _sl(),
       ),
       BlocProvider<LocationServiceStatusBloc>(
+        create: (_) => _sl(),
+      ),
+      BlocProvider<BluetoothReceiverBloc>(
+        create: (_) => _sl(),
+      ),
+      BlocProvider<WifiReceiverBloc>(
         create: (_) => _sl(),
       ),
       BlocProvider<UASActivityBloc>(
