@@ -7,8 +7,7 @@ import 'package:sky_ways/core/errors/failures/location_failure.dart'
     show LocationServiceStatusFailure;
 import 'package:sky_ways/features/location/domain/entities/location_entity.dart'
     show LocationServiceStatusEntity;
-import 'package:sky_ways/features/location/domain/repositories/location_repository.dart'
-    show LocationRepository;
+import 'package:sky_ways/features/location/domain/repositories/location_repository.dart';
 
 part 'location_service_status_event.dart';
 

@@ -49,3 +49,8 @@ gcr-t: ## Generates HTML coverage report for tests
 
 ocr-t: ## Opens HTML coverage report for tests
 	open coverage/report/index.html
+
+t-got: ## Runs all tests with coverage, generates HTML coverage report for tests and opens the HTML coverage report
+	make t
+	make gcr-t
+	make ocr-t

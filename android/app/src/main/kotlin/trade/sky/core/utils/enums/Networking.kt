@@ -1,0 +1,9 @@
+package trade.sky.core.utils.enums
+
+enum class WifiAdapterState(val value: String) {
+    UNKNOWN("WIFI_ADAPTER_STATE_UNKNOWN"),
+    ENABLING("WIFI_ADAPTER_STATE_TURNING_ON"),
+    ENABLED("WIFI_ADAPTER_STATE_ON"),
+    DISABLING("WIFI_ADAPTER_STATE_TURNING_OFF"),
+    DISABLED("WIFI_ADAPTER_STATE_OFF"),
+}

@@ -54,5 +54,7 @@
 		</array>
 		<key>UIStatusBarHidden</key>
 		<false/>
+		<key>NSBluetoothAlwaysUsageDescription</key>
+        <string>We need bluetooth permission to acquire data from nearby aircraft</string>
 	</dict>
 </plist>

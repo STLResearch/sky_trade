@@ -4,8 +4,7 @@ import 'package:sky_ways/core/errors/failures/location_failure.dart'
     show LocationPermissionFailure;
 import 'package:sky_ways/features/location/domain/entities/location_entity.dart'
     show LocationPermissionEntity;
-import 'package:sky_ways/features/location/domain/repositories/location_repository.dart'
-    show LocationRepository;
+import 'package:sky_ways/features/location/domain/repositories/location_repository.dart';
 
 part 'location_permission_event.dart';
 

@@ -112,3 +112,13 @@ const transportTypeKey = 'transportType';
 const uasIdKey = 'uasId';
 const idTypeKey = 'idType';
 const uaTypeKey = 'uaType';
+
+// Platform specific code
+const wifiAdapterStateBroadcastReceiverChannelName =
+    'WIFI_ADAPTER_STATE_BROADCAST_RECEIVER_CHANNEL';
+
+const wifiAdapterStateEnablingEnumValue = 'WIFI_ADAPTER_STATE_TURNING_ON';
+const wifiAdapterStateEnabledEnumValue = 'WIFI_ADAPTER_STATE_ON';
+const wifiAdapterStateDisablingEnumValue = 'WIFI_ADAPTER_STATE_TURNING_OFF';
+const wifiAdapterStateDisabledEnumValue = 'WIFI_ADAPTER_STATE_OFF';
+const wifiAdapterStateUnknownEnumValue = 'WIFI_ADAPTER_STATE_UNKNOWN';
