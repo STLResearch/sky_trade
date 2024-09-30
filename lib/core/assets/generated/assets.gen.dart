@@ -19,6 +19,10 @@ class $AssetsPngsGen {
   AssetGenImage get iconDrone =>
       const AssetGenImage('assets/pngs/icon_drone.png');
 
+  /// File path: assets/pngs/indicator_loading.png
+  AssetGenImage get indicatorLoading =>
+      const AssetGenImage('assets/pngs/indicator_loading.png');
+
   /// File path: assets/pngs/location_puck.png
   AssetGenImage get locationPuck =>
       const AssetGenImage('assets/pngs/location_puck.png');
@@ -49,6 +53,7 @@ class $AssetsPngsGen {
   /// List of all assets
   List<AssetGenImage> get values => [
         iconDrone,
+        indicatorLoading,
         locationPuck,
         locationPuckShadow,
         markerDanger,
@@ -152,6 +157,10 @@ class $AssetsSvgsGen {
   /// File path: assets/svgs/search.svg
   SvgGenImage get search => const SvgGenImage('assets/svgs/search.svg');
 
+  /// File path: assets/svgs/logout_circle.svg
+  SvgGenImage get signInCircle =>
+      const SvgGenImage('assets/svgs/logout_circle.svg');
+
   /// File path: assets/svgs/sky_trade_logo.svg
   SvgGenImage get skyTradeLogo =>
       const SvgGenImage('assets/svgs/sky_trade_logo.svg');
@@ -193,6 +202,7 @@ class $AssetsSvgsGen {
         prohibited,
         rain,
         search,
+        signInCircle,
         skyTradeLogo,
         storm,
         sun,

@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:dartz/dartz.dart' show Function0;
 import 'package:flutter/material.dart'
     show
@@ -14,16 +16,22 @@ import 'package:flutter/material.dart'
         SizedBox,
         StatelessWidget,
         Text,
+        TextStyle,
         Theme,
         Widget;
 import 'package:sky_ways/core/assets/generated/assets.gen.dart' show Assets;
+import 'package:sky_ways/core/assets/generated/fonts.gen.dart';
 import 'package:sky_ways/core/resources/colors.dart' show hex222222;
 import 'package:sky_ways/core/resources/numbers/ui.dart'
     show
         elevenDotNil,
+        fiftyFourDotNil,
+        nineDotNil,
         seventyEightDotNil,
+        sixtyEightDotNil,
         sixtySixDotNil,
         tenDotNil,
+        thirteenDotFive,
         thirteenDotNil,
         twentyOneDotNil,
         twentyOneDotThreeSeven;
@@ -37,6 +45,7 @@ class MapOverlay extends StatelessWidget {
     required this.mapStyle,
     required this.onMyLocationIconTap,
     required this.onMapLayerIconTap,
+    required this.onLogoutCircleTap,
     super.key,
   });
 
@@ -44,6 +53,7 @@ class MapOverlay extends StatelessWidget {
   final MapStyle mapStyle;
   final Function0<void> onMyLocationIconTap;
   final Function0<void> onMapLayerIconTap;
+  final Function0<void> onLogoutCircleTap;
 
   @override
   Widget build(BuildContext context) => SafeArea(
@@ -58,30 +68,68 @@ class MapOverlay extends StatelessWidget {
               children: [
                 Align(
                   alignment: AlignmentDirectional.topEnd,
-                  child: OptionsCard(
-                    height: seventyEightDotNil,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        InkWell(
-                          onTap: onMyLocationIconTap,
-                          child: switch (myLocationFollowed) {
-                            true => Assets.svgs.myLocationFollowed.svg(),
-                            false => Assets.svgs.myLocationNotFollowed.svg(),
-                          },
-                        ),
-                        const SizedBox(
-                          height: tenDotNil,
-                        ),
-                        InkWell(
-                          onTap: onMapLayerIconTap,
-                          child: switch (mapStyle) {
-                            MapStyle.dark => Assets.svgs.mapLayerDark.svg(),
-                            MapStyle.satellite =>
-                              Assets.svgs.mapLayerSatellite.svg(),
-                          },
-                        ),
-                      ],
+                  child: SizedBox(
+                    width: fiftyFourDotNil,
+                    child: OptionsCard(
+                      height: sixtyEightDotNil, // Same height as other buttons
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          InkWell(
+                            onTap: onLogoutCircleTap, // Empty callback for now
+                            child: Assets.svgs.signInCircle.svg(),
+                          ),
+                          const SizedBox(
+                            height:
+                                tenDotNil, // Gap of 10 between icon and text
+                          ),
+                           Text(
+                            context.localize.logout, // Static text for Logout button
+                            style: const TextStyle(
+                              fontFamily: FontFamily.poppins,
+                              fontWeight: FontWeight.w400,
+                              fontSize: nineDotNil,
+                              color: Color(0xFF222222),
+                              height: thirteenDotFive / nineDotNil,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+                const SizedBox(
+                  height: tenDotNil, // Spacing between the buttons
+                ),
+                Align(
+                  alignment: AlignmentDirectional.topEnd,
+                  child: SizedBox(
+                    width: fiftyFourDotNil,
+                    child: OptionsCard(
+                      height: seventyEightDotNil,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          InkWell(
+                            onTap: onMyLocationIconTap,
+                            child: switch (myLocationFollowed) {
+                              true => Assets.svgs.myLocationFollowed.svg(),
+                              false => Assets.svgs.myLocationNotFollowed.svg(),
+                            },
+                          ),
+                          const SizedBox(
+                            height: tenDotNil,
+                          ),
+                          InkWell(
+                            onTap: onMapLayerIconTap,
+                            child: switch (mapStyle) {
+                              MapStyle.dark => Assets.svgs.mapLayerDark.svg(),
+                              MapStyle.satellite =>
+                                Assets.svgs.mapLayerSatellite.svg(),
+                            },
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ),
@@ -90,24 +138,27 @@ class MapOverlay extends StatelessWidget {
                 ),
                 Align(
                   alignment: AlignmentDirectional.topEnd,
-                  child: OptionsCard(
-                    height: sixtySixDotNil,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Assets.svgs.sun.svg(),
-                        Text(
-                          context.localize.twenty + context.localize.degrees,
-                          style: Theme.of(context)
-                              .textTheme
-                              .bodySmall
-                              ?.copyWith(
-                                fontSize: elevenDotNil,
-                                height: twentyOneDotThreeSeven / elevenDotNil,
-                                color: hex222222,
-                              ),
-                        ),
-                      ],
+                  child: SizedBox(
+                    width: fiftyFourDotNil,
+                    child: OptionsCard(
+                      height: sixtySixDotNil,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Assets.svgs.sun.svg(),
+                          Text(
+                            context.localize.twenty + context.localize.degrees,
+                            style: Theme.of(context)
+                                .textTheme
+                                .bodySmall
+                                ?.copyWith(
+                                  fontSize: elevenDotNil,
+                                  height: twentyOneDotThreeSeven / elevenDotNil,
+                                  color: hex222222,
+                                ),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ),

@@ -417,6 +417,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           _mapStyleNotifier.value = MapStyle.dark;
                       }
                     },
+                    onLogoutCircleTap: () {},
                   ),
                 ),
               ),
