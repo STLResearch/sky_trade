@@ -77,7 +77,7 @@ class MapOverlay extends StatelessWidget {
                         children: [
                           InkWell(
                             onTap: onLogoutCircleTap, // Empty callback for now
-                            child: Assets.svgs.signInCircle.svg(),
+                            child: Assets.svgs.logoutCircle.svg(),
                           ),
                           const SizedBox(
                             height:

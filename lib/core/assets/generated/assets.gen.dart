@@ -19,10 +19,6 @@ class $AssetsPngsGen {
   AssetGenImage get iconDrone =>
       const AssetGenImage('assets/pngs/icon_drone.png');
 
-  /// File path: assets/pngs/indicator_loading.png
-  AssetGenImage get indicatorLoading =>
-      const AssetGenImage('assets/pngs/indicator_loading.png');
-
   /// File path: assets/pngs/location_puck.png
   AssetGenImage get locationPuck =>
       const AssetGenImage('assets/pngs/location_puck.png');
@@ -53,7 +49,6 @@ class $AssetsPngsGen {
   /// List of all assets
   List<AssetGenImage> get values => [
         iconDrone,
-        indicatorLoading,
         locationPuck,
         locationPuckShadow,
         markerDanger,
@@ -125,6 +120,10 @@ class $AssetsSvgsGen {
   SvgGenImage get locationProhibited =>
       const SvgGenImage('assets/svgs/location_prohibited.svg');
 
+  /// File path: assets/svgs/logout_circle.svg
+  SvgGenImage get logoutCircle =>
+      const SvgGenImage('assets/svgs/logout_circle.svg');
+
   /// File path: assets/svgs/map.svg
   SvgGenImage get map => const SvgGenImage('assets/svgs/map.svg');
 
@@ -156,10 +155,6 @@ class $AssetsSvgsGen {
 
   /// File path: assets/svgs/search.svg
   SvgGenImage get search => const SvgGenImage('assets/svgs/search.svg');
-
-  /// File path: assets/svgs/logout_circle.svg
-  SvgGenImage get signInCircle =>
-      const SvgGenImage('assets/svgs/logout_circle.svg');
 
   /// File path: assets/svgs/sky_trade_logo.svg
   SvgGenImage get skyTradeLogo =>
@@ -193,6 +188,7 @@ class $AssetsSvgsGen {
         infoRestricted,
         locationDangerRestricted,
         locationProhibited,
+        logoutCircle,
         map,
         mapLayerDark,
         mapLayerSatellite,
@@ -202,7 +198,6 @@ class $AssetsSvgsGen {
         prohibited,
         rain,
         search,
-        signInCircle,
         skyTradeLogo,
         storm,
         sun,
