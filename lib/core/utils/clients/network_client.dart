@@ -14,20 +14,16 @@ import 'package:sky_ways/core/resources/numbers/networking.dart'
         requestSendTimeoutSeconds;
 import 'package:sky_ways/core/resources/strings/networking.dart'
     show
-        acceptKey,
-        acceptValue,
-        authorizationKey,
-        bearerValue,
+        acceptAllHeaderValue,
+        acceptHeaderKey,
+        applicationJsonHeaderValue,
         connectingEvent,
         connectionTimeoutEvent,
-        contentTypeKey,
-        contentTypeValue,
+        contentTypeHeaderKey,
         reconnectingEvent,
         skyTradeServerHttpBaseUrl,
         skyTradeServerSocketIOBaseUrl,
         websocketTransport;
-import 'package:sky_ways/core/resources/strings/special_characters.dart'
-    show whiteSpace;
 import 'package:sky_ways/core/utils/enums/networking.dart'
     show ConnectionState, RequestMethod;
 import 'package:sky_ways/core/utils/typedefs/networking.dart'
@@ -243,8 +239,8 @@ final class HttpClient {
               seconds: requestSendTimeoutSeconds,
             ),
             headers: <String, dynamic>{
-              contentTypeKey: contentTypeValue,
-              acceptKey: acceptValue,
+              contentTypeHeaderKey: applicationJsonHeaderValue,
+              acceptHeaderKey: acceptAllHeaderValue,
             },
           ),
         );
@@ -256,19 +252,17 @@ final class HttpClient {
     required String path,
     Map<String, dynamic>? data,
     Map<String, dynamic>? queryParameters,
-    String? bearerToken,
+    Map<String, dynamic>? headers,
   }) =>
       switch (requestMethod) {
         RequestMethod.get => _dio.get(
             path,
             data: data,
             queryParameters: queryParameters,
-            options: switch (bearerToken) {
+            options: switch (headers) {
               null => null,
               _ => Options(
-                  headers: <String, String>{
-                    authorizationKey: bearerValue + whiteSpace + bearerToken,
-                  },
+                  headers: headers,
                 )
             },
           ),
@@ -276,12 +270,10 @@ final class HttpClient {
             path,
             data: data,
             queryParameters: queryParameters,
-            options: switch (bearerToken) {
+            options: switch (headers) {
               null => null,
               _ => Options(
-                  headers: <String, String>{
-                    authorizationKey: bearerValue + whiteSpace + bearerToken,
-                  },
+                  headers: headers,
                 )
             },
           ),
@@ -289,12 +281,10 @@ final class HttpClient {
             path,
             data: data,
             queryParameters: queryParameters,
-            options: switch (bearerToken) {
+            options: switch (headers) {
               null => null,
               _ => Options(
-                  headers: <String, String>{
-                    authorizationKey: bearerValue + whiteSpace + bearerToken,
-                  },
+                  headers: headers,
                 )
             },
           ),
@@ -302,12 +292,10 @@ final class HttpClient {
             path,
             data: data,
             queryParameters: queryParameters,
-            options: switch (bearerToken) {
+            options: switch (headers) {
               null => null,
               _ => Options(
-                  headers: <String, String>{
-                    authorizationKey: bearerValue + whiteSpace + bearerToken,
-                  },
+                  headers: headers,
                 )
             },
           ),

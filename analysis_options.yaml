@@ -10,6 +10,7 @@ analyzer:
     unrelated_type_equality_checks: error
     prefer_single_quotes: error
     invalid_annotation_target: ignore
+    only_throw_errors: error
 
   exclude:
     - test/.test_coverage.dart

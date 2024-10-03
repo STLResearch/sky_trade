@@ -5,7 +5,7 @@ import 'package:flutter/services.dart' show EventChannel;
 import 'package:permission_handler/permission_handler.dart'
     show Permission, PermissionActions, PermissionStatusGetters;
 import 'package:sky_ways/core/errors/failures/wifi_failure.dart';
-import 'package:sky_ways/core/resources/strings/networking.dart'
+import 'package:sky_ways/core/resources/strings/environments.dart'
     show
         wifiAdapterStateBroadcastReceiverChannelName,
         wifiAdapterStateDisabledEnumValue,

@@ -41,5 +41,12 @@
   "anUnexpectedErrorOccurredPleaseTryRefreshingThePageIfTheIssueContinuesYouMayWantToCheckYourConnectionOrTryAgainLater": "An unexpected error occurred. Please try refreshing the page. If the issue continues, you may want to check your connection or try again later.\n\nFor further assistance, feel free to contact our support team.",
   "refreshPage": "Refresh Page",
   "drones": "drones",
-  "drone": "drone"
+  "drone": "drone",
+  "suppliedEmailCredentialIsInvalid": "Supplied email credential is invalid",
+  "accountAlreadyExistsPleaseLoginInstead": "Account already exists. Please login instead",
+  "weCouldNotCreateYourAccountPleaseTryAgain": "We could not create your account. Please try again",
+  "youAreNotAuthorizedToPerformThisAction": "You are not authorized to perform this action",
+  "computedSignatureCredentialIsInvalid": "Computed signature credential is invalid",
+  "accountDoesNotExistPleaseRegisterInstead": "Account does not exist. Please register instead",
+  "weCouldNotVerifyTheExistenceOfYourAccountPleaseTryAgain": "We could not verify the existence of your account. Please try again"
 }

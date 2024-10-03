@@ -16,9 +16,25 @@ const skyTradeTermsOfServiceUrl = 'https://docs.sky.trade/terms.htm';
 // Endpoints
 // Base URL
 const skyTradeServerHttpBaseUrl = 'SKYTRADE_SERVER_HTTP_BASE_URL';
+const skyTradeServerSignUrl = 'SKYTRADE_SERVER_SIGN_URL';
+const skyTradeServerHttpSignUrl = 'SKYTRADE_SERVER_HTTP_SIGN_URL';
 const skyTradeServerSocketIOBaseUrl = 'SKYTRADE_SERVER_SOCKET_IO_BASE_URL';
+const skyTradeServerApiKey = 'SKYTRADE_SERVER_API_KEY';
 // Paths
 const restrictionsPath = '/restrictions';
+const privatePath = '/private';
+const publicPath = '/public';
+const usersPath = '/users';
+const sessionPath = '/session';
+const createPath = '/create';
+// Signature
+const signatureFirstLine = 'wants you to sign in with your Solana account:';
+const signatureThirdLine = 'Sign in to SkyTrade app.';
+const signatureFourthLine = 'URI:';
+const signatureFifthLine = 'Version: 1';
+const signatureSixthLine = 'Chain ID: 1';
+const signatureSeventhLine = 'Nonce:';
+const signatureEightLine = 'Issued At:';
 
 // Socket IO
 const websocketTransport = 'websocket';
@@ -32,12 +48,17 @@ const reconnectingEvent = 'reconnecting';
 
 // Request and response header and body keys and values
 // Headers
-const contentTypeKey = 'Content-Type';
-const contentTypeValue = 'application/json';
-const acceptKey = 'Accept';
-const acceptValue = '*/*';
-const authorizationKey = 'Authorization';
-const bearerValue = 'Bearer';
+const contentTypeHeaderKey = 'Content-Type';
+const applicationJsonHeaderValue = 'application/json';
+const acceptHeaderKey = 'Accept';
+const acceptAllHeaderValue = '*/*';
+const connectionHeaderKey = 'Connection';
+const closeHeaderValue = 'close';
+const signHeaderKey = 'sign';
+const signIssueAtHeaderKey = 'sign_issue_at';
+const signNonceHeaderKey = 'sign_nonce';
+const signAddressHeaderKey = 'sign_address';
+const apiKeyHeaderKey = 'api_key';
 // Body
 const additionalLinks = 'additional_links';
 const countryKey = 'country';
@@ -112,13 +133,28 @@ const transportTypeKey = 'transportType';
 const uasIdKey = 'uasId';
 const idTypeKey = 'idType';
 const uaTypeKey = 'uaType';
-
-// Platform specific code
-const wifiAdapterStateBroadcastReceiverChannelName =
-    'WIFI_ADAPTER_STATE_BROADCAST_RECEIVER_CHANNEL';
-
-const wifiAdapterStateEnablingEnumValue = 'WIFI_ADAPTER_STATE_TURNING_ON';
-const wifiAdapterStateEnabledEnumValue = 'WIFI_ADAPTER_STATE_ON';
-const wifiAdapterStateDisablingEnumValue = 'WIFI_ADAPTER_STATE_TURNING_OFF';
-const wifiAdapterStateDisabledEnumValue = 'WIFI_ADAPTER_STATE_OFF';
-const wifiAdapterStateUnknownEnumValue = 'WIFI_ADAPTER_STATE_UNKNOWN';
+const emailKey = 'email';
+const blockchainAddressKey = 'blockchainAddress';
+const newsletterKey = 'newsletter';
+const categoryIdKey = 'categoryId';
+const phoneNumberKey = 'phoneNumber';
+const pirateValue = 'pirate';
+const usernameKey = 'username';
+const passwordKey = 'password';
+const isAdminKey = 'isAdmin';
+const kYCStatusIdKey = 'KYCStatusId';
+const isActiveKey = 'isActive';
+const usedReferralCodeIdKey = 'usedReferralCodeId';
+const ownedReferralCodeIdKey = 'ownedReferralCodeId';
+const isUserRewardClaimedKey = 'isUserRewardClaimed';
+const ownedReferralCodeKey = 'ownedReferralCode';
+const codeKey = 'code';
+const codeChangedKey = 'codeChanged';
+const usedByBonusEarnedKey = 'usedByBonusEarned';
+const ownedByBonusEarnedKey = 'ownedByBonusEarned';
+// Error response data message
+const unauthorized = 'UNAUTHORIZED';
+const invalidSignature = 'INVALID_SIGNATURE';
+const userNotExist = 'USER_NOT_EXIST';
+const invalidEmail = 'INVALID_EMAIL';
+const userExist = 'USER_EXIST';

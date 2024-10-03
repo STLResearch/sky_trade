@@ -1,5 +1,3 @@
-// ignore_for_file: unnecessary_null_checks
-
 import 'package:firebase_analytics/firebase_analytics.dart'
     show FirebaseAnalytics;
 import 'package:firebase_core/firebase_core.dart' show Firebase;
@@ -51,7 +49,7 @@ Future<void> _maybeInitializeSentryReporting({
     (options) {
       options
         ..environment = _environment
-        ..dsn = dotenv.env[sentryDsn]!
+        ..dsn = dotenv.env[sentryDsn]
         ..tracesSampleRate = oneDotNil
         ..profilesSampleRate = oneDotNil;
     },

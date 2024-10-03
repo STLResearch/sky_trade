@@ -10,6 +10,15 @@ const stageEnvironment = 'stage';
 const liveEnvironment = 'live';
 
 // Platform specific code
+const wifiAdapterStateBroadcastReceiverChannelName =
+    'WIFI_ADAPTER_STATE_BROADCAST_RECEIVER_CHANNEL';
+
+const wifiAdapterStateEnablingEnumValue = 'WIFI_ADAPTER_STATE_TURNING_ON';
+const wifiAdapterStateEnabledEnumValue = 'WIFI_ADAPTER_STATE_ON';
+const wifiAdapterStateDisablingEnumValue = 'WIFI_ADAPTER_STATE_TURNING_OFF';
+const wifiAdapterStateDisabledEnumValue = 'WIFI_ADAPTER_STATE_OFF';
+const wifiAdapterStateUnknownEnumValue = 'WIFI_ADAPTER_STATE_UNKNOWN';
+
 const inAppUpdateChannelName = 'IN_APP_UPDATE_CHANNEL';
 const checkAndStartUpdateMethodCall = 'CHECK_AND_START_UPDATE';
 const registerUpdateStateListenerAndCheckAndResumeStalledImmediateUpdateIfAnyMethodCall =

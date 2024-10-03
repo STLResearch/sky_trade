@@ -3,9 +3,11 @@
 import 'dart:async' show StreamController, StreamSubscription;
 
 import 'package:dartz/dartz.dart' show Function0, Function1;
-import 'package:dio/dio.dart' show Response;
+import 'package:dio/dio.dart' show DioException, DioExceptionType, Response;
 import 'package:sky_ways/core/resources/numbers/networking.dart'
     show createdStatusCode, okayStatusCode;
+import 'package:sky_ways/core/resources/strings/networking.dart'
+    show dataKey, messageKey;
 
 mixin class ResponseHandler {
   Future<S> handleResponse<E extends Exception, T, S>({
@@ -16,17 +18,37 @@ mixin class ResponseHandler {
     try {
       final response = await requestInitiator;
 
-      final data = response.data as T;
-
       return switch (response.statusCode) {
         createdStatusCode || okayStatusCode => onSuccess(
-            data,
+            response.data as T,
           ),
         _ => throw Exception(),
       };
     } catch (e) {
+      String? message;
+
+      if (e is DioException && e.type == DioExceptionType.badResponse) {
+        final data = e.response?.data;
+
+        final dataContainsMessage = data != null &&
+            data is Map<String, dynamic> &&
+            data.containsKey(
+              dataKey,
+            ) &&
+            data[dataKey] is Map<String, dynamic> &&
+            (data[dataKey] as Map<String, dynamic>).containsKey(
+              messageKey,
+            ) &&
+            (data[dataKey] as Map<String, dynamic>)[messageKey] is String;
+
+        if (dataContainsMessage) {
+          message =
+              (data[dataKey] as Map<String, dynamic>)[messageKey] as String;
+        }
+      }
+
       throw onError(
-        e,
+        message ?? e,
       );
     }
   }

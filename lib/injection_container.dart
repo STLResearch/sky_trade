@@ -1,3 +1,4 @@
+import 'package:sky_ways/core/injection_container/auth.dart';
 import 'package:sky_ways/core/injection_container/bluetooth.dart';
 import 'package:sky_ways/core/injection_container/cache_manager.dart';
 import 'package:sky_ways/core/injection_container/core.dart';
@@ -8,10 +9,10 @@ import 'package:sky_ways/core/injection_container/location.dart';
 import 'package:sky_ways/core/injection_container/remote_i_d_receiver.dart';
 import 'package:sky_ways/core/injection_container/u_a_s_activity.dart';
 import 'package:sky_ways/core/injection_container/u_a_s_restrictions.dart';
-import 'package:sky_ways/core/injection_container/web_3_auth.dart';
 import 'package:sky_ways/core/injection_container/wifi.dart';
 
 Future<void> registerServices() => Future.wait<void>([
+      registerAuthServices(),
       registerBluetoothServices(),
       registerCacheManagerServices(),
       registerGeoHashServices(),
@@ -21,7 +22,6 @@ Future<void> registerServices() => Future.wait<void>([
       registerRemoteIDReceiverServices(),
       registerUASActivityServices(),
       registerUASRestrictionsServices(),
-      registerWeb3AuthServices(),
       registerWifiServices(),
       registerCoreServices(),
     ]);
