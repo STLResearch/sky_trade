@@ -120,6 +120,10 @@ class $AssetsSvgsGen {
   SvgGenImage get locationProhibited =>
       const SvgGenImage('assets/svgs/location_prohibited.svg');
 
+  /// File path: assets/svgs/logout_circle.svg
+  SvgGenImage get logoutCircle =>
+      const SvgGenImage('assets/svgs/logout_circle.svg');
+
   /// File path: assets/svgs/map.svg
   SvgGenImage get map => const SvgGenImage('assets/svgs/map.svg');
 
@@ -184,6 +188,7 @@ class $AssetsSvgsGen {
         infoRestricted,
         locationDangerRestricted,
         locationProhibited,
+        logoutCircle,
         map,
         mapLayerDark,
         mapLayerSatellite,

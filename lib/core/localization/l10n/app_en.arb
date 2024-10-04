@@ -6,6 +6,7 @@
   "account": "Account",
   "welcomeBackToSkyTrade": "Welcome back to SkyTrade",
   "login": "Login",
+  "logout": "Logout",
   "signInEffortlessly": "Sign in effortlessly using the authentication method you chose during sign up.",
   "email": "Email",
   "emailAtMailDotCom": "email@mail.com",

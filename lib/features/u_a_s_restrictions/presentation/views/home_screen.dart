@@ -1,19 +1,28 @@
 import 'package:flutter/material.dart'
     show
+        AlertDialog,
         AlignmentDirectional,
         BuildContext,
+        Center,
+        CircularProgressIndicator,
+        Navigator,
         Scaffold,
+        ScaffoldMessenger,
+        SnackBar,
         Stack,
         State,
         StatefulWidget,
+        Text,
         ValueListenableBuilder,
         ValueNotifier,
-        Widget;
+        Widget,
+        showDialog;
 import 'package:flutter_bloc/flutter_bloc.dart'
     show BlocListener, MultiBlocListener, ReadContext;
 import 'package:flutter_dotenv/flutter_dotenv.dart' show dotenv;
 import 'package:mapbox_maps_flutter/mapbox_maps_flutter.dart'
     show CompassSettings, MapboxMap, MapboxOptions, ScaleBarSettings;
+import 'package:sky_ways/core/resources/strings/routes.dart' show loginRoutePath;
 import 'package:sky_ways/core/resources/strings/secret_keys.dart'
     show
         mapboxMapsDarkStyleUri,
@@ -52,6 +61,8 @@ import 'package:sky_ways/features/u_a_s_restrictions/presentation/blocs/u_a_s_re
 import 'package:sky_ways/features/u_a_s_restrictions/presentation/widgets/map_overlay.dart';
 import 'package:sky_ways/features/u_a_s_restrictions/presentation/widgets/map_view.dart';
 import 'package:sky_ways/features/u_a_s_restrictions/presentation/widgets/restriction_indicator.dart';
+import 'package:sky_ways/features/web_3_auth/presentation/blocs/web_3_auth_logout_bloc/web_3_auth_logout_bloc.dart'
+    show Web3AuthLogoutBloc, Web3AuthLogoutEvent, Web3AuthLogoutState;
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -139,6 +150,32 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) => MultiBlocListener(
         listeners: [
+          BlocListener<Web3AuthLogoutBloc, Web3AuthLogoutState>(
+            listener: (_, web3AuthLogoutState) {
+              web3AuthLogoutState.maybeWhen(
+                loggingOut: () {
+                  showDialog<AlertDialog>(
+                    context: context,
+                    barrierDismissible: false,
+                    builder: (context) => const Center(
+                      child: CircularProgressIndicator(),
+                    ),
+                  );
+                },
+                loggedOut: () {
+                  Navigator.of(context).pop();
+                  Navigator.of(context).pushReplacementNamed(loginRoutePath);
+                },
+                failedToLogOut: (failure) {
+                  Navigator.of(context).pop();
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(content: Text('Logout failed: ')),
+                  );
+                },
+                orElse: () {},
+              );
+            },
+          ),
           BlocListener<LocationPermissionBloc, LocationPermissionState>(
             listener: (_, locationPermissionState) {
               locationPermissionState.whenOrNull(
@@ -416,6 +453,11 @@ class _HomeScreenState extends State<HomeScreen> {
 
                           _mapStyleNotifier.value = MapStyle.dark;
                       }
+                    },
+                    onLogoutCircleTap: () {
+                      context.read<Web3AuthLogoutBloc>().add(
+                            const Web3AuthLogoutEvent.logout(),
+                          );
                     },
                   ),
                 ),

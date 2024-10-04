@@ -36,6 +36,7 @@ import 'package:sky_ways/features/web_3_auth/presentation/blocs/web_3_auth_initi
     show Web3AuthInitializationBloc;
 import 'package:sky_ways/features/web_3_auth/presentation/blocs/web_3_auth_login_bloc/web_3_auth_login_bloc.dart'
     show Web3AuthLoginBloc;
+import 'package:sky_ways/features/web_3_auth/presentation/blocs/web_3_auth_logout_bloc/web_3_auth_logout_bloc.dart';
 import 'package:sky_ways/features/web_3_auth/presentation/blocs/web_3_auth_register_bloc/web_3_auth_register_bloc.dart'
     show Web3AuthRegisterBloc;
 import 'package:sky_ways/features/web_3_auth/presentation/blocs/web_3_auth_user_session_bloc/web_3_auth_user_session_bloc.dart'
@@ -106,6 +107,9 @@ List<BlocProvider> get appBlocProvider => [
         create: (_) => _sl(),
       ),
       BlocProvider<Web3AuthUserSessionBloc>(
+        create: (_) => _sl(),
+      ),
+      BlocProvider<Web3AuthLogoutBloc>(
         create: (_) => _sl(),
       ),
       BlocProvider<WifiAdapterStateBloc>(
