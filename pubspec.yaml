@@ -136,5 +136,5 @@ flutter:
 
     - family: Arial
       fonts:
-        - asset: assets/fonts/arial/Arial-Regular.ttf
+        - asset: assets/fonts/arial/Arial-Regular-400.ttf
           weight: 400

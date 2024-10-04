@@ -10,19 +10,21 @@ import 'package:flutter/material.dart'
         EdgeInsetsDirectional,
         Expanded,
         Flexible,
+        InkWell,
         LayoutBuilder,
+        ListView,
         MainAxisSize,
         MediaQuery,
         Offset,
         Padding,
         Radius,
         Row,
-        SingleChildScrollView,
         SizedBox,
         StatelessWidget,
         Text,
         Theme,
-        Widget;
+        Widget,
+        showModalBottomSheet;
 import 'package:sky_ways/core/assets/generated/assets.gen.dart' show Assets;
 import 'package:sky_ways/core/resources/colors.dart' show hex3A4DE9;
 import 'package:sky_ways/core/resources/numbers/ui.dart'
@@ -53,6 +55,7 @@ import 'package:sky_ways/core/resources/strings/special_characters.dart'
 import 'package:sky_ways/core/utils/extensions/build_context_extensions.dart';
 import 'package:sky_ways/features/u_a_s_activity/domain/entities/u_a_s_entity.dart'
     show UASEntity;
+import 'package:sky_ways/features/u_a_s_restrictions/presentation/widgets/u_a_s_details.dart';
 
 class UASList extends StatelessWidget {
   const UASList({
@@ -113,80 +116,80 @@ class UASList extends StatelessWidget {
                 style: Theme.of(context).textTheme.bodyLarge,
               ),
               Flexible(
-                child: SingleChildScrollView(
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      ...List<Widget>.generate(
-                        uasEntities.length,
-                        (index) => Padding(
-                          padding: const EdgeInsetsDirectional.symmetric(
-                            horizontal: twentyNineDotNil,
+                child: ListView.builder(
+                  itemCount: uasEntities.length,
+                  itemBuilder: (_, index) => Padding(
+                    padding: const EdgeInsetsDirectional.symmetric(
+                      horizontal: twentyNineDotNil,
+                    ),
+                    child: Container(
+                      margin: EdgeInsetsDirectional.only(
+                        top: fifteenDotNil,
+                        bottom: index == uasEntities.length - one
+                            ? twentyDotNil
+                            : nilDotNil,
+                      ),
+                      padding: const EdgeInsetsDirectional.symmetric(
+                        vertical: fiveDotNil,
+                        horizontal: twentyTwoDotNil,
+                      ),
+                      decoration: BoxDecoration(
+                        color: Theme.of(
+                          context,
+                        ).bottomSheetTheme.backgroundColor,
+                        borderRadius: BorderRadiusDirectional.circular(
+                          eightDotNil,
+                        ),
+                        boxShadow: [
+                          BoxShadow(
+                            color: hex3A4DE9.withOpacity(
+                              nilDotOneFive,
+                            ),
+                            spreadRadius: minusTenDotNil,
+                            blurRadius: thirtyFourDotNil,
+                            offset: const Offset(
+                              nilDotNil,
+                              twelveDotNil,
+                            ),
                           ),
-                          child: Container(
-                            margin: EdgeInsetsDirectional.only(
-                              top: fifteenDotNil,
-                              bottom: index == uasEntities.length - one
-                                  ? twentyDotNil
-                                  : nilDotNil,
+                        ],
+                      ),
+                      child: InkWell(
+                        onTap: () {
+                          showModalBottomSheet<void>(
+                            context: context,
+                            builder: (_) => const UASDetails(),
+                          );
+                        },
+                        child: Row(
+                          children: [
+                            Assets.svgs.iconDroneBlack.svg(),
+                            const SizedBox(
+                              width: tenDotNil,
                             ),
-                            padding: const EdgeInsetsDirectional.symmetric(
-                              vertical: fiveDotNil,
-                              horizontal: twentyTwoDotNil,
-                            ),
-                            decoration: BoxDecoration(
-                              color: Theme.of(
-                                context,
-                              ).bottomSheetTheme.backgroundColor,
-                              borderRadius: BorderRadiusDirectional.circular(
-                                eightDotNil,
+                            Expanded(
+                              child: Text(
+                                uasEntities[index]
+                                    .remoteData
+                                    .macAddress
+                                    .toString(),
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .bodyMedium
+                                    ?.copyWith(
+                                      fontSize: fourteenDotNil,
+                                      height: twentyOneDotNil / fourteenDotNil,
+                                    ),
                               ),
-                              boxShadow: [
-                                BoxShadow(
-                                  color: hex3A4DE9.withOpacity(
-                                    nilDotOneFive,
-                                  ),
-                                  spreadRadius: minusTenDotNil,
-                                  blurRadius: thirtyFourDotNil,
-                                  offset: const Offset(
-                                    nilDotNil,
-                                    twelveDotNil,
-                                  ),
-                                ),
-                              ],
                             ),
-                            child: Row(
-                              children: [
-                                Assets.svgs.iconDroneBlack.svg(),
-                                const SizedBox(
-                                  width: tenDotNil,
-                                ),
-                                Expanded(
-                                  child: Text(
-                                    uasEntities[index]
-                                        .remoteData
-                                        .macAddress
-                                        .toString(),
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .bodyMedium
-                                        ?.copyWith(
-                                          fontSize: fourteenDotNil,
-                                          height:
-                                              twentyOneDotNil / fourteenDotNil,
-                                        ),
-                                  ),
-                                ),
-                                const SizedBox(
-                                  width: tenDotNil,
-                                ),
-                                Assets.svgs.arrowRight.svg(),
-                              ],
+                            const SizedBox(
+                              width: tenDotNil,
                             ),
-                          ),
+                            Assets.svgs.arrowRight.svg(),
+                          ],
                         ),
                       ),
-                    ],
+                    ),
                   ),
                 ),
               ),
