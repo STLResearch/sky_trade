@@ -7,7 +7,7 @@ class WifiReceiverState with _$WifiReceiverState {
   const factory WifiReceiverState.gettingRemoteIDs() = _GettingRemoteIDs;
 
   const factory WifiReceiverState.gotRemoteIDs({
-    required Set<RemoteIDEntity> remoteIDEntities,
+    required Set<RemoteIdEntity> remoteIDEntities,
   }) = _GotRemoteIDs;
 
   const factory WifiReceiverState.failedToGetRemoteIDs({

@@ -19,7 +19,7 @@ mixin _$BluetoothReceiverEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() listenRemoteIDs,
-    required TResult Function(Set<RemoteIDEntity> remoteIDEntities)
+    required TResult Function(Set<RemoteIdEntity> remoteIDEntities)
         remoteIDsGotten,
     required TResult Function(BluetoothReceiverFailure bluetoothReceiverFailure)
         remoteIDsNotGotten,
@@ -29,7 +29,7 @@ mixin _$BluetoothReceiverEvent {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? listenRemoteIDs,
-    TResult? Function(Set<RemoteIDEntity> remoteIDEntities)? remoteIDsGotten,
+    TResult? Function(Set<RemoteIdEntity> remoteIDEntities)? remoteIDsGotten,
     TResult? Function(BluetoothReceiverFailure bluetoothReceiverFailure)?
         remoteIDsNotGotten,
     TResult? Function()? stopListeningRemoteIDs,
@@ -38,7 +38,7 @@ mixin _$BluetoothReceiverEvent {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? listenRemoteIDs,
-    TResult Function(Set<RemoteIDEntity> remoteIDEntities)? remoteIDsGotten,
+    TResult Function(Set<RemoteIdEntity> remoteIDEntities)? remoteIDsGotten,
     TResult Function(BluetoothReceiverFailure bluetoothReceiverFailure)?
         remoteIDsNotGotten,
     TResult Function()? stopListeningRemoteIDs,
@@ -131,7 +131,7 @@ class _$ListenRemoteIDsImpl implements _ListenRemoteIDs {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() listenRemoteIDs,
-    required TResult Function(Set<RemoteIDEntity> remoteIDEntities)
+    required TResult Function(Set<RemoteIdEntity> remoteIDEntities)
         remoteIDsGotten,
     required TResult Function(BluetoothReceiverFailure bluetoothReceiverFailure)
         remoteIDsNotGotten,
@@ -144,7 +144,7 @@ class _$ListenRemoteIDsImpl implements _ListenRemoteIDs {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? listenRemoteIDs,
-    TResult? Function(Set<RemoteIDEntity> remoteIDEntities)? remoteIDsGotten,
+    TResult? Function(Set<RemoteIdEntity> remoteIDEntities)? remoteIDsGotten,
     TResult? Function(BluetoothReceiverFailure bluetoothReceiverFailure)?
         remoteIDsNotGotten,
     TResult? Function()? stopListeningRemoteIDs,
@@ -156,7 +156,7 @@ class _$ListenRemoteIDsImpl implements _ListenRemoteIDs {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? listenRemoteIDs,
-    TResult Function(Set<RemoteIDEntity> remoteIDEntities)? remoteIDsGotten,
+    TResult Function(Set<RemoteIdEntity> remoteIDEntities)? remoteIDsGotten,
     TResult Function(BluetoothReceiverFailure bluetoothReceiverFailure)?
         remoteIDsNotGotten,
     TResult Function()? stopListeningRemoteIDs,
@@ -217,7 +217,7 @@ abstract class _$$RemoteIDsGottenImplCopyWith<$Res> {
           $Res Function(_$RemoteIDsGottenImpl) then) =
       __$$RemoteIDsGottenImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({Set<RemoteIDEntity> remoteIDEntities});
+  $Res call({Set<RemoteIdEntity> remoteIDEntities});
 }
 
 /// @nodoc
@@ -237,7 +237,7 @@ class __$$RemoteIDsGottenImplCopyWithImpl<$Res>
       remoteIDEntities: null == remoteIDEntities
           ? _value._remoteIDEntities
           : remoteIDEntities // ignore: cast_nullable_to_non_nullable
-              as Set<RemoteIDEntity>,
+              as Set<RemoteIdEntity>,
     ));
   }
 }
@@ -246,12 +246,12 @@ class __$$RemoteIDsGottenImplCopyWithImpl<$Res>
 
 class _$RemoteIDsGottenImpl implements _RemoteIDsGotten {
   const _$RemoteIDsGottenImpl(
-      {required final Set<RemoteIDEntity> remoteIDEntities})
+      {required final Set<RemoteIdEntity> remoteIDEntities})
       : _remoteIDEntities = remoteIDEntities;
 
-  final Set<RemoteIDEntity> _remoteIDEntities;
+  final Set<RemoteIdEntity> _remoteIDEntities;
   @override
-  Set<RemoteIDEntity> get remoteIDEntities {
+  Set<RemoteIdEntity> get remoteIDEntities {
     if (_remoteIDEntities is EqualUnmodifiableSetView) return _remoteIDEntities;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableSetView(_remoteIDEntities);
@@ -286,7 +286,7 @@ class _$RemoteIDsGottenImpl implements _RemoteIDsGotten {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() listenRemoteIDs,
-    required TResult Function(Set<RemoteIDEntity> remoteIDEntities)
+    required TResult Function(Set<RemoteIdEntity> remoteIDEntities)
         remoteIDsGotten,
     required TResult Function(BluetoothReceiverFailure bluetoothReceiverFailure)
         remoteIDsNotGotten,
@@ -299,7 +299,7 @@ class _$RemoteIDsGottenImpl implements _RemoteIDsGotten {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? listenRemoteIDs,
-    TResult? Function(Set<RemoteIDEntity> remoteIDEntities)? remoteIDsGotten,
+    TResult? Function(Set<RemoteIdEntity> remoteIDEntities)? remoteIDsGotten,
     TResult? Function(BluetoothReceiverFailure bluetoothReceiverFailure)?
         remoteIDsNotGotten,
     TResult? Function()? stopListeningRemoteIDs,
@@ -311,7 +311,7 @@ class _$RemoteIDsGottenImpl implements _RemoteIDsGotten {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? listenRemoteIDs,
-    TResult Function(Set<RemoteIDEntity> remoteIDEntities)? remoteIDsGotten,
+    TResult Function(Set<RemoteIdEntity> remoteIDEntities)? remoteIDsGotten,
     TResult Function(BluetoothReceiverFailure bluetoothReceiverFailure)?
         remoteIDsNotGotten,
     TResult Function()? stopListeningRemoteIDs,
@@ -364,10 +364,10 @@ class _$RemoteIDsGottenImpl implements _RemoteIDsGotten {
 
 abstract class _RemoteIDsGotten implements BluetoothReceiverEvent {
   const factory _RemoteIDsGotten(
-          {required final Set<RemoteIDEntity> remoteIDEntities}) =
+          {required final Set<RemoteIdEntity> remoteIDEntities}) =
       _$RemoteIDsGottenImpl;
 
-  Set<RemoteIDEntity> get remoteIDEntities;
+  Set<RemoteIdEntity> get remoteIDEntities;
   @JsonKey(ignore: true)
   _$$RemoteIDsGottenImplCopyWith<_$RemoteIDsGottenImpl> get copyWith =>
       throw _privateConstructorUsedError;
@@ -441,7 +441,7 @@ class _$RemoteIDsNotGottenImpl implements _RemoteIDsNotGotten {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() listenRemoteIDs,
-    required TResult Function(Set<RemoteIDEntity> remoteIDEntities)
+    required TResult Function(Set<RemoteIdEntity> remoteIDEntities)
         remoteIDsGotten,
     required TResult Function(BluetoothReceiverFailure bluetoothReceiverFailure)
         remoteIDsNotGotten,
@@ -454,7 +454,7 @@ class _$RemoteIDsNotGottenImpl implements _RemoteIDsNotGotten {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? listenRemoteIDs,
-    TResult? Function(Set<RemoteIDEntity> remoteIDEntities)? remoteIDsGotten,
+    TResult? Function(Set<RemoteIdEntity> remoteIDEntities)? remoteIDsGotten,
     TResult? Function(BluetoothReceiverFailure bluetoothReceiverFailure)?
         remoteIDsNotGotten,
     TResult? Function()? stopListeningRemoteIDs,
@@ -466,7 +466,7 @@ class _$RemoteIDsNotGottenImpl implements _RemoteIDsNotGotten {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? listenRemoteIDs,
-    TResult Function(Set<RemoteIDEntity> remoteIDEntities)? remoteIDsGotten,
+    TResult Function(Set<RemoteIdEntity> remoteIDEntities)? remoteIDsGotten,
     TResult Function(BluetoothReceiverFailure bluetoothReceiverFailure)?
         remoteIDsNotGotten,
     TResult Function()? stopListeningRemoteIDs,
@@ -571,7 +571,7 @@ class _$StopListeningRemoteIDsImpl implements _StopListeningRemoteIDs {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() listenRemoteIDs,
-    required TResult Function(Set<RemoteIDEntity> remoteIDEntities)
+    required TResult Function(Set<RemoteIdEntity> remoteIDEntities)
         remoteIDsGotten,
     required TResult Function(BluetoothReceiverFailure bluetoothReceiverFailure)
         remoteIDsNotGotten,
@@ -584,7 +584,7 @@ class _$StopListeningRemoteIDsImpl implements _StopListeningRemoteIDs {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? listenRemoteIDs,
-    TResult? Function(Set<RemoteIDEntity> remoteIDEntities)? remoteIDsGotten,
+    TResult? Function(Set<RemoteIdEntity> remoteIDEntities)? remoteIDsGotten,
     TResult? Function(BluetoothReceiverFailure bluetoothReceiverFailure)?
         remoteIDsNotGotten,
     TResult? Function()? stopListeningRemoteIDs,
@@ -596,7 +596,7 @@ class _$StopListeningRemoteIDsImpl implements _StopListeningRemoteIDs {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? listenRemoteIDs,
-    TResult Function(Set<RemoteIDEntity> remoteIDEntities)? remoteIDsGotten,
+    TResult Function(Set<RemoteIdEntity> remoteIDEntities)? remoteIDsGotten,
     TResult Function(BluetoothReceiverFailure bluetoothReceiverFailure)?
         remoteIDsNotGotten,
     TResult Function()? stopListeningRemoteIDs,
@@ -657,7 +657,7 @@ mixin _$BluetoothReceiverState {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() gettingRemoteIDs,
-    required TResult Function(Set<RemoteIDEntity> remoteIDEntities)
+    required TResult Function(Set<RemoteIdEntity> remoteIDEntities)
         gotRemoteIDs,
     required TResult Function(BluetoothReceiverFailure bluetoothReceiverFailure)
         failedToGetRemoteIDs,
@@ -667,7 +667,7 @@ mixin _$BluetoothReceiverState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? gettingRemoteIDs,
-    TResult? Function(Set<RemoteIDEntity> remoteIDEntities)? gotRemoteIDs,
+    TResult? Function(Set<RemoteIdEntity> remoteIDEntities)? gotRemoteIDs,
     TResult? Function(BluetoothReceiverFailure bluetoothReceiverFailure)?
         failedToGetRemoteIDs,
   }) =>
@@ -676,7 +676,7 @@ mixin _$BluetoothReceiverState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? gettingRemoteIDs,
-    TResult Function(Set<RemoteIDEntity> remoteIDEntities)? gotRemoteIDs,
+    TResult Function(Set<RemoteIdEntity> remoteIDEntities)? gotRemoteIDs,
     TResult Function(BluetoothReceiverFailure bluetoothReceiverFailure)?
         failedToGetRemoteIDs,
     required TResult orElse(),
@@ -768,7 +768,7 @@ class _$InitialImpl implements _Initial {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() gettingRemoteIDs,
-    required TResult Function(Set<RemoteIDEntity> remoteIDEntities)
+    required TResult Function(Set<RemoteIdEntity> remoteIDEntities)
         gotRemoteIDs,
     required TResult Function(BluetoothReceiverFailure bluetoothReceiverFailure)
         failedToGetRemoteIDs,
@@ -781,7 +781,7 @@ class _$InitialImpl implements _Initial {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? gettingRemoteIDs,
-    TResult? Function(Set<RemoteIDEntity> remoteIDEntities)? gotRemoteIDs,
+    TResult? Function(Set<RemoteIdEntity> remoteIDEntities)? gotRemoteIDs,
     TResult? Function(BluetoothReceiverFailure bluetoothReceiverFailure)?
         failedToGetRemoteIDs,
   }) {
@@ -793,7 +793,7 @@ class _$InitialImpl implements _Initial {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? gettingRemoteIDs,
-    TResult Function(Set<RemoteIDEntity> remoteIDEntities)? gotRemoteIDs,
+    TResult Function(Set<RemoteIdEntity> remoteIDEntities)? gotRemoteIDs,
     TResult Function(BluetoothReceiverFailure bluetoothReceiverFailure)?
         failedToGetRemoteIDs,
     required TResult orElse(),
@@ -886,7 +886,7 @@ class _$GettingRemoteIDsImpl implements _GettingRemoteIDs {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() gettingRemoteIDs,
-    required TResult Function(Set<RemoteIDEntity> remoteIDEntities)
+    required TResult Function(Set<RemoteIdEntity> remoteIDEntities)
         gotRemoteIDs,
     required TResult Function(BluetoothReceiverFailure bluetoothReceiverFailure)
         failedToGetRemoteIDs,
@@ -899,7 +899,7 @@ class _$GettingRemoteIDsImpl implements _GettingRemoteIDs {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? gettingRemoteIDs,
-    TResult? Function(Set<RemoteIDEntity> remoteIDEntities)? gotRemoteIDs,
+    TResult? Function(Set<RemoteIdEntity> remoteIDEntities)? gotRemoteIDs,
     TResult? Function(BluetoothReceiverFailure bluetoothReceiverFailure)?
         failedToGetRemoteIDs,
   }) {
@@ -911,7 +911,7 @@ class _$GettingRemoteIDsImpl implements _GettingRemoteIDs {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? gettingRemoteIDs,
-    TResult Function(Set<RemoteIDEntity> remoteIDEntities)? gotRemoteIDs,
+    TResult Function(Set<RemoteIdEntity> remoteIDEntities)? gotRemoteIDs,
     TResult Function(BluetoothReceiverFailure bluetoothReceiverFailure)?
         failedToGetRemoteIDs,
     required TResult orElse(),
@@ -970,7 +970,7 @@ abstract class _$$GotRemoteIDsImplCopyWith<$Res> {
           _$GotRemoteIDsImpl value, $Res Function(_$GotRemoteIDsImpl) then) =
       __$$GotRemoteIDsImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({Set<RemoteIDEntity> remoteIDEntities});
+  $Res call({Set<RemoteIdEntity> remoteIDEntities});
 }
 
 /// @nodoc
@@ -990,7 +990,7 @@ class __$$GotRemoteIDsImplCopyWithImpl<$Res>
       remoteIDEntities: null == remoteIDEntities
           ? _value._remoteIDEntities
           : remoteIDEntities // ignore: cast_nullable_to_non_nullable
-              as Set<RemoteIDEntity>,
+              as Set<RemoteIdEntity>,
     ));
   }
 }
@@ -999,12 +999,12 @@ class __$$GotRemoteIDsImplCopyWithImpl<$Res>
 
 class _$GotRemoteIDsImpl implements _GotRemoteIDs {
   const _$GotRemoteIDsImpl(
-      {required final Set<RemoteIDEntity> remoteIDEntities})
+      {required final Set<RemoteIdEntity> remoteIDEntities})
       : _remoteIDEntities = remoteIDEntities;
 
-  final Set<RemoteIDEntity> _remoteIDEntities;
+  final Set<RemoteIdEntity> _remoteIDEntities;
   @override
-  Set<RemoteIDEntity> get remoteIDEntities {
+  Set<RemoteIdEntity> get remoteIDEntities {
     if (_remoteIDEntities is EqualUnmodifiableSetView) return _remoteIDEntities;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableSetView(_remoteIDEntities);
@@ -1039,7 +1039,7 @@ class _$GotRemoteIDsImpl implements _GotRemoteIDs {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() gettingRemoteIDs,
-    required TResult Function(Set<RemoteIDEntity> remoteIDEntities)
+    required TResult Function(Set<RemoteIdEntity> remoteIDEntities)
         gotRemoteIDs,
     required TResult Function(BluetoothReceiverFailure bluetoothReceiverFailure)
         failedToGetRemoteIDs,
@@ -1052,7 +1052,7 @@ class _$GotRemoteIDsImpl implements _GotRemoteIDs {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? gettingRemoteIDs,
-    TResult? Function(Set<RemoteIDEntity> remoteIDEntities)? gotRemoteIDs,
+    TResult? Function(Set<RemoteIdEntity> remoteIDEntities)? gotRemoteIDs,
     TResult? Function(BluetoothReceiverFailure bluetoothReceiverFailure)?
         failedToGetRemoteIDs,
   }) {
@@ -1064,7 +1064,7 @@ class _$GotRemoteIDsImpl implements _GotRemoteIDs {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? gettingRemoteIDs,
-    TResult Function(Set<RemoteIDEntity> remoteIDEntities)? gotRemoteIDs,
+    TResult Function(Set<RemoteIdEntity> remoteIDEntities)? gotRemoteIDs,
     TResult Function(BluetoothReceiverFailure bluetoothReceiverFailure)?
         failedToGetRemoteIDs,
     required TResult orElse(),
@@ -1115,10 +1115,10 @@ class _$GotRemoteIDsImpl implements _GotRemoteIDs {
 
 abstract class _GotRemoteIDs implements BluetoothReceiverState {
   const factory _GotRemoteIDs(
-          {required final Set<RemoteIDEntity> remoteIDEntities}) =
+          {required final Set<RemoteIdEntity> remoteIDEntities}) =
       _$GotRemoteIDsImpl;
 
-  Set<RemoteIDEntity> get remoteIDEntities;
+  Set<RemoteIdEntity> get remoteIDEntities;
   @JsonKey(ignore: true)
   _$$GotRemoteIDsImplCopyWith<_$GotRemoteIDsImpl> get copyWith =>
       throw _privateConstructorUsedError;
@@ -1195,7 +1195,7 @@ class _$FailedToGetRemoteIDsImpl implements _FailedToGetRemoteIDs {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() gettingRemoteIDs,
-    required TResult Function(Set<RemoteIDEntity> remoteIDEntities)
+    required TResult Function(Set<RemoteIdEntity> remoteIDEntities)
         gotRemoteIDs,
     required TResult Function(BluetoothReceiverFailure bluetoothReceiverFailure)
         failedToGetRemoteIDs,
@@ -1208,7 +1208,7 @@ class _$FailedToGetRemoteIDsImpl implements _FailedToGetRemoteIDs {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? gettingRemoteIDs,
-    TResult? Function(Set<RemoteIDEntity> remoteIDEntities)? gotRemoteIDs,
+    TResult? Function(Set<RemoteIdEntity> remoteIDEntities)? gotRemoteIDs,
     TResult? Function(BluetoothReceiverFailure bluetoothReceiverFailure)?
         failedToGetRemoteIDs,
   }) {
@@ -1220,7 +1220,7 @@ class _$FailedToGetRemoteIDsImpl implements _FailedToGetRemoteIDs {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? gettingRemoteIDs,
-    TResult Function(Set<RemoteIDEntity> remoteIDEntities)? gotRemoteIDs,
+    TResult Function(Set<RemoteIdEntity> remoteIDEntities)? gotRemoteIDs,
     TResult Function(BluetoothReceiverFailure bluetoothReceiverFailure)?
         failedToGetRemoteIDs,
     required TResult orElse(),

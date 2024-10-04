@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'wifi_receiver_bloc.dart';
+part of 'remote_id_receiver_bloc.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -15,33 +15,34 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
-mixin _$WifiReceiverEvent {
+mixin _$RemoteIdReceiverEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() listenRemoteIDs,
-    required TResult Function(Set<RemoteIdEntity> remoteIDEntities)
+    required TResult Function(UsedTechnologies technologyType) listenRemoteIDs,
+    required TResult Function(Set<RemoteIdEntity> remoteIdEntities)
         remoteIDsGotten,
-    required TResult Function(WifiReceiverFailure wifiReceiverFailure)
+    required TResult Function(RemoteIdReceiverFailure remoteIdReceiverFailure)
         remoteIDsNotGotten,
-    required TResult Function() stopListeningRemoteIDs,
+    required TResult Function(UsedTechnologies technologyType)
+        stopListeningRemoteIDs,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? listenRemoteIDs,
-    TResult? Function(Set<RemoteIdEntity> remoteIDEntities)? remoteIDsGotten,
-    TResult? Function(WifiReceiverFailure wifiReceiverFailure)?
+    TResult? Function(UsedTechnologies technologyType)? listenRemoteIDs,
+    TResult? Function(Set<RemoteIdEntity> remoteIdEntities)? remoteIDsGotten,
+    TResult? Function(RemoteIdReceiverFailure remoteIdReceiverFailure)?
         remoteIDsNotGotten,
-    TResult? Function()? stopListeningRemoteIDs,
+    TResult? Function(UsedTechnologies technologyType)? stopListeningRemoteIDs,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? listenRemoteIDs,
-    TResult Function(Set<RemoteIdEntity> remoteIDEntities)? remoteIDsGotten,
-    TResult Function(WifiReceiverFailure wifiReceiverFailure)?
+    TResult Function(UsedTechnologies technologyType)? listenRemoteIDs,
+    TResult Function(Set<RemoteIdEntity> remoteIdEntities)? remoteIDsGotten,
+    TResult Function(RemoteIdReceiverFailure remoteIdReceiverFailure)?
         remoteIDsNotGotten,
-    TResult Function()? stopListeningRemoteIDs,
+    TResult Function(UsedTechnologies technologyType)? stopListeningRemoteIDs,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -74,16 +75,17 @@ mixin _$WifiReceiverEvent {
 }
 
 /// @nodoc
-abstract class $WifiReceiverEventCopyWith<$Res> {
-  factory $WifiReceiverEventCopyWith(
-          WifiReceiverEvent value, $Res Function(WifiReceiverEvent) then) =
-      _$WifiReceiverEventCopyWithImpl<$Res, WifiReceiverEvent>;
+abstract class $RemoteIdReceiverEventCopyWith<$Res> {
+  factory $RemoteIdReceiverEventCopyWith(RemoteIdReceiverEvent value,
+          $Res Function(RemoteIdReceiverEvent) then) =
+      _$RemoteIdReceiverEventCopyWithImpl<$Res, RemoteIdReceiverEvent>;
 }
 
 /// @nodoc
-class _$WifiReceiverEventCopyWithImpl<$Res, $Val extends WifiReceiverEvent>
-    implements $WifiReceiverEventCopyWith<$Res> {
-  _$WifiReceiverEventCopyWithImpl(this._value, this._then);
+class _$RemoteIdReceiverEventCopyWithImpl<$Res,
+        $Val extends RemoteIdReceiverEvent>
+    implements $RemoteIdReceiverEventCopyWith<$Res> {
+  _$RemoteIdReceiverEventCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -96,73 +98,102 @@ abstract class _$$ListenRemoteIDsImplCopyWith<$Res> {
   factory _$$ListenRemoteIDsImplCopyWith(_$ListenRemoteIDsImpl value,
           $Res Function(_$ListenRemoteIDsImpl) then) =
       __$$ListenRemoteIDsImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({UsedTechnologies technologyType});
 }
 
 /// @nodoc
 class __$$ListenRemoteIDsImplCopyWithImpl<$Res>
-    extends _$WifiReceiverEventCopyWithImpl<$Res, _$ListenRemoteIDsImpl>
+    extends _$RemoteIdReceiverEventCopyWithImpl<$Res, _$ListenRemoteIDsImpl>
     implements _$$ListenRemoteIDsImplCopyWith<$Res> {
   __$$ListenRemoteIDsImplCopyWithImpl(
       _$ListenRemoteIDsImpl _value, $Res Function(_$ListenRemoteIDsImpl) _then)
       : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? technologyType = null,
+  }) {
+    return _then(_$ListenRemoteIDsImpl(
+      technologyType: null == technologyType
+          ? _value.technologyType
+          : technologyType // ignore: cast_nullable_to_non_nullable
+              as UsedTechnologies,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$ListenRemoteIDsImpl implements _ListenRemoteIDs {
-  const _$ListenRemoteIDsImpl();
+  const _$ListenRemoteIDsImpl({required this.technologyType});
+
+  @override
+  final UsedTechnologies technologyType;
 
   @override
   String toString() {
-    return 'WifiReceiverEvent.listenRemoteIDs()';
+    return 'RemoteIdReceiverEvent.listenRemoteIDs(technologyType: $technologyType)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$ListenRemoteIDsImpl);
+        (other.runtimeType == runtimeType &&
+            other is _$ListenRemoteIDsImpl &&
+            (identical(other.technologyType, technologyType) ||
+                other.technologyType == technologyType));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(runtimeType, technologyType);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ListenRemoteIDsImplCopyWith<_$ListenRemoteIDsImpl> get copyWith =>
+      __$$ListenRemoteIDsImplCopyWithImpl<_$ListenRemoteIDsImpl>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() listenRemoteIDs,
-    required TResult Function(Set<RemoteIdEntity> remoteIDEntities)
+    required TResult Function(UsedTechnologies technologyType) listenRemoteIDs,
+    required TResult Function(Set<RemoteIdEntity> remoteIdEntities)
         remoteIDsGotten,
-    required TResult Function(WifiReceiverFailure wifiReceiverFailure)
+    required TResult Function(RemoteIdReceiverFailure remoteIdReceiverFailure)
         remoteIDsNotGotten,
-    required TResult Function() stopListeningRemoteIDs,
+    required TResult Function(UsedTechnologies technologyType)
+        stopListeningRemoteIDs,
   }) {
-    return listenRemoteIDs();
+    return listenRemoteIDs(technologyType);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? listenRemoteIDs,
-    TResult? Function(Set<RemoteIdEntity> remoteIDEntities)? remoteIDsGotten,
-    TResult? Function(WifiReceiverFailure wifiReceiverFailure)?
+    TResult? Function(UsedTechnologies technologyType)? listenRemoteIDs,
+    TResult? Function(Set<RemoteIdEntity> remoteIdEntities)? remoteIDsGotten,
+    TResult? Function(RemoteIdReceiverFailure remoteIdReceiverFailure)?
         remoteIDsNotGotten,
-    TResult? Function()? stopListeningRemoteIDs,
+    TResult? Function(UsedTechnologies technologyType)? stopListeningRemoteIDs,
   }) {
-    return listenRemoteIDs?.call();
+    return listenRemoteIDs?.call(technologyType);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? listenRemoteIDs,
-    TResult Function(Set<RemoteIdEntity> remoteIDEntities)? remoteIDsGotten,
-    TResult Function(WifiReceiverFailure wifiReceiverFailure)?
+    TResult Function(UsedTechnologies technologyType)? listenRemoteIDs,
+    TResult Function(Set<RemoteIdEntity> remoteIdEntities)? remoteIDsGotten,
+    TResult Function(RemoteIdReceiverFailure remoteIdReceiverFailure)?
         remoteIDsNotGotten,
-    TResult Function()? stopListeningRemoteIDs,
+    TResult Function(UsedTechnologies technologyType)? stopListeningRemoteIDs,
     required TResult orElse(),
   }) {
     if (listenRemoteIDs != null) {
-      return listenRemoteIDs();
+      return listenRemoteIDs(technologyType);
     }
     return orElse();
   }
@@ -206,8 +237,14 @@ class _$ListenRemoteIDsImpl implements _ListenRemoteIDs {
   }
 }
 
-abstract class _ListenRemoteIDs implements WifiReceiverEvent {
-  const factory _ListenRemoteIDs() = _$ListenRemoteIDsImpl;
+abstract class _ListenRemoteIDs implements RemoteIdReceiverEvent {
+  const factory _ListenRemoteIDs(
+      {required final UsedTechnologies technologyType}) = _$ListenRemoteIDsImpl;
+
+  UsedTechnologies get technologyType;
+  @JsonKey(ignore: true)
+  _$$ListenRemoteIDsImplCopyWith<_$ListenRemoteIDsImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -216,12 +253,12 @@ abstract class _$$RemoteIDsGottenImplCopyWith<$Res> {
           $Res Function(_$RemoteIDsGottenImpl) then) =
       __$$RemoteIDsGottenImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({Set<RemoteIdEntity> remoteIDEntities});
+  $Res call({Set<RemoteIdEntity> remoteIdEntities});
 }
 
 /// @nodoc
 class __$$RemoteIDsGottenImplCopyWithImpl<$Res>
-    extends _$WifiReceiverEventCopyWithImpl<$Res, _$RemoteIDsGottenImpl>
+    extends _$RemoteIdReceiverEventCopyWithImpl<$Res, _$RemoteIDsGottenImpl>
     implements _$$RemoteIDsGottenImplCopyWith<$Res> {
   __$$RemoteIDsGottenImplCopyWithImpl(
       _$RemoteIDsGottenImpl _value, $Res Function(_$RemoteIDsGottenImpl) _then)
@@ -230,12 +267,12 @@ class __$$RemoteIDsGottenImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? remoteIDEntities = null,
+    Object? remoteIdEntities = null,
   }) {
     return _then(_$RemoteIDsGottenImpl(
-      remoteIDEntities: null == remoteIDEntities
-          ? _value._remoteIDEntities
-          : remoteIDEntities // ignore: cast_nullable_to_non_nullable
+      remoteIdEntities: null == remoteIdEntities
+          ? _value._remoteIdEntities
+          : remoteIdEntities // ignore: cast_nullable_to_non_nullable
               as Set<RemoteIdEntity>,
     ));
   }
@@ -245,20 +282,20 @@ class __$$RemoteIDsGottenImplCopyWithImpl<$Res>
 
 class _$RemoteIDsGottenImpl implements _RemoteIDsGotten {
   const _$RemoteIDsGottenImpl(
-      {required final Set<RemoteIdEntity> remoteIDEntities})
-      : _remoteIDEntities = remoteIDEntities;
+      {required final Set<RemoteIdEntity> remoteIdEntities})
+      : _remoteIdEntities = remoteIdEntities;
 
-  final Set<RemoteIdEntity> _remoteIDEntities;
+  final Set<RemoteIdEntity> _remoteIdEntities;
   @override
-  Set<RemoteIdEntity> get remoteIDEntities {
-    if (_remoteIDEntities is EqualUnmodifiableSetView) return _remoteIDEntities;
+  Set<RemoteIdEntity> get remoteIdEntities {
+    if (_remoteIdEntities is EqualUnmodifiableSetView) return _remoteIdEntities;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableSetView(_remoteIDEntities);
+    return EqualUnmodifiableSetView(_remoteIdEntities);
   }
 
   @override
   String toString() {
-    return 'WifiReceiverEvent.remoteIDsGotten(remoteIDEntities: $remoteIDEntities)';
+    return 'RemoteIdReceiverEvent.remoteIDsGotten(remoteIdEntities: $remoteIdEntities)';
   }
 
   @override
@@ -267,12 +304,12 @@ class _$RemoteIDsGottenImpl implements _RemoteIDsGotten {
         (other.runtimeType == runtimeType &&
             other is _$RemoteIDsGottenImpl &&
             const DeepCollectionEquality()
-                .equals(other._remoteIDEntities, _remoteIDEntities));
+                .equals(other._remoteIdEntities, _remoteIdEntities));
   }
 
   @override
   int get hashCode => Object.hash(
-      runtimeType, const DeepCollectionEquality().hash(_remoteIDEntities));
+      runtimeType, const DeepCollectionEquality().hash(_remoteIdEntities));
 
   @JsonKey(ignore: true)
   @override
@@ -284,40 +321,41 @@ class _$RemoteIDsGottenImpl implements _RemoteIDsGotten {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() listenRemoteIDs,
-    required TResult Function(Set<RemoteIdEntity> remoteIDEntities)
+    required TResult Function(UsedTechnologies technologyType) listenRemoteIDs,
+    required TResult Function(Set<RemoteIdEntity> remoteIdEntities)
         remoteIDsGotten,
-    required TResult Function(WifiReceiverFailure wifiReceiverFailure)
+    required TResult Function(RemoteIdReceiverFailure remoteIdReceiverFailure)
         remoteIDsNotGotten,
-    required TResult Function() stopListeningRemoteIDs,
+    required TResult Function(UsedTechnologies technologyType)
+        stopListeningRemoteIDs,
   }) {
-    return remoteIDsGotten(remoteIDEntities);
+    return remoteIDsGotten(remoteIdEntities);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? listenRemoteIDs,
-    TResult? Function(Set<RemoteIdEntity> remoteIDEntities)? remoteIDsGotten,
-    TResult? Function(WifiReceiverFailure wifiReceiverFailure)?
+    TResult? Function(UsedTechnologies technologyType)? listenRemoteIDs,
+    TResult? Function(Set<RemoteIdEntity> remoteIdEntities)? remoteIDsGotten,
+    TResult? Function(RemoteIdReceiverFailure remoteIdReceiverFailure)?
         remoteIDsNotGotten,
-    TResult? Function()? stopListeningRemoteIDs,
+    TResult? Function(UsedTechnologies technologyType)? stopListeningRemoteIDs,
   }) {
-    return remoteIDsGotten?.call(remoteIDEntities);
+    return remoteIDsGotten?.call(remoteIdEntities);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? listenRemoteIDs,
-    TResult Function(Set<RemoteIdEntity> remoteIDEntities)? remoteIDsGotten,
-    TResult Function(WifiReceiverFailure wifiReceiverFailure)?
+    TResult Function(UsedTechnologies technologyType)? listenRemoteIDs,
+    TResult Function(Set<RemoteIdEntity> remoteIdEntities)? remoteIDsGotten,
+    TResult Function(RemoteIdReceiverFailure remoteIdReceiverFailure)?
         remoteIDsNotGotten,
-    TResult Function()? stopListeningRemoteIDs,
+    TResult Function(UsedTechnologies technologyType)? stopListeningRemoteIDs,
     required TResult orElse(),
   }) {
     if (remoteIDsGotten != null) {
-      return remoteIDsGotten(remoteIDEntities);
+      return remoteIDsGotten(remoteIdEntities);
     }
     return orElse();
   }
@@ -361,12 +399,12 @@ class _$RemoteIDsGottenImpl implements _RemoteIDsGotten {
   }
 }
 
-abstract class _RemoteIDsGotten implements WifiReceiverEvent {
+abstract class _RemoteIDsGotten implements RemoteIdReceiverEvent {
   const factory _RemoteIDsGotten(
-          {required final Set<RemoteIdEntity> remoteIDEntities}) =
+          {required final Set<RemoteIdEntity> remoteIdEntities}) =
       _$RemoteIDsGottenImpl;
 
-  Set<RemoteIdEntity> get remoteIDEntities;
+  Set<RemoteIdEntity> get remoteIdEntities;
   @JsonKey(ignore: true)
   _$$RemoteIDsGottenImplCopyWith<_$RemoteIDsGottenImpl> get copyWith =>
       throw _privateConstructorUsedError;
@@ -378,12 +416,12 @@ abstract class _$$RemoteIDsNotGottenImplCopyWith<$Res> {
           $Res Function(_$RemoteIDsNotGottenImpl) then) =
       __$$RemoteIDsNotGottenImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({WifiReceiverFailure wifiReceiverFailure});
+  $Res call({RemoteIdReceiverFailure remoteIdReceiverFailure});
 }
 
 /// @nodoc
 class __$$RemoteIDsNotGottenImplCopyWithImpl<$Res>
-    extends _$WifiReceiverEventCopyWithImpl<$Res, _$RemoteIDsNotGottenImpl>
+    extends _$RemoteIdReceiverEventCopyWithImpl<$Res, _$RemoteIDsNotGottenImpl>
     implements _$$RemoteIDsNotGottenImplCopyWith<$Res> {
   __$$RemoteIDsNotGottenImplCopyWithImpl(_$RemoteIDsNotGottenImpl _value,
       $Res Function(_$RemoteIDsNotGottenImpl) _then)
@@ -392,13 +430,13 @@ class __$$RemoteIDsNotGottenImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? wifiReceiverFailure = null,
+    Object? remoteIdReceiverFailure = null,
   }) {
     return _then(_$RemoteIDsNotGottenImpl(
-      wifiReceiverFailure: null == wifiReceiverFailure
-          ? _value.wifiReceiverFailure
-          : wifiReceiverFailure // ignore: cast_nullable_to_non_nullable
-              as WifiReceiverFailure,
+      remoteIdReceiverFailure: null == remoteIdReceiverFailure
+          ? _value.remoteIdReceiverFailure
+          : remoteIdReceiverFailure // ignore: cast_nullable_to_non_nullable
+              as RemoteIdReceiverFailure,
     ));
   }
 }
@@ -406,14 +444,14 @@ class __$$RemoteIDsNotGottenImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$RemoteIDsNotGottenImpl implements _RemoteIDsNotGotten {
-  const _$RemoteIDsNotGottenImpl({required this.wifiReceiverFailure});
+  const _$RemoteIDsNotGottenImpl({required this.remoteIdReceiverFailure});
 
   @override
-  final WifiReceiverFailure wifiReceiverFailure;
+  final RemoteIdReceiverFailure remoteIdReceiverFailure;
 
   @override
   String toString() {
-    return 'WifiReceiverEvent.remoteIDsNotGotten(wifiReceiverFailure: $wifiReceiverFailure)';
+    return 'RemoteIdReceiverEvent.remoteIDsNotGotten(remoteIdReceiverFailure: $remoteIdReceiverFailure)';
   }
 
   @override
@@ -421,12 +459,13 @@ class _$RemoteIDsNotGottenImpl implements _RemoteIDsNotGotten {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$RemoteIDsNotGottenImpl &&
-            (identical(other.wifiReceiverFailure, wifiReceiverFailure) ||
-                other.wifiReceiverFailure == wifiReceiverFailure));
+            (identical(
+                    other.remoteIdReceiverFailure, remoteIdReceiverFailure) ||
+                other.remoteIdReceiverFailure == remoteIdReceiverFailure));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, wifiReceiverFailure);
+  int get hashCode => Object.hash(runtimeType, remoteIdReceiverFailure);
 
   @JsonKey(ignore: true)
   @override
@@ -438,40 +477,41 @@ class _$RemoteIDsNotGottenImpl implements _RemoteIDsNotGotten {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() listenRemoteIDs,
-    required TResult Function(Set<RemoteIdEntity> remoteIDEntities)
+    required TResult Function(UsedTechnologies technologyType) listenRemoteIDs,
+    required TResult Function(Set<RemoteIdEntity> remoteIdEntities)
         remoteIDsGotten,
-    required TResult Function(WifiReceiverFailure wifiReceiverFailure)
+    required TResult Function(RemoteIdReceiverFailure remoteIdReceiverFailure)
         remoteIDsNotGotten,
-    required TResult Function() stopListeningRemoteIDs,
+    required TResult Function(UsedTechnologies technologyType)
+        stopListeningRemoteIDs,
   }) {
-    return remoteIDsNotGotten(wifiReceiverFailure);
+    return remoteIDsNotGotten(remoteIdReceiverFailure);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? listenRemoteIDs,
-    TResult? Function(Set<RemoteIdEntity> remoteIDEntities)? remoteIDsGotten,
-    TResult? Function(WifiReceiverFailure wifiReceiverFailure)?
+    TResult? Function(UsedTechnologies technologyType)? listenRemoteIDs,
+    TResult? Function(Set<RemoteIdEntity> remoteIdEntities)? remoteIDsGotten,
+    TResult? Function(RemoteIdReceiverFailure remoteIdReceiverFailure)?
         remoteIDsNotGotten,
-    TResult? Function()? stopListeningRemoteIDs,
+    TResult? Function(UsedTechnologies technologyType)? stopListeningRemoteIDs,
   }) {
-    return remoteIDsNotGotten?.call(wifiReceiverFailure);
+    return remoteIDsNotGotten?.call(remoteIdReceiverFailure);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? listenRemoteIDs,
-    TResult Function(Set<RemoteIdEntity> remoteIDEntities)? remoteIDsGotten,
-    TResult Function(WifiReceiverFailure wifiReceiverFailure)?
+    TResult Function(UsedTechnologies technologyType)? listenRemoteIDs,
+    TResult Function(Set<RemoteIdEntity> remoteIdEntities)? remoteIDsGotten,
+    TResult Function(RemoteIdReceiverFailure remoteIdReceiverFailure)?
         remoteIDsNotGotten,
-    TResult Function()? stopListeningRemoteIDs,
+    TResult Function(UsedTechnologies technologyType)? stopListeningRemoteIDs,
     required TResult orElse(),
   }) {
     if (remoteIDsNotGotten != null) {
-      return remoteIDsNotGotten(wifiReceiverFailure);
+      return remoteIDsNotGotten(remoteIdReceiverFailure);
     }
     return orElse();
   }
@@ -515,12 +555,12 @@ class _$RemoteIDsNotGottenImpl implements _RemoteIDsNotGotten {
   }
 }
 
-abstract class _RemoteIDsNotGotten implements WifiReceiverEvent {
+abstract class _RemoteIDsNotGotten implements RemoteIdReceiverEvent {
   const factory _RemoteIDsNotGotten(
-          {required final WifiReceiverFailure wifiReceiverFailure}) =
+          {required final RemoteIdReceiverFailure remoteIdReceiverFailure}) =
       _$RemoteIDsNotGottenImpl;
 
-  WifiReceiverFailure get wifiReceiverFailure;
+  RemoteIdReceiverFailure get remoteIdReceiverFailure;
   @JsonKey(ignore: true)
   _$$RemoteIDsNotGottenImplCopyWith<_$RemoteIDsNotGottenImpl> get copyWith =>
       throw _privateConstructorUsedError;
@@ -532,75 +572,104 @@ abstract class _$$StopListeningRemoteIDsImplCopyWith<$Res> {
           _$StopListeningRemoteIDsImpl value,
           $Res Function(_$StopListeningRemoteIDsImpl) then) =
       __$$StopListeningRemoteIDsImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({UsedTechnologies technologyType});
 }
 
 /// @nodoc
 class __$$StopListeningRemoteIDsImplCopyWithImpl<$Res>
-    extends _$WifiReceiverEventCopyWithImpl<$Res, _$StopListeningRemoteIDsImpl>
+    extends _$RemoteIdReceiverEventCopyWithImpl<$Res,
+        _$StopListeningRemoteIDsImpl>
     implements _$$StopListeningRemoteIDsImplCopyWith<$Res> {
   __$$StopListeningRemoteIDsImplCopyWithImpl(
       _$StopListeningRemoteIDsImpl _value,
       $Res Function(_$StopListeningRemoteIDsImpl) _then)
       : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? technologyType = null,
+  }) {
+    return _then(_$StopListeningRemoteIDsImpl(
+      technologyType: null == technologyType
+          ? _value.technologyType
+          : technologyType // ignore: cast_nullable_to_non_nullable
+              as UsedTechnologies,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$StopListeningRemoteIDsImpl implements _StopListeningRemoteIDs {
-  const _$StopListeningRemoteIDsImpl();
+  const _$StopListeningRemoteIDsImpl({required this.technologyType});
+
+  @override
+  final UsedTechnologies technologyType;
 
   @override
   String toString() {
-    return 'WifiReceiverEvent.stopListeningRemoteIDs()';
+    return 'RemoteIdReceiverEvent.stopListeningRemoteIDs(technologyType: $technologyType)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$StopListeningRemoteIDsImpl);
+            other is _$StopListeningRemoteIDsImpl &&
+            (identical(other.technologyType, technologyType) ||
+                other.technologyType == technologyType));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(runtimeType, technologyType);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$StopListeningRemoteIDsImplCopyWith<_$StopListeningRemoteIDsImpl>
+      get copyWith => __$$StopListeningRemoteIDsImplCopyWithImpl<
+          _$StopListeningRemoteIDsImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() listenRemoteIDs,
-    required TResult Function(Set<RemoteIdEntity> remoteIDEntities)
+    required TResult Function(UsedTechnologies technologyType) listenRemoteIDs,
+    required TResult Function(Set<RemoteIdEntity> remoteIdEntities)
         remoteIDsGotten,
-    required TResult Function(WifiReceiverFailure wifiReceiverFailure)
+    required TResult Function(RemoteIdReceiverFailure remoteIdReceiverFailure)
         remoteIDsNotGotten,
-    required TResult Function() stopListeningRemoteIDs,
+    required TResult Function(UsedTechnologies technologyType)
+        stopListeningRemoteIDs,
   }) {
-    return stopListeningRemoteIDs();
+    return stopListeningRemoteIDs(technologyType);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? listenRemoteIDs,
-    TResult? Function(Set<RemoteIdEntity> remoteIDEntities)? remoteIDsGotten,
-    TResult? Function(WifiReceiverFailure wifiReceiverFailure)?
+    TResult? Function(UsedTechnologies technologyType)? listenRemoteIDs,
+    TResult? Function(Set<RemoteIdEntity> remoteIdEntities)? remoteIDsGotten,
+    TResult? Function(RemoteIdReceiverFailure remoteIdReceiverFailure)?
         remoteIDsNotGotten,
-    TResult? Function()? stopListeningRemoteIDs,
+    TResult? Function(UsedTechnologies technologyType)? stopListeningRemoteIDs,
   }) {
-    return stopListeningRemoteIDs?.call();
+    return stopListeningRemoteIDs?.call(technologyType);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? listenRemoteIDs,
-    TResult Function(Set<RemoteIdEntity> remoteIDEntities)? remoteIDsGotten,
-    TResult Function(WifiReceiverFailure wifiReceiverFailure)?
+    TResult Function(UsedTechnologies technologyType)? listenRemoteIDs,
+    TResult Function(Set<RemoteIdEntity> remoteIdEntities)? remoteIDsGotten,
+    TResult Function(RemoteIdReceiverFailure remoteIdReceiverFailure)?
         remoteIDsNotGotten,
-    TResult Function()? stopListeningRemoteIDs,
+    TResult Function(UsedTechnologies technologyType)? stopListeningRemoteIDs,
     required TResult orElse(),
   }) {
     if (stopListeningRemoteIDs != null) {
-      return stopListeningRemoteIDs();
+      return stopListeningRemoteIDs(technologyType);
     }
     return orElse();
   }
@@ -644,19 +713,26 @@ class _$StopListeningRemoteIDsImpl implements _StopListeningRemoteIDs {
   }
 }
 
-abstract class _StopListeningRemoteIDs implements WifiReceiverEvent {
-  const factory _StopListeningRemoteIDs() = _$StopListeningRemoteIDsImpl;
+abstract class _StopListeningRemoteIDs implements RemoteIdReceiverEvent {
+  const factory _StopListeningRemoteIDs(
+          {required final UsedTechnologies technologyType}) =
+      _$StopListeningRemoteIDsImpl;
+
+  UsedTechnologies get technologyType;
+  @JsonKey(ignore: true)
+  _$$StopListeningRemoteIDsImplCopyWith<_$StopListeningRemoteIDsImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-mixin _$WifiReceiverState {
+mixin _$RemoteIdReceiverState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() gettingRemoteIDs,
-    required TResult Function(Set<RemoteIdEntity> remoteIDEntities)
+    required TResult Function(Set<RemoteIdEntity> remoteIdEntities)
         gotRemoteIDs,
-    required TResult Function(WifiReceiverFailure wifiReceiverFailure)
+    required TResult Function(RemoteIdReceiverFailure remoteIdReceiverFailure)
         failedToGetRemoteIDs,
   }) =>
       throw _privateConstructorUsedError;
@@ -664,8 +740,8 @@ mixin _$WifiReceiverState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? gettingRemoteIDs,
-    TResult? Function(Set<RemoteIdEntity> remoteIDEntities)? gotRemoteIDs,
-    TResult? Function(WifiReceiverFailure wifiReceiverFailure)?
+    TResult? Function(Set<RemoteIdEntity> remoteIdEntities)? gotRemoteIDs,
+    TResult? Function(RemoteIdReceiverFailure remoteIdReceiverFailure)?
         failedToGetRemoteIDs,
   }) =>
       throw _privateConstructorUsedError;
@@ -673,8 +749,8 @@ mixin _$WifiReceiverState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? gettingRemoteIDs,
-    TResult Function(Set<RemoteIdEntity> remoteIDEntities)? gotRemoteIDs,
-    TResult Function(WifiReceiverFailure wifiReceiverFailure)?
+    TResult Function(Set<RemoteIdEntity> remoteIdEntities)? gotRemoteIDs,
+    TResult Function(RemoteIdReceiverFailure remoteIdReceiverFailure)?
         failedToGetRemoteIDs,
     required TResult orElse(),
   }) =>
@@ -707,16 +783,17 @@ mixin _$WifiReceiverState {
 }
 
 /// @nodoc
-abstract class $WifiReceiverStateCopyWith<$Res> {
-  factory $WifiReceiverStateCopyWith(
-          WifiReceiverState value, $Res Function(WifiReceiverState) then) =
-      _$WifiReceiverStateCopyWithImpl<$Res, WifiReceiverState>;
+abstract class $RemoteIdReceiverStateCopyWith<$Res> {
+  factory $RemoteIdReceiverStateCopyWith(RemoteIdReceiverState value,
+          $Res Function(RemoteIdReceiverState) then) =
+      _$RemoteIdReceiverStateCopyWithImpl<$Res, RemoteIdReceiverState>;
 }
 
 /// @nodoc
-class _$WifiReceiverStateCopyWithImpl<$Res, $Val extends WifiReceiverState>
-    implements $WifiReceiverStateCopyWith<$Res> {
-  _$WifiReceiverStateCopyWithImpl(this._value, this._then);
+class _$RemoteIdReceiverStateCopyWithImpl<$Res,
+        $Val extends RemoteIdReceiverState>
+    implements $RemoteIdReceiverStateCopyWith<$Res> {
+  _$RemoteIdReceiverStateCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -733,7 +810,7 @@ abstract class _$$InitialImplCopyWith<$Res> {
 
 /// @nodoc
 class __$$InitialImplCopyWithImpl<$Res>
-    extends _$WifiReceiverStateCopyWithImpl<$Res, _$InitialImpl>
+    extends _$RemoteIdReceiverStateCopyWithImpl<$Res, _$InitialImpl>
     implements _$$InitialImplCopyWith<$Res> {
   __$$InitialImplCopyWithImpl(
       _$InitialImpl _value, $Res Function(_$InitialImpl) _then)
@@ -747,7 +824,7 @@ class _$InitialImpl implements _Initial {
 
   @override
   String toString() {
-    return 'WifiReceiverState.initial()';
+    return 'RemoteIdReceiverState.initial()';
   }
 
   @override
@@ -764,9 +841,9 @@ class _$InitialImpl implements _Initial {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() gettingRemoteIDs,
-    required TResult Function(Set<RemoteIdEntity> remoteIDEntities)
+    required TResult Function(Set<RemoteIdEntity> remoteIdEntities)
         gotRemoteIDs,
-    required TResult Function(WifiReceiverFailure wifiReceiverFailure)
+    required TResult Function(RemoteIdReceiverFailure remoteIdReceiverFailure)
         failedToGetRemoteIDs,
   }) {
     return initial();
@@ -777,8 +854,8 @@ class _$InitialImpl implements _Initial {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? gettingRemoteIDs,
-    TResult? Function(Set<RemoteIdEntity> remoteIDEntities)? gotRemoteIDs,
-    TResult? Function(WifiReceiverFailure wifiReceiverFailure)?
+    TResult? Function(Set<RemoteIdEntity> remoteIdEntities)? gotRemoteIDs,
+    TResult? Function(RemoteIdReceiverFailure remoteIdReceiverFailure)?
         failedToGetRemoteIDs,
   }) {
     return initial?.call();
@@ -789,8 +866,8 @@ class _$InitialImpl implements _Initial {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? gettingRemoteIDs,
-    TResult Function(Set<RemoteIdEntity> remoteIDEntities)? gotRemoteIDs,
-    TResult Function(WifiReceiverFailure wifiReceiverFailure)?
+    TResult Function(Set<RemoteIdEntity> remoteIdEntities)? gotRemoteIDs,
+    TResult Function(RemoteIdReceiverFailure remoteIdReceiverFailure)?
         failedToGetRemoteIDs,
     required TResult orElse(),
   }) {
@@ -838,7 +915,7 @@ class _$InitialImpl implements _Initial {
   }
 }
 
-abstract class _Initial implements WifiReceiverState {
+abstract class _Initial implements RemoteIdReceiverState {
   const factory _Initial() = _$InitialImpl;
 }
 
@@ -851,7 +928,7 @@ abstract class _$$GettingRemoteIDsImplCopyWith<$Res> {
 
 /// @nodoc
 class __$$GettingRemoteIDsImplCopyWithImpl<$Res>
-    extends _$WifiReceiverStateCopyWithImpl<$Res, _$GettingRemoteIDsImpl>
+    extends _$RemoteIdReceiverStateCopyWithImpl<$Res, _$GettingRemoteIDsImpl>
     implements _$$GettingRemoteIDsImplCopyWith<$Res> {
   __$$GettingRemoteIDsImplCopyWithImpl(_$GettingRemoteIDsImpl _value,
       $Res Function(_$GettingRemoteIDsImpl) _then)
@@ -865,7 +942,7 @@ class _$GettingRemoteIDsImpl implements _GettingRemoteIDs {
 
   @override
   String toString() {
-    return 'WifiReceiverState.gettingRemoteIDs()';
+    return 'RemoteIdReceiverState.gettingRemoteIDs()';
   }
 
   @override
@@ -882,9 +959,9 @@ class _$GettingRemoteIDsImpl implements _GettingRemoteIDs {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() gettingRemoteIDs,
-    required TResult Function(Set<RemoteIdEntity> remoteIDEntities)
+    required TResult Function(Set<RemoteIdEntity> remoteIdEntities)
         gotRemoteIDs,
-    required TResult Function(WifiReceiverFailure wifiReceiverFailure)
+    required TResult Function(RemoteIdReceiverFailure remoteIdReceiverFailure)
         failedToGetRemoteIDs,
   }) {
     return gettingRemoteIDs();
@@ -895,8 +972,8 @@ class _$GettingRemoteIDsImpl implements _GettingRemoteIDs {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? gettingRemoteIDs,
-    TResult? Function(Set<RemoteIdEntity> remoteIDEntities)? gotRemoteIDs,
-    TResult? Function(WifiReceiverFailure wifiReceiverFailure)?
+    TResult? Function(Set<RemoteIdEntity> remoteIdEntities)? gotRemoteIDs,
+    TResult? Function(RemoteIdReceiverFailure remoteIdReceiverFailure)?
         failedToGetRemoteIDs,
   }) {
     return gettingRemoteIDs?.call();
@@ -907,8 +984,8 @@ class _$GettingRemoteIDsImpl implements _GettingRemoteIDs {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? gettingRemoteIDs,
-    TResult Function(Set<RemoteIdEntity> remoteIDEntities)? gotRemoteIDs,
-    TResult Function(WifiReceiverFailure wifiReceiverFailure)?
+    TResult Function(Set<RemoteIdEntity> remoteIdEntities)? gotRemoteIDs,
+    TResult Function(RemoteIdReceiverFailure remoteIdReceiverFailure)?
         failedToGetRemoteIDs,
     required TResult orElse(),
   }) {
@@ -956,7 +1033,7 @@ class _$GettingRemoteIDsImpl implements _GettingRemoteIDs {
   }
 }
 
-abstract class _GettingRemoteIDs implements WifiReceiverState {
+abstract class _GettingRemoteIDs implements RemoteIdReceiverState {
   const factory _GettingRemoteIDs() = _$GettingRemoteIDsImpl;
 }
 
@@ -966,12 +1043,12 @@ abstract class _$$GotRemoteIDsImplCopyWith<$Res> {
           _$GotRemoteIDsImpl value, $Res Function(_$GotRemoteIDsImpl) then) =
       __$$GotRemoteIDsImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({Set<RemoteIdEntity> remoteIDEntities});
+  $Res call({Set<RemoteIdEntity> remoteIdEntities});
 }
 
 /// @nodoc
 class __$$GotRemoteIDsImplCopyWithImpl<$Res>
-    extends _$WifiReceiverStateCopyWithImpl<$Res, _$GotRemoteIDsImpl>
+    extends _$RemoteIdReceiverStateCopyWithImpl<$Res, _$GotRemoteIDsImpl>
     implements _$$GotRemoteIDsImplCopyWith<$Res> {
   __$$GotRemoteIDsImplCopyWithImpl(
       _$GotRemoteIDsImpl _value, $Res Function(_$GotRemoteIDsImpl) _then)
@@ -980,12 +1057,12 @@ class __$$GotRemoteIDsImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? remoteIDEntities = null,
+    Object? remoteIdEntities = null,
   }) {
     return _then(_$GotRemoteIDsImpl(
-      remoteIDEntities: null == remoteIDEntities
-          ? _value._remoteIDEntities
-          : remoteIDEntities // ignore: cast_nullable_to_non_nullable
+      remoteIdEntities: null == remoteIdEntities
+          ? _value._remoteIdEntities
+          : remoteIdEntities // ignore: cast_nullable_to_non_nullable
               as Set<RemoteIdEntity>,
     ));
   }
@@ -995,20 +1072,20 @@ class __$$GotRemoteIDsImplCopyWithImpl<$Res>
 
 class _$GotRemoteIDsImpl implements _GotRemoteIDs {
   const _$GotRemoteIDsImpl(
-      {required final Set<RemoteIdEntity> remoteIDEntities})
-      : _remoteIDEntities = remoteIDEntities;
+      {required final Set<RemoteIdEntity> remoteIdEntities})
+      : _remoteIdEntities = remoteIdEntities;
 
-  final Set<RemoteIdEntity> _remoteIDEntities;
+  final Set<RemoteIdEntity> _remoteIdEntities;
   @override
-  Set<RemoteIdEntity> get remoteIDEntities {
-    if (_remoteIDEntities is EqualUnmodifiableSetView) return _remoteIDEntities;
+  Set<RemoteIdEntity> get remoteIdEntities {
+    if (_remoteIdEntities is EqualUnmodifiableSetView) return _remoteIdEntities;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableSetView(_remoteIDEntities);
+    return EqualUnmodifiableSetView(_remoteIdEntities);
   }
 
   @override
   String toString() {
-    return 'WifiReceiverState.gotRemoteIDs(remoteIDEntities: $remoteIDEntities)';
+    return 'RemoteIdReceiverState.gotRemoteIDs(remoteIdEntities: $remoteIdEntities)';
   }
 
   @override
@@ -1017,12 +1094,12 @@ class _$GotRemoteIDsImpl implements _GotRemoteIDs {
         (other.runtimeType == runtimeType &&
             other is _$GotRemoteIDsImpl &&
             const DeepCollectionEquality()
-                .equals(other._remoteIDEntities, _remoteIDEntities));
+                .equals(other._remoteIdEntities, _remoteIdEntities));
   }
 
   @override
   int get hashCode => Object.hash(
-      runtimeType, const DeepCollectionEquality().hash(_remoteIDEntities));
+      runtimeType, const DeepCollectionEquality().hash(_remoteIdEntities));
 
   @JsonKey(ignore: true)
   @override
@@ -1035,12 +1112,12 @@ class _$GotRemoteIDsImpl implements _GotRemoteIDs {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() gettingRemoteIDs,
-    required TResult Function(Set<RemoteIdEntity> remoteIDEntities)
+    required TResult Function(Set<RemoteIdEntity> remoteIdEntities)
         gotRemoteIDs,
-    required TResult Function(WifiReceiverFailure wifiReceiverFailure)
+    required TResult Function(RemoteIdReceiverFailure remoteIdReceiverFailure)
         failedToGetRemoteIDs,
   }) {
-    return gotRemoteIDs(remoteIDEntities);
+    return gotRemoteIDs(remoteIdEntities);
   }
 
   @override
@@ -1048,11 +1125,11 @@ class _$GotRemoteIDsImpl implements _GotRemoteIDs {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? gettingRemoteIDs,
-    TResult? Function(Set<RemoteIdEntity> remoteIDEntities)? gotRemoteIDs,
-    TResult? Function(WifiReceiverFailure wifiReceiverFailure)?
+    TResult? Function(Set<RemoteIdEntity> remoteIdEntities)? gotRemoteIDs,
+    TResult? Function(RemoteIdReceiverFailure remoteIdReceiverFailure)?
         failedToGetRemoteIDs,
   }) {
-    return gotRemoteIDs?.call(remoteIDEntities);
+    return gotRemoteIDs?.call(remoteIdEntities);
   }
 
   @override
@@ -1060,13 +1137,13 @@ class _$GotRemoteIDsImpl implements _GotRemoteIDs {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? gettingRemoteIDs,
-    TResult Function(Set<RemoteIdEntity> remoteIDEntities)? gotRemoteIDs,
-    TResult Function(WifiReceiverFailure wifiReceiverFailure)?
+    TResult Function(Set<RemoteIdEntity> remoteIdEntities)? gotRemoteIDs,
+    TResult Function(RemoteIdReceiverFailure remoteIdReceiverFailure)?
         failedToGetRemoteIDs,
     required TResult orElse(),
   }) {
     if (gotRemoteIDs != null) {
-      return gotRemoteIDs(remoteIDEntities);
+      return gotRemoteIDs(remoteIdEntities);
     }
     return orElse();
   }
@@ -1109,12 +1186,12 @@ class _$GotRemoteIDsImpl implements _GotRemoteIDs {
   }
 }
 
-abstract class _GotRemoteIDs implements WifiReceiverState {
+abstract class _GotRemoteIDs implements RemoteIdReceiverState {
   const factory _GotRemoteIDs(
-          {required final Set<RemoteIdEntity> remoteIDEntities}) =
+          {required final Set<RemoteIdEntity> remoteIdEntities}) =
       _$GotRemoteIDsImpl;
 
-  Set<RemoteIdEntity> get remoteIDEntities;
+  Set<RemoteIdEntity> get remoteIdEntities;
   @JsonKey(ignore: true)
   _$$GotRemoteIDsImplCopyWith<_$GotRemoteIDsImpl> get copyWith =>
       throw _privateConstructorUsedError;
@@ -1126,12 +1203,13 @@ abstract class _$$FailedToGetRemoteIDsImplCopyWith<$Res> {
           $Res Function(_$FailedToGetRemoteIDsImpl) then) =
       __$$FailedToGetRemoteIDsImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({WifiReceiverFailure wifiReceiverFailure});
+  $Res call({RemoteIdReceiverFailure remoteIdReceiverFailure});
 }
 
 /// @nodoc
 class __$$FailedToGetRemoteIDsImplCopyWithImpl<$Res>
-    extends _$WifiReceiverStateCopyWithImpl<$Res, _$FailedToGetRemoteIDsImpl>
+    extends _$RemoteIdReceiverStateCopyWithImpl<$Res,
+        _$FailedToGetRemoteIDsImpl>
     implements _$$FailedToGetRemoteIDsImplCopyWith<$Res> {
   __$$FailedToGetRemoteIDsImplCopyWithImpl(_$FailedToGetRemoteIDsImpl _value,
       $Res Function(_$FailedToGetRemoteIDsImpl) _then)
@@ -1140,13 +1218,13 @@ class __$$FailedToGetRemoteIDsImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? wifiReceiverFailure = null,
+    Object? remoteIdReceiverFailure = null,
   }) {
     return _then(_$FailedToGetRemoteIDsImpl(
-      wifiReceiverFailure: null == wifiReceiverFailure
-          ? _value.wifiReceiverFailure
-          : wifiReceiverFailure // ignore: cast_nullable_to_non_nullable
-              as WifiReceiverFailure,
+      remoteIdReceiverFailure: null == remoteIdReceiverFailure
+          ? _value.remoteIdReceiverFailure
+          : remoteIdReceiverFailure // ignore: cast_nullable_to_non_nullable
+              as RemoteIdReceiverFailure,
     ));
   }
 }
@@ -1154,14 +1232,14 @@ class __$$FailedToGetRemoteIDsImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$FailedToGetRemoteIDsImpl implements _FailedToGetRemoteIDs {
-  const _$FailedToGetRemoteIDsImpl({required this.wifiReceiverFailure});
+  const _$FailedToGetRemoteIDsImpl({required this.remoteIdReceiverFailure});
 
   @override
-  final WifiReceiverFailure wifiReceiverFailure;
+  final RemoteIdReceiverFailure remoteIdReceiverFailure;
 
   @override
   String toString() {
-    return 'WifiReceiverState.failedToGetRemoteIDs(wifiReceiverFailure: $wifiReceiverFailure)';
+    return 'RemoteIdReceiverState.failedToGetRemoteIDs(remoteIdReceiverFailure: $remoteIdReceiverFailure)';
   }
 
   @override
@@ -1169,12 +1247,13 @@ class _$FailedToGetRemoteIDsImpl implements _FailedToGetRemoteIDs {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$FailedToGetRemoteIDsImpl &&
-            (identical(other.wifiReceiverFailure, wifiReceiverFailure) ||
-                other.wifiReceiverFailure == wifiReceiverFailure));
+            (identical(
+                    other.remoteIdReceiverFailure, remoteIdReceiverFailure) ||
+                other.remoteIdReceiverFailure == remoteIdReceiverFailure));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, wifiReceiverFailure);
+  int get hashCode => Object.hash(runtimeType, remoteIdReceiverFailure);
 
   @JsonKey(ignore: true)
   @override
@@ -1189,12 +1268,12 @@ class _$FailedToGetRemoteIDsImpl implements _FailedToGetRemoteIDs {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() gettingRemoteIDs,
-    required TResult Function(Set<RemoteIdEntity> remoteIDEntities)
+    required TResult Function(Set<RemoteIdEntity> remoteIdEntities)
         gotRemoteIDs,
-    required TResult Function(WifiReceiverFailure wifiReceiverFailure)
+    required TResult Function(RemoteIdReceiverFailure remoteIdReceiverFailure)
         failedToGetRemoteIDs,
   }) {
-    return failedToGetRemoteIDs(wifiReceiverFailure);
+    return failedToGetRemoteIDs(remoteIdReceiverFailure);
   }
 
   @override
@@ -1202,11 +1281,11 @@ class _$FailedToGetRemoteIDsImpl implements _FailedToGetRemoteIDs {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? gettingRemoteIDs,
-    TResult? Function(Set<RemoteIdEntity> remoteIDEntities)? gotRemoteIDs,
-    TResult? Function(WifiReceiverFailure wifiReceiverFailure)?
+    TResult? Function(Set<RemoteIdEntity> remoteIdEntities)? gotRemoteIDs,
+    TResult? Function(RemoteIdReceiverFailure remoteIdReceiverFailure)?
         failedToGetRemoteIDs,
   }) {
-    return failedToGetRemoteIDs?.call(wifiReceiverFailure);
+    return failedToGetRemoteIDs?.call(remoteIdReceiverFailure);
   }
 
   @override
@@ -1214,13 +1293,13 @@ class _$FailedToGetRemoteIDsImpl implements _FailedToGetRemoteIDs {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? gettingRemoteIDs,
-    TResult Function(Set<RemoteIdEntity> remoteIDEntities)? gotRemoteIDs,
-    TResult Function(WifiReceiverFailure wifiReceiverFailure)?
+    TResult Function(Set<RemoteIdEntity> remoteIdEntities)? gotRemoteIDs,
+    TResult Function(RemoteIdReceiverFailure remoteIdReceiverFailure)?
         failedToGetRemoteIDs,
     required TResult orElse(),
   }) {
     if (failedToGetRemoteIDs != null) {
-      return failedToGetRemoteIDs(wifiReceiverFailure);
+      return failedToGetRemoteIDs(remoteIdReceiverFailure);
     }
     return orElse();
   }
@@ -1263,12 +1342,12 @@ class _$FailedToGetRemoteIDsImpl implements _FailedToGetRemoteIDs {
   }
 }
 
-abstract class _FailedToGetRemoteIDs implements WifiReceiverState {
+abstract class _FailedToGetRemoteIDs implements RemoteIdReceiverState {
   const factory _FailedToGetRemoteIDs(
-          {required final WifiReceiverFailure wifiReceiverFailure}) =
+          {required final RemoteIdReceiverFailure remoteIdReceiverFailure}) =
       _$FailedToGetRemoteIDsImpl;
 
-  WifiReceiverFailure get wifiReceiverFailure;
+  RemoteIdReceiverFailure get remoteIdReceiverFailure;
   @JsonKey(ignore: true)
   _$$FailedToGetRemoteIDsImplCopyWith<_$FailedToGetRemoteIDsImpl>
       get copyWith => throw _privateConstructorUsedError;

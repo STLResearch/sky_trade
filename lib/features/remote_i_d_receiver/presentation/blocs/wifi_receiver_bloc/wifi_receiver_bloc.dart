@@ -5,7 +5,7 @@ import 'package:dartz/dartz.dart' show Either;
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:sky_ways/core/errors/failures/remote_i_d_receiver_failure.dart'
     show WifiReceiverFailure;
-import 'package:sky_ways/features/remote_i_d_receiver/domain/entities/remote_i_d_entity.dart';
+import 'package:sky_ways/features/remote_i_d_receiver/domain/entities/remote_id_entity.dart';
 import 'package:sky_ways/features/remote_i_d_receiver/domain/repositories/remote_i_d_receiver_repository.dart';
 
 part 'wifi_receiver_event.dart';
@@ -41,7 +41,7 @@ class WifiReceiverBloc extends Bloc<WifiReceiverEvent, WifiReceiverState> {
   final RemoteIDReceiverRepository<WifiReceiverFailure>
       _remoteIDReceiverRepository;
 
-  StreamSubscription<Either<WifiReceiverFailure, Set<RemoteIDEntity>>>?
+  StreamSubscription<Either<WifiReceiverFailure, Set<RemoteIdEntity>>>?
       _wifiReceiverStreamSubscription;
 
   Future<void> _listenRemoteIDs(
@@ -56,23 +56,21 @@ class WifiReceiverBloc extends Bloc<WifiReceiverEvent, WifiReceiverState> {
       const WifiReceiverState.gettingRemoteIDs(),
     );
 
-    _wifiReceiverStreamSubscription =
-        _remoteIDReceiverRepository.remoteIDStream.listen(
-      (
-        wifiReceiverFailureOrRemoteIDEntities,
-      ) =>
-          _listenWifiReceiverStream(
-        wifiReceiverFailureOrRemoteIDEntities:
-            wifiReceiverFailureOrRemoteIDEntities,
-        emit: emit,
-      ),
-    );
+    // _wifiReceiverStreamSubscription =
+    //     _remoteIDReceiverRepository.remoteIDStream.listen(
+    //   (
+    //     wifiReceiverFailureOrRemoteIDEntities,
+    //   ) =>
+    //       _listenWifiReceiverStream(
+    //     wifiReceiverFailureOrRemoteIDEntities:
+    //         wifiReceiverFailureOrRemoteIDEntities,
+    //   ),
+    // );
   }
 
   void _listenWifiReceiverStream({
-    required Either<WifiReceiverFailure, Set<RemoteIDEntity>>
+    required Either<WifiReceiverFailure, Set<RemoteIdEntity>>
         wifiReceiverFailureOrRemoteIDEntities,
-    required Emitter<WifiReceiverState> emit,
   }) =>
       wifiReceiverFailureOrRemoteIDEntities.fold(
         (wifiReceiverFailure) => add(

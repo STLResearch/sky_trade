@@ -5,7 +5,7 @@ class BluetoothReceiverEvent with _$BluetoothReceiverEvent {
   const factory BluetoothReceiverEvent.listenRemoteIDs() = _ListenRemoteIDs;
 
   const factory BluetoothReceiverEvent.remoteIDsGotten({
-    required Set<RemoteIDEntity> remoteIDEntities,
+    required Set<RemoteIdEntity> remoteIDEntities,
   }) = _RemoteIDsGotten;
 
   const factory BluetoothReceiverEvent.remoteIDsNotGotten({

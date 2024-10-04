@@ -47,6 +47,9 @@ const websocketTransport = 'websocket';
 const uasActivityEvent = 'get-sql-drone-data-response';
 const uasActivityRoom = 'get-sql-drone-data';
 
+const remoteIdTransmitterEvent = 'store-drone-data';
+const remoteIdTransmitterRoom = 'store-drone-data-response';
+
 const connectionTimeoutEvent = 'connect_timeout';
 const connectingEvent = 'connecting';
 const reconnectingEvent = 'reconnecting';

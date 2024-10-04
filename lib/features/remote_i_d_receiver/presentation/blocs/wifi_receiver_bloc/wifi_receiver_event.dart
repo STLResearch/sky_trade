@@ -5,7 +5,7 @@ class WifiReceiverEvent with _$WifiReceiverEvent {
   const factory WifiReceiverEvent.listenRemoteIDs() = _ListenRemoteIDs;
 
   const factory WifiReceiverEvent.remoteIDsGotten({
-    required Set<RemoteIDEntity> remoteIDEntities,
+    required Set<RemoteIdEntity> remoteIDEntities,
   }) = _RemoteIDsGotten;
 
   const factory WifiReceiverEvent.remoteIDsNotGotten({

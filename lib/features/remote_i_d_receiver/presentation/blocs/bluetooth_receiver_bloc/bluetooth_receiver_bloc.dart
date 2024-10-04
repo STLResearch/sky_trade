@@ -1,11 +1,12 @@
 import 'dart:async' show StreamSubscription;
+import 'dart:developer';
 
 import 'package:bloc/bloc.dart' show Bloc, Emitter;
 import 'package:dartz/dartz.dart' show Either;
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:sky_ways/core/errors/failures/remote_i_d_receiver_failure.dart'
     show BluetoothReceiverFailure;
-import 'package:sky_ways/features/remote_i_d_receiver/domain/entities/remote_i_d_entity.dart';
+import 'package:sky_ways/features/remote_i_d_receiver/domain/entities/remote_id_entity.dart';
 import 'package:sky_ways/features/remote_i_d_receiver/domain/repositories/remote_i_d_receiver_repository.dart';
 
 part 'bluetooth_receiver_event.dart';
@@ -40,54 +41,62 @@ class BluetoothReceiverBloc
     );
   }
 
+  final _remoteIDEntities = <RemoteIdEntity>{};
   final RemoteIDReceiverRepository<BluetoothReceiverFailure>
       _remoteIDReceiverRepository;
-
-  StreamSubscription<Either<BluetoothReceiverFailure, Set<RemoteIDEntity>>>?
+  StreamSubscription<
+          Either<BluetoothReceiverFailure,
+              Map<RemoteIDReceiverOperationType, RemoteIdEntity>>>?
       _bluetoothReceiverStreamSubscription;
 
   Future<void> _listenRemoteIDs(
     _ListenRemoteIDs _,
     Emitter<BluetoothReceiverState> emit,
   ) async {
-    await _cancelListeningRemoteIDs(
-      emit: emit,
-    );
 
-    emit(
-      const BluetoothReceiverState.gettingRemoteIDs(),
-    );
+    await _cancelListeningRemoteIDs(emit: emit);
+    emit(const BluetoothReceiverState.gettingRemoteIDs());
 
-    _bluetoothReceiverStreamSubscription =
-        _remoteIDReceiverRepository.remoteIDStream.listen(
-      (
-        bluetoothReceiverFailureOrRemoteIDEntities,
-      ) =>
-          _listenBluetoothReceiverStream(
-        bluetoothReceiverFailureOrRemoteIDEntities:
-            bluetoothReceiverFailureOrRemoteIDEntities,
-        emit: emit,
-      ),
-    );
+    _bluetoothReceiverStreamSubscription = _remoteIDReceiverRepository
+        .remoteIDStream
+        .listen(
+          (streamDataOrFailure) => _listenBluetoothReceiverStream(
+            streamDataOrFailure: streamDataOrFailure,
+          ),
+        );
   }
 
   void _listenBluetoothReceiverStream({
-    required Either<BluetoothReceiverFailure, Set<RemoteIDEntity>>
-        bluetoothReceiverFailureOrRemoteIDEntities,
-    required Emitter<BluetoothReceiverState> emit,
-  }) =>
-      bluetoothReceiverFailureOrRemoteIDEntities.fold(
-        (bluetoothReceiverFailure) => add(
-          BluetoothReceiverEvent.remoteIDsNotGotten(
-            bluetoothReceiverFailure: bluetoothReceiverFailure,
-          ),
-        ),
-        (remoteIDEntities) => add(
+    required Either<BluetoothReceiverFailure,
+        Map<RemoteIDReceiverOperationType, RemoteIdEntity>>
+    streamDataOrFailure,
+  }) {
+    streamDataOrFailure.fold(
+      (bluetoothReceiverFailure) => BluetoothReceiverEvent.remoteIDsNotGotten(
+        bluetoothReceiverFailure: bluetoothReceiverFailure,
+      ),
+      (streamData) {
+        final streamDataMap = streamData.entries.first;
+        switch (streamDataMap.key) {
+          case RemoteIDReceiverOperationType.add:
+            _remoteIDEntities.add(streamDataMap.value);
+
+          case RemoteIDReceiverOperationType.update:
+            _remoteIDEntities
+              ..remove(streamDataMap.value)
+              ..add(streamDataMap.value);
+
+          case RemoteIDReceiverOperationType.delete:
+            break;
+        }
+        add(
           BluetoothReceiverEvent.remoteIDsGotten(
-            remoteIDEntities: remoteIDEntities,
+            remoteIDEntities: _remoteIDEntities,
           ),
-        ),
-      );
+        );
+      },
+    );
+  }
 
   void _remoteIDsNotGotten(
     _RemoteIDsNotGotten event,

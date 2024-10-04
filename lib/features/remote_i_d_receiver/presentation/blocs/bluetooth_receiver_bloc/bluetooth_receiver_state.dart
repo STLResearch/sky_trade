@@ -7,7 +7,7 @@ class BluetoothReceiverState with _$BluetoothReceiverState {
   const factory BluetoothReceiverState.gettingRemoteIDs() = _GettingRemoteIDs;
 
   const factory BluetoothReceiverState.gotRemoteIDs({
-    required Set<RemoteIDEntity> remoteIDEntities,
+    required Set<RemoteIdEntity> remoteIDEntities,
   }) = _GotRemoteIDs;
 
   const factory BluetoothReceiverState.failedToGetRemoteIDs({
