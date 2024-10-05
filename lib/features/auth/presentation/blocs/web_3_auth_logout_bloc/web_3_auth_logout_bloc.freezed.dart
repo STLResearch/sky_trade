@@ -171,7 +171,8 @@ mixin _$Web3AuthLogoutState {
     required TResult Function() initial,
     required TResult Function() loggingOut,
     required TResult Function() loggedOut,
-    required TResult Function(Web3AuthLogoutFailure failure) failedToLogOut,
+    required TResult Function(Web3AuthLogoutFailure web3AuthLogoutFailure)
+        failedToLogOut,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -179,7 +180,8 @@ mixin _$Web3AuthLogoutState {
     TResult? Function()? initial,
     TResult? Function()? loggingOut,
     TResult? Function()? loggedOut,
-    TResult? Function(Web3AuthLogoutFailure failure)? failedToLogOut,
+    TResult? Function(Web3AuthLogoutFailure web3AuthLogoutFailure)?
+        failedToLogOut,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -187,7 +189,8 @@ mixin _$Web3AuthLogoutState {
     TResult Function()? initial,
     TResult Function()? loggingOut,
     TResult Function()? loggedOut,
-    TResult Function(Web3AuthLogoutFailure failure)? failedToLogOut,
+    TResult Function(Web3AuthLogoutFailure web3AuthLogoutFailure)?
+        failedToLogOut,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -277,7 +280,8 @@ class _$InitialImpl implements _Initial {
     required TResult Function() initial,
     required TResult Function() loggingOut,
     required TResult Function() loggedOut,
-    required TResult Function(Web3AuthLogoutFailure failure) failedToLogOut,
+    required TResult Function(Web3AuthLogoutFailure web3AuthLogoutFailure)
+        failedToLogOut,
   }) {
     return initial();
   }
@@ -288,7 +292,8 @@ class _$InitialImpl implements _Initial {
     TResult? Function()? initial,
     TResult? Function()? loggingOut,
     TResult? Function()? loggedOut,
-    TResult? Function(Web3AuthLogoutFailure failure)? failedToLogOut,
+    TResult? Function(Web3AuthLogoutFailure web3AuthLogoutFailure)?
+        failedToLogOut,
   }) {
     return initial?.call();
   }
@@ -299,7 +304,8 @@ class _$InitialImpl implements _Initial {
     TResult Function()? initial,
     TResult Function()? loggingOut,
     TResult Function()? loggedOut,
-    TResult Function(Web3AuthLogoutFailure failure)? failedToLogOut,
+    TResult Function(Web3AuthLogoutFailure web3AuthLogoutFailure)?
+        failedToLogOut,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -391,7 +397,8 @@ class _$LoggingOutImpl implements _LoggingOut {
     required TResult Function() initial,
     required TResult Function() loggingOut,
     required TResult Function() loggedOut,
-    required TResult Function(Web3AuthLogoutFailure failure) failedToLogOut,
+    required TResult Function(Web3AuthLogoutFailure web3AuthLogoutFailure)
+        failedToLogOut,
   }) {
     return loggingOut();
   }
@@ -402,7 +409,8 @@ class _$LoggingOutImpl implements _LoggingOut {
     TResult? Function()? initial,
     TResult? Function()? loggingOut,
     TResult? Function()? loggedOut,
-    TResult? Function(Web3AuthLogoutFailure failure)? failedToLogOut,
+    TResult? Function(Web3AuthLogoutFailure web3AuthLogoutFailure)?
+        failedToLogOut,
   }) {
     return loggingOut?.call();
   }
@@ -413,7 +421,8 @@ class _$LoggingOutImpl implements _LoggingOut {
     TResult Function()? initial,
     TResult Function()? loggingOut,
     TResult Function()? loggedOut,
-    TResult Function(Web3AuthLogoutFailure failure)? failedToLogOut,
+    TResult Function(Web3AuthLogoutFailure web3AuthLogoutFailure)?
+        failedToLogOut,
     required TResult orElse(),
   }) {
     if (loggingOut != null) {
@@ -505,7 +514,8 @@ class _$LoggedOutImpl implements _LoggedOut {
     required TResult Function() initial,
     required TResult Function() loggingOut,
     required TResult Function() loggedOut,
-    required TResult Function(Web3AuthLogoutFailure failure) failedToLogOut,
+    required TResult Function(Web3AuthLogoutFailure web3AuthLogoutFailure)
+        failedToLogOut,
   }) {
     return loggedOut();
   }
@@ -516,7 +526,8 @@ class _$LoggedOutImpl implements _LoggedOut {
     TResult? Function()? initial,
     TResult? Function()? loggingOut,
     TResult? Function()? loggedOut,
-    TResult? Function(Web3AuthLogoutFailure failure)? failedToLogOut,
+    TResult? Function(Web3AuthLogoutFailure web3AuthLogoutFailure)?
+        failedToLogOut,
   }) {
     return loggedOut?.call();
   }
@@ -527,7 +538,8 @@ class _$LoggedOutImpl implements _LoggedOut {
     TResult Function()? initial,
     TResult Function()? loggingOut,
     TResult Function()? loggedOut,
-    TResult Function(Web3AuthLogoutFailure failure)? failedToLogOut,
+    TResult Function(Web3AuthLogoutFailure web3AuthLogoutFailure)?
+        failedToLogOut,
     required TResult orElse(),
   }) {
     if (loggedOut != null) {
@@ -584,7 +596,7 @@ abstract class _$$FailedToLogOutImplCopyWith<$Res> {
           $Res Function(_$FailedToLogOutImpl) then) =
       __$$FailedToLogOutImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({Web3AuthLogoutFailure failure});
+  $Res call({Web3AuthLogoutFailure web3AuthLogoutFailure});
 }
 
 /// @nodoc
@@ -598,12 +610,12 @@ class __$$FailedToLogOutImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? failure = null,
+    Object? web3AuthLogoutFailure = null,
   }) {
     return _then(_$FailedToLogOutImpl(
-      failure: null == failure
-          ? _value.failure
-          : failure // ignore: cast_nullable_to_non_nullable
+      web3AuthLogoutFailure: null == web3AuthLogoutFailure
+          ? _value.web3AuthLogoutFailure
+          : web3AuthLogoutFailure // ignore: cast_nullable_to_non_nullable
               as Web3AuthLogoutFailure,
     ));
   }
@@ -612,14 +624,14 @@ class __$$FailedToLogOutImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$FailedToLogOutImpl implements _FailedToLogOut {
-  const _$FailedToLogOutImpl({required this.failure});
+  const _$FailedToLogOutImpl({required this.web3AuthLogoutFailure});
 
   @override
-  final Web3AuthLogoutFailure failure;
+  final Web3AuthLogoutFailure web3AuthLogoutFailure;
 
   @override
   String toString() {
-    return 'Web3AuthLogoutState.failedToLogOut(failure: $failure)';
+    return 'Web3AuthLogoutState.failedToLogOut(web3AuthLogoutFailure: $web3AuthLogoutFailure)';
   }
 
   @override
@@ -627,11 +639,12 @@ class _$FailedToLogOutImpl implements _FailedToLogOut {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$FailedToLogOutImpl &&
-            (identical(other.failure, failure) || other.failure == failure));
+            (identical(other.web3AuthLogoutFailure, web3AuthLogoutFailure) ||
+                other.web3AuthLogoutFailure == web3AuthLogoutFailure));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, failure);
+  int get hashCode => Object.hash(runtimeType, web3AuthLogoutFailure);
 
   @JsonKey(ignore: true)
   @override
@@ -646,9 +659,10 @@ class _$FailedToLogOutImpl implements _FailedToLogOut {
     required TResult Function() initial,
     required TResult Function() loggingOut,
     required TResult Function() loggedOut,
-    required TResult Function(Web3AuthLogoutFailure failure) failedToLogOut,
+    required TResult Function(Web3AuthLogoutFailure web3AuthLogoutFailure)
+        failedToLogOut,
   }) {
-    return failedToLogOut(failure);
+    return failedToLogOut(web3AuthLogoutFailure);
   }
 
   @override
@@ -657,9 +671,10 @@ class _$FailedToLogOutImpl implements _FailedToLogOut {
     TResult? Function()? initial,
     TResult? Function()? loggingOut,
     TResult? Function()? loggedOut,
-    TResult? Function(Web3AuthLogoutFailure failure)? failedToLogOut,
+    TResult? Function(Web3AuthLogoutFailure web3AuthLogoutFailure)?
+        failedToLogOut,
   }) {
-    return failedToLogOut?.call(failure);
+    return failedToLogOut?.call(web3AuthLogoutFailure);
   }
 
   @override
@@ -668,11 +683,12 @@ class _$FailedToLogOutImpl implements _FailedToLogOut {
     TResult Function()? initial,
     TResult Function()? loggingOut,
     TResult Function()? loggedOut,
-    TResult Function(Web3AuthLogoutFailure failure)? failedToLogOut,
+    TResult Function(Web3AuthLogoutFailure web3AuthLogoutFailure)?
+        failedToLogOut,
     required TResult orElse(),
   }) {
     if (failedToLogOut != null) {
-      return failedToLogOut(failure);
+      return failedToLogOut(web3AuthLogoutFailure);
     }
     return orElse();
   }
@@ -717,9 +733,10 @@ class _$FailedToLogOutImpl implements _FailedToLogOut {
 
 abstract class _FailedToLogOut implements Web3AuthLogoutState {
   const factory _FailedToLogOut(
-      {required final Web3AuthLogoutFailure failure}) = _$FailedToLogOutImpl;
+          {required final Web3AuthLogoutFailure web3AuthLogoutFailure}) =
+      _$FailedToLogOutImpl;
 
-  Web3AuthLogoutFailure get failure;
+  Web3AuthLogoutFailure get web3AuthLogoutFailure;
   @JsonKey(ignore: true)
   _$$FailedToLogOutImplCopyWith<_$FailedToLogOutImpl> get copyWith =>
       throw _privateConstructorUsedError;

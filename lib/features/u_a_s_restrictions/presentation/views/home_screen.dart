@@ -1,28 +1,23 @@
 import 'package:flutter/material.dart'
     show
-        AlertDialog,
         AlignmentDirectional,
         BuildContext,
-        Center,
-        CircularProgressIndicator,
         Navigator,
         Scaffold,
-        ScaffoldMessenger,
-        SnackBar,
         Stack,
         State,
         StatefulWidget,
-        Text,
         ValueListenableBuilder,
         ValueNotifier,
-        Widget,
-        showDialog;
+        Widget;
 import 'package:flutter_bloc/flutter_bloc.dart'
     show BlocListener, MultiBlocListener, ReadContext;
 import 'package:flutter_dotenv/flutter_dotenv.dart' show dotenv;
 import 'package:mapbox_maps_flutter/mapbox_maps_flutter.dart'
     show CompassSettings, MapboxMap, MapboxOptions, ScaleBarSettings;
-import 'package:sky_ways/core/resources/strings/routes.dart' show loginRoutePath;
+import 'package:sky_ways/core/resources/colors.dart' show hexB3FFFFFF;
+import 'package:sky_ways/core/resources/strings/routes.dart'
+    show loginRoutePath;
 import 'package:sky_ways/core/resources/strings/secret_keys.dart'
     show
         mapboxMapsDarkStyleUri,
@@ -30,10 +25,13 @@ import 'package:sky_ways/core/resources/strings/secret_keys.dart'
         mapboxMapsSatelliteStyleUri;
 import 'package:sky_ways/core/utils/enums/local.dart' show CacheType;
 import 'package:sky_ways/core/utils/enums/ui.dart' show MapStyle;
+import 'package:sky_ways/core/utils/extensions/build_context_extensions.dart';
 import 'package:sky_ways/core/utils/extensions/cache_entity_extensions.dart';
 import 'package:sky_ways/core/utils/extensions/mapbox_map_extensions.dart';
 import 'package:sky_ways/core/utils/typedefs/ui.dart'
     show PointAnnotationManagerPointAnnotationTuple;
+import 'package:sky_ways/features/auth/presentation/blocs/web_3_auth_logout_bloc/web_3_auth_logout_bloc.dart'
+    show Web3AuthLogoutBloc, Web3AuthLogoutEvent, Web3AuthLogoutState;
 import 'package:sky_ways/features/cache_manager/presentation/blocs/cache_data_bloc/cache_data_bloc.dart'
     show CacheDataBloc, CacheDataEvent, CacheDataState;
 import 'package:sky_ways/features/cache_manager/presentation/blocs/cached_data_bloc/cached_data_bloc.dart'
@@ -58,11 +56,12 @@ import 'package:sky_ways/features/u_a_s_restrictions/domain/entities/restriction
     show RestrictionEntity;
 import 'package:sky_ways/features/u_a_s_restrictions/presentation/blocs/u_a_s_restrictions_bloc/u_a_s_restrictions_bloc.dart'
     show UASRestrictionsBloc, UASRestrictionsEvent, UASRestrictionsState;
+import 'package:sky_ways/features/u_a_s_restrictions/presentation/widgets/action_dialog.dart';
+import 'package:sky_ways/features/u_a_s_restrictions/presentation/widgets/alert_snack_bar.dart';
 import 'package:sky_ways/features/u_a_s_restrictions/presentation/widgets/map_overlay.dart';
 import 'package:sky_ways/features/u_a_s_restrictions/presentation/widgets/map_view.dart';
+import 'package:sky_ways/features/u_a_s_restrictions/presentation/widgets/progress_dialog.dart';
 import 'package:sky_ways/features/u_a_s_restrictions/presentation/widgets/restriction_indicator.dart';
-import 'package:sky_ways/features/web_3_auth/presentation/blocs/web_3_auth_logout_bloc/web_3_auth_logout_bloc.dart'
-    show Web3AuthLogoutBloc, Web3AuthLogoutEvent, Web3AuthLogoutState;
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -152,27 +151,34 @@ class _HomeScreenState extends State<HomeScreen> {
         listeners: [
           BlocListener<Web3AuthLogoutBloc, Web3AuthLogoutState>(
             listener: (_, web3AuthLogoutState) {
-              web3AuthLogoutState.maybeWhen(
+              web3AuthLogoutState.whenOrNull(
                 loggingOut: () {
-                  showDialog<AlertDialog>(
-                    context: context,
-                    barrierDismissible: false,
-                    builder: (context) => const Center(
-                      child: CircularProgressIndicator(),
-                    ),
+                  ProgressDialog.show(
+                    context,
+                    progressIndicatorColor: hexB3FFFFFF,
                   );
                 },
                 loggedOut: () {
-                  Navigator.of(context).pop();
-                  Navigator.of(context).pushReplacementNamed(loginRoutePath);
-                },
-                failedToLogOut: (failure) {
-                  Navigator.of(context).pop();
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(content: Text('Logout failed: ')),
+                  Navigator.of(
+                    context,
+                  ).pop();
+
+                  Navigator.of(
+                    context,
+                  ).pushReplacementNamed(
+                    loginRoutePath,
                   );
                 },
-                orElse: () {},
+                failedToLogOut: (failure) {
+                  Navigator.of(
+                    context,
+                  ).pop();
+
+                  AlertSnackBar.show(
+                    context,
+                    message: context.localize.weCouldNotLogYouOut,
+                  );
+                },
               );
             },
           ),
@@ -410,6 +416,11 @@ class _HomeScreenState extends State<HomeScreen> {
                   builder: (_, mapStyleNotifierValue, __) => MapOverlay(
                     myLocationFollowed: centerLocationNotifierValue,
                     mapStyle: mapStyleNotifierValue,
+                    onLogoutTap: () {
+                      _showLogoutConfirmationDialogUsing(
+                        context,
+                      );
+                    },
                     onMyLocationIconTap: () {
                       context.read<LocationPermissionBloc>().state.whenOrNull(
                         maybeGrantedPermission: (locationPermissionEntity) {
@@ -454,11 +465,6 @@ class _HomeScreenState extends State<HomeScreen> {
                           _mapStyleNotifier.value = MapStyle.dark;
                       }
                     },
-                    onLogoutCircleTap: () {
-                      context.read<Web3AuthLogoutBloc>().add(
-                            const Web3AuthLogoutEvent.logout(),
-                          );
-                    },
                   ),
                 ),
               ),
@@ -468,5 +474,27 @@ class _HomeScreenState extends State<HomeScreen> {
           //   uasEntities: List.generate(0, (index) => 'Drone $index'),
           // ),
         ),
+      );
+
+  void _showLogoutConfirmationDialogUsing(
+    BuildContext context,
+  ) =>
+      ActionDialog.show(
+        context,
+        content: context.localize.areYouSureYouWantToLogout,
+        onActionDismissed: () {
+          Navigator.of(
+            context,
+          ).pop();
+        },
+        onActionConfirmed: () {
+          Navigator.of(
+            context,
+          ).pop();
+
+          context.read<Web3AuthLogoutBloc>().add(
+                const Web3AuthLogoutEvent.logout(),
+              );
+        },
       );
 }

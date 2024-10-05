@@ -26,6 +26,7 @@ import 'package:flutter/material.dart'
         Size,
         SnackBarBehavior,
         SnackBarThemeData,
+        TextButtonThemeData,
         TextStyle,
         TextTheme,
         ThemeData,
@@ -197,6 +198,34 @@ ThemeData get lightTheme => ThemeData(
               fontSize: fifteenDotNil,
               height: twentyTwoDotFive / fifteenDotNil,
               color: hexFFFFFF,
+            ),
+          ),
+          shape: WidgetStatePropertyAll<OutlinedBorder>(
+            RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(
+                eightDotNil,
+              ),
+            ),
+          ),
+          elevation: const WidgetStatePropertyAll<double>(
+            nilDotNil,
+          ),
+          fixedSize: const WidgetStatePropertyAll<Size>(
+            Size.fromHeight(
+              fiftyFiveDotNil,
+            ),
+          ),
+        ),
+      ),
+      textButtonTheme: TextButtonThemeData(
+        style: ButtonStyle(
+          textStyle: const WidgetStatePropertyAll<TextStyle>(
+            TextStyle(
+              fontFamily: FontFamily.poppins,
+              fontWeight: FontWeight.w400,
+              fontSize: fifteenDotNil,
+              height: twentyTwoDotFive / fifteenDotNil,
+              color: hex0653EA,
             ),
           ),
           shape: WidgetStatePropertyAll<OutlinedBorder>(

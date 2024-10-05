@@ -41,6 +41,8 @@ import 'package:sky_ways/features/auth/presentation/blocs/web_3_auth_capture_cus
         Web3AuthCaptureCustomTabsClosedEvent;
 import 'package:sky_ways/features/auth/presentation/blocs/web_3_auth_login_bloc/web_3_auth_login_bloc.dart'
     show Web3AuthLoginBloc, Web3AuthLoginEvent, Web3AuthLoginState;
+import 'package:sky_ways/features/auth/presentation/blocs/web_3_auth_logout_bloc/web_3_auth_logout_bloc.dart'
+    show Web3AuthLogoutBloc, Web3AuthLogoutEvent;
 import 'package:sky_ways/features/auth/presentation/widgets/alert_snack_bar.dart';
 import 'package:sky_ways/features/auth/presentation/widgets/auth_button.dart';
 import 'package:sky_ways/features/auth/presentation/widgets/auth_screen.dart';
@@ -109,7 +111,11 @@ class _LoginScreenState extends State<LoginScreen> with WidgetsBindingObserver {
     _authButtonTypeToIndicateProgressNotifier.value = null;
   }
 
-  void _logout() {}
+  void _logout() {
+    context.read<Web3AuthLogoutBloc>().add(
+          const Web3AuthLogoutEvent.logout(),
+        );
+  }
 
   @override
   Widget build(BuildContext context) => MultiBlocListener(

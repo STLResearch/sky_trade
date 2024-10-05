@@ -233,13 +233,17 @@ final class AuthRepositoryImplementation
       checkSkyTradeUserExists() =>
           handleData<CheckSkyTradeUserFailure, SkyTradeUserEntity>(
             dataSourceOperation: () async {
-              final message = await _computeMessageToSign();
-              final signature = await _signMessage(
-                message,
-              );
               final issuedAt = _computeIssuedAt();
               final nonce = _computeNonce();
               final userAddress = await _computeUserAddress();
+              final message = _computeMessageToSignUsing(
+                issuedAt: issuedAt,
+                nonce: nonce,
+                userAddress: userAddress,
+              );
+              final signature = await _signMessage(
+                message,
+              );
 
               return _authRemoteDataSource.checkSkyTradeUserExistsUsing(
                 signature: signature,
@@ -262,38 +266,6 @@ final class AuthRepositoryImplementation
             },
           );
 
-  Future<String> _computeMessageToSign() async {
-    final issuedAt = _computeIssuedAt();
-    final nonce = _computeNonce();
-    final userAddress = await _computeUserAddress();
-
-    return dotenv.env[skyTradeServerSignUrl]! +
-        whiteSpace +
-        signatureFirstLine +
-        newLine +
-        userAddress +
-        newLine +
-        newLine +
-        signatureThirdLine +
-        newLine +
-        newLine +
-        signatureFourthLine +
-        whiteSpace +
-        dotenv.env[skyTradeServerHttpSignUrl]! +
-        newLine +
-        signatureFifthLine +
-        newLine +
-        signatureSixthLine +
-        newLine +
-        signatureSeventhLine +
-        whiteSpace +
-        nonce +
-        newLine +
-        signatureEightLine +
-        whiteSpace +
-        issuedAt;
-  }
-
   Future<String> _signMessage(
     String message,
   ) async {
@@ -315,6 +287,7 @@ final class AuthRepositoryImplementation
 
     final nowInMilliseconds = DateTime.fromMillisecondsSinceEpoch(
       millisecondsSinceEpoch,
+      isUtc: true,
     );
 
     final nowInIso8601String = nowInMilliseconds.toIso8601String();
@@ -347,6 +320,37 @@ final class AuthRepositoryImplementation
 
     return base58EncodedEd25519HDPublicKey;
   }
+
+  String _computeMessageToSignUsing({
+    required String issuedAt,
+    required String nonce,
+    required String userAddress,
+  }) =>
+      dotenv.env[skyTradeServerSignUrl]! +
+      whiteSpace +
+      signatureFirstLine +
+      newLine +
+      userAddress +
+      newLine +
+      newLine +
+      signatureThirdLine +
+      newLine +
+      newLine +
+      signatureFourthLine +
+      whiteSpace +
+      dotenv.env[skyTradeServerHttpSignUrl]! +
+      newLine +
+      signatureFifthLine +
+      newLine +
+      signatureSixthLine +
+      newLine +
+      signatureSeventhLine +
+      whiteSpace +
+      nonce +
+      newLine +
+      signatureEightLine +
+      whiteSpace +
+      issuedAt;
 
   Future<Ed25519HDKeyPair> _computeEd25519KeyPair() async {
     final ed25519PrivateKey = await _computeEd25519PrivateKey();

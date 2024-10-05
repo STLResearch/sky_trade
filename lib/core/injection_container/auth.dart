@@ -10,6 +10,8 @@ import 'package:sky_ways/features/auth/presentation/blocs/web_3_auth_initializat
     show Web3AuthInitializationBloc;
 import 'package:sky_ways/features/auth/presentation/blocs/web_3_auth_login_bloc/web_3_auth_login_bloc.dart'
     show Web3AuthLoginBloc;
+import 'package:sky_ways/features/auth/presentation/blocs/web_3_auth_logout_bloc/web_3_auth_logout_bloc.dart'
+    show Web3AuthLogoutBloc;
 import 'package:sky_ways/features/auth/presentation/blocs/web_3_auth_register_bloc/web_3_auth_register_bloc.dart'
     show Web3AuthRegisterBloc;
 import 'package:sky_ways/features/auth/presentation/blocs/web_3_auth_user_session_bloc/web_3_auth_user_session_bloc.dart'
@@ -42,6 +44,11 @@ Future<void> registerAuthServices() async {
     )
     ..registerFactory<Web3AuthLoginBloc>(
       () => Web3AuthLoginBloc(
+        _sl(),
+      ),
+    )
+    ..registerFactory<Web3AuthLogoutBloc>(
+      () => Web3AuthLogoutBloc(
         _sl(),
       ),
     )

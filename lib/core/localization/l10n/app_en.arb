@@ -48,5 +48,9 @@
   "youAreNotAuthorizedToPerformThisAction": "You are not authorized to perform this action",
   "computedSignatureCredentialIsInvalid": "Computed signature credential is invalid",
   "accountDoesNotExistPleaseRegisterInstead": "Account does not exist. Please register instead",
-  "weCouldNotVerifyTheExistenceOfYourAccountPleaseTryAgain": "We could not verify the existence of your account. Please try again"
+  "weCouldNotVerifyTheExistenceOfYourAccountPleaseTryAgain": "We could not verify the existence of your account. Please try again",
+  "weCouldNotLogYouOut": "We could not log you out",
+  "areYouSureYouWantToLogout": "Are you sure you want to logout?",
+  "yes": "Yes",
+  "no": "No"
 }
