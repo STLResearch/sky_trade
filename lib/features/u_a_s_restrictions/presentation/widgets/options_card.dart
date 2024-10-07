@@ -6,7 +6,7 @@ import 'package:flutter/material.dart'
         Container,
         StatelessWidget,
         Widget;
-import 'package:sky_ways/core/resources/colors.dart' show hexB3FFFFFF;
+import 'package:sky_ways/core/resources/colors.dart' show hexE6FFFFFF;
 import 'package:sky_ways/core/resources/numbers/ui.dart' show eightDotNil;
 
 class OptionsCard extends StatelessWidget {
@@ -26,7 +26,7 @@ class OptionsCard extends StatelessWidget {
         width: width,
         height: height,
         decoration: BoxDecoration(
-          color: hexB3FFFFFF,
+          color: hexE6FFFFFF,
           borderRadius: BorderRadiusDirectional.circular(
             eightDotNil,
           ),

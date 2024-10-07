@@ -72,6 +72,14 @@ class $AssetsSvgsGen {
   SvgGenImage get arrowRight =>
       const SvgGenImage('assets/svgs/arrow_right.svg');
 
+  /// File path: assets/svgs/bluetooth_off.svg
+  SvgGenImage get bluetoothOff =>
+      const SvgGenImage('assets/svgs/bluetooth_off.svg');
+
+  /// File path: assets/svgs/bluetooth_on.svg
+  SvgGenImage get bluetoothOn =>
+      const SvgGenImage('assets/svgs/bluetooth_on.svg');
+
   /// File path: assets/svgs/clear.svg
   SvgGenImage get clear => const SvgGenImage('assets/svgs/clear.svg');
 
@@ -169,11 +177,19 @@ class $AssetsSvgsGen {
   /// File path: assets/svgs/weather.svg
   SvgGenImage get weather => const SvgGenImage('assets/svgs/weather.svg');
 
+  /// File path: assets/svgs/wifi_off.svg
+  SvgGenImage get wifiOff => const SvgGenImage('assets/svgs/wifi_off.svg');
+
+  /// File path: assets/svgs/wifi_on.svg
+  SvgGenImage get wifiOn => const SvgGenImage('assets/svgs/wifi_on.svg');
+
   /// List of all assets
   List<SvgGenImage> get values => [
         account,
         arrow,
         arrowRight,
+        bluetoothOff,
+        bluetoothOn,
         clear,
         cloud,
         cloudAlt,
@@ -201,7 +217,9 @@ class $AssetsSvgsGen {
         skyTradeLogo,
         storm,
         sun,
-        weather
+        weather,
+        wifiOff,
+        wifiOn
       ];
 }
 

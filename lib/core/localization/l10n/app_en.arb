@@ -52,5 +52,6 @@
   "weCouldNotLogYouOut": "We could not log you out",
   "areYouSureYouWantToLogout": "Are you sure you want to logout?",
   "yes": "Yes",
-  "no": "No"
+  "no": "No",
+  "yourQueryDidNotYieldAnyResults": "Your query did not yield any results"
 }

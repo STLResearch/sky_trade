@@ -42,6 +42,8 @@ import 'package:sky_ways/features/remote_i_d_receiver/presentation/blocs/bluetoo
     show BluetoothReceiverBloc;
 import 'package:sky_ways/features/remote_i_d_receiver/presentation/blocs/wifi_receiver_bloc/wifi_receiver_bloc.dart'
     show WifiReceiverBloc;
+import 'package:sky_ways/features/search_autocomplete/presentation/blocs/search_autocomplete_bloc.dart'
+    show SearchAutocompleteBloc;
 import 'package:sky_ways/features/u_a_s_activity/presentation/blocs/u_a_s_activity_bloc/u_a_s_activity_bloc.dart'
     show UASActivityBloc;
 import 'package:sky_ways/features/u_a_s_restrictions/presentation/blocs/u_a_s_restrictions_bloc/u_a_s_restrictions_bloc.dart'
@@ -115,6 +117,9 @@ List<BlocProvider> get appBlocProvider => [
         create: (_) => _sl(),
       ),
       BlocProvider<WifiReceiverBloc>(
+        create: (_) => _sl(),
+      ),
+      BlocProvider<SearchAutocompleteBloc>(
         create: (_) => _sl(),
       ),
       BlocProvider<UASActivityBloc>(
