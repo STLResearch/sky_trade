@@ -1,4 +1,11 @@
 import 'package:json_annotation/json_annotation.dart' show JsonValue;
+import 'package:sky_ways/core/resources/strings/environments.dart'
+    show
+        wifiAdapterStateDisabledEnumValue,
+        wifiAdapterStateDisablingEnumValue,
+        wifiAdapterStateEnabledEnumValue,
+        wifiAdapterStateEnablingEnumValue,
+        wifiAdapterStateUnknownEnumValue;
 import 'package:sky_ways/core/resources/strings/networking.dart'
     show
         dangerValue,
@@ -9,12 +16,7 @@ import 'package:sky_ways/core/resources/strings/networking.dart'
         pointValue,
         polygonValue,
         prohibitedValue,
-        restrictedValue,
-        wifiAdapterStateDisabledEnumValue,
-        wifiAdapterStateDisablingEnumValue,
-        wifiAdapterStateEnabledEnumValue,
-        wifiAdapterStateEnablingEnumValue,
-        wifiAdapterStateUnknownEnumValue;
+        restrictedValue;
 
 // Web3Auth
 enum AuthProvider {

@@ -13,6 +13,19 @@ import 'package:sky_ways/core/resources/strings/routes.dart'
         loginRoutePath,
         noInternetConnectionRoutePath,
         registerRoutePath;
+import 'package:sky_ways/features/auth/presentation/blocs/web_3_auth_initialization_bloc/web_3_auth_initialization_bloc.dart'
+    show
+        Web3AuthInitializationBloc,
+        Web3AuthInitializationEvent,
+        Web3AuthInitializationState;
+import 'package:sky_ways/features/auth/presentation/blocs/web_3_auth_user_session_bloc/web_3_auth_user_session_bloc.dart'
+    show
+        Web3AuthUserSessionBloc,
+        Web3AuthUserSessionEvent,
+        Web3AuthUserSessionState;
+import 'package:sky_ways/features/auth/presentation/views/loading_screen.dart';
+import 'package:sky_ways/features/auth/presentation/views/login_screen.dart';
+import 'package:sky_ways/features/auth/presentation/views/register_screen.dart';
 import 'package:sky_ways/features/internet_connection_checker/presentation/blocs/internet_connection_checker_bloc/internet_connection_checker_bloc.dart'
     show
         InternetConnectionCheckerBloc,
@@ -20,19 +33,6 @@ import 'package:sky_ways/features/internet_connection_checker/presentation/blocs
         InternetConnectionCheckerState;
 import 'package:sky_ways/features/internet_connection_checker/presentation/screens/no_internet_connection_screen.dart';
 import 'package:sky_ways/features/u_a_s_restrictions/presentation/views/home_screen.dart';
-import 'package:sky_ways/features/web_3_auth/presentation/blocs/web_3_auth_initialization_bloc/web_3_auth_initialization_bloc.dart'
-    show
-        Web3AuthInitializationBloc,
-        Web3AuthInitializationEvent,
-        Web3AuthInitializationState;
-import 'package:sky_ways/features/web_3_auth/presentation/blocs/web_3_auth_user_session_bloc/web_3_auth_user_session_bloc.dart'
-    show
-        Web3AuthUserSessionBloc,
-        Web3AuthUserSessionEvent,
-        Web3AuthUserSessionState;
-import 'package:sky_ways/features/web_3_auth/presentation/views/loading_screen.dart';
-import 'package:sky_ways/features/web_3_auth/presentation/views/login_screen.dart';
-import 'package:sky_ways/features/web_3_auth/presentation/views/register_screen.dart';
 
 Route routes(RouteSettings settings) => MaterialPageRoute(
       builder: (context) {

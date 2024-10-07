@@ -7,3 +7,6 @@ const requestSendTimeoutSeconds = 10;
 // Status codes
 const okayStatusCode = 200;
 const createdStatusCode = 201;
+
+// others
+const zero = 0;
