@@ -56,6 +56,8 @@ PODS:
     - Flutter
   - flutter_opendroneid (1.0.0):
     - Flutter
+  - flutter_secure_storage (6.0.0):
+    - Flutter
   - geolocator_apple (1.2.0):
     - Flutter
   - GoogleAppMeasurement (10.18.0):
@@ -160,6 +162,7 @@ DEPENDENCIES:
   - flutter_blue_plus (from `.symlinks/plugins/flutter_blue_plus/ios`)
   - flutter_native_splash (from `.symlinks/plugins/flutter_native_splash/ios`)
   - flutter_opendroneid (from `.symlinks/plugins/flutter_opendroneid/ios`)
+  - flutter_secure_storage (from `.symlinks/plugins/flutter_secure_storage/ios`)
   - geolocator_apple (from `.symlinks/plugins/geolocator_apple/ios`)
   - mapbox_maps_flutter (from `.symlinks/plugins/mapbox_maps_flutter/ios`)
   - package_info_plus (from `.symlinks/plugins/package_info_plus/ios`)
@@ -208,6 +211,8 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/flutter_native_splash/ios"
   flutter_opendroneid:
     :path: ".symlinks/plugins/flutter_opendroneid/ios"
+  flutter_secure_storage:
+    :path: ".symlinks/plugins/flutter_secure_storage/ios"
   geolocator_apple:
     :path: ".symlinks/plugins/geolocator_apple/ios"
   mapbox_maps_flutter:
@@ -241,6 +246,7 @@ SPEC CHECKSUMS:
   flutter_blue_plus: 4837da7d00cf5d441fdd6635b3a57f936778ea96
   flutter_native_splash: edf599c81f74d093a4daf8e17bd7a018854bc778
   flutter_opendroneid: 92e28add32d6bf2b5705fdad0666657476de2e15
+  flutter_secure_storage: d33dac7ae2ea08509be337e775f6b59f1ff45f12
   geolocator_apple: 6cbaf322953988e009e5ecb481f07efece75c450
   GoogleAppMeasurement: 70ce9aa438cff1cfb31ea3e660bcc67734cb716e
   GoogleUtilities: ea963c370a38a8069cc5f7ba4ca849a60b6d7d15

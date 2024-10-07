@@ -11,6 +11,7 @@ const forty = 40;
 const oneHundred = 100;
 const oneEighty = 180;
 const oneThousand = 1000;
+const oneThousandFiveHundred = 1500;
 
 // Doubles
 const minusTenDotNil = -10.0;
@@ -46,6 +47,7 @@ const twentyOneDotThreeSeven = 21.37;
 const twentyTwoDotNil = 22.0;
 const twentyTwoDotFive = 22.5;
 const twentyFourDotNil = 24.0;
+const twentyFiveDotNil = 25.0;
 const twentyFiveDotEightFive = 25.85;
 const twentySixDotNil = 26.0;
 const twentyNineDotNil = 29.0;
@@ -66,5 +68,4 @@ const sixtyEightDotNil = 68.0;
 const seventyDotNil = 70.0;
 const seventyEightDotNil = 78.0;
 const oneFiftyDotNil = 150.0;
-const twentyFiveDotNil = 25.0;
-const threeThirtyTwoDotNil = 332.0;
+const oneSeventyNineDotNil = 179.0;

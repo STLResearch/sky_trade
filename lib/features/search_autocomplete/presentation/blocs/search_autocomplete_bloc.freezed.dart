@@ -16,42 +16,61 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$SearchAutocompleteEvent {
-  String get query => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String query) autocompleteSearch,
+    required TResult Function(SearchResultEntity searchResultEntity)
+        searchAutocompleteGotten,
+    required TResult Function(
+            SearchAutocompleteFailure searchAutocompleteFailure)
+        searchAutocompleteNotGotten,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String query)? autocompleteSearch,
+    TResult? Function(SearchResultEntity searchResultEntity)?
+        searchAutocompleteGotten,
+    TResult? Function(SearchAutocompleteFailure searchAutocompleteFailure)?
+        searchAutocompleteNotGotten,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String query)? autocompleteSearch,
+    TResult Function(SearchResultEntity searchResultEntity)?
+        searchAutocompleteGotten,
+    TResult Function(SearchAutocompleteFailure searchAutocompleteFailure)?
+        searchAutocompleteNotGotten,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_AutocompleteSearch value) autocompleteSearch,
+    required TResult Function(_SearchAutocompleteGotten value)
+        searchAutocompleteGotten,
+    required TResult Function(_SearchAutocompleteNotGotten value)
+        searchAutocompleteNotGotten,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_AutocompleteSearch value)? autocompleteSearch,
+    TResult? Function(_SearchAutocompleteGotten value)?
+        searchAutocompleteGotten,
+    TResult? Function(_SearchAutocompleteNotGotten value)?
+        searchAutocompleteNotGotten,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_AutocompleteSearch value)? autocompleteSearch,
+    TResult Function(_SearchAutocompleteGotten value)? searchAutocompleteGotten,
+    TResult Function(_SearchAutocompleteNotGotten value)?
+        searchAutocompleteNotGotten,
     required TResult orElse(),
   }) =>
-      throw _privateConstructorUsedError;
-
-  @JsonKey(ignore: true)
-  $SearchAutocompleteEventCopyWith<SearchAutocompleteEvent> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -60,8 +79,6 @@ abstract class $SearchAutocompleteEventCopyWith<$Res> {
   factory $SearchAutocompleteEventCopyWith(SearchAutocompleteEvent value,
           $Res Function(SearchAutocompleteEvent) then) =
       _$SearchAutocompleteEventCopyWithImpl<$Res, SearchAutocompleteEvent>;
-  @useResult
-  $Res call({String query});
 }
 
 /// @nodoc
@@ -74,28 +91,13 @@ class _$SearchAutocompleteEventCopyWithImpl<$Res,
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? query = null,
-  }) {
-    return _then(_value.copyWith(
-      query: null == query
-          ? _value.query
-          : query // ignore: cast_nullable_to_non_nullable
-              as String,
-    ) as $Val);
-  }
 }
 
 /// @nodoc
-abstract class _$$AutocompleteSearchImplCopyWith<$Res>
-    implements $SearchAutocompleteEventCopyWith<$Res> {
+abstract class _$$AutocompleteSearchImplCopyWith<$Res> {
   factory _$$AutocompleteSearchImplCopyWith(_$AutocompleteSearchImpl value,
           $Res Function(_$AutocompleteSearchImpl) then) =
       __$$AutocompleteSearchImplCopyWithImpl<$Res>;
-  @override
   @useResult
   $Res call({String query});
 }
@@ -158,6 +160,11 @@ class _$AutocompleteSearchImpl implements _AutocompleteSearch {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String query) autocompleteSearch,
+    required TResult Function(SearchResultEntity searchResultEntity)
+        searchAutocompleteGotten,
+    required TResult Function(
+            SearchAutocompleteFailure searchAutocompleteFailure)
+        searchAutocompleteNotGotten,
   }) {
     return autocompleteSearch(query);
   }
@@ -166,6 +173,10 @@ class _$AutocompleteSearchImpl implements _AutocompleteSearch {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String query)? autocompleteSearch,
+    TResult? Function(SearchResultEntity searchResultEntity)?
+        searchAutocompleteGotten,
+    TResult? Function(SearchAutocompleteFailure searchAutocompleteFailure)?
+        searchAutocompleteNotGotten,
   }) {
     return autocompleteSearch?.call(query);
   }
@@ -174,6 +185,10 @@ class _$AutocompleteSearchImpl implements _AutocompleteSearch {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String query)? autocompleteSearch,
+    TResult Function(SearchResultEntity searchResultEntity)?
+        searchAutocompleteGotten,
+    TResult Function(SearchAutocompleteFailure searchAutocompleteFailure)?
+        searchAutocompleteNotGotten,
     required TResult orElse(),
   }) {
     if (autocompleteSearch != null) {
@@ -186,6 +201,10 @@ class _$AutocompleteSearchImpl implements _AutocompleteSearch {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_AutocompleteSearch value) autocompleteSearch,
+    required TResult Function(_SearchAutocompleteGotten value)
+        searchAutocompleteGotten,
+    required TResult Function(_SearchAutocompleteNotGotten value)
+        searchAutocompleteNotGotten,
   }) {
     return autocompleteSearch(this);
   }
@@ -194,6 +213,10 @@ class _$AutocompleteSearchImpl implements _AutocompleteSearch {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_AutocompleteSearch value)? autocompleteSearch,
+    TResult? Function(_SearchAutocompleteGotten value)?
+        searchAutocompleteGotten,
+    TResult? Function(_SearchAutocompleteNotGotten value)?
+        searchAutocompleteNotGotten,
   }) {
     return autocompleteSearch?.call(this);
   }
@@ -202,6 +225,9 @@ class _$AutocompleteSearchImpl implements _AutocompleteSearch {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_AutocompleteSearch value)? autocompleteSearch,
+    TResult Function(_SearchAutocompleteGotten value)? searchAutocompleteGotten,
+    TResult Function(_SearchAutocompleteNotGotten value)?
+        searchAutocompleteNotGotten,
     required TResult orElse(),
   }) {
     if (autocompleteSearch != null) {
@@ -215,12 +241,329 @@ abstract class _AutocompleteSearch implements SearchAutocompleteEvent {
   const factory _AutocompleteSearch({required final String query}) =
       _$AutocompleteSearchImpl;
 
-  @override
   String get query;
-  @override
   @JsonKey(ignore: true)
   _$$AutocompleteSearchImplCopyWith<_$AutocompleteSearchImpl> get copyWith =>
       throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$SearchAutocompleteGottenImplCopyWith<$Res> {
+  factory _$$SearchAutocompleteGottenImplCopyWith(
+          _$SearchAutocompleteGottenImpl value,
+          $Res Function(_$SearchAutocompleteGottenImpl) then) =
+      __$$SearchAutocompleteGottenImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({SearchResultEntity searchResultEntity});
+}
+
+/// @nodoc
+class __$$SearchAutocompleteGottenImplCopyWithImpl<$Res>
+    extends _$SearchAutocompleteEventCopyWithImpl<$Res,
+        _$SearchAutocompleteGottenImpl>
+    implements _$$SearchAutocompleteGottenImplCopyWith<$Res> {
+  __$$SearchAutocompleteGottenImplCopyWithImpl(
+      _$SearchAutocompleteGottenImpl _value,
+      $Res Function(_$SearchAutocompleteGottenImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? searchResultEntity = null,
+  }) {
+    return _then(_$SearchAutocompleteGottenImpl(
+      searchResultEntity: null == searchResultEntity
+          ? _value.searchResultEntity
+          : searchResultEntity // ignore: cast_nullable_to_non_nullable
+              as SearchResultEntity,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$SearchAutocompleteGottenImpl implements _SearchAutocompleteGotten {
+  const _$SearchAutocompleteGottenImpl({required this.searchResultEntity});
+
+  @override
+  final SearchResultEntity searchResultEntity;
+
+  @override
+  String toString() {
+    return 'SearchAutocompleteEvent.searchAutocompleteGotten(searchResultEntity: $searchResultEntity)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$SearchAutocompleteGottenImpl &&
+            (identical(other.searchResultEntity, searchResultEntity) ||
+                other.searchResultEntity == searchResultEntity));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, searchResultEntity);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$SearchAutocompleteGottenImplCopyWith<_$SearchAutocompleteGottenImpl>
+      get copyWith => __$$SearchAutocompleteGottenImplCopyWithImpl<
+          _$SearchAutocompleteGottenImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String query) autocompleteSearch,
+    required TResult Function(SearchResultEntity searchResultEntity)
+        searchAutocompleteGotten,
+    required TResult Function(
+            SearchAutocompleteFailure searchAutocompleteFailure)
+        searchAutocompleteNotGotten,
+  }) {
+    return searchAutocompleteGotten(searchResultEntity);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String query)? autocompleteSearch,
+    TResult? Function(SearchResultEntity searchResultEntity)?
+        searchAutocompleteGotten,
+    TResult? Function(SearchAutocompleteFailure searchAutocompleteFailure)?
+        searchAutocompleteNotGotten,
+  }) {
+    return searchAutocompleteGotten?.call(searchResultEntity);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String query)? autocompleteSearch,
+    TResult Function(SearchResultEntity searchResultEntity)?
+        searchAutocompleteGotten,
+    TResult Function(SearchAutocompleteFailure searchAutocompleteFailure)?
+        searchAutocompleteNotGotten,
+    required TResult orElse(),
+  }) {
+    if (searchAutocompleteGotten != null) {
+      return searchAutocompleteGotten(searchResultEntity);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_AutocompleteSearch value) autocompleteSearch,
+    required TResult Function(_SearchAutocompleteGotten value)
+        searchAutocompleteGotten,
+    required TResult Function(_SearchAutocompleteNotGotten value)
+        searchAutocompleteNotGotten,
+  }) {
+    return searchAutocompleteGotten(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_AutocompleteSearch value)? autocompleteSearch,
+    TResult? Function(_SearchAutocompleteGotten value)?
+        searchAutocompleteGotten,
+    TResult? Function(_SearchAutocompleteNotGotten value)?
+        searchAutocompleteNotGotten,
+  }) {
+    return searchAutocompleteGotten?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_AutocompleteSearch value)? autocompleteSearch,
+    TResult Function(_SearchAutocompleteGotten value)? searchAutocompleteGotten,
+    TResult Function(_SearchAutocompleteNotGotten value)?
+        searchAutocompleteNotGotten,
+    required TResult orElse(),
+  }) {
+    if (searchAutocompleteGotten != null) {
+      return searchAutocompleteGotten(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _SearchAutocompleteGotten implements SearchAutocompleteEvent {
+  const factory _SearchAutocompleteGotten(
+          {required final SearchResultEntity searchResultEntity}) =
+      _$SearchAutocompleteGottenImpl;
+
+  SearchResultEntity get searchResultEntity;
+  @JsonKey(ignore: true)
+  _$$SearchAutocompleteGottenImplCopyWith<_$SearchAutocompleteGottenImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$SearchAutocompleteNotGottenImplCopyWith<$Res> {
+  factory _$$SearchAutocompleteNotGottenImplCopyWith(
+          _$SearchAutocompleteNotGottenImpl value,
+          $Res Function(_$SearchAutocompleteNotGottenImpl) then) =
+      __$$SearchAutocompleteNotGottenImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({SearchAutocompleteFailure searchAutocompleteFailure});
+}
+
+/// @nodoc
+class __$$SearchAutocompleteNotGottenImplCopyWithImpl<$Res>
+    extends _$SearchAutocompleteEventCopyWithImpl<$Res,
+        _$SearchAutocompleteNotGottenImpl>
+    implements _$$SearchAutocompleteNotGottenImplCopyWith<$Res> {
+  __$$SearchAutocompleteNotGottenImplCopyWithImpl(
+      _$SearchAutocompleteNotGottenImpl _value,
+      $Res Function(_$SearchAutocompleteNotGottenImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? searchAutocompleteFailure = null,
+  }) {
+    return _then(_$SearchAutocompleteNotGottenImpl(
+      searchAutocompleteFailure: null == searchAutocompleteFailure
+          ? _value.searchAutocompleteFailure
+          : searchAutocompleteFailure // ignore: cast_nullable_to_non_nullable
+              as SearchAutocompleteFailure,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$SearchAutocompleteNotGottenImpl
+    implements _SearchAutocompleteNotGotten {
+  const _$SearchAutocompleteNotGottenImpl(
+      {required this.searchAutocompleteFailure});
+
+  @override
+  final SearchAutocompleteFailure searchAutocompleteFailure;
+
+  @override
+  String toString() {
+    return 'SearchAutocompleteEvent.searchAutocompleteNotGotten(searchAutocompleteFailure: $searchAutocompleteFailure)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$SearchAutocompleteNotGottenImpl &&
+            (identical(other.searchAutocompleteFailure,
+                    searchAutocompleteFailure) ||
+                other.searchAutocompleteFailure == searchAutocompleteFailure));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, searchAutocompleteFailure);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$SearchAutocompleteNotGottenImplCopyWith<_$SearchAutocompleteNotGottenImpl>
+      get copyWith => __$$SearchAutocompleteNotGottenImplCopyWithImpl<
+          _$SearchAutocompleteNotGottenImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String query) autocompleteSearch,
+    required TResult Function(SearchResultEntity searchResultEntity)
+        searchAutocompleteGotten,
+    required TResult Function(
+            SearchAutocompleteFailure searchAutocompleteFailure)
+        searchAutocompleteNotGotten,
+  }) {
+    return searchAutocompleteNotGotten(searchAutocompleteFailure);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String query)? autocompleteSearch,
+    TResult? Function(SearchResultEntity searchResultEntity)?
+        searchAutocompleteGotten,
+    TResult? Function(SearchAutocompleteFailure searchAutocompleteFailure)?
+        searchAutocompleteNotGotten,
+  }) {
+    return searchAutocompleteNotGotten?.call(searchAutocompleteFailure);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String query)? autocompleteSearch,
+    TResult Function(SearchResultEntity searchResultEntity)?
+        searchAutocompleteGotten,
+    TResult Function(SearchAutocompleteFailure searchAutocompleteFailure)?
+        searchAutocompleteNotGotten,
+    required TResult orElse(),
+  }) {
+    if (searchAutocompleteNotGotten != null) {
+      return searchAutocompleteNotGotten(searchAutocompleteFailure);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_AutocompleteSearch value) autocompleteSearch,
+    required TResult Function(_SearchAutocompleteGotten value)
+        searchAutocompleteGotten,
+    required TResult Function(_SearchAutocompleteNotGotten value)
+        searchAutocompleteNotGotten,
+  }) {
+    return searchAutocompleteNotGotten(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_AutocompleteSearch value)? autocompleteSearch,
+    TResult? Function(_SearchAutocompleteGotten value)?
+        searchAutocompleteGotten,
+    TResult? Function(_SearchAutocompleteNotGotten value)?
+        searchAutocompleteNotGotten,
+  }) {
+    return searchAutocompleteNotGotten?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_AutocompleteSearch value)? autocompleteSearch,
+    TResult Function(_SearchAutocompleteGotten value)? searchAutocompleteGotten,
+    TResult Function(_SearchAutocompleteNotGotten value)?
+        searchAutocompleteNotGotten,
+    required TResult orElse(),
+  }) {
+    if (searchAutocompleteNotGotten != null) {
+      return searchAutocompleteNotGotten(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _SearchAutocompleteNotGotten implements SearchAutocompleteEvent {
+  const factory _SearchAutocompleteNotGotten(
+      {required final SearchAutocompleteFailure
+          searchAutocompleteFailure}) = _$SearchAutocompleteNotGottenImpl;
+
+  SearchAutocompleteFailure get searchAutocompleteFailure;
+  @JsonKey(ignore: true)
+  _$$SearchAutocompleteNotGottenImplCopyWith<_$SearchAutocompleteNotGottenImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -229,7 +572,7 @@ mixin _$SearchAutocompleteState {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() gettingSearchAutocomplete,
-    required TResult Function(List<SearchResultEntity> searchResultEntities)
+    required TResult Function(SearchResultEntity searchResultEntity)
         gotSearchAutocomplete,
     required TResult Function(
             SearchAutocompleteFailure searchAutocompleteFailure)
@@ -240,7 +583,7 @@ mixin _$SearchAutocompleteState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? gettingSearchAutocomplete,
-    TResult? Function(List<SearchResultEntity> searchResultEntities)?
+    TResult? Function(SearchResultEntity searchResultEntity)?
         gotSearchAutocomplete,
     TResult? Function(SearchAutocompleteFailure searchAutocompleteFailure)?
         failedToGetSearchAutocomplete,
@@ -250,7 +593,7 @@ mixin _$SearchAutocompleteState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? gettingSearchAutocomplete,
-    TResult Function(List<SearchResultEntity> searchResultEntities)?
+    TResult Function(SearchResultEntity searchResultEntity)?
         gotSearchAutocomplete,
     TResult Function(SearchAutocompleteFailure searchAutocompleteFailure)?
         failedToGetSearchAutocomplete,
@@ -350,7 +693,7 @@ class _$InitialImpl implements _Initial {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() gettingSearchAutocomplete,
-    required TResult Function(List<SearchResultEntity> searchResultEntities)
+    required TResult Function(SearchResultEntity searchResultEntity)
         gotSearchAutocomplete,
     required TResult Function(
             SearchAutocompleteFailure searchAutocompleteFailure)
@@ -364,7 +707,7 @@ class _$InitialImpl implements _Initial {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? gettingSearchAutocomplete,
-    TResult? Function(List<SearchResultEntity> searchResultEntities)?
+    TResult? Function(SearchResultEntity searchResultEntity)?
         gotSearchAutocomplete,
     TResult? Function(SearchAutocompleteFailure searchAutocompleteFailure)?
         failedToGetSearchAutocomplete,
@@ -377,7 +720,7 @@ class _$InitialImpl implements _Initial {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? gettingSearchAutocomplete,
-    TResult Function(List<SearchResultEntity> searchResultEntities)?
+    TResult Function(SearchResultEntity searchResultEntity)?
         gotSearchAutocomplete,
     TResult Function(SearchAutocompleteFailure searchAutocompleteFailure)?
         failedToGetSearchAutocomplete,
@@ -482,7 +825,7 @@ class _$GettingSearchAutocompleteImpl implements _GettingSearchAutocomplete {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() gettingSearchAutocomplete,
-    required TResult Function(List<SearchResultEntity> searchResultEntities)
+    required TResult Function(SearchResultEntity searchResultEntity)
         gotSearchAutocomplete,
     required TResult Function(
             SearchAutocompleteFailure searchAutocompleteFailure)
@@ -496,7 +839,7 @@ class _$GettingSearchAutocompleteImpl implements _GettingSearchAutocomplete {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? gettingSearchAutocomplete,
-    TResult? Function(List<SearchResultEntity> searchResultEntities)?
+    TResult? Function(SearchResultEntity searchResultEntity)?
         gotSearchAutocomplete,
     TResult? Function(SearchAutocompleteFailure searchAutocompleteFailure)?
         failedToGetSearchAutocomplete,
@@ -509,7 +852,7 @@ class _$GettingSearchAutocompleteImpl implements _GettingSearchAutocomplete {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? gettingSearchAutocomplete,
-    TResult Function(List<SearchResultEntity> searchResultEntities)?
+    TResult Function(SearchResultEntity searchResultEntity)?
         gotSearchAutocomplete,
     TResult Function(SearchAutocompleteFailure searchAutocompleteFailure)?
         failedToGetSearchAutocomplete,
@@ -577,7 +920,7 @@ abstract class _$$GotSearchAutocompleteImplCopyWith<$Res> {
           $Res Function(_$GotSearchAutocompleteImpl) then) =
       __$$GotSearchAutocompleteImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({List<SearchResultEntity> searchResultEntities});
+  $Res call({SearchResultEntity searchResultEntity});
 }
 
 /// @nodoc
@@ -592,13 +935,13 @@ class __$$GotSearchAutocompleteImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? searchResultEntities = null,
+    Object? searchResultEntity = null,
   }) {
     return _then(_$GotSearchAutocompleteImpl(
-      searchResultEntities: null == searchResultEntities
-          ? _value._searchResultEntities
-          : searchResultEntities // ignore: cast_nullable_to_non_nullable
-              as List<SearchResultEntity>,
+      searchResultEntity: null == searchResultEntity
+          ? _value.searchResultEntity
+          : searchResultEntity // ignore: cast_nullable_to_non_nullable
+              as SearchResultEntity,
     ));
   }
 }
@@ -606,22 +949,14 @@ class __$$GotSearchAutocompleteImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$GotSearchAutocompleteImpl implements _GotSearchAutocomplete {
-  const _$GotSearchAutocompleteImpl(
-      {required final List<SearchResultEntity> searchResultEntities})
-      : _searchResultEntities = searchResultEntities;
+  const _$GotSearchAutocompleteImpl({required this.searchResultEntity});
 
-  final List<SearchResultEntity> _searchResultEntities;
   @override
-  List<SearchResultEntity> get searchResultEntities {
-    if (_searchResultEntities is EqualUnmodifiableListView)
-      return _searchResultEntities;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_searchResultEntities);
-  }
+  final SearchResultEntity searchResultEntity;
 
   @override
   String toString() {
-    return 'SearchAutocompleteState.gotSearchAutocomplete(searchResultEntities: $searchResultEntities)';
+    return 'SearchAutocompleteState.gotSearchAutocomplete(searchResultEntity: $searchResultEntity)';
   }
 
   @override
@@ -629,13 +964,12 @@ class _$GotSearchAutocompleteImpl implements _GotSearchAutocomplete {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$GotSearchAutocompleteImpl &&
-            const DeepCollectionEquality()
-                .equals(other._searchResultEntities, _searchResultEntities));
+            (identical(other.searchResultEntity, searchResultEntity) ||
+                other.searchResultEntity == searchResultEntity));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType, const DeepCollectionEquality().hash(_searchResultEntities));
+  int get hashCode => Object.hash(runtimeType, searchResultEntity);
 
   @JsonKey(ignore: true)
   @override
@@ -649,13 +983,13 @@ class _$GotSearchAutocompleteImpl implements _GotSearchAutocomplete {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() gettingSearchAutocomplete,
-    required TResult Function(List<SearchResultEntity> searchResultEntities)
+    required TResult Function(SearchResultEntity searchResultEntity)
         gotSearchAutocomplete,
     required TResult Function(
             SearchAutocompleteFailure searchAutocompleteFailure)
         failedToGetSearchAutocomplete,
   }) {
-    return gotSearchAutocomplete(searchResultEntities);
+    return gotSearchAutocomplete(searchResultEntity);
   }
 
   @override
@@ -663,12 +997,12 @@ class _$GotSearchAutocompleteImpl implements _GotSearchAutocomplete {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? gettingSearchAutocomplete,
-    TResult? Function(List<SearchResultEntity> searchResultEntities)?
+    TResult? Function(SearchResultEntity searchResultEntity)?
         gotSearchAutocomplete,
     TResult? Function(SearchAutocompleteFailure searchAutocompleteFailure)?
         failedToGetSearchAutocomplete,
   }) {
-    return gotSearchAutocomplete?.call(searchResultEntities);
+    return gotSearchAutocomplete?.call(searchResultEntity);
   }
 
   @override
@@ -676,14 +1010,14 @@ class _$GotSearchAutocompleteImpl implements _GotSearchAutocomplete {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? gettingSearchAutocomplete,
-    TResult Function(List<SearchResultEntity> searchResultEntities)?
+    TResult Function(SearchResultEntity searchResultEntity)?
         gotSearchAutocomplete,
     TResult Function(SearchAutocompleteFailure searchAutocompleteFailure)?
         failedToGetSearchAutocomplete,
     required TResult orElse(),
   }) {
     if (gotSearchAutocomplete != null) {
-      return gotSearchAutocomplete(searchResultEntities);
+      return gotSearchAutocomplete(searchResultEntity);
     }
     return orElse();
   }
@@ -735,10 +1069,10 @@ class _$GotSearchAutocompleteImpl implements _GotSearchAutocomplete {
 
 abstract class _GotSearchAutocomplete implements SearchAutocompleteState {
   const factory _GotSearchAutocomplete(
-          {required final List<SearchResultEntity> searchResultEntities}) =
+          {required final SearchResultEntity searchResultEntity}) =
       _$GotSearchAutocompleteImpl;
 
-  List<SearchResultEntity> get searchResultEntities;
+  SearchResultEntity get searchResultEntity;
   @JsonKey(ignore: true)
   _$$GotSearchAutocompleteImplCopyWith<_$GotSearchAutocompleteImpl>
       get copyWith => throw _privateConstructorUsedError;
@@ -819,7 +1153,7 @@ class _$FailedToGetSearchAutocompleteImpl
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() gettingSearchAutocomplete,
-    required TResult Function(List<SearchResultEntity> searchResultEntities)
+    required TResult Function(SearchResultEntity searchResultEntity)
         gotSearchAutocomplete,
     required TResult Function(
             SearchAutocompleteFailure searchAutocompleteFailure)
@@ -833,7 +1167,7 @@ class _$FailedToGetSearchAutocompleteImpl
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? gettingSearchAutocomplete,
-    TResult? Function(List<SearchResultEntity> searchResultEntities)?
+    TResult? Function(SearchResultEntity searchResultEntity)?
         gotSearchAutocomplete,
     TResult? Function(SearchAutocompleteFailure searchAutocompleteFailure)?
         failedToGetSearchAutocomplete,
@@ -846,7 +1180,7 @@ class _$FailedToGetSearchAutocompleteImpl
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? gettingSearchAutocomplete,
-    TResult Function(List<SearchResultEntity> searchResultEntities)?
+    TResult Function(SearchResultEntity searchResultEntity)?
         gotSearchAutocomplete,
     TResult Function(SearchAutocompleteFailure searchAutocompleteFailure)?
         failedToGetSearchAutocomplete,

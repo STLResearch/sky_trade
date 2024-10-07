@@ -9,6 +9,7 @@ const flowTypeKey = 'flow_type';
 const linkValue = 'link';
 
 // Mapbox maps
+const mapboxMapsPublicKey = 'MAPBOX_MAPS_PUBLIC_KEY';
 const mapboxMapsSearchBoxBaseUrl = 'MAPBOX_MAPS_SEARCH_BOX_BASE_URL';
 
 // SkyTrade
@@ -137,8 +138,13 @@ const transportTypeKey = 'transportType';
 const uasIdKey = 'uasId';
 const idTypeKey = 'idType';
 const uaTypeKey = 'uaType';
+const suggestionsKey = 'suggestions';
+const attributionKey = 'attribution';
 const placeFormattedKey = 'place_formatted';
+const namePreferredKey = 'name_preferred';
 const qKey = 'q';
+const accessTokenKey = 'access_token';
+const sessionTokenKey = 'session_token';
 const emailKey = 'email';
 const blockchainAddressKey = 'blockchainAddress';
 const newsletterKey = 'newsletter';

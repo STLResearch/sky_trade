@@ -250,13 +250,18 @@ final class HttpClient {
   Future<Response> request({
     required RequestMethod requestMethod,
     required String path,
+    String? overrideBaseUrl,
     Map<String, dynamic>? data,
     Map<String, dynamic>? queryParameters,
     Map<String, dynamic>? headers,
+    String? bearerToken,
   }) =>
       switch (requestMethod) {
         RequestMethod.get => _dio.get(
-            path,
+            switch (overrideBaseUrl != null) {
+              true => overrideBaseUrl! + path,
+              false => path,
+            },
             data: data,
             queryParameters: queryParameters,
             options: switch (headers) {
@@ -267,7 +272,10 @@ final class HttpClient {
             },
           ),
         RequestMethod.post => _dio.post(
-            path,
+            switch (overrideBaseUrl != null) {
+              true => overrideBaseUrl! + path,
+              false => path,
+            },
             data: data,
             queryParameters: queryParameters,
             options: switch (headers) {
@@ -278,7 +286,10 @@ final class HttpClient {
             },
           ),
         RequestMethod.put => _dio.put(
-            path,
+            switch (overrideBaseUrl != null) {
+              true => overrideBaseUrl! + path,
+              false => path,
+            },
             data: data,
             queryParameters: queryParameters,
             options: switch (headers) {
@@ -289,7 +300,10 @@ final class HttpClient {
             },
           ),
         RequestMethod.delete => _dio.delete(
-            path,
+            switch (overrideBaseUrl != null) {
+              true => overrideBaseUrl! + path,
+              false => path,
+            },
             data: data,
             queryParameters: queryParameters,
             options: switch (headers) {

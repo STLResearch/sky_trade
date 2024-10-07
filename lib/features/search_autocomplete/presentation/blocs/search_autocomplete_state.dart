@@ -8,7 +8,7 @@ class SearchAutocompleteState with _$SearchAutocompleteState {
   _GettingSearchAutocomplete;
 
   const factory SearchAutocompleteState.gotSearchAutocomplete({
-    required List<SearchResultEntity> searchResultEntities,
+    required SearchResultEntity searchResultEntity,
   }) = _GotSearchAutocomplete;
 
   const factory SearchAutocompleteState.failedToGetSearchAutocomplete({
