@@ -18,11 +18,11 @@ final class SearchAutocompleteRepositoryImplementation
   final SearchAutocompleteRemoteDataSource _searchAutocompleteRemoteDataSource;
 
   @override
-  Future<Either<SearchAutocompleteFailure, List<SearchResultEntity>>>
+  Future<Either<SearchAutocompleteFailure, SearchResultEntity>>
       autocompleteSearchUsing({
     required String query,
   }) =>
-          handleData<SearchAutocompleteFailure, List<SearchResultEntity>>(
+          handleData<SearchAutocompleteFailure, SearchResultEntity>(
             dataSourceOperation: () =>
                 _searchAutocompleteRemoteDataSource.autocompleteSearchUsing(
               query: query,

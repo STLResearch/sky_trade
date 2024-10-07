@@ -2,6 +2,7 @@ import 'package:sky_ways/core/injection_container/auth.dart';
 import 'package:sky_ways/core/injection_container/bluetooth.dart';
 import 'package:sky_ways/core/injection_container/cache_manager.dart';
 import 'package:sky_ways/core/injection_container/core.dart';
+import 'package:sky_ways/core/injection_container/external.dart';
 import 'package:sky_ways/core/injection_container/geo_hash.dart';
 import 'package:sky_ways/core/injection_container/internet_connection_checker.dart';
 import 'package:sky_ways/core/injection_container/link_handler.dart';
@@ -26,4 +27,5 @@ Future<void> registerServices() => Future.wait<void>([
       registerUASRestrictionsServices(),
       registerWifiServices(),
       registerCoreServices(),
+      registerExternalServices(),
     ]);

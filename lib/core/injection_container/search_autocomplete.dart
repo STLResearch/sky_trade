@@ -1,4 +1,5 @@
 import 'package:get_it/get_it.dart' show GetIt;
+import 'package:sky_ways/features/search_autocomplete/data/data_sources/search_autocomplete_local_data_source.dart';
 import 'package:sky_ways/features/search_autocomplete/data/data_sources/search_autocomplete_remote_data_source.dart';
 import 'package:sky_ways/features/search_autocomplete/data/repositories/search_autocomplete_repository_implementation.dart';
 import 'package:sky_ways/features/search_autocomplete/domain/repositories/search_autocomplete_repository.dart';
@@ -9,23 +10,29 @@ final _sl = GetIt.I;
 
 Future<void> registerSearchAutocompleteServices() async {
   _sl
-  // BLoCs
+    // BLoCs
     ..registerFactory<SearchAutocompleteBloc>(
-          () => SearchAutocompleteBloc(
-        _sl<SearchAutocompleteRepository>(),
-      ),
-    )
-
-  // Repositories
-    ..registerLazySingleton<SearchAutocompleteRepository>(
-          () => SearchAutocompleteRepositoryImplementation(
+      () => SearchAutocompleteBloc(
         _sl(),
       ),
     )
 
-  // Data sources
+    // Repositories
+    ..registerLazySingleton<SearchAutocompleteRepository>(
+      () => SearchAutocompleteRepositoryImplementation(
+        _sl(),
+      ),
+    )
+
+    // Data sources
     ..registerLazySingleton<SearchAutocompleteRemoteDataSource>(
-          () => SearchAutocompleteRemoteDataSourceImplementation(
+      () => SearchAutocompleteRemoteDataSourceImplementation(
+        httpClient: _sl(),
+        searchAutocompleteLocalDataSource: _sl(),
+      ),
+    )
+    ..registerLazySingleton<SearchAutocompleteLocalDataSource>(
+      () => SearchAutocompleteLocalDataSourceImplementation(
         _sl(),
       ),
     );
