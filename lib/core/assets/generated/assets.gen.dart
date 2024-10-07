@@ -89,6 +89,14 @@ class $AssetsSvgsGen {
   /// File path: assets/svgs/cloud_alt.svg
   SvgGenImage get cloudAlt => const SvgGenImage('assets/svgs/cloud_alt.svg');
 
+  /// File path: assets/svgs/chevron_left.svg
+  SvgGenImage get chevronLeft =>
+      const SvgGenImage('assets/svgs/chevron_left.svg');
+
+  /// File path: assets/svgs/chevron_down.svg
+  SvgGenImage get chevronDown =>
+      const SvgGenImage('assets/svgs/chevron_down.svg');
+
   /// File path: assets/svgs/community.svg
   SvgGenImage get community => const SvgGenImage('assets/svgs/community.svg');
 
