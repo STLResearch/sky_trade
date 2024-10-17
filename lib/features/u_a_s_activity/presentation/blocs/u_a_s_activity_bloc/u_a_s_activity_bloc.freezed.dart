@@ -20,6 +20,7 @@ mixin _$UASActivityEvent {
   TResult when<TResult extends Object?>({
     required TResult Function() listenUASActivities,
     required TResult Function(List<UASEntity> uASEntities) uASActivitiesGotten,
+    required TResult Function() uASActivitiesListeningStarted,
     required TResult Function() uASActivitiesListeningStopped,
     required TResult Function(String geoHash) requestNewUASActivitiesAround,
     required TResult Function() stopListeningUASActivities,
@@ -29,6 +30,7 @@ mixin _$UASActivityEvent {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? listenUASActivities,
     TResult? Function(List<UASEntity> uASEntities)? uASActivitiesGotten,
+    TResult? Function()? uASActivitiesListeningStarted,
     TResult? Function()? uASActivitiesListeningStopped,
     TResult? Function(String geoHash)? requestNewUASActivitiesAround,
     TResult? Function()? stopListeningUASActivities,
@@ -38,6 +40,7 @@ mixin _$UASActivityEvent {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? listenUASActivities,
     TResult Function(List<UASEntity> uASEntities)? uASActivitiesGotten,
+    TResult Function()? uASActivitiesListeningStarted,
     TResult Function()? uASActivitiesListeningStopped,
     TResult Function(String geoHash)? requestNewUASActivitiesAround,
     TResult Function()? stopListeningUASActivities,
@@ -48,6 +51,8 @@ mixin _$UASActivityEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(_ListenUASActivities value) listenUASActivities,
     required TResult Function(_UASActivitiesGotten value) uASActivitiesGotten,
+    required TResult Function(_UASActivitiesListeningStarted value)
+        uASActivitiesListeningStarted,
     required TResult Function(_UASActivitiesListeningStopped value)
         uASActivitiesListeningStopped,
     required TResult Function(_RequestNewUASActivitiesAround value)
@@ -60,6 +65,8 @@ mixin _$UASActivityEvent {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_ListenUASActivities value)? listenUASActivities,
     TResult? Function(_UASActivitiesGotten value)? uASActivitiesGotten,
+    TResult? Function(_UASActivitiesListeningStarted value)?
+        uASActivitiesListeningStarted,
     TResult? Function(_UASActivitiesListeningStopped value)?
         uASActivitiesListeningStopped,
     TResult? Function(_RequestNewUASActivitiesAround value)?
@@ -72,6 +79,8 @@ mixin _$UASActivityEvent {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_ListenUASActivities value)? listenUASActivities,
     TResult Function(_UASActivitiesGotten value)? uASActivitiesGotten,
+    TResult Function(_UASActivitiesListeningStarted value)?
+        uASActivitiesListeningStarted,
     TResult Function(_UASActivitiesListeningStopped value)?
         uASActivitiesListeningStopped,
     TResult Function(_RequestNewUASActivitiesAround value)?
@@ -142,6 +151,7 @@ class _$ListenUASActivitiesImpl implements _ListenUASActivities {
   TResult when<TResult extends Object?>({
     required TResult Function() listenUASActivities,
     required TResult Function(List<UASEntity> uASEntities) uASActivitiesGotten,
+    required TResult Function() uASActivitiesListeningStarted,
     required TResult Function() uASActivitiesListeningStopped,
     required TResult Function(String geoHash) requestNewUASActivitiesAround,
     required TResult Function() stopListeningUASActivities,
@@ -154,6 +164,7 @@ class _$ListenUASActivitiesImpl implements _ListenUASActivities {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? listenUASActivities,
     TResult? Function(List<UASEntity> uASEntities)? uASActivitiesGotten,
+    TResult? Function()? uASActivitiesListeningStarted,
     TResult? Function()? uASActivitiesListeningStopped,
     TResult? Function(String geoHash)? requestNewUASActivitiesAround,
     TResult? Function()? stopListeningUASActivities,
@@ -166,6 +177,7 @@ class _$ListenUASActivitiesImpl implements _ListenUASActivities {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? listenUASActivities,
     TResult Function(List<UASEntity> uASEntities)? uASActivitiesGotten,
+    TResult Function()? uASActivitiesListeningStarted,
     TResult Function()? uASActivitiesListeningStopped,
     TResult Function(String geoHash)? requestNewUASActivitiesAround,
     TResult Function()? stopListeningUASActivities,
@@ -182,6 +194,8 @@ class _$ListenUASActivitiesImpl implements _ListenUASActivities {
   TResult map<TResult extends Object?>({
     required TResult Function(_ListenUASActivities value) listenUASActivities,
     required TResult Function(_UASActivitiesGotten value) uASActivitiesGotten,
+    required TResult Function(_UASActivitiesListeningStarted value)
+        uASActivitiesListeningStarted,
     required TResult Function(_UASActivitiesListeningStopped value)
         uASActivitiesListeningStopped,
     required TResult Function(_RequestNewUASActivitiesAround value)
@@ -197,6 +211,8 @@ class _$ListenUASActivitiesImpl implements _ListenUASActivities {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_ListenUASActivities value)? listenUASActivities,
     TResult? Function(_UASActivitiesGotten value)? uASActivitiesGotten,
+    TResult? Function(_UASActivitiesListeningStarted value)?
+        uASActivitiesListeningStarted,
     TResult? Function(_UASActivitiesListeningStopped value)?
         uASActivitiesListeningStopped,
     TResult? Function(_RequestNewUASActivitiesAround value)?
@@ -212,6 +228,8 @@ class _$ListenUASActivitiesImpl implements _ListenUASActivities {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_ListenUASActivities value)? listenUASActivities,
     TResult Function(_UASActivitiesGotten value)? uASActivitiesGotten,
+    TResult Function(_UASActivitiesListeningStarted value)?
+        uASActivitiesListeningStarted,
     TResult Function(_UASActivitiesListeningStopped value)?
         uASActivitiesListeningStopped,
     TResult Function(_RequestNewUASActivitiesAround value)?
@@ -306,6 +324,7 @@ class _$UASActivitiesGottenImpl implements _UASActivitiesGotten {
   TResult when<TResult extends Object?>({
     required TResult Function() listenUASActivities,
     required TResult Function(List<UASEntity> uASEntities) uASActivitiesGotten,
+    required TResult Function() uASActivitiesListeningStarted,
     required TResult Function() uASActivitiesListeningStopped,
     required TResult Function(String geoHash) requestNewUASActivitiesAround,
     required TResult Function() stopListeningUASActivities,
@@ -318,6 +337,7 @@ class _$UASActivitiesGottenImpl implements _UASActivitiesGotten {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? listenUASActivities,
     TResult? Function(List<UASEntity> uASEntities)? uASActivitiesGotten,
+    TResult? Function()? uASActivitiesListeningStarted,
     TResult? Function()? uASActivitiesListeningStopped,
     TResult? Function(String geoHash)? requestNewUASActivitiesAround,
     TResult? Function()? stopListeningUASActivities,
@@ -330,6 +350,7 @@ class _$UASActivitiesGottenImpl implements _UASActivitiesGotten {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? listenUASActivities,
     TResult Function(List<UASEntity> uASEntities)? uASActivitiesGotten,
+    TResult Function()? uASActivitiesListeningStarted,
     TResult Function()? uASActivitiesListeningStopped,
     TResult Function(String geoHash)? requestNewUASActivitiesAround,
     TResult Function()? stopListeningUASActivities,
@@ -346,6 +367,8 @@ class _$UASActivitiesGottenImpl implements _UASActivitiesGotten {
   TResult map<TResult extends Object?>({
     required TResult Function(_ListenUASActivities value) listenUASActivities,
     required TResult Function(_UASActivitiesGotten value) uASActivitiesGotten,
+    required TResult Function(_UASActivitiesListeningStarted value)
+        uASActivitiesListeningStarted,
     required TResult Function(_UASActivitiesListeningStopped value)
         uASActivitiesListeningStopped,
     required TResult Function(_RequestNewUASActivitiesAround value)
@@ -361,6 +384,8 @@ class _$UASActivitiesGottenImpl implements _UASActivitiesGotten {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_ListenUASActivities value)? listenUASActivities,
     TResult? Function(_UASActivitiesGotten value)? uASActivitiesGotten,
+    TResult? Function(_UASActivitiesListeningStarted value)?
+        uASActivitiesListeningStarted,
     TResult? Function(_UASActivitiesListeningStopped value)?
         uASActivitiesListeningStopped,
     TResult? Function(_RequestNewUASActivitiesAround value)?
@@ -376,6 +401,8 @@ class _$UASActivitiesGottenImpl implements _UASActivitiesGotten {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_ListenUASActivities value)? listenUASActivities,
     TResult Function(_UASActivitiesGotten value)? uASActivitiesGotten,
+    TResult Function(_UASActivitiesListeningStarted value)?
+        uASActivitiesListeningStarted,
     TResult Function(_UASActivitiesListeningStopped value)?
         uASActivitiesListeningStopped,
     TResult Function(_RequestNewUASActivitiesAround value)?
@@ -399,6 +426,150 @@ abstract class _UASActivitiesGotten implements UASActivityEvent {
   @JsonKey(ignore: true)
   _$$UASActivitiesGottenImplCopyWith<_$UASActivitiesGottenImpl> get copyWith =>
       throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$UASActivitiesListeningStartedImplCopyWith<$Res> {
+  factory _$$UASActivitiesListeningStartedImplCopyWith(
+          _$UASActivitiesListeningStartedImpl value,
+          $Res Function(_$UASActivitiesListeningStartedImpl) then) =
+      __$$UASActivitiesListeningStartedImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$UASActivitiesListeningStartedImplCopyWithImpl<$Res>
+    extends _$UASActivityEventCopyWithImpl<$Res,
+        _$UASActivitiesListeningStartedImpl>
+    implements _$$UASActivitiesListeningStartedImplCopyWith<$Res> {
+  __$$UASActivitiesListeningStartedImplCopyWithImpl(
+      _$UASActivitiesListeningStartedImpl _value,
+      $Res Function(_$UASActivitiesListeningStartedImpl) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$UASActivitiesListeningStartedImpl
+    implements _UASActivitiesListeningStarted {
+  const _$UASActivitiesListeningStartedImpl();
+
+  @override
+  String toString() {
+    return 'UASActivityEvent.uASActivitiesListeningStarted()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$UASActivitiesListeningStartedImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() listenUASActivities,
+    required TResult Function(List<UASEntity> uASEntities) uASActivitiesGotten,
+    required TResult Function() uASActivitiesListeningStarted,
+    required TResult Function() uASActivitiesListeningStopped,
+    required TResult Function(String geoHash) requestNewUASActivitiesAround,
+    required TResult Function() stopListeningUASActivities,
+  }) {
+    return uASActivitiesListeningStarted();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? listenUASActivities,
+    TResult? Function(List<UASEntity> uASEntities)? uASActivitiesGotten,
+    TResult? Function()? uASActivitiesListeningStarted,
+    TResult? Function()? uASActivitiesListeningStopped,
+    TResult? Function(String geoHash)? requestNewUASActivitiesAround,
+    TResult? Function()? stopListeningUASActivities,
+  }) {
+    return uASActivitiesListeningStarted?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? listenUASActivities,
+    TResult Function(List<UASEntity> uASEntities)? uASActivitiesGotten,
+    TResult Function()? uASActivitiesListeningStarted,
+    TResult Function()? uASActivitiesListeningStopped,
+    TResult Function(String geoHash)? requestNewUASActivitiesAround,
+    TResult Function()? stopListeningUASActivities,
+    required TResult orElse(),
+  }) {
+    if (uASActivitiesListeningStarted != null) {
+      return uASActivitiesListeningStarted();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_ListenUASActivities value) listenUASActivities,
+    required TResult Function(_UASActivitiesGotten value) uASActivitiesGotten,
+    required TResult Function(_UASActivitiesListeningStarted value)
+        uASActivitiesListeningStarted,
+    required TResult Function(_UASActivitiesListeningStopped value)
+        uASActivitiesListeningStopped,
+    required TResult Function(_RequestNewUASActivitiesAround value)
+        requestNewUASActivitiesAround,
+    required TResult Function(_StopListeningUASActivities value)
+        stopListeningUASActivities,
+  }) {
+    return uASActivitiesListeningStarted(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_ListenUASActivities value)? listenUASActivities,
+    TResult? Function(_UASActivitiesGotten value)? uASActivitiesGotten,
+    TResult? Function(_UASActivitiesListeningStarted value)?
+        uASActivitiesListeningStarted,
+    TResult? Function(_UASActivitiesListeningStopped value)?
+        uASActivitiesListeningStopped,
+    TResult? Function(_RequestNewUASActivitiesAround value)?
+        requestNewUASActivitiesAround,
+    TResult? Function(_StopListeningUASActivities value)?
+        stopListeningUASActivities,
+  }) {
+    return uASActivitiesListeningStarted?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_ListenUASActivities value)? listenUASActivities,
+    TResult Function(_UASActivitiesGotten value)? uASActivitiesGotten,
+    TResult Function(_UASActivitiesListeningStarted value)?
+        uASActivitiesListeningStarted,
+    TResult Function(_UASActivitiesListeningStopped value)?
+        uASActivitiesListeningStopped,
+    TResult Function(_RequestNewUASActivitiesAround value)?
+        requestNewUASActivitiesAround,
+    TResult Function(_StopListeningUASActivities value)?
+        stopListeningUASActivities,
+    required TResult orElse(),
+  }) {
+    if (uASActivitiesListeningStarted != null) {
+      return uASActivitiesListeningStarted(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _UASActivitiesListeningStarted implements UASActivityEvent {
+  const factory _UASActivitiesListeningStarted() =
+      _$UASActivitiesListeningStartedImpl;
 }
 
 /// @nodoc
@@ -446,6 +617,7 @@ class _$UASActivitiesListeningStoppedImpl
   TResult when<TResult extends Object?>({
     required TResult Function() listenUASActivities,
     required TResult Function(List<UASEntity> uASEntities) uASActivitiesGotten,
+    required TResult Function() uASActivitiesListeningStarted,
     required TResult Function() uASActivitiesListeningStopped,
     required TResult Function(String geoHash) requestNewUASActivitiesAround,
     required TResult Function() stopListeningUASActivities,
@@ -458,6 +630,7 @@ class _$UASActivitiesListeningStoppedImpl
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? listenUASActivities,
     TResult? Function(List<UASEntity> uASEntities)? uASActivitiesGotten,
+    TResult? Function()? uASActivitiesListeningStarted,
     TResult? Function()? uASActivitiesListeningStopped,
     TResult? Function(String geoHash)? requestNewUASActivitiesAround,
     TResult? Function()? stopListeningUASActivities,
@@ -470,6 +643,7 @@ class _$UASActivitiesListeningStoppedImpl
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? listenUASActivities,
     TResult Function(List<UASEntity> uASEntities)? uASActivitiesGotten,
+    TResult Function()? uASActivitiesListeningStarted,
     TResult Function()? uASActivitiesListeningStopped,
     TResult Function(String geoHash)? requestNewUASActivitiesAround,
     TResult Function()? stopListeningUASActivities,
@@ -486,6 +660,8 @@ class _$UASActivitiesListeningStoppedImpl
   TResult map<TResult extends Object?>({
     required TResult Function(_ListenUASActivities value) listenUASActivities,
     required TResult Function(_UASActivitiesGotten value) uASActivitiesGotten,
+    required TResult Function(_UASActivitiesListeningStarted value)
+        uASActivitiesListeningStarted,
     required TResult Function(_UASActivitiesListeningStopped value)
         uASActivitiesListeningStopped,
     required TResult Function(_RequestNewUASActivitiesAround value)
@@ -501,6 +677,8 @@ class _$UASActivitiesListeningStoppedImpl
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_ListenUASActivities value)? listenUASActivities,
     TResult? Function(_UASActivitiesGotten value)? uASActivitiesGotten,
+    TResult? Function(_UASActivitiesListeningStarted value)?
+        uASActivitiesListeningStarted,
     TResult? Function(_UASActivitiesListeningStopped value)?
         uASActivitiesListeningStopped,
     TResult? Function(_RequestNewUASActivitiesAround value)?
@@ -516,6 +694,8 @@ class _$UASActivitiesListeningStoppedImpl
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_ListenUASActivities value)? listenUASActivities,
     TResult Function(_UASActivitiesGotten value)? uASActivitiesGotten,
+    TResult Function(_UASActivitiesListeningStarted value)?
+        uASActivitiesListeningStarted,
     TResult Function(_UASActivitiesListeningStopped value)?
         uASActivitiesListeningStopped,
     TResult Function(_RequestNewUASActivitiesAround value)?
@@ -608,6 +788,7 @@ class _$RequestNewUASActivitiesAroundImpl
   TResult when<TResult extends Object?>({
     required TResult Function() listenUASActivities,
     required TResult Function(List<UASEntity> uASEntities) uASActivitiesGotten,
+    required TResult Function() uASActivitiesListeningStarted,
     required TResult Function() uASActivitiesListeningStopped,
     required TResult Function(String geoHash) requestNewUASActivitiesAround,
     required TResult Function() stopListeningUASActivities,
@@ -620,6 +801,7 @@ class _$RequestNewUASActivitiesAroundImpl
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? listenUASActivities,
     TResult? Function(List<UASEntity> uASEntities)? uASActivitiesGotten,
+    TResult? Function()? uASActivitiesListeningStarted,
     TResult? Function()? uASActivitiesListeningStopped,
     TResult? Function(String geoHash)? requestNewUASActivitiesAround,
     TResult? Function()? stopListeningUASActivities,
@@ -632,6 +814,7 @@ class _$RequestNewUASActivitiesAroundImpl
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? listenUASActivities,
     TResult Function(List<UASEntity> uASEntities)? uASActivitiesGotten,
+    TResult Function()? uASActivitiesListeningStarted,
     TResult Function()? uASActivitiesListeningStopped,
     TResult Function(String geoHash)? requestNewUASActivitiesAround,
     TResult Function()? stopListeningUASActivities,
@@ -648,6 +831,8 @@ class _$RequestNewUASActivitiesAroundImpl
   TResult map<TResult extends Object?>({
     required TResult Function(_ListenUASActivities value) listenUASActivities,
     required TResult Function(_UASActivitiesGotten value) uASActivitiesGotten,
+    required TResult Function(_UASActivitiesListeningStarted value)
+        uASActivitiesListeningStarted,
     required TResult Function(_UASActivitiesListeningStopped value)
         uASActivitiesListeningStopped,
     required TResult Function(_RequestNewUASActivitiesAround value)
@@ -663,6 +848,8 @@ class _$RequestNewUASActivitiesAroundImpl
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_ListenUASActivities value)? listenUASActivities,
     TResult? Function(_UASActivitiesGotten value)? uASActivitiesGotten,
+    TResult? Function(_UASActivitiesListeningStarted value)?
+        uASActivitiesListeningStarted,
     TResult? Function(_UASActivitiesListeningStopped value)?
         uASActivitiesListeningStopped,
     TResult? Function(_RequestNewUASActivitiesAround value)?
@@ -678,6 +865,8 @@ class _$RequestNewUASActivitiesAroundImpl
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_ListenUASActivities value)? listenUASActivities,
     TResult Function(_UASActivitiesGotten value)? uASActivitiesGotten,
+    TResult Function(_UASActivitiesListeningStarted value)?
+        uASActivitiesListeningStarted,
     TResult Function(_UASActivitiesListeningStopped value)?
         uASActivitiesListeningStopped,
     TResult Function(_RequestNewUASActivitiesAround value)?
@@ -748,6 +937,7 @@ class _$StopListeningUASActivitiesImpl implements _StopListeningUASActivities {
   TResult when<TResult extends Object?>({
     required TResult Function() listenUASActivities,
     required TResult Function(List<UASEntity> uASEntities) uASActivitiesGotten,
+    required TResult Function() uASActivitiesListeningStarted,
     required TResult Function() uASActivitiesListeningStopped,
     required TResult Function(String geoHash) requestNewUASActivitiesAround,
     required TResult Function() stopListeningUASActivities,
@@ -760,6 +950,7 @@ class _$StopListeningUASActivitiesImpl implements _StopListeningUASActivities {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? listenUASActivities,
     TResult? Function(List<UASEntity> uASEntities)? uASActivitiesGotten,
+    TResult? Function()? uASActivitiesListeningStarted,
     TResult? Function()? uASActivitiesListeningStopped,
     TResult? Function(String geoHash)? requestNewUASActivitiesAround,
     TResult? Function()? stopListeningUASActivities,
@@ -772,6 +963,7 @@ class _$StopListeningUASActivitiesImpl implements _StopListeningUASActivities {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? listenUASActivities,
     TResult Function(List<UASEntity> uASEntities)? uASActivitiesGotten,
+    TResult Function()? uASActivitiesListeningStarted,
     TResult Function()? uASActivitiesListeningStopped,
     TResult Function(String geoHash)? requestNewUASActivitiesAround,
     TResult Function()? stopListeningUASActivities,
@@ -788,6 +980,8 @@ class _$StopListeningUASActivitiesImpl implements _StopListeningUASActivities {
   TResult map<TResult extends Object?>({
     required TResult Function(_ListenUASActivities value) listenUASActivities,
     required TResult Function(_UASActivitiesGotten value) uASActivitiesGotten,
+    required TResult Function(_UASActivitiesListeningStarted value)
+        uASActivitiesListeningStarted,
     required TResult Function(_UASActivitiesListeningStopped value)
         uASActivitiesListeningStopped,
     required TResult Function(_RequestNewUASActivitiesAround value)
@@ -803,6 +997,8 @@ class _$StopListeningUASActivitiesImpl implements _StopListeningUASActivities {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_ListenUASActivities value)? listenUASActivities,
     TResult? Function(_UASActivitiesGotten value)? uASActivitiesGotten,
+    TResult? Function(_UASActivitiesListeningStarted value)?
+        uASActivitiesListeningStarted,
     TResult? Function(_UASActivitiesListeningStopped value)?
         uASActivitiesListeningStopped,
     TResult? Function(_RequestNewUASActivitiesAround value)?
@@ -818,6 +1014,8 @@ class _$StopListeningUASActivitiesImpl implements _StopListeningUASActivities {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_ListenUASActivities value)? listenUASActivities,
     TResult Function(_UASActivitiesGotten value)? uASActivitiesGotten,
+    TResult Function(_UASActivitiesListeningStarted value)?
+        uASActivitiesListeningStarted,
     TResult Function(_UASActivitiesListeningStopped value)?
         uASActivitiesListeningStopped,
     TResult Function(_RequestNewUASActivitiesAround value)?
@@ -843,7 +1041,8 @@ mixin _$UASActivityState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function() listeningUASActivities,
+    required TResult Function() establishingListeningUASActivities,
+    required TResult Function() startedListeningUASActivities,
     required TResult Function(List<UASEntity> uASEntities) gotUASActivities,
     required TResult Function() stoppedListeningUASActivities,
   }) =>
@@ -851,7 +1050,8 @@ mixin _$UASActivityState {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function()? listeningUASActivities,
+    TResult? Function()? establishingListeningUASActivities,
+    TResult? Function()? startedListeningUASActivities,
     TResult? Function(List<UASEntity> uASEntities)? gotUASActivities,
     TResult? Function()? stoppedListeningUASActivities,
   }) =>
@@ -859,7 +1059,8 @@ mixin _$UASActivityState {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function()? listeningUASActivities,
+    TResult Function()? establishingListeningUASActivities,
+    TResult Function()? startedListeningUASActivities,
     TResult Function(List<UASEntity> uASEntities)? gotUASActivities,
     TResult Function()? stoppedListeningUASActivities,
     required TResult orElse(),
@@ -868,8 +1069,10 @@ mixin _$UASActivityState {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
-    required TResult Function(_ListeningUASActivities value)
-        listeningUASActivities,
+    required TResult Function(_EstablishingListeningUASActivities value)
+        establishingListeningUASActivities,
+    required TResult Function(_StartedListeningUASActivities value)
+        startedListeningUASActivities,
     required TResult Function(_GotUASActivities value) gotUASActivities,
     required TResult Function(_StoppedListeningUASActivities value)
         stoppedListeningUASActivities,
@@ -878,7 +1081,10 @@ mixin _$UASActivityState {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
-    TResult? Function(_ListeningUASActivities value)? listeningUASActivities,
+    TResult? Function(_EstablishingListeningUASActivities value)?
+        establishingListeningUASActivities,
+    TResult? Function(_StartedListeningUASActivities value)?
+        startedListeningUASActivities,
     TResult? Function(_GotUASActivities value)? gotUASActivities,
     TResult? Function(_StoppedListeningUASActivities value)?
         stoppedListeningUASActivities,
@@ -887,7 +1093,10 @@ mixin _$UASActivityState {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(_ListeningUASActivities value)? listeningUASActivities,
+    TResult Function(_EstablishingListeningUASActivities value)?
+        establishingListeningUASActivities,
+    TResult Function(_StartedListeningUASActivities value)?
+        startedListeningUASActivities,
     TResult Function(_GotUASActivities value)? gotUASActivities,
     TResult Function(_StoppedListeningUASActivities value)?
         stoppedListeningUASActivities,
@@ -953,7 +1162,8 @@ class _$InitialImpl implements _Initial {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function() listeningUASActivities,
+    required TResult Function() establishingListeningUASActivities,
+    required TResult Function() startedListeningUASActivities,
     required TResult Function(List<UASEntity> uASEntities) gotUASActivities,
     required TResult Function() stoppedListeningUASActivities,
   }) {
@@ -964,7 +1174,8 @@ class _$InitialImpl implements _Initial {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function()? listeningUASActivities,
+    TResult? Function()? establishingListeningUASActivities,
+    TResult? Function()? startedListeningUASActivities,
     TResult? Function(List<UASEntity> uASEntities)? gotUASActivities,
     TResult? Function()? stoppedListeningUASActivities,
   }) {
@@ -975,7 +1186,8 @@ class _$InitialImpl implements _Initial {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function()? listeningUASActivities,
+    TResult Function()? establishingListeningUASActivities,
+    TResult Function()? startedListeningUASActivities,
     TResult Function(List<UASEntity> uASEntities)? gotUASActivities,
     TResult Function()? stoppedListeningUASActivities,
     required TResult orElse(),
@@ -990,8 +1202,10 @@ class _$InitialImpl implements _Initial {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
-    required TResult Function(_ListeningUASActivities value)
-        listeningUASActivities,
+    required TResult Function(_EstablishingListeningUASActivities value)
+        establishingListeningUASActivities,
+    required TResult Function(_StartedListeningUASActivities value)
+        startedListeningUASActivities,
     required TResult Function(_GotUASActivities value) gotUASActivities,
     required TResult Function(_StoppedListeningUASActivities value)
         stoppedListeningUASActivities,
@@ -1003,7 +1217,10 @@ class _$InitialImpl implements _Initial {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
-    TResult? Function(_ListeningUASActivities value)? listeningUASActivities,
+    TResult? Function(_EstablishingListeningUASActivities value)?
+        establishingListeningUASActivities,
+    TResult? Function(_StartedListeningUASActivities value)?
+        startedListeningUASActivities,
     TResult? Function(_GotUASActivities value)? gotUASActivities,
     TResult? Function(_StoppedListeningUASActivities value)?
         stoppedListeningUASActivities,
@@ -1015,7 +1232,10 @@ class _$InitialImpl implements _Initial {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(_ListeningUASActivities value)? listeningUASActivities,
+    TResult Function(_EstablishingListeningUASActivities value)?
+        establishingListeningUASActivities,
+    TResult Function(_StartedListeningUASActivities value)?
+        startedListeningUASActivities,
     TResult Function(_GotUASActivities value)? gotUASActivities,
     TResult Function(_StoppedListeningUASActivities value)?
         stoppedListeningUASActivities,
@@ -1033,38 +1253,40 @@ abstract class _Initial implements UASActivityState {
 }
 
 /// @nodoc
-abstract class _$$ListeningUASActivitiesImplCopyWith<$Res> {
-  factory _$$ListeningUASActivitiesImplCopyWith(
-          _$ListeningUASActivitiesImpl value,
-          $Res Function(_$ListeningUASActivitiesImpl) then) =
-      __$$ListeningUASActivitiesImplCopyWithImpl<$Res>;
+abstract class _$$EstablishingListeningUASActivitiesImplCopyWith<$Res> {
+  factory _$$EstablishingListeningUASActivitiesImplCopyWith(
+          _$EstablishingListeningUASActivitiesImpl value,
+          $Res Function(_$EstablishingListeningUASActivitiesImpl) then) =
+      __$$EstablishingListeningUASActivitiesImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$ListeningUASActivitiesImplCopyWithImpl<$Res>
-    extends _$UASActivityStateCopyWithImpl<$Res, _$ListeningUASActivitiesImpl>
-    implements _$$ListeningUASActivitiesImplCopyWith<$Res> {
-  __$$ListeningUASActivitiesImplCopyWithImpl(
-      _$ListeningUASActivitiesImpl _value,
-      $Res Function(_$ListeningUASActivitiesImpl) _then)
+class __$$EstablishingListeningUASActivitiesImplCopyWithImpl<$Res>
+    extends _$UASActivityStateCopyWithImpl<$Res,
+        _$EstablishingListeningUASActivitiesImpl>
+    implements _$$EstablishingListeningUASActivitiesImplCopyWith<$Res> {
+  __$$EstablishingListeningUASActivitiesImplCopyWithImpl(
+      _$EstablishingListeningUASActivitiesImpl _value,
+      $Res Function(_$EstablishingListeningUASActivitiesImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$ListeningUASActivitiesImpl implements _ListeningUASActivities {
-  const _$ListeningUASActivitiesImpl();
+class _$EstablishingListeningUASActivitiesImpl
+    implements _EstablishingListeningUASActivities {
+  const _$EstablishingListeningUASActivitiesImpl();
 
   @override
   String toString() {
-    return 'UASActivityState.listeningUASActivities()';
+    return 'UASActivityState.establishingListeningUASActivities()';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$ListeningUASActivitiesImpl);
+            other is _$EstablishingListeningUASActivitiesImpl);
   }
 
   @override
@@ -1074,35 +1296,38 @@ class _$ListeningUASActivitiesImpl implements _ListeningUASActivities {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function() listeningUASActivities,
+    required TResult Function() establishingListeningUASActivities,
+    required TResult Function() startedListeningUASActivities,
     required TResult Function(List<UASEntity> uASEntities) gotUASActivities,
     required TResult Function() stoppedListeningUASActivities,
   }) {
-    return listeningUASActivities();
+    return establishingListeningUASActivities();
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function()? listeningUASActivities,
+    TResult? Function()? establishingListeningUASActivities,
+    TResult? Function()? startedListeningUASActivities,
     TResult? Function(List<UASEntity> uASEntities)? gotUASActivities,
     TResult? Function()? stoppedListeningUASActivities,
   }) {
-    return listeningUASActivities?.call();
+    return establishingListeningUASActivities?.call();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function()? listeningUASActivities,
+    TResult Function()? establishingListeningUASActivities,
+    TResult Function()? startedListeningUASActivities,
     TResult Function(List<UASEntity> uASEntities)? gotUASActivities,
     TResult Function()? stoppedListeningUASActivities,
     required TResult orElse(),
   }) {
-    if (listeningUASActivities != null) {
-      return listeningUASActivities();
+    if (establishingListeningUASActivities != null) {
+      return establishingListeningUASActivities();
     }
     return orElse();
   }
@@ -1111,46 +1336,190 @@ class _$ListeningUASActivitiesImpl implements _ListeningUASActivities {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
-    required TResult Function(_ListeningUASActivities value)
-        listeningUASActivities,
+    required TResult Function(_EstablishingListeningUASActivities value)
+        establishingListeningUASActivities,
+    required TResult Function(_StartedListeningUASActivities value)
+        startedListeningUASActivities,
     required TResult Function(_GotUASActivities value) gotUASActivities,
     required TResult Function(_StoppedListeningUASActivities value)
         stoppedListeningUASActivities,
   }) {
-    return listeningUASActivities(this);
+    return establishingListeningUASActivities(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
-    TResult? Function(_ListeningUASActivities value)? listeningUASActivities,
+    TResult? Function(_EstablishingListeningUASActivities value)?
+        establishingListeningUASActivities,
+    TResult? Function(_StartedListeningUASActivities value)?
+        startedListeningUASActivities,
     TResult? Function(_GotUASActivities value)? gotUASActivities,
     TResult? Function(_StoppedListeningUASActivities value)?
         stoppedListeningUASActivities,
   }) {
-    return listeningUASActivities?.call(this);
+    return establishingListeningUASActivities?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(_ListeningUASActivities value)? listeningUASActivities,
+    TResult Function(_EstablishingListeningUASActivities value)?
+        establishingListeningUASActivities,
+    TResult Function(_StartedListeningUASActivities value)?
+        startedListeningUASActivities,
     TResult Function(_GotUASActivities value)? gotUASActivities,
     TResult Function(_StoppedListeningUASActivities value)?
         stoppedListeningUASActivities,
     required TResult orElse(),
   }) {
-    if (listeningUASActivities != null) {
-      return listeningUASActivities(this);
+    if (establishingListeningUASActivities != null) {
+      return establishingListeningUASActivities(this);
     }
     return orElse();
   }
 }
 
-abstract class _ListeningUASActivities implements UASActivityState {
-  const factory _ListeningUASActivities() = _$ListeningUASActivitiesImpl;
+abstract class _EstablishingListeningUASActivities implements UASActivityState {
+  const factory _EstablishingListeningUASActivities() =
+      _$EstablishingListeningUASActivitiesImpl;
+}
+
+/// @nodoc
+abstract class _$$StartedListeningUASActivitiesImplCopyWith<$Res> {
+  factory _$$StartedListeningUASActivitiesImplCopyWith(
+          _$StartedListeningUASActivitiesImpl value,
+          $Res Function(_$StartedListeningUASActivitiesImpl) then) =
+      __$$StartedListeningUASActivitiesImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$StartedListeningUASActivitiesImplCopyWithImpl<$Res>
+    extends _$UASActivityStateCopyWithImpl<$Res,
+        _$StartedListeningUASActivitiesImpl>
+    implements _$$StartedListeningUASActivitiesImplCopyWith<$Res> {
+  __$$StartedListeningUASActivitiesImplCopyWithImpl(
+      _$StartedListeningUASActivitiesImpl _value,
+      $Res Function(_$StartedListeningUASActivitiesImpl) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$StartedListeningUASActivitiesImpl
+    implements _StartedListeningUASActivities {
+  const _$StartedListeningUASActivitiesImpl();
+
+  @override
+  String toString() {
+    return 'UASActivityState.startedListeningUASActivities()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$StartedListeningUASActivitiesImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() establishingListeningUASActivities,
+    required TResult Function() startedListeningUASActivities,
+    required TResult Function(List<UASEntity> uASEntities) gotUASActivities,
+    required TResult Function() stoppedListeningUASActivities,
+  }) {
+    return startedListeningUASActivities();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? establishingListeningUASActivities,
+    TResult? Function()? startedListeningUASActivities,
+    TResult? Function(List<UASEntity> uASEntities)? gotUASActivities,
+    TResult? Function()? stoppedListeningUASActivities,
+  }) {
+    return startedListeningUASActivities?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? establishingListeningUASActivities,
+    TResult Function()? startedListeningUASActivities,
+    TResult Function(List<UASEntity> uASEntities)? gotUASActivities,
+    TResult Function()? stoppedListeningUASActivities,
+    required TResult orElse(),
+  }) {
+    if (startedListeningUASActivities != null) {
+      return startedListeningUASActivities();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_EstablishingListeningUASActivities value)
+        establishingListeningUASActivities,
+    required TResult Function(_StartedListeningUASActivities value)
+        startedListeningUASActivities,
+    required TResult Function(_GotUASActivities value) gotUASActivities,
+    required TResult Function(_StoppedListeningUASActivities value)
+        stoppedListeningUASActivities,
+  }) {
+    return startedListeningUASActivities(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(_EstablishingListeningUASActivities value)?
+        establishingListeningUASActivities,
+    TResult? Function(_StartedListeningUASActivities value)?
+        startedListeningUASActivities,
+    TResult? Function(_GotUASActivities value)? gotUASActivities,
+    TResult? Function(_StoppedListeningUASActivities value)?
+        stoppedListeningUASActivities,
+  }) {
+    return startedListeningUASActivities?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_EstablishingListeningUASActivities value)?
+        establishingListeningUASActivities,
+    TResult Function(_StartedListeningUASActivities value)?
+        startedListeningUASActivities,
+    TResult Function(_GotUASActivities value)? gotUASActivities,
+    TResult Function(_StoppedListeningUASActivities value)?
+        stoppedListeningUASActivities,
+    required TResult orElse(),
+  }) {
+    if (startedListeningUASActivities != null) {
+      return startedListeningUASActivities(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _StartedListeningUASActivities implements UASActivityState {
+  const factory _StartedListeningUASActivities() =
+      _$StartedListeningUASActivitiesImpl;
 }
 
 /// @nodoc
@@ -1227,7 +1596,8 @@ class _$GotUASActivitiesImpl implements _GotUASActivities {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function() listeningUASActivities,
+    required TResult Function() establishingListeningUASActivities,
+    required TResult Function() startedListeningUASActivities,
     required TResult Function(List<UASEntity> uASEntities) gotUASActivities,
     required TResult Function() stoppedListeningUASActivities,
   }) {
@@ -1238,7 +1608,8 @@ class _$GotUASActivitiesImpl implements _GotUASActivities {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function()? listeningUASActivities,
+    TResult? Function()? establishingListeningUASActivities,
+    TResult? Function()? startedListeningUASActivities,
     TResult? Function(List<UASEntity> uASEntities)? gotUASActivities,
     TResult? Function()? stoppedListeningUASActivities,
   }) {
@@ -1249,7 +1620,8 @@ class _$GotUASActivitiesImpl implements _GotUASActivities {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function()? listeningUASActivities,
+    TResult Function()? establishingListeningUASActivities,
+    TResult Function()? startedListeningUASActivities,
     TResult Function(List<UASEntity> uASEntities)? gotUASActivities,
     TResult Function()? stoppedListeningUASActivities,
     required TResult orElse(),
@@ -1264,8 +1636,10 @@ class _$GotUASActivitiesImpl implements _GotUASActivities {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
-    required TResult Function(_ListeningUASActivities value)
-        listeningUASActivities,
+    required TResult Function(_EstablishingListeningUASActivities value)
+        establishingListeningUASActivities,
+    required TResult Function(_StartedListeningUASActivities value)
+        startedListeningUASActivities,
     required TResult Function(_GotUASActivities value) gotUASActivities,
     required TResult Function(_StoppedListeningUASActivities value)
         stoppedListeningUASActivities,
@@ -1277,7 +1651,10 @@ class _$GotUASActivitiesImpl implements _GotUASActivities {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
-    TResult? Function(_ListeningUASActivities value)? listeningUASActivities,
+    TResult? Function(_EstablishingListeningUASActivities value)?
+        establishingListeningUASActivities,
+    TResult? Function(_StartedListeningUASActivities value)?
+        startedListeningUASActivities,
     TResult? Function(_GotUASActivities value)? gotUASActivities,
     TResult? Function(_StoppedListeningUASActivities value)?
         stoppedListeningUASActivities,
@@ -1289,7 +1666,10 @@ class _$GotUASActivitiesImpl implements _GotUASActivities {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(_ListeningUASActivities value)? listeningUASActivities,
+    TResult Function(_EstablishingListeningUASActivities value)?
+        establishingListeningUASActivities,
+    TResult Function(_StartedListeningUASActivities value)?
+        startedListeningUASActivities,
     TResult Function(_GotUASActivities value)? gotUASActivities,
     TResult Function(_StoppedListeningUASActivities value)?
         stoppedListeningUASActivities,
@@ -1356,7 +1736,8 @@ class _$StoppedListeningUASActivitiesImpl
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function() listeningUASActivities,
+    required TResult Function() establishingListeningUASActivities,
+    required TResult Function() startedListeningUASActivities,
     required TResult Function(List<UASEntity> uASEntities) gotUASActivities,
     required TResult Function() stoppedListeningUASActivities,
   }) {
@@ -1367,7 +1748,8 @@ class _$StoppedListeningUASActivitiesImpl
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function()? listeningUASActivities,
+    TResult? Function()? establishingListeningUASActivities,
+    TResult? Function()? startedListeningUASActivities,
     TResult? Function(List<UASEntity> uASEntities)? gotUASActivities,
     TResult? Function()? stoppedListeningUASActivities,
   }) {
@@ -1378,7 +1760,8 @@ class _$StoppedListeningUASActivitiesImpl
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function()? listeningUASActivities,
+    TResult Function()? establishingListeningUASActivities,
+    TResult Function()? startedListeningUASActivities,
     TResult Function(List<UASEntity> uASEntities)? gotUASActivities,
     TResult Function()? stoppedListeningUASActivities,
     required TResult orElse(),
@@ -1393,8 +1776,10 @@ class _$StoppedListeningUASActivitiesImpl
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
-    required TResult Function(_ListeningUASActivities value)
-        listeningUASActivities,
+    required TResult Function(_EstablishingListeningUASActivities value)
+        establishingListeningUASActivities,
+    required TResult Function(_StartedListeningUASActivities value)
+        startedListeningUASActivities,
     required TResult Function(_GotUASActivities value) gotUASActivities,
     required TResult Function(_StoppedListeningUASActivities value)
         stoppedListeningUASActivities,
@@ -1406,7 +1791,10 @@ class _$StoppedListeningUASActivitiesImpl
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
-    TResult? Function(_ListeningUASActivities value)? listeningUASActivities,
+    TResult? Function(_EstablishingListeningUASActivities value)?
+        establishingListeningUASActivities,
+    TResult? Function(_StartedListeningUASActivities value)?
+        startedListeningUASActivities,
     TResult? Function(_GotUASActivities value)? gotUASActivities,
     TResult? Function(_StoppedListeningUASActivities value)?
         stoppedListeningUASActivities,
@@ -1418,7 +1806,10 @@ class _$StoppedListeningUASActivitiesImpl
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(_ListeningUASActivities value)? listeningUASActivities,
+    TResult Function(_EstablishingListeningUASActivities value)?
+        establishingListeningUASActivities,
+    TResult Function(_StartedListeningUASActivities value)?
+        startedListeningUASActivities,
     TResult Function(_GotUASActivities value)? gotUASActivities,
     TResult Function(_StoppedListeningUASActivities value)?
         stoppedListeningUASActivities,

@@ -8,6 +8,9 @@ class UASActivityEvent with _$UASActivityEvent {
     required List<UASEntity> uASEntities,
   }) = _UASActivitiesGotten;
 
+  const factory UASActivityEvent.uASActivitiesListeningStarted() =
+      _UASActivitiesListeningStarted;
+
   const factory UASActivityEvent.uASActivitiesListeningStopped() =
       _UASActivitiesListeningStopped;
 

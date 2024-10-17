@@ -171,8 +171,8 @@ class UASList extends StatelessWidget {
                               child: Text(
                                 uasEntities[index]
                                     .remoteData
-                                    .macAddress
-                                    .toString(),
+                                    .connection
+                                    .macAddress,
                                 style: Theme.of(context)
                                     .textTheme
                                     .bodyMedium

@@ -1,116 +1,106 @@
 import 'dart:async' show StreamController, StreamSubscription;
-import 'dart:developer';
 
 import 'package:dartz/dartz.dart' show Either, Left, Right;
 import 'package:flutter_opendroneid/flutter_opendroneid.dart'
     show FlutterOpenDroneId, UsedTechnologies;
 import 'package:flutter_opendroneid/models/message_container.dart';
 import 'package:sky_ways/core/errors/failures/remote_i_d_receiver_failure.dart';
-import 'package:sky_ways/core/utils/clients/data_handler.dart';
-import 'package:sky_ways/features/remote_i_d_receiver/domain/entities/remote_id_entity.dart';
+import 'package:sky_ways/core/resources/numbers/networking.dart' show zero;
+import 'package:sky_ways/features/remote_i_d_receiver/domain/entities/remote_i_d_entity.dart'
+    show RemoteIDEntity;
 import 'package:sky_ways/features/remote_i_d_receiver/domain/repositories/remote_i_d_receiver_repository.dart';
 
-final _remoteIDEntities = <RemoteIdEntity>{};
-
-final class BluetoothReceiver
-    with DataHandler
-    implements RemoteIDReceiverRepository<BluetoothReceiverFailure> {
+final class RemoteIDReceiverRepositoryImplementation
+    implements RemoteIDReceiverRepository {
   @override
-  Stream<
-          Either<BluetoothReceiverFailure,
-              Map<RemoteIDReceiverOperationType, RemoteIdEntity>>>
+  Stream<Either<RemoteIDReceiverFailure, Set<RemoteIDEntity>>>
       get remoteIDStream {
     late final StreamController<
-            Either<BluetoothReceiverFailure,
-                Map<RemoteIDReceiverOperationType, RemoteIdEntity>>>
+            Either<RemoteIDReceiverFailure, Set<RemoteIDEntity>>>
         remoteIDStreamController;
 
     late final StreamSubscription<MessageContainer> remoteIDStreamSubscription;
 
-    remoteIDStreamController = StreamController<
-        Either<BluetoothReceiverFailure,
-            Map<RemoteIDReceiverOperationType, RemoteIdEntity>>>(
-      onListen: () async {
-        await FlutterOpenDroneId.startScan(UsedTechnologies.Bluetooth);
+    final remoteIDEntities = <RemoteIDEntity>{};
 
-        remoteIDStreamSubscription = FlutterOpenDroneId.allMessages.listen(
-          (messageContainer) {
-            var newRemoteIdEntity = RemoteIdEntity(messageContainer);
-            final RemoteIDReceiverOperationType operationType;
-
-            if (!_remoteIDEntities.contains(newRemoteIdEntity)) {
-              operationType = RemoteIDReceiverOperationType.add;
-              _remoteIDEntities.add(newRemoteIdEntity);
-            } else {
-              operationType = RemoteIDReceiverOperationType.update;
-              final oldRemoteIDEntity =
-                  _remoteIDEntities.lookup(newRemoteIdEntity);
-
-              newRemoteIdEntity = RemoteIdEntity.coalesceProperties(
-                newRemoteIdEntity,
-                oldRemoteIDEntity!,
-              );
-
-              _remoteIDEntities
-                ..remove(oldRemoteIDEntity)
-                ..add(newRemoteIdEntity);
-            }
-
-            remoteIDStreamController.add(
-              Right(
-                {operationType: newRemoteIdEntity},
-              ),
-            );
-          },
-          onError: (_) => remoteIDStreamController.add(
-            Left(BluetoothReceiverFailure()),
-          ),
-        );
-      },
-      onCancel: () {
-        FlutterOpenDroneId.stopScan();
-        remoteIDStreamController.close();
-        remoteIDStreamSubscription.cancel();
-      },
-    );
-
-    return remoteIDStreamController.stream;
-  }
-}
-
-final class WifiReceiver
-    with DataHandler
-    implements RemoteIDReceiverRepository<WifiReceiverFailure> {
-  @override
-  Stream<
-          Either<WifiReceiverFailure,
-              Map<RemoteIDReceiverOperationType, RemoteIdEntity>>>
-      get remoteIDStream {
-    late final StreamController<
-            Either<WifiReceiverFailure,
-                Map<RemoteIDReceiverOperationType, RemoteIdEntity>>>
-        remoteIDStreamController;
-    late final StreamSubscription<MessageContainer> remoteIDStreamSubscription;
-
-    remoteIDStreamController = StreamController<
-        Either<WifiReceiverFailure,
-            Map<RemoteIDReceiverOperationType, RemoteIdEntity>>>(
+    remoteIDStreamController =
+        StreamController<Either<RemoteIDReceiverFailure, Set<RemoteIDEntity>>>(
       onListen: () async {
         await FlutterOpenDroneId.startScan(
-          UsedTechnologies.Bluetooth,
+          UsedTechnologies.Both,
         );
+
+        void addNewRemoteIDEntityAndEmitNewEventUsing(
+          RemoteIDEntity newRemoteIDEntity,
+        ) {
+          remoteIDEntities.add(
+            newRemoteIDEntity,
+          );
+
+          remoteIDStreamController.add(
+            Right(
+              remoteIDEntities,
+            ),
+          );
+        }
 
         remoteIDStreamSubscription = FlutterOpenDroneId.allMessages.listen(
           (messageContainer) {
-            // remoteIDStreamController.add(
-            //   Right(
-            //     _remoteIDEntities,
-            //   ),
-            // );
+            final currentRemoteIDEntity = RemoteIDEntity.fromOpenDroneID(
+              messageContainer,
+            );
+
+            if (remoteIDEntities.isEmpty) {
+              addNewRemoteIDEntityAndEmitNewEventUsing(
+                currentRemoteIDEntity,
+              );
+
+              return;
+            }
+
+            if (remoteIDEntities.isNotEmpty) {
+              for (var index = zero; index < remoteIDEntities.length; index++) {
+                if (remoteIDEntities
+                        .elementAt(
+                          index,
+                        )
+                        .connection
+                        .macAddress ==
+                    currentRemoteIDEntity.connection.macAddress) {
+                  final oldRemoteIDEntity = remoteIDEntities.elementAt(
+                    index,
+                  );
+
+                  final newRemoteIDEntity = oldRemoteIDEntity.merge(
+                    currentRemoteIDEntity,
+                  );
+
+                  remoteIDEntities
+                    ..remove(
+                      oldRemoteIDEntity,
+                    )
+                    ..add(
+                      newRemoteIDEntity,
+                    );
+
+                  remoteIDStreamController.add(
+                    Right(
+                      remoteIDEntities,
+                    ),
+                  );
+
+                  return;
+                }
+              }
+
+              addNewRemoteIDEntityAndEmitNewEventUsing(
+                currentRemoteIDEntity,
+              );
+            }
           },
           onError: (_) => remoteIDStreamController.add(
             Left(
-              WifiReceiverFailure(),
+              RemoteIDReceiverFailure(),
             ),
           ),
         );
