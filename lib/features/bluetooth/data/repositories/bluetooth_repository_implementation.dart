@@ -43,7 +43,6 @@ final class BluetoothRepositoryImplementation
       Permission.bluetooth,
       Permission.bluetoothConnect,
       Permission.bluetoothScan,
-      Permission.location
     ].request();
 
     final bluetoothPermissionsBlocked =
