@@ -1,12 +1,7 @@
-// ignore_for_file: depend_on_referenced_packages
-
-import 'dart:convert' show utf8;
 import 'dart:io' show Platform;
-import 'dart:math' show Random;
 
 import 'package:dartz/dartz.dart' show Either, Unit, unit;
 import 'package:flutter_dotenv/flutter_dotenv.dart' show dotenv;
-import 'package:hex/hex.dart' show HEX;
 import 'package:sky_ways/core/errors/exceptions/auth_exception.dart'
     show
         InvalidEmailException,
@@ -15,38 +10,23 @@ import 'package:sky_ways/core/errors/exceptions/auth_exception.dart'
         UserAlreadyExistsException,
         UserDoesNotExistException;
 import 'package:sky_ways/core/errors/failures/auth_failure.dart';
-import 'package:sky_ways/core/resources/numbers/local.dart'
-    show sixteen, thirtyTwo;
 import 'package:sky_ways/core/resources/strings/environments.dart'
     show devEnvironment, flavours;
-import 'package:sky_ways/core/resources/strings/local.dart'
-    show nonceCharacterSet;
 import 'package:sky_ways/core/resources/strings/networking.dart'
     show
         flowTypeKey,
         linkValue,
-        signatureEightLine,
-        signatureFifthLine,
-        signatureFirstLine,
-        signatureFourthLine,
-        signatureSeventhLine,
-        signatureSixthLine,
-        signatureThirdLine,
-        skyTradeServerHttpSignUrl,
-        skyTradeServerSignUrl,
         web3AuthWhitelistOriginAndroid,
         web3AuthWhitelistOriginIos;
 import 'package:sky_ways/core/resources/strings/secret_keys.dart'
     show web3AuthClientId;
-import 'package:sky_ways/core/resources/strings/special_characters.dart'
-    show newLine, whiteSpace;
 import 'package:sky_ways/core/utils/clients/data_handler.dart';
+import 'package:sky_ways/core/utils/clients/signature_handler.dart';
 import 'package:sky_ways/core/utils/enums/networking.dart' show AuthProvider;
 import 'package:sky_ways/features/auth/data/data_sources/auth_remote_data_source.dart'
     show AuthRemoteDataSource;
 import 'package:sky_ways/features/auth/domain/entities/auth_entity.dart';
 import 'package:sky_ways/features/auth/domain/repositories/auth_repository.dart';
-import 'package:solana/solana.dart';
 import 'package:web3auth_flutter/enums.dart' show Network, Provider;
 import 'package:web3auth_flutter/input.dart'
     show ExtraLoginOptions, LoginParams, Web3AuthOptions;
@@ -54,7 +34,7 @@ import 'package:web3auth_flutter/output.dart' show Web3AuthResponse;
 import 'package:web3auth_flutter/web3auth_flutter.dart';
 
 final class AuthRepositoryImplementation
-    with DataHandler
+    with DataHandler, SignatureHandler
     implements AuthRepository {
   const AuthRepositoryImplementation(
     AuthRemoteDataSource authRemoteDataSource,
@@ -206,7 +186,7 @@ final class AuthRepositoryImplementation
 
               final email = userInfo.email!;
 
-              final ed25519KeyPair = await _computeEd25519KeyPair();
+              final ed25519KeyPair = await computeEd25519KeyPair();
 
               final walletAddress = ed25519KeyPair.address;
 
@@ -233,15 +213,15 @@ final class AuthRepositoryImplementation
       checkSkyTradeUserExists() =>
           handleData<CheckSkyTradeUserFailure, SkyTradeUserEntity>(
             dataSourceOperation: () async {
-              final issuedAt = _computeIssuedAt();
-              final nonce = _computeNonce();
-              final userAddress = await _computeUserAddress();
-              final message = _computeMessageToSignUsing(
+              final issuedAt = computeIssuedAt();
+              final nonce = computeNonce();
+              final userAddress = await computeUserAddress();
+              final message = computeMessageToSignUsing(
                 issuedAt: issuedAt,
                 nonce: nonce,
                 userAddress: userAddress,
               );
-              final signature = await _signMessage(
+              final signature = await signMessage(
                 message,
               );
 
@@ -266,120 +246,12 @@ final class AuthRepositoryImplementation
             },
           );
 
-  Future<String> _signMessage(
-    String message,
-  ) async {
-    final ed25519KeyPair = await _computeEd25519KeyPair();
-
-    final signature = await ed25519KeyPair.sign(
-      utf8.encode(
-        message,
-      ),
-    );
-
-    final base58EncodedSignature = signature.toBase58();
-
-    return base58EncodedSignature;
-  }
-
-  String _computeIssuedAt() {
-    final millisecondsSinceEpoch = DateTime.now().millisecondsSinceEpoch;
-
-    final nowInMilliseconds = DateTime.fromMillisecondsSinceEpoch(
-      millisecondsSinceEpoch,
-      isUtc: true,
-    );
-
-    final nowInIso8601String = nowInMilliseconds.toIso8601String();
-
-    return nowInIso8601String;
-  }
-
-  String _computeNonce() {
-    const characters = nonceCharacterSet;
-    final randomizer = Random();
-
-    return String.fromCharCodes(
-      Iterable.generate(
-        sixteen,
-        (_) => characters.codeUnitAt(
-          randomizer.nextInt(
-            characters.length,
-          ),
-        ),
-      ),
-    );
-  }
-
-  Future<String> _computeUserAddress() async {
-    final ed25519KeyPair = await _computeEd25519KeyPair();
-
-    final ed25519HDPublicKey = ed25519KeyPair.publicKey;
-
-    final base58EncodedEd25519HDPublicKey = ed25519HDPublicKey.toBase58();
-
-    return base58EncodedEd25519HDPublicKey;
-  }
-
-  String _computeMessageToSignUsing({
-    required String issuedAt,
-    required String nonce,
-    required String userAddress,
-  }) =>
-      dotenv.env[skyTradeServerSignUrl]! +
-      whiteSpace +
-      signatureFirstLine +
-      newLine +
-      userAddress +
-      newLine +
-      newLine +
-      signatureThirdLine +
-      newLine +
-      newLine +
-      signatureFourthLine +
-      whiteSpace +
-      dotenv.env[skyTradeServerHttpSignUrl]! +
-      newLine +
-      signatureFifthLine +
-      newLine +
-      signatureSixthLine +
-      newLine +
-      signatureSeventhLine +
-      whiteSpace +
-      nonce +
-      newLine +
-      signatureEightLine +
-      whiteSpace +
-      issuedAt;
-
-  Future<Ed25519HDKeyPair> _computeEd25519KeyPair() async {
-    final ed25519PrivateKey = await _computeEd25519PrivateKey();
-
-    final decodedEd25519PrivateKey = HEX
-        .decode(
-          ed25519PrivateKey,
-        )
-        .take(
-          thirtyTwo,
-        )
-        .toList();
-
-    final ed25519HDKeyPair = await Ed25519HDKeyPair.fromPrivateKeyBytes(
-      privateKey: decodedEd25519PrivateKey,
-    );
-
-    return ed25519HDKeyPair;
-  }
-
   @override
   Future<bool> checkWeb3AuthSessionExists() async {
-    final ed25519PrivateKey = await _computeEd25519PrivateKey();
+    final ed25519PrivateKey = await computeEd25519PrivateKey();
 
     return ed25519PrivateKey.isNotEmpty;
   }
-
-  Future<String> _computeEd25519PrivateKey() =>
-      Web3AuthFlutter.getEd25519PrivKey();
 
   @override
   Future<void> captureWhenWeb3AuthCustomTabsClosed() =>

@@ -1,9 +1,23 @@
 import 'package:dartz/dartz.dart' show Function1;
+import 'package:flutter_dotenv/flutter_dotenv.dart' show dotenv;
 import 'package:sky_ways/core/resources/strings/networking.dart'
-    show dataKey, geoHashKey, uasActivityEvent, uasActivityRoom;
+    show
+        apiKeyHeaderKey,
+        closeHeaderValue,
+        connectionHeaderKey,
+        dataKey,
+        geoHashKey,
+        signAddressHeaderKey,
+        signHeaderKey,
+        signIssueAtHeaderKey,
+        signNonceHeaderKey,
+        skyTradeServerApiKey,
+        uasActivityEvent,
+        uasActivityRoom;
 import 'package:sky_ways/core/utils/clients/network_client.dart'
     show SocketIOClient;
 import 'package:sky_ways/core/utils/enums/networking.dart' show ConnectionState;
+import 'package:sky_ways/core/utils/typedefs/networking.dart' show Signature;
 import 'package:sky_ways/features/u_a_s_activity/data/models/u_a_s_model.dart'
     show UASModel;
 
@@ -15,6 +29,7 @@ abstract interface class UASActivityRemoteDataSource {
 
   void requestNewUASActivitiesAround({
     required String geoHash,
+    required Signature signature,
   });
 
   void stopListeningUASActivities();
@@ -56,11 +71,20 @@ final class UASActivityRemoteDataSourceImplementation
   @override
   void requestNewUASActivitiesAround({
     required String geoHash,
+    required Signature signature,
   }) =>
       _socketIOClient.send(
         roomName: uasActivityRoom,
         data: {
           geoHashKey: geoHash,
+        },
+        headers: {
+          connectionHeaderKey: closeHeaderValue,
+          signHeaderKey: signature.signature,
+          signIssueAtHeaderKey: signature.issuedAt,
+          signNonceHeaderKey: signature.nonce,
+          signAddressHeaderKey: signature.address,
+          apiKeyHeaderKey: dotenv.env[skyTradeServerApiKey],
         },
       );
 

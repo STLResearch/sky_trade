@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'bluetooth_receiver_bloc.dart';
+part of 'remote_i_d_receiver_bloc.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -15,13 +15,13 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
-mixin _$BluetoothReceiverEvent {
+mixin _$RemoteIDReceiverEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() listenRemoteIDs,
     required TResult Function(Set<RemoteIDEntity> remoteIDEntities)
         remoteIDsGotten,
-    required TResult Function(BluetoothReceiverFailure bluetoothReceiverFailure)
+    required TResult Function(RemoteIDReceiverFailure remoteIDReceiverFailure)
         remoteIDsNotGotten,
     required TResult Function() stopListeningRemoteIDs,
   }) =>
@@ -30,7 +30,7 @@ mixin _$BluetoothReceiverEvent {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? listenRemoteIDs,
     TResult? Function(Set<RemoteIDEntity> remoteIDEntities)? remoteIDsGotten,
-    TResult? Function(BluetoothReceiverFailure bluetoothReceiverFailure)?
+    TResult? Function(RemoteIDReceiverFailure remoteIDReceiverFailure)?
         remoteIDsNotGotten,
     TResult? Function()? stopListeningRemoteIDs,
   }) =>
@@ -39,7 +39,7 @@ mixin _$BluetoothReceiverEvent {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? listenRemoteIDs,
     TResult Function(Set<RemoteIDEntity> remoteIDEntities)? remoteIDsGotten,
-    TResult Function(BluetoothReceiverFailure bluetoothReceiverFailure)?
+    TResult Function(RemoteIDReceiverFailure remoteIDReceiverFailure)?
         remoteIDsNotGotten,
     TResult Function()? stopListeningRemoteIDs,
     required TResult orElse(),
@@ -74,17 +74,17 @@ mixin _$BluetoothReceiverEvent {
 }
 
 /// @nodoc
-abstract class $BluetoothReceiverEventCopyWith<$Res> {
-  factory $BluetoothReceiverEventCopyWith(BluetoothReceiverEvent value,
-          $Res Function(BluetoothReceiverEvent) then) =
-      _$BluetoothReceiverEventCopyWithImpl<$Res, BluetoothReceiverEvent>;
+abstract class $RemoteIDReceiverEventCopyWith<$Res> {
+  factory $RemoteIDReceiverEventCopyWith(RemoteIDReceiverEvent value,
+          $Res Function(RemoteIDReceiverEvent) then) =
+      _$RemoteIDReceiverEventCopyWithImpl<$Res, RemoteIDReceiverEvent>;
 }
 
 /// @nodoc
-class _$BluetoothReceiverEventCopyWithImpl<$Res,
-        $Val extends BluetoothReceiverEvent>
-    implements $BluetoothReceiverEventCopyWith<$Res> {
-  _$BluetoothReceiverEventCopyWithImpl(this._value, this._then);
+class _$RemoteIDReceiverEventCopyWithImpl<$Res,
+        $Val extends RemoteIDReceiverEvent>
+    implements $RemoteIDReceiverEventCopyWith<$Res> {
+  _$RemoteIDReceiverEventCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -101,7 +101,7 @@ abstract class _$$ListenRemoteIDsImplCopyWith<$Res> {
 
 /// @nodoc
 class __$$ListenRemoteIDsImplCopyWithImpl<$Res>
-    extends _$BluetoothReceiverEventCopyWithImpl<$Res, _$ListenRemoteIDsImpl>
+    extends _$RemoteIDReceiverEventCopyWithImpl<$Res, _$ListenRemoteIDsImpl>
     implements _$$ListenRemoteIDsImplCopyWith<$Res> {
   __$$ListenRemoteIDsImplCopyWithImpl(
       _$ListenRemoteIDsImpl _value, $Res Function(_$ListenRemoteIDsImpl) _then)
@@ -115,7 +115,7 @@ class _$ListenRemoteIDsImpl implements _ListenRemoteIDs {
 
   @override
   String toString() {
-    return 'BluetoothReceiverEvent.listenRemoteIDs()';
+    return 'RemoteIDReceiverEvent.listenRemoteIDs()';
   }
 
   @override
@@ -133,7 +133,7 @@ class _$ListenRemoteIDsImpl implements _ListenRemoteIDs {
     required TResult Function() listenRemoteIDs,
     required TResult Function(Set<RemoteIDEntity> remoteIDEntities)
         remoteIDsGotten,
-    required TResult Function(BluetoothReceiverFailure bluetoothReceiverFailure)
+    required TResult Function(RemoteIDReceiverFailure remoteIDReceiverFailure)
         remoteIDsNotGotten,
     required TResult Function() stopListeningRemoteIDs,
   }) {
@@ -145,7 +145,7 @@ class _$ListenRemoteIDsImpl implements _ListenRemoteIDs {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? listenRemoteIDs,
     TResult? Function(Set<RemoteIDEntity> remoteIDEntities)? remoteIDsGotten,
-    TResult? Function(BluetoothReceiverFailure bluetoothReceiverFailure)?
+    TResult? Function(RemoteIDReceiverFailure remoteIDReceiverFailure)?
         remoteIDsNotGotten,
     TResult? Function()? stopListeningRemoteIDs,
   }) {
@@ -157,7 +157,7 @@ class _$ListenRemoteIDsImpl implements _ListenRemoteIDs {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? listenRemoteIDs,
     TResult Function(Set<RemoteIDEntity> remoteIDEntities)? remoteIDsGotten,
-    TResult Function(BluetoothReceiverFailure bluetoothReceiverFailure)?
+    TResult Function(RemoteIDReceiverFailure remoteIDReceiverFailure)?
         remoteIDsNotGotten,
     TResult Function()? stopListeningRemoteIDs,
     required TResult orElse(),
@@ -207,7 +207,7 @@ class _$ListenRemoteIDsImpl implements _ListenRemoteIDs {
   }
 }
 
-abstract class _ListenRemoteIDs implements BluetoothReceiverEvent {
+abstract class _ListenRemoteIDs implements RemoteIDReceiverEvent {
   const factory _ListenRemoteIDs() = _$ListenRemoteIDsImpl;
 }
 
@@ -222,7 +222,7 @@ abstract class _$$RemoteIDsGottenImplCopyWith<$Res> {
 
 /// @nodoc
 class __$$RemoteIDsGottenImplCopyWithImpl<$Res>
-    extends _$BluetoothReceiverEventCopyWithImpl<$Res, _$RemoteIDsGottenImpl>
+    extends _$RemoteIDReceiverEventCopyWithImpl<$Res, _$RemoteIDsGottenImpl>
     implements _$$RemoteIDsGottenImplCopyWith<$Res> {
   __$$RemoteIDsGottenImplCopyWithImpl(
       _$RemoteIDsGottenImpl _value, $Res Function(_$RemoteIDsGottenImpl) _then)
@@ -259,7 +259,7 @@ class _$RemoteIDsGottenImpl implements _RemoteIDsGotten {
 
   @override
   String toString() {
-    return 'BluetoothReceiverEvent.remoteIDsGotten(remoteIDEntities: $remoteIDEntities)';
+    return 'RemoteIDReceiverEvent.remoteIDsGotten(remoteIDEntities: $remoteIDEntities)';
   }
 
   @override
@@ -288,7 +288,7 @@ class _$RemoteIDsGottenImpl implements _RemoteIDsGotten {
     required TResult Function() listenRemoteIDs,
     required TResult Function(Set<RemoteIDEntity> remoteIDEntities)
         remoteIDsGotten,
-    required TResult Function(BluetoothReceiverFailure bluetoothReceiverFailure)
+    required TResult Function(RemoteIDReceiverFailure remoteIDReceiverFailure)
         remoteIDsNotGotten,
     required TResult Function() stopListeningRemoteIDs,
   }) {
@@ -300,7 +300,7 @@ class _$RemoteIDsGottenImpl implements _RemoteIDsGotten {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? listenRemoteIDs,
     TResult? Function(Set<RemoteIDEntity> remoteIDEntities)? remoteIDsGotten,
-    TResult? Function(BluetoothReceiverFailure bluetoothReceiverFailure)?
+    TResult? Function(RemoteIDReceiverFailure remoteIDReceiverFailure)?
         remoteIDsNotGotten,
     TResult? Function()? stopListeningRemoteIDs,
   }) {
@@ -312,7 +312,7 @@ class _$RemoteIDsGottenImpl implements _RemoteIDsGotten {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? listenRemoteIDs,
     TResult Function(Set<RemoteIDEntity> remoteIDEntities)? remoteIDsGotten,
-    TResult Function(BluetoothReceiverFailure bluetoothReceiverFailure)?
+    TResult Function(RemoteIDReceiverFailure remoteIDReceiverFailure)?
         remoteIDsNotGotten,
     TResult Function()? stopListeningRemoteIDs,
     required TResult orElse(),
@@ -362,7 +362,7 @@ class _$RemoteIDsGottenImpl implements _RemoteIDsGotten {
   }
 }
 
-abstract class _RemoteIDsGotten implements BluetoothReceiverEvent {
+abstract class _RemoteIDsGotten implements RemoteIDReceiverEvent {
   const factory _RemoteIDsGotten(
           {required final Set<RemoteIDEntity> remoteIDEntities}) =
       _$RemoteIDsGottenImpl;
@@ -379,12 +379,12 @@ abstract class _$$RemoteIDsNotGottenImplCopyWith<$Res> {
           $Res Function(_$RemoteIDsNotGottenImpl) then) =
       __$$RemoteIDsNotGottenImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({BluetoothReceiverFailure bluetoothReceiverFailure});
+  $Res call({RemoteIDReceiverFailure remoteIDReceiverFailure});
 }
 
 /// @nodoc
 class __$$RemoteIDsNotGottenImplCopyWithImpl<$Res>
-    extends _$BluetoothReceiverEventCopyWithImpl<$Res, _$RemoteIDsNotGottenImpl>
+    extends _$RemoteIDReceiverEventCopyWithImpl<$Res, _$RemoteIDsNotGottenImpl>
     implements _$$RemoteIDsNotGottenImplCopyWith<$Res> {
   __$$RemoteIDsNotGottenImplCopyWithImpl(_$RemoteIDsNotGottenImpl _value,
       $Res Function(_$RemoteIDsNotGottenImpl) _then)
@@ -393,13 +393,13 @@ class __$$RemoteIDsNotGottenImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? bluetoothReceiverFailure = null,
+    Object? remoteIDReceiverFailure = null,
   }) {
     return _then(_$RemoteIDsNotGottenImpl(
-      bluetoothReceiverFailure: null == bluetoothReceiverFailure
-          ? _value.bluetoothReceiverFailure
-          : bluetoothReceiverFailure // ignore: cast_nullable_to_non_nullable
-              as BluetoothReceiverFailure,
+      remoteIDReceiverFailure: null == remoteIDReceiverFailure
+          ? _value.remoteIDReceiverFailure
+          : remoteIDReceiverFailure // ignore: cast_nullable_to_non_nullable
+              as RemoteIDReceiverFailure,
     ));
   }
 }
@@ -407,14 +407,14 @@ class __$$RemoteIDsNotGottenImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$RemoteIDsNotGottenImpl implements _RemoteIDsNotGotten {
-  const _$RemoteIDsNotGottenImpl({required this.bluetoothReceiverFailure});
+  const _$RemoteIDsNotGottenImpl({required this.remoteIDReceiverFailure});
 
   @override
-  final BluetoothReceiverFailure bluetoothReceiverFailure;
+  final RemoteIDReceiverFailure remoteIDReceiverFailure;
 
   @override
   String toString() {
-    return 'BluetoothReceiverEvent.remoteIDsNotGotten(bluetoothReceiverFailure: $bluetoothReceiverFailure)';
+    return 'RemoteIDReceiverEvent.remoteIDsNotGotten(remoteIDReceiverFailure: $remoteIDReceiverFailure)';
   }
 
   @override
@@ -423,12 +423,12 @@ class _$RemoteIDsNotGottenImpl implements _RemoteIDsNotGotten {
         (other.runtimeType == runtimeType &&
             other is _$RemoteIDsNotGottenImpl &&
             (identical(
-                    other.bluetoothReceiverFailure, bluetoothReceiverFailure) ||
-                other.bluetoothReceiverFailure == bluetoothReceiverFailure));
+                    other.remoteIDReceiverFailure, remoteIDReceiverFailure) ||
+                other.remoteIDReceiverFailure == remoteIDReceiverFailure));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, bluetoothReceiverFailure);
+  int get hashCode => Object.hash(runtimeType, remoteIDReceiverFailure);
 
   @JsonKey(ignore: true)
   @override
@@ -443,11 +443,11 @@ class _$RemoteIDsNotGottenImpl implements _RemoteIDsNotGotten {
     required TResult Function() listenRemoteIDs,
     required TResult Function(Set<RemoteIDEntity> remoteIDEntities)
         remoteIDsGotten,
-    required TResult Function(BluetoothReceiverFailure bluetoothReceiverFailure)
+    required TResult Function(RemoteIDReceiverFailure remoteIDReceiverFailure)
         remoteIDsNotGotten,
     required TResult Function() stopListeningRemoteIDs,
   }) {
-    return remoteIDsNotGotten(bluetoothReceiverFailure);
+    return remoteIDsNotGotten(remoteIDReceiverFailure);
   }
 
   @override
@@ -455,11 +455,11 @@ class _$RemoteIDsNotGottenImpl implements _RemoteIDsNotGotten {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? listenRemoteIDs,
     TResult? Function(Set<RemoteIDEntity> remoteIDEntities)? remoteIDsGotten,
-    TResult? Function(BluetoothReceiverFailure bluetoothReceiverFailure)?
+    TResult? Function(RemoteIDReceiverFailure remoteIDReceiverFailure)?
         remoteIDsNotGotten,
     TResult? Function()? stopListeningRemoteIDs,
   }) {
-    return remoteIDsNotGotten?.call(bluetoothReceiverFailure);
+    return remoteIDsNotGotten?.call(remoteIDReceiverFailure);
   }
 
   @override
@@ -467,13 +467,13 @@ class _$RemoteIDsNotGottenImpl implements _RemoteIDsNotGotten {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? listenRemoteIDs,
     TResult Function(Set<RemoteIDEntity> remoteIDEntities)? remoteIDsGotten,
-    TResult Function(BluetoothReceiverFailure bluetoothReceiverFailure)?
+    TResult Function(RemoteIDReceiverFailure remoteIDReceiverFailure)?
         remoteIDsNotGotten,
     TResult Function()? stopListeningRemoteIDs,
     required TResult orElse(),
   }) {
     if (remoteIDsNotGotten != null) {
-      return remoteIDsNotGotten(bluetoothReceiverFailure);
+      return remoteIDsNotGotten(remoteIDReceiverFailure);
     }
     return orElse();
   }
@@ -517,12 +517,12 @@ class _$RemoteIDsNotGottenImpl implements _RemoteIDsNotGotten {
   }
 }
 
-abstract class _RemoteIDsNotGotten implements BluetoothReceiverEvent {
+abstract class _RemoteIDsNotGotten implements RemoteIDReceiverEvent {
   const factory _RemoteIDsNotGotten(
-          {required final BluetoothReceiverFailure bluetoothReceiverFailure}) =
+          {required final RemoteIDReceiverFailure remoteIDReceiverFailure}) =
       _$RemoteIDsNotGottenImpl;
 
-  BluetoothReceiverFailure get bluetoothReceiverFailure;
+  RemoteIDReceiverFailure get remoteIDReceiverFailure;
   @JsonKey(ignore: true)
   _$$RemoteIDsNotGottenImplCopyWith<_$RemoteIDsNotGottenImpl> get copyWith =>
       throw _privateConstructorUsedError;
@@ -538,7 +538,7 @@ abstract class _$$StopListeningRemoteIDsImplCopyWith<$Res> {
 
 /// @nodoc
 class __$$StopListeningRemoteIDsImplCopyWithImpl<$Res>
-    extends _$BluetoothReceiverEventCopyWithImpl<$Res,
+    extends _$RemoteIDReceiverEventCopyWithImpl<$Res,
         _$StopListeningRemoteIDsImpl>
     implements _$$StopListeningRemoteIDsImplCopyWith<$Res> {
   __$$StopListeningRemoteIDsImplCopyWithImpl(
@@ -554,7 +554,7 @@ class _$StopListeningRemoteIDsImpl implements _StopListeningRemoteIDs {
 
   @override
   String toString() {
-    return 'BluetoothReceiverEvent.stopListeningRemoteIDs()';
+    return 'RemoteIDReceiverEvent.stopListeningRemoteIDs()';
   }
 
   @override
@@ -573,7 +573,7 @@ class _$StopListeningRemoteIDsImpl implements _StopListeningRemoteIDs {
     required TResult Function() listenRemoteIDs,
     required TResult Function(Set<RemoteIDEntity> remoteIDEntities)
         remoteIDsGotten,
-    required TResult Function(BluetoothReceiverFailure bluetoothReceiverFailure)
+    required TResult Function(RemoteIDReceiverFailure remoteIDReceiverFailure)
         remoteIDsNotGotten,
     required TResult Function() stopListeningRemoteIDs,
   }) {
@@ -585,7 +585,7 @@ class _$StopListeningRemoteIDsImpl implements _StopListeningRemoteIDs {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? listenRemoteIDs,
     TResult? Function(Set<RemoteIDEntity> remoteIDEntities)? remoteIDsGotten,
-    TResult? Function(BluetoothReceiverFailure bluetoothReceiverFailure)?
+    TResult? Function(RemoteIDReceiverFailure remoteIDReceiverFailure)?
         remoteIDsNotGotten,
     TResult? Function()? stopListeningRemoteIDs,
   }) {
@@ -597,7 +597,7 @@ class _$StopListeningRemoteIDsImpl implements _StopListeningRemoteIDs {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? listenRemoteIDs,
     TResult Function(Set<RemoteIDEntity> remoteIDEntities)? remoteIDsGotten,
-    TResult Function(BluetoothReceiverFailure bluetoothReceiverFailure)?
+    TResult Function(RemoteIDReceiverFailure remoteIDReceiverFailure)?
         remoteIDsNotGotten,
     TResult Function()? stopListeningRemoteIDs,
     required TResult orElse(),
@@ -647,19 +647,19 @@ class _$StopListeningRemoteIDsImpl implements _StopListeningRemoteIDs {
   }
 }
 
-abstract class _StopListeningRemoteIDs implements BluetoothReceiverEvent {
+abstract class _StopListeningRemoteIDs implements RemoteIDReceiverEvent {
   const factory _StopListeningRemoteIDs() = _$StopListeningRemoteIDsImpl;
 }
 
 /// @nodoc
-mixin _$BluetoothReceiverState {
+mixin _$RemoteIDReceiverState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() gettingRemoteIDs,
     required TResult Function(Set<RemoteIDEntity> remoteIDEntities)
         gotRemoteIDs,
-    required TResult Function(BluetoothReceiverFailure bluetoothReceiverFailure)
+    required TResult Function(RemoteIDReceiverFailure remoteIDReceiverFailure)
         failedToGetRemoteIDs,
   }) =>
       throw _privateConstructorUsedError;
@@ -668,7 +668,7 @@ mixin _$BluetoothReceiverState {
     TResult? Function()? initial,
     TResult? Function()? gettingRemoteIDs,
     TResult? Function(Set<RemoteIDEntity> remoteIDEntities)? gotRemoteIDs,
-    TResult? Function(BluetoothReceiverFailure bluetoothReceiverFailure)?
+    TResult? Function(RemoteIDReceiverFailure remoteIDReceiverFailure)?
         failedToGetRemoteIDs,
   }) =>
       throw _privateConstructorUsedError;
@@ -677,7 +677,7 @@ mixin _$BluetoothReceiverState {
     TResult Function()? initial,
     TResult Function()? gettingRemoteIDs,
     TResult Function(Set<RemoteIDEntity> remoteIDEntities)? gotRemoteIDs,
-    TResult Function(BluetoothReceiverFailure bluetoothReceiverFailure)?
+    TResult Function(RemoteIDReceiverFailure remoteIDReceiverFailure)?
         failedToGetRemoteIDs,
     required TResult orElse(),
   }) =>
@@ -710,17 +710,17 @@ mixin _$BluetoothReceiverState {
 }
 
 /// @nodoc
-abstract class $BluetoothReceiverStateCopyWith<$Res> {
-  factory $BluetoothReceiverStateCopyWith(BluetoothReceiverState value,
-          $Res Function(BluetoothReceiverState) then) =
-      _$BluetoothReceiverStateCopyWithImpl<$Res, BluetoothReceiverState>;
+abstract class $RemoteIDReceiverStateCopyWith<$Res> {
+  factory $RemoteIDReceiverStateCopyWith(RemoteIDReceiverState value,
+          $Res Function(RemoteIDReceiverState) then) =
+      _$RemoteIDReceiverStateCopyWithImpl<$Res, RemoteIDReceiverState>;
 }
 
 /// @nodoc
-class _$BluetoothReceiverStateCopyWithImpl<$Res,
-        $Val extends BluetoothReceiverState>
-    implements $BluetoothReceiverStateCopyWith<$Res> {
-  _$BluetoothReceiverStateCopyWithImpl(this._value, this._then);
+class _$RemoteIDReceiverStateCopyWithImpl<$Res,
+        $Val extends RemoteIDReceiverState>
+    implements $RemoteIDReceiverStateCopyWith<$Res> {
+  _$RemoteIDReceiverStateCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -737,7 +737,7 @@ abstract class _$$InitialImplCopyWith<$Res> {
 
 /// @nodoc
 class __$$InitialImplCopyWithImpl<$Res>
-    extends _$BluetoothReceiverStateCopyWithImpl<$Res, _$InitialImpl>
+    extends _$RemoteIDReceiverStateCopyWithImpl<$Res, _$InitialImpl>
     implements _$$InitialImplCopyWith<$Res> {
   __$$InitialImplCopyWithImpl(
       _$InitialImpl _value, $Res Function(_$InitialImpl) _then)
@@ -751,7 +751,7 @@ class _$InitialImpl implements _Initial {
 
   @override
   String toString() {
-    return 'BluetoothReceiverState.initial()';
+    return 'RemoteIDReceiverState.initial()';
   }
 
   @override
@@ -770,7 +770,7 @@ class _$InitialImpl implements _Initial {
     required TResult Function() gettingRemoteIDs,
     required TResult Function(Set<RemoteIDEntity> remoteIDEntities)
         gotRemoteIDs,
-    required TResult Function(BluetoothReceiverFailure bluetoothReceiverFailure)
+    required TResult Function(RemoteIDReceiverFailure remoteIDReceiverFailure)
         failedToGetRemoteIDs,
   }) {
     return initial();
@@ -782,7 +782,7 @@ class _$InitialImpl implements _Initial {
     TResult? Function()? initial,
     TResult? Function()? gettingRemoteIDs,
     TResult? Function(Set<RemoteIDEntity> remoteIDEntities)? gotRemoteIDs,
-    TResult? Function(BluetoothReceiverFailure bluetoothReceiverFailure)?
+    TResult? Function(RemoteIDReceiverFailure remoteIDReceiverFailure)?
         failedToGetRemoteIDs,
   }) {
     return initial?.call();
@@ -794,7 +794,7 @@ class _$InitialImpl implements _Initial {
     TResult Function()? initial,
     TResult Function()? gettingRemoteIDs,
     TResult Function(Set<RemoteIDEntity> remoteIDEntities)? gotRemoteIDs,
-    TResult Function(BluetoothReceiverFailure bluetoothReceiverFailure)?
+    TResult Function(RemoteIDReceiverFailure remoteIDReceiverFailure)?
         failedToGetRemoteIDs,
     required TResult orElse(),
   }) {
@@ -842,7 +842,7 @@ class _$InitialImpl implements _Initial {
   }
 }
 
-abstract class _Initial implements BluetoothReceiverState {
+abstract class _Initial implements RemoteIDReceiverState {
   const factory _Initial() = _$InitialImpl;
 }
 
@@ -855,7 +855,7 @@ abstract class _$$GettingRemoteIDsImplCopyWith<$Res> {
 
 /// @nodoc
 class __$$GettingRemoteIDsImplCopyWithImpl<$Res>
-    extends _$BluetoothReceiverStateCopyWithImpl<$Res, _$GettingRemoteIDsImpl>
+    extends _$RemoteIDReceiverStateCopyWithImpl<$Res, _$GettingRemoteIDsImpl>
     implements _$$GettingRemoteIDsImplCopyWith<$Res> {
   __$$GettingRemoteIDsImplCopyWithImpl(_$GettingRemoteIDsImpl _value,
       $Res Function(_$GettingRemoteIDsImpl) _then)
@@ -869,7 +869,7 @@ class _$GettingRemoteIDsImpl implements _GettingRemoteIDs {
 
   @override
   String toString() {
-    return 'BluetoothReceiverState.gettingRemoteIDs()';
+    return 'RemoteIDReceiverState.gettingRemoteIDs()';
   }
 
   @override
@@ -888,7 +888,7 @@ class _$GettingRemoteIDsImpl implements _GettingRemoteIDs {
     required TResult Function() gettingRemoteIDs,
     required TResult Function(Set<RemoteIDEntity> remoteIDEntities)
         gotRemoteIDs,
-    required TResult Function(BluetoothReceiverFailure bluetoothReceiverFailure)
+    required TResult Function(RemoteIDReceiverFailure remoteIDReceiverFailure)
         failedToGetRemoteIDs,
   }) {
     return gettingRemoteIDs();
@@ -900,7 +900,7 @@ class _$GettingRemoteIDsImpl implements _GettingRemoteIDs {
     TResult? Function()? initial,
     TResult? Function()? gettingRemoteIDs,
     TResult? Function(Set<RemoteIDEntity> remoteIDEntities)? gotRemoteIDs,
-    TResult? Function(BluetoothReceiverFailure bluetoothReceiverFailure)?
+    TResult? Function(RemoteIDReceiverFailure remoteIDReceiverFailure)?
         failedToGetRemoteIDs,
   }) {
     return gettingRemoteIDs?.call();
@@ -912,7 +912,7 @@ class _$GettingRemoteIDsImpl implements _GettingRemoteIDs {
     TResult Function()? initial,
     TResult Function()? gettingRemoteIDs,
     TResult Function(Set<RemoteIDEntity> remoteIDEntities)? gotRemoteIDs,
-    TResult Function(BluetoothReceiverFailure bluetoothReceiverFailure)?
+    TResult Function(RemoteIDReceiverFailure remoteIDReceiverFailure)?
         failedToGetRemoteIDs,
     required TResult orElse(),
   }) {
@@ -960,7 +960,7 @@ class _$GettingRemoteIDsImpl implements _GettingRemoteIDs {
   }
 }
 
-abstract class _GettingRemoteIDs implements BluetoothReceiverState {
+abstract class _GettingRemoteIDs implements RemoteIDReceiverState {
   const factory _GettingRemoteIDs() = _$GettingRemoteIDsImpl;
 }
 
@@ -975,7 +975,7 @@ abstract class _$$GotRemoteIDsImplCopyWith<$Res> {
 
 /// @nodoc
 class __$$GotRemoteIDsImplCopyWithImpl<$Res>
-    extends _$BluetoothReceiverStateCopyWithImpl<$Res, _$GotRemoteIDsImpl>
+    extends _$RemoteIDReceiverStateCopyWithImpl<$Res, _$GotRemoteIDsImpl>
     implements _$$GotRemoteIDsImplCopyWith<$Res> {
   __$$GotRemoteIDsImplCopyWithImpl(
       _$GotRemoteIDsImpl _value, $Res Function(_$GotRemoteIDsImpl) _then)
@@ -1012,7 +1012,7 @@ class _$GotRemoteIDsImpl implements _GotRemoteIDs {
 
   @override
   String toString() {
-    return 'BluetoothReceiverState.gotRemoteIDs(remoteIDEntities: $remoteIDEntities)';
+    return 'RemoteIDReceiverState.gotRemoteIDs(remoteIDEntities: $remoteIDEntities)';
   }
 
   @override
@@ -1041,7 +1041,7 @@ class _$GotRemoteIDsImpl implements _GotRemoteIDs {
     required TResult Function() gettingRemoteIDs,
     required TResult Function(Set<RemoteIDEntity> remoteIDEntities)
         gotRemoteIDs,
-    required TResult Function(BluetoothReceiverFailure bluetoothReceiverFailure)
+    required TResult Function(RemoteIDReceiverFailure remoteIDReceiverFailure)
         failedToGetRemoteIDs,
   }) {
     return gotRemoteIDs(remoteIDEntities);
@@ -1053,7 +1053,7 @@ class _$GotRemoteIDsImpl implements _GotRemoteIDs {
     TResult? Function()? initial,
     TResult? Function()? gettingRemoteIDs,
     TResult? Function(Set<RemoteIDEntity> remoteIDEntities)? gotRemoteIDs,
-    TResult? Function(BluetoothReceiverFailure bluetoothReceiverFailure)?
+    TResult? Function(RemoteIDReceiverFailure remoteIDReceiverFailure)?
         failedToGetRemoteIDs,
   }) {
     return gotRemoteIDs?.call(remoteIDEntities);
@@ -1065,7 +1065,7 @@ class _$GotRemoteIDsImpl implements _GotRemoteIDs {
     TResult Function()? initial,
     TResult Function()? gettingRemoteIDs,
     TResult Function(Set<RemoteIDEntity> remoteIDEntities)? gotRemoteIDs,
-    TResult Function(BluetoothReceiverFailure bluetoothReceiverFailure)?
+    TResult Function(RemoteIDReceiverFailure remoteIDReceiverFailure)?
         failedToGetRemoteIDs,
     required TResult orElse(),
   }) {
@@ -1113,7 +1113,7 @@ class _$GotRemoteIDsImpl implements _GotRemoteIDs {
   }
 }
 
-abstract class _GotRemoteIDs implements BluetoothReceiverState {
+abstract class _GotRemoteIDs implements RemoteIDReceiverState {
   const factory _GotRemoteIDs(
           {required final Set<RemoteIDEntity> remoteIDEntities}) =
       _$GotRemoteIDsImpl;
@@ -1130,12 +1130,12 @@ abstract class _$$FailedToGetRemoteIDsImplCopyWith<$Res> {
           $Res Function(_$FailedToGetRemoteIDsImpl) then) =
       __$$FailedToGetRemoteIDsImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({BluetoothReceiverFailure bluetoothReceiverFailure});
+  $Res call({RemoteIDReceiverFailure remoteIDReceiverFailure});
 }
 
 /// @nodoc
 class __$$FailedToGetRemoteIDsImplCopyWithImpl<$Res>
-    extends _$BluetoothReceiverStateCopyWithImpl<$Res,
+    extends _$RemoteIDReceiverStateCopyWithImpl<$Res,
         _$FailedToGetRemoteIDsImpl>
     implements _$$FailedToGetRemoteIDsImplCopyWith<$Res> {
   __$$FailedToGetRemoteIDsImplCopyWithImpl(_$FailedToGetRemoteIDsImpl _value,
@@ -1145,13 +1145,13 @@ class __$$FailedToGetRemoteIDsImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? bluetoothReceiverFailure = null,
+    Object? remoteIDReceiverFailure = null,
   }) {
     return _then(_$FailedToGetRemoteIDsImpl(
-      bluetoothReceiverFailure: null == bluetoothReceiverFailure
-          ? _value.bluetoothReceiverFailure
-          : bluetoothReceiverFailure // ignore: cast_nullable_to_non_nullable
-              as BluetoothReceiverFailure,
+      remoteIDReceiverFailure: null == remoteIDReceiverFailure
+          ? _value.remoteIDReceiverFailure
+          : remoteIDReceiverFailure // ignore: cast_nullable_to_non_nullable
+              as RemoteIDReceiverFailure,
     ));
   }
 }
@@ -1159,14 +1159,14 @@ class __$$FailedToGetRemoteIDsImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$FailedToGetRemoteIDsImpl implements _FailedToGetRemoteIDs {
-  const _$FailedToGetRemoteIDsImpl({required this.bluetoothReceiverFailure});
+  const _$FailedToGetRemoteIDsImpl({required this.remoteIDReceiverFailure});
 
   @override
-  final BluetoothReceiverFailure bluetoothReceiverFailure;
+  final RemoteIDReceiverFailure remoteIDReceiverFailure;
 
   @override
   String toString() {
-    return 'BluetoothReceiverState.failedToGetRemoteIDs(bluetoothReceiverFailure: $bluetoothReceiverFailure)';
+    return 'RemoteIDReceiverState.failedToGetRemoteIDs(remoteIDReceiverFailure: $remoteIDReceiverFailure)';
   }
 
   @override
@@ -1175,12 +1175,12 @@ class _$FailedToGetRemoteIDsImpl implements _FailedToGetRemoteIDs {
         (other.runtimeType == runtimeType &&
             other is _$FailedToGetRemoteIDsImpl &&
             (identical(
-                    other.bluetoothReceiverFailure, bluetoothReceiverFailure) ||
-                other.bluetoothReceiverFailure == bluetoothReceiverFailure));
+                    other.remoteIDReceiverFailure, remoteIDReceiverFailure) ||
+                other.remoteIDReceiverFailure == remoteIDReceiverFailure));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, bluetoothReceiverFailure);
+  int get hashCode => Object.hash(runtimeType, remoteIDReceiverFailure);
 
   @JsonKey(ignore: true)
   @override
@@ -1197,10 +1197,10 @@ class _$FailedToGetRemoteIDsImpl implements _FailedToGetRemoteIDs {
     required TResult Function() gettingRemoteIDs,
     required TResult Function(Set<RemoteIDEntity> remoteIDEntities)
         gotRemoteIDs,
-    required TResult Function(BluetoothReceiverFailure bluetoothReceiverFailure)
+    required TResult Function(RemoteIDReceiverFailure remoteIDReceiverFailure)
         failedToGetRemoteIDs,
   }) {
-    return failedToGetRemoteIDs(bluetoothReceiverFailure);
+    return failedToGetRemoteIDs(remoteIDReceiverFailure);
   }
 
   @override
@@ -1209,10 +1209,10 @@ class _$FailedToGetRemoteIDsImpl implements _FailedToGetRemoteIDs {
     TResult? Function()? initial,
     TResult? Function()? gettingRemoteIDs,
     TResult? Function(Set<RemoteIDEntity> remoteIDEntities)? gotRemoteIDs,
-    TResult? Function(BluetoothReceiverFailure bluetoothReceiverFailure)?
+    TResult? Function(RemoteIDReceiverFailure remoteIDReceiverFailure)?
         failedToGetRemoteIDs,
   }) {
-    return failedToGetRemoteIDs?.call(bluetoothReceiverFailure);
+    return failedToGetRemoteIDs?.call(remoteIDReceiverFailure);
   }
 
   @override
@@ -1221,12 +1221,12 @@ class _$FailedToGetRemoteIDsImpl implements _FailedToGetRemoteIDs {
     TResult Function()? initial,
     TResult Function()? gettingRemoteIDs,
     TResult Function(Set<RemoteIDEntity> remoteIDEntities)? gotRemoteIDs,
-    TResult Function(BluetoothReceiverFailure bluetoothReceiverFailure)?
+    TResult Function(RemoteIDReceiverFailure remoteIDReceiverFailure)?
         failedToGetRemoteIDs,
     required TResult orElse(),
   }) {
     if (failedToGetRemoteIDs != null) {
-      return failedToGetRemoteIDs(bluetoothReceiverFailure);
+      return failedToGetRemoteIDs(remoteIDReceiverFailure);
     }
     return orElse();
   }
@@ -1269,12 +1269,12 @@ class _$FailedToGetRemoteIDsImpl implements _FailedToGetRemoteIDs {
   }
 }
 
-abstract class _FailedToGetRemoteIDs implements BluetoothReceiverState {
+abstract class _FailedToGetRemoteIDs implements RemoteIDReceiverState {
   const factory _FailedToGetRemoteIDs(
-          {required final BluetoothReceiverFailure bluetoothReceiverFailure}) =
+          {required final RemoteIDReceiverFailure remoteIDReceiverFailure}) =
       _$FailedToGetRemoteIDsImpl;
 
-  BluetoothReceiverFailure get bluetoothReceiverFailure;
+  RemoteIDReceiverFailure get remoteIDReceiverFailure;
   @JsonKey(ignore: true)
   _$$FailedToGetRemoteIDsImplCopyWith<_$FailedToGetRemoteIDsImpl>
       get copyWith => throw _privateConstructorUsedError;

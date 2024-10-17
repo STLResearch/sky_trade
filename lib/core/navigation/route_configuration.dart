@@ -36,8 +36,6 @@ import 'package:sky_ways/features/u_a_s_restrictions/presentation/views/home_scr
 
 Route routes(RouteSettings settings) => MaterialPageRoute(
       builder: (context) {
-        // FlutterNativeSplash.remove();
-        // return ReceiverTestScreen();
         switch (settings.name) {
           case baseRoutePath:
             context.read<InternetConnectionCheckerBloc>().add(

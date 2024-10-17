@@ -17,9 +17,11 @@ import 'package:sky_ways/core/resources/strings/networking.dart'
         acceptAllHeaderValue,
         acceptHeaderKey,
         applicationJsonHeaderValue,
+        bodyKey,
         connectingEvent,
         connectionTimeoutEvent,
         contentTypeHeaderKey,
+        headersKey,
         reconnectingEvent,
         skyTradeServerHttpBaseUrl,
         skyTradeServerSocketIOBaseUrl,
@@ -195,7 +197,10 @@ final class SocketIOClient {
                 (socketIOClientMessage) {
                   _socket.emit(
                     socketIOClientMessage.roomName,
-                    socketIOClientMessage.data,
+                    {
+                      headersKey: socketIOClientMessage.headers,
+                      bodyKey: socketIOClientMessage.data,
+                    },
                   );
                 },
               );
@@ -205,11 +210,13 @@ final class SocketIOClient {
   void send({
     required String roomName,
     required Map<String, dynamic> data,
+    required Map<String, dynamic> headers,
   }) =>
       _clientMessageStreamController?.add(
         Right(
           (
             roomName: roomName,
+            headers: headers,
             data: data,
           ),
         ),

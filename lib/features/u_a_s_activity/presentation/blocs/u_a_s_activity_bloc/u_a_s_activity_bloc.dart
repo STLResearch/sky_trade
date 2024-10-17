@@ -25,15 +25,23 @@ class UASActivityBloc extends Bloc<UASActivityEvent, UASActivityState> {
     on<_ListenUASActivities>(
       _listenUASActivities,
     );
+
     on<_UASActivitiesGotten>(
       _uASActivitiesGotten,
     );
+
+    on<_UASActivitiesListeningStarted>(
+      _uASActivitiesListeningStarted,
+    );
+
     on<_UASActivitiesListeningStopped>(
       _uASActivitiesListeningStopped,
     );
+
     on<_RequestNewUASActivitiesAround>(
       _requestNewUASActivitiesAround,
     );
+
     on<_StopListeningUASActivities>(
       _stopListeningUASActivities,
     );
@@ -41,7 +49,9 @@ class UASActivityBloc extends Bloc<UASActivityEvent, UASActivityState> {
 
   final UASActivityRepository _uASActivityRepository;
 
-  bool _alreadyListeningUASActivities = false;
+  bool _establishingListeningUASActivities = false;
+
+  bool _startedListeningUASActivities = false;
 
   StreamController<String>? _geoHashStreamController;
   StreamSubscription<String>? _geoHashStreamSubscription;
@@ -52,13 +62,13 @@ class UASActivityBloc extends Bloc<UASActivityEvent, UASActivityState> {
     _ListenUASActivities event,
     Emitter<UASActivityState> emit,
   ) async {
-    if (_alreadyListeningUASActivities) return;
+    if (_establishingListeningUASActivities) return;
 
     emit(
-      const UASActivityState.listeningUASActivities(),
+      const UASActivityState.establishingListeningUASActivities(),
     );
 
-    _alreadyListeningUASActivities = true;
+    _establishingListeningUASActivities = true;
 
     await _uASActivityRepository.listenUASActivities(
       onUASActivitiesGotten: (uASEntities) => add(
@@ -68,12 +78,20 @@ class UASActivityBloc extends Bloc<UASActivityEvent, UASActivityState> {
       ),
       onConnectionChanged: (connectionState) async {
         if (connectionState == ConnectionState.connected) {
+          if (!_startedListeningUASActivities) {
+            add(
+              const UASActivityEvent.uASActivitiesListeningStarted(),
+            );
+
+            _startedListeningUASActivities = true;
+          }
+
           _geoHashStreamController ??= StreamController<String>();
           _geoHashStreamSubscription ??=
               _geoHashStreamController?.stream.listen(
-            (geoHash) {
+            (geoHash) async {
               if (geoHash != _oldGeoHash) {
-                _uASActivityRepository.requestNewUASActivitiesAround(
+                await _uASActivityRepository.requestNewUASActivitiesAround(
                   geoHash: geoHash,
                 );
 
@@ -107,6 +125,14 @@ class UASActivityBloc extends Bloc<UASActivityEvent, UASActivityState> {
         UASActivityState.gotUASActivities(
           uASEntities: event.uASEntities,
         ),
+      );
+
+  void _uASActivitiesListeningStarted(
+    _UASActivitiesListeningStarted event,
+    Emitter<UASActivityState> emit,
+  ) =>
+      emit(
+        const UASActivityState.startedListeningUASActivities(),
       );
 
   void _uASActivitiesListeningStopped(
@@ -147,6 +173,7 @@ class UASActivityBloc extends Bloc<UASActivityEvent, UASActivityState> {
     _geoHashStreamController = null;
     _geoHashStreamSubscription = null;
 
-    _alreadyListeningUASActivities = false;
+    _establishingListeningUASActivities = false;
+    _startedListeningUASActivities = false;
   }
 }
