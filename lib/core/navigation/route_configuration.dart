@@ -81,8 +81,11 @@ Route routes(RouteSettings settings) => MaterialPageRoute(
                         );
                       },
                     ),
-                    failedToInitialize: (_) =>
-                        Container(), // Replace with error
+                    failedToInitialize: (_) {
+                      FlutterNativeSplash.remove();
+
+                      return const NoInternetConnectionScreen();
+                    },
                     orElse: () => const LoadingScreen(),
                   ),
                 ),

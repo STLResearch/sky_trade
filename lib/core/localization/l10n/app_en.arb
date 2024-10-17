@@ -53,5 +53,6 @@
   "areYouSureYouWantToLogout": "Are you sure you want to logout?",
   "yes": "Yes",
   "no": "No",
-  "yourQueryDidNotYieldAnyResults": "Your query did not yield any results"
+  "yourQueryDidNotYieldAnyResults": "Your query did not yield any results",
+  "loadingPleaseWait": "Loading... Please wait"
 }

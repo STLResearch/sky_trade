@@ -32,8 +32,7 @@ import 'package:sky_ways/core/resources/numbers/ui.dart'
         tenDotNil,
         thirtyDotNil,
         twentyTwoDotFive;
-import 'package:sky_ways/core/resources/strings/routes.dart'
-    show loginRoutePath;
+import 'package:sky_ways/core/resources/strings/routes.dart' show baseRoutePath;
 import 'package:sky_ways/core/utils/extensions/build_context_extensions.dart';
 import 'package:sky_ways/features/internet_connection_checker/presentation/blocs/internet_connection_checker_bloc/internet_connection_checker_bloc.dart'
     show
@@ -51,7 +50,7 @@ class NoInternetConnectionScreen extends StatelessWidget {
           internetConnectionCheckerState.whenOrNull(
             hasActiveInternetConnection: () {
               Navigator.of(context).pushReplacementNamed(
-                loginRoutePath,
+                baseRoutePath,
               );
             },
           );
