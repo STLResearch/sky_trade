@@ -38,10 +38,10 @@ import 'package:sky_ways/features/location/presentation/blocs/location_position_
     show LocationPositionBloc;
 import 'package:sky_ways/features/location/presentation/blocs/location_service_status_bloc/location_service_status_bloc.dart'
     show LocationServiceStatusBloc;
-import 'package:sky_ways/features/remote_i_d_receiver/presentation/blocs/bluetooth_receiver_bloc/bluetooth_receiver_bloc.dart'
-    show BluetoothReceiverBloc;
-import 'package:sky_ways/features/remote_i_d_receiver/presentation/blocs/wifi_receiver_bloc/wifi_receiver_bloc.dart'
-    show WifiReceiverBloc;
+import 'package:sky_ways/features/remote_i_d_receiver/presentation/blocs/remote_i_d_receiver_bloc/remote_i_d_receiver_bloc.dart'
+    show RemoteIDReceiverBloc;
+import 'package:sky_ways/features/remote_i_d_transmitter/presentation/blocs/remote_i_d_transmitter_bloc/remote_i_d_transmitter_bloc.dart'
+    show RemoteIDTransmitterBloc;
 import 'package:sky_ways/features/search_autocomplete/presentation/blocs/search_autocomplete_bloc.dart'
     show SearchAutocompleteBloc;
 import 'package:sky_ways/features/u_a_s_activity/presentation/blocs/u_a_s_activity_bloc/u_a_s_activity_bloc.dart'
@@ -113,10 +113,10 @@ List<BlocProvider> get appBlocProvider => [
       BlocProvider<LocationServiceStatusBloc>(
         create: (_) => _sl(),
       ),
-      BlocProvider<BluetoothReceiverBloc>(
+      BlocProvider<RemoteIDReceiverBloc>(
         create: (_) => _sl(),
       ),
-      BlocProvider<WifiReceiverBloc>(
+      BlocProvider<RemoteIDTransmitterBloc>(
         create: (_) => _sl(),
       ),
       BlocProvider<SearchAutocompleteBloc>(

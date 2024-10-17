@@ -9,7 +9,7 @@ abstract interface class UASActivityRepository {
     required Function1<ConnectionState, void> onConnectionChanged,
   });
 
-  void requestNewUASActivitiesAround({
+  Future<void> requestNewUASActivitiesAround({
     required String geoHash,
   });
 

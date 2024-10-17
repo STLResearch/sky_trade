@@ -1,0 +1,23 @@
+import 'dart:typed_data' show Uint8List;
+
+import 'package:dartz/dartz.dart' show Function0, Function1;
+import 'package:sky_ways/core/utils/enums/networking.dart' show ConnectionState;
+import 'package:sky_ways/features/remote_i_d_receiver/domain/entities/remote_i_d_entity.dart'
+    show RemoteIDEntity;
+import 'package:sky_ways/features/remote_i_d_transmitter/domain/entities/remote_transmission_entity.dart'
+    show DeviceEntity;
+
+abstract interface class RemoteIDTransmitterRepository {
+  Future<void> startTransmitter({
+    required Function0<void> onRemoteIDSent,
+    required Function1<ConnectionState, void> onConnectionChanged,
+  });
+
+  Future<void> transmit({
+    required RemoteIDEntity remoteIDEntity,
+    required DeviceEntity deviceEntity,
+    required Uint8List rawData,
+  });
+
+  void stopTransmitter();
+}

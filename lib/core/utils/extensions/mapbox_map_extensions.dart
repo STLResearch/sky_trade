@@ -26,6 +26,7 @@ import 'package:sky_ways/core/resources/numbers/ui.dart'
     show
         fiftyDotNil,
         fourteenDotNil,
+        nilDotNil,
         one,
         oneEighty,
         oneThousand,
@@ -246,8 +247,12 @@ extension MapboxMapExtensions on MapboxMap {
         PointAnnotationOptions(
           geometry: Point(
             coordinates: Position(
-              uASEntities[index].remoteData.location.longitude,
-              uASEntities[index].remoteData.location.latitude,
+              uASEntities[index].remoteData.location?.location?.longitude ??
+                  uASEntities[index].remoteData.location?.longitude ??
+                  nilDotNil,
+              uASEntities[index].remoteData.location?.location?.latitude ??
+                  uASEntities[index].remoteData.location?.latitude ??
+                  nilDotNil,
             ),
           ),
           image: await rootBundle
@@ -260,8 +265,9 @@ extension MapboxMapExtensions on MapboxMap {
                 ) =>
                     byteData.buffer.asUint8List(),
               ),
-          iconRotate: uASEntities[index].remoteData.location.direction *
-              (pi / oneEighty),
+          iconRotate:
+              (uASEntities[index].remoteData.location?.direction ?? nilDotNil) *
+                  (pi / oneEighty),
         ),
       );
 
