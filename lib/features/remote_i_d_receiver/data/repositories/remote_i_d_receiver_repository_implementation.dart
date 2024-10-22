@@ -25,8 +25,8 @@ final class RemoteIDReceiverRepositoryImplementation
 
     remoteIDStreamController =
         StreamController<Either<RemoteIDReceiverFailure, Set<RemoteIDEntity>>>(
-      onListen: () async {
-        await FlutterOpenDroneId.startScan(
+      onListen: () {
+        FlutterOpenDroneId.startScan(
           UsedTechnologies.Both,
         );
 

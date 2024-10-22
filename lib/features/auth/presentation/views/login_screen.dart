@@ -130,7 +130,9 @@ class _LoginScreenState extends State<LoginScreen> with WidgetsBindingObserver {
                 },
                 loggedIn: (_) {
                   context.read<CheckSkyTradeUserExistsBloc>().add(
-                        const CheckSkyTradeUserExistsEvent.checkUserExists(),
+                        CheckSkyTradeUserExistsEvent.checkUserExists(
+                          email: _emailController.text,
+                        ),
                       );
                 },
               );

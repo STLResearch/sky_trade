@@ -2,6 +2,8 @@ import 'package:flutter/material.dart'
     show
         AlignmentDirectional,
         BuildContext,
+        Column,
+        MainAxisSize,
         Navigator,
         Scaffold,
         Stack,
@@ -32,6 +34,13 @@ import 'package:sky_ways/core/utils/typedefs/ui.dart'
     show PointAnnotationManagerPointAnnotationTuple;
 import 'package:sky_ways/features/auth/presentation/blocs/web_3_auth_logout_bloc/web_3_auth_logout_bloc.dart'
     show Web3AuthLogoutBloc, Web3AuthLogoutEvent, Web3AuthLogoutState;
+import 'package:sky_ways/features/bluetooth/presentation/blocs/bluetooth_adapter_state_bloc/bluetooth_adapter_state_bloc.dart'
+    show BluetoothAdapterStateBloc, BluetoothAdapterStateEvent;
+import 'package:sky_ways/features/bluetooth/presentation/blocs/bluetooth_permissions_bloc/bluetooth_permissions_bloc.dart'
+    show
+        BluetoothPermissionsBloc,
+        BluetoothPermissionsEvent,
+        BluetoothPermissionsState;
 import 'package:sky_ways/features/cache_manager/presentation/blocs/cache_data_bloc/cache_data_bloc.dart'
     show CacheDataBloc, CacheDataEvent, CacheDataState;
 import 'package:sky_ways/features/cache_manager/presentation/blocs/cached_data_bloc/cached_data_bloc.dart'
@@ -50,6 +59,10 @@ import 'package:sky_ways/features/location/presentation/blocs/location_service_s
         LocationServiceStatusBloc,
         LocationServiceStatusEvent,
         LocationServiceStatusState;
+import 'package:sky_ways/features/remote_i_d_receiver/presentation/blocs/remote_i_d_receiver_bloc/remote_i_d_receiver_bloc.dart'
+    show RemoteIDReceiverBloc, RemoteIDReceiverEvent, RemoteIDReceiverState;
+import 'package:sky_ways/features/remote_i_d_transmitter/presentation/blocs/remote_i_d_transmitter_bloc/remote_i_d_transmitter_bloc.dart'
+    show RemoteIDTransmitterBloc, RemoteIDTransmitterEvent;
 import 'package:sky_ways/features/u_a_s_activity/presentation/blocs/u_a_s_activity_bloc/u_a_s_activity_bloc.dart'
     show UASActivityBloc, UASActivityEvent, UASActivityState;
 import 'package:sky_ways/features/u_a_s_restrictions/domain/entities/restriction_entity.dart'
@@ -62,6 +75,9 @@ import 'package:sky_ways/features/u_a_s_restrictions/presentation/widgets/map_ov
 import 'package:sky_ways/features/u_a_s_restrictions/presentation/widgets/map_view.dart';
 import 'package:sky_ways/features/u_a_s_restrictions/presentation/widgets/progress_dialog.dart';
 import 'package:sky_ways/features/u_a_s_restrictions/presentation/widgets/restriction_indicator.dart';
+import 'package:sky_ways/features/u_a_s_restrictions/presentation/widgets/u_a_s_list.dart';
+import 'package:sky_ways/features/wifi/presentation/blocs/wifi_permission_bloc/wifi_permission_bloc.dart'
+    show WifiPermissionBloc, WifiPermissionEvent, WifiPermissionState;
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -96,12 +112,18 @@ class _HomeScreenState extends State<HomeScreen> {
       MapStyle.satellite,
     );
 
+    _startTransmitter();
+
     _listenUASActivities();
 
     _requestLocationPermission();
 
     super.initState();
   }
+
+  void _startTransmitter() => context.read<RemoteIDTransmitterBloc>().add(
+        const RemoteIDTransmitterEvent.startTransmitter(),
+      );
 
   void _listenUASActivities() => context.read<UASActivityBloc>().add(
         const UASActivityEvent.listenUASActivities(),
@@ -114,12 +136,19 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   void deactivate() {
+    _stopTransmitter();
     _stopListeningUASActivities();
     _stopListeningLocationPosition();
     _stopListeningLocationServiceStatus();
+    _stopListeningBluetoothAdapterState();
+    _stopListeningRemoteIDs();
 
     super.deactivate();
   }
+
+  void _stopTransmitter() => context.read<RemoteIDTransmitterBloc>().add(
+        const RemoteIDTransmitterEvent.stopTransmitter(),
+      );
 
   void _stopListeningUASActivities() => context.read<UASActivityBloc>().add(
         const UASActivityEvent.stopListeningUASActivities(),
@@ -134,6 +163,16 @@ class _HomeScreenState extends State<HomeScreen> {
       .read<LocationServiceStatusBloc>()
       .add(
         const LocationServiceStatusEvent.stopListeningLocationServiceStatus(),
+      );
+
+  void _stopListeningBluetoothAdapterState() => context
+      .read<BluetoothAdapterStateBloc>()
+      .add(
+        const BluetoothAdapterStateEvent.stopListeningBluetoothAdapterState(),
+      );
+
+  void _stopListeningRemoteIDs() => context.read<RemoteIDReceiverBloc>().add(
+        const RemoteIDReceiverEvent.listenRemoteIDs(),
       );
 
   @override
@@ -184,39 +223,47 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
           BlocListener<LocationPermissionBloc, LocationPermissionState>(
             listener: (_, locationPermissionState) {
-              locationPermissionState.whenOrNull(
+              locationPermissionState.maybeWhen(
                 maybeGrantedPermission: (locationPermissionEntity) {
                   if (locationPermissionEntity.granted) {
                     context.read<LocationServiceStatusBloc>().add(
                           const LocationServiceStatusEvent
                               .listenLocationServiceStatus(),
                         );
+                  } else {
+                    _stopListeningLocationServiceStatus();
                   }
+                },
+                orElse: () {
+                  _stopListeningLocationServiceStatus();
                 },
               );
             },
           ),
           BlocListener<LocationServiceStatusBloc, LocationServiceStatusState>(
             listener: (_, locationServiceStatusState) {
-              locationServiceStatusState.whenOrNull(
+              locationServiceStatusState.maybeWhen(
                 gotLocationServiceStatus: (locationServiceStatusEntity) {
-                  late final LocationPositionEvent locationPositionEvent;
-
                   if (locationServiceStatusEntity.enabled) {
-                    locationPositionEvent =
-                        const LocationPositionEvent.listenLocationPosition();
+                    context.read<WifiPermissionBloc>().add(
+                          const WifiPermissionEvent.requestPermission(),
+                        );
+
+                    context.read<LocationPositionBloc>().add(
+                          const LocationPositionEvent.listenLocationPosition(),
+                        );
 
                     _centerLocationNotifier.value = true;
                   } else {
-                    locationPositionEvent = const LocationPositionEvent
-                        .stopListeningLocationPosition();
+                    _stopListeningLocationPosition();
 
                     _centerLocationNotifier.value = false;
                   }
+                },
+                orElse: () {
+                  _stopListeningLocationPosition();
 
-                  context.read<LocationPositionBloc>().add(
-                        locationPositionEvent,
-                      );
+                  _centerLocationNotifier.value = false;
                 },
               );
             },
@@ -230,6 +277,57 @@ class _HomeScreenState extends State<HomeScreen> {
                       latitude: locationPositionEntity.latitude,
                       longitude: locationPositionEntity.longitude,
                     );
+                  }
+                },
+              );
+            },
+          ),
+          BlocListener<WifiPermissionBloc, WifiPermissionState>(
+            listener: (_, wifiPermissionState) {
+              wifiPermissionState.whenOrNull(
+                maybeGrantedPermission: (wifiPermissionEntity) {
+                  if (wifiPermissionEntity.granted) {
+                    context.read<BluetoothPermissionsBloc>().add(
+                          const BluetoothPermissionsEvent.requestPermissions(),
+                        );
+                  }
+                },
+              );
+            },
+          ),
+          BlocListener<BluetoothPermissionsBloc, BluetoothPermissionsState>(
+            listener: (_, bluetoothPermissionsState) {
+              bluetoothPermissionsState.whenOrNull(
+                maybeGrantedPermissions: (bluetoothPermissionsEntity) {
+                  if (bluetoothPermissionsEntity.granted) {
+                    context.read<RemoteIDReceiverBloc>().add(
+                          const RemoteIDReceiverEvent.listenRemoteIDs(),
+                        );
+                  }
+                },
+              );
+            },
+          ),
+          BlocListener<RemoteIDReceiverBloc, RemoteIDReceiverState>(
+            listener: (_, remoteIDReceiverState) {
+              remoteIDReceiverState.whenOrNull(
+                gotRemoteIDs: (remoteIDEntities) async {
+                  // await _mapboxMap?.removePreviousMarkers(
+                  //   _markers,
+                  // );
+
+                  _markers = await _mapboxMap?.showUASActivitiesOnMapUsing(
+                    remoteIDEntities: remoteIDEntities,
+                  );
+
+                  if (context.mounted) {
+                    context.read<RemoteIDTransmitterBloc>().add(
+                          RemoteIDTransmitterEvent.transmitRemoteID(
+                            remoteIDEntities: remoteIDEntities,
+                            deviceLatitude: null,
+                            deviceLongitude: null,
+                          ),
+                        );
                   }
                 },
               );
@@ -345,9 +443,9 @@ class _HomeScreenState extends State<HomeScreen> {
             listener: (context, uASActivityState) {
               uASActivityState.whenOrNull(
                 gotUASActivities: (uASEntities) async {
-                  await _mapboxMap?.removePreviousMarkers(
-                    _markers,
-                  );
+                  // await _mapboxMap?.removePreviousMarkers(
+                  //   _markers,
+                  // );
 
                   _markers = await _mapboxMap?.showUASActivitiesOnMapUsing(
                     uASEntities: uASEntities,
@@ -405,9 +503,6 @@ class _HomeScreenState extends State<HomeScreen> {
                   );
                 },
               ),
-              RestrictionIndicator(
-                clickedRestriction: _clickedRestriction,
-              ),
               ValueListenableBuilder<bool>(
                 valueListenable: _centerLocationNotifier,
                 builder: (_, centerLocationNotifierValue, __) =>
@@ -423,7 +518,9 @@ class _HomeScreenState extends State<HomeScreen> {
                     },
                     onMyLocationIconTap: () {
                       context.read<LocationPermissionBloc>().state.whenOrNull(
-                        maybeGrantedPermission: (locationPermissionEntity) {
+                        maybeGrantedPermission: (
+                          locationPermissionEntity,
+                        ) {
                           if (locationPermissionEntity.granted) {
                             context
                                 .read<LocationServiceStatusBloc>()
@@ -470,9 +567,15 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             ],
           ),
-          // bottomSheet: UASList(
-          //   uasEntities: List.generate(0, (index) => 'Drone $index'),
-          // ),
+          bottomSheet: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              RestrictionIndicator(
+                clickedRestriction: _clickedRestriction,
+              ),
+              const UASList(),
+            ],
+          ),
         ),
       );
 

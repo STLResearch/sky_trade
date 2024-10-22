@@ -14,7 +14,9 @@ class RemoteIDTransmitterEvent with _$RemoteIDTransmitterEvent {
       _TransmitterStopped;
 
   const factory RemoteIDTransmitterEvent.transmitRemoteID({
-    required RemoteIDEntity remoteID,
+    required Set<RemoteIDEntity> remoteIDEntities,
+    required double? deviceLatitude,
+    required double? deviceLongitude,
   }) = _TransmitRemoteID;
 
   const factory RemoteIDTransmitterEvent.stopTransmitter() = _StopTransmitter;

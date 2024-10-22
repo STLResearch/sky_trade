@@ -9,6 +9,7 @@ import 'package:sky_ways/core/resources/strings/networking.dart'
         closeHeaderValue,
         connectionHeaderKey,
         createPath,
+        emailAddressHeaderKey,
         emailKey,
         invalidEmail,
         invalidSignature,
@@ -32,6 +33,7 @@ import 'package:sky_ways/core/utils/clients/network_client.dart'
     show HttpClient;
 import 'package:sky_ways/core/utils/clients/response_handler.dart';
 import 'package:sky_ways/core/utils/enums/networking.dart' show RequestMethod;
+import 'package:sky_ways/core/utils/typedefs/networking.dart' show Signature;
 import 'package:sky_ways/features/auth/data/models/auth_model.dart';
 
 abstract interface class AuthRemoteDataSource {
@@ -42,10 +44,7 @@ abstract interface class AuthRemoteDataSource {
   });
 
   Future<SkyTradeUserModel> checkSkyTradeUserExistsUsing({
-    required String signature,
-    required String issuedAt,
-    required String nonce,
-    required String address,
+    required Signature signature,
   });
 }
 
@@ -88,10 +87,7 @@ final class AuthRemoteDataSourceImplementation
 
   @override
   Future<SkyTradeUserModel> checkSkyTradeUserExistsUsing({
-    required String signature,
-    required String issuedAt,
-    required String nonce,
-    required String address,
+    required Signature signature,
   }) =>
       handleResponse<CheckSkyTradeUserException, Map<String, dynamic>,
           SkyTradeUserModel>(
@@ -100,10 +96,11 @@ final class AuthRemoteDataSourceImplementation
           path: privatePath + usersPath + sessionPath,
           headers: {
             connectionHeaderKey: closeHeaderValue,
-            signHeaderKey: signature,
-            signIssueAtHeaderKey: issuedAt,
-            signNonceHeaderKey: nonce,
-            signAddressHeaderKey: address,
+            signHeaderKey: signature.sign,
+            signIssueAtHeaderKey: signature.issuedAt,
+            signNonceHeaderKey: signature.nonce,
+            signAddressHeaderKey: signature.address,
+            emailAddressHeaderKey: signature.email,
             apiKeyHeaderKey: dotenv.env[skyTradeServerApiKey],
           },
         ),

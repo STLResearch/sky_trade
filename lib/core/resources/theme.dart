@@ -11,6 +11,7 @@ import 'package:flutter/material.dart'
         CheckboxThemeData,
         Color,
         ColorScheme,
+        Colors,
         DividerThemeData,
         EdgeInsetsDirectional,
         ElevatedButtonThemeData,
@@ -291,7 +292,7 @@ ThemeData get lightTheme => ThemeData(
         ),
       ),
       bottomSheetTheme: const BottomSheetThemeData(
-        backgroundColor: hexFFFFFF,
+        backgroundColor: Colors.transparent,
         showDragHandle: false,
         dragHandleColor: hexD9D9D9,
         shape: RoundedRectangleBorder(

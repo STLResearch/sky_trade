@@ -39,7 +39,9 @@ class CheckSkyTradeUserExistsBloc
       const CheckSkyTradeUserExistsState.checkingUser(),
     );
 
-    final result = await _authRepository.checkSkyTradeUserExists();
+    final result = await _authRepository.checkSkyTradeUserExistsUsing(
+      email: event.email,
+    );
 
     result.fold(
       (checkSkyTradeUserFailure) {

@@ -133,4 +133,8 @@ mixin class SignatureHandler {
 
   Future<String> computeEd25519PrivateKey() =>
       Web3AuthFlutter.getEd25519PrivKey();
+
+  Future<String?> computeUserEmail() => Web3AuthFlutter.getUserInfo().then(
+        (userInfo) => userInfo.email,
+      );
 }

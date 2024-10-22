@@ -15,13 +15,45 @@ For _fastlane_ installation instructions, see [Installing _fastlane_](https://do
 
 ## Android
 
+### android deploy_internal_test
+
+```sh
+[bundle exec] fastlane android deploy_internal_test
+```
+
+Deploy dev release app bundle to Playstore internal test track
+
+### android deploy_closed_test
+
+```sh
+[bundle exec] fastlane android deploy_closed_test
+```
+
+Deploy stage release app bundle to Playstore closed testing track
+
+### android deploy_open_test
+
+```sh
+[bundle exec] fastlane android deploy_open_test
+```
+
+Deploy live release app bundle to Playstore open testing track
+
+### android deploy_production
+
+```sh
+[bundle exec] fastlane android deploy_production
+```
+
+Deploy live release app bundle to Playstore production track
+
 ### android deploy
 
 ```sh
 [bundle exec] fastlane android deploy
 ```
 
-Deploy live release app bundle to Playstore
+Deploy app bundle
 
 ### android clean
 
@@ -46,6 +78,14 @@ Update version name
 ```
 
 Update version code
+
+### android get_gradle
+
+```sh
+[bundle exec] fastlane android get_gradle
+```
+
+Test get gradle file
 
 ### android build_app_bundle
 

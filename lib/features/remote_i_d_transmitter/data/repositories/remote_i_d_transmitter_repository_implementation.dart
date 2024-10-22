@@ -46,7 +46,8 @@ final class RemoteIDTransmitterRepositoryImplementation
       nonce: nonce,
       userAddress: userAddress,
     );
-    final signature = await signMessage(
+    final email = await computeUserEmail();
+    final sign = await signMessage(
       message,
     );
 
@@ -55,10 +56,11 @@ final class RemoteIDTransmitterRepositoryImplementation
       deviceEntity: deviceEntity,
       rawData: rawData,
       signature: (
-        signature: signature,
+        sign: sign,
         issuedAt: issuedAt,
         nonce: nonce,
         address: userAddress,
+        email: email,
       ),
     );
   }

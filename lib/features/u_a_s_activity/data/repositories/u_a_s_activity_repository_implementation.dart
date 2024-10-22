@@ -38,17 +38,19 @@ final class UASActivityRepositoryImplementation
       nonce: nonce,
       userAddress: userAddress,
     );
-    final signature = await signMessage(
+    final email = await computeUserEmail();
+    final sign = await signMessage(
       message,
     );
 
     _uASActivityRemoteDataSource.requestNewUASActivitiesAround(
       geoHash: geoHash,
       signature: (
-        signature: signature,
+        sign: sign,
         issuedAt: issuedAt,
         nonce: nonce,
         address: userAddress,
+        email: email,
       ),
     );
   }

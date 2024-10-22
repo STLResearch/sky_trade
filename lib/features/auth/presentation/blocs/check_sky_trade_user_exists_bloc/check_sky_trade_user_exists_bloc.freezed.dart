@@ -16,19 +16,20 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$CheckSkyTradeUserExistsEvent {
+  String get email => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() checkUserExists,
+    required TResult Function(String email) checkUserExists,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? checkUserExists,
+    TResult? Function(String email)? checkUserExists,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? checkUserExists,
+    TResult Function(String email)? checkUserExists,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -48,6 +49,10 @@ mixin _$CheckSkyTradeUserExistsEvent {
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
+
+  @JsonKey(ignore: true)
+  $CheckSkyTradeUserExistsEventCopyWith<CheckSkyTradeUserExistsEvent>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -57,6 +62,8 @@ abstract class $CheckSkyTradeUserExistsEventCopyWith<$Res> {
           $Res Function(CheckSkyTradeUserExistsEvent) then) =
       _$CheckSkyTradeUserExistsEventCopyWithImpl<$Res,
           CheckSkyTradeUserExistsEvent>;
+  @useResult
+  $Res call({String email});
 }
 
 /// @nodoc
@@ -69,13 +76,30 @@ class _$CheckSkyTradeUserExistsEventCopyWithImpl<$Res,
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? email = null,
+  }) {
+    return _then(_value.copyWith(
+      email: null == email
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
+              as String,
+    ) as $Val);
+  }
 }
 
 /// @nodoc
-abstract class _$$CheckUserExistsImplCopyWith<$Res> {
+abstract class _$$CheckUserExistsImplCopyWith<$Res>
+    implements $CheckSkyTradeUserExistsEventCopyWith<$Res> {
   factory _$$CheckUserExistsImplCopyWith(_$CheckUserExistsImpl value,
           $Res Function(_$CheckUserExistsImpl) then) =
       __$$CheckUserExistsImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({String email});
 }
 
 /// @nodoc
@@ -85,51 +109,76 @@ class __$$CheckUserExistsImplCopyWithImpl<$Res>
   __$$CheckUserExistsImplCopyWithImpl(
       _$CheckUserExistsImpl _value, $Res Function(_$CheckUserExistsImpl) _then)
       : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? email = null,
+  }) {
+    return _then(_$CheckUserExistsImpl(
+      email: null == email
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$CheckUserExistsImpl implements _CheckUserExists {
-  const _$CheckUserExistsImpl();
+  const _$CheckUserExistsImpl({required this.email});
+
+  @override
+  final String email;
 
   @override
   String toString() {
-    return 'CheckSkyTradeUserExistsEvent.checkUserExists()';
+    return 'CheckSkyTradeUserExistsEvent.checkUserExists(email: $email)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$CheckUserExistsImpl);
+        (other.runtimeType == runtimeType &&
+            other is _$CheckUserExistsImpl &&
+            (identical(other.email, email) || other.email == email));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(runtimeType, email);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$CheckUserExistsImplCopyWith<_$CheckUserExistsImpl> get copyWith =>
+      __$$CheckUserExistsImplCopyWithImpl<_$CheckUserExistsImpl>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() checkUserExists,
+    required TResult Function(String email) checkUserExists,
   }) {
-    return checkUserExists();
+    return checkUserExists(email);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? checkUserExists,
+    TResult? Function(String email)? checkUserExists,
   }) {
-    return checkUserExists?.call();
+    return checkUserExists?.call(email);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? checkUserExists,
+    TResult Function(String email)? checkUserExists,
     required TResult orElse(),
   }) {
     if (checkUserExists != null) {
-      return checkUserExists();
+      return checkUserExists(email);
     }
     return orElse();
   }
@@ -164,7 +213,15 @@ class _$CheckUserExistsImpl implements _CheckUserExists {
 }
 
 abstract class _CheckUserExists implements CheckSkyTradeUserExistsEvent {
-  const factory _CheckUserExists() = _$CheckUserExistsImpl;
+  const factory _CheckUserExists({required final String email}) =
+      _$CheckUserExistsImpl;
+
+  @override
+  String get email;
+  @override
+  @JsonKey(ignore: true)
+  _$$CheckUserExistsImplCopyWith<_$CheckUserExistsImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
