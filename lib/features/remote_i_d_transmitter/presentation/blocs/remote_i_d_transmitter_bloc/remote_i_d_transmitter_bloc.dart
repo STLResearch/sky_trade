@@ -3,7 +3,10 @@ import 'dart:typed_data' show Uint8List;
 
 import 'package:bloc/bloc.dart' show Bloc, Emitter;
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:sky_ways/core/resources/numbers/networking.dart' show nilDotNil;
 import 'package:sky_ways/core/utils/enums/networking.dart' show ConnectionState;
+import 'package:sky_ways/core/utils/typedefs/networking.dart'
+    show RemoteIDSetDeviceCoordinatesTuple;
 import 'package:sky_ways/features/remote_i_d_receiver/domain/entities/remote_i_d_entity.dart'
     show RemoteIDEntity;
 import 'package:sky_ways/features/remote_i_d_transmitter/domain/entities/remote_transmission_entity.dart'
@@ -55,8 +58,10 @@ class RemoteIDTransmitterBloc
 
   bool _startedTransmitter = false;
 
-  StreamController<RemoteIDEntity>? _remoteIDStreamController;
-  StreamSubscription<RemoteIDEntity>? _remoteIDStreamSubscription;
+  StreamController<RemoteIDSetDeviceCoordinatesTuple>?
+      _remoteIDStreamController;
+  StreamSubscription<RemoteIDSetDeviceCoordinatesTuple>?
+      _remoteIDStreamSubscription;
 
   Future<void> _startTransmitter(
     _StartTransmitter event,
@@ -84,19 +89,22 @@ class RemoteIDTransmitterBloc
             _startedTransmitter = true;
           }
 
-          _remoteIDStreamController ??= StreamController<RemoteIDEntity>();
+          _remoteIDStreamController ??=
+              StreamController<RemoteIDSetDeviceCoordinatesTuple>();
           _remoteIDStreamSubscription ??=
               _remoteIDStreamController?.stream.listen(
-            (remoteID) => _remoteIDTransmitterRepository.transmit(
-              remoteIDEntity: remoteID,
-              deviceEntity: const DeviceEntity(
-                latitude: 0.0,
-                longitude: 0.0,
-              ),
-              rawData: Uint8List.fromList(
-                [],
-              ),
-            ),
+            (remoteIDSetDeviceCoordinatesTuple) {
+              for (final remoteIDEntity
+                  in remoteIDSetDeviceCoordinatesTuple.remoteIDEntities) {
+                _remoteIDTransmitterRepository.transmit(
+                  remoteIDEntity: remoteIDEntity,
+                  deviceEntity: remoteIDSetDeviceCoordinatesTuple.deviceEntity,
+                  rawData: Uint8List.fromList(
+                    [],
+                  ),
+                );
+              }
+            },
           );
         } else if (connectionState == ConnectionState.disconnected ||
             connectionState == ConnectionState.connectionError ||
@@ -145,7 +153,13 @@ class RemoteIDTransmitterBloc
     Emitter<RemoteIDTransmitterState> emit,
   ) =>
       _remoteIDStreamController?.add(
-        event.remoteID,
+        (
+          remoteIDEntities: event.remoteIDEntities,
+          deviceEntity: DeviceEntity(
+            latitude: event.deviceLatitude ?? nilDotNil,
+            longitude: event.deviceLongitude ?? nilDotNil,
+          ),
+        ),
       );
 
   Future<void> _stopTransmitter(

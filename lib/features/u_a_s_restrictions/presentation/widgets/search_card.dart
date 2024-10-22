@@ -18,7 +18,7 @@ import 'package:flutter/material.dart'
         TextFormField,
         Theme,
         Widget;
-import 'package:flutter_bloc/flutter_bloc.dart' show ReadContext;
+import 'package:flutter_bloc/flutter_bloc.dart' show BlocBuilder, ReadContext;
 import 'package:sky_ways/core/assets/generated/assets.gen.dart' show Assets;
 import 'package:sky_ways/core/resources/colors.dart' show hex333333, hexB8B8B8;
 import 'package:sky_ways/core/resources/numbers/ui.dart'
@@ -33,9 +33,15 @@ import 'package:sky_ways/core/resources/numbers/ui.dart'
         twentyFiveDotNil,
         twentyFourDotNil,
         twentyOneDotNil;
+import 'package:sky_ways/core/utils/enums/networking.dart'
+    show BluetoothAdapterState, WifiAdapterState;
 import 'package:sky_ways/core/utils/extensions/build_context_extensions.dart';
+import 'package:sky_ways/features/bluetooth/presentation/blocs/bluetooth_adapter_state_bloc/bluetooth_adapter_state_bloc.dart'
+    show BluetoothAdapterStateBloc, BluetoothAdapterStateState;
 import 'package:sky_ways/features/search_autocomplete/presentation/blocs/search_autocomplete_bloc.dart'
     show SearchAutocompleteBloc, SearchAutocompleteEvent;
+import 'package:sky_ways/features/wifi/presentation/blocs/wifi_adapter_state_bloc/wifi_adapter_state_bloc.dart'
+    show WifiAdapterStateBloc, WifiAdapterStateState;
 
 class SearchCard extends StatefulWidget {
   const SearchCard({super.key});
@@ -115,16 +121,48 @@ class _SearchCardState extends State<SearchCard> {
             const SizedBox(
               width: tenDotNil,
             ),
-            Assets.svgs.bluetoothOn.svg(
-              width: twentyFourDotNil,
-              height: twentyFiveDotNil,
+            BlocBuilder<BluetoothAdapterStateBloc, BluetoothAdapterStateState>(
+              builder: (_, bluetoothAdapterStateState) =>
+                  bluetoothAdapterStateState.maybeWhen(
+                gotBluetoothAdapterState: (bluetoothAdapterStateEntity) =>
+                    switch (bluetoothAdapterStateEntity.adapterState) {
+                  BluetoothAdapterState.on => Assets.svgs.bluetoothOn.svg(
+                      width: twentyFourDotNil,
+                      height: twentyFiveDotNil,
+                    ),
+                  _ => Assets.svgs.bluetoothOff.svg(
+                      width: twentyFourDotNil,
+                      height: twentyFiveDotNil,
+                    ),
+                },
+                orElse: () => Assets.svgs.bluetoothOff.svg(
+                  width: twentyFourDotNil,
+                  height: twentyFiveDotNil,
+                ),
+              ),
             ),
             const SizedBox(
               width: tenDotNil,
             ),
-            Assets.svgs.wifiOn.svg(
-              width: thirtyTwoDotNil,
-              height: twentyFourDotNil,
+            BlocBuilder<WifiAdapterStateBloc, WifiAdapterStateState>(
+              builder: (_, wifiAdapterStateState) =>
+                  wifiAdapterStateState.maybeWhen(
+                gotWifiAdapterState: (wifiAdapterStateEntity) =>
+                    switch (wifiAdapterStateEntity.adapterState) {
+                  WifiAdapterState.enabled => Assets.svgs.wifiOn.svg(
+                      width: thirtyTwoDotNil,
+                      height: twentyFourDotNil,
+                    ),
+                  _ => Assets.svgs.wifiOff.svg(
+                      width: thirtyTwoDotNil,
+                      height: twentyFourDotNil,
+                    ),
+                },
+                orElse: () => Assets.svgs.wifiOff.svg(
+                  width: thirtyTwoDotNil,
+                  height: twentyFourDotNil,
+                ),
+              ),
             ),
             const SizedBox(
               width: tenDotNil,

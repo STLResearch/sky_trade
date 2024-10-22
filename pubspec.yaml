@@ -47,7 +47,7 @@ dependencies:
   solana: ^0.31.0
   url_launcher: ^6.3.0
   uuid_v4: ^1.0.2
-  web3auth_flutter: ^5.0.3
+  web3auth_flutter: ^5.0.4
 
 dev_dependencies:
   build_runner: ^2.4.9

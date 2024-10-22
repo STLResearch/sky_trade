@@ -17,8 +17,9 @@ part 'remote_i_d_receiver_bloc.freezed.dart';
 
 class RemoteIDReceiverBloc
     extends Bloc<RemoteIDReceiverEvent, RemoteIDReceiverState> {
-  RemoteIDReceiverBloc(RemoteIDReceiverRepository remoteIDReceiverRepository)
-      : _remoteIDReceiverRepository = remoteIDReceiverRepository,
+  RemoteIDReceiverBloc(
+    RemoteIDReceiverRepository remoteIDReceiverRepository,
+  )   : _remoteIDReceiverRepository = remoteIDReceiverRepository,
         super(
           const RemoteIDReceiverState.initial(),
         ) {
@@ -56,7 +57,7 @@ class RemoteIDReceiverBloc
       const RemoteIDReceiverState.gettingRemoteIDs(),
     );
 
-    _remoteIDReceiverStreamSubscription =
+    _remoteIDReceiverStreamSubscription ??=
         _remoteIDReceiverRepository.remoteIDStream.listen(
       (
         remoteIDReceiverFailureOrRemoteIDEntities,

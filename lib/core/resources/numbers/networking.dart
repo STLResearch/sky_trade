@@ -10,3 +10,5 @@ const createdStatusCode = 201;
 
 // others
 const zero = 0;
+
+const nilDotNil = 0.0;

@@ -37,6 +37,8 @@ import 'package:sky_ways/core/utils/typedefs/ui.dart'
     show
         PointAnnotationManagerPointAnnotationTuple,
         PolygonAnnotationManagerPolygonAnnotationTuple;
+import 'package:sky_ways/features/remote_i_d_receiver/domain/entities/remote_i_d_entity.dart'
+    show RemoteIDEntity;
 import 'package:sky_ways/features/u_a_s_activity/domain/entities/u_a_s_entity.dart'
     show UASEntity;
 import 'package:sky_ways/features/u_a_s_restrictions/domain/entities/restriction_entity.dart'
@@ -228,18 +230,21 @@ extension MapboxMapExtensions on MapboxMap {
 
   Future<List<PointAnnotationManagerPointAnnotationTuple>>
       showUASActivitiesOnMapUsing({
-    required List<UASEntity> uASEntities,
+    List<UASEntity>? uASEntities,
+    Set<RemoteIDEntity>? remoteIDEntities,
   }) async {
     final pointAnnotationManagerPointAnnotationTuples =
         List<PointAnnotationManagerPointAnnotationTuple>.empty(
       growable: true,
     );
 
-    if (uASEntities.isEmpty) {
+    if (uASEntities == null && remoteIDEntities == null) {
       return pointAnnotationManagerPointAnnotationTuples;
     }
 
-    for (var index = zero; index < uASEntities.length; index++) {
+    for (var index = zero;
+        index < (uASEntities?.length ?? remoteIDEntities?.length ?? zero);
+        index++) {
       final pointAnnotationManager =
           await annotations.createPointAnnotationManager();
 
@@ -247,11 +252,37 @@ extension MapboxMapExtensions on MapboxMap {
         PointAnnotationOptions(
           geometry: Point(
             coordinates: Position(
-              uASEntities[index].remoteData.location?.location?.longitude ??
-                  uASEntities[index].remoteData.location?.longitude ??
+              uASEntities?[index].remoteData.location?.location?.longitude ??
+                  uASEntities?[index].remoteData.location?.longitude ??
+                  remoteIDEntities
+                      ?.elementAt(
+                        index,
+                      )
+                      .location
+                      ?.location
+                      ?.longitude ??
+                  remoteIDEntities
+                      ?.elementAt(
+                        index,
+                      )
+                      .location
+                      ?.longitude ??
                   nilDotNil,
-              uASEntities[index].remoteData.location?.location?.latitude ??
-                  uASEntities[index].remoteData.location?.latitude ??
+              uASEntities?[index].remoteData.location?.location?.latitude ??
+                  uASEntities?[index].remoteData.location?.latitude ??
+                  remoteIDEntities
+                      ?.elementAt(
+                        index,
+                      )
+                      .location
+                      ?.location
+                      ?.latitude ??
+                  remoteIDEntities
+                      ?.elementAt(
+                        index,
+                      )
+                      .location
+                      ?.latitude ??
                   nilDotNil,
             ),
           ),
@@ -265,9 +296,15 @@ extension MapboxMapExtensions on MapboxMap {
                 ) =>
                     byteData.buffer.asUint8List(),
               ),
-          iconRotate:
-              (uASEntities[index].remoteData.location?.direction ?? nilDotNil) *
-                  (pi / oneEighty),
+          iconRotate: (uASEntities?[index].remoteData.location?.direction ??
+                  remoteIDEntities
+                      ?.elementAt(
+                        index,
+                      )
+                      .location
+                      ?.direction ??
+                  nilDotNil) *
+              (pi / oneEighty),
         ),
       );
 

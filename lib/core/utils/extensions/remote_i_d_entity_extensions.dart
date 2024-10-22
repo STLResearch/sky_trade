@@ -1,3 +1,8 @@
+import 'package:flutter/material.dart' show BuildContext;
+import 'package:sky_ways/core/resources/numbers/ui.dart' show eight, one;
+import 'package:sky_ways/core/resources/strings/special_characters.dart'
+    show emptyString, hyphen;
+import 'package:sky_ways/core/utils/extensions/build_context_extensions.dart';
 import 'package:sky_ways/features/remote_i_d_receiver/data/models/remote_i_d_model.dart'
     show
         AuthenticationModel,
@@ -129,4 +134,157 @@ extension RemoteIDEntityExtensions on RemoteIDEntity {
       mAuthentication: authenticationModel,
     );
   }
+
+  Map<String, String> computeLocalizedRemoteIDConnectionHeaderContentUsing(
+    BuildContext context,
+  ) =>
+      {
+        context.localize.rssi: connection.rssi?.toString() ?? hyphen,
+        context.localize.mac: connection.macAddress,
+        context.localize.lastSeen: connection.lastSeen.toString(),
+        context.localize.source: connection.messageSource.name,
+      };
+
+  Map<String, String> computeLocalizedRemoteIDBasicIDHeaderContentUsing(
+    BuildContext context, {
+    required int index,
+  }) {
+    final basicIDIndexInBasicIDList = index - one;
+
+    return {
+      context.localize.type:
+          basicIDs?[basicIDIndexInBasicIDList].type.name ?? hyphen,
+      context.localize.idType:
+          basicIDs?[basicIDIndexInBasicIDList].iDType.name ?? hyphen,
+      context.localize.uasId:
+          basicIDs?[basicIDIndexInBasicIDList].iD?.toList().toString() ??
+              basicIDs?[basicIDIndexInBasicIDList].serialNumber ??
+              basicIDs?[basicIDIndexInBasicIDList].registrationID ??
+              hyphen,
+    };
+  }
+
+  Map<String, String> computeLocalizedRemoteIDLocationHeaderContentUsing(
+    BuildContext context,
+  ) =>
+      {
+        context.localize.latitude: location?.location?.latitude.toString() ??
+            location?.latitude?.toString() ??
+            hyphen,
+        context.localize.longitude: location?.location?.longitude.toString() ??
+            location?.longitude?.toString() ??
+            hyphen,
+        context.localize.altitudePress:
+            location?.altitudePressure?.toString() ?? hyphen,
+        context.localize.altitudeGeod:
+            location?.altitudeGeodetic?.toString() ?? hyphen,
+        context.localize.direction: location?.direction?.toString() ?? hyphen,
+        context.localize.status: location?.operationalStatus.name ?? hyphen,
+        context.localize.horizontalSpeed:
+            location?.horizontalSpeed?.toString() ?? hyphen,
+        context.localize.verticalSpeed:
+            location?.verticalSpeed?.toString() ?? hyphen,
+        context.localize.height: location?.height?.toString() ?? hyphen,
+        context.localize.heightOver: location?.heightType.name ?? hyphen,
+        context.localize.horizontalAccuracy:
+            location?.horizontalAccuracy.name ?? hyphen,
+        context.localize.verticalAccuracy:
+            location?.verticalAccuracy.name ?? hyphen,
+        context.localize.baroAcc: location?.barometerAccuracy.name ?? hyphen,
+        context.localize.speedAcc: location?.speedAccuracy.name ?? hyphen,
+        context.localize.timeAcc:
+            location?.timestampAccuracy?.toString() ?? hyphen,
+        context.localize.timestamp: location?.timestamp?.toString() ?? hyphen,
+      };
+
+  Map<String, String> computeLocalizedRemoteIDSelfIDHeaderContentUsing(
+    BuildContext context,
+  ) =>
+      {
+        context.localize.operation: selfID?.description ??
+            selfID?.operationDescription?.toList().toString() ??
+            hyphen,
+        context.localize.type: selfID?.descriptionType.name ?? hyphen,
+      };
+
+  Map<String, String> computeLocalizedRemoteIDSystemHeaderContentUsing(
+    BuildContext context,
+  ) =>
+      {
+        context.localize.locationType:
+            system?.operatorLocationType.name ?? hyphen,
+        context.localize.altitude:
+            system?.operatorAltitude?.toString() ?? hyphen,
+        context.localize.latitude:
+            system?.operatorLocation?.latitude.toString() ??
+                system?.operatorLatitude?.toString() ??
+                hyphen,
+        context.localize.longitude:
+            system?.operatorLocation?.longitude.toString() ??
+                system?.operatorLongitude?.toString() ??
+                hyphen,
+        context.localize.areaCount: system?.areaCount.toString() ?? hyphen,
+        context.localize.areaRadius: system?.areaRadius.toString() ?? hyphen,
+        context.localize.areaCeiling: system?.areaCeiling?.toString() ?? hyphen,
+        context.localize.areaFloor: system?.areaFloor?.toString() ?? hyphen,
+        context.localize.classification:
+            system?.classificationType.name ?? hyphen,
+        context.localize.cLass: system?.classValue.name ?? hyphen,
+        context.localize.category: system?.category.name ?? hyphen,
+      };
+
+  Map<String, String> computeLocalizedRemoteIDOperatorIDHeaderContentUsing(
+    BuildContext context,
+  ) =>
+      {
+        context.localize.operatorId
+                    .split(
+                      emptyString,
+                    )
+                    .first
+                    .toUpperCase() +
+                context.localize.operatorId
+                    .substring(
+                      one,
+                      eight,
+                    )
+                    .toLowerCase() +
+                context.localize.operatorId.substring(
+                  eight,
+                ):
+            operatorID?.iD ??
+                operatorID?.operatorID?.toList().toString() ??
+                hyphen,
+        context.localize.type: operatorID?.operatorIDClassification?.name ??
+            operatorID?.operatorIDType?.toString() ??
+            hyphen,
+      };
+
+  Map<String, String> computeLocalizedRemoteIDAuthenticationHeaderContentUsing(
+    BuildContext context,
+  ) =>
+      {
+        context.localize.type:
+            authentication?.authenticationType.name ?? hyphen,
+        context.localize.length:
+            authentication?.authenticationLength?.toString() ?? hyphen,
+        context.localize.timestamp:
+            authentication?.timestamp?.toString() ?? hyphen,
+        context.localize.authentication
+                    .split(
+                      emptyString,
+                    )
+                    .first
+                    .toUpperCase() +
+                context.localize.authentication
+                    .substring(
+                      one,
+                    )
+                    .toLowerCase():
+            authentication?.authenticationData.toList().toString() ?? hyphen,
+        context.localize.page:
+            authentication?.authenticationPageNumber.toString() ?? hyphen,
+        context.localize.index:
+            authentication?.lastAuthenticationPageIndex?.toString() ?? hyphen,
+      };
 }

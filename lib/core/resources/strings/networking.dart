@@ -66,6 +66,7 @@ const signHeaderKey = 'sign';
 const signIssueAtHeaderKey = 'sign_issue_at';
 const signNonceHeaderKey = 'sign_nonce';
 const signAddressHeaderKey = 'sign_address';
+const emailAddressHeaderKey = 'email_address';
 const apiKeyHeaderKey = 'api_key';
 // Body
 const additionalLinks = 'additional_links';

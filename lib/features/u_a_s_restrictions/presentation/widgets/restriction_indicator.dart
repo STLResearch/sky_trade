@@ -23,8 +23,8 @@ import 'package:sky_ways/core/resources/numbers/ui.dart'
     show
         eightDotNil,
         eighteenDotNil,
-        fortyFiveDotNil,
         fortyFourDotNil,
+        fourteenDotNil,
         twentyOneDotNil;
 import 'package:sky_ways/core/utils/extensions/restriction_entity_extensions.dart';
 import 'package:sky_ways/features/u_a_s_restrictions/domain/entities/restriction_entity.dart'
@@ -52,7 +52,7 @@ class RestrictionIndicator extends StatelessWidget {
               child: Padding(
                 padding: const EdgeInsetsDirectional.symmetric(
                   horizontal: twentyOneDotNil,
-                  vertical: fortyFiveDotNil,
+                  vertical: fourteenDotNil,
                 ),
                 child: Stack(
                   clipBehavior: Clip.none,

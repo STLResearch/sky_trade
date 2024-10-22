@@ -6,6 +6,7 @@ import 'package:sky_ways/core/resources/strings/networking.dart'
         closeHeaderValue,
         connectionHeaderKey,
         dataKey,
+        emailAddressHeaderKey,
         geoHashKey,
         signAddressHeaderKey,
         signHeaderKey,
@@ -80,10 +81,11 @@ final class UASActivityRemoteDataSourceImplementation
         },
         headers: {
           connectionHeaderKey: closeHeaderValue,
-          signHeaderKey: signature.signature,
+          signHeaderKey: signature.sign,
           signIssueAtHeaderKey: signature.issuedAt,
           signNonceHeaderKey: signature.nonce,
           signAddressHeaderKey: signature.address,
+          if (signature.email != null) emailAddressHeaderKey: signature.email,
           apiKeyHeaderKey: dotenv.env[skyTradeServerApiKey],
         },
       );

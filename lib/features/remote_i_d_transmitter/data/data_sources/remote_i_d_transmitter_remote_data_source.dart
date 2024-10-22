@@ -4,6 +4,7 @@ import 'package:dartz/dartz.dart' show Function0, Function1;
 import 'package:flutter_dotenv/flutter_dotenv.dart' show dotenv;
 import 'package:sky_ways/core/resources/strings/networking.dart'
     show
+        emailAddressHeaderKey,
         remoteIDTransmissionEvent,
         remoteIDTransmissionRoom,
         signAddressHeaderKey,
@@ -77,10 +78,11 @@ final class RemoteIDTransmitterRemoteDataSourceImplementation
         ).toRemoteTransmissionModel().toJson(),
         headers: {
           connectionHeaderKey: closeHeaderValue,
-          signHeaderKey: signature.signature,
+          signHeaderKey: signature.sign,
           signIssueAtHeaderKey: signature.issuedAt,
           signNonceHeaderKey: signature.nonce,
           signAddressHeaderKey: signature.address,
+          if (signature.email != null) emailAddressHeaderKey: signature.email,
           apiKeyHeaderKey: dotenv.env[skyTradeServerApiKey],
         },
       );

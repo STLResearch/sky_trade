@@ -18,7 +18,9 @@ abstract interface class AuthRepository {
   });
 
   Future<Either<CheckSkyTradeUserFailure, SkyTradeUserEntity>>
-      checkSkyTradeUserExists();
+      checkSkyTradeUserExistsUsing({
+    required String email,
+  });
 
   Future<bool> checkWeb3AuthSessionExists();
 
