@@ -79,14 +79,6 @@ Update version name
 
 Update version code
 
-### android get_gradle
-
-```sh
-[bundle exec] fastlane android get_gradle
-```
-
-Test get gradle file
-
 ### android build_app_bundle
 
 ```sh

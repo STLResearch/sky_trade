@@ -54,3 +54,15 @@ t-got: ## Runs all tests with coverage, generates HTML coverage report for tests
 	make t
 	make gcr-t
 	make ocr-t
+
+d-d-r: ## Deploys dev release app bundle to Playstore internal test track
+	cd Android && fastlane deploy_internal_test && cd ..
+
+d-s-r: ## Deploys stage release app bundle to Playstore closed testing track
+	cd Android && fastlane deploy_closed_test && cd ..
+
+d-l-r-o: ## Deploys live release app bundle to Playstore open testing track
+	cd Android && fastlane deploy_open_test && cd ..
+
+d-l-r-p: ## Deploys live release app bundle to Playstore production track
+	cd Android && fastlane deploy_production && cd ..
