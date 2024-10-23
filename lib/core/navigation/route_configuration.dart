@@ -10,6 +10,7 @@ import 'package:sky_trade/core/resources/strings/routes.dart'
         baseRoutePath,
         helpRoutePath,
         homeRoutePath,
+        insightsRoutePath,
         loadingRoutePath,
         loginRoutePath,
         noInternetConnectionRoutePath,
@@ -28,6 +29,7 @@ import 'package:sky_trade/features/auth/presentation/views/loading_screen.dart';
 import 'package:sky_trade/features/auth/presentation/views/login_screen.dart';
 import 'package:sky_trade/features/auth/presentation/views/register_screen.dart';
 import 'package:sky_trade/features/help/presentation/views/help_screen.dart';
+import 'package:sky_trade/features/insights/presentation/views/insights_screen.dart';
 import 'package:sky_trade/features/internet_connection_checker/presentation/blocs/internet_connection_checker_bloc/internet_connection_checker_bloc.dart'
     show
         InternetConnectionCheckerBloc,
@@ -111,6 +113,8 @@ Route routes(RouteSettings settings) => MaterialPageRoute(
             return const HomeScreen();
           case helpRoutePath:
             return const HelpScreen();
+          case insightsRoutePath:
+            return const InsightsScreen();
           default:
             return Container(); // Replace with error screen
         }

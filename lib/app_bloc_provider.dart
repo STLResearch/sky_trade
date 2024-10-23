@@ -26,6 +26,8 @@ import 'package:sky_trade/features/cache_manager/presentation/blocs/cached_data_
     show CachedDataBloc;
 import 'package:sky_trade/features/geo_hash/presentation/blocs/geo_hash_bloc/geo_hash_bloc.dart'
     show GeoHashBloc;
+import 'package:sky_trade/features/insights/presentation/blocs/insights_bloc/insights_bloc.dart'
+    show InsightsBloc;
 import 'package:sky_trade/features/internet_connection_checker/presentation/blocs/internet_connection_checker_bloc/internet_connection_checker_bloc.dart'
     show InternetConnectionCheckerBloc;
 import 'package:sky_trade/features/link_handler/presentation/blocs/check_link_bloc/check_link_bloc.dart'
@@ -95,6 +97,9 @@ List<BlocProvider> get appBlocProvider => [
         create: (_) => _sl(),
       ),
       BlocProvider<GeoHashBloc>(
+        create: (_) => _sl(),
+      ),
+      BlocProvider<InsightsBloc>(
         create: (_) => _sl(),
       ),
       BlocProvider<InternetConnectionCheckerBloc>(
