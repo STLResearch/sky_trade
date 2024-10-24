@@ -78,6 +78,8 @@ import 'package:sky_trade/features/u_a_s_restrictions/presentation/widgets/map_v
 import 'package:sky_trade/features/u_a_s_restrictions/presentation/widgets/progress_dialog.dart';
 import 'package:sky_trade/features/u_a_s_restrictions/presentation/widgets/restriction_indicator.dart';
 import 'package:sky_trade/features/u_a_s_restrictions/presentation/widgets/u_a_s_list.dart';
+import 'package:sky_trade/features/weather/presentation/weather_bloc/weather_bloc.dart'
+    show WeatherBloc, WeatherEvent;
 import 'package:sky_trade/features/wifi/presentation/blocs/wifi_permission_bloc/wifi_permission_bloc.dart'
     show WifiPermissionBloc, WifiPermissionEvent, WifiPermissionState;
 
@@ -391,6 +393,12 @@ class _HomeScreenState extends State<HomeScreen> {
                         CachedDataEvent.getCachedData(
                           name: geoHash,
                           type: CacheType.jsonListFile,
+                        ),
+                      );
+
+                  context.read<WeatherBloc>().add(
+                        WeatherEvent.fetchWeatherData(
+                          geoHash,
                         ),
                       );
                 },

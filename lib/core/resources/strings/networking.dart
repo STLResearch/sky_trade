@@ -12,6 +12,15 @@ const linkValue = 'link';
 const mapboxMapsPublicKey = 'MAPBOX_MAPS_PUBLIC_KEY';
 const mapboxMapsSearchBoxBaseUrl = 'MAPBOX_MAPS_SEARCH_BOX_BASE_URL';
 
+//OpenWeather
+const openWeatherApiKey = 'OPEN_WEATHER_API_KEY';
+// Endpoints
+// Base URL
+const openWeatherApiBaseUrl = 'OPEN_WEATHER_API_BASE_URL';
+const openWeatherIconBaseUrl = 'OPEN_WEATHER_ICON_BASE_URL';
+//Paths
+const weatherDataPath = '/data/2.5/weather';
+const weatherIconPath = '/img/wn';
 // SkyTrade
 // Privacy policy
 const skyTradePrivacyPolicyUrl = 'https://docs.sky.trade/privacy.htm';
@@ -266,6 +275,14 @@ const invalidKey = 'Invalid';
 const operatorIdClassificationKey = 'operatorIdClassification';
 const headersKey = 'headers';
 const bodyKey = 'body';
+const weatherKey = 'weather';
+const iconIdKey = 'icon';
+const weatherMetricsKey = 'main';
+const currentTemperatureKey = 'temp';
+const latKey = 'lat';
+const lonKey = 'lon';
+const appIdKey = 'appid';
+const unitsKey = 'units';
 // Error response data message
 const unauthorized = 'UNAUTHORIZED';
 const invalidSignature = 'INVALID_SIGNATURE';
