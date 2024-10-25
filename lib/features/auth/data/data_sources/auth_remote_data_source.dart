@@ -1,13 +1,9 @@
-import 'package:flutter_dotenv/flutter_dotenv.dart' show dotenv;
 import 'package:sky_ways/core/errors/exceptions/auth_exception.dart';
 import 'package:sky_ways/core/resources/numbers/networking.dart' show zero;
 import 'package:sky_ways/core/resources/strings/networking.dart'
     show
-        apiKeyHeaderKey,
         blockchainAddressKey,
         categoryIdKey,
-        closeHeaderValue,
-        connectionHeaderKey,
         createPath,
         emailAddressHeaderKey,
         emailKey,
@@ -24,7 +20,6 @@ import 'package:sky_ways/core/resources/strings/networking.dart'
         signHeaderKey,
         signIssueAtHeaderKey,
         signNonceHeaderKey,
-        skyTradeServerApiKey,
         unauthorized,
         userExist,
         userNotExist,
@@ -95,13 +90,11 @@ final class AuthRemoteDataSourceImplementation
           requestMethod: RequestMethod.get,
           path: privatePath + usersPath + sessionPath,
           headers: {
-            connectionHeaderKey: closeHeaderValue,
             signHeaderKey: signature.sign,
             signIssueAtHeaderKey: signature.issuedAt,
             signNonceHeaderKey: signature.nonce,
             signAddressHeaderKey: signature.address,
             emailAddressHeaderKey: signature.email,
-            apiKeyHeaderKey: dotenv.env[skyTradeServerApiKey],
           },
         ),
         onSuccess: SkyTradeUserModel.fromJson,

@@ -1,18 +1,14 @@
 import 'package:dartz/dartz.dart' show Function1;
-import 'package:flutter_dotenv/flutter_dotenv.dart' show dotenv;
 import 'package:sky_ways/core/resources/strings/networking.dart'
     show
-        apiKeyHeaderKey,
-        closeHeaderValue,
-        connectionHeaderKey,
         dataKey,
         emailAddressHeaderKey,
         geoHashKey,
+        isTestKey,
         signAddressHeaderKey,
         signHeaderKey,
         signIssueAtHeaderKey,
         signNonceHeaderKey,
-        skyTradeServerApiKey,
         uasActivityEvent,
         uasActivityRoom;
 import 'package:sky_ways/core/utils/clients/network_client.dart'
@@ -78,15 +74,14 @@ final class UASActivityRemoteDataSourceImplementation
         roomName: uasActivityRoom,
         data: {
           geoHashKey: geoHash,
+          isTestKey: false,
         },
         headers: {
-          connectionHeaderKey: closeHeaderValue,
           signHeaderKey: signature.sign,
           signIssueAtHeaderKey: signature.issuedAt,
           signNonceHeaderKey: signature.nonce,
           signAddressHeaderKey: signature.address,
           if (signature.email != null) emailAddressHeaderKey: signature.email,
-          apiKeyHeaderKey: dotenv.env[skyTradeServerApiKey],
         },
       );
 

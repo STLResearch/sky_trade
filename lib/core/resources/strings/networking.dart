@@ -23,7 +23,6 @@ const skyTradeServerHttpBaseUrl = 'SKYTRADE_SERVER_HTTP_BASE_URL';
 const skyTradeServerSignUrl = 'SKYTRADE_SERVER_SIGN_URL';
 const skyTradeServerHttpSignUrl = 'SKYTRADE_SERVER_HTTP_SIGN_URL';
 const skyTradeServerSocketIOBaseUrl = 'SKYTRADE_SERVER_SOCKET_IO_BASE_URL';
-const skyTradeServerApiKey = 'SKYTRADE_SERVER_API_KEY';
 // Paths
 const restrictionsPath = '/restrictions';
 const suggestPath = '/suggest';
@@ -60,14 +59,11 @@ const contentTypeHeaderKey = 'Content-Type';
 const applicationJsonHeaderValue = 'application/json';
 const acceptHeaderKey = 'Accept';
 const acceptAllHeaderValue = '*/*';
-const connectionHeaderKey = 'Connection';
-const closeHeaderValue = 'close';
 const signHeaderKey = 'sign';
 const signIssueAtHeaderKey = 'sign_issue_at';
 const signNonceHeaderKey = 'sign_nonce';
 const signAddressHeaderKey = 'sign_address';
 const emailAddressHeaderKey = 'email_address';
-const apiKeyHeaderKey = 'api_key';
 // Body
 const additionalLinks = 'additional_links';
 const countryKey = 'country';
