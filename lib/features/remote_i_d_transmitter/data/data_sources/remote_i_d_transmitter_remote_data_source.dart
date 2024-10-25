@@ -1,7 +1,6 @@
 import 'dart:typed_data' show Uint8List;
 
 import 'package:dartz/dartz.dart' show Function0, Function1;
-import 'package:flutter_dotenv/flutter_dotenv.dart' show dotenv;
 import 'package:sky_ways/core/resources/strings/networking.dart'
     show
         emailAddressHeaderKey,
@@ -10,10 +9,7 @@ import 'package:sky_ways/core/resources/strings/networking.dart'
         signAddressHeaderKey,
         signHeaderKey,
         signIssueAtHeaderKey,
-        signNonceHeaderKey,
-        skyTradeServerApiKey;
-import 'package:sky_ways/core/resources/strings/networking.dart'
-    show apiKeyHeaderKey, closeHeaderValue, connectionHeaderKey;
+        signNonceHeaderKey;
 import 'package:sky_ways/core/utils/clients/network_client.dart'
     show SocketIOClient;
 import 'package:sky_ways/core/utils/enums/networking.dart' show ConnectionState;
@@ -77,13 +73,11 @@ final class RemoteIDTransmitterRemoteDataSourceImplementation
           rawData: rawData,
         ).toRemoteTransmissionModel().toJson(),
         headers: {
-          connectionHeaderKey: closeHeaderValue,
           signHeaderKey: signature.sign,
           signIssueAtHeaderKey: signature.issuedAt,
           signNonceHeaderKey: signature.nonce,
           signAddressHeaderKey: signature.address,
           if (signature.email != null) emailAddressHeaderKey: signature.email,
-          apiKeyHeaderKey: dotenv.env[skyTradeServerApiKey],
         },
       );
 
