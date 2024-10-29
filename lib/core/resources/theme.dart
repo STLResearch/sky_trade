@@ -12,6 +12,7 @@ import 'package:flutter/material.dart'
         Color,
         ColorScheme,
         Colors,
+        DialogTheme,
         DividerThemeData,
         EdgeInsetsDirectional,
         ElevatedButtonThemeData,
@@ -313,6 +314,13 @@ ThemeData get lightTheme => ThemeData(
         style: MenuStyle(
           backgroundColor: WidgetStatePropertyAll<Color>(
             hexFFFFFF,
+          ),
+        ),
+      ),
+      dialogTheme: DialogTheme(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(
+            twentyDotNil,
           ),
         ),
       ),

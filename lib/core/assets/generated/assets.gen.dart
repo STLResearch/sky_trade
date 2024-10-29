@@ -191,6 +191,10 @@ class $AssetsSvgsGen {
   SvgGenImage get skyTradeLogo =>
       const SvgGenImage('assets/svgs/sky_trade_logo.svg');
 
+  /// File path: assets/svgs/sky_trade_radar_logo.svg
+  SvgGenImage get skyTradeRadarLogo =>
+      const SvgGenImage('assets/svgs/sky_trade_radar_logo.svg');
+
   /// File path: assets/svgs/storm.svg
   SvgGenImage get storm => const SvgGenImage('assets/svgs/storm.svg');
 
@@ -245,6 +249,7 @@ class $AssetsSvgsGen {
         search,
         settings,
         skyTradeLogo,
+        skyTradeRadarLogo,
         storm,
         sun,
         weather,
