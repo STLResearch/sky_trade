@@ -69,7 +69,6 @@ import 'package:sky_ways/features/u_a_s_restrictions/domain/entities/restriction
     show RestrictionEntity;
 import 'package:sky_ways/features/u_a_s_restrictions/presentation/blocs/u_a_s_restrictions_bloc/u_a_s_restrictions_bloc.dart'
     show UASRestrictionsBloc, UASRestrictionsEvent, UASRestrictionsState;
-import 'package:sky_ways/features/u_a_s_restrictions/presentation/widgets/action_dialog.dart';
 import 'package:sky_ways/features/u_a_s_restrictions/presentation/widgets/alert_snack_bar.dart';
 import 'package:sky_ways/features/u_a_s_restrictions/presentation/widgets/map_overlay.dart';
 import 'package:sky_ways/features/u_a_s_restrictions/presentation/widgets/map_view.dart';
@@ -511,11 +510,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   builder: (_, mapStyleNotifierValue, __) => MapOverlay(
                     myLocationFollowed: centerLocationNotifierValue,
                     mapStyle: mapStyleNotifierValue,
-                    onLogoutTap: () {
-                      _showLogoutConfirmationDialogUsing(
-                        context,
-                      );
-                    },
+                    onGiftTap: () {},
                     onMyLocationIconTap: () {
                       context.read<LocationPermissionBloc>().state.whenOrNull(
                         maybeGrantedPermission: (
@@ -562,6 +557,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           _mapStyleNotifier.value = MapStyle.dark;
                       }
                     },
+                    onDroneTap: () {},
                   ),
                 ),
               ),
@@ -577,27 +573,5 @@ class _HomeScreenState extends State<HomeScreen> {
             ],
           ),
         ),
-      );
-
-  void _showLogoutConfirmationDialogUsing(
-    BuildContext context,
-  ) =>
-      ActionDialog.show(
-        context,
-        content: context.localize.areYouSureYouWantToLogout,
-        onActionDismissed: () {
-          Navigator.of(
-            context,
-          ).pop();
-        },
-        onActionConfirmed: () {
-          Navigator.of(
-            context,
-          ).pop();
-
-          context.read<Web3AuthLogoutBloc>().add(
-                const Web3AuthLogoutEvent.logout(),
-              );
-        },
       );
 }

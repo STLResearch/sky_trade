@@ -8,3 +8,11 @@ enum MapStyle {
   dark,
   satellite;
 }
+
+enum MenuItem {
+  insights,
+  about,
+  settings,
+  help,
+  logout,
+}

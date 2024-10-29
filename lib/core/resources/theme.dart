@@ -19,6 +19,8 @@ import 'package:flutter/material.dart'
         FontWeight,
         IconThemeData,
         InputDecorationTheme,
+        MenuStyle,
+        MenuThemeData,
         OutlineInputBorder,
         OutlinedBorder,
         ProgressIndicatorThemeData,
@@ -306,6 +308,13 @@ ThemeData get lightTheme => ThemeData(
       dividerTheme: const DividerThemeData(
         color: hexEBEBEB,
         thickness: oneDotNil,
+      ),
+      menuTheme: const MenuThemeData(
+        style: MenuStyle(
+          backgroundColor: WidgetStatePropertyAll<Color>(
+            hexFFFFFF,
+          ),
+        ),
       ),
     );
 

@@ -3,22 +3,24 @@ import 'package:flutter/material.dart'
         BorderRadiusDirectional,
         BoxDecoration,
         BuildContext,
+        Color,
         Container,
         StatelessWidget,
         Widget;
-import 'package:sky_ways/core/resources/colors.dart' show hexE6FFFFFF;
 import 'package:sky_ways/core/resources/numbers/ui.dart' show eightDotNil;
 
 class OptionsCard extends StatelessWidget {
   const OptionsCard({
     required this.width,
     required this.height,
+    required this.backgroundColor,
     required this.child,
     super.key,
   });
 
   final double width;
   final double height;
+  final Color backgroundColor;
   final Widget child;
 
   @override
@@ -26,7 +28,7 @@ class OptionsCard extends StatelessWidget {
         width: width,
         height: height,
         decoration: BoxDecoration(
-          color: hexE6FFFFFF,
+          color: backgroundColor,
           borderRadius: BorderRadiusDirectional.circular(
             eightDotNil,
           ),

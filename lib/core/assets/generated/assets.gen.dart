@@ -95,12 +95,26 @@ class $AssetsSvgsGen {
   /// File path: assets/svgs/flight.svg
   SvgGenImage get flight => const SvgGenImage('assets/svgs/flight.svg');
 
+  /// File path: assets/svgs/gift.svg
+  SvgGenImage get gift => const SvgGenImage('assets/svgs/gift.svg');
+
   /// File path: assets/svgs/google.svg
   SvgGenImage get google => const SvgGenImage('assets/svgs/google.svg');
+
+  /// File path: assets/svgs/help.svg
+  SvgGenImage get help => const SvgGenImage('assets/svgs/help.svg');
+
+  /// File path: assets/svgs/icon_drone_about.svg
+  SvgGenImage get iconDroneAbout =>
+      const SvgGenImage('assets/svgs/icon_drone_about.svg');
 
   /// File path: assets/svgs/icon_drone_black.svg
   SvgGenImage get iconDroneBlack =>
       const SvgGenImage('assets/svgs/icon_drone_black.svg');
+
+  /// File path: assets/svgs/icon_drone_blue.svg
+  SvgGenImage get iconDroneBlue =>
+      const SvgGenImage('assets/svgs/icon_drone_blue.svg');
 
   /// File path: assets/svgs/indicator.svg
   SvgGenImage get indicator => const SvgGenImage('assets/svgs/indicator.svg');
@@ -120,6 +134,9 @@ class $AssetsSvgsGen {
   SvgGenImage get infoRestricted =>
       const SvgGenImage('assets/svgs/info_restricted.svg');
 
+  /// File path: assets/svgs/insights.svg
+  SvgGenImage get insights => const SvgGenImage('assets/svgs/insights.svg');
+
   /// File path: assets/svgs/location_danger_restricted.svg
   SvgGenImage get locationDangerRestricted =>
       const SvgGenImage('assets/svgs/location_danger_restricted.svg');
@@ -127,6 +144,9 @@ class $AssetsSvgsGen {
   /// File path: assets/svgs/location_prohibited.svg
   SvgGenImage get locationProhibited =>
       const SvgGenImage('assets/svgs/location_prohibited.svg');
+
+  /// File path: assets/svgs/logout.svg
+  SvgGenImage get logout => const SvgGenImage('assets/svgs/logout.svg');
 
   /// File path: assets/svgs/logout_circle.svg
   SvgGenImage get logoutCircle =>
@@ -164,6 +184,9 @@ class $AssetsSvgsGen {
   /// File path: assets/svgs/search.svg
   SvgGenImage get search => const SvgGenImage('assets/svgs/search.svg');
 
+  /// File path: assets/svgs/settings.svg
+  SvgGenImage get settings => const SvgGenImage('assets/svgs/settings.svg');
+
   /// File path: assets/svgs/sky_trade_logo.svg
   SvgGenImage get skyTradeLogo =>
       const SvgGenImage('assets/svgs/sky_trade_logo.svg');
@@ -195,15 +218,21 @@ class $AssetsSvgsGen {
         cloudAlt,
         community,
         flight,
+        gift,
         google,
+        help,
+        iconDroneAbout,
         iconDroneBlack,
+        iconDroneBlue,
         indicator,
         info,
         infoDanger,
         infoProhibited,
         infoRestricted,
+        insights,
         locationDangerRestricted,
         locationProhibited,
+        logout,
         logoutCircle,
         map,
         mapLayerDark,
@@ -214,6 +243,7 @@ class $AssetsSvgsGen {
         prohibited,
         rain,
         search,
+        settings,
         skyTradeLogo,
         storm,
         sun,
