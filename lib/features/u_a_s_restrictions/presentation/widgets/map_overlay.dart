@@ -6,6 +6,7 @@ import 'package:flutter/material.dart'
         BuildContext,
         Column,
         EdgeInsetsDirectional,
+        FontWeight,
         InkWell,
         MainAxisAlignment,
         MainAxisSize,
@@ -18,21 +19,22 @@ import 'package:flutter/material.dart'
         Theme,
         Widget;
 import 'package:sky_ways/core/assets/generated/assets.gen.dart' show Assets;
-import 'package:sky_ways/core/resources/colors.dart' show hex222222;
+import 'package:sky_ways/core/resources/colors.dart'
+    show hex0000FF, hex222222, hexE6FFFFFF, hexFFFFFF;
 import 'package:sky_ways/core/resources/numbers/ui.dart'
     show
         elevenDotNil,
-        fifteenDotNil,
+        fiftyEightDotSixFour,
         fiftyFourDotNil,
-        nineDotNil,
+        sevenDotNil,
         seventyEightDotNil,
         sixtyEightDotNil,
         sixtySixDotNil,
         tenDotNil,
-        thirteenDotFive,
-        thirteenDotNil,
+        twelveDotNil,
         twentyOneDotNil,
-        twentyOneDotThreeSeven;
+        twentyOneDotThreeSeven,
+        twoFiftyFive;
 import 'package:sky_ways/core/utils/enums/ui.dart' show MapStyle;
 import 'package:sky_ways/core/utils/extensions/build_context_extensions.dart';
 import 'package:sky_ways/features/u_a_s_restrictions/presentation/widgets/options_card.dart';
@@ -43,17 +45,19 @@ class MapOverlay extends StatelessWidget {
   const MapOverlay({
     required this.myLocationFollowed,
     required this.mapStyle,
-    required this.onLogoutTap,
+    required this.onGiftTap,
     required this.onMyLocationIconTap,
     required this.onMapLayerIconTap,
+    required this.onDroneTap,
     super.key,
   });
 
   final bool myLocationFollowed;
   final MapStyle mapStyle;
-  final Function0<void> onLogoutTap;
+  final Function0<void> onGiftTap;
   final Function0<void> onMyLocationIconTap;
   final Function0<void> onMapLayerIconTap;
+  final Function0<void> onDroneTap;
 
   @override
   Widget build(BuildContext context) => SafeArea(
@@ -70,29 +74,30 @@ class MapOverlay extends StatelessWidget {
                   children: [
                     const SearchCard(),
                     const SizedBox(
-                      height: fifteenDotNil, // Spacing between the buttons
+                      height: twelveDotNil,
                     ),
                     Align(
                       alignment: AlignmentDirectional.topEnd,
                       child: InkWell(
-                        onTap: onLogoutTap,
+                        onTap: onGiftTap,
                         child: OptionsCard(
                           width: fiftyFourDotNil,
                           height: sixtyEightDotNil,
+                          backgroundColor: hex0000FF,
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              Assets.svgs.logoutCircle.svg(),
-                              const SizedBox(
-                                height: tenDotNil,
-                              ),
+                              Assets.svgs.gift.svg(),
                               Text(
-                                context.localize.logout,
+                                twoFiftyFive.toString(),
                                 style: Theme.of(
                                   context,
                                 ).textTheme.bodyMedium?.copyWith(
-                                      fontSize: nineDotNil,
-                                      height: thirteenDotFive / nineDotNil,
+                                      fontWeight: FontWeight.w700,
+                                      fontSize: elevenDotNil,
+                                      height:
+                                          twentyOneDotThreeSeven / elevenDotNil,
+                                      color: hexFFFFFF,
                                     ),
                               ),
                             ],
@@ -101,13 +106,14 @@ class MapOverlay extends StatelessWidget {
                       ),
                     ),
                     const SizedBox(
-                      height: tenDotNil, // Spacing between the buttons
+                      height: sevenDotNil,
                     ),
                     Align(
                       alignment: AlignmentDirectional.topEnd,
                       child: OptionsCard(
                         width: fiftyFourDotNil,
                         height: seventyEightDotNil,
+                        backgroundColor: hexE6FFFFFF,
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
@@ -135,13 +141,29 @@ class MapOverlay extends StatelessWidget {
                       ),
                     ),
                     const SizedBox(
-                      height: thirteenDotNil,
+                      height: sevenDotNil,
+                    ),
+                    Align(
+                      alignment: AlignmentDirectional.topEnd,
+                      child: InkWell(
+                        onTap: onDroneTap,
+                        child: OptionsCard(
+                          width: fiftyFourDotNil,
+                          height: fiftyEightDotSixFour,
+                          backgroundColor: hexE6FFFFFF,
+                          child: Assets.svgs.iconDroneBlack.svg(),
+                        ),
+                      ),
+                    ),
+                    const SizedBox(
+                      height: sevenDotNil,
                     ),
                     Align(
                       alignment: AlignmentDirectional.topEnd,
                       child: OptionsCard(
                         width: fiftyFourDotNil,
                         height: sixtySixDotNil,
+                        backgroundColor: hexE6FFFFFF,
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [

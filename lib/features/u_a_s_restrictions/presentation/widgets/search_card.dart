@@ -40,6 +40,7 @@ import 'package:sky_ways/features/bluetooth/presentation/blocs/bluetooth_adapter
     show BluetoothAdapterStateBloc, BluetoothAdapterStateState;
 import 'package:sky_ways/features/search_autocomplete/presentation/blocs/search_autocomplete_bloc.dart'
     show SearchAutocompleteBloc, SearchAutocompleteEvent;
+import 'package:sky_ways/features/u_a_s_restrictions/presentation/widgets/menu.dart';
 import 'package:sky_ways/features/wifi/presentation/blocs/wifi_adapter_state_bloc/wifi_adapter_state_bloc.dart'
     show WifiAdapterStateBloc, WifiAdapterStateState;
 
@@ -167,7 +168,7 @@ class _SearchCardState extends State<SearchCard> {
             const SizedBox(
               width: tenDotNil,
             ),
-            Assets.svgs.meatballsMenu.svg(),
+            const Menu(),
             const SizedBox(
               width: eighteenDotNil,
             ),

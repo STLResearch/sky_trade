@@ -95,15 +95,26 @@ class $AssetsSvgsGen {
   /// File path: assets/svgs/flight.svg
   SvgGenImage get flight => const SvgGenImage('assets/svgs/flight.svg');
 
+  /// File path: assets/svgs/gift.svg
+  SvgGenImage get gift => const SvgGenImage('assets/svgs/gift.svg');
+
   /// File path: assets/svgs/google.svg
   SvgGenImage get google => const SvgGenImage('assets/svgs/google.svg');
 
   /// File path: assets/svgs/help.svg
   SvgGenImage get help => const SvgGenImage('assets/svgs/help.svg');
 
+  /// File path: assets/svgs/icon_drone_about.svg
+  SvgGenImage get iconDroneAbout =>
+      const SvgGenImage('assets/svgs/icon_drone_about.svg');
+
   /// File path: assets/svgs/icon_drone_black.svg
   SvgGenImage get iconDroneBlack =>
       const SvgGenImage('assets/svgs/icon_drone_black.svg');
+
+  /// File path: assets/svgs/icon_drone_blue.svg
+  SvgGenImage get iconDroneBlue =>
+      const SvgGenImage('assets/svgs/icon_drone_blue.svg');
 
   /// File path: assets/svgs/indicator.svg
   SvgGenImage get indicator => const SvgGenImage('assets/svgs/indicator.svg');
@@ -134,12 +145,12 @@ class $AssetsSvgsGen {
   SvgGenImage get locationProhibited =>
       const SvgGenImage('assets/svgs/location_prohibited.svg');
 
+  /// File path: assets/svgs/logout.svg
+  SvgGenImage get logout => const SvgGenImage('assets/svgs/logout.svg');
+
   /// File path: assets/svgs/logout_circle.svg
   SvgGenImage get logoutCircle =>
       const SvgGenImage('assets/svgs/logout_circle.svg');
-
-  /// File path: assets/svgs/logout.svg
-  SvgGenImage get logout => const SvgGenImage('assets/svgs/logout.svg');
 
   /// File path: assets/svgs/map.svg
   SvgGenImage get map => const SvgGenImage('assets/svgs/map.svg');
@@ -207,9 +218,12 @@ class $AssetsSvgsGen {
         cloudAlt,
         community,
         flight,
+        gift,
         google,
         help,
+        iconDroneAbout,
         iconDroneBlack,
+        iconDroneBlue,
         indicator,
         info,
         infoDanger,
@@ -218,8 +232,8 @@ class $AssetsSvgsGen {
         insights,
         locationDangerRestricted,
         locationProhibited,
-        logoutCircle,
         logout,
+        logoutCircle,
         map,
         mapLayerDark,
         mapLayerSatellite,
