@@ -4,7 +4,6 @@ import 'package:flutter/material.dart'
         BoxDecoration,
         BoxShape,
         BuildContext,
-        ButtonStyle,
         Center,
         Container,
         EdgeInsetsDirectional,
@@ -19,7 +18,8 @@ import 'package:flutter/material.dart'
         Text,
         Theme,
         Widget,
-        WidgetStatePropertyAll;
+        WidgetStatePropertyAll,
+        showDialog;
 import 'package:flutter_bloc/flutter_bloc.dart' show ReadContext;
 import 'package:sky_ways/core/assets/generated/assets.gen.dart' show Assets;
 import 'package:sky_ways/core/resources/colors.dart' show hex1D1E2D;
@@ -29,6 +29,7 @@ import 'package:sky_ways/core/utils/enums/ui.dart' show MenuItem;
 import 'package:sky_ways/core/utils/extensions/build_context_extensions.dart';
 import 'package:sky_ways/features/auth/presentation/blocs/web_3_auth_logout_bloc/web_3_auth_logout_bloc.dart'
     show Web3AuthLogoutBloc, Web3AuthLogoutEvent;
+import 'package:sky_ways/features/u_a_s_restrictions/presentation/widgets/about_dialog.dart';
 import 'package:sky_ways/features/u_a_s_restrictions/presentation/widgets/action_dialog.dart';
 
 class Menu extends StatelessWidget {
@@ -95,7 +96,11 @@ class Menu extends StatelessWidget {
   }) =>
       switch (MenuItem.values[index]) {
         MenuItem.insights => () {},
-        MenuItem.about => () {},
+        MenuItem.about => () {
+            AboutDialog.show(
+              context,
+            );
+          },
         MenuItem.settings => () {},
         MenuItem.help => () {},
         MenuItem.logout => () {
