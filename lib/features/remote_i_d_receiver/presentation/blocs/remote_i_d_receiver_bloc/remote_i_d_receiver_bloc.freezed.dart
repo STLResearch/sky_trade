@@ -19,6 +19,7 @@ mixin _$RemoteIDReceiverEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() listenRemoteIDs,
+    required TResult Function() remoteIDsGetting,
     required TResult Function(Set<RemoteIDEntity> remoteIDEntities)
         remoteIDsGotten,
     required TResult Function(RemoteIDReceiverFailure remoteIDReceiverFailure)
@@ -29,6 +30,7 @@ mixin _$RemoteIDReceiverEvent {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? listenRemoteIDs,
+    TResult? Function()? remoteIDsGetting,
     TResult? Function(Set<RemoteIDEntity> remoteIDEntities)? remoteIDsGotten,
     TResult? Function(RemoteIDReceiverFailure remoteIDReceiverFailure)?
         remoteIDsNotGotten,
@@ -38,6 +40,7 @@ mixin _$RemoteIDReceiverEvent {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? listenRemoteIDs,
+    TResult Function()? remoteIDsGetting,
     TResult Function(Set<RemoteIDEntity> remoteIDEntities)? remoteIDsGotten,
     TResult Function(RemoteIDReceiverFailure remoteIDReceiverFailure)?
         remoteIDsNotGotten,
@@ -48,6 +51,7 @@ mixin _$RemoteIDReceiverEvent {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_ListenRemoteIDs value) listenRemoteIDs,
+    required TResult Function(_RemoteIDsGetting value) remoteIDsGetting,
     required TResult Function(_RemoteIDsGotten value) remoteIDsGotten,
     required TResult Function(_RemoteIDsNotGotten value) remoteIDsNotGotten,
     required TResult Function(_StopListeningRemoteIDs value)
@@ -57,6 +61,7 @@ mixin _$RemoteIDReceiverEvent {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_ListenRemoteIDs value)? listenRemoteIDs,
+    TResult? Function(_RemoteIDsGetting value)? remoteIDsGetting,
     TResult? Function(_RemoteIDsGotten value)? remoteIDsGotten,
     TResult? Function(_RemoteIDsNotGotten value)? remoteIDsNotGotten,
     TResult? Function(_StopListeningRemoteIDs value)? stopListeningRemoteIDs,
@@ -65,6 +70,7 @@ mixin _$RemoteIDReceiverEvent {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_ListenRemoteIDs value)? listenRemoteIDs,
+    TResult Function(_RemoteIDsGetting value)? remoteIDsGetting,
     TResult Function(_RemoteIDsGotten value)? remoteIDsGotten,
     TResult Function(_RemoteIDsNotGotten value)? remoteIDsNotGotten,
     TResult Function(_StopListeningRemoteIDs value)? stopListeningRemoteIDs,
@@ -131,6 +137,7 @@ class _$ListenRemoteIDsImpl implements _ListenRemoteIDs {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() listenRemoteIDs,
+    required TResult Function() remoteIDsGetting,
     required TResult Function(Set<RemoteIDEntity> remoteIDEntities)
         remoteIDsGotten,
     required TResult Function(RemoteIDReceiverFailure remoteIDReceiverFailure)
@@ -144,6 +151,7 @@ class _$ListenRemoteIDsImpl implements _ListenRemoteIDs {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? listenRemoteIDs,
+    TResult? Function()? remoteIDsGetting,
     TResult? Function(Set<RemoteIDEntity> remoteIDEntities)? remoteIDsGotten,
     TResult? Function(RemoteIDReceiverFailure remoteIDReceiverFailure)?
         remoteIDsNotGotten,
@@ -156,6 +164,7 @@ class _$ListenRemoteIDsImpl implements _ListenRemoteIDs {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? listenRemoteIDs,
+    TResult Function()? remoteIDsGetting,
     TResult Function(Set<RemoteIDEntity> remoteIDEntities)? remoteIDsGotten,
     TResult Function(RemoteIDReceiverFailure remoteIDReceiverFailure)?
         remoteIDsNotGotten,
@@ -172,6 +181,7 @@ class _$ListenRemoteIDsImpl implements _ListenRemoteIDs {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_ListenRemoteIDs value) listenRemoteIDs,
+    required TResult Function(_RemoteIDsGetting value) remoteIDsGetting,
     required TResult Function(_RemoteIDsGotten value) remoteIDsGotten,
     required TResult Function(_RemoteIDsNotGotten value) remoteIDsNotGotten,
     required TResult Function(_StopListeningRemoteIDs value)
@@ -184,6 +194,7 @@ class _$ListenRemoteIDsImpl implements _ListenRemoteIDs {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_ListenRemoteIDs value)? listenRemoteIDs,
+    TResult? Function(_RemoteIDsGetting value)? remoteIDsGetting,
     TResult? Function(_RemoteIDsGotten value)? remoteIDsGotten,
     TResult? Function(_RemoteIDsNotGotten value)? remoteIDsNotGotten,
     TResult? Function(_StopListeningRemoteIDs value)? stopListeningRemoteIDs,
@@ -195,6 +206,7 @@ class _$ListenRemoteIDsImpl implements _ListenRemoteIDs {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_ListenRemoteIDs value)? listenRemoteIDs,
+    TResult Function(_RemoteIDsGetting value)? remoteIDsGetting,
     TResult Function(_RemoteIDsGotten value)? remoteIDsGotten,
     TResult Function(_RemoteIDsNotGotten value)? remoteIDsNotGotten,
     TResult Function(_StopListeningRemoteIDs value)? stopListeningRemoteIDs,
@@ -209,6 +221,131 @@ class _$ListenRemoteIDsImpl implements _ListenRemoteIDs {
 
 abstract class _ListenRemoteIDs implements RemoteIDReceiverEvent {
   const factory _ListenRemoteIDs() = _$ListenRemoteIDsImpl;
+}
+
+/// @nodoc
+abstract class _$$RemoteIDsGettingImplCopyWith<$Res> {
+  factory _$$RemoteIDsGettingImplCopyWith(_$RemoteIDsGettingImpl value,
+          $Res Function(_$RemoteIDsGettingImpl) then) =
+      __$$RemoteIDsGettingImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$RemoteIDsGettingImplCopyWithImpl<$Res>
+    extends _$RemoteIDReceiverEventCopyWithImpl<$Res, _$RemoteIDsGettingImpl>
+    implements _$$RemoteIDsGettingImplCopyWith<$Res> {
+  __$$RemoteIDsGettingImplCopyWithImpl(_$RemoteIDsGettingImpl _value,
+      $Res Function(_$RemoteIDsGettingImpl) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$RemoteIDsGettingImpl implements _RemoteIDsGetting {
+  const _$RemoteIDsGettingImpl();
+
+  @override
+  String toString() {
+    return 'RemoteIDReceiverEvent.remoteIDsGetting()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$RemoteIDsGettingImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() listenRemoteIDs,
+    required TResult Function() remoteIDsGetting,
+    required TResult Function(Set<RemoteIDEntity> remoteIDEntities)
+        remoteIDsGotten,
+    required TResult Function(RemoteIDReceiverFailure remoteIDReceiverFailure)
+        remoteIDsNotGotten,
+    required TResult Function() stopListeningRemoteIDs,
+  }) {
+    return remoteIDsGetting();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? listenRemoteIDs,
+    TResult? Function()? remoteIDsGetting,
+    TResult? Function(Set<RemoteIDEntity> remoteIDEntities)? remoteIDsGotten,
+    TResult? Function(RemoteIDReceiverFailure remoteIDReceiverFailure)?
+        remoteIDsNotGotten,
+    TResult? Function()? stopListeningRemoteIDs,
+  }) {
+    return remoteIDsGetting?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? listenRemoteIDs,
+    TResult Function()? remoteIDsGetting,
+    TResult Function(Set<RemoteIDEntity> remoteIDEntities)? remoteIDsGotten,
+    TResult Function(RemoteIDReceiverFailure remoteIDReceiverFailure)?
+        remoteIDsNotGotten,
+    TResult Function()? stopListeningRemoteIDs,
+    required TResult orElse(),
+  }) {
+    if (remoteIDsGetting != null) {
+      return remoteIDsGetting();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_ListenRemoteIDs value) listenRemoteIDs,
+    required TResult Function(_RemoteIDsGetting value) remoteIDsGetting,
+    required TResult Function(_RemoteIDsGotten value) remoteIDsGotten,
+    required TResult Function(_RemoteIDsNotGotten value) remoteIDsNotGotten,
+    required TResult Function(_StopListeningRemoteIDs value)
+        stopListeningRemoteIDs,
+  }) {
+    return remoteIDsGetting(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_ListenRemoteIDs value)? listenRemoteIDs,
+    TResult? Function(_RemoteIDsGetting value)? remoteIDsGetting,
+    TResult? Function(_RemoteIDsGotten value)? remoteIDsGotten,
+    TResult? Function(_RemoteIDsNotGotten value)? remoteIDsNotGotten,
+    TResult? Function(_StopListeningRemoteIDs value)? stopListeningRemoteIDs,
+  }) {
+    return remoteIDsGetting?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_ListenRemoteIDs value)? listenRemoteIDs,
+    TResult Function(_RemoteIDsGetting value)? remoteIDsGetting,
+    TResult Function(_RemoteIDsGotten value)? remoteIDsGotten,
+    TResult Function(_RemoteIDsNotGotten value)? remoteIDsNotGotten,
+    TResult Function(_StopListeningRemoteIDs value)? stopListeningRemoteIDs,
+    required TResult orElse(),
+  }) {
+    if (remoteIDsGetting != null) {
+      return remoteIDsGetting(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _RemoteIDsGetting implements RemoteIDReceiverEvent {
+  const factory _RemoteIDsGetting() = _$RemoteIDsGettingImpl;
 }
 
 /// @nodoc
@@ -286,6 +423,7 @@ class _$RemoteIDsGottenImpl implements _RemoteIDsGotten {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() listenRemoteIDs,
+    required TResult Function() remoteIDsGetting,
     required TResult Function(Set<RemoteIDEntity> remoteIDEntities)
         remoteIDsGotten,
     required TResult Function(RemoteIDReceiverFailure remoteIDReceiverFailure)
@@ -299,6 +437,7 @@ class _$RemoteIDsGottenImpl implements _RemoteIDsGotten {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? listenRemoteIDs,
+    TResult? Function()? remoteIDsGetting,
     TResult? Function(Set<RemoteIDEntity> remoteIDEntities)? remoteIDsGotten,
     TResult? Function(RemoteIDReceiverFailure remoteIDReceiverFailure)?
         remoteIDsNotGotten,
@@ -311,6 +450,7 @@ class _$RemoteIDsGottenImpl implements _RemoteIDsGotten {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? listenRemoteIDs,
+    TResult Function()? remoteIDsGetting,
     TResult Function(Set<RemoteIDEntity> remoteIDEntities)? remoteIDsGotten,
     TResult Function(RemoteIDReceiverFailure remoteIDReceiverFailure)?
         remoteIDsNotGotten,
@@ -327,6 +467,7 @@ class _$RemoteIDsGottenImpl implements _RemoteIDsGotten {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_ListenRemoteIDs value) listenRemoteIDs,
+    required TResult Function(_RemoteIDsGetting value) remoteIDsGetting,
     required TResult Function(_RemoteIDsGotten value) remoteIDsGotten,
     required TResult Function(_RemoteIDsNotGotten value) remoteIDsNotGotten,
     required TResult Function(_StopListeningRemoteIDs value)
@@ -339,6 +480,7 @@ class _$RemoteIDsGottenImpl implements _RemoteIDsGotten {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_ListenRemoteIDs value)? listenRemoteIDs,
+    TResult? Function(_RemoteIDsGetting value)? remoteIDsGetting,
     TResult? Function(_RemoteIDsGotten value)? remoteIDsGotten,
     TResult? Function(_RemoteIDsNotGotten value)? remoteIDsNotGotten,
     TResult? Function(_StopListeningRemoteIDs value)? stopListeningRemoteIDs,
@@ -350,6 +492,7 @@ class _$RemoteIDsGottenImpl implements _RemoteIDsGotten {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_ListenRemoteIDs value)? listenRemoteIDs,
+    TResult Function(_RemoteIDsGetting value)? remoteIDsGetting,
     TResult Function(_RemoteIDsGotten value)? remoteIDsGotten,
     TResult Function(_RemoteIDsNotGotten value)? remoteIDsNotGotten,
     TResult Function(_StopListeningRemoteIDs value)? stopListeningRemoteIDs,
@@ -441,6 +584,7 @@ class _$RemoteIDsNotGottenImpl implements _RemoteIDsNotGotten {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() listenRemoteIDs,
+    required TResult Function() remoteIDsGetting,
     required TResult Function(Set<RemoteIDEntity> remoteIDEntities)
         remoteIDsGotten,
     required TResult Function(RemoteIDReceiverFailure remoteIDReceiverFailure)
@@ -454,6 +598,7 @@ class _$RemoteIDsNotGottenImpl implements _RemoteIDsNotGotten {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? listenRemoteIDs,
+    TResult? Function()? remoteIDsGetting,
     TResult? Function(Set<RemoteIDEntity> remoteIDEntities)? remoteIDsGotten,
     TResult? Function(RemoteIDReceiverFailure remoteIDReceiverFailure)?
         remoteIDsNotGotten,
@@ -466,6 +611,7 @@ class _$RemoteIDsNotGottenImpl implements _RemoteIDsNotGotten {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? listenRemoteIDs,
+    TResult Function()? remoteIDsGetting,
     TResult Function(Set<RemoteIDEntity> remoteIDEntities)? remoteIDsGotten,
     TResult Function(RemoteIDReceiverFailure remoteIDReceiverFailure)?
         remoteIDsNotGotten,
@@ -482,6 +628,7 @@ class _$RemoteIDsNotGottenImpl implements _RemoteIDsNotGotten {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_ListenRemoteIDs value) listenRemoteIDs,
+    required TResult Function(_RemoteIDsGetting value) remoteIDsGetting,
     required TResult Function(_RemoteIDsGotten value) remoteIDsGotten,
     required TResult Function(_RemoteIDsNotGotten value) remoteIDsNotGotten,
     required TResult Function(_StopListeningRemoteIDs value)
@@ -494,6 +641,7 @@ class _$RemoteIDsNotGottenImpl implements _RemoteIDsNotGotten {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_ListenRemoteIDs value)? listenRemoteIDs,
+    TResult? Function(_RemoteIDsGetting value)? remoteIDsGetting,
     TResult? Function(_RemoteIDsGotten value)? remoteIDsGotten,
     TResult? Function(_RemoteIDsNotGotten value)? remoteIDsNotGotten,
     TResult? Function(_StopListeningRemoteIDs value)? stopListeningRemoteIDs,
@@ -505,6 +653,7 @@ class _$RemoteIDsNotGottenImpl implements _RemoteIDsNotGotten {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_ListenRemoteIDs value)? listenRemoteIDs,
+    TResult Function(_RemoteIDsGetting value)? remoteIDsGetting,
     TResult Function(_RemoteIDsGotten value)? remoteIDsGotten,
     TResult Function(_RemoteIDsNotGotten value)? remoteIDsNotGotten,
     TResult Function(_StopListeningRemoteIDs value)? stopListeningRemoteIDs,
@@ -571,6 +720,7 @@ class _$StopListeningRemoteIDsImpl implements _StopListeningRemoteIDs {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() listenRemoteIDs,
+    required TResult Function() remoteIDsGetting,
     required TResult Function(Set<RemoteIDEntity> remoteIDEntities)
         remoteIDsGotten,
     required TResult Function(RemoteIDReceiverFailure remoteIDReceiverFailure)
@@ -584,6 +734,7 @@ class _$StopListeningRemoteIDsImpl implements _StopListeningRemoteIDs {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? listenRemoteIDs,
+    TResult? Function()? remoteIDsGetting,
     TResult? Function(Set<RemoteIDEntity> remoteIDEntities)? remoteIDsGotten,
     TResult? Function(RemoteIDReceiverFailure remoteIDReceiverFailure)?
         remoteIDsNotGotten,
@@ -596,6 +747,7 @@ class _$StopListeningRemoteIDsImpl implements _StopListeningRemoteIDs {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? listenRemoteIDs,
+    TResult Function()? remoteIDsGetting,
     TResult Function(Set<RemoteIDEntity> remoteIDEntities)? remoteIDsGotten,
     TResult Function(RemoteIDReceiverFailure remoteIDReceiverFailure)?
         remoteIDsNotGotten,
@@ -612,6 +764,7 @@ class _$StopListeningRemoteIDsImpl implements _StopListeningRemoteIDs {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_ListenRemoteIDs value) listenRemoteIDs,
+    required TResult Function(_RemoteIDsGetting value) remoteIDsGetting,
     required TResult Function(_RemoteIDsGotten value) remoteIDsGotten,
     required TResult Function(_RemoteIDsNotGotten value) remoteIDsNotGotten,
     required TResult Function(_StopListeningRemoteIDs value)
@@ -624,6 +777,7 @@ class _$StopListeningRemoteIDsImpl implements _StopListeningRemoteIDs {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_ListenRemoteIDs value)? listenRemoteIDs,
+    TResult? Function(_RemoteIDsGetting value)? remoteIDsGetting,
     TResult? Function(_RemoteIDsGotten value)? remoteIDsGotten,
     TResult? Function(_RemoteIDsNotGotten value)? remoteIDsNotGotten,
     TResult? Function(_StopListeningRemoteIDs value)? stopListeningRemoteIDs,
@@ -635,6 +789,7 @@ class _$StopListeningRemoteIDsImpl implements _StopListeningRemoteIDs {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_ListenRemoteIDs value)? listenRemoteIDs,
+    TResult Function(_RemoteIDsGetting value)? remoteIDsGetting,
     TResult Function(_RemoteIDsGotten value)? remoteIDsGotten,
     TResult Function(_RemoteIDsNotGotten value)? remoteIDsNotGotten,
     TResult Function(_StopListeningRemoteIDs value)? stopListeningRemoteIDs,
