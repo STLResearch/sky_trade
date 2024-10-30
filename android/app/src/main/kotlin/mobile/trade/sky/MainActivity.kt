@@ -1,13 +1,13 @@
-package trade.sky
+package mobile.trade.sky
 
 import io.flutter.embedding.android.FlutterActivity
 import io.flutter.embedding.engine.FlutterEngine
 import io.flutter.plugin.common.EventChannel
 import io.flutter.plugin.common.MethodChannel
-import trade.sky.core.utils.constants.IN_APP_UPDATE_CHANNEL_NAME
-import trade.sky.core.utils.constants.WIFI_ADAPTER_STATE_BROADCAST_RECEIVER_CHANNEL_NAME
-import trade.sky.features.in_app_update.InAppUpdateHandler
-import trade.sky.features.wifi.WifiAdapterStateBroadcastReceiver
+import mobile.trade.sky.core.utils.constants.IN_APP_UPDATE_CHANNEL_NAME
+import mobile.trade.sky.core.utils.constants.WIFI_ADAPTER_STATE_BROADCAST_RECEIVER_CHANNEL_NAME
+import mobile.trade.sky.features.in_app_update.InAppUpdateHandler
+import mobile.trade.sky.features.wifi.WifiAdapterStateBroadcastReceiver
 
 class MainActivity : FlutterActivity() {
     override fun configureFlutterEngine(flutterEngine: FlutterEngine) {

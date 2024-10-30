@@ -1,4 +1,4 @@
-package trade.sky.features.wifi
+package mobile.trade.sky.features.wifi
 
 import android.content.BroadcastReceiver
 import android.content.Context
@@ -8,7 +8,7 @@ import android.net.wifi.WifiManager
 import android.os.Handler
 import android.os.Looper
 import io.flutter.plugin.common.EventChannel
-import trade.sky.core.utils.enums.WifiAdapterState
+import mobile.trade.sky.core.utils.enums.WifiAdapterState
 
 class WifiAdapterStateBroadcastReceiver(private val context: Context) :
     EventChannel.StreamHandler {

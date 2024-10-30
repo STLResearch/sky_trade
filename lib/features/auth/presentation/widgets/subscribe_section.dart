@@ -12,10 +12,10 @@ import 'package:flutter/material.dart'
         ValueNotifier,
         VisualDensity,
         Widget;
-import 'package:sky_ways/core/resources/colors.dart' show hex0653EA, hex87878D;
-import 'package:sky_ways/core/resources/numbers/ui.dart'
+import 'package:sky_trade/core/resources/colors.dart' show hex0653EA, hex87878D;
+import 'package:sky_trade/core/resources/numbers/ui.dart'
     show eightDotNil, fourteenDotNil, minusFourDotNil, twentyOneDotNil;
-import 'package:sky_ways/core/utils/extensions/build_context_extensions.dart';
+import 'package:sky_trade/core/utils/extensions/build_context_extensions.dart';
 
 final class SubscribeSection extends StatelessWidget {
   const SubscribeSection({

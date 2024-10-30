@@ -1,6 +1,6 @@
-import 'package:sky_ways/core/errors/exceptions/auth_exception.dart';
-import 'package:sky_ways/core/resources/numbers/networking.dart' show zero;
-import 'package:sky_ways/core/resources/strings/networking.dart'
+import 'package:sky_trade/core/errors/exceptions/auth_exception.dart';
+import 'package:sky_trade/core/resources/numbers/networking.dart' show zero;
+import 'package:sky_trade/core/resources/strings/networking.dart'
     show
         blockchainAddressKey,
         categoryIdKey,
@@ -24,12 +24,12 @@ import 'package:sky_ways/core/resources/strings/networking.dart'
         userExist,
         userNotExist,
         usersPath;
-import 'package:sky_ways/core/utils/clients/network_client.dart'
+import 'package:sky_trade/core/utils/clients/network_client.dart'
     show HttpClient;
-import 'package:sky_ways/core/utils/clients/response_handler.dart';
-import 'package:sky_ways/core/utils/enums/networking.dart' show RequestMethod;
-import 'package:sky_ways/core/utils/typedefs/networking.dart' show Signature;
-import 'package:sky_ways/features/auth/data/models/auth_model.dart';
+import 'package:sky_trade/core/utils/clients/response_handler.dart';
+import 'package:sky_trade/core/utils/enums/networking.dart' show RequestMethod;
+import 'package:sky_trade/core/utils/typedefs/networking.dart' show Signature;
+import 'package:sky_trade/features/auth/data/models/auth_model.dart';
 
 abstract interface class AuthRemoteDataSource {
   Future<SkyTradeUserModel> createSkyTradeUserUsing({

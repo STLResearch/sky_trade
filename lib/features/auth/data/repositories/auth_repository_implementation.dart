@@ -2,31 +2,31 @@ import 'dart:io' show Platform;
 
 import 'package:dartz/dartz.dart' show Either, Unit, unit;
 import 'package:flutter_dotenv/flutter_dotenv.dart' show dotenv;
-import 'package:sky_ways/core/errors/exceptions/auth_exception.dart'
+import 'package:sky_trade/core/errors/exceptions/auth_exception.dart'
     show
         InvalidEmailException,
         InvalidSignatureException,
         UnauthorizedException,
         UserAlreadyExistsException,
         UserDoesNotExistException;
-import 'package:sky_ways/core/errors/failures/auth_failure.dart';
-import 'package:sky_ways/core/resources/strings/environments.dart'
+import 'package:sky_trade/core/errors/failures/auth_failure.dart';
+import 'package:sky_trade/core/resources/strings/environments.dart'
     show devEnvironment, flavours;
-import 'package:sky_ways/core/resources/strings/networking.dart'
+import 'package:sky_trade/core/resources/strings/networking.dart'
     show
         flowTypeKey,
         linkValue,
         web3AuthWhitelistOriginAndroid,
         web3AuthWhitelistOriginIos;
-import 'package:sky_ways/core/resources/strings/secret_keys.dart'
+import 'package:sky_trade/core/resources/strings/secret_keys.dart'
     show web3AuthClientId;
-import 'package:sky_ways/core/utils/clients/data_handler.dart';
-import 'package:sky_ways/core/utils/clients/signature_handler.dart';
-import 'package:sky_ways/core/utils/enums/networking.dart' show AuthProvider;
-import 'package:sky_ways/features/auth/data/data_sources/auth_remote_data_source.dart'
+import 'package:sky_trade/core/utils/clients/data_handler.dart';
+import 'package:sky_trade/core/utils/clients/signature_handler.dart';
+import 'package:sky_trade/core/utils/enums/networking.dart' show AuthProvider;
+import 'package:sky_trade/features/auth/data/data_sources/auth_remote_data_source.dart'
     show AuthRemoteDataSource;
-import 'package:sky_ways/features/auth/domain/entities/auth_entity.dart';
-import 'package:sky_ways/features/auth/domain/repositories/auth_repository.dart';
+import 'package:sky_trade/features/auth/domain/entities/auth_entity.dart';
+import 'package:sky_trade/features/auth/domain/repositories/auth_repository.dart';
 import 'package:web3auth_flutter/enums.dart' show Network, Provider;
 import 'package:web3auth_flutter/input.dart'
     show ExtraLoginOptions, LoginParams, Web3AuthOptions;

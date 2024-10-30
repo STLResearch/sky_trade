@@ -13,8 +13,8 @@ import 'package:flutter/material.dart'
         Theme,
         Transform,
         Widget;
-import 'package:sky_ways/core/resources/colors.dart' show hexFFFFFF;
-import 'package:sky_ways/core/resources/numbers/ui.dart'
+import 'package:sky_trade/core/resources/colors.dart' show hexFFFFFF;
+import 'package:sky_trade/core/resources/numbers/ui.dart'
     show
         elevenDotNil,
         minusEightDotNil,

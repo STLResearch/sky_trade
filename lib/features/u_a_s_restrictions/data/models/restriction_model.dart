@@ -1,5 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:sky_ways/core/resources/strings/networking.dart'
+import 'package:sky_trade/core/resources/strings/networking.dart'
     show
         additionalLinks,
         coordinatesKey,
@@ -11,9 +11,9 @@ import 'package:sky_ways/core/resources/strings/networking.dart'
         regionKey,
         typeKey,
         upperLimitKey;
-import 'package:sky_ways/core/utils/enums/networking.dart'
+import 'package:sky_trade/core/utils/enums/networking.dart'
     show RegionType, RestrictionType;
-import 'package:sky_ways/features/u_a_s_restrictions/domain/entities/restriction_entity.dart';
+import 'package:sky_trade/features/u_a_s_restrictions/domain/entities/restriction_entity.dart';
 
 part 'restriction_model.g.dart';
 

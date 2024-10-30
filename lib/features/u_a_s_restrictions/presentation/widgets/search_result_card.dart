@@ -23,8 +23,8 @@ import 'package:flutter/material.dart'
         Theme,
         Widget;
 import 'package:flutter_bloc/flutter_bloc.dart' show BlocBuilder;
-import 'package:sky_ways/core/resources/colors.dart' show hex333333;
-import 'package:sky_ways/core/resources/numbers/ui.dart'
+import 'package:sky_trade/core/resources/colors.dart' show hex333333;
+import 'package:sky_trade/core/resources/numbers/ui.dart'
     show
         eightDotNil,
         fourteenDotNil,
@@ -35,10 +35,10 @@ import 'package:sky_ways/core/resources/numbers/ui.dart'
         sixtyOneDotNil,
         twelveDotNil,
         twentyOneDotNil;
-import 'package:sky_ways/core/resources/strings/special_characters.dart'
+import 'package:sky_trade/core/resources/strings/special_characters.dart'
     show emptyString;
-import 'package:sky_ways/core/utils/extensions/build_context_extensions.dart';
-import 'package:sky_ways/features/search_autocomplete/presentation/blocs/search_autocomplete_bloc.dart'
+import 'package:sky_trade/core/utils/extensions/build_context_extensions.dart';
+import 'package:sky_trade/features/search_autocomplete/presentation/blocs/search_autocomplete_bloc.dart'
     show SearchAutocompleteBloc, SearchAutocompleteState;
 
 class SearchResultCard extends StatelessWidget {

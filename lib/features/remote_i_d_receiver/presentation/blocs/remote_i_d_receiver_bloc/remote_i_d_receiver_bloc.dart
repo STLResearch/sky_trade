@@ -3,10 +3,10 @@ import 'dart:async' show StreamSubscription;
 import 'package:bloc/bloc.dart' show Bloc, Emitter;
 import 'package:dartz/dartz.dart' show Either;
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:sky_ways/core/errors/failures/remote_i_d_receiver_failure.dart';
-import 'package:sky_ways/features/remote_i_d_receiver/domain/entities/remote_i_d_entity.dart'
+import 'package:sky_trade/core/errors/failures/remote_i_d_receiver_failure.dart';
+import 'package:sky_trade/features/remote_i_d_receiver/domain/entities/remote_i_d_entity.dart'
     show RemoteIDEntity;
-import 'package:sky_ways/features/remote_i_d_receiver/domain/repositories/remote_i_d_receiver_repository.dart'
+import 'package:sky_trade/features/remote_i_d_receiver/domain/repositories/remote_i_d_receiver_repository.dart'
     show RemoteIDReceiverRepository;
 
 part 'remote_i_d_receiver_event.dart';

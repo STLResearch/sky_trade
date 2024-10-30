@@ -1,7 +1,7 @@
 // ignore_for_file: strict_raw_type
 
 import 'package:get_it/get_it.dart' show GetIt;
-import 'package:sky_ways/core/utils/clients/network_client.dart';
+import 'package:sky_trade/core/utils/clients/network_client.dart';
 
 final _sl = GetIt.I;
 

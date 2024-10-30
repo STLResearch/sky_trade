@@ -1,7 +1,7 @@
 import 'dart:typed_data' show Uint8List;
 
 import 'package:json_annotation/json_annotation.dart';
-import 'package:sky_ways/core/resources/strings/networking.dart'
+import 'package:sky_trade/core/resources/strings/networking.dart'
     show
         deviceKey,
         isTestKey,
@@ -9,10 +9,10 @@ import 'package:sky_ways/core/resources/strings/networking.dart'
         longitudeKey,
         rawDataKey,
         remoteDataKey;
-import 'package:sky_ways/core/utils/converters/uint8_list_converter.dart';
-import 'package:sky_ways/features/remote_i_d_receiver/data/models/remote_i_d_model.dart'
+import 'package:sky_trade/core/utils/converters/uint8_list_converter.dart';
+import 'package:sky_trade/features/remote_i_d_receiver/data/models/remote_i_d_model.dart'
     show RemoteIDModel;
-import 'package:sky_ways/features/remote_i_d_transmitter/domain/entities/remote_transmission_entity.dart';
+import 'package:sky_trade/features/remote_i_d_transmitter/domain/entities/remote_transmission_entity.dart';
 
 part 'remote_transmission_model.g.dart';
 

@@ -18,10 +18,10 @@ import 'package:flutter/material.dart'
         Text,
         Theme,
         Widget;
-import 'package:sky_ways/core/assets/generated/assets.gen.dart' show Assets;
-import 'package:sky_ways/core/resources/colors.dart'
+import 'package:sky_trade/core/assets/generated/assets.gen.dart' show Assets;
+import 'package:sky_trade/core/resources/colors.dart'
     show hex0000FF, hex222222, hexE6FFFFFF, hexFFFFFF;
-import 'package:sky_ways/core/resources/numbers/ui.dart'
+import 'package:sky_trade/core/resources/numbers/ui.dart'
     show
         elevenDotNil,
         fiftyEightDotSixFour,
@@ -35,11 +35,11 @@ import 'package:sky_ways/core/resources/numbers/ui.dart'
         twentyOneDotNil,
         twentyOneDotThreeSeven,
         twoFiftyFive;
-import 'package:sky_ways/core/utils/enums/ui.dart' show MapStyle;
-import 'package:sky_ways/core/utils/extensions/build_context_extensions.dart';
-import 'package:sky_ways/features/u_a_s_restrictions/presentation/widgets/options_card.dart';
-import 'package:sky_ways/features/u_a_s_restrictions/presentation/widgets/search_card.dart';
-import 'package:sky_ways/features/u_a_s_restrictions/presentation/widgets/search_result_card.dart';
+import 'package:sky_trade/core/utils/enums/ui.dart' show MapStyle;
+import 'package:sky_trade/core/utils/extensions/build_context_extensions.dart';
+import 'package:sky_trade/features/u_a_s_restrictions/presentation/widgets/options_card.dart';
+import 'package:sky_trade/features/u_a_s_restrictions/presentation/widgets/search_card.dart';
+import 'package:sky_trade/features/u_a_s_restrictions/presentation/widgets/search_result_card.dart';
 
 class MapOverlay extends StatelessWidget {
   const MapOverlay({

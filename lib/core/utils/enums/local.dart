@@ -1,4 +1,4 @@
-import 'package:sky_ways/core/resources/strings/local.dart'
+import 'package:sky_trade/core/resources/strings/local.dart'
     show jsonFileEnding, txtFileEnding;
 
 enum CacheType {

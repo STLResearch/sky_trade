@@ -1,5 +1,5 @@
 import 'package:equatable/equatable.dart' show Equatable;
-import 'package:sky_ways/core/utils/enums/networking.dart'
+import 'package:sky_trade/core/utils/enums/networking.dart'
     show WifiAdapterState;
 
 final class WifiPermissionEntity extends Equatable {

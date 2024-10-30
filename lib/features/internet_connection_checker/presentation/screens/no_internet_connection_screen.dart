@@ -22,9 +22,9 @@ import 'package:flutter/material.dart'
         Widget,
         WidgetStatePropertyAll;
 import 'package:flutter_bloc/flutter_bloc.dart' show BlocListener, ReadContext;
-import 'package:sky_ways/core/assets/generated/assets.gen.dart' show Assets;
-import 'package:sky_ways/core/resources/colors.dart' show hexFFFFFF;
-import 'package:sky_ways/core/resources/numbers/ui.dart'
+import 'package:sky_trade/core/assets/generated/assets.gen.dart' show Assets;
+import 'package:sky_trade/core/resources/colors.dart' show hexFFFFFF;
+import 'package:sky_trade/core/resources/numbers/ui.dart'
     show
         fifteenDotNil,
         fiftyFiveDotNil,
@@ -32,9 +32,9 @@ import 'package:sky_ways/core/resources/numbers/ui.dart'
         tenDotNil,
         thirtyDotNil,
         twentyTwoDotFive;
-import 'package:sky_ways/core/resources/strings/routes.dart' show baseRoutePath;
-import 'package:sky_ways/core/utils/extensions/build_context_extensions.dart';
-import 'package:sky_ways/features/internet_connection_checker/presentation/blocs/internet_connection_checker_bloc/internet_connection_checker_bloc.dart'
+import 'package:sky_trade/core/resources/strings/routes.dart' show baseRoutePath;
+import 'package:sky_trade/core/utils/extensions/build_context_extensions.dart';
+import 'package:sky_trade/features/internet_connection_checker/presentation/blocs/internet_connection_checker_bloc/internet_connection_checker_bloc.dart'
     show
         InternetConnectionCheckerBloc,
         InternetConnectionCheckerEvent,

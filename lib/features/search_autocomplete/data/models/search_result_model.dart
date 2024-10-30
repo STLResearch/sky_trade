@@ -1,12 +1,12 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:sky_ways/core/resources/strings/networking.dart'
+import 'package:sky_trade/core/resources/strings/networking.dart'
     show
         attributionKey,
         nameKey,
         namePreferredKey,
         placeFormattedKey,
         suggestionsKey;
-import 'package:sky_ways/features/search_autocomplete/domain/entities/search_result_entity.dart';
+import 'package:sky_trade/features/search_autocomplete/domain/entities/search_result_entity.dart';
 
 part 'search_result_model.g.dart';
 

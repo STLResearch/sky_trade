@@ -27,10 +27,10 @@ import 'package:flutter/material.dart'
         Widget,
         showDialog,
         showLicensePage;
-import 'package:sky_ways/core/assets/generated/assets.gen.dart' show Assets;
-import 'package:sky_ways/core/resources/colors.dart'
+import 'package:sky_trade/core/assets/generated/assets.gen.dart' show Assets;
+import 'package:sky_trade/core/resources/colors.dart'
     show hex00AEEF, hex222222, hex303478F5, hex74D9FF;
-import 'package:sky_ways/core/resources/numbers/ui.dart'
+import 'package:sky_trade/core/resources/numbers/ui.dart'
     show
         eighteenDotNil,
         fifteenDotNil,
@@ -40,9 +40,9 @@ import 'package:sky_ways/core/resources/numbers/ui.dart'
         threeDotNil,
         twentyDotNil,
         twentyFourDotNil;
-import 'package:sky_ways/core/resources/strings/special_characters.dart'
+import 'package:sky_trade/core/resources/strings/special_characters.dart'
     show newLine;
-import 'package:sky_ways/core/utils/extensions/build_context_extensions.dart';
+import 'package:sky_trade/core/utils/extensions/build_context_extensions.dart';
 
 final class AboutDialog {
   static void show(

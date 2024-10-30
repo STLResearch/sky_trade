@@ -3,11 +3,11 @@ import 'dart:async' show StreamSubscription;
 import 'package:bloc/bloc.dart' show Bloc, Emitter;
 import 'package:dartz/dartz.dart' show Either;
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:sky_ways/core/errors/failures/bluetooth_failure.dart'
+import 'package:sky_trade/core/errors/failures/bluetooth_failure.dart'
     show BluetoothAdapterStateFailure;
-import 'package:sky_ways/features/bluetooth/domain/entities/bluetooth_entity.dart'
+import 'package:sky_trade/features/bluetooth/domain/entities/bluetooth_entity.dart'
     show BluetoothAdapterStateEntity;
-import 'package:sky_ways/features/bluetooth/domain/repositories/bluetooth_repository.dart';
+import 'package:sky_trade/features/bluetooth/domain/repositories/bluetooth_repository.dart';
 
 part 'bluetooth_adapter_state_event.dart';
 

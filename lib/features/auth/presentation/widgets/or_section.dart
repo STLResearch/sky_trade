@@ -9,10 +9,10 @@ import 'package:flutter/material.dart'
         Text,
         Theme,
         Widget;
-import 'package:sky_ways/core/resources/colors.dart' show hexCCCCCC;
-import 'package:sky_ways/core/resources/numbers/ui.dart' show nineDotNil;
-import 'package:sky_ways/core/utils/extensions/build_context_extensions.dart';
-import 'package:sky_ways/features/auth/presentation/widgets/section_divider.dart';
+import 'package:sky_trade/core/resources/colors.dart' show hexCCCCCC;
+import 'package:sky_trade/core/resources/numbers/ui.dart' show nineDotNil;
+import 'package:sky_trade/core/utils/extensions/build_context_extensions.dart';
+import 'package:sky_trade/features/auth/presentation/widgets/section_divider.dart';
 
 final class OrSection extends StatelessWidget {
   const OrSection({super.key});

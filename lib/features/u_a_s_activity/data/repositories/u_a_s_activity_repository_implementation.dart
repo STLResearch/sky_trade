@@ -1,11 +1,11 @@
 import 'package:dartz/dartz.dart' show Function1;
-import 'package:sky_ways/core/utils/clients/signature_handler.dart';
-import 'package:sky_ways/core/utils/enums/networking.dart' show ConnectionState;
-import 'package:sky_ways/features/u_a_s_activity/data/data_sources/u_a_s_activity_remote_data_source.dart'
+import 'package:sky_trade/core/utils/clients/signature_handler.dart';
+import 'package:sky_trade/core/utils/enums/networking.dart' show ConnectionState;
+import 'package:sky_trade/features/u_a_s_activity/data/data_sources/u_a_s_activity_remote_data_source.dart'
     show UASActivityRemoteDataSource;
-import 'package:sky_ways/features/u_a_s_activity/domain/entities/u_a_s_entity.dart'
+import 'package:sky_trade/features/u_a_s_activity/domain/entities/u_a_s_entity.dart'
     show UASEntity;
-import 'package:sky_ways/features/u_a_s_activity/domain/repositories/u_a_s_activity_repository.dart';
+import 'package:sky_trade/features/u_a_s_activity/domain/repositories/u_a_s_activity_repository.dart';
 
 final class UASActivityRepositoryImplementation
     with SignatureHandler

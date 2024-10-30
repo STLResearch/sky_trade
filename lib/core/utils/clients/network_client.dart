@@ -6,13 +6,13 @@ import 'package:dartz/dartz.dart'
     show Either, Function0, Function1, Left, Right;
 import 'package:dio/dio.dart' show BaseOptions, Dio, Options, Response;
 import 'package:flutter_dotenv/flutter_dotenv.dart' show dotenv;
-import 'package:sky_ways/core/resources/numbers/networking.dart'
+import 'package:sky_trade/core/resources/numbers/networking.dart'
     show
         requestConnectTimeoutMilliSeconds,
         requestConnectTimeoutSeconds,
         requestReceiveTimeoutSeconds,
         requestSendTimeoutSeconds;
-import 'package:sky_ways/core/resources/strings/networking.dart'
+import 'package:sky_trade/core/resources/strings/networking.dart'
     show
         acceptAllHeaderValue,
         acceptHeaderKey,
@@ -26,9 +26,9 @@ import 'package:sky_ways/core/resources/strings/networking.dart'
         skyTradeServerHttpBaseUrl,
         skyTradeServerSocketIOBaseUrl,
         websocketTransport;
-import 'package:sky_ways/core/utils/enums/networking.dart'
+import 'package:sky_trade/core/utils/enums/networking.dart'
     show ConnectionState, RequestMethod;
-import 'package:sky_ways/core/utils/typedefs/networking.dart'
+import 'package:sky_trade/core/utils/typedefs/networking.dart'
     show SocketIOClientMessage, TerminateSocketIO;
 import 'package:socket_io_client/socket_io_client.dart'
     show DartySocket, OptionBuilder, Socket, io;

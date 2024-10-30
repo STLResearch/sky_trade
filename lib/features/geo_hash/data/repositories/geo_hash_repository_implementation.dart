@@ -1,9 +1,9 @@
 import 'package:dart_geohash/dart_geohash.dart' show GeoHash;
 import 'package:geodart/geometries.dart' as geo_dart
     show BoundingBox, Coordinate;
-import 'package:sky_ways/core/resources/numbers/ui.dart' show four;
-import 'package:sky_ways/core/utils/typedefs/ui.dart' show Bounds, LatLng;
-import 'package:sky_ways/features/geo_hash/domain/repositories/geo_hash_repository.dart';
+import 'package:sky_trade/core/resources/numbers/ui.dart' show four;
+import 'package:sky_trade/core/utils/typedefs/ui.dart' show Bounds, LatLng;
+import 'package:sky_trade/features/geo_hash/domain/repositories/geo_hash_repository.dart';
 
 final class GeoHashRepositoryImplementation implements GeoHashRepository {
   @override

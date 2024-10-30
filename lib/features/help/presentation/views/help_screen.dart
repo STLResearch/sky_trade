@@ -17,9 +17,9 @@ import 'package:flutter/material.dart'
         Text,
         Theme,
         Widget;
-import 'package:sky_ways/core/assets/generated/assets.gen.dart' show Assets;
-import 'package:sky_ways/core/resources/colors.dart' show hex00375A;
-import 'package:sky_ways/core/resources/numbers/ui.dart'
+import 'package:sky_trade/core/assets/generated/assets.gen.dart' show Assets;
+import 'package:sky_trade/core/resources/colors.dart' show hex00375A;
+import 'package:sky_trade/core/resources/numbers/ui.dart'
     show
         fourteenDotNil,
         thirtyDotNil,
@@ -27,8 +27,8 @@ import 'package:sky_ways/core/resources/numbers/ui.dart'
         twentyDotNil,
         twentyFiveDotNil,
         twentyOneDotNil;
-import 'package:sky_ways/core/utils/extensions/build_context_extensions.dart';
-import 'package:sky_ways/features/help/presentation/widgets/help_list.dart';
+import 'package:sky_trade/core/utils/extensions/build_context_extensions.dart';
+import 'package:sky_trade/features/help/presentation/widgets/help_list.dart';
 
 class HelpScreen extends StatelessWidget {
   const HelpScreen({super.key});

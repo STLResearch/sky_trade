@@ -4,13 +4,13 @@ import 'package:flutter_test/flutter_test.dart' show setUp, tearDown;
 import 'package:mockito/annotations.dart' show GenerateNiceMocks, MockSpec;
 import 'package:mockito/mockito.dart'
     show anyNamed, verify, verifyNoMoreInteractions, when;
-import 'package:sky_ways/core/errors/failures/u_a_s_restrictions_failure.dart'
+import 'package:sky_trade/core/errors/failures/u_a_s_restrictions_failure.dart'
     show UASRestrictionsFailure;
-import 'package:sky_ways/core/utils/enums/networking.dart'
+import 'package:sky_trade/core/utils/enums/networking.dart'
     show RegionType, RestrictionType;
-import 'package:sky_ways/features/u_a_s_restrictions/domain/entities/restriction_entity.dart';
-import 'package:sky_ways/features/u_a_s_restrictions/domain/repositories/u_a_s_restrictions_repository.dart';
-import 'package:sky_ways/features/u_a_s_restrictions/presentation/blocs/u_a_s_restrictions_bloc/u_a_s_restrictions_bloc.dart'
+import 'package:sky_trade/features/u_a_s_restrictions/domain/entities/restriction_entity.dart';
+import 'package:sky_trade/features/u_a_s_restrictions/domain/repositories/u_a_s_restrictions_repository.dart';
+import 'package:sky_trade/features/u_a_s_restrictions/presentation/blocs/u_a_s_restrictions_bloc/u_a_s_restrictions_bloc.dart'
     show UASRestrictionsBloc, UASRestrictionsEvent, UASRestrictionsState;
 
 import 'u_a_s_restrictions_bloc_test.mocks.dart';

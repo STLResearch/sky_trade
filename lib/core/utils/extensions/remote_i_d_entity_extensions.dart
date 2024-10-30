@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart' show BuildContext;
-import 'package:sky_ways/core/resources/numbers/ui.dart' show eight, one;
-import 'package:sky_ways/core/resources/strings/special_characters.dart'
+import 'package:sky_trade/core/resources/numbers/ui.dart' show eight, one;
+import 'package:sky_trade/core/resources/strings/special_characters.dart'
     show emptyString, hyphen;
-import 'package:sky_ways/core/utils/extensions/build_context_extensions.dart';
-import 'package:sky_ways/features/remote_i_d_receiver/data/models/remote_i_d_model.dart'
+import 'package:sky_trade/core/utils/extensions/build_context_extensions.dart';
+import 'package:sky_trade/features/remote_i_d_receiver/data/models/remote_i_d_model.dart'
     show
         AuthenticationModel,
         BasicIDModel,
@@ -14,7 +14,7 @@ import 'package:sky_ways/features/remote_i_d_receiver/data/models/remote_i_d_mod
         RemoteIDModel,
         SelfIDModel,
         SystemModel;
-import 'package:sky_ways/features/remote_i_d_receiver/domain/entities/remote_i_d_entity.dart'
+import 'package:sky_trade/features/remote_i_d_receiver/domain/entities/remote_i_d_entity.dart'
     show RemoteIDEntity;
 
 extension RemoteIDEntityExtensions on RemoteIDEntity {

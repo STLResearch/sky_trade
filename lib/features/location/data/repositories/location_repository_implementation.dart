@@ -6,10 +6,10 @@ import 'package:geolocator/geolocator.dart'
         LocationSettings,
         Position,
         ServiceStatus;
-import 'package:sky_ways/core/errors/failures/location_failure.dart';
-import 'package:sky_ways/core/utils/clients/data_handler.dart';
-import 'package:sky_ways/features/location/domain/entities/location_entity.dart';
-import 'package:sky_ways/features/location/domain/repositories/location_repository.dart';
+import 'package:sky_trade/core/errors/failures/location_failure.dart';
+import 'package:sky_trade/core/utils/clients/data_handler.dart';
+import 'package:sky_trade/features/location/domain/entities/location_entity.dart';
+import 'package:sky_trade/features/location/domain/repositories/location_repository.dart';
 
 final class LocationRepositoryImplementation
     with DataHandler

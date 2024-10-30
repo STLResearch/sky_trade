@@ -1,14 +1,14 @@
 import 'package:bloc/bloc.dart' show Bloc, Emitter;
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:sky_ways/core/errors/failures/auth_failure.dart'
+import 'package:sky_trade/core/errors/failures/auth_failure.dart'
     show
         CheckSkyTradeUserFailure,
         InvalidSignatureFailure,
         UnauthorizedFailure,
         UserDoesNotExistFailure;
-import 'package:sky_ways/features/auth/domain/entities/auth_entity.dart'
+import 'package:sky_trade/features/auth/domain/entities/auth_entity.dart'
     show SkyTradeUserEntity;
-import 'package:sky_ways/features/auth/domain/repositories/auth_repository.dart';
+import 'package:sky_trade/features/auth/domain/repositories/auth_repository.dart';
 
 part 'check_sky_trade_user_exists_event.dart';
 

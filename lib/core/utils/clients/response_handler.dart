@@ -4,9 +4,9 @@ import 'dart:async' show StreamController, StreamSubscription;
 
 import 'package:dartz/dartz.dart' show Function0, Function1;
 import 'package:dio/dio.dart' show DioException, DioExceptionType, Response;
-import 'package:sky_ways/core/resources/numbers/networking.dart'
+import 'package:sky_trade/core/resources/numbers/networking.dart'
     show createdStatusCode, okayStatusCode;
-import 'package:sky_ways/core/resources/strings/networking.dart'
+import 'package:sky_trade/core/resources/strings/networking.dart'
     show dataKey, messageKey;
 
 mixin class ResponseHandler {

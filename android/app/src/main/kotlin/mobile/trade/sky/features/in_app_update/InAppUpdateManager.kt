@@ -1,4 +1,4 @@
-package trade.sky.features.in_app_update
+package mobile.trade.sky.features.in_app_update
 
 import android.app.Activity
 import com.google.android.play.core.appupdate.AppUpdateInfo
@@ -13,10 +13,10 @@ import com.google.android.play.core.ktx.clientVersionStalenessDays
 import com.google.android.play.core.ktx.installStatus
 import com.google.android.play.core.ktx.totalBytesToDownload
 import com.google.android.play.core.ktx.updatePriority
-import trade.sky.core.utils.constants.FLEXIBLE_UPDATE_MAX_PRIORITY
-import trade.sky.core.utils.constants.FLEXIBLE_UPDATE_MAX_STALENESS_DAYS
-import trade.sky.core.utils.constants.IN_APP_UPDATE_REQUEST_CODE
-import trade.sky.core.utils.enums.InAppUpdateType
+import mobile.trade.sky.core.utils.constants.FLEXIBLE_UPDATE_MAX_PRIORITY
+import mobile.trade.sky.core.utils.constants.FLEXIBLE_UPDATE_MAX_STALENESS_DAYS
+import mobile.trade.sky.core.utils.constants.IN_APP_UPDATE_REQUEST_CODE
+import mobile.trade.sky.core.utils.enums.InAppUpdateType
 import kotlin.properties.Delegates
 
 class InAppUpdateManager(private val activity: Activity) {

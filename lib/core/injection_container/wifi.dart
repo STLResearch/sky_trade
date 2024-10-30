@@ -1,9 +1,9 @@
 import 'package:get_it/get_it.dart' show GetIt;
-import 'package:sky_ways/features/wifi/data/repositories/wifi_repository_implementation.dart';
-import 'package:sky_ways/features/wifi/domain/repositories/wifi_repository.dart';
-import 'package:sky_ways/features/wifi/presentation/blocs/wifi_adapter_state_bloc/wifi_adapter_state_bloc.dart'
+import 'package:sky_trade/features/wifi/data/repositories/wifi_repository_implementation.dart';
+import 'package:sky_trade/features/wifi/domain/repositories/wifi_repository.dart';
+import 'package:sky_trade/features/wifi/presentation/blocs/wifi_adapter_state_bloc/wifi_adapter_state_bloc.dart'
     show WifiAdapterStateBloc;
-import 'package:sky_ways/features/wifi/presentation/blocs/wifi_permission_bloc/wifi_permission_bloc.dart'
+import 'package:sky_trade/features/wifi/presentation/blocs/wifi_permission_bloc/wifi_permission_bloc.dart'
     show WifiPermissionBloc;
 
 final _sl = GetIt.I;

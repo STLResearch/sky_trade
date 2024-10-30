@@ -19,9 +19,9 @@ import 'package:flutter/material.dart'
         VoidCallback,
         Widget,
         WidgetStatePropertyAll;
-import 'package:sky_ways/core/assets/generated/assets.gen.dart' show Assets;
-import 'package:sky_ways/core/resources/colors.dart' show hex595959, hexFFFFFF;
-import 'package:sky_ways/core/resources/numbers/ui.dart'
+import 'package:sky_trade/core/assets/generated/assets.gen.dart' show Assets;
+import 'package:sky_trade/core/resources/colors.dart' show hex595959, hexFFFFFF;
+import 'package:sky_trade/core/resources/numbers/ui.dart'
     show
         fifteenDotNil,
         fiftyFiveDotNil,
@@ -29,8 +29,8 @@ import 'package:sky_ways/core/resources/numbers/ui.dart'
         twentyFourDotNil,
         twentyTwoDotFive,
         twoDotNil;
-import 'package:sky_ways/core/utils/enums/ui.dart' show AuthButtonType;
-import 'package:sky_ways/core/utils/extensions/build_context_extensions.dart';
+import 'package:sky_trade/core/utils/enums/ui.dart' show AuthButtonType;
+import 'package:sky_trade/core/utils/extensions/build_context_extensions.dart';
 
 final class AuthButton extends StatelessWidget {
   const AuthButton({

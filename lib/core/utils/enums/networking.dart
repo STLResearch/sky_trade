@@ -1,12 +1,12 @@
 import 'package:json_annotation/json_annotation.dart' show JsonValue;
-import 'package:sky_ways/core/resources/strings/environments.dart'
+import 'package:sky_trade/core/resources/strings/environments.dart'
     show
         wifiAdapterStateDisabledEnumValue,
         wifiAdapterStateDisablingEnumValue,
         wifiAdapterStateEnabledEnumValue,
         wifiAdapterStateEnablingEnumValue,
         wifiAdapterStateUnknownEnumValue;
-import 'package:sky_ways/core/resources/strings/networking.dart'
+import 'package:sky_trade/core/resources/strings/networking.dart'
     show
         aeroplaneKey,
         airborneKey,

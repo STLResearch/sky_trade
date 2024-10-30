@@ -7,7 +7,7 @@ import 'package:flutter/material.dart'
         Theme,
         VoidCallback,
         showDialog;
-import 'package:sky_ways/core/utils/extensions/build_context_extensions.dart';
+import 'package:sky_trade/core/utils/extensions/build_context_extensions.dart';
 
 final class ActionDialog {
   static void show(

@@ -20,9 +20,9 @@ import 'package:flutter/material.dart'
         Text,
         Theme,
         Widget;
-import 'package:sky_ways/core/resources/colors.dart'
+import 'package:sky_trade/core/resources/colors.dart'
     show hex263A4DE9, hex4285F4;
-import 'package:sky_ways/core/resources/numbers/ui.dart'
+import 'package:sky_trade/core/resources/numbers/ui.dart'
     show
         eightDotNil,
         five,
@@ -41,7 +41,7 @@ import 'package:sky_ways/core/resources/numbers/ui.dart'
         twentyTwoDotNil,
         two,
         zero;
-import 'package:sky_ways/core/utils/extensions/build_context_extensions.dart';
+import 'package:sky_trade/core/utils/extensions/build_context_extensions.dart';
 
 class HelpList extends StatelessWidget {
   const HelpList({super.key});

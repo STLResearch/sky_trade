@@ -2,12 +2,12 @@ import 'dart:async' show StreamController, StreamSubscription;
 
 import 'package:bloc/bloc.dart' show Bloc, Emitter;
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:sky_ways/core/resources/strings/special_characters.dart'
+import 'package:sky_trade/core/resources/strings/special_characters.dart'
     show emptyString;
-import 'package:sky_ways/core/utils/enums/networking.dart' show ConnectionState;
-import 'package:sky_ways/features/u_a_s_activity/domain/entities/u_a_s_entity.dart'
+import 'package:sky_trade/core/utils/enums/networking.dart' show ConnectionState;
+import 'package:sky_trade/features/u_a_s_activity/domain/entities/u_a_s_entity.dart'
     show UASEntity;
-import 'package:sky_ways/features/u_a_s_activity/domain/repositories/u_a_s_activity_repository.dart';
+import 'package:sky_trade/features/u_a_s_activity/domain/repositories/u_a_s_activity_repository.dart';
 
 part 'u_a_s_activity_bloc.freezed.dart';
 

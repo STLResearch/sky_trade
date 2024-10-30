@@ -1,5 +1,5 @@
 import 'package:dartz/dartz.dart' show Function1;
-import 'package:sky_ways/core/resources/strings/networking.dart'
+import 'package:sky_trade/core/resources/strings/networking.dart'
     show
         dataKey,
         emailAddressHeaderKey,
@@ -11,11 +11,11 @@ import 'package:sky_ways/core/resources/strings/networking.dart'
         signNonceHeaderKey,
         uasActivityEvent,
         uasActivityRoom;
-import 'package:sky_ways/core/utils/clients/network_client.dart'
+import 'package:sky_trade/core/utils/clients/network_client.dart'
     show SocketIOClient;
-import 'package:sky_ways/core/utils/enums/networking.dart' show ConnectionState;
-import 'package:sky_ways/core/utils/typedefs/networking.dart' show Signature;
-import 'package:sky_ways/features/u_a_s_activity/data/models/u_a_s_model.dart'
+import 'package:sky_trade/core/utils/enums/networking.dart' show ConnectionState;
+import 'package:sky_trade/core/utils/typedefs/networking.dart' show Signature;
+import 'package:sky_trade/features/u_a_s_activity/data/models/u_a_s_model.dart'
     show UASModel;
 
 abstract interface class UASActivityRemoteDataSource {
