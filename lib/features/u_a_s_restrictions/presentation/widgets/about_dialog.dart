@@ -29,7 +29,7 @@ import 'package:flutter/material.dart'
         showLicensePage;
 import 'package:sky_ways/core/assets/generated/assets.gen.dart' show Assets;
 import 'package:sky_ways/core/resources/colors.dart'
-    show hex00AEEF, hex222222, hex3478F5, hex74D9FF;
+    show hex00AEEF, hex222222, hex303478F5, hex74D9FF;
 import 'package:sky_ways/core/resources/numbers/ui.dart'
     show
         eighteenDotNil,
@@ -169,7 +169,7 @@ class About extends StatelessWidget {
                     tenDotNil,
                   ),
                   decoration: BoxDecoration(
-                    color: hex3478F5,
+                    color: hex303478F5,
                     borderRadius: BorderRadius.circular(
                       tenDotNil,
                     ),
