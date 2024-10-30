@@ -4,3 +4,4 @@ const loginRoutePath = '/login';
 const registerRoutePath = '/register';
 const homeRoutePath = '/home';
 const noInternetConnectionRoutePath = '/noInternetConnection';
+const helpRoutePath = '/help';

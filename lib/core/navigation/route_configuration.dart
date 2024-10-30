@@ -8,6 +8,7 @@ import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:sky_ways/core/resources/strings/routes.dart'
     show
         baseRoutePath,
+        helpRoutePath,
         homeRoutePath,
         loadingRoutePath,
         loginRoutePath,
@@ -26,6 +27,7 @@ import 'package:sky_ways/features/auth/presentation/blocs/web_3_auth_user_sessio
 import 'package:sky_ways/features/auth/presentation/views/loading_screen.dart';
 import 'package:sky_ways/features/auth/presentation/views/login_screen.dart';
 import 'package:sky_ways/features/auth/presentation/views/register_screen.dart';
+import 'package:sky_ways/features/help/presentation/views/help_screen.dart';
 import 'package:sky_ways/features/internet_connection_checker/presentation/blocs/internet_connection_checker_bloc/internet_connection_checker_bloc.dart'
     show
         InternetConnectionCheckerBloc,
@@ -107,6 +109,8 @@ Route routes(RouteSettings settings) => MaterialPageRoute(
             return const RegisterScreen();
           case homeRoutePath:
             return const HomeScreen();
+          case helpRoutePath:
+            return const HelpScreen();
           default:
             return Container(); // Replace with error screen
         }

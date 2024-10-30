@@ -11,20 +11,16 @@ import 'package:flutter/material.dart'
         MenuAnchor,
         MenuItemButton,
         Navigator,
-        Offset,
-        OutlinedBorder,
-        RoundedRectangleBorder,
         StatelessWidget,
         Text,
         Theme,
-        Widget,
-        WidgetStatePropertyAll,
-        showDialog;
+        Widget;
 import 'package:flutter_bloc/flutter_bloc.dart' show ReadContext;
 import 'package:sky_ways/core/assets/generated/assets.gen.dart' show Assets;
 import 'package:sky_ways/core/resources/colors.dart' show hex1D1E2D;
 import 'package:sky_ways/core/resources/numbers/ui.dart'
     show five, twentyDotNil;
+import 'package:sky_ways/core/resources/strings/routes.dart' show helpRoutePath;
 import 'package:sky_ways/core/utils/enums/ui.dart' show MenuItem;
 import 'package:sky_ways/core/utils/extensions/build_context_extensions.dart';
 import 'package:sky_ways/features/auth/presentation/blocs/web_3_auth_logout_bloc/web_3_auth_logout_bloc.dart'
@@ -96,18 +92,18 @@ class Menu extends StatelessWidget {
   }) =>
       switch (MenuItem.values[index]) {
         MenuItem.insights => () {},
-        MenuItem.about => () {
-            AboutDialog.show(
+        MenuItem.about => () => AboutDialog.show(
               context,
-            );
-          },
+            ),
         MenuItem.settings => () {},
-        MenuItem.help => () {},
-        MenuItem.logout => () {
-            _showLogoutConfirmationDialogUsing(
+        MenuItem.help => () => Navigator.of(
               context,
-            );
-          },
+            ).pushNamed(
+              helpRoutePath,
+            ),
+        MenuItem.logout => () => _showLogoutConfirmationDialogUsing(
+              context,
+            ),
       };
 
   void _showLogoutConfirmationDialogUsing(

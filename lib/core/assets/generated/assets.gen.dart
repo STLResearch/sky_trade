@@ -80,6 +80,17 @@ class $AssetsSvgsGen {
   SvgGenImage get bluetoothOn =>
       const SvgGenImage('assets/svgs/bluetooth_on.svg');
 
+  /// File path: assets/svgs/chevron_down.svg
+  SvgGenImage get chevronDown =>
+      const SvgGenImage('assets/svgs/chevron_down.svg');
+
+  /// File path: assets/svgs/chevron_left.svg
+  SvgGenImage get chevronLeft =>
+      const SvgGenImage('assets/svgs/chevron_left.svg');
+
+  /// File path: assets/svgs/chevron_up.svg
+  SvgGenImage get chevronUp => const SvgGenImage('assets/svgs/chevron_up.svg');
+
   /// File path: assets/svgs/clear.svg
   SvgGenImage get clear => const SvgGenImage('assets/svgs/clear.svg');
 
@@ -217,6 +228,9 @@ class $AssetsSvgsGen {
         arrowRight,
         bluetoothOff,
         bluetoothOn,
+        chevronDown,
+        chevronLeft,
+        chevronUp,
         clear,
         cloud,
         cloudAlt,
