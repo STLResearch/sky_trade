@@ -27,6 +27,10 @@ class RemoteIDReceiverBloc
       _listenRemoteIDs,
     );
 
+    on<_RemoteIDsGetting>(
+      _remoteIDsGetting,
+    );
+
     on<_RemoteIDsGotten>(
       _remoteIDsGotten,
     );
@@ -53,8 +57,8 @@ class RemoteIDReceiverBloc
       emit: emit,
     );
 
-    emit(
-      const RemoteIDReceiverState.gettingRemoteIDs(),
+    add(
+      const RemoteIDReceiverEvent.remoteIDsGetting(),
     );
 
     _remoteIDReceiverStreamSubscription ??=
@@ -76,16 +80,28 @@ class RemoteIDReceiverBloc
     required Emitter<RemoteIDReceiverState> emit,
   }) =>
       remoteIDReceiverFailureOrRemoteIDEntities.fold(
-        (remoteIDReceiverFailure) => add(
-          RemoteIDReceiverEvent.remoteIDsNotGotten(
-            remoteIDReceiverFailure: remoteIDReceiverFailure,
-          ),
-        ),
-        (remoteIDEntities) => add(
-          RemoteIDReceiverEvent.remoteIDsGotten(
-            remoteIDEntities: remoteIDEntities,
-          ),
-        ),
+        (remoteIDReceiverFailure) {
+          add(
+            const RemoteIDReceiverEvent.remoteIDsGetting(),
+          );
+
+          add(
+            RemoteIDReceiverEvent.remoteIDsNotGotten(
+              remoteIDReceiverFailure: remoteIDReceiverFailure,
+            ),
+          );
+        },
+        (remoteIDEntities) {
+          add(
+            const RemoteIDReceiverEvent.remoteIDsGetting(),
+          );
+
+          add(
+            RemoteIDReceiverEvent.remoteIDsGotten(
+              remoteIDEntities: remoteIDEntities,
+            ),
+          );
+        },
       );
 
   void _remoteIDsNotGotten(
@@ -96,6 +112,14 @@ class RemoteIDReceiverBloc
         RemoteIDReceiverState.failedToGetRemoteIDs(
           remoteIDReceiverFailure: event.remoteIDReceiverFailure,
         ),
+      );
+
+  void _remoteIDsGetting(
+    _RemoteIDsGetting event,
+    Emitter<RemoteIDReceiverState> emit,
+  ) =>
+      emit(
+        const RemoteIDReceiverState.gettingRemoteIDs(),
       );
 
   void _remoteIDsGotten(
