@@ -1,220 +1,161 @@
+// ignore_for_file: lines_longer_than_80_chars
+
 import 'package:flutter/material.dart'
     show
-        BorderRadius,
+        Alignment,
+        BorderRadiusDirectional,
+        BoxDecoration,
+        BoxShadow,
         BuildContext,
-        Card,
-        EdgeInsets,
+        Container,
+        CrossAxisAlignment,
+        EdgeInsetsDirectional,
         ExpansionTile,
-        ListTile,
         ListView,
+        NeverScrollableScrollPhysics,
+        Offset,
         Padding,
-        Radius,
-        RoundedRectangleBorder,
-        State,
-        StatefulWidget,
+        SizedBox,
+        StatelessWidget,
         Text,
         Theme,
         Widget;
-import 'package:sky_ways/core/resources/colors.dart';
+import 'package:sky_ways/core/resources/colors.dart'
+    show hex263A4DE9, hex4285F4;
 import 'package:sky_ways/core/resources/numbers/ui.dart'
     show
         eightDotNil,
-        fiveDotNil,
+        five,
+        four,
         fourteenDotNil,
+        minusTenDotNil,
+        nilDotNil,
+        one,
+        seven,
         tenDotNil,
+        thirtyDotNil,
+        thirtyFourDotNil,
+        three,
+        twelveDotNil,
         twentyOneDotNil,
-        twentyTwoDotNil;
+        twentyTwoDotNil,
+        two,
+        zero;
 import 'package:sky_ways/core/utils/extensions/build_context_extensions.dart';
 
-class HelpList extends StatefulWidget {
+class HelpList extends StatelessWidget {
   const HelpList({super.key});
 
   @override
-  State<StatefulWidget> createState() => _HelpList();
-}
-
-class _HelpList extends State<HelpList> {
-  List<Item> _data = [];
-
-  @override
-  Widget build(BuildContext context) {
-    if (_data.isEmpty) {
-      _data = [
-        Item(
-          headerValue: Text(
-            context.localize.howCanIFindOutWhatMyPhoneIsCapableOf,
-            style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                  color: hex4285F4,
-                  fontSize: fourteenDotNil,
-                  height: twentyOneDotNil / fourteenDotNil,
-                ),
-          ),
-          expandedValue: Text(
-            context.localize
-                .toFindOutWhatYourPhoneIsCapableOfCheckTheSpecificationsOnTheManufacturersWebsiteOrTheAboutPhoneSectionInYourSettingsYouCanAlsoUseThirdPartyAppsLikeAida64OrCpuZForDetailedHardwareAndSoftwareInformationThisWillHelpYouUnderstandTheSensorsConnectivityOptionsAndOtherFeaturesAvailableOnYourDevice,
-            style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                  color: hex222222,
-                  fontSize: fourteenDotNil,
-                  height: twentyOneDotNil / fourteenDotNil,
-                ),
-          ),
+  Widget build(BuildContext context) => Padding(
+        padding: const EdgeInsetsDirectional.symmetric(
+          horizontal: thirtyDotNil,
         ),
-        Item(
-          headerValue: Text(
-            context.localize.theresADroneFlyingNearbyButTheAppDoesntRecognizeIt,
-            style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                  color: hex4285F4,
-                  fontSize: fourteenDotNil,
-                  height: twentyOneDotNil / fourteenDotNil,
+        child: ListView.separated(
+          physics: const NeverScrollableScrollPhysics(),
+          shrinkWrap: true,
+          itemCount: seven,
+          itemBuilder: (_, index) => Container(
+            decoration: BoxDecoration(
+              color: Theme.of(
+                context,
+              ).scaffoldBackgroundColor,
+              borderRadius: BorderRadiusDirectional.circular(
+                eightDotNil,
+              ),
+              boxShadow: const [
+                BoxShadow(
+                  color: hex263A4DE9,
+                  offset: Offset(
+                    nilDotNil,
+                    twelveDotNil,
+                  ),
+                  blurRadius: thirtyFourDotNil,
+                  spreadRadius: minusTenDotNil,
                 ),
-          ),
-          expandedValue: Text(
-            context.localize
-                .someDronesCannotBeTrackedByOurAppBecauseTheyLackTheNecessaryTransponderOrRemoteIdTechnologyAdditionallyCustomBuiltOrOlderModelsMightNotHaveTheStandardizedIdentificationSystemsRequiredForDetectionIfANearbyDroneIsntRecognizedCheckForSignalInterferenceOrObstructionsAndEnsureTheAppIsUpdatedAndHasTheNecessaryPermissionsEnabledOnYourPhone,
-            style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                  color: hex222222,
-                  fontSize: fourteenDotNil,
-                  height: twentyOneDotNil / fourteenDotNil,
-                ),
-          ),
-        ),
-        Item(
-          headerValue: Text(
-            context.localize.whatIsARemoteIdAndWhyDoINeedIt,
-            style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                  color: hex4285F4,
-                  fontSize: fourteenDotNil,
-                  height: twentyOneDotNil / fourteenDotNil,
-                ),
-          ),
-          expandedValue: Text(
-            context.localize
-                .remoteIdIsASystemThatAllowsDronesToTransmitIdentificationAndLocationInformationToOthersSimilarToADigitalLicensePlateItEnhancesAirspaceSafetyAndSecurityByEnablingAuthoritiesToTrackAndManageDronesComplianceWithRemoteIdRegulationsIsNecessaryForLegalDroneOperationInManyCountries,
-            style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                  color: hex222222,
-                  fontSize: fourteenDotNil,
-                  height: twentyOneDotNil / fourteenDotNil,
-                ),
-          ),
-        ),
-        Item(
-          headerValue: Text(
-            context
-                .localize.areThereAnyRestrictionsOnWhereICanUseTheDroneRadarApp,
-            style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                  color: hex4285F4,
-                  fontSize: fourteenDotNil,
-                  height: twentyOneDotNil / fourteenDotNil,
-                ),
-          ),
-          expandedValue: Text(
-            context.localize
-                .yesThereMayBeRestrictionsOnUsingTheDroneRadarAppInNoFlyZonesSuchAsAirportsMilitaryBasesAndOtherSensitiveAreasLocalPrivacyLawsMayAlsoLimitTheUseOfDroneDetectionTechnologyInCertainRegionsAlwaysCheckLocalRegulationsAndGuidelinesToEnsureCompliantUsage,
-            style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                  color: hex222222,
-                  fontSize: fourteenDotNil,
-                  height: twentyOneDotNil / fourteenDotNil,
-                ),
-          ),
-        ),
-        Item(
-          headerValue: Text(
-            context.localize
-                .whyDoesTheAppRequireAccessToMyLocationAndConnectivityServices,
-            style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                  color: hex4285F4,
-                  fontSize: fourteenDotNil,
-                  height: twentyOneDotNil / fourteenDotNil,
-                ),
-          ),
-          expandedValue: Text(
-            context.localize
-                .theAppRequiresAccessToYourLocationToAccuratelyDetectAndTrackDronesInYourVicinityConnectivityServicesLikeWiFiAndBluetoothHelpTheAppCommunicateWithDronesAndOtherDevicesForBetterDetectionThesePermissionsAreEssentialForProvidingAccurateAndReliableFunctionality,
-            style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                  color: hex222222,
-                  fontSize: fourteenDotNil,
-                  height: twentyOneDotNil / fourteenDotNil,
-                ),
-          ),
-        ),
-        Item(
-          headerValue: Text(
-            context.localize.whatIsARestrictedArea,
-            style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                  color: hex4285F4,
-                  fontSize: fourteenDotNil,
-                  height: twentyOneDotNil / fourteenDotNil,
-                ),
-          ),
-          expandedValue: Text(
-            context.localize
-                .aRestrictedAreaIsADesignatedAirspaceWhereDroneFlightsAreLimitedOrProhibitedToEnsureSafetySecurityOrEnvironmentalProtectionTheseAreasCanIncludeMilitaryZonesNoFlyZonesAroundAirportsAndGovernmentBuildingsAndProtectedEnvironmentalAreasLikeNationalParksFlyingInTheseAreasWithoutAuthorizationIsIllegalAndCanResultInPenalties,
-            style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                  color: hex222222,
-                  fontSize: fourteenDotNil,
-                  height: twentyOneDotNil / fourteenDotNil,
-                ),
-          ),
-        ),
-        Item(
-          headerValue: Text(
-            context.localize.whatAreTheRedOrangeYellowAndGreenZones,
-            style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                  color: hex4285F4,
-                  fontSize: fourteenDotNil,
-                  height: twentyOneDotNil / fourteenDotNil,
-                ),
-          ),
-          expandedValue: Text(
-            context.localize
-                .inDroneOperationsDifferentZonesIndicateVaryingLevelsOfRestrictionRedZonesAreProhibitedAreasWhereFlyingIsNotAllowedDueToSafetySecurityOrEnvironmentalConcernsOrangeZonesRequireAuthorizationFromTheFaaBeforeYouCanFlyYellowZonesAreAreasWhereFlyingIsPermittedButMayBeHazardousSoExtraCautionIsAdvisedGreenZonesAreOpenForFlyingWithoutAnySpecificRestrictionsOrAdditionalPermissions,
-            style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                  color: hex222222,
-                  fontSize: fourteenDotNil,
-                  height: twentyOneDotNil / fourteenDotNil,
-                ),
-          ),
-        ),
-      ];
-    }
-
-    return ListView(
-      children: _data.map((Item item) {
-        return Card(
-          color: hexFFFFFF,
-          margin: const EdgeInsets.all(fiveDotNil),
-          elevation: fiveDotNil,
-          shape: const RoundedRectangleBorder(
-            borderRadius: BorderRadius.only(
-              topLeft: Radius.circular(eightDotNil),
-            ),
-          ),
-          child: Padding(
-            padding: const EdgeInsets.symmetric(
-              horizontal: twentyTwoDotNil,
-              vertical: tenDotNil,
+              ],
             ),
             child: ExpansionTile(
-              title: item.headerValue,
+              expandedAlignment: Alignment.topLeft,
+              expandedCrossAxisAlignment: CrossAxisAlignment.start,
+              tilePadding: const EdgeInsetsDirectional.symmetric(
+                horizontal: twentyTwoDotNil,
+              ),
+              childrenPadding: const EdgeInsetsDirectional.only(
+                start: twentyTwoDotNil,
+                end: twentyTwoDotNil,
+                bottom: tenDotNil,
+              ),
+              title: Text(
+                _computeHelpItemTitleUsing(
+                  context,
+                  index: index,
+                ),
+                style: Theme.of(
+                  context,
+                ).textTheme.bodySmall?.copyWith(
+                      fontSize: fourteenDotNil,
+                      height: twentyOneDotNil / fourteenDotNil,
+                      color: hex4285F4,
+                    ),
+              ),
               children: [
-                ListTile(
-                  title: item.expandedValue,
+                Text(
+                  _computeHelpItemExpandedBodyUsing(
+                    context,
+                    index: index,
+                  ),
+                  style: Theme.of(
+                    context,
+                  ).textTheme.bodyMedium?.copyWith(
+                        fontSize: fourteenDotNil,
+                        height: twentyOneDotNil / fourteenDotNil,
+                      ),
                 ),
               ],
             ),
           ),
-        );
-      }).toList(),
-    );
-  }
-}
+          separatorBuilder: (_, __) => const SizedBox(
+            height: tenDotNil,
+          ),
+        ),
+      );
 
-class Item {
-  Item({
-    required this.expandedValue,
-    required this.headerValue,
-  });
+  String _computeHelpItemTitleUsing(
+    BuildContext context, {
+    required int index,
+  }) =>
+      switch (index) {
+        zero => context.localize.howCanIFindOutWhatMyPhoneIsCapableOf,
+        one =>
+          context.localize.theresADroneFlyingNearbyButTheAppDoesntRecognizeIt,
+        two => context.localize.whatIsARemoteIdAndWhyDoINeedIt,
+        three => context
+            .localize.areThereAnyRestrictionsOnWhereICanUseTheDroneRadarApp,
+        four => context.localize
+            .whyDoesTheAppRequireAccessToMyLocationAndConnectivityServices,
+        five => context.localize.whatIsARestrictedArea,
+        _ => context.localize.whatAreTheRedOrangeYellowAndGreenZones,
+      };
 
-  Widget expandedValue;
-  Widget headerValue;
+  String _computeHelpItemExpandedBodyUsing(
+    BuildContext context, {
+    required int index,
+  }) =>
+      switch (index) {
+        zero => context.localize
+            .toFindOutWhatYourPhoneIsCapableOfCheckTheSpecificationsOnTheManufacturersWebsiteOrTheAboutPhoneSectionInYourSettingsYouCanAlsoUseThirdPartyAppsLikeAida64OrCpuZForDetailedHardwareAndSoftwareInformationThisWillHelpYouUnderstandTheSensorsConnectivityOptionsAndOtherFeaturesAvailableOnYourDevice,
+        one => context.localize
+            .someDronesCannotBeTrackedByOurAppBecauseTheyLackTheNecessaryTransponderOrRemoteIdTechnologyAdditionallyCustomBuiltOrOlderModelsMightNotHaveTheStandardizedIdentificationSystemsRequiredForDetectionIfANearbyDroneIsntRecognizedCheckForSignalInterferenceOrObstructionsAndEnsureTheAppIsUpdatedAndHasTheNecessaryPermissionsEnabledOnYourPhone,
+        two => context.localize
+            .remoteIdIsASystemThatAllowsDronesToTransmitIdentificationAndLocationInformationToOthersSimilarToADigitalLicensePlateItEnhancesAirspaceSafetyAndSecurityByEnablingAuthoritiesToTrackAndManageDronesComplianceWithRemoteIdRegulationsIsNecessaryForLegalDroneOperationInManyCountries,
+        three => context.localize
+            .yesThereMayBeRestrictionsOnUsingTheDroneRadarAppInNoFlyZonesSuchAsAirportsMilitaryBasesAndOtherSensitiveAreasLocalPrivacyLawsMayAlsoLimitTheUseOfDroneDetectionTechnologyInCertainRegionsAlwaysCheckLocalRegulationsAndGuidelinesToEnsureCompliantUsage,
+        four => context.localize
+            .theAppRequiresAccessToYourLocationToAccuratelyDetectAndTrackDronesInYourVicinityConnectivityServicesLikeWiFiAndBluetoothHelpTheAppCommunicateWithDronesAndOtherDevicesForBetterDetectionThesePermissionsAreEssentialForProvidingAccurateAndReliableFunctionality,
+        five => context.localize
+            .aRestrictedAreaIsADesignatedAirspaceWhereDroneFlightsAreLimitedOrProhibitedToEnsureSafetySecurityOrEnvironmentalProtectionTheseAreasCanIncludeMilitaryZonesNoFlyZonesAroundAirportsAndGovernmentBuildingsAndProtectedEnvironmentalAreasLikeNationalParksFlyingInTheseAreasWithoutAuthorizationIsIllegalAndCanResultInPenalties,
+        _ => context.localize
+            .inDroneOperationsDifferentZonesIndicateVaryingLevelsOfRestrictionRedZonesAreProhibitedAreasWhereFlyingIsNotAllowedDueToSafetySecurityOrEnvironmentalConcernsOrangeZonesRequireAuthorizationFromTheFaaBeforeYouCanFlyYellowZonesAreAreasWhereFlyingIsPermittedButMayBeHazardousSoExtraCautionIsAdvisedGreenZonesAreOpenForFlyingWithoutAnySpecificRestrictionsOrAdditionalPermissions,
+      };
 }

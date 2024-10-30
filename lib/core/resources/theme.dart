@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart'
     show
+        AppBarTheme,
         BorderRadius,
         BorderRadiusDirectional,
         BorderSide,
@@ -39,6 +40,7 @@ import 'package:sky_ways/core/assets/generated/fonts.gen.dart';
 import 'package:sky_ways/core/resources/colors.dart'
     show
         hex00000033,
+        hex00375A,
         hex0653EA,
         hex222222,
         hex4285F4,
@@ -60,10 +62,12 @@ import 'package:sky_ways/core/resources/numbers/ui.dart'
         fourteenDotNil,
         nilDotNil,
         nilDotNilOne,
+        ninetySixDotNil,
         oneDotNil,
         sixteenDotFive,
         sixteenDotNil,
         thirtyDotNil,
+        thirtySixDotNil,
         twelveDotNil,
         twentyDotNil,
         twentyFourDotNil,
@@ -322,6 +326,25 @@ ThemeData get lightTheme => ThemeData(
           borderRadius: BorderRadius.circular(
             twentyDotNil,
           ),
+        ),
+      ),
+      appBarTheme: const AppBarTheme(
+        backgroundColor: hex00375A,
+        titleTextStyle: TextStyle(
+          fontFamily: FontFamily.poppins,
+          fontWeight: FontWeight.w600,
+          fontSize: twentyFourDotNil,
+          height: thirtySixDotNil / twentyFourDotNil,
+          color: hexFFFFFF,
+        ),
+        toolbarHeight: ninetySixDotNil,
+        iconTheme: IconThemeData(
+          color: hexFFFFFF,
+          size: twentyFourDotNil,
+        ),
+        actionsIconTheme: IconThemeData(
+          color: hexFFFFFF,
+          size: twentyFourDotNil,
         ),
       ),
     );
