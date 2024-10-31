@@ -10,5 +10,6 @@ const createdStatusCode = 201;
 
 // others
 const zero = 0;
+const eight = 8;
 
 const nilDotNil = 0.0;

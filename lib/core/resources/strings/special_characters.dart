@@ -14,5 +14,6 @@ const emptyString = '';
 const colon = ':';
 const hyphen = '-';
 const newLine = '\n';
+const at = '@';
 // const openingParenthesis = '(';
 // const closingParenthesis = ')';

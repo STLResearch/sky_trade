@@ -51,7 +51,7 @@ final class SocketIOClient {
               .build(),
         );
 
-  late final Socket _socket;
+  final Socket _socket;
 
   StreamController<Either<TerminateSocketIO, SocketIOClientMessage>>?
       _clientMessageStreamController;

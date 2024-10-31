@@ -33,7 +33,7 @@ import 'package:sky_trade/core/utils/extensions/mapbox_map_extensions.dart';
 import 'package:sky_trade/core/utils/typedefs/ui.dart'
     show PointAnnotationManagerPointAnnotationTuple;
 import 'package:sky_trade/features/auth/presentation/blocs/web_3_auth_logout_bloc/web_3_auth_logout_bloc.dart'
-    show Web3AuthLogoutBloc, Web3AuthLogoutEvent, Web3AuthLogoutState;
+    show Web3AuthLogoutBloc, Web3AuthLogoutState;
 import 'package:sky_trade/features/bluetooth/presentation/blocs/bluetooth_adapter_state_bloc/bluetooth_adapter_state_bloc.dart'
     show BluetoothAdapterStateBloc, BluetoothAdapterStateEvent;
 import 'package:sky_trade/features/bluetooth/presentation/blocs/bluetooth_permissions_bloc/bluetooth_permissions_bloc.dart'
@@ -78,6 +78,8 @@ import 'package:sky_trade/features/u_a_s_restrictions/presentation/widgets/map_v
 import 'package:sky_trade/features/u_a_s_restrictions/presentation/widgets/progress_dialog.dart';
 import 'package:sky_trade/features/u_a_s_restrictions/presentation/widgets/restriction_indicator.dart';
 import 'package:sky_trade/features/u_a_s_restrictions/presentation/widgets/u_a_s_list.dart';
+import 'package:sky_trade/features/weather/presentation/weather_bloc/weather_bloc.dart'
+    show WeatherBloc, WeatherEvent;
 import 'package:sky_trade/features/wifi/presentation/blocs/wifi_permission_bloc/wifi_permission_bloc.dart'
     show WifiPermissionBloc, WifiPermissionEvent, WifiPermissionState;
 
@@ -391,6 +393,12 @@ class _HomeScreenState extends State<HomeScreen> {
                         CachedDataEvent.getCachedData(
                           name: geoHash,
                           type: CacheType.jsonListFile,
+                        ),
+                      );
+
+                  context.read<WeatherBloc>().add(
+                        WeatherEvent.getWeather(
+                          geoHash: geoHash,
                         ),
                       );
                 },

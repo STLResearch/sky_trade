@@ -48,6 +48,8 @@ import 'package:sky_trade/features/u_a_s_activity/presentation/blocs/u_a_s_activ
     show UASActivityBloc;
 import 'package:sky_trade/features/u_a_s_restrictions/presentation/blocs/u_a_s_restrictions_bloc/u_a_s_restrictions_bloc.dart'
     show UASRestrictionsBloc;
+import 'package:sky_trade/features/weather/presentation/weather_bloc/weather_bloc.dart'
+    show WeatherBloc;
 import 'package:sky_trade/features/wifi/presentation/blocs/wifi_adapter_state_bloc/wifi_adapter_state_bloc.dart'
     show WifiAdapterStateBloc;
 import 'package:sky_trade/features/wifi/presentation/blocs/wifi_permission_bloc/wifi_permission_bloc.dart'
@@ -126,6 +128,9 @@ List<BlocProvider> get appBlocProvider => [
         create: (_) => _sl(),
       ),
       BlocProvider<UASRestrictionsBloc>(
+        create: (_) => _sl(),
+      ),
+      BlocProvider<WeatherBloc>(
         create: (_) => _sl(),
       ),
       BlocProvider<WifiAdapterStateBloc>(
