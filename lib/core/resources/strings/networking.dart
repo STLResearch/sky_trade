@@ -13,14 +13,17 @@ const mapboxMapsPublicKey = 'MAPBOX_MAPS_PUBLIC_KEY';
 const mapboxMapsSearchBoxBaseUrl = 'MAPBOX_MAPS_SEARCH_BOX_BASE_URL';
 
 //OpenWeather
-const openWeatherApiKey = 'OPEN_WEATHER_API_KEY';
+const openWeatherMapApiKey = 'OPEN_WEATHER_MAP_API_KEY';
 // Endpoints
 // Base URL
-const openWeatherApiBaseUrl = 'OPEN_WEATHER_API_BASE_URL';
-const openWeatherIconBaseUrl = 'OPEN_WEATHER_ICON_BASE_URL';
-//Paths
-const weatherDataPath = '/data/2.5/weather';
-const weatherIconPath = '/img/wn';
+const openWeatherMapApiBaseUrl = 'OPEN_WEATHER_MAP_API_BASE_URL';
+const openWeatherMapIconBaseUrl = 'OPEN_WEATHER_MAP_ICON_BASE_URL';
+// Paths
+const dataPath = '/data';
+const twoDotFivePath = '/2.5';
+const weatherPath = '/weather';
+const imgPath = '/img';
+const wnPath = '/wn';
 // SkyTrade
 // Privacy policy
 const skyTradePrivacyPolicyUrl = 'https://docs.sky.trade/privacy.htm';
@@ -74,7 +77,7 @@ const signNonceHeaderKey = 'sign_nonce';
 const signAddressHeaderKey = 'sign_address';
 const emailAddressHeaderKey = 'email_address';
 // Body
-const additionalLinks = 'additional_links';
+const additionalLinksKey = 'additional_links';
 const countryKey = 'country';
 const upperLimitKey = 'upper_limit';
 const lowerLimitKey = 'lower_limit';
@@ -276,13 +279,15 @@ const operatorIdClassificationKey = 'operatorIdClassification';
 const headersKey = 'headers';
 const bodyKey = 'body';
 const weatherKey = 'weather';
-const iconIdKey = 'icon';
-const weatherMetricsKey = 'main';
-const currentTemperatureKey = 'temp';
+const iconKey = 'icon';
+const mainKey = 'main';
+const tempKey = 'temp';
 const latKey = 'lat';
 const lonKey = 'lon';
-const appIdKey = 'appid';
+const appidKey = 'appid';
 const unitsKey = 'units';
+const metricValue = 'metric';
+const twoXValue = '2x';
 // Error response data message
 const unauthorized = 'UNAUTHORIZED';
 const invalidSignature = 'INVALID_SIGNATURE';

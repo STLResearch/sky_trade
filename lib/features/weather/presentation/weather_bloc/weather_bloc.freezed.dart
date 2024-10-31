@@ -19,33 +19,33 @@ mixin _$WeatherEvent {
   String get geoHash => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String geoHash) fetchWeatherData,
+    required TResult Function(String geoHash) getWeather,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String geoHash)? fetchWeatherData,
+    TResult? Function(String geoHash)? getWeather,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String geoHash)? fetchWeatherData,
+    TResult Function(String geoHash)? getWeather,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_FetchWeatherData value) fetchWeatherData,
+    required TResult Function(_GetWeather value) getWeather,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_FetchWeatherData value)? fetchWeatherData,
+    TResult? Function(_GetWeather value)? getWeather,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_FetchWeatherData value)? fetchWeatherData,
+    TResult Function(_GetWeather value)? getWeather,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -89,22 +89,22 @@ class _$WeatherEventCopyWithImpl<$Res, $Val extends WeatherEvent>
 }
 
 /// @nodoc
-abstract class _$$FetchWeatherDataImplCopyWith<$Res>
+abstract class _$$GetWeatherImplCopyWith<$Res>
     implements $WeatherEventCopyWith<$Res> {
-  factory _$$FetchWeatherDataImplCopyWith(_$FetchWeatherDataImpl value,
-          $Res Function(_$FetchWeatherDataImpl) then) =
-      __$$FetchWeatherDataImplCopyWithImpl<$Res>;
+  factory _$$GetWeatherImplCopyWith(
+          _$GetWeatherImpl value, $Res Function(_$GetWeatherImpl) then) =
+      __$$GetWeatherImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({String geoHash});
 }
 
 /// @nodoc
-class __$$FetchWeatherDataImplCopyWithImpl<$Res>
-    extends _$WeatherEventCopyWithImpl<$Res, _$FetchWeatherDataImpl>
-    implements _$$FetchWeatherDataImplCopyWith<$Res> {
-  __$$FetchWeatherDataImplCopyWithImpl(_$FetchWeatherDataImpl _value,
-      $Res Function(_$FetchWeatherDataImpl) _then)
+class __$$GetWeatherImplCopyWithImpl<$Res>
+    extends _$WeatherEventCopyWithImpl<$Res, _$GetWeatherImpl>
+    implements _$$GetWeatherImplCopyWith<$Res> {
+  __$$GetWeatherImplCopyWithImpl(
+      _$GetWeatherImpl _value, $Res Function(_$GetWeatherImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -112,8 +112,8 @@ class __$$FetchWeatherDataImplCopyWithImpl<$Res>
   $Res call({
     Object? geoHash = null,
   }) {
-    return _then(_$FetchWeatherDataImpl(
-      null == geoHash
+    return _then(_$GetWeatherImpl(
+      geoHash: null == geoHash
           ? _value.geoHash
           : geoHash // ignore: cast_nullable_to_non_nullable
               as String,
@@ -123,22 +123,22 @@ class __$$FetchWeatherDataImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$FetchWeatherDataImpl implements _FetchWeatherData {
-  const _$FetchWeatherDataImpl(this.geoHash);
+class _$GetWeatherImpl implements _GetWeather {
+  const _$GetWeatherImpl({required this.geoHash});
 
   @override
   final String geoHash;
 
   @override
   String toString() {
-    return 'WeatherEvent.fetchWeatherData(geoHash: $geoHash)';
+    return 'WeatherEvent.getWeather(geoHash: $geoHash)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$FetchWeatherDataImpl &&
+            other is _$GetWeatherImpl &&
             (identical(other.geoHash, geoHash) || other.geoHash == geoHash));
   }
 
@@ -148,34 +148,33 @@ class _$FetchWeatherDataImpl implements _FetchWeatherData {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$FetchWeatherDataImplCopyWith<_$FetchWeatherDataImpl> get copyWith =>
-      __$$FetchWeatherDataImplCopyWithImpl<_$FetchWeatherDataImpl>(
-          this, _$identity);
+  _$$GetWeatherImplCopyWith<_$GetWeatherImpl> get copyWith =>
+      __$$GetWeatherImplCopyWithImpl<_$GetWeatherImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String geoHash) fetchWeatherData,
+    required TResult Function(String geoHash) getWeather,
   }) {
-    return fetchWeatherData(geoHash);
+    return getWeather(geoHash);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String geoHash)? fetchWeatherData,
+    TResult? Function(String geoHash)? getWeather,
   }) {
-    return fetchWeatherData?.call(geoHash);
+    return getWeather?.call(geoHash);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String geoHash)? fetchWeatherData,
+    TResult Function(String geoHash)? getWeather,
     required TResult orElse(),
   }) {
-    if (fetchWeatherData != null) {
-      return fetchWeatherData(geoHash);
+    if (getWeather != null) {
+      return getWeather(geoHash);
     }
     return orElse();
   }
@@ -183,41 +182,40 @@ class _$FetchWeatherDataImpl implements _FetchWeatherData {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_FetchWeatherData value) fetchWeatherData,
+    required TResult Function(_GetWeather value) getWeather,
   }) {
-    return fetchWeatherData(this);
+    return getWeather(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_FetchWeatherData value)? fetchWeatherData,
+    TResult? Function(_GetWeather value)? getWeather,
   }) {
-    return fetchWeatherData?.call(this);
+    return getWeather?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_FetchWeatherData value)? fetchWeatherData,
+    TResult Function(_GetWeather value)? getWeather,
     required TResult orElse(),
   }) {
-    if (fetchWeatherData != null) {
-      return fetchWeatherData(this);
+    if (getWeather != null) {
+      return getWeather(this);
     }
     return orElse();
   }
 }
 
-abstract class _FetchWeatherData implements WeatherEvent {
-  const factory _FetchWeatherData(final String geoHash) =
-      _$FetchWeatherDataImpl;
+abstract class _GetWeather implements WeatherEvent {
+  const factory _GetWeather({required final String geoHash}) = _$GetWeatherImpl;
 
   @override
   String get geoHash;
   @override
   @JsonKey(ignore: true)
-  _$$FetchWeatherDataImplCopyWith<_$FetchWeatherDataImpl> get copyWith =>
+  _$$GetWeatherImplCopyWith<_$GetWeatherImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -226,51 +224,50 @@ mixin _$WeatherState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function() fetchingWeatherData,
-    required TResult Function(OpenWeatherDataEntity weatherData)
-        fetchSuccessful,
-    required TResult Function(OpenWeatherFailure weatherFailure) fetchFailed,
+    required TResult Function() gettingWeather,
+    required TResult Function(WeatherEntity weatherEntity) gotWeather,
+    required TResult Function(WeatherFailure weatherFailure) failedToGetWeather,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function()? fetchingWeatherData,
-    TResult? Function(OpenWeatherDataEntity weatherData)? fetchSuccessful,
-    TResult? Function(OpenWeatherFailure weatherFailure)? fetchFailed,
+    TResult? Function()? gettingWeather,
+    TResult? Function(WeatherEntity weatherEntity)? gotWeather,
+    TResult? Function(WeatherFailure weatherFailure)? failedToGetWeather,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function()? fetchingWeatherData,
-    TResult Function(OpenWeatherDataEntity weatherData)? fetchSuccessful,
-    TResult Function(OpenWeatherFailure weatherFailure)? fetchFailed,
+    TResult Function()? gettingWeather,
+    TResult Function(WeatherEntity weatherEntity)? gotWeather,
+    TResult Function(WeatherFailure weatherFailure)? failedToGetWeather,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
-    required TResult Function(_FetchingWeatherData value) fetchingWeatherData,
-    required TResult Function(_FetchSuccessful value) fetchSuccessful,
-    required TResult Function(_FetchFailed value) fetchFailed,
+    required TResult Function(_GettingWeather value) gettingWeather,
+    required TResult Function(_GotWeather value) gotWeather,
+    required TResult Function(_FailedToGetWeather value) failedToGetWeather,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
-    TResult? Function(_FetchingWeatherData value)? fetchingWeatherData,
-    TResult? Function(_FetchSuccessful value)? fetchSuccessful,
-    TResult? Function(_FetchFailed value)? fetchFailed,
+    TResult? Function(_GettingWeather value)? gettingWeather,
+    TResult? Function(_GotWeather value)? gotWeather,
+    TResult? Function(_FailedToGetWeather value)? failedToGetWeather,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(_FetchingWeatherData value)? fetchingWeatherData,
-    TResult Function(_FetchSuccessful value)? fetchSuccessful,
-    TResult Function(_FetchFailed value)? fetchFailed,
+    TResult Function(_GettingWeather value)? gettingWeather,
+    TResult Function(_GotWeather value)? gotWeather,
+    TResult Function(_FailedToGetWeather value)? failedToGetWeather,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -333,10 +330,9 @@ class _$InitialImpl implements _Initial {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function() fetchingWeatherData,
-    required TResult Function(OpenWeatherDataEntity weatherData)
-        fetchSuccessful,
-    required TResult Function(OpenWeatherFailure weatherFailure) fetchFailed,
+    required TResult Function() gettingWeather,
+    required TResult Function(WeatherEntity weatherEntity) gotWeather,
+    required TResult Function(WeatherFailure weatherFailure) failedToGetWeather,
   }) {
     return initial();
   }
@@ -345,9 +341,9 @@ class _$InitialImpl implements _Initial {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function()? fetchingWeatherData,
-    TResult? Function(OpenWeatherDataEntity weatherData)? fetchSuccessful,
-    TResult? Function(OpenWeatherFailure weatherFailure)? fetchFailed,
+    TResult? Function()? gettingWeather,
+    TResult? Function(WeatherEntity weatherEntity)? gotWeather,
+    TResult? Function(WeatherFailure weatherFailure)? failedToGetWeather,
   }) {
     return initial?.call();
   }
@@ -356,9 +352,9 @@ class _$InitialImpl implements _Initial {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function()? fetchingWeatherData,
-    TResult Function(OpenWeatherDataEntity weatherData)? fetchSuccessful,
-    TResult Function(OpenWeatherFailure weatherFailure)? fetchFailed,
+    TResult Function()? gettingWeather,
+    TResult Function(WeatherEntity weatherEntity)? gotWeather,
+    TResult Function(WeatherFailure weatherFailure)? failedToGetWeather,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -371,9 +367,9 @@ class _$InitialImpl implements _Initial {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
-    required TResult Function(_FetchingWeatherData value) fetchingWeatherData,
-    required TResult Function(_FetchSuccessful value) fetchSuccessful,
-    required TResult Function(_FetchFailed value) fetchFailed,
+    required TResult Function(_GettingWeather value) gettingWeather,
+    required TResult Function(_GotWeather value) gotWeather,
+    required TResult Function(_FailedToGetWeather value) failedToGetWeather,
   }) {
     return initial(this);
   }
@@ -382,9 +378,9 @@ class _$InitialImpl implements _Initial {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
-    TResult? Function(_FetchingWeatherData value)? fetchingWeatherData,
-    TResult? Function(_FetchSuccessful value)? fetchSuccessful,
-    TResult? Function(_FetchFailed value)? fetchFailed,
+    TResult? Function(_GettingWeather value)? gettingWeather,
+    TResult? Function(_GotWeather value)? gotWeather,
+    TResult? Function(_FailedToGetWeather value)? failedToGetWeather,
   }) {
     return initial?.call(this);
   }
@@ -393,9 +389,9 @@ class _$InitialImpl implements _Initial {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(_FetchingWeatherData value)? fetchingWeatherData,
-    TResult Function(_FetchSuccessful value)? fetchSuccessful,
-    TResult Function(_FetchFailed value)? fetchFailed,
+    TResult Function(_GettingWeather value)? gettingWeather,
+    TResult Function(_GotWeather value)? gotWeather,
+    TResult Function(_FailedToGetWeather value)? failedToGetWeather,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -410,36 +406,35 @@ abstract class _Initial implements WeatherState {
 }
 
 /// @nodoc
-abstract class _$$FetchingWeatherDataImplCopyWith<$Res> {
-  factory _$$FetchingWeatherDataImplCopyWith(_$FetchingWeatherDataImpl value,
-          $Res Function(_$FetchingWeatherDataImpl) then) =
-      __$$FetchingWeatherDataImplCopyWithImpl<$Res>;
+abstract class _$$GettingWeatherImplCopyWith<$Res> {
+  factory _$$GettingWeatherImplCopyWith(_$GettingWeatherImpl value,
+          $Res Function(_$GettingWeatherImpl) then) =
+      __$$GettingWeatherImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$FetchingWeatherDataImplCopyWithImpl<$Res>
-    extends _$WeatherStateCopyWithImpl<$Res, _$FetchingWeatherDataImpl>
-    implements _$$FetchingWeatherDataImplCopyWith<$Res> {
-  __$$FetchingWeatherDataImplCopyWithImpl(_$FetchingWeatherDataImpl _value,
-      $Res Function(_$FetchingWeatherDataImpl) _then)
+class __$$GettingWeatherImplCopyWithImpl<$Res>
+    extends _$WeatherStateCopyWithImpl<$Res, _$GettingWeatherImpl>
+    implements _$$GettingWeatherImplCopyWith<$Res> {
+  __$$GettingWeatherImplCopyWithImpl(
+      _$GettingWeatherImpl _value, $Res Function(_$GettingWeatherImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$FetchingWeatherDataImpl implements _FetchingWeatherData {
-  const _$FetchingWeatherDataImpl();
+class _$GettingWeatherImpl implements _GettingWeather {
+  const _$GettingWeatherImpl();
 
   @override
   String toString() {
-    return 'WeatherState.fetchingWeatherData()';
+    return 'WeatherState.gettingWeather()';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$FetchingWeatherDataImpl);
+        (other.runtimeType == runtimeType && other is _$GettingWeatherImpl);
   }
 
   @override
@@ -449,36 +444,35 @@ class _$FetchingWeatherDataImpl implements _FetchingWeatherData {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function() fetchingWeatherData,
-    required TResult Function(OpenWeatherDataEntity weatherData)
-        fetchSuccessful,
-    required TResult Function(OpenWeatherFailure weatherFailure) fetchFailed,
+    required TResult Function() gettingWeather,
+    required TResult Function(WeatherEntity weatherEntity) gotWeather,
+    required TResult Function(WeatherFailure weatherFailure) failedToGetWeather,
   }) {
-    return fetchingWeatherData();
+    return gettingWeather();
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function()? fetchingWeatherData,
-    TResult? Function(OpenWeatherDataEntity weatherData)? fetchSuccessful,
-    TResult? Function(OpenWeatherFailure weatherFailure)? fetchFailed,
+    TResult? Function()? gettingWeather,
+    TResult? Function(WeatherEntity weatherEntity)? gotWeather,
+    TResult? Function(WeatherFailure weatherFailure)? failedToGetWeather,
   }) {
-    return fetchingWeatherData?.call();
+    return gettingWeather?.call();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function()? fetchingWeatherData,
-    TResult Function(OpenWeatherDataEntity weatherData)? fetchSuccessful,
-    TResult Function(OpenWeatherFailure weatherFailure)? fetchFailed,
+    TResult Function()? gettingWeather,
+    TResult Function(WeatherEntity weatherEntity)? gotWeather,
+    TResult Function(WeatherFailure weatherFailure)? failedToGetWeather,
     required TResult orElse(),
   }) {
-    if (fetchingWeatherData != null) {
-      return fetchingWeatherData();
+    if (gettingWeather != null) {
+      return gettingWeather();
     }
     return orElse();
   }
@@ -487,141 +481,139 @@ class _$FetchingWeatherDataImpl implements _FetchingWeatherData {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
-    required TResult Function(_FetchingWeatherData value) fetchingWeatherData,
-    required TResult Function(_FetchSuccessful value) fetchSuccessful,
-    required TResult Function(_FetchFailed value) fetchFailed,
+    required TResult Function(_GettingWeather value) gettingWeather,
+    required TResult Function(_GotWeather value) gotWeather,
+    required TResult Function(_FailedToGetWeather value) failedToGetWeather,
   }) {
-    return fetchingWeatherData(this);
+    return gettingWeather(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
-    TResult? Function(_FetchingWeatherData value)? fetchingWeatherData,
-    TResult? Function(_FetchSuccessful value)? fetchSuccessful,
-    TResult? Function(_FetchFailed value)? fetchFailed,
+    TResult? Function(_GettingWeather value)? gettingWeather,
+    TResult? Function(_GotWeather value)? gotWeather,
+    TResult? Function(_FailedToGetWeather value)? failedToGetWeather,
   }) {
-    return fetchingWeatherData?.call(this);
+    return gettingWeather?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(_FetchingWeatherData value)? fetchingWeatherData,
-    TResult Function(_FetchSuccessful value)? fetchSuccessful,
-    TResult Function(_FetchFailed value)? fetchFailed,
+    TResult Function(_GettingWeather value)? gettingWeather,
+    TResult Function(_GotWeather value)? gotWeather,
+    TResult Function(_FailedToGetWeather value)? failedToGetWeather,
     required TResult orElse(),
   }) {
-    if (fetchingWeatherData != null) {
-      return fetchingWeatherData(this);
+    if (gettingWeather != null) {
+      return gettingWeather(this);
     }
     return orElse();
   }
 }
 
-abstract class _FetchingWeatherData implements WeatherState {
-  const factory _FetchingWeatherData() = _$FetchingWeatherDataImpl;
+abstract class _GettingWeather implements WeatherState {
+  const factory _GettingWeather() = _$GettingWeatherImpl;
 }
 
 /// @nodoc
-abstract class _$$FetchSuccessfulImplCopyWith<$Res> {
-  factory _$$FetchSuccessfulImplCopyWith(_$FetchSuccessfulImpl value,
-          $Res Function(_$FetchSuccessfulImpl) then) =
-      __$$FetchSuccessfulImplCopyWithImpl<$Res>;
+abstract class _$$GotWeatherImplCopyWith<$Res> {
+  factory _$$GotWeatherImplCopyWith(
+          _$GotWeatherImpl value, $Res Function(_$GotWeatherImpl) then) =
+      __$$GotWeatherImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({OpenWeatherDataEntity weatherData});
+  $Res call({WeatherEntity weatherEntity});
 }
 
 /// @nodoc
-class __$$FetchSuccessfulImplCopyWithImpl<$Res>
-    extends _$WeatherStateCopyWithImpl<$Res, _$FetchSuccessfulImpl>
-    implements _$$FetchSuccessfulImplCopyWith<$Res> {
-  __$$FetchSuccessfulImplCopyWithImpl(
-      _$FetchSuccessfulImpl _value, $Res Function(_$FetchSuccessfulImpl) _then)
+class __$$GotWeatherImplCopyWithImpl<$Res>
+    extends _$WeatherStateCopyWithImpl<$Res, _$GotWeatherImpl>
+    implements _$$GotWeatherImplCopyWith<$Res> {
+  __$$GotWeatherImplCopyWithImpl(
+      _$GotWeatherImpl _value, $Res Function(_$GotWeatherImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? weatherData = null,
+    Object? weatherEntity = null,
   }) {
-    return _then(_$FetchSuccessfulImpl(
-      weatherData: null == weatherData
-          ? _value.weatherData
-          : weatherData // ignore: cast_nullable_to_non_nullable
-              as OpenWeatherDataEntity,
+    return _then(_$GotWeatherImpl(
+      weatherEntity: null == weatherEntity
+          ? _value.weatherEntity
+          : weatherEntity // ignore: cast_nullable_to_non_nullable
+              as WeatherEntity,
     ));
   }
 }
 
 /// @nodoc
 
-class _$FetchSuccessfulImpl implements _FetchSuccessful {
-  const _$FetchSuccessfulImpl({required this.weatherData});
+class _$GotWeatherImpl implements _GotWeather {
+  const _$GotWeatherImpl({required this.weatherEntity});
 
   @override
-  final OpenWeatherDataEntity weatherData;
+  final WeatherEntity weatherEntity;
 
   @override
   String toString() {
-    return 'WeatherState.fetchSuccessful(weatherData: $weatherData)';
+    return 'WeatherState.gotWeather(weatherEntity: $weatherEntity)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$FetchSuccessfulImpl &&
-            (identical(other.weatherData, weatherData) ||
-                other.weatherData == weatherData));
+            other is _$GotWeatherImpl &&
+            (identical(other.weatherEntity, weatherEntity) ||
+                other.weatherEntity == weatherEntity));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, weatherData);
+  int get hashCode => Object.hash(runtimeType, weatherEntity);
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$FetchSuccessfulImplCopyWith<_$FetchSuccessfulImpl> get copyWith =>
-      __$$FetchSuccessfulImplCopyWithImpl<_$FetchSuccessfulImpl>(
-          this, _$identity);
+  _$$GotWeatherImplCopyWith<_$GotWeatherImpl> get copyWith =>
+      __$$GotWeatherImplCopyWithImpl<_$GotWeatherImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function() fetchingWeatherData,
-    required TResult Function(OpenWeatherDataEntity weatherData)
-        fetchSuccessful,
-    required TResult Function(OpenWeatherFailure weatherFailure) fetchFailed,
+    required TResult Function() gettingWeather,
+    required TResult Function(WeatherEntity weatherEntity) gotWeather,
+    required TResult Function(WeatherFailure weatherFailure) failedToGetWeather,
   }) {
-    return fetchSuccessful(weatherData);
+    return gotWeather(weatherEntity);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function()? fetchingWeatherData,
-    TResult? Function(OpenWeatherDataEntity weatherData)? fetchSuccessful,
-    TResult? Function(OpenWeatherFailure weatherFailure)? fetchFailed,
+    TResult? Function()? gettingWeather,
+    TResult? Function(WeatherEntity weatherEntity)? gotWeather,
+    TResult? Function(WeatherFailure weatherFailure)? failedToGetWeather,
   }) {
-    return fetchSuccessful?.call(weatherData);
+    return gotWeather?.call(weatherEntity);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function()? fetchingWeatherData,
-    TResult Function(OpenWeatherDataEntity weatherData)? fetchSuccessful,
-    TResult Function(OpenWeatherFailure weatherFailure)? fetchFailed,
+    TResult Function()? gettingWeather,
+    TResult Function(WeatherEntity weatherEntity)? gotWeather,
+    TResult Function(WeatherFailure weatherFailure)? failedToGetWeather,
     required TResult orElse(),
   }) {
-    if (fetchSuccessful != null) {
-      return fetchSuccessful(weatherData);
+    if (gotWeather != null) {
+      return gotWeather(weatherEntity);
     }
     return orElse();
   }
@@ -630,66 +622,65 @@ class _$FetchSuccessfulImpl implements _FetchSuccessful {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
-    required TResult Function(_FetchingWeatherData value) fetchingWeatherData,
-    required TResult Function(_FetchSuccessful value) fetchSuccessful,
-    required TResult Function(_FetchFailed value) fetchFailed,
+    required TResult Function(_GettingWeather value) gettingWeather,
+    required TResult Function(_GotWeather value) gotWeather,
+    required TResult Function(_FailedToGetWeather value) failedToGetWeather,
   }) {
-    return fetchSuccessful(this);
+    return gotWeather(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
-    TResult? Function(_FetchingWeatherData value)? fetchingWeatherData,
-    TResult? Function(_FetchSuccessful value)? fetchSuccessful,
-    TResult? Function(_FetchFailed value)? fetchFailed,
+    TResult? Function(_GettingWeather value)? gettingWeather,
+    TResult? Function(_GotWeather value)? gotWeather,
+    TResult? Function(_FailedToGetWeather value)? failedToGetWeather,
   }) {
-    return fetchSuccessful?.call(this);
+    return gotWeather?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(_FetchingWeatherData value)? fetchingWeatherData,
-    TResult Function(_FetchSuccessful value)? fetchSuccessful,
-    TResult Function(_FetchFailed value)? fetchFailed,
+    TResult Function(_GettingWeather value)? gettingWeather,
+    TResult Function(_GotWeather value)? gotWeather,
+    TResult Function(_FailedToGetWeather value)? failedToGetWeather,
     required TResult orElse(),
   }) {
-    if (fetchSuccessful != null) {
-      return fetchSuccessful(this);
+    if (gotWeather != null) {
+      return gotWeather(this);
     }
     return orElse();
   }
 }
 
-abstract class _FetchSuccessful implements WeatherState {
-  const factory _FetchSuccessful(
-          {required final OpenWeatherDataEntity weatherData}) =
-      _$FetchSuccessfulImpl;
+abstract class _GotWeather implements WeatherState {
+  const factory _GotWeather({required final WeatherEntity weatherEntity}) =
+      _$GotWeatherImpl;
 
-  OpenWeatherDataEntity get weatherData;
+  WeatherEntity get weatherEntity;
   @JsonKey(ignore: true)
-  _$$FetchSuccessfulImplCopyWith<_$FetchSuccessfulImpl> get copyWith =>
+  _$$GotWeatherImplCopyWith<_$GotWeatherImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$FetchFailedImplCopyWith<$Res> {
-  factory _$$FetchFailedImplCopyWith(
-          _$FetchFailedImpl value, $Res Function(_$FetchFailedImpl) then) =
-      __$$FetchFailedImplCopyWithImpl<$Res>;
+abstract class _$$FailedToGetWeatherImplCopyWith<$Res> {
+  factory _$$FailedToGetWeatherImplCopyWith(_$FailedToGetWeatherImpl value,
+          $Res Function(_$FailedToGetWeatherImpl) then) =
+      __$$FailedToGetWeatherImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({OpenWeatherFailure weatherFailure});
+  $Res call({WeatherFailure weatherFailure});
 }
 
 /// @nodoc
-class __$$FetchFailedImplCopyWithImpl<$Res>
-    extends _$WeatherStateCopyWithImpl<$Res, _$FetchFailedImpl>
-    implements _$$FetchFailedImplCopyWith<$Res> {
-  __$$FetchFailedImplCopyWithImpl(
-      _$FetchFailedImpl _value, $Res Function(_$FetchFailedImpl) _then)
+class __$$FailedToGetWeatherImplCopyWithImpl<$Res>
+    extends _$WeatherStateCopyWithImpl<$Res, _$FailedToGetWeatherImpl>
+    implements _$$FailedToGetWeatherImplCopyWith<$Res> {
+  __$$FailedToGetWeatherImplCopyWithImpl(_$FailedToGetWeatherImpl _value,
+      $Res Function(_$FailedToGetWeatherImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -697,33 +688,33 @@ class __$$FetchFailedImplCopyWithImpl<$Res>
   $Res call({
     Object? weatherFailure = null,
   }) {
-    return _then(_$FetchFailedImpl(
+    return _then(_$FailedToGetWeatherImpl(
       weatherFailure: null == weatherFailure
           ? _value.weatherFailure
           : weatherFailure // ignore: cast_nullable_to_non_nullable
-              as OpenWeatherFailure,
+              as WeatherFailure,
     ));
   }
 }
 
 /// @nodoc
 
-class _$FetchFailedImpl implements _FetchFailed {
-  const _$FetchFailedImpl({required this.weatherFailure});
+class _$FailedToGetWeatherImpl implements _FailedToGetWeather {
+  const _$FailedToGetWeatherImpl({required this.weatherFailure});
 
   @override
-  final OpenWeatherFailure weatherFailure;
+  final WeatherFailure weatherFailure;
 
   @override
   String toString() {
-    return 'WeatherState.fetchFailed(weatherFailure: $weatherFailure)';
+    return 'WeatherState.failedToGetWeather(weatherFailure: $weatherFailure)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$FetchFailedImpl &&
+            other is _$FailedToGetWeatherImpl &&
             (identical(other.weatherFailure, weatherFailure) ||
                 other.weatherFailure == weatherFailure));
   }
@@ -734,43 +725,43 @@ class _$FetchFailedImpl implements _FetchFailed {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$FetchFailedImplCopyWith<_$FetchFailedImpl> get copyWith =>
-      __$$FetchFailedImplCopyWithImpl<_$FetchFailedImpl>(this, _$identity);
+  _$$FailedToGetWeatherImplCopyWith<_$FailedToGetWeatherImpl> get copyWith =>
+      __$$FailedToGetWeatherImplCopyWithImpl<_$FailedToGetWeatherImpl>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function() fetchingWeatherData,
-    required TResult Function(OpenWeatherDataEntity weatherData)
-        fetchSuccessful,
-    required TResult Function(OpenWeatherFailure weatherFailure) fetchFailed,
+    required TResult Function() gettingWeather,
+    required TResult Function(WeatherEntity weatherEntity) gotWeather,
+    required TResult Function(WeatherFailure weatherFailure) failedToGetWeather,
   }) {
-    return fetchFailed(weatherFailure);
+    return failedToGetWeather(weatherFailure);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function()? fetchingWeatherData,
-    TResult? Function(OpenWeatherDataEntity weatherData)? fetchSuccessful,
-    TResult? Function(OpenWeatherFailure weatherFailure)? fetchFailed,
+    TResult? Function()? gettingWeather,
+    TResult? Function(WeatherEntity weatherEntity)? gotWeather,
+    TResult? Function(WeatherFailure weatherFailure)? failedToGetWeather,
   }) {
-    return fetchFailed?.call(weatherFailure);
+    return failedToGetWeather?.call(weatherFailure);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function()? fetchingWeatherData,
-    TResult Function(OpenWeatherDataEntity weatherData)? fetchSuccessful,
-    TResult Function(OpenWeatherFailure weatherFailure)? fetchFailed,
+    TResult Function()? gettingWeather,
+    TResult Function(WeatherEntity weatherEntity)? gotWeather,
+    TResult Function(WeatherFailure weatherFailure)? failedToGetWeather,
     required TResult orElse(),
   }) {
-    if (fetchFailed != null) {
-      return fetchFailed(weatherFailure);
+    if (failedToGetWeather != null) {
+      return failedToGetWeather(weatherFailure);
     }
     return orElse();
   }
@@ -779,46 +770,47 @@ class _$FetchFailedImpl implements _FetchFailed {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
-    required TResult Function(_FetchingWeatherData value) fetchingWeatherData,
-    required TResult Function(_FetchSuccessful value) fetchSuccessful,
-    required TResult Function(_FetchFailed value) fetchFailed,
+    required TResult Function(_GettingWeather value) gettingWeather,
+    required TResult Function(_GotWeather value) gotWeather,
+    required TResult Function(_FailedToGetWeather value) failedToGetWeather,
   }) {
-    return fetchFailed(this);
+    return failedToGetWeather(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
-    TResult? Function(_FetchingWeatherData value)? fetchingWeatherData,
-    TResult? Function(_FetchSuccessful value)? fetchSuccessful,
-    TResult? Function(_FetchFailed value)? fetchFailed,
+    TResult? Function(_GettingWeather value)? gettingWeather,
+    TResult? Function(_GotWeather value)? gotWeather,
+    TResult? Function(_FailedToGetWeather value)? failedToGetWeather,
   }) {
-    return fetchFailed?.call(this);
+    return failedToGetWeather?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(_FetchingWeatherData value)? fetchingWeatherData,
-    TResult Function(_FetchSuccessful value)? fetchSuccessful,
-    TResult Function(_FetchFailed value)? fetchFailed,
+    TResult Function(_GettingWeather value)? gettingWeather,
+    TResult Function(_GotWeather value)? gotWeather,
+    TResult Function(_FailedToGetWeather value)? failedToGetWeather,
     required TResult orElse(),
   }) {
-    if (fetchFailed != null) {
-      return fetchFailed(this);
+    if (failedToGetWeather != null) {
+      return failedToGetWeather(this);
     }
     return orElse();
   }
 }
 
-abstract class _FetchFailed implements WeatherState {
-  const factory _FetchFailed(
-      {required final OpenWeatherFailure weatherFailure}) = _$FetchFailedImpl;
+abstract class _FailedToGetWeather implements WeatherState {
+  const factory _FailedToGetWeather(
+          {required final WeatherFailure weatherFailure}) =
+      _$FailedToGetWeatherImpl;
 
-  OpenWeatherFailure get weatherFailure;
+  WeatherFailure get weatherFailure;
   @JsonKey(ignore: true)
-  _$$FetchFailedImplCopyWith<_$FetchFailedImpl> get copyWith =>
+  _$$FailedToGetWeatherImplCopyWith<_$FailedToGetWeatherImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

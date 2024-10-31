@@ -1,52 +1,62 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:sky_ways/core/resources/strings/networking.dart';
-import 'package:sky_ways/core/utils/extensions/weather_details_extensions.dart';
-import 'package:sky_ways/features/weather/domain/entities/weather_entity.dart';
+import 'package:sky_trade/core/resources/strings/networking.dart'
+    show iconKey, mainKey, tempKey, weatherKey;
+import 'package:sky_trade/features/weather/domain/entities/weather_entity.dart';
 
 part 'weather_model.g.dart';
 
 @JsonSerializable()
-final class OpenWeatherDataModel extends OpenWeatherDataEntity {
-  OpenWeatherDataModel({
-    required this.mWeatherList,
-    required this.mWeatherMetrics,
+final class WeatherModel extends WeatherEntity {
+  const WeatherModel({
+    required this.mWeatherConditions,
+    required this.mMain,
   }) : super(
-          iconUrls: mWeatherList?.extractIconUrls(),
-          currentTemperature: mWeatherMetrics?.currentTemperature,
+          weatherConditions: mWeatherConditions,
+          main: mMain,
         );
 
-  factory OpenWeatherDataModel.fromJson(Map<String, dynamic> json) =>
-      _$OpenWeatherDataModelFromJson(json);
+  factory WeatherModel.fromJson(Map<String, dynamic> json) =>
+      _$WeatherModelFromJson(json);
 
   @JsonKey(name: weatherKey)
-  final List<WeatherDetailsModel>? mWeatherList;
+  final List<WeatherConditionModel> mWeatherConditions;
 
-  @JsonKey(name: weatherMetricsKey)
-  final WeatherMetricsModel? mWeatherMetrics;
+  @JsonKey(name: mainKey)
+  final MainModel mMain;
+
+  Map<String, dynamic> toJson() => _$WeatherModelToJson(this);
 }
 
 @JsonSerializable()
-final class WeatherDetailsModel {
-  const WeatherDetailsModel({
-    required this.iconID,
-  });
+final class WeatherConditionModel extends WeatherConditionEntity {
+  const WeatherConditionModel({
+    required this.mIcon,
+  }) : super(
+          icon: mIcon,
+        );
 
-  factory WeatherDetailsModel.fromJson(Map<String, dynamic> json) =>
-      _$WeatherDetailsModelFromJson(json);
+  factory WeatherConditionModel.fromJson(Map<String, dynamic> json) =>
+      _$WeatherConditionModelFromJson(json);
 
-  @JsonKey(name: iconIdKey)
-  final String iconID;
+  @JsonKey(name: iconKey)
+  final String mIcon;
+
+  Map<String, dynamic> toJson() => _$WeatherConditionModelToJson(this);
 }
 
 @JsonSerializable()
-final class WeatherMetricsModel {
-  const WeatherMetricsModel({
-    required this.currentTemperature,
-  });
+final class MainModel extends MainEntity {
+  const MainModel({
+    required this.mTemperature,
+  }) : super(
+          temperature: mTemperature,
+        );
 
-  factory WeatherMetricsModel.fromJson(Map<String, dynamic> json) =>
-      _$WeatherMetricsModelFromJson(json);
+  factory MainModel.fromJson(Map<String, dynamic> json) =>
+      _$MainModelFromJson(json);
 
-  @JsonKey(name: currentTemperatureKey)
-  final double currentTemperature; // celsius
+  @JsonKey(name: tempKey)
+  final double mTemperature;
+
+  Map<String, dynamic> toJson() => _$MainModelToJson(this);
 }

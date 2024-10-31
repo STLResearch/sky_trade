@@ -4,13 +4,13 @@ part of 'weather_bloc.dart';
 class WeatherState with _$WeatherState {
   const factory WeatherState.initial() = _Initial;
 
-  const factory WeatherState.fetchingWeatherData() = _FetchingWeatherData;
+  const factory WeatherState.gettingWeather() = _GettingWeather;
 
-  const factory WeatherState.fetchSuccessful({
-    required OpenWeatherDataEntity weatherData,
-  }) = _FetchSuccessful;
+  const factory WeatherState.gotWeather({
+    required WeatherEntity weatherEntity,
+  }) = _GotWeather;
 
-  const factory WeatherState.fetchFailed({
-    required OpenWeatherFailure weatherFailure,
-  }) = _FetchFailed;
+  const factory WeatherState.failedToGetWeather({
+    required WeatherFailure weatherFailure,
+  }) = _FailedToGetWeather;
 }

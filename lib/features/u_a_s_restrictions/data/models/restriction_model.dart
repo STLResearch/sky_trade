@@ -1,7 +1,7 @@
 import 'package:json_annotation/json_annotation.dart';
 import 'package:sky_trade/core/resources/strings/networking.dart'
     show
-        additionalLinks,
+        additionalLinksKey,
         coordinatesKey,
         countryKey,
         linkKey,
@@ -40,7 +40,7 @@ final class RestrictionModel extends RestrictionEntity {
   factory RestrictionModel.fromJson(Map<String, dynamic> json) =>
       _$RestrictionModelFromJson(json);
 
-  @JsonKey(name: additionalLinks)
+  @JsonKey(name: additionalLinksKey)
   final List<AdditionalLinkModel> mAdditionLinks;
 
   @JsonKey(name: countryKey)

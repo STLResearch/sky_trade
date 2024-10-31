@@ -33,7 +33,7 @@ import 'package:sky_trade/core/utils/extensions/mapbox_map_extensions.dart';
 import 'package:sky_trade/core/utils/typedefs/ui.dart'
     show PointAnnotationManagerPointAnnotationTuple;
 import 'package:sky_trade/features/auth/presentation/blocs/web_3_auth_logout_bloc/web_3_auth_logout_bloc.dart'
-    show Web3AuthLogoutBloc, Web3AuthLogoutEvent, Web3AuthLogoutState;
+    show Web3AuthLogoutBloc, Web3AuthLogoutState;
 import 'package:sky_trade/features/bluetooth/presentation/blocs/bluetooth_adapter_state_bloc/bluetooth_adapter_state_bloc.dart'
     show BluetoothAdapterStateBloc, BluetoothAdapterStateEvent;
 import 'package:sky_trade/features/bluetooth/presentation/blocs/bluetooth_permissions_bloc/bluetooth_permissions_bloc.dart'
@@ -397,8 +397,8 @@ class _HomeScreenState extends State<HomeScreen> {
                       );
 
                   context.read<WeatherBloc>().add(
-                        WeatherEvent.fetchWeatherData(
-                          geoHash,
+                        WeatherEvent.getWeather(
+                          geoHash: geoHash,
                         ),
                       );
                 },

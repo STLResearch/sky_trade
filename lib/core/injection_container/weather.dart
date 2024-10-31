@@ -1,8 +1,8 @@
 import 'package:get_it/get_it.dart' show GetIt;
-import 'package:sky_ways/features/weather/data/data_sources/weather_remote_data_source.dart';
-import 'package:sky_ways/features/weather/data/repository/weather_repository_implementation.dart';
-import 'package:sky_ways/features/weather/domain/repositories/weather_repository.dart';
-import 'package:sky_ways/features/weather/presentation/weather_bloc/weather_bloc.dart'
+import 'package:sky_trade/features/weather/data/data_sources/weather_remote_data_source.dart';
+import 'package:sky_trade/features/weather/data/repository/weather_repository_implementation.dart';
+import 'package:sky_trade/features/weather/domain/repositories/weather_repository.dart';
+import 'package:sky_trade/features/weather/presentation/weather_bloc/weather_bloc.dart'
     show WeatherBloc;
 
 final _sl = GetIt.I;

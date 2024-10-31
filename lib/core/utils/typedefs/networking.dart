@@ -23,3 +23,8 @@ typedef RemoteIDSetDeviceCoordinatesTuple = ({
   Set<RemoteIDEntity> remoteIDEntities,
   DeviceEntity deviceEntity,
 });
+
+typedef LatLng = ({
+  double latitude,
+  double longitude,
+});
