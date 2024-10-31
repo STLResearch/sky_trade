@@ -1,5 +1,5 @@
 import 'package:equatable/equatable.dart' show Equatable;
-import 'package:sky_ways/features/remote_i_d_receiver/domain/entities/remote_i_d_entity.dart'
+import 'package:sky_trade/features/remote_i_d_receiver/domain/entities/remote_i_d_entity.dart'
     show RemoteIDEntity;
 
 base class UASEntity extends Equatable {

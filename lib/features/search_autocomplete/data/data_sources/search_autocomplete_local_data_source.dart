@@ -1,5 +1,5 @@
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-import 'package:sky_ways/core/resources/strings/local.dart'
+import 'package:sky_trade/core/resources/strings/local.dart'
     show sessionTokenKey;
 import 'package:uuid_v4/uuid_v4.dart';
 

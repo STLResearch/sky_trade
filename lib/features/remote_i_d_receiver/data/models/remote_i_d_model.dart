@@ -3,7 +3,7 @@
 import 'dart:typed_data' show Uint8List;
 
 import 'package:json_annotation/json_annotation.dart';
-import 'package:sky_ways/core/resources/strings/networking.dart'
+import 'package:sky_trade/core/resources/strings/networking.dart'
     show
         altitudeGeodeticKey,
         altitudePressureKey,
@@ -62,10 +62,10 @@ import 'package:sky_ways/core/resources/strings/networking.dart'
         uaTypeKey,
         uasIdKey,
         verticalAccuracyKey;
-import 'package:sky_ways/core/utils/converters/date_time_converter.dart';
-import 'package:sky_ways/core/utils/converters/duration_converter.dart';
-import 'package:sky_ways/core/utils/converters/uint8_list_converter.dart';
-import 'package:sky_ways/core/utils/enums/networking.dart'
+import 'package:sky_trade/core/utils/converters/date_time_converter.dart';
+import 'package:sky_trade/core/utils/converters/duration_converter.dart';
+import 'package:sky_trade/core/utils/converters/uint8_list_converter.dart';
+import 'package:sky_trade/core/utils/enums/networking.dart'
     show
         RemoteIDMessageSource,
         UnmannedAircraftAuthenticationType,
@@ -82,7 +82,7 @@ import 'package:sky_ways/core/utils/enums/networking.dart'
         UnmannedAircraftSpeedAccuracy,
         UnmannedAircraftType,
         UnmannedAircraftVerticalOrBarometerAccuracy;
-import 'package:sky_ways/features/remote_i_d_receiver/domain/entities/remote_i_d_entity.dart';
+import 'package:sky_trade/features/remote_i_d_receiver/domain/entities/remote_i_d_entity.dart';
 
 part 'remote_i_d_model.g.dart';
 

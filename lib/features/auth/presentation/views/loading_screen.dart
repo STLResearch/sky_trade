@@ -16,9 +16,9 @@ import 'package:flutter/material.dart'
         Text,
         Theme,
         Widget;
-import 'package:sky_ways/core/assets/generated/assets.gen.dart' show Assets;
-import 'package:sky_ways/core/resources/colors.dart' show hex4285F4;
-import 'package:sky_ways/core/resources/numbers/ui.dart'
+import 'package:sky_trade/core/assets/generated/assets.gen.dart' show Assets;
+import 'package:sky_trade/core/resources/colors.dart' show hex4285F4;
+import 'package:sky_trade/core/resources/numbers/ui.dart'
     show
         fortyEightDotNil,
         fortySevenDotNil,
@@ -28,7 +28,7 @@ import 'package:sky_ways/core/resources/numbers/ui.dart'
         tenDotNil,
         thirtyDotNil,
         twentyOneDotNil;
-import 'package:sky_ways/core/utils/extensions/build_context_extensions.dart';
+import 'package:sky_trade/core/utils/extensions/build_context_extensions.dart';
 
 class LoadingScreen extends StatelessWidget {
   const LoadingScreen({super.key});

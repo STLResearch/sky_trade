@@ -4,11 +4,11 @@ import 'package:dartz/dartz.dart' show Either, Left, Right;
 import 'package:flutter_opendroneid/flutter_opendroneid.dart'
     show FlutterOpenDroneId, UsedTechnologies;
 import 'package:flutter_opendroneid/models/message_container.dart';
-import 'package:sky_ways/core/errors/failures/remote_i_d_receiver_failure.dart';
-import 'package:sky_ways/core/resources/numbers/networking.dart' show zero;
-import 'package:sky_ways/features/remote_i_d_receiver/domain/entities/remote_i_d_entity.dart'
+import 'package:sky_trade/core/errors/failures/remote_i_d_receiver_failure.dart';
+import 'package:sky_trade/core/resources/numbers/networking.dart' show zero;
+import 'package:sky_trade/features/remote_i_d_receiver/domain/entities/remote_i_d_entity.dart'
     show RemoteIDEntity;
-import 'package:sky_ways/features/remote_i_d_receiver/domain/repositories/remote_i_d_receiver_repository.dart';
+import 'package:sky_trade/features/remote_i_d_receiver/domain/repositories/remote_i_d_receiver_repository.dart';
 
 final class RemoteIDReceiverRepositoryImplementation
     implements RemoteIDReceiverRepository {

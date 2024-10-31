@@ -17,68 +17,68 @@ import 'package:flutter_bloc/flutter_bloc.dart'
 import 'package:flutter_dotenv/flutter_dotenv.dart' show dotenv;
 import 'package:mapbox_maps_flutter/mapbox_maps_flutter.dart'
     show CompassSettings, MapboxMap, MapboxOptions, ScaleBarSettings;
-import 'package:sky_ways/core/resources/colors.dart' show hexB3FFFFFF;
-import 'package:sky_ways/core/resources/strings/routes.dart'
+import 'package:sky_trade/core/resources/colors.dart' show hexB3FFFFFF;
+import 'package:sky_trade/core/resources/strings/routes.dart'
     show loginRoutePath;
-import 'package:sky_ways/core/resources/strings/secret_keys.dart'
+import 'package:sky_trade/core/resources/strings/secret_keys.dart'
     show
         mapboxMapsDarkStyleUri,
         mapboxMapsPublicKey,
         mapboxMapsSatelliteStyleUri;
-import 'package:sky_ways/core/utils/enums/local.dart' show CacheType;
-import 'package:sky_ways/core/utils/enums/ui.dart' show MapStyle;
-import 'package:sky_ways/core/utils/extensions/build_context_extensions.dart';
-import 'package:sky_ways/core/utils/extensions/cache_entity_extensions.dart';
-import 'package:sky_ways/core/utils/extensions/mapbox_map_extensions.dart';
-import 'package:sky_ways/core/utils/typedefs/ui.dart'
+import 'package:sky_trade/core/utils/enums/local.dart' show CacheType;
+import 'package:sky_trade/core/utils/enums/ui.dart' show MapStyle;
+import 'package:sky_trade/core/utils/extensions/build_context_extensions.dart';
+import 'package:sky_trade/core/utils/extensions/cache_entity_extensions.dart';
+import 'package:sky_trade/core/utils/extensions/mapbox_map_extensions.dart';
+import 'package:sky_trade/core/utils/typedefs/ui.dart'
     show PointAnnotationManagerPointAnnotationTuple;
-import 'package:sky_ways/features/auth/presentation/blocs/web_3_auth_logout_bloc/web_3_auth_logout_bloc.dart'
+import 'package:sky_trade/features/auth/presentation/blocs/web_3_auth_logout_bloc/web_3_auth_logout_bloc.dart'
     show Web3AuthLogoutBloc, Web3AuthLogoutEvent, Web3AuthLogoutState;
-import 'package:sky_ways/features/bluetooth/presentation/blocs/bluetooth_adapter_state_bloc/bluetooth_adapter_state_bloc.dart'
+import 'package:sky_trade/features/bluetooth/presentation/blocs/bluetooth_adapter_state_bloc/bluetooth_adapter_state_bloc.dart'
     show BluetoothAdapterStateBloc, BluetoothAdapterStateEvent;
-import 'package:sky_ways/features/bluetooth/presentation/blocs/bluetooth_permissions_bloc/bluetooth_permissions_bloc.dart'
+import 'package:sky_trade/features/bluetooth/presentation/blocs/bluetooth_permissions_bloc/bluetooth_permissions_bloc.dart'
     show
         BluetoothPermissionsBloc,
         BluetoothPermissionsEvent,
         BluetoothPermissionsState;
-import 'package:sky_ways/features/cache_manager/presentation/blocs/cache_data_bloc/cache_data_bloc.dart'
+import 'package:sky_trade/features/cache_manager/presentation/blocs/cache_data_bloc/cache_data_bloc.dart'
     show CacheDataBloc, CacheDataEvent, CacheDataState;
-import 'package:sky_ways/features/cache_manager/presentation/blocs/cached_data_bloc/cached_data_bloc.dart'
+import 'package:sky_trade/features/cache_manager/presentation/blocs/cached_data_bloc/cached_data_bloc.dart'
     show CachedDataBloc, CachedDataEvent, CachedDataState;
-import 'package:sky_ways/features/geo_hash/presentation/blocs/geo_hash_bloc/geo_hash_bloc.dart'
+import 'package:sky_trade/features/geo_hash/presentation/blocs/geo_hash_bloc/geo_hash_bloc.dart'
     show GeoHashBloc, GeoHashEvent, GeoHashState;
-import 'package:sky_ways/features/location/presentation/blocs/location_permission_bloc/location_permission_bloc.dart'
+import 'package:sky_trade/features/location/presentation/blocs/location_permission_bloc/location_permission_bloc.dart'
     show
         LocationPermissionBloc,
         LocationPermissionEvent,
         LocationPermissionState;
-import 'package:sky_ways/features/location/presentation/blocs/location_position_bloc/location_position_bloc.dart'
+import 'package:sky_trade/features/location/presentation/blocs/location_position_bloc/location_position_bloc.dart'
     show LocationPositionBloc, LocationPositionEvent, LocationPositionState;
-import 'package:sky_ways/features/location/presentation/blocs/location_service_status_bloc/location_service_status_bloc.dart'
+import 'package:sky_trade/features/location/presentation/blocs/location_service_status_bloc/location_service_status_bloc.dart'
     show
         LocationServiceStatusBloc,
         LocationServiceStatusEvent,
         LocationServiceStatusState;
-import 'package:sky_ways/features/remote_i_d_receiver/presentation/blocs/remote_i_d_receiver_bloc/remote_i_d_receiver_bloc.dart'
+import 'package:sky_trade/features/remote_i_d_receiver/presentation/blocs/remote_i_d_receiver_bloc/remote_i_d_receiver_bloc.dart'
     show RemoteIDReceiverBloc, RemoteIDReceiverEvent, RemoteIDReceiverState;
-import 'package:sky_ways/features/remote_i_d_transmitter/presentation/blocs/remote_i_d_transmitter_bloc/remote_i_d_transmitter_bloc.dart'
+import 'package:sky_trade/features/remote_i_d_transmitter/presentation/blocs/remote_i_d_transmitter_bloc/remote_i_d_transmitter_bloc.dart'
     show
         RemoteIDTransmitterBloc,
         RemoteIDTransmitterEvent,
         RemoteIDTransmitterState;
-import 'package:sky_ways/features/u_a_s_activity/presentation/blocs/u_a_s_activity_bloc/u_a_s_activity_bloc.dart'
+import 'package:sky_trade/features/u_a_s_activity/presentation/blocs/u_a_s_activity_bloc/u_a_s_activity_bloc.dart'
     show UASActivityBloc, UASActivityEvent, UASActivityState;
-import 'package:sky_ways/features/u_a_s_restrictions/domain/entities/restriction_entity.dart'
+import 'package:sky_trade/features/u_a_s_restrictions/domain/entities/restriction_entity.dart'
     show RestrictionEntity;
-import 'package:sky_ways/features/u_a_s_restrictions/presentation/blocs/u_a_s_restrictions_bloc/u_a_s_restrictions_bloc.dart'
+import 'package:sky_trade/features/u_a_s_restrictions/presentation/blocs/u_a_s_restrictions_bloc/u_a_s_restrictions_bloc.dart'
     show UASRestrictionsBloc, UASRestrictionsEvent, UASRestrictionsState;
-import 'package:sky_ways/features/u_a_s_restrictions/presentation/widgets/alert_snack_bar.dart';
-import 'package:sky_ways/features/u_a_s_restrictions/presentation/widgets/map_overlay.dart';
-import 'package:sky_ways/features/u_a_s_restrictions/presentation/widgets/map_view.dart';
-import 'package:sky_ways/features/u_a_s_restrictions/presentation/widgets/progress_dialog.dart';
-import 'package:sky_ways/features/u_a_s_restrictions/presentation/widgets/restriction_indicator.dart';
-import 'package:sky_ways/features/u_a_s_restrictions/presentation/widgets/u_a_s_list.dart';
-import 'package:sky_ways/features/wifi/presentation/blocs/wifi_permission_bloc/wifi_permission_bloc.dart'
+import 'package:sky_trade/features/u_a_s_restrictions/presentation/widgets/alert_snack_bar.dart';
+import 'package:sky_trade/features/u_a_s_restrictions/presentation/widgets/map_overlay.dart';
+import 'package:sky_trade/features/u_a_s_restrictions/presentation/widgets/map_view.dart';
+import 'package:sky_trade/features/u_a_s_restrictions/presentation/widgets/progress_dialog.dart';
+import 'package:sky_trade/features/u_a_s_restrictions/presentation/widgets/restriction_indicator.dart';
+import 'package:sky_trade/features/u_a_s_restrictions/presentation/widgets/u_a_s_list.dart';
+import 'package:sky_trade/features/wifi/presentation/blocs/wifi_permission_bloc/wifi_permission_bloc.dart'
     show WifiPermissionBloc, WifiPermissionEvent, WifiPermissionState;
 
 class HomeScreen extends StatefulWidget {

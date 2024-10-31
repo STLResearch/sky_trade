@@ -1,9 +1,9 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:sky_ways/core/resources/strings/networking.dart'
+import 'package:sky_trade/core/resources/strings/networking.dart'
     show createdAtKey, idKey, remoteDataKey, updateAtKey;
-import 'package:sky_ways/features/remote_i_d_receiver/data/models/remote_i_d_model.dart'
+import 'package:sky_trade/features/remote_i_d_receiver/data/models/remote_i_d_model.dart'
     show RemoteIDModel;
-import 'package:sky_ways/features/u_a_s_activity/domain/entities/u_a_s_entity.dart';
+import 'package:sky_trade/features/u_a_s_activity/domain/entities/u_a_s_entity.dart';
 
 part 'u_a_s_model.g.dart';
 

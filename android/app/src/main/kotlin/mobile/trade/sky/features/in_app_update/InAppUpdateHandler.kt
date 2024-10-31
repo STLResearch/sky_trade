@@ -1,15 +1,15 @@
-package trade.sky.features.in_app_update
+package mobile.trade.sky.features.in_app_update
 
 import android.app.Activity
 import io.flutter.plugin.common.MethodCall
 import io.flutter.plugin.common.MethodChannel
-import trade.sky.core.utils.constants.CHECK_AND_START_UPDATE_METHOD_CALL
-import trade.sky.core.utils.constants.INSTALL_FLEXIBLE_UPDATE_METHOD_CALL
-import trade.sky.core.utils.constants.REGISTER_UPDATE_STATE_LISTENER_AND_CHECK_AND_RESUME_STALLED_IMMEDIATE_UPDATE_IF_ANY_METHOD_CALL
-import trade.sky.core.utils.constants.UNREGISTER_UPDATE_STATE_LISTENER_METHOD_CALL
-import trade.sky.core.utils.enums.InAppUpdateExecutionChainState
-import trade.sky.core.utils.enums.InAppUpdateState
-import trade.sky.core.utils.enums.InAppUpdateType
+import mobile.trade.sky.core.utils.constants.CHECK_AND_START_UPDATE_METHOD_CALL
+import mobile.trade.sky.core.utils.constants.INSTALL_FLEXIBLE_UPDATE_METHOD_CALL
+import mobile.trade.sky.core.utils.constants.REGISTER_UPDATE_STATE_LISTENER_AND_CHECK_AND_RESUME_STALLED_IMMEDIATE_UPDATE_IF_ANY_METHOD_CALL
+import mobile.trade.sky.core.utils.constants.UNREGISTER_UPDATE_STATE_LISTENER_METHOD_CALL
+import mobile.trade.sky.core.utils.enums.InAppUpdateExecutionChainState
+import mobile.trade.sky.core.utils.enums.InAppUpdateState
+import mobile.trade.sky.core.utils.enums.InAppUpdateType
 
 class InAppUpdateHandler(activity: Activity) : MethodChannel.MethodCallHandler {
     private val inAppUpdateManager = InAppUpdateManager(activity)

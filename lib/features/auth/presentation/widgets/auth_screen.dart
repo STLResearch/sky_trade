@@ -14,8 +14,8 @@ import 'package:flutter/material.dart'
         TextAlign,
         Theme,
         Widget;
-import 'package:sky_ways/core/assets/generated/assets.gen.dart' show Assets;
-import 'package:sky_ways/core/resources/numbers/ui.dart'
+import 'package:sky_trade/core/assets/generated/assets.gen.dart' show Assets;
+import 'package:sky_trade/core/resources/numbers/ui.dart'
     show fifteenDotNil, fortyDotNil, tenDotNil;
 
 final class AuthScreen extends StatelessWidget {

@@ -1,8 +1,8 @@
 import 'package:dartz/dartz.dart' show Either;
-import 'package:sky_ways/core/errors/failures/link_handler_failure.dart';
-import 'package:sky_ways/core/utils/clients/data_handler.dart';
-import 'package:sky_ways/features/link_handler/domain/entities/link_entity.dart';
-import 'package:sky_ways/features/link_handler/domain/repositories/link_handler_repository.dart';
+import 'package:sky_trade/core/errors/failures/link_handler_failure.dart';
+import 'package:sky_trade/core/utils/clients/data_handler.dart';
+import 'package:sky_trade/features/link_handler/domain/entities/link_entity.dart';
+import 'package:sky_trade/features/link_handler/domain/repositories/link_handler_repository.dart';
 import 'package:url_launcher/url_launcher.dart' show canLaunchUrl, launchUrl;
 
 final class LinkHandlerRepositoryImplementation

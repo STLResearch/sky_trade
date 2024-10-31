@@ -16,17 +16,17 @@ import 'package:flutter/material.dart'
         Theme,
         Widget;
 import 'package:flutter_bloc/flutter_bloc.dart' show ReadContext;
-import 'package:sky_ways/core/assets/generated/assets.gen.dart' show Assets;
-import 'package:sky_ways/core/resources/colors.dart' show hex1D1E2D;
-import 'package:sky_ways/core/resources/numbers/ui.dart'
+import 'package:sky_trade/core/assets/generated/assets.gen.dart' show Assets;
+import 'package:sky_trade/core/resources/colors.dart' show hex1D1E2D;
+import 'package:sky_trade/core/resources/numbers/ui.dart'
     show five, twentyDotNil;
-import 'package:sky_ways/core/resources/strings/routes.dart' show helpRoutePath;
-import 'package:sky_ways/core/utils/enums/ui.dart' show MenuItem;
-import 'package:sky_ways/core/utils/extensions/build_context_extensions.dart';
-import 'package:sky_ways/features/auth/presentation/blocs/web_3_auth_logout_bloc/web_3_auth_logout_bloc.dart'
+import 'package:sky_trade/core/resources/strings/routes.dart' show helpRoutePath;
+import 'package:sky_trade/core/utils/enums/ui.dart' show MenuItem;
+import 'package:sky_trade/core/utils/extensions/build_context_extensions.dart';
+import 'package:sky_trade/features/auth/presentation/blocs/web_3_auth_logout_bloc/web_3_auth_logout_bloc.dart'
     show Web3AuthLogoutBloc, Web3AuthLogoutEvent;
-import 'package:sky_ways/features/u_a_s_restrictions/presentation/widgets/about_dialog.dart';
-import 'package:sky_ways/features/u_a_s_restrictions/presentation/widgets/action_dialog.dart';
+import 'package:sky_trade/features/u_a_s_restrictions/presentation/widgets/about_dialog.dart';
+import 'package:sky_trade/features/u_a_s_restrictions/presentation/widgets/action_dialog.dart';
 
 class Menu extends StatelessWidget {
   const Menu({super.key});

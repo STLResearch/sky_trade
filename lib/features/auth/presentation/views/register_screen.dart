@@ -18,37 +18,37 @@ import 'package:flutter/material.dart'
         WidgetsBindingObserver;
 import 'package:flutter_bloc/flutter_bloc.dart'
     show BlocBuilder, BlocListener, MultiBlocListener, ReadContext;
-import 'package:sky_ways/core/resources/numbers/ui.dart'
+import 'package:sky_trade/core/resources/numbers/ui.dart'
     show fifteenDotNil, tenDotNil, thirtyDotNil;
-import 'package:sky_ways/core/resources/strings/networking.dart'
+import 'package:sky_trade/core/resources/strings/networking.dart'
     show skyTradePrivacyPolicyUrl, skyTradeTermsOfServiceUrl;
-import 'package:sky_ways/core/resources/strings/routes.dart'
+import 'package:sky_trade/core/resources/strings/routes.dart'
     show homeRoutePath, loginRoutePath;
-import 'package:sky_ways/core/utils/enums/networking.dart' show AuthProvider;
-import 'package:sky_ways/core/utils/enums/ui.dart' show AuthButtonType;
-import 'package:sky_ways/core/utils/extensions/build_context_extensions.dart';
-import 'package:sky_ways/features/auth/presentation/blocs/create_sky_trade_user_bloc/create_sky_trade_user_bloc.dart'
+import 'package:sky_trade/core/utils/enums/networking.dart' show AuthProvider;
+import 'package:sky_trade/core/utils/enums/ui.dart' show AuthButtonType;
+import 'package:sky_trade/core/utils/extensions/build_context_extensions.dart';
+import 'package:sky_trade/features/auth/presentation/blocs/create_sky_trade_user_bloc/create_sky_trade_user_bloc.dart'
     show
         CreateSkyTradeUserBloc,
         CreateSkyTradeUserEvent,
         CreateSkyTradeUserState;
-import 'package:sky_ways/features/auth/presentation/blocs/web_3_auth_capture_custom_tabs_closed_bloc/web_3_auth_capture_custom_tabs_closed_bloc.dart'
+import 'package:sky_trade/features/auth/presentation/blocs/web_3_auth_capture_custom_tabs_closed_bloc/web_3_auth_capture_custom_tabs_closed_bloc.dart'
     show
         Web3AuthCaptureCustomTabsClosedBloc,
         Web3AuthCaptureCustomTabsClosedEvent;
-import 'package:sky_ways/features/auth/presentation/blocs/web_3_auth_logout_bloc/web_3_auth_logout_bloc.dart'
+import 'package:sky_trade/features/auth/presentation/blocs/web_3_auth_logout_bloc/web_3_auth_logout_bloc.dart'
     show Web3AuthLogoutBloc, Web3AuthLogoutEvent;
-import 'package:sky_ways/features/auth/presentation/blocs/web_3_auth_register_bloc/web_3_auth_register_bloc.dart'
+import 'package:sky_trade/features/auth/presentation/blocs/web_3_auth_register_bloc/web_3_auth_register_bloc.dart'
     show Web3AuthRegisterBloc, Web3AuthRegisterEvent, Web3AuthRegisterState;
-import 'package:sky_ways/features/auth/presentation/widgets/agreement_section.dart';
-import 'package:sky_ways/features/auth/presentation/widgets/alert_snack_bar.dart';
-import 'package:sky_ways/features/auth/presentation/widgets/auth_button.dart';
-import 'package:sky_ways/features/auth/presentation/widgets/auth_screen.dart';
-import 'package:sky_ways/features/auth/presentation/widgets/email_field.dart';
-import 'package:sky_ways/features/auth/presentation/widgets/footer_section.dart';
-import 'package:sky_ways/features/auth/presentation/widgets/or_section.dart';
-import 'package:sky_ways/features/auth/presentation/widgets/subscribe_section.dart';
-import 'package:sky_ways/features/link_handler/presentation/blocs/handle_link_bloc/handle_link_bloc.dart'
+import 'package:sky_trade/features/auth/presentation/widgets/agreement_section.dart';
+import 'package:sky_trade/features/auth/presentation/widgets/alert_snack_bar.dart';
+import 'package:sky_trade/features/auth/presentation/widgets/auth_button.dart';
+import 'package:sky_trade/features/auth/presentation/widgets/auth_screen.dart';
+import 'package:sky_trade/features/auth/presentation/widgets/email_field.dart';
+import 'package:sky_trade/features/auth/presentation/widgets/footer_section.dart';
+import 'package:sky_trade/features/auth/presentation/widgets/or_section.dart';
+import 'package:sky_trade/features/auth/presentation/widgets/subscribe_section.dart';
+import 'package:sky_trade/features/link_handler/presentation/blocs/handle_link_bloc/handle_link_bloc.dart'
     show HandleLinkBloc, HandleLinkEvent;
 
 class RegisterScreen extends StatefulWidget {

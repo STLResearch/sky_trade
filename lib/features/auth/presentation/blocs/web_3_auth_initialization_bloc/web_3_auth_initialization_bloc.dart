@@ -1,8 +1,8 @@
 import 'package:bloc/bloc.dart' show Bloc, Emitter;
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:sky_ways/core/errors/failures/auth_failure.dart'
+import 'package:sky_trade/core/errors/failures/auth_failure.dart'
     show Web3AuthInitializationFailure;
-import 'package:sky_ways/features/auth/domain/repositories/auth_repository.dart';
+import 'package:sky_trade/features/auth/domain/repositories/auth_repository.dart';
 
 part 'web_3_auth_initialization_event.dart';
 

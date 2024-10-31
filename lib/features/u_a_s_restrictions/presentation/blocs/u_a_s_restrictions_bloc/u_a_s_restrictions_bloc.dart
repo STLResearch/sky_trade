@@ -1,9 +1,9 @@
 import 'package:bloc/bloc.dart' show Bloc, Emitter;
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:sky_ways/core/errors/failures/u_a_s_restrictions_failure.dart';
-import 'package:sky_ways/features/u_a_s_restrictions/domain/entities/restriction_entity.dart'
+import 'package:sky_trade/core/errors/failures/u_a_s_restrictions_failure.dart';
+import 'package:sky_trade/features/u_a_s_restrictions/domain/entities/restriction_entity.dart'
     show RestrictionEntity;
-import 'package:sky_ways/features/u_a_s_restrictions/domain/repositories/u_a_s_restrictions_repository.dart';
+import 'package:sky_trade/features/u_a_s_restrictions/domain/repositories/u_a_s_restrictions_repository.dart';
 
 part 'u_a_s_restrictions_bloc.freezed.dart';
 

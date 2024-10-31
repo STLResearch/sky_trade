@@ -29,7 +29,7 @@ if (keyPropertiesFile.exists()) {
 }
 
 android {
-    namespace "trade.sky"
+    namespace "mobile.trade.sky"
     compileSdk flutter.compileSdkVersion
     ndkVersion flutter.ndkVersion
 
@@ -47,7 +47,7 @@ android {
     }
 
     defaultConfig {
-        applicationId "trade.sky"
+        applicationId "mobile.trade.sky"
         minSdkVersion 24
         targetSdkVersion flutter.targetSdkVersion
         versionCode 4

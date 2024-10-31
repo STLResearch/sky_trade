@@ -1,7 +1,7 @@
 import 'package:flutter/services.dart' show MethodChannel;
-import 'package:sky_ways/core/resources/strings/environments.dart'
+import 'package:sky_trade/core/resources/strings/environments.dart'
     show inAppUpdateChannelName;
-import 'package:sky_ways/features/in_app_update/domain/repositories/in_app_update_repository.dart';
+import 'package:sky_trade/features/in_app_update/domain/repositories/in_app_update_repository.dart';
 
 final class InAppUpdateRepositoryImplementation
     implements InAppUpdateRepository {

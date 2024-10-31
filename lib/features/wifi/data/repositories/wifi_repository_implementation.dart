@@ -4,19 +4,19 @@ import 'package:dartz/dartz.dart' show Either, Left, Right;
 import 'package:flutter/services.dart' show EventChannel;
 import 'package:permission_handler/permission_handler.dart'
     show Permission, PermissionActions, PermissionStatusGetters;
-import 'package:sky_ways/core/errors/failures/wifi_failure.dart';
-import 'package:sky_ways/core/resources/strings/environments.dart'
+import 'package:sky_trade/core/errors/failures/wifi_failure.dart';
+import 'package:sky_trade/core/resources/strings/environments.dart'
     show
         wifiAdapterStateBroadcastReceiverChannelName,
         wifiAdapterStateDisabledEnumValue,
         wifiAdapterStateDisablingEnumValue,
         wifiAdapterStateEnabledEnumValue,
         wifiAdapterStateEnablingEnumValue;
-import 'package:sky_ways/core/utils/clients/data_handler.dart';
-import 'package:sky_ways/core/utils/enums/networking.dart'
+import 'package:sky_trade/core/utils/clients/data_handler.dart';
+import 'package:sky_trade/core/utils/enums/networking.dart'
     show WifiAdapterState;
-import 'package:sky_ways/features/wifi/domain/entities/wifi_entity.dart';
-import 'package:sky_ways/features/wifi/domain/repositories/wifi_repository.dart';
+import 'package:sky_trade/features/wifi/domain/entities/wifi_entity.dart';
+import 'package:sky_trade/features/wifi/domain/repositories/wifi_repository.dart';
 
 final class WifiRepositoryImplementation
     with DataHandler

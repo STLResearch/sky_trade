@@ -1,10 +1,10 @@
 import 'package:bloc/bloc.dart' show Bloc, Emitter;
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:sky_ways/core/errors/failures/bluetooth_failure.dart'
+import 'package:sky_trade/core/errors/failures/bluetooth_failure.dart'
     show BluetoothPermissionsFailure;
-import 'package:sky_ways/features/bluetooth/domain/entities/bluetooth_entity.dart'
+import 'package:sky_trade/features/bluetooth/domain/entities/bluetooth_entity.dart'
     show BluetoothPermissionsEntity;
-import 'package:sky_ways/features/bluetooth/domain/repositories/bluetooth_repository.dart';
+import 'package:sky_trade/features/bluetooth/domain/repositories/bluetooth_repository.dart';
 
 part 'bluetooth_permissions_event.dart';
 

@@ -1,7 +1,7 @@
 import 'package:dartz/dartz.dart' show Either, Unit;
-import 'package:sky_ways/core/errors/failures/auth_failure.dart';
-import 'package:sky_ways/core/utils/enums/networking.dart' show AuthProvider;
-import 'package:sky_ways/features/auth/domain/entities/auth_entity.dart';
+import 'package:sky_trade/core/errors/failures/auth_failure.dart';
+import 'package:sky_trade/core/utils/enums/networking.dart' show AuthProvider;
+import 'package:sky_trade/features/auth/domain/entities/auth_entity.dart';
 
 abstract interface class AuthRepository {
   Future<Either<Web3AuthInitializationFailure, Unit>> initializeWeb3Auth();

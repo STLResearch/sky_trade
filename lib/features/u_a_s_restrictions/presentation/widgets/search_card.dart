@@ -19,9 +19,9 @@ import 'package:flutter/material.dart'
         Theme,
         Widget;
 import 'package:flutter_bloc/flutter_bloc.dart' show BlocBuilder, ReadContext;
-import 'package:sky_ways/core/assets/generated/assets.gen.dart' show Assets;
-import 'package:sky_ways/core/resources/colors.dart' show hex333333, hexB8B8B8;
-import 'package:sky_ways/core/resources/numbers/ui.dart'
+import 'package:sky_trade/core/assets/generated/assets.gen.dart' show Assets;
+import 'package:sky_trade/core/resources/colors.dart' show hex333333, hexB8B8B8;
+import 'package:sky_trade/core/resources/numbers/ui.dart'
     show
         eightDotNil,
         eighteenDotNil,
@@ -33,15 +33,15 @@ import 'package:sky_ways/core/resources/numbers/ui.dart'
         twentyFiveDotNil,
         twentyFourDotNil,
         twentyOneDotNil;
-import 'package:sky_ways/core/utils/enums/networking.dart'
+import 'package:sky_trade/core/utils/enums/networking.dart'
     show BluetoothAdapterState, WifiAdapterState;
-import 'package:sky_ways/core/utils/extensions/build_context_extensions.dart';
-import 'package:sky_ways/features/bluetooth/presentation/blocs/bluetooth_adapter_state_bloc/bluetooth_adapter_state_bloc.dart'
+import 'package:sky_trade/core/utils/extensions/build_context_extensions.dart';
+import 'package:sky_trade/features/bluetooth/presentation/blocs/bluetooth_adapter_state_bloc/bluetooth_adapter_state_bloc.dart'
     show BluetoothAdapterStateBloc, BluetoothAdapterStateState;
-import 'package:sky_ways/features/search_autocomplete/presentation/blocs/search_autocomplete_bloc.dart'
+import 'package:sky_trade/features/search_autocomplete/presentation/blocs/search_autocomplete_bloc.dart'
     show SearchAutocompleteBloc, SearchAutocompleteEvent;
-import 'package:sky_ways/features/u_a_s_restrictions/presentation/widgets/menu.dart';
-import 'package:sky_ways/features/wifi/presentation/blocs/wifi_adapter_state_bloc/wifi_adapter_state_bloc.dart'
+import 'package:sky_trade/features/u_a_s_restrictions/presentation/widgets/menu.dart';
+import 'package:sky_trade/features/wifi/presentation/blocs/wifi_adapter_state_bloc/wifi_adapter_state_bloc.dart'
     show WifiAdapterStateBloc, WifiAdapterStateState;
 
 class SearchCard extends StatefulWidget {

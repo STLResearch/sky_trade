@@ -27,10 +27,10 @@ import 'package:flutter/material.dart'
         Theme,
         Widget;
 import 'package:flutter_bloc/flutter_bloc.dart' show ReadContext;
-import 'package:sky_ways/core/assets/generated/assets.gen.dart' show Assets;
-import 'package:sky_ways/core/resources/colors.dart'
+import 'package:sky_trade/core/assets/generated/assets.gen.dart' show Assets;
+import 'package:sky_trade/core/resources/colors.dart'
     show hex1E1E1E, hex9D9D9D, hexF4F4F4;
-import 'package:sky_ways/core/resources/numbers/ui.dart'
+import 'package:sky_trade/core/resources/numbers/ui.dart'
     show
         eightDotNil,
         fifteenDotNil,
@@ -50,11 +50,11 @@ import 'package:sky_ways/core/resources/numbers/ui.dart'
         twentySixDotNil,
         twentyTwoDotNil,
         twoDotNil;
-import 'package:sky_ways/core/utils/extensions/build_context_extensions.dart';
-import 'package:sky_ways/core/utils/extensions/restriction_entity_extensions.dart';
-import 'package:sky_ways/features/link_handler/presentation/blocs/handle_link_bloc/handle_link_bloc.dart'
+import 'package:sky_trade/core/utils/extensions/build_context_extensions.dart';
+import 'package:sky_trade/core/utils/extensions/restriction_entity_extensions.dart';
+import 'package:sky_trade/features/link_handler/presentation/blocs/handle_link_bloc/handle_link_bloc.dart'
     show HandleLinkBloc, HandleLinkEvent;
-import 'package:sky_ways/features/u_a_s_restrictions/domain/entities/restriction_entity.dart'
+import 'package:sky_trade/features/u_a_s_restrictions/domain/entities/restriction_entity.dart'
     show RestrictionEntity;
 
 class RestrictionInfo extends StatelessWidget {

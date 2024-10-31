@@ -3,11 +3,11 @@ import 'dart:async' show StreamSubscription;
 import 'package:bloc/bloc.dart' show Bloc, Emitter;
 import 'package:dartz/dartz.dart' show Either;
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:sky_ways/core/errors/failures/wifi_failure.dart'
+import 'package:sky_trade/core/errors/failures/wifi_failure.dart'
     show WifiAdapterStateFailure;
-import 'package:sky_ways/features/wifi/domain/entities/wifi_entity.dart'
+import 'package:sky_trade/features/wifi/domain/entities/wifi_entity.dart'
     show WifiAdapterStateEntity;
-import 'package:sky_ways/features/wifi/domain/repositories/wifi_repository.dart';
+import 'package:sky_trade/features/wifi/domain/repositories/wifi_repository.dart';
 
 part 'wifi_adapter_state_event.dart';
 

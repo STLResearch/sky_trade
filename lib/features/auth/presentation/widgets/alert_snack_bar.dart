@@ -8,7 +8,7 @@ import 'package:flutter/material.dart'
         Text,
         TextOverflow,
         Theme;
-import 'package:sky_ways/core/resources/numbers/ui.dart' show five, four;
+import 'package:sky_trade/core/resources/numbers/ui.dart' show five, four;
 
 final class AlertSnackBar {
   static void show(

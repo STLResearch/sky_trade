@@ -17,15 +17,15 @@ import 'package:flutter/material.dart'
         Theme,
         ValueListenableBuilder,
         Widget;
-import 'package:sky_ways/core/resources/colors.dart'
+import 'package:sky_trade/core/resources/colors.dart'
     show hex222222, hex838187, hex87878D, hexE04F64;
-import 'package:sky_ways/core/resources/numbers/ui.dart'
+import 'package:sky_trade/core/resources/numbers/ui.dart'
     show fiveDotNil, fourteenDotNil, twentyOneDotNil;
-import 'package:sky_ways/core/resources/strings/regex_patterns.dart'
+import 'package:sky_trade/core/resources/strings/regex_patterns.dart'
     show emailRegexPatternRawString;
-import 'package:sky_ways/core/resources/strings/special_characters.dart'
+import 'package:sky_trade/core/resources/strings/special_characters.dart'
     show asterisk, whiteSpace;
-import 'package:sky_ways/core/utils/extensions/build_context_extensions.dart';
+import 'package:sky_trade/core/utils/extensions/build_context_extensions.dart';
 
 final class EmailField extends StatelessWidget {
   const EmailField({

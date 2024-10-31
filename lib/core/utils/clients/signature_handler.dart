@@ -5,11 +5,11 @@ import 'dart:math' show Random;
 
 import 'package:flutter_dotenv/flutter_dotenv.dart' show dotenv;
 import 'package:hex/hex.dart' show HEX;
-import 'package:sky_ways/core/resources/numbers/local.dart'
+import 'package:sky_trade/core/resources/numbers/local.dart'
     show sixteen, thirtyTwo;
-import 'package:sky_ways/core/resources/strings/local.dart'
+import 'package:sky_trade/core/resources/strings/local.dart'
     show nonceCharacterSet;
-import 'package:sky_ways/core/resources/strings/networking.dart'
+import 'package:sky_trade/core/resources/strings/networking.dart'
     show
         signatureEightLine,
         signatureFifthLine,
@@ -20,7 +20,7 @@ import 'package:sky_ways/core/resources/strings/networking.dart'
         signatureThirdLine,
         skyTradeServerHttpSignUrl,
         skyTradeServerSignUrl;
-import 'package:sky_ways/core/resources/strings/special_characters.dart'
+import 'package:sky_trade/core/resources/strings/special_characters.dart'
     show newLine, whiteSpace;
 import 'package:solana/solana.dart' show Ed25519HDKeyPair, SignatureExt;
 import 'package:web3auth_flutter/web3auth_flutter.dart';

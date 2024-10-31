@@ -1,6 +1,6 @@
 import 'package:bloc/bloc.dart' show Bloc, Emitter;
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:sky_ways/features/internet_connection_checker/domain/repositories/internet_connection_checker_repository.dart';
+import 'package:sky_trade/features/internet_connection_checker/domain/repositories/internet_connection_checker_repository.dart';
 
 part 'internet_connection_checker_event.dart';
 

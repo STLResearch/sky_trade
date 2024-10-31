@@ -43,7 +43,7 @@ import 'package:flutter_opendroneid/flutter_opendroneid.dart'
         SystemMessage;
 import 'package:flutter_opendroneid/models/message_container.dart';
 import 'package:flutter_opendroneid/pigeon.dart' show MessageSource;
-import 'package:sky_ways/core/utils/enums/networking.dart'
+import 'package:sky_trade/core/utils/enums/networking.dart'
     show
         RemoteIDMessageSource,
         UnmannedAircraftAuthenticationType,

@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart' show Bloc, Emitter;
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:sky_ways/core/utils/enums/local.dart' show CacheType;
-import 'package:sky_ways/features/cache_manager/domain/repositories/cache_manager_repository.dart';
+import 'package:sky_trade/core/utils/enums/local.dart' show CacheType;
+import 'package:sky_trade/features/cache_manager/domain/repositories/cache_manager_repository.dart';
 
 part 'cache_data_event.dart';
 

@@ -1,11 +1,11 @@
 import 'package:bloc/bloc.dart' show Bloc, Emitter;
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:sky_ways/core/errors/failures/auth_failure.dart'
+import 'package:sky_trade/core/errors/failures/auth_failure.dart'
     show Web3AuthAuthenticationFailure;
-import 'package:sky_ways/core/utils/enums/networking.dart' show AuthProvider;
-import 'package:sky_ways/features/auth/domain/entities/auth_entity.dart'
+import 'package:sky_trade/core/utils/enums/networking.dart' show AuthProvider;
+import 'package:sky_trade/features/auth/domain/entities/auth_entity.dart'
     show Web3AuthUserEntity;
-import 'package:sky_ways/features/auth/domain/repositories/auth_repository.dart';
+import 'package:sky_trade/features/auth/domain/repositories/auth_repository.dart';
 
 part 'web_3_auth_register_event.dart';
 

@@ -36,8 +36,8 @@ import 'package:flutter/material.dart'
         TextTheme,
         ThemeData,
         WidgetStatePropertyAll;
-import 'package:sky_ways/core/assets/generated/fonts.gen.dart';
-import 'package:sky_ways/core/resources/colors.dart'
+import 'package:sky_trade/core/assets/generated/fonts.gen.dart';
+import 'package:sky_trade/core/resources/colors.dart'
     show
         hex00000033,
         hex00375A,
@@ -52,7 +52,7 @@ import 'package:sky_ways/core/resources/colors.dart'
         hexE04F64,
         hexEBEBEB,
         hexFFFFFF;
-import 'package:sky_ways/core/resources/numbers/ui.dart'
+import 'package:sky_trade/core/resources/numbers/ui.dart'
     show
         eightDotNil,
         eighteenDotNil,

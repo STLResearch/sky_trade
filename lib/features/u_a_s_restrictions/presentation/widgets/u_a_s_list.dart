@@ -28,9 +28,9 @@ import 'package:flutter/material.dart'
         WidgetsBinding,
         showModalBottomSheet;
 import 'package:flutter_bloc/flutter_bloc.dart' show BlocBuilder;
-import 'package:sky_ways/core/assets/generated/assets.gen.dart' show Assets;
-import 'package:sky_ways/core/resources/colors.dart' show hex3A4DE9;
-import 'package:sky_ways/core/resources/numbers/ui.dart'
+import 'package:sky_trade/core/assets/generated/assets.gen.dart' show Assets;
+import 'package:sky_trade/core/resources/colors.dart' show hex3A4DE9;
+import 'package:sky_trade/core/resources/numbers/ui.dart'
     show
         eightDotNil,
         fifteenDotNil,
@@ -54,12 +54,12 @@ import 'package:sky_ways/core/resources/numbers/ui.dart'
         twentyOneDotNil,
         twentyTwoDotNil,
         zero;
-import 'package:sky_ways/core/resources/strings/special_characters.dart'
+import 'package:sky_trade/core/resources/strings/special_characters.dart'
     show whiteSpace;
-import 'package:sky_ways/core/utils/extensions/build_context_extensions.dart';
-import 'package:sky_ways/features/remote_i_d_receiver/presentation/blocs/remote_i_d_receiver_bloc/remote_i_d_receiver_bloc.dart'
+import 'package:sky_trade/core/utils/extensions/build_context_extensions.dart';
+import 'package:sky_trade/features/remote_i_d_receiver/presentation/blocs/remote_i_d_receiver_bloc/remote_i_d_receiver_bloc.dart'
     show RemoteIDReceiverBloc, RemoteIDReceiverState;
-import 'package:sky_ways/features/u_a_s_restrictions/presentation/widgets/u_a_s_details.dart';
+import 'package:sky_trade/features/u_a_s_restrictions/presentation/widgets/u_a_s_details.dart';
 
 class UASList extends StatelessWidget {
   const UASList({super.key});

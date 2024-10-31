@@ -2,9 +2,9 @@ import 'dart:typed_data' show Uint8List;
 
 import 'package:flutter/material.dart' show BuildContext, Color;
 import 'package:flutter/services.dart' show rootBundle;
-import 'package:sky_ways/core/assets/generated/assets.gen.dart'
+import 'package:sky_trade/core/assets/generated/assets.gen.dart'
     show Assets, SvgGenImage;
-import 'package:sky_ways/core/resources/colors.dart'
+import 'package:sky_trade/core/resources/colors.dart'
     show
         rawHex33BBBD48,
         rawHex33E04F64,
@@ -15,9 +15,9 @@ import 'package:sky_ways/core/resources/colors.dart'
         rawHexB3F68351,
         rawHexBBBD48,
         rawHexF68351;
-import 'package:sky_ways/core/utils/enums/networking.dart' show RestrictionType;
-import 'package:sky_ways/core/utils/extensions/build_context_extensions.dart';
-import 'package:sky_ways/features/u_a_s_restrictions/domain/entities/restriction_entity.dart';
+import 'package:sky_trade/core/utils/enums/networking.dart' show RestrictionType;
+import 'package:sky_trade/core/utils/extensions/build_context_extensions.dart';
+import 'package:sky_trade/features/u_a_s_restrictions/domain/entities/restriction_entity.dart';
 
 extension RestrictionEntityExtensions on RestrictionEntity {
   int get polygonFillColor => switch (type) {

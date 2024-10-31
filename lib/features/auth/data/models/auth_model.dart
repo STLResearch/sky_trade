@@ -1,5 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:sky_ways/core/resources/strings/networking.dart'
+import 'package:sky_trade/core/resources/strings/networking.dart'
     show
         blockchainAddressKey,
         categoryIdKey,
@@ -23,7 +23,7 @@ import 'package:sky_ways/core/resources/strings/networking.dart'
         usedByBonusEarnedKey,
         usedReferralCodeIdKey,
         usernameKey;
-import 'package:sky_ways/features/auth/domain/entities/auth_entity.dart'
+import 'package:sky_trade/features/auth/domain/entities/auth_entity.dart'
     show OwnedReferralCodeEntity, SkyTradeUserEntity;
 
 part 'auth_model.g.dart';

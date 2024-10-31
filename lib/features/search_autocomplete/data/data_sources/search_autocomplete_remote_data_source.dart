@@ -1,6 +1,6 @@
 import 'package:flutter_dotenv/flutter_dotenv.dart' show dotenv;
-import 'package:sky_ways/core/errors/exceptions/search_autocomplete_exception.dart';
-import 'package:sky_ways/core/resources/strings/networking.dart'
+import 'package:sky_trade/core/errors/exceptions/search_autocomplete_exception.dart';
+import 'package:sky_trade/core/resources/strings/networking.dart'
     show
         accessTokenKey,
         mapboxMapsPublicKey,
@@ -8,13 +8,13 @@ import 'package:sky_ways/core/resources/strings/networking.dart'
         qKey,
         sessionTokenKey,
         suggestPath;
-import 'package:sky_ways/core/utils/clients/network_client.dart'
+import 'package:sky_trade/core/utils/clients/network_client.dart'
     show HttpClient;
-import 'package:sky_ways/core/utils/clients/response_handler.dart';
-import 'package:sky_ways/core/utils/enums/networking.dart' show RequestMethod;
-import 'package:sky_ways/features/search_autocomplete/data/data_sources/search_autocomplete_local_data_source.dart'
+import 'package:sky_trade/core/utils/clients/response_handler.dart';
+import 'package:sky_trade/core/utils/enums/networking.dart' show RequestMethod;
+import 'package:sky_trade/features/search_autocomplete/data/data_sources/search_autocomplete_local_data_source.dart'
     show SearchAutocompleteLocalDataSource;
-import 'package:sky_ways/features/search_autocomplete/data/models/search_result_model.dart'
+import 'package:sky_trade/features/search_autocomplete/data/models/search_result_model.dart'
     show SearchResultModel;
 
 abstract interface class SearchAutocompleteRemoteDataSource {

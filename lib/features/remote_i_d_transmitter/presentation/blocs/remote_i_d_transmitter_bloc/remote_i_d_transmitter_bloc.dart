@@ -3,15 +3,15 @@ import 'dart:typed_data' show Uint8List;
 
 import 'package:bloc/bloc.dart' show Bloc, Emitter;
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:sky_ways/core/resources/numbers/networking.dart' show nilDotNil;
-import 'package:sky_ways/core/utils/enums/networking.dart' show ConnectionState;
-import 'package:sky_ways/core/utils/typedefs/networking.dart'
+import 'package:sky_trade/core/resources/numbers/networking.dart' show nilDotNil;
+import 'package:sky_trade/core/utils/enums/networking.dart' show ConnectionState;
+import 'package:sky_trade/core/utils/typedefs/networking.dart'
     show RemoteIDSetDeviceCoordinatesTuple;
-import 'package:sky_ways/features/remote_i_d_receiver/domain/entities/remote_i_d_entity.dart'
+import 'package:sky_trade/features/remote_i_d_receiver/domain/entities/remote_i_d_entity.dart'
     show RemoteIDEntity;
-import 'package:sky_ways/features/remote_i_d_transmitter/domain/entities/remote_transmission_entity.dart'
+import 'package:sky_trade/features/remote_i_d_transmitter/domain/entities/remote_transmission_entity.dart'
     show DeviceEntity;
-import 'package:sky_ways/features/remote_i_d_transmitter/domain/repositories/remote_i_d_transmitter_repository.dart';
+import 'package:sky_trade/features/remote_i_d_transmitter/domain/repositories/remote_i_d_transmitter_repository.dart';
 
 part 'remote_i_d_transmitter_event.dart';
 

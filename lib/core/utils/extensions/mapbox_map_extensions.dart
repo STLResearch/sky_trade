@@ -20,9 +20,9 @@ import 'package:mapbox_maps_flutter/mapbox_maps_flutter.dart'
         PolygonAnnotationManager,
         PolygonAnnotationOptions,
         Position;
-import 'package:sky_ways/core/assets/generated/assets.gen.dart' show Assets;
-import 'package:sky_ways/core/resources/colors.dart' show rawHex2A60C4;
-import 'package:sky_ways/core/resources/numbers/ui.dart'
+import 'package:sky_trade/core/assets/generated/assets.gen.dart' show Assets;
+import 'package:sky_trade/core/resources/colors.dart' show rawHex2A60C4;
+import 'package:sky_trade/core/resources/numbers/ui.dart'
     show
         fiftyDotNil,
         fourteenDotNil,
@@ -32,16 +32,16 @@ import 'package:sky_ways/core/resources/numbers/ui.dart'
         oneThousand,
         threeDotNil,
         zero;
-import 'package:sky_ways/core/utils/extensions/restriction_entity_extensions.dart';
-import 'package:sky_ways/core/utils/typedefs/ui.dart'
+import 'package:sky_trade/core/utils/extensions/restriction_entity_extensions.dart';
+import 'package:sky_trade/core/utils/typedefs/ui.dart'
     show
         PointAnnotationManagerPointAnnotationTuple,
         PolygonAnnotationManagerPolygonAnnotationTuple;
-import 'package:sky_ways/features/remote_i_d_receiver/domain/entities/remote_i_d_entity.dart'
+import 'package:sky_trade/features/remote_i_d_receiver/domain/entities/remote_i_d_entity.dart'
     show RemoteIDEntity;
-import 'package:sky_ways/features/u_a_s_activity/domain/entities/u_a_s_entity.dart'
+import 'package:sky_trade/features/u_a_s_activity/domain/entities/u_a_s_entity.dart'
     show UASEntity;
-import 'package:sky_ways/features/u_a_s_restrictions/domain/entities/restriction_entity.dart'
+import 'package:sky_trade/features/u_a_s_restrictions/domain/entities/restriction_entity.dart'
     show RestrictionEntity;
 
 extension MapboxMapExtensions on MapboxMap {

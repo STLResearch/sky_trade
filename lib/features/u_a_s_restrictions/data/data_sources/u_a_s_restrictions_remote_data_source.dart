@@ -1,7 +1,7 @@
 // ignore_for_file: strict_raw_type
 
-import 'package:sky_ways/core/errors/exceptions/u_a_s_restrictions_exception.dart';
-import 'package:sky_ways/core/resources/strings/networking.dart'
+import 'package:sky_trade/core/errors/exceptions/u_a_s_restrictions_exception.dart';
+import 'package:sky_trade/core/resources/strings/networking.dart'
     show
         emailAddressHeaderKey,
         geoHashKey,
@@ -10,12 +10,12 @@ import 'package:sky_ways/core/resources/strings/networking.dart'
         signHeaderKey,
         signIssueAtHeaderKey,
         signNonceHeaderKey;
-import 'package:sky_ways/core/utils/clients/network_client.dart'
+import 'package:sky_trade/core/utils/clients/network_client.dart'
     show HttpClient;
-import 'package:sky_ways/core/utils/clients/response_handler.dart';
-import 'package:sky_ways/core/utils/enums/networking.dart' show RequestMethod;
-import 'package:sky_ways/core/utils/typedefs/networking.dart' show Signature;
-import 'package:sky_ways/features/u_a_s_restrictions/data/models/restriction_model.dart'
+import 'package:sky_trade/core/utils/clients/response_handler.dart';
+import 'package:sky_trade/core/utils/enums/networking.dart' show RequestMethod;
+import 'package:sky_trade/core/utils/typedefs/networking.dart' show Signature;
+import 'package:sky_trade/features/u_a_s_restrictions/data/models/restriction_model.dart'
     show RestrictionModel;
 
 abstract interface class UASRestrictionsRemoteDataSource {

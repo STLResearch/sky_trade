@@ -11,13 +11,13 @@ import 'package:flutter/material.dart'
         Theme,
         VoidCallback,
         Widget;
-import 'package:sky_ways/core/resources/colors.dart' show hex0653EA;
-import 'package:sky_ways/core/resources/numbers/ui.dart'
+import 'package:sky_trade/core/resources/colors.dart' show hex0653EA;
+import 'package:sky_trade/core/resources/numbers/ui.dart'
     show fifteenDotNil, fourteenDotNil, twentyOneDotNil;
-import 'package:sky_ways/core/resources/strings/special_characters.dart'
+import 'package:sky_trade/core/resources/strings/special_characters.dart'
     show whiteSpace;
-import 'package:sky_ways/features/auth/presentation/widgets/section_divider.dart';
-import 'package:sky_ways/features/auth/presentation/widgets/spannable_text.dart';
+import 'package:sky_trade/features/auth/presentation/widgets/section_divider.dart';
+import 'package:sky_trade/features/auth/presentation/widgets/spannable_text.dart';
 
 final class FooterSection extends StatelessWidget {
   const FooterSection({

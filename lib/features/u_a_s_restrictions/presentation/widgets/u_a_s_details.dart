@@ -36,10 +36,10 @@ import 'package:flutter/material.dart'
         WidgetSpan,
         WidgetsBinding;
 import 'package:flutter_bloc/flutter_bloc.dart' show BlocBuilder;
-import 'package:sky_ways/core/assets/generated/assets.gen.dart';
-import 'package:sky_ways/core/assets/generated/fonts.gen.dart';
-import 'package:sky_ways/core/resources/colors.dart' show hex4285F4, hex838187;
-import 'package:sky_ways/core/resources/numbers/ui.dart'
+import 'package:sky_trade/core/assets/generated/assets.gen.dart';
+import 'package:sky_trade/core/assets/generated/fonts.gen.dart';
+import 'package:sky_trade/core/resources/colors.dart' show hex4285F4, hex838187;
+import 'package:sky_trade/core/resources/numbers/ui.dart'
     show
         fifteenDotNil,
         five,
@@ -62,13 +62,13 @@ import 'package:sky_ways/core/resources/numbers/ui.dart'
         twentyOneDotNil,
         two,
         zero;
-import 'package:sky_ways/core/resources/strings/special_characters.dart'
+import 'package:sky_trade/core/resources/strings/special_characters.dart'
     show emptyString;
-import 'package:sky_ways/core/utils/extensions/build_context_extensions.dart';
-import 'package:sky_ways/core/utils/extensions/remote_i_d_entity_extensions.dart';
-import 'package:sky_ways/features/remote_i_d_receiver/domain/entities/remote_i_d_entity.dart'
+import 'package:sky_trade/core/utils/extensions/build_context_extensions.dart';
+import 'package:sky_trade/core/utils/extensions/remote_i_d_entity_extensions.dart';
+import 'package:sky_trade/features/remote_i_d_receiver/domain/entities/remote_i_d_entity.dart'
     show RemoteIDEntity;
-import 'package:sky_ways/features/remote_i_d_receiver/presentation/blocs/remote_i_d_receiver_bloc/remote_i_d_receiver_bloc.dart'
+import 'package:sky_trade/features/remote_i_d_receiver/presentation/blocs/remote_i_d_receiver_bloc/remote_i_d_receiver_bloc.dart'
     show RemoteIDReceiverBloc, RemoteIDReceiverState;
 
 class UASDetails extends StatelessWidget {

@@ -8,11 +8,11 @@ import 'package:flutter/material.dart'
         Theme,
         VoidCallback,
         Widget;
-import 'package:sky_ways/core/resources/colors.dart' show hex0653EA, hex0754E9;
-import 'package:sky_ways/core/resources/strings/special_characters.dart'
+import 'package:sky_trade/core/resources/colors.dart' show hex0653EA, hex0754E9;
+import 'package:sky_trade/core/resources/strings/special_characters.dart'
     show whiteSpace;
-import 'package:sky_ways/core/utils/extensions/build_context_extensions.dart';
-import 'package:sky_ways/features/auth/presentation/widgets/spannable_text.dart';
+import 'package:sky_trade/core/utils/extensions/build_context_extensions.dart';
+import 'package:sky_trade/features/auth/presentation/widgets/spannable_text.dart';
 
 final class AgreementSection extends StatelessWidget {
   const AgreementSection({
