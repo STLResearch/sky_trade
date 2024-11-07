@@ -182,16 +182,14 @@ final class AuthRepositoryImplementation
   }) =>
           handleData<CreateSkyTradeUserFailure, SkyTradeUserEntity>(
             dataSourceOperation: () async {
-              final userInfo = await Web3AuthFlutter.getUserInfo();
-
-              final email = userInfo.email!;
+              final email = await computeUserEmail();
 
               final ed25519KeyPair = await computeEd25519KeyPair();
 
               final walletAddress = ed25519KeyPair.address;
 
               return _authRemoteDataSource.createSkyTradeUserUsing(
-                email: email,
+                email: email!,
                 blockchainAddress: walletAddress,
                 subscribeToNewsletter: subscribeToNewsletter,
               );
@@ -210,9 +208,7 @@ final class AuthRepositoryImplementation
 
   @override
   Future<Either<CheckSkyTradeUserFailure, SkyTradeUserEntity>>
-      checkSkyTradeUserExistsUsing({
-    required String email,
-  }) =>
+      checkSkyTradeUserExists() =>
           handleData<CheckSkyTradeUserFailure, SkyTradeUserEntity>(
             dataSourceOperation: () async {
               final issuedAt = computeIssuedAt();
@@ -223,6 +219,7 @@ final class AuthRepositoryImplementation
                 nonce: nonce,
                 userAddress: userAddress,
               );
+              final email = await computeUserEmail();
               final sign = await signMessage(
                 message,
               );
