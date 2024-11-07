@@ -1,0 +1,46 @@
+publisher:
+  name: SkyTradeLinks
+  address: 7SFBHqJDgApc1spibrCQ6UviUbf7mujLZmk1ERQgvmJ8
+  website: https://sky.trade
+  email: help@sky.trade
+  media:
+    - purpose: icon
+      uri: ../fastlane/metadata/android/en-GB/images/icon.png
+app:
+  name: SkyTrade
+  address: 5SVmstv15fb11c55ndEzWPjuuBaQ74tPqTGXpsAvLhhb
+  android_package: mobile.trade.sky
+  urls:
+    license_url: https://docs.sky.trade/terms.htm
+    copyright_url: https://sky.trade
+    privacy_policy_url: https://docs.sky.trade/privacy.htm
+    website: https://sky.trade
+  media:
+    - purpose: icon
+      uri: ../fastlane/metadata/android/en-GB/images/icon.png
+release:
+  address: ''
+  media:
+    - purpose: icon
+      uri: ../fastlane/metadata/android/en-GB/images/icon.png
+    - purpose: screenshot
+      uri: ../fastlane/metadata/android/en-GB/images/phoneScreenshots/1_en-GB.png
+    - purpose: screenshot
+      uri: ../fastlane/metadata/android/en-GB/images/phoneScreenshots/2_en-GB.png
+    - purpose: screenshot
+      uri: ../fastlane/metadata/android/en-GB/images/phoneScreenshots/3_en-GB.png
+    - purpose: screenshot
+      uri: ../fastlane/metadata/android/en-GB/images/phoneScreenshots/4_en-GB.png
+  files:
+    - purpose: install
+      uri: ../../build/app/outputs/flutter-apk/app-live-release.apk
+  catalog:
+    en-US:
+      name: SkyTrade
+      short_description: Navigate the skies
+      long_description: Navigate the skies with confidence using SkyTrade Air Management. Instantly access maps of restricted, controlled, and ready-to-fly zones with real-time updates. Plan your flights efficiently with detailed airspace information and stay compliant with aviation regulations. Download now for smarter, safer flying
+      new_in_version: The SkyTrade mobile app is now available for use
+      saga_features: ''
+solana_mobile_dapp_publisher_portal:
+  google_store_package: mobile.trade.sky
+  testing_instructions: The app uses Web3Auth for authentication. Kindly register with an email. A code will be sent to the email. Go to the email sent and click on Approve login request then go back to the app. You will either see a prompt and click Continue or you will just be signed in automatically after you click Approve login request. If you register an account with email passwordless, make sure to also login with the same method you used to register the account else login will fail with an error

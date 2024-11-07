@@ -1,2 +1,2 @@
 json_key_file("fastlane-service-account-google-developer-console.json")
-package_name("trade.sky")
+package_name("mobile.trade.sky")
