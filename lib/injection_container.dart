@@ -12,6 +12,7 @@ import 'package:sky_trade/core/injection_container/geo_hash.dart';
 import 'package:sky_trade/core/injection_container/internet_connection_checker.dart';
 import 'package:sky_trade/core/injection_container/link_handler.dart';
 import 'package:sky_trade/core/injection_container/location.dart';
+import 'package:sky_trade/core/injection_container/referral.dart';
 import 'package:sky_trade/core/injection_container/remote_i_d_receiver.dart';
 import 'package:sky_trade/core/injection_container/remote_i_d_transmitter.dart';
 import 'package:sky_trade/core/injection_container/rent_air_rights.dart';
@@ -42,6 +43,7 @@ Future<void> registerServices() => Future.wait<void>([
       registerSettingsServices(),
       registerUASRestrictionsServices(),
       registerWeatherServices(),
+      registerReferralServices(),
       registerWifiServices(),
       registerCoreServices(),
       registerExternalServices(),

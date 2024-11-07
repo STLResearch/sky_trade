@@ -54,6 +54,9 @@ const getAuctionableAirspacesPath = '/get-auctionable-airspaces';
 const sendTxPath = '/send-tx';
 const generateCreateAuctionTxPath = '/generate-create-auction-tx';
 const getOfferForUnclaimedPropertyPath = '/get-offer-for-unclaimed-property';
+const referralCodePath = '/referral-code';
+const sendReferralPath = '/send-referral';
+
 // Signature
 const signatureFirstLine = 'wants you to sign in with your Solana account:';
 const signatureThirdLine = 'Sign in to SkyTrade app.';
@@ -419,6 +422,13 @@ const oneDKey = '1D';
 const oneWKey = '1W';
 const oneMKey = '1M';
 const oneYKey = '1Y';
+const messagesKey = 'Messages';
+const statusKeyReferral = 'Status';
+const toAltKey = 'To';
+const emailKeyReferral = 'Email';
+const messageUuidKey = 'MessageUUID';
+const messageIdKey = 'MessageID';
+const messageHrefKey = 'MessageHref';
 // Error response data message
 const unauthorizedCode = 'UNAUTHORIZED';
 const invalidSignatureCode = 'INVALID_SIGNATURE';
