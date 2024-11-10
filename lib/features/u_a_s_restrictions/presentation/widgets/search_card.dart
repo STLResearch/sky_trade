@@ -37,12 +37,15 @@ import 'package:sky_trade/core/utils/enums/networking.dart'
     show BluetoothAdapterState, WifiAdapterState;
 import 'package:sky_trade/core/utils/extensions/build_context_extensions.dart';
 import 'package:sky_trade/features/bluetooth/presentation/blocs/bluetooth_adapter_state_bloc/bluetooth_adapter_state_bloc.dart'
-    show BluetoothAdapterStateBloc, BluetoothAdapterStateState;
+    show
+        BluetoothAdapterStateBloc,
+        BluetoothAdapterStateEvent,
+        BluetoothAdapterStateState;
 import 'package:sky_trade/features/search_autocomplete/presentation/blocs/search_autocomplete_bloc.dart'
     show SearchAutocompleteBloc, SearchAutocompleteEvent;
 import 'package:sky_trade/features/u_a_s_restrictions/presentation/widgets/menu.dart';
 import 'package:sky_trade/features/wifi/presentation/blocs/wifi_adapter_state_bloc/wifi_adapter_state_bloc.dart'
-    show WifiAdapterStateBloc, WifiAdapterStateState;
+    show WifiAdapterStateBloc, WifiAdapterStateEvent, WifiAdapterStateState;
 
 class SearchCard extends StatefulWidget {
   const SearchCard({super.key});
@@ -57,7 +60,24 @@ class _SearchCardState extends State<SearchCard> {
   @override
   void initState() {
     _searchController = TextEditingController();
+    context.read<BluetoothAdapterStateBloc>().add(
+          const BluetoothAdapterStateEvent.listenBluetoothAdapterState(),
+        );
+    context.read<WifiAdapterStateBloc>().add(
+          const WifiAdapterStateEvent.listenWifiAdapterState(),
+        );
     super.initState();
+  }
+
+  @override
+  void deactivate() {
+    context.read<BluetoothAdapterStateBloc>().add(
+      const BluetoothAdapterStateEvent.stopListeningBluetoothAdapterState(),
+    );
+    context.read<WifiAdapterStateBloc>().add(
+      const WifiAdapterStateEvent.stopListeningWifiAdapterState(),
+    );
+    super.deactivate();
   }
 
   @override

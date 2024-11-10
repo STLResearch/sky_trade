@@ -34,8 +34,6 @@ import 'package:sky_trade/core/utils/typedefs/ui.dart'
     show PointAnnotationManagerPointAnnotationTuple;
 import 'package:sky_trade/features/auth/presentation/blocs/web_3_auth_logout_bloc/web_3_auth_logout_bloc.dart'
     show Web3AuthLogoutBloc, Web3AuthLogoutState;
-import 'package:sky_trade/features/bluetooth/presentation/blocs/bluetooth_adapter_state_bloc/bluetooth_adapter_state_bloc.dart'
-    show BluetoothAdapterStateBloc, BluetoothAdapterStateEvent;
 import 'package:sky_trade/features/bluetooth/presentation/blocs/bluetooth_permissions_bloc/bluetooth_permissions_bloc.dart'
     show
         BluetoothPermissionsBloc,
@@ -144,7 +142,6 @@ class _HomeScreenState extends State<HomeScreen> {
     _stopListeningUASActivities();
     _stopListeningLocationPosition();
     _stopListeningLocationServiceStatus();
-    _stopListeningBluetoothAdapterState();
     _stopListeningRemoteIDs();
 
     super.deactivate();
@@ -167,12 +164,6 @@ class _HomeScreenState extends State<HomeScreen> {
       .read<LocationServiceStatusBloc>()
       .add(
         const LocationServiceStatusEvent.stopListeningLocationServiceStatus(),
-      );
-
-  void _stopListeningBluetoothAdapterState() => context
-      .read<BluetoothAdapterStateBloc>()
-      .add(
-        const BluetoothAdapterStateEvent.stopListeningBluetoothAdapterState(),
       );
 
   void _stopListeningRemoteIDs() => context.read<RemoteIDReceiverBloc>().add(
