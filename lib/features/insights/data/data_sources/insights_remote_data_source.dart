@@ -2,13 +2,12 @@ import 'package:sky_trade/core/errors/exceptions/insights_exception.dart';
 import 'package:sky_trade/core/resources/strings/networking.dart'
     show
         emailAddressHeaderKey,
-        insightsPath,
+        getDroneInsightsPath,
         remoteIdentifierPath,
         signAddressHeaderKey,
         signHeaderKey,
         signIssueAtHeaderKey,
-        signNonceHeaderKey,
-        userIdKey;
+        signNonceHeaderKey;
 import 'package:sky_trade/core/utils/clients/network_client.dart'
     show HttpClient;
 import 'package:sky_trade/core/utils/clients/response_handler.dart';
@@ -18,8 +17,7 @@ import 'package:sky_trade/features/insights/data/models/insights_model.dart'
     show InsightsModel;
 
 abstract interface class InsightsRemoteDataSource {
-  Future<List<InsightsModel>> getInsightsUsing({
-    required int userId,
+  Future<InsightsModel> getInsightsUsing({
     required Signature signature,
   });
 }
@@ -34,17 +32,13 @@ final class InsightsRemoteDataSourceImplementation
   final HttpClient _httpClient;
 
   @override
-  Future<List<InsightsModel>> getInsightsUsing({
-    required int userId,
+  Future<InsightsModel> getInsightsUsing({
     required Signature signature,
   }) =>
-      handleResponse<InsightsException, List<dynamic>, List<InsightsModel>>(
+      handleResponse<InsightsException, Map<String, dynamic>, InsightsModel>(
         requestInitiator: _httpClient.request(
           requestMethod: RequestMethod.get,
-          path: remoteIdentifierPath + insightsPath,
-          queryParameters: {
-            userIdKey: userId,
-          },
+          path: remoteIdentifierPath + getDroneInsightsPath,
           headers: {
             signHeaderKey: signature.sign,
             signIssueAtHeaderKey: signature.issuedAt,
@@ -53,13 +47,7 @@ final class InsightsRemoteDataSourceImplementation
             if (signature.email != null) emailAddressHeaderKey: signature.email,
           },
         ),
-        onSuccess: (jsonList) => jsonList
-            .map(
-              (json) => InsightsModel.fromJson(
-                json as Map<String, dynamic>,
-              ),
-            )
-            .toList(),
+        onSuccess: InsightsModel.fromJson,
         onError: (_) => InsightsException(),
       );
 }

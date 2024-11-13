@@ -13,11 +13,6 @@ InsightsModel _$InsightsModelFromJson(Map<String, dynamic> json) =>
       mDevices: (json['devices'] as List<dynamic>)
           .map((e) => DeviceModel.fromJson(e as Map<String, dynamic>))
           .toList(),
-      mCreatedAt: const StringDateTimeConverter()
-          .fromJson(json['mCreatedAt'] as String),
-      mUpdatedAt: const StringDateTimeConverter()
-          .fromJson(json['mUpdatedAt'] as String),
-      mUser: UserModel.fromJson(json['user'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$InsightsModelToJson(InsightsModel instance) =>
@@ -25,9 +20,6 @@ Map<String, dynamic> _$InsightsModelToJson(InsightsModel instance) =>
       'userId': instance.mUserId,
       'devicesObserved': instance.mDevicesObserved,
       'devices': instance.mDevices,
-      'mCreatedAt': const StringDateTimeConverter().toJson(instance.mCreatedAt),
-      'mUpdatedAt': const StringDateTimeConverter().toJson(instance.mUpdatedAt),
-      'user': instance.mUser,
     };
 
 DeviceModel _$DeviceModelFromJson(Map<String, dynamic> json) => DeviceModel(
@@ -36,10 +28,10 @@ DeviceModel _$DeviceModelFromJson(Map<String, dynamic> json) => DeviceModel(
       mIsTest: json['isTest'] as bool,
       mRemoteData:
           RemoteIDModel.fromJson(json['remoteData'] as Map<String, dynamic>),
-      mCreatedAt: const StringDateTimeConverter()
-          .fromJson(json['mCreatedAt'] as String),
-      mUpdatedAt: const StringDateTimeConverter()
-          .fromJson(json['mUpdatedAt'] as String),
+      mCreatedAt:
+          const StringDateTimeConverter().fromJson(json['createdAt'] as String),
+      mUpdatedAt:
+          const StringDateTimeConverter().fromJson(json['updatedAt'] as String),
       mUser: UserModel.fromJson(json['user'] as Map<String, dynamic>),
     );
 
@@ -49,8 +41,8 @@ Map<String, dynamic> _$DeviceModelToJson(DeviceModel instance) =>
       'ipAddress': instance.mIpAddress,
       'isTest': instance.mIsTest,
       'remoteData': instance.mRemoteData,
-      'mCreatedAt': const StringDateTimeConverter().toJson(instance.mCreatedAt),
-      'mUpdatedAt': const StringDateTimeConverter().toJson(instance.mUpdatedAt),
+      'createdAt': const StringDateTimeConverter().toJson(instance.mCreatedAt),
+      'updatedAt': const StringDateTimeConverter().toJson(instance.mUpdatedAt),
       'user': instance.mUser,
     };
 

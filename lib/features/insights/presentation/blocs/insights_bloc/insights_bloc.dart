@@ -33,9 +33,7 @@ class InsightsBloc extends Bloc<InsightsEvent, InsightsState> {
       const InsightsState.gettingInsights(),
     );
 
-    final result = await _insightsRepository.getInsightsUsing(
-      userId: event.userId,
-    );
+    final result = await _insightsRepository.insights;
 
     result.fold(
       (insightsFailure) => emit(
@@ -43,9 +41,9 @@ class InsightsBloc extends Bloc<InsightsEvent, InsightsState> {
           insightsFailure: insightsFailure,
         ),
       ),
-      (insightsEntities) => emit(
+      (insightsEntity) => emit(
         InsightsState.gotInsights(
-          insightsEntities: insightsEntities,
+          insightsEntity: insightsEntity,
         ),
       ),
     );

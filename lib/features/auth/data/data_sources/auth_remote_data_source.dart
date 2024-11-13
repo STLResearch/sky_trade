@@ -94,7 +94,7 @@ final class AuthRemoteDataSourceImplementation
             signIssueAtHeaderKey: signature.issuedAt,
             signNonceHeaderKey: signature.nonce,
             signAddressHeaderKey: signature.address,
-            emailAddressHeaderKey: signature.email,
+            if (signature.email != null) emailAddressHeaderKey: signature.email,
           },
         ),
         onSuccess: SkyTradeUserModel.fromJson,

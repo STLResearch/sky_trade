@@ -1,43 +1,54 @@
+// ignore_for_file: lines_longer_than_80_chars
+
 import 'package:flutter/material.dart'
     show
-        BoxDecoration,
+        AlwaysScrollableScrollPhysics,
+        AppBar,
         BuildContext,
+        Center,
+        CircularProgressIndicator,
         Column,
-        Container,
-        EdgeInsets,
-        Expanded,
+        Divider,
+        EdgeInsetsDirectional,
         FontWeight,
-        MainAxisSize,
-        Padding,
-        Positioned,
+        IconButton,
+        ListView,
+        MainAxisAlignment,
+        MediaQuery,
+        Navigator,
+        NeverScrollableScrollPhysics,
+        RefreshIndicator,
         Row,
         Scaffold,
+        SingleChildScrollView,
         SizedBox,
-        Stack,
         State,
         StatefulWidget,
         Text,
         TextAlign,
         Theme,
-        ValueListenableBuilder,
-        ValueNotifier,
         Widget;
+import 'package:flutter_bloc/flutter_bloc.dart' show BlocBuilder, ReadContext;
 import 'package:sky_trade/core/assets/generated/assets.gen.dart' show Assets;
-import 'package:sky_trade/core/resources/colors.dart' show hex00375A, hexFFFFFF;
+import 'package:sky_trade/core/resources/colors.dart' show hex4285F4, hex838187;
 import 'package:sky_trade/core/resources/numbers/ui.dart'
     show
-        oneHundredDotNil,
-        seventeenDotNil,
-        sixDotNil,
-        thirtyDotNil,
-        thirtySixDotNil,
-        twentyEightDotNil,
+        fourteenDotNil,
+        oneDotNil,
+        sixteenDotNil,
+        sixteenDotOne,
+        tenDotNil,
+        twentyEightDotOneTwo,
         twentyFourDotNil,
-        twentySixDotNil;
+        twentyOneDotNil,
+        twentySevenDotEightNine,
+        twentySixDotNil,
+        twoDotFive;
 import 'package:sky_trade/core/utils/extensions/build_context_extensions.dart';
-import 'package:sky_trade/features/insights/presentation/widgets/drone_time_display.dart';
-import 'package:sky_trade/features/insights/presentation/widgets/graph_time_buttons.dart';
-import 'package:sky_trade/features/insights/presentation/widgets/insights_graph.dart';
+import 'package:sky_trade/features/insights/presentation/blocs/insights_bloc/insights_bloc.dart'
+    show InsightsBloc, InsightsEvent, InsightsState;
+import 'package:sky_trade/features/insights/presentation/widgets/graph_section.dart';
+import 'package:sky_trade/features/insights/presentation/widgets/tracked_drone.dart';
 
 class InsightsScreen extends StatefulWidget {
   const InsightsScreen({super.key});
@@ -47,86 +58,161 @@ class InsightsScreen extends StatefulWidget {
 }
 
 class _InsightsScreenState extends State<InsightsScreen> {
-  final ValueNotifier<String> _selectedPeriodNotifier =
-      ValueNotifier<String>('1 Week');
-
   @override
-  void dispose() {
-    _selectedPeriodNotifier.dispose();
-    super.dispose();
+  void initState() {
+    _getInsights();
+
+    super.initState();
   }
 
+  void _getInsights() => context.read<InsightsBloc>().add(
+        const InsightsEvent.getInsights(),
+      );
+
   @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: Stack(
-        children: [
-          Column(
-            children: [
-              Container(
-                decoration: const BoxDecoration(
-                  color: hex00375A,
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.all(
-                    thirtyDotNil,
-                  ),
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Row(
-                        children: [
-                          Assets.svgs.chevronLeft.svg(
-                            width: twentyFourDotNil,
-                            height: twentyFourDotNil,
-                          ),
-                          const SizedBox(
-                            width: sixDotNil,
-                          ),
-                          Text(
-                            context.localize.insights,
-                            textAlign: TextAlign.left,
-                            style: Theme.of(context)
-                                .textTheme
-                                .bodyLarge
-                                ?.copyWith(
-                                  color: hexFFFFFF,
-                                  fontWeight: FontWeight.w600,
-                                  fontSize: twentyFourDotNil,
-                                  height: thirtySixDotNil / twentyFourDotNil,
-                                ),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-              Expanded(
-                child: ValueListenableBuilder<String>(
-                  valueListenable: _selectedPeriodNotifier,
-                  builder: (context, selectedPeriod, child) {
-                    return InsightsGraph(selectedPeriod: selectedPeriod);
-                  },
-                ),
-              ),
-            ],
+  Widget build(BuildContext context) => Scaffold(
+        appBar: AppBar(
+          leading: IconButton(
+            icon: Assets.svgs.chevronLeft.svg(),
+            onPressed: () => Navigator.of(
+              context,
+            ).pop(),
           ),
-          Positioned(
-            top: oneHundredDotNil,
-            left: seventeenDotNil,
-            child: GraphTimeButtons(
-              selectedPeriodNotifier: _selectedPeriodNotifier,
+          title: Text(
+            context.localize.insights,
+          ),
+        ),
+        body: RefreshIndicator(
+          onRefresh: () async => _getInsights(),
+          child: SingleChildScrollView(
+            physics: const AlwaysScrollableScrollPhysics(),
+            padding: const EdgeInsetsDirectional.symmetric(
+              horizontal: twentySixDotNil,
+            ),
+            child: Column(
+              children: [
+                const SizedBox(
+                  height: twentySevenDotEightNine,
+                ),
+                const GraphSection(),
+                const SizedBox(
+                  height: twentyEightDotOneTwo,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      context.localize.totalTrackedDrones,
+                      style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                            fontSize: fourteenDotNil,
+                            height: sixteenDotOne / fourteenDotNil,
+                            color: hex4285F4,
+                          ),
+                    ),
+                    const SizedBox(
+                      width: sixteenDotNil,
+                    ),
+                    BlocBuilder<InsightsBloc, InsightsState>(
+                      builder: (_, insightsState) => insightsState.maybeWhen(
+                        gotInsights: (insightsEntity) => Text(
+                          insightsEntity.devicesObserved.toString(),
+                          style:
+                              Theme.of(context).textTheme.bodySmall?.copyWith(
+                                    fontWeight: FontWeight.w700,
+                                    fontSize: fourteenDotNil,
+                                    height: twentyOneDotNil / fourteenDotNil,
+                                    color: hex4285F4,
+                                  ),
+                        ),
+                        orElse: () => const SizedBox.shrink(),
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(
+                  height: tenDotNil,
+                ),
+                const Divider(
+                  height: oneDotNil,
+                ),
+                const SizedBox(
+                  height: tenDotNil,
+                ),
+                BlocBuilder<InsightsBloc, InsightsState>(
+                  builder: (_, insightsState) => insightsState.maybeWhen(
+                    gotInsights: (insightsEntity) =>
+                        switch (insightsEntity.devices.isEmpty) {
+                      true => SizedBox(
+                          height: MediaQuery.of(
+                                context,
+                              ).size.height /
+                              twoDotFive,
+                          child: Center(
+                            child: Text(
+                              context.localize
+                                  .thereIsNotEnoughDataToDisplayYourTotalTrackedDrones,
+                              textAlign: TextAlign.center,
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodySmall
+                                  ?.copyWith(
+                                    color: hex838187,
+                                  ),
+                            ),
+                          ),
+                        ),
+                      false => ListView.separated(
+                          shrinkWrap: true,
+                          primary: false,
+                          physics: const NeverScrollableScrollPhysics(),
+                          itemCount: insightsEntity.devices.length,
+                          itemBuilder: (_, index) => TrackedDrone(
+                            macAddress: insightsEntity.devices[index].remoteData
+                                .connection.macAddress,
+                            lastUpdate: insightsEntity.devices[index].updatedAt,
+                          ),
+                          separatorBuilder: (_, __) => const SizedBox(
+                            height: tenDotNil,
+                          ),
+                        ),
+                    },
+                    failedToGetInsights: (_) => SizedBox(
+                      height: MediaQuery.of(
+                            context,
+                          ).size.height /
+                          twoDotFive,
+                      child: Center(
+                        child: Text(
+                          context.localize.weCouldNotLoadYourData,
+                          textAlign: TextAlign.center,
+                          style:
+                              Theme.of(context).textTheme.bodySmall?.copyWith(
+                                    color: hex838187,
+                                  ),
+                        ),
+                      ),
+                    ),
+                    orElse: () => SizedBox(
+                      height: MediaQuery.of(
+                            context,
+                          ).size.height /
+                          twoDotFive,
+                      child: const Center(
+                        child: SizedBox(
+                          width: twentyFourDotNil,
+                          height: twentyFourDotNil,
+                          child: CircularProgressIndicator(),
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+                const SizedBox(
+                  height: twentySevenDotEightNine,
+                ),
+              ],
             ),
           ),
-          const Positioned(
-            left: twentySixDotNil,
-            right: seventeenDotNil,
-            bottom: twentyEightDotNil,
-            child: DroneTimeDisplay(),
-          ),
-        ],
-      ),
-    );
-  }
+        ),
+      );
 }

@@ -1,18 +1,21 @@
 import 'package:json_annotation/json_annotation.dart';
 import 'package:sky_trade/core/resources/strings/networking.dart'
     show
+        createdAtKey,
         devicesKey,
         devicesObservedKey,
         idKey,
         ipAddressKey,
         isTestKey,
         remoteDataKey,
+        updatedAtKey,
         userIdKey,
         userKey;
 import 'package:sky_trade/core/utils/converters/date_time_converter.dart'
     show StringDateTimeConverter;
 import 'package:sky_trade/features/insights/domain/entities/insights_entity.dart';
-import 'package:sky_trade/features/remote_i_d_receiver/data/models/remote_i_d_model.dart';
+import 'package:sky_trade/features/remote_i_d_receiver/data/models/remote_i_d_model.dart'
+    show RemoteIDModel;
 
 part 'insights_model.g.dart';
 
@@ -22,16 +25,10 @@ final class InsightsModel extends InsightsEntity {
     required this.mUserId,
     required this.mDevicesObserved,
     required this.mDevices,
-    required this.mCreatedAt,
-    required this.mUpdatedAt,
-    required this.mUser,
   }) : super(
           userId: mUserId,
           devicesObserved: mDevicesObserved,
           devices: mDevices,
-          createdAt: mCreatedAt,
-          updatedAt: mUpdatedAt,
-          user: mUser,
         );
 
   factory InsightsModel.fromJson(Map<String, dynamic> json) =>
@@ -45,15 +42,6 @@ final class InsightsModel extends InsightsEntity {
 
   @JsonKey(name: devicesKey)
   final List<DeviceModel> mDevices;
-
-  @StringDateTimeConverter()
-  final DateTime mCreatedAt;
-
-  @StringDateTimeConverter()
-  final DateTime mUpdatedAt;
-
-  @JsonKey(name: userKey)
-  final UserModel mUser;
 
   Map<String, dynamic> toJson() => _$InsightsModelToJson(this);
 }
@@ -93,9 +81,11 @@ final class DeviceModel extends DeviceEntity {
   @JsonKey(name: remoteDataKey)
   final RemoteIDModel mRemoteData;
 
+  @JsonKey(name: createdAtKey)
   @StringDateTimeConverter()
   final DateTime mCreatedAt;
 
+  @JsonKey(name: updatedAtKey)
   @StringDateTimeConverter()
   final DateTime mUpdatedAt;
 

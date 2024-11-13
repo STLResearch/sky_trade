@@ -26,3 +26,8 @@ typedef LatLng = ({
   double latitude,
   double longitude,
 });
+
+typedef Chart = ({
+  String xAxis,
+  int yAxis,
+});

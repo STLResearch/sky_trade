@@ -16,3 +16,10 @@ enum MenuItem {
   help,
   logout,
 }
+
+enum Period {
+  oneDay,
+  oneWeek,
+  oneMonth,
+  oneYear,
+}

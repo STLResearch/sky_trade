@@ -7,7 +7,7 @@ class InsightsState with _$InsightsState {
   const factory InsightsState.gettingInsights() = _GettingInsights;
 
   const factory InsightsState.gotInsights({
-    required List<InsightsEntity> insightsEntities,
+    required InsightsEntity insightsEntity,
   }) = _GotInsights;
 
   const factory InsightsState.failedToGetInsights({

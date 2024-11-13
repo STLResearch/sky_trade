@@ -44,7 +44,7 @@ const usersPath = '/users';
 const sessionPath = '/session';
 const createPath = '/create';
 const remoteIdentifierPath = '/remoteIdentifier';
-const insightsPath = '/get-drone-insights';
+const getDroneInsightsPath = '/get-drone-insights';
 // Signature
 const signatureFirstLine = 'wants you to sign in with your Solana account:';
 const signatureThirdLine = 'Sign in to SkyTrade app.';
@@ -295,6 +295,7 @@ const devicesObservedKey = 'devicesObserved';
 const devicesKey = 'devices';
 const userKey = 'user';
 const ipAddressKey = 'ipAddress';
+const updatedAtKey = 'updatedAt';
 // Error response data message
 const unauthorized = 'UNAUTHORIZED';
 const invalidSignature = 'INVALID_SIGNATURE';

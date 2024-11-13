@@ -16,20 +16,19 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$InsightsEvent {
-  int get userId => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(int userId) getInsights,
+    required TResult Function() getInsights,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(int userId)? getInsights,
+    TResult? Function()? getInsights,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(int userId)? getInsights,
+    TResult Function()? getInsights,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -49,10 +48,6 @@ mixin _$InsightsEvent {
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
-
-  @JsonKey(ignore: true)
-  $InsightsEventCopyWith<InsightsEvent> get copyWith =>
-      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -60,8 +55,6 @@ abstract class $InsightsEventCopyWith<$Res> {
   factory $InsightsEventCopyWith(
           InsightsEvent value, $Res Function(InsightsEvent) then) =
       _$InsightsEventCopyWithImpl<$Res, InsightsEvent>;
-  @useResult
-  $Res call({int userId});
 }
 
 /// @nodoc
@@ -73,30 +66,13 @@ class _$InsightsEventCopyWithImpl<$Res, $Val extends InsightsEvent>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? userId = null,
-  }) {
-    return _then(_value.copyWith(
-      userId: null == userId
-          ? _value.userId
-          : userId // ignore: cast_nullable_to_non_nullable
-              as int,
-    ) as $Val);
-  }
 }
 
 /// @nodoc
-abstract class _$$GetInsightsImplCopyWith<$Res>
-    implements $InsightsEventCopyWith<$Res> {
+abstract class _$$GetInsightsImplCopyWith<$Res> {
   factory _$$GetInsightsImplCopyWith(
           _$GetInsightsImpl value, $Res Function(_$GetInsightsImpl) then) =
       __$$GetInsightsImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call({int userId});
 }
 
 /// @nodoc
@@ -106,75 +82,51 @@ class __$$GetInsightsImplCopyWithImpl<$Res>
   __$$GetInsightsImplCopyWithImpl(
       _$GetInsightsImpl _value, $Res Function(_$GetInsightsImpl) _then)
       : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? userId = null,
-  }) {
-    return _then(_$GetInsightsImpl(
-      userId: null == userId
-          ? _value.userId
-          : userId // ignore: cast_nullable_to_non_nullable
-              as int,
-    ));
-  }
 }
 
 /// @nodoc
 
 class _$GetInsightsImpl implements _GetInsights {
-  const _$GetInsightsImpl({required this.userId});
-
-  @override
-  final int userId;
+  const _$GetInsightsImpl();
 
   @override
   String toString() {
-    return 'InsightsEvent.getInsights(userId: $userId)';
+    return 'InsightsEvent.getInsights()';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$GetInsightsImpl &&
-            (identical(other.userId, userId) || other.userId == userId));
+        (other.runtimeType == runtimeType && other is _$GetInsightsImpl);
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, userId);
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$GetInsightsImplCopyWith<_$GetInsightsImpl> get copyWith =>
-      __$$GetInsightsImplCopyWithImpl<_$GetInsightsImpl>(this, _$identity);
+  int get hashCode => runtimeType.hashCode;
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(int userId) getInsights,
+    required TResult Function() getInsights,
   }) {
-    return getInsights(userId);
+    return getInsights();
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(int userId)? getInsights,
+    TResult? Function()? getInsights,
   }) {
-    return getInsights?.call(userId);
+    return getInsights?.call();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(int userId)? getInsights,
+    TResult Function()? getInsights,
     required TResult orElse(),
   }) {
     if (getInsights != null) {
-      return getInsights(userId);
+      return getInsights();
     }
     return orElse();
   }
@@ -209,14 +161,7 @@ class _$GetInsightsImpl implements _GetInsights {
 }
 
 abstract class _GetInsights implements InsightsEvent {
-  const factory _GetInsights({required final int userId}) = _$GetInsightsImpl;
-
-  @override
-  int get userId;
-  @override
-  @JsonKey(ignore: true)
-  _$$GetInsightsImplCopyWith<_$GetInsightsImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+  const factory _GetInsights() = _$GetInsightsImpl;
 }
 
 /// @nodoc
@@ -225,8 +170,7 @@ mixin _$InsightsState {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() gettingInsights,
-    required TResult Function(List<InsightsEntity> insightsEntities)
-        gotInsights,
+    required TResult Function(InsightsEntity insightsEntity) gotInsights,
     required TResult Function(InsightsFailure insightsFailure)
         failedToGetInsights,
   }) =>
@@ -235,7 +179,7 @@ mixin _$InsightsState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? gettingInsights,
-    TResult? Function(List<InsightsEntity> insightsEntities)? gotInsights,
+    TResult? Function(InsightsEntity insightsEntity)? gotInsights,
     TResult? Function(InsightsFailure insightsFailure)? failedToGetInsights,
   }) =>
       throw _privateConstructorUsedError;
@@ -243,7 +187,7 @@ mixin _$InsightsState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? gettingInsights,
-    TResult Function(List<InsightsEntity> insightsEntities)? gotInsights,
+    TResult Function(InsightsEntity insightsEntity)? gotInsights,
     TResult Function(InsightsFailure insightsFailure)? failedToGetInsights,
     required TResult orElse(),
   }) =>
@@ -333,8 +277,7 @@ class _$InitialImpl implements _Initial {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() gettingInsights,
-    required TResult Function(List<InsightsEntity> insightsEntities)
-        gotInsights,
+    required TResult Function(InsightsEntity insightsEntity) gotInsights,
     required TResult Function(InsightsFailure insightsFailure)
         failedToGetInsights,
   }) {
@@ -346,7 +289,7 @@ class _$InitialImpl implements _Initial {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? gettingInsights,
-    TResult? Function(List<InsightsEntity> insightsEntities)? gotInsights,
+    TResult? Function(InsightsEntity insightsEntity)? gotInsights,
     TResult? Function(InsightsFailure insightsFailure)? failedToGetInsights,
   }) {
     return initial?.call();
@@ -357,7 +300,7 @@ class _$InitialImpl implements _Initial {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? gettingInsights,
-    TResult Function(List<InsightsEntity> insightsEntities)? gotInsights,
+    TResult Function(InsightsEntity insightsEntity)? gotInsights,
     TResult Function(InsightsFailure insightsFailure)? failedToGetInsights,
     required TResult orElse(),
   }) {
@@ -449,8 +392,7 @@ class _$GettingInsightsImpl implements _GettingInsights {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() gettingInsights,
-    required TResult Function(List<InsightsEntity> insightsEntities)
-        gotInsights,
+    required TResult Function(InsightsEntity insightsEntity) gotInsights,
     required TResult Function(InsightsFailure insightsFailure)
         failedToGetInsights,
   }) {
@@ -462,7 +404,7 @@ class _$GettingInsightsImpl implements _GettingInsights {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? gettingInsights,
-    TResult? Function(List<InsightsEntity> insightsEntities)? gotInsights,
+    TResult? Function(InsightsEntity insightsEntity)? gotInsights,
     TResult? Function(InsightsFailure insightsFailure)? failedToGetInsights,
   }) {
     return gettingInsights?.call();
@@ -473,7 +415,7 @@ class _$GettingInsightsImpl implements _GettingInsights {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? gettingInsights,
-    TResult Function(List<InsightsEntity> insightsEntities)? gotInsights,
+    TResult Function(InsightsEntity insightsEntity)? gotInsights,
     TResult Function(InsightsFailure insightsFailure)? failedToGetInsights,
     required TResult orElse(),
   }) {
@@ -531,7 +473,7 @@ abstract class _$$GotInsightsImplCopyWith<$Res> {
           _$GotInsightsImpl value, $Res Function(_$GotInsightsImpl) then) =
       __$$GotInsightsImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({List<InsightsEntity> insightsEntities});
+  $Res call({InsightsEntity insightsEntity});
 }
 
 /// @nodoc
@@ -545,13 +487,13 @@ class __$$GotInsightsImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? insightsEntities = null,
+    Object? insightsEntity = null,
   }) {
     return _then(_$GotInsightsImpl(
-      insightsEntities: null == insightsEntities
-          ? _value._insightsEntities
-          : insightsEntities // ignore: cast_nullable_to_non_nullable
-              as List<InsightsEntity>,
+      insightsEntity: null == insightsEntity
+          ? _value.insightsEntity
+          : insightsEntity // ignore: cast_nullable_to_non_nullable
+              as InsightsEntity,
     ));
   }
 }
@@ -559,22 +501,14 @@ class __$$GotInsightsImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$GotInsightsImpl implements _GotInsights {
-  const _$GotInsightsImpl(
-      {required final List<InsightsEntity> insightsEntities})
-      : _insightsEntities = insightsEntities;
+  const _$GotInsightsImpl({required this.insightsEntity});
 
-  final List<InsightsEntity> _insightsEntities;
   @override
-  List<InsightsEntity> get insightsEntities {
-    if (_insightsEntities is EqualUnmodifiableListView)
-      return _insightsEntities;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_insightsEntities);
-  }
+  final InsightsEntity insightsEntity;
 
   @override
   String toString() {
-    return 'InsightsState.gotInsights(insightsEntities: $insightsEntities)';
+    return 'InsightsState.gotInsights(insightsEntity: $insightsEntity)';
   }
 
   @override
@@ -582,13 +516,12 @@ class _$GotInsightsImpl implements _GotInsights {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$GotInsightsImpl &&
-            const DeepCollectionEquality()
-                .equals(other._insightsEntities, _insightsEntities));
+            (identical(other.insightsEntity, insightsEntity) ||
+                other.insightsEntity == insightsEntity));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType, const DeepCollectionEquality().hash(_insightsEntities));
+  int get hashCode => Object.hash(runtimeType, insightsEntity);
 
   @JsonKey(ignore: true)
   @override
@@ -601,12 +534,11 @@ class _$GotInsightsImpl implements _GotInsights {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() gettingInsights,
-    required TResult Function(List<InsightsEntity> insightsEntities)
-        gotInsights,
+    required TResult Function(InsightsEntity insightsEntity) gotInsights,
     required TResult Function(InsightsFailure insightsFailure)
         failedToGetInsights,
   }) {
-    return gotInsights(insightsEntities);
+    return gotInsights(insightsEntity);
   }
 
   @override
@@ -614,10 +546,10 @@ class _$GotInsightsImpl implements _GotInsights {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? gettingInsights,
-    TResult? Function(List<InsightsEntity> insightsEntities)? gotInsights,
+    TResult? Function(InsightsEntity insightsEntity)? gotInsights,
     TResult? Function(InsightsFailure insightsFailure)? failedToGetInsights,
   }) {
-    return gotInsights?.call(insightsEntities);
+    return gotInsights?.call(insightsEntity);
   }
 
   @override
@@ -625,12 +557,12 @@ class _$GotInsightsImpl implements _GotInsights {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? gettingInsights,
-    TResult Function(List<InsightsEntity> insightsEntities)? gotInsights,
+    TResult Function(InsightsEntity insightsEntity)? gotInsights,
     TResult Function(InsightsFailure insightsFailure)? failedToGetInsights,
     required TResult orElse(),
   }) {
     if (gotInsights != null) {
-      return gotInsights(insightsEntities);
+      return gotInsights(insightsEntity);
     }
     return orElse();
   }
@@ -674,11 +606,10 @@ class _$GotInsightsImpl implements _GotInsights {
 }
 
 abstract class _GotInsights implements InsightsState {
-  const factory _GotInsights(
-          {required final List<InsightsEntity> insightsEntities}) =
+  const factory _GotInsights({required final InsightsEntity insightsEntity}) =
       _$GotInsightsImpl;
 
-  List<InsightsEntity> get insightsEntities;
+  InsightsEntity get insightsEntity;
   @JsonKey(ignore: true)
   _$$GotInsightsImplCopyWith<_$GotInsightsImpl> get copyWith =>
       throw _privateConstructorUsedError;
@@ -752,8 +683,7 @@ class _$FailedToGetInsightsImpl implements _FailedToGetInsights {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() gettingInsights,
-    required TResult Function(List<InsightsEntity> insightsEntities)
-        gotInsights,
+    required TResult Function(InsightsEntity insightsEntity) gotInsights,
     required TResult Function(InsightsFailure insightsFailure)
         failedToGetInsights,
   }) {
@@ -765,7 +695,7 @@ class _$FailedToGetInsightsImpl implements _FailedToGetInsights {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? gettingInsights,
-    TResult? Function(List<InsightsEntity> insightsEntities)? gotInsights,
+    TResult? Function(InsightsEntity insightsEntity)? gotInsights,
     TResult? Function(InsightsFailure insightsFailure)? failedToGetInsights,
   }) {
     return failedToGetInsights?.call(insightsFailure);
@@ -776,7 +706,7 @@ class _$FailedToGetInsightsImpl implements _FailedToGetInsights {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? gettingInsights,
-    TResult Function(List<InsightsEntity> insightsEntities)? gotInsights,
+    TResult Function(InsightsEntity insightsEntity)? gotInsights,
     TResult Function(InsightsFailure insightsFailure)? failedToGetInsights,
     required TResult orElse(),
   }) {

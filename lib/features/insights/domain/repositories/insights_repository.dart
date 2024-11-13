@@ -5,7 +5,5 @@ import 'package:sky_trade/features/insights/domain/entities/insights_entity.dart
     show InsightsEntity;
 
 abstract interface class InsightsRepository {
-  Future<Either<InsightsFailure, List<InsightsEntity>>> getInsightsUsing({
-    required int userId,
-  });
+  Future<Either<InsightsFailure, InsightsEntity>> get insights;
 }

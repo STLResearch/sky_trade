@@ -66,3 +66,6 @@ d-l-r-o: ## Deploys live release app bundle to Playstore open testing track
 
 d-l-r-p: ## Deploys live release app bundle to Playstore production track
 	cd Android && fastlane deploy_production && cd ..
+
+loc:
+	find lib -type f -name "*.dart" ! -name "*.g.dart" ! -name "*.freezed.dart" ! -name "*.gen.dart" ! -name "firebase_options.dart" ! -path "*/firebase/*" -print0 | xargs -0 wc -l
