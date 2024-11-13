@@ -34,6 +34,7 @@ final class SearchAutocompleteRemoteDataSourceImplementation
         _searchAutocompleteLocalDataSource = searchAutocompleteLocalDataSource;
 
   final HttpClient _httpClient;
+
   final SearchAutocompleteLocalDataSource _searchAutocompleteLocalDataSource;
 
   @override

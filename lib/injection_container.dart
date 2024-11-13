@@ -4,6 +4,7 @@ import 'package:sky_trade/core/injection_container/cache_manager.dart';
 import 'package:sky_trade/core/injection_container/core.dart';
 import 'package:sky_trade/core/injection_container/external.dart';
 import 'package:sky_trade/core/injection_container/geo_hash.dart';
+import 'package:sky_trade/core/injection_container/insights.dart';
 import 'package:sky_trade/core/injection_container/internet_connection_checker.dart';
 import 'package:sky_trade/core/injection_container/link_handler.dart';
 import 'package:sky_trade/core/injection_container/location.dart';
@@ -20,6 +21,7 @@ Future<void> registerServices() => Future.wait<void>([
       registerBluetoothServices(),
       registerCacheManagerServices(),
       registerGeoHashServices(),
+      registerInsightsServices(),
       registerInternetConnectionCheckerServices(),
       registerLinkHandlerServices(),
       registerLocationServices(),

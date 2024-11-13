@@ -254,9 +254,10 @@ ThemeData get lightTheme => ThemeData(
         ),
       ),
       progressIndicatorTheme: const ProgressIndicatorThemeData(
+        color: hexFFFFFF,
         linearTrackColor: hex0653EA,
         circularTrackColor: hex0653EA,
-        refreshBackgroundColor: hex0653EA,
+        refreshBackgroundColor: hexFFFFFF,
       ),
       dividerColor: hex00000033,
       bottomNavigationBarTheme: const BottomNavigationBarThemeData(

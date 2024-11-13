@@ -20,7 +20,8 @@ import 'package:sky_trade/core/assets/generated/assets.gen.dart' show Assets;
 import 'package:sky_trade/core/resources/colors.dart' show hex1D1E2D;
 import 'package:sky_trade/core/resources/numbers/ui.dart'
     show five, twentyDotNil;
-import 'package:sky_trade/core/resources/strings/routes.dart' show helpRoutePath;
+import 'package:sky_trade/core/resources/strings/routes.dart'
+    show helpRoutePath, insightsRoutePath;
 import 'package:sky_trade/core/utils/enums/ui.dart' show MenuItem;
 import 'package:sky_trade/core/utils/extensions/build_context_extensions.dart';
 import 'package:sky_trade/features/auth/presentation/blocs/web_3_auth_logout_bloc/web_3_auth_logout_bloc.dart'
@@ -91,7 +92,11 @@ class Menu extends StatelessWidget {
     required int index,
   }) =>
       switch (MenuItem.values[index]) {
-        MenuItem.insights => () {},
+        MenuItem.insights => () => Navigator.of(
+              context,
+            ).pushNamed(
+              insightsRoutePath,
+            ),
         MenuItem.about => () => AboutDialog.show(
               context,
             ),

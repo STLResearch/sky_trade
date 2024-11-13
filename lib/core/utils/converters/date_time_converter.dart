@@ -32,3 +32,15 @@ final class NullableDateTimeConverter
     return object.millisecondsSinceEpoch;
   }
 }
+
+final class StringDateTimeConverter implements JsonConverter<DateTime, String> {
+  const StringDateTimeConverter();
+
+  @override
+  DateTime fromJson(String json) => DateTime.parse(
+        json,
+      );
+
+  @override
+  String toJson(DateTime object) => object.toIso8601String();
+}
