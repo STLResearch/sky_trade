@@ -11,7 +11,7 @@ import 'package:sky_trade/core/errors/exceptions/auth_exception.dart'
         UserDoesNotExistException;
 import 'package:sky_trade/core/errors/failures/auth_failure.dart';
 import 'package:sky_trade/core/resources/strings/environments.dart'
-    show devEnvironment, flavours;
+    show devEnvironment, flavours, stageEnvironment;
 import 'package:sky_trade/core/resources/strings/networking.dart'
     show
         flowTypeKey,
@@ -70,7 +70,7 @@ final class AuthRepositoryImplementation
       defaultValue: devEnvironment,
     );
 
-    if (environment == devEnvironment) {
+    if (environment == devEnvironment || environment == stageEnvironment) {
       return Network.sapphire_devnet;
     }
 

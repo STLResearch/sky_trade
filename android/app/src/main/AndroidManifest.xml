@@ -60,7 +60,7 @@
                 <category android:name="android.intent.category.BROWSABLE" />
 
                 <data
-                    android:host="trade.sky"
+                    android:host="mobile.trade.sky"
                     android:path="/auth"
                     android:scheme="w3a" />
             </intent-filter>
