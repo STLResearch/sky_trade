@@ -19,7 +19,7 @@ app:
     - purpose: icon
       uri: ../fastlane/metadata/android/en-GB/images/icon.png
 release:
-  address: ''
+  address: 3p1GrfqJapeeHEAptA7hUdkvvyj2SKvvqxSXtG4DStQ8
   media:
     - purpose: icon
       uri: ../fastlane/metadata/android/en-GB/images/icon.png
@@ -44,3 +44,9 @@ release:
 solana_mobile_dapp_publisher_portal:
   google_store_package: mobile.trade.sky
   testing_instructions: The app uses Web3Auth for authentication. Kindly register with an email. A code will be sent to the email. Go to the email sent and click on Approve login request then go back to the app. You will either see a prompt and click Continue or you will just be signed in automatically after you click Approve login request. If you register an account with email passwordless, make sure to also login with the same method you used to register the account else login will fail with an error
+lastSubmittedVersionOnChain:
+  address: 3p1GrfqJapeeHEAptA7hUdkvvyj2SKvvqxSXtG4DStQ8
+  version_code: 2
+  apk_hash: AaRaqY58yn76jr9Oghcp+TuExv0AfY4LSEyPSlFrpgE=
+lastUpdatedVersionOnStore:
+  address: 3p1GrfqJapeeHEAptA7hUdkvvyj2SKvvqxSXtG4DStQ8
