@@ -13,21 +13,24 @@ import 'package:flutter/material.dart'
         CrossAxisAlignment,
         Divider,
         EdgeInsetsDirectional,
+        Expanded,
+        FlexColumnWidth,
         Flexible,
         FontWeight,
-        GridView,
         LayoutBuilder,
         ListView,
         MainAxisSize,
-        NeverScrollableScrollPhysics,
         Padding,
         PlaceholderAlignment,
         Radius,
         RichText,
+        Row,
         SizedBox,
-        SliverGridDelegateWithFixedCrossAxisCount,
         StatefulBuilder,
         StatelessWidget,
+        Table,
+        TableCellVerticalAlignment,
+        TableRow,
         Text,
         TextSpan,
         TextStyle,
@@ -51,7 +54,6 @@ import 'package:sky_trade/core/resources/numbers/ui.dart'
         oneDotNil,
         seventyDotNil,
         six,
-        sixDotNil,
         sixteenDotOne,
         tenDotNil,
         thirteenDotNil,
@@ -240,81 +242,117 @@ class UASDetails extends StatelessWidget {
     BuildContext context, {
     required String title,
     required Map<String, String> content,
-  }) =>
-      Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Text(
-            title,
-            style: const TextStyle(
-              fontFamily: FontFamily.arial,
-              fontWeight: FontWeight.w400,
-              fontSize: fourteenDotNil,
-              height: sixteenDotOne / fourteenDotNil,
-              color: hex4285F4,
-            ),
-          ),
-          const SizedBox(
-            height: tenDotNil,
-          ),
-          const Divider(
-            height: oneDotNil,
-          ),
-          const SizedBox(
-            height: tenDotNil,
-          ),
-          GridView.builder(
-            padding: EdgeInsetsDirectional.zero,
-            physics: const NeverScrollableScrollPhysics(),
-            shrinkWrap: true,
-            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: two,
-              crossAxisSpacing: fifteenDotNil,
-              childAspectRatio: sixDotNil,
-            ),
-            itemCount: content.length,
-            itemBuilder: (_, index) => RichText(
-              text: TextSpan(
-                children: [
-                  TextSpan(
-                    text: content.entries
-                        .elementAt(
-                          index,
-                        )
-                        .key,
-                    style: Theme.of(
-                      context,
-                    ).textTheme.bodySmall?.copyWith(
-                          fontSize: tenDotNil,
-                          height: fifteenDotNil / tenDotNil,
-                          color: hex838187,
-                        ),
-                  ),
-                  const WidgetSpan(
-                    child: SizedBox(
-                      width: tenDotNil,
+  }) {
+    final entries = content.entries.toList();
+    final rows = <TableRow>[];
+
+    for (var i = zero; i < entries.length; i += two) {
+      rows.add(
+        TableRow(
+          children: [
+            if (i < entries.length)
+              Padding(
+                padding: const EdgeInsetsDirectional.only(end: fifteenDotNil),
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Expanded(
+                      flex: 2,
+                      child: Text(
+                        entries[i].key,
+                        style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                              fontSize: tenDotNil,
+                              height: fifteenDotNil / tenDotNil,
+                              color: hex838187,
+                            ),
+                      ),
                     ),
-                  ),
-                  TextSpan(
-                    text: content.entries
-                        .elementAt(
-                          index,
-                        )
-                        .value,
-                    style: Theme.of(
-                      context,
-                    ).textTheme.bodyMedium?.copyWith(
-                          fontSize: tenDotNil,
-                          height: fifteenDotNil / tenDotNil,
-                        ),
-                  ),
-                ],
-              ),
-            ),
-          ),
-        ],
+                    Expanded(
+                      flex: two,
+                      child: Text(
+                        entries[i].value,
+                        style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                              fontSize: tenDotNil,
+                              height: fifteenDotNil / tenDotNil,
+                            ),
+                      ),
+                    ),
+                  ],
+                ),
+              )
+            else
+              const SizedBox(),
+            if (i + one < entries.length)
+              Padding(
+                padding: const EdgeInsetsDirectional.only(start: fifteenDotNil),
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Expanded(
+                      flex: two,
+                      child: Text(
+                        entries[i + one].key,
+                        style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                              fontSize: tenDotNil,
+                              height: fifteenDotNil / tenDotNil,
+                              color: hex838187,
+                            ),
+                      ),
+                    ),
+                    Expanded(
+                      flex: two,
+                      child: Text(
+                        entries[i + one].value,
+                        style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                              fontSize: tenDotNil,
+                              height: fifteenDotNil / tenDotNil,
+                            ),
+                      ),
+                    ),
+                  ],
+                ),
+              )
+            else
+              const SizedBox(),
+          ],
+        ),
       );
+    }
+
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Text(
+          title,
+          style: const TextStyle(
+            fontFamily: FontFamily.arial,
+            fontWeight: FontWeight.w400,
+            fontSize: fourteenDotNil,
+            height: sixteenDotOne / fourteenDotNil,
+            color: hex4285F4,
+          ),
+        ),
+        const SizedBox(
+          height: tenDotNil,
+        ),
+        const Divider(
+          height: oneDotNil,
+        ),
+        const SizedBox(
+          height: tenDotNil,
+        ),
+        Table(
+          columnWidths: const {
+            0: FlexColumnWidth(),
+            1: FlexColumnWidth(),
+          },
+          defaultVerticalAlignment: TableCellVerticalAlignment.middle,
+          children: rows,
+        ),
+      ],
+    );
+  }
 
   String _computeTitleUsing(
     BuildContext context, {
