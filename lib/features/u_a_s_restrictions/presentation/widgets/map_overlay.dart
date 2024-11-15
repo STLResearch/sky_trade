@@ -6,7 +6,6 @@ import 'package:flutter/material.dart'
         BuildContext,
         Column,
         EdgeInsetsDirectional,
-        FontWeight,
         InkWell,
         MainAxisAlignment,
         MainAxisSize,
@@ -15,25 +14,17 @@ import 'package:flutter/material.dart'
         SizedBox,
         Stack,
         StatelessWidget,
-        Text,
-        Theme,
         Widget;
 import 'package:sky_trade/core/assets/generated/assets.gen.dart' show Assets;
-import 'package:sky_trade/core/resources/colors.dart'
-    show hex0000FF, hexE6FFFFFF, hexFFFFFF;
+import 'package:sky_trade/core/resources/colors.dart' show hexE6FFFFFF;
 import 'package:sky_trade/core/resources/numbers/ui.dart'
     show
-        elevenDotNil,
-        fiftyEightDotSixFour,
         fiftyFourDotNil,
         sevenDotNil,
         seventyEightDotNil,
-        sixtyEightDotNil,
         tenDotNil,
         twelveDotNil,
-        twentyOneDotNil,
-        twentyOneDotThreeSeven,
-        twoFiftyFive;
+        twentyOneDotNil;
 import 'package:sky_trade/core/utils/enums/ui.dart' show MapStyle;
 import 'package:sky_trade/features/u_a_s_restrictions/presentation/widgets/options_card.dart';
 import 'package:sky_trade/features/u_a_s_restrictions/presentation/widgets/search_card.dart';
@@ -77,38 +68,6 @@ class MapOverlay extends StatelessWidget {
                     ),
                     Align(
                       alignment: AlignmentDirectional.topEnd,
-                      child: InkWell(
-                        onTap: onGiftTap,
-                        child: OptionsCard(
-                          width: fiftyFourDotNil,
-                          height: sixtyEightDotNil,
-                          backgroundColor: hex0000FF,
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Assets.svgs.gift.svg(),
-                              Text(
-                                twoFiftyFive.toString(),
-                                style: Theme.of(
-                                  context,
-                                ).textTheme.bodyMedium?.copyWith(
-                                      fontWeight: FontWeight.w700,
-                                      fontSize: elevenDotNil,
-                                      height:
-                                          twentyOneDotThreeSeven / elevenDotNil,
-                                      color: hexFFFFFF,
-                                    ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
-                    const SizedBox(
-                      height: sevenDotNil,
-                    ),
-                    Align(
-                      alignment: AlignmentDirectional.topEnd,
                       child: OptionsCard(
                         width: fiftyFourDotNil,
                         height: seventyEightDotNil,
@@ -136,21 +95,6 @@ class MapOverlay extends StatelessWidget {
                               },
                             ),
                           ],
-                        ),
-                      ),
-                    ),
-                    const SizedBox(
-                      height: sevenDotNil,
-                    ),
-                    Align(
-                      alignment: AlignmentDirectional.topEnd,
-                      child: InkWell(
-                        onTap: onDroneTap,
-                        child: OptionsCard(
-                          width: fiftyFourDotNil,
-                          height: fiftyEightDotSixFour,
-                          backgroundColor: hexE6FFFFFF,
-                          child: Assets.svgs.iconDroneBlack.svg(),
                         ),
                       ),
                     ),

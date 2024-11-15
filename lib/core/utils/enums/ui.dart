@@ -12,7 +12,6 @@ enum MapStyle {
 enum MenuItem {
   insights,
   about,
-  settings,
   help,
   logout,
 }
