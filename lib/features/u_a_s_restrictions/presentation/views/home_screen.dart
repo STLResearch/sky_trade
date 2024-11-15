@@ -306,24 +306,34 @@ class _HomeScreenState extends State<HomeScreen> {
           BlocListener<RemoteIDReceiverBloc, RemoteIDReceiverState>(
             listener: (_, remoteIDReceiverState) {
               remoteIDReceiverState.whenOrNull(
-                gotRemoteIDs: (remoteIDEntities) async {
+                gotRemoteIDs: (remoteIDEntities) {
                   // await _mapboxMap?.removePreviousMarkers(
                   //   _markers,
                   // );
 
-                  _markers = await _mapboxMap?.showUASActivitiesOnMapUsing(
-                    remoteIDEntities: remoteIDEntities,
-                  );
+                  _mapboxMap
+                      ?.showUASActivitiesOnMapUsing(
+                        remoteIDEntities: remoteIDEntities,
+                      )
+                      .then(
+                        (markers) => _markers = markers,
+                      );
 
-                  if (context.mounted) {
-                    context.read<RemoteIDTransmitterBloc>().add(
-                          RemoteIDTransmitterEvent.transmitRemoteID(
-                            remoteIDEntities: remoteIDEntities,
-                            deviceLatitude: null,
-                            deviceLongitude: null,
-                          ),
-                        );
-                  }
+                  final latLng =
+                      context.read<LocationPositionBloc>().state.whenOrNull(
+                            gotLocationPosition: (locationPositionEntity) => (
+                              latitude: locationPositionEntity.latitude,
+                              longitude: locationPositionEntity.longitude,
+                            ),
+                          );
+
+                  context.read<RemoteIDTransmitterBloc>().add(
+                        RemoteIDTransmitterEvent.transmitRemoteID(
+                          remoteIDEntities: remoteIDEntities,
+                          deviceLatitude: latLng?.latitude,
+                          deviceLongitude: latLng?.longitude,
+                        ),
+                      );
                 },
               );
             },
