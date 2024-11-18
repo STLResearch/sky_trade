@@ -1,0 +1,122 @@
+default_platform(:android)
+
+platform :android do
+  desc "Deploy dev release app bundle to Playstore internal test track"
+  lane :deploy_internal_test do
+    deploy(
+      task: "clean assembleDevRelease",
+      track: "internal",
+      environment: "dev",
+      aab: ENV["DEV_RELEASE_APP_BUNDLE"]
+    )
+  end
+
+  desc "Deploy stage release app bundle to Playstore closed testing track"
+  lane :deploy_closed_test do
+    deploy(
+      task: "clean assembleStageRelease",
+      track: "alpha",
+      environment: "stage",
+      aab: ENV["STAGE_RELEASE_APP_BUNDLE"]
+    )
+  end
+
+  desc "Deploy live release app bundle to Playstore open testing track"
+  lane :deploy_open_test do
+    deploy(
+      task: "clean assembleLiveRelease",
+      track: "beta",
+      environment: "live",
+      aab: ENV["LIVE_RELEASE_APP_BUNDLE"]
+    )
+  end
+
+  desc "Deploy live release app bundle to Playstore production track"
+  lane :deploy_production do
+    deploy(
+      task: "clean assembleLiveRelease",
+      track: "production",
+      environment: "live",
+      aab: ENV["LIVE_RELEASE_APP_BUNDLE"]
+    )
+  end
+
+  desc "Deploy app bundle"
+  lane :deploy do |options|
+    clean(
+      task: options[:task]
+    )
+
+    update_version_name()
+
+    update_version_code(
+      track: options[:track]
+    )
+
+    build_app_bundle(
+      environment: options[:environment]
+    )
+
+    deploy_to_playstore(
+      track: options[:track],
+      aab: options[:aab]
+    )
+  end
+
+  desc "Clean project"
+  lane :clean do |options|
+    gradle(
+      task: options[:task]
+    )
+  end
+
+  desc "Update version name"
+  lane :update_version_name do
+    increment_version_name(
+      app_project_dir: ENV["APP_DIRECTORY"],
+      bump_type: "patch"
+    )
+  end
+
+  desc "Update version code"
+  lane :update_version_code do |options|
+    existing_version_codes = google_play_track_version_codes(
+      track: options[:track],
+    )
+
+    gradle_file_path = "../#{ENV["APP_DIRECTORY"]}/build.gradle"
+
+    gradle_content = File.read(gradle_file_path)
+
+    version_code_match = /(versionCode\s{1})(\d+)/.match(gradle_content)
+
+    existing_build_number = existing_version_codes.empty? ? version_code_match ? version_code_match[2].to_i : 0 : existing_version_codes[0]
+
+    new_build_number = existing_build_number + 1
+
+    increment_version_code(
+      app_project_dir: ENV["APP_DIRECTORY"],
+      version_code: new_build_number
+    )
+  end
+
+  desc "Build live release app bundle"
+  lane :build_app_bundle do |options|
+    sh "flutter build appbundle --flavor #{options[:environment]}"
+  end
+
+  desc "Deploy to Playstore"
+  lane :deploy_to_playstore do |options|
+    upload_to_play_store(
+      aab: options[:aab],
+      track: options[:track],
+      in_app_update_priority: 0,
+      skip_upload_apk: true,
+      skip_upload_aab: false,
+      skip_upload_metadata: true,
+      skip_upload_changelogs: true,
+      skip_upload_images: true,
+      skip_upload_screenshots: true
+    )
+  end
+end

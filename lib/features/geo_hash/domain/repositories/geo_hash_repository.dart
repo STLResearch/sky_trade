@@ -1,4 +1,4 @@
-import 'package:sky_ways/core/utils/typedefs/ui.dart' show Bounds, LatLng;
+import 'package:sky_trade/core/utils/typedefs/ui.dart' show Bounds, LatLng;
 
 abstract interface class GeoHashRepository {
   String geoHashForCoordinates({

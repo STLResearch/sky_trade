@@ -2,8 +2,9 @@ import 'dart:typed_data' show Uint8List;
 
 import 'package:flutter/material.dart' show BuildContext, Color;
 import 'package:flutter/services.dart' show rootBundle;
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:sky_ways/core/resources/colors.dart'
+import 'package:sky_trade/core/assets/generated/assets.gen.dart'
+    show Assets, SvgGenImage;
+import 'package:sky_trade/core/resources/colors.dart'
     show
         rawHex33BBBD48,
         rawHex33E04F64,
@@ -14,20 +15,9 @@ import 'package:sky_ways/core/resources/colors.dart'
         rawHexB3F68351,
         rawHexBBBD48,
         rawHexF68351;
-import 'package:sky_ways/core/resources/strings/asset_paths.dart'
-    show
-        infoAssetPath,
-        infoDangerAssetPath,
-        infoProhibitedAssetPath,
-        infoRestrictedAssetPath,
-        locationDangerRestrictedAssetPath,
-        locationProhibitedAssetPath,
-        markerDangerAssetPath,
-        markerProhibitedAssetPath,
-        markerRestrictedAssetPath,
-        prohibitedAssetPath;
-import 'package:sky_ways/core/utils/enums/networking.dart' show RestrictionType;
-import 'package:sky_ways/features/u_a_s_restrictions/domain/entities/restriction_entity.dart';
+import 'package:sky_trade/core/utils/enums/networking.dart' show RestrictionType;
+import 'package:sky_trade/core/utils/extensions/build_context_extensions.dart';
+import 'package:sky_trade/features/u_a_s_restrictions/domain/entities/restriction_entity.dart';
 
 extension RestrictionEntityExtensions on RestrictionEntity {
   int get polygonFillColor => switch (type) {
@@ -53,40 +43,37 @@ extension RestrictionEntityExtensions on RestrictionEntity {
   Future<Uint8List> get polygonMarkerImage async {
     final bytes = await rootBundle.load(
       switch (type) {
-        RestrictionType.danger => markerDangerAssetPath,
-        RestrictionType.prohibited => markerProhibitedAssetPath,
-        RestrictionType.restricted => markerRestrictedAssetPath,
+        RestrictionType.danger => Assets.pngs.markerDanger.path,
+        RestrictionType.prohibited => Assets.pngs.markerProhibited.path,
+        RestrictionType.restricted => Assets.pngs.markerRestricted.path,
       },
     );
 
     return bytes.buffer.asUint8List();
   }
 
-  String get restrictionIndicatorInfoAssetPath => switch (type) {
-        RestrictionType.danger => infoDangerAssetPath,
-        RestrictionType.prohibited => infoProhibitedAssetPath,
-        RestrictionType.restricted => infoRestrictedAssetPath,
+  SvgGenImage get restrictionIndicatorInfoAsset => switch (type) {
+        RestrictionType.danger => Assets.svgs.infoDanger,
+        RestrictionType.prohibited => Assets.svgs.infoProhibited,
+        RestrictionType.restricted => Assets.svgs.infoRestricted,
       };
 
   String computeRestrictionTitleUsing({
     required BuildContext context,
   }) =>
       switch (type) {
-        RestrictionType.danger =>
-          AppLocalizations.of(context)!.specialUseAirspace,
-        RestrictionType.prohibited =>
-          AppLocalizations.of(context)!.flightRestrictedAirspace,
-        RestrictionType.restricted =>
-          AppLocalizations.of(context)!.controlledAirspace,
+        RestrictionType.danger => context.localize.specialUseAirspace,
+        RestrictionType.prohibited => context.localize.flightRestrictedAirspace,
+        RestrictionType.restricted => context.localize.controlledAirspace,
       };
 
-  String get restrictionSheetTitleInfoAssetPath => switch (type) {
-        RestrictionType.prohibited => prohibitedAssetPath,
-        _ => infoAssetPath,
+  SvgGenImage get restrictionSheetTitleInfoAsset => switch (type) {
+        RestrictionType.prohibited => Assets.svgs.prohibited,
+        _ => Assets.svgs.info,
       };
 
-  String get restrictionSheetAddressInfoAssetPath => switch (type) {
-        RestrictionType.prohibited => locationProhibitedAssetPath,
-        _ => locationDangerRestrictedAssetPath,
+  SvgGenImage get restrictionSheetAddressInfoAsset => switch (type) {
+        RestrictionType.prohibited => Assets.svgs.locationProhibited,
+        _ => Assets.svgs.locationDangerRestricted,
       };
 }

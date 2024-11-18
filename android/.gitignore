@@ -16,3 +16,20 @@ key.properties
 # App bundles and apks
 **/*.apk
 **/*.aab
+
+# Environment builds
+**/*output-metadata.json
+
+# Firebase
+app/google-services.json
+
+# Environment variable
+*.env
+
+# Fastlane
+fastlane-service-account-google-developer-console.json
+
+# Solana
+publishing/node_modules
+publishing/solana-keypair.json
+publishing/.asset-manifest.json

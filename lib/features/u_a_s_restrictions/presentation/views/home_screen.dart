@@ -2,6 +2,9 @@ import 'package:flutter/material.dart'
     show
         AlignmentDirectional,
         BuildContext,
+        Column,
+        MainAxisSize,
+        Navigator,
         Scaffold,
         Stack,
         State,
@@ -14,42 +17,69 @@ import 'package:flutter_bloc/flutter_bloc.dart'
 import 'package:flutter_dotenv/flutter_dotenv.dart' show dotenv;
 import 'package:mapbox_maps_flutter/mapbox_maps_flutter.dart'
     show CompassSettings, MapboxMap, MapboxOptions, ScaleBarSettings;
-import 'package:sky_ways/core/resources/strings/secret_keys.dart'
+import 'package:sky_trade/core/resources/colors.dart' show hexB3FFFFFF;
+import 'package:sky_trade/core/resources/strings/routes.dart'
+    show loginRoutePath;
+import 'package:sky_trade/core/resources/strings/secret_keys.dart'
     show
         mapboxMapsDarkStyleUri,
         mapboxMapsPublicKey,
         mapboxMapsSatelliteStyleUri;
-import 'package:sky_ways/core/utils/enums/local.dart' show CacheType;
-import 'package:sky_ways/core/utils/enums/ui.dart' show MapStyle;
-import 'package:sky_ways/core/utils/extensions/cache_entity_extensions.dart';
-import 'package:sky_ways/core/utils/extensions/mapbox_map_extensions.dart';
-import 'package:sky_ways/core/utils/typedefs/ui.dart'
+import 'package:sky_trade/core/utils/enums/local.dart' show CacheType;
+import 'package:sky_trade/core/utils/enums/ui.dart' show MapStyle;
+import 'package:sky_trade/core/utils/extensions/build_context_extensions.dart';
+import 'package:sky_trade/core/utils/extensions/cache_entity_extensions.dart';
+import 'package:sky_trade/core/utils/extensions/mapbox_map_extensions.dart';
+import 'package:sky_trade/core/utils/typedefs/ui.dart'
     show PointAnnotationManagerPointAnnotationTuple;
-import 'package:sky_ways/features/cache_manager/presentation/blocs/cache_data_bloc/cache_data_bloc.dart'
+import 'package:sky_trade/features/auth/presentation/blocs/web_3_auth_logout_bloc/web_3_auth_logout_bloc.dart'
+    show Web3AuthLogoutBloc, Web3AuthLogoutState;
+import 'package:sky_trade/features/bluetooth/presentation/blocs/bluetooth_permissions_bloc/bluetooth_permissions_bloc.dart'
+    show
+        BluetoothPermissionsBloc,
+        BluetoothPermissionsEvent,
+        BluetoothPermissionsState;
+import 'package:sky_trade/features/cache_manager/presentation/blocs/cache_data_bloc/cache_data_bloc.dart'
     show CacheDataBloc, CacheDataEvent, CacheDataState;
-import 'package:sky_ways/features/cache_manager/presentation/blocs/cached_data_bloc/cached_data_bloc.dart'
+import 'package:sky_trade/features/cache_manager/presentation/blocs/cached_data_bloc/cached_data_bloc.dart'
     show CachedDataBloc, CachedDataEvent, CachedDataState;
-import 'package:sky_ways/features/geo_hash/presentation/blocs/geo_hash_bloc/geo_hash_bloc.dart'
+import 'package:sky_trade/features/geo_hash/presentation/blocs/geo_hash_bloc/geo_hash_bloc.dart'
     show GeoHashBloc, GeoHashEvent, GeoHashState;
-import 'package:sky_ways/features/location/presentation/blocs/location_permission_bloc/location_permission_bloc.dart'
+import 'package:sky_trade/features/location/presentation/blocs/location_permission_bloc/location_permission_bloc.dart'
     show
         LocationPermissionBloc,
         LocationPermissionEvent,
         LocationPermissionState;
-import 'package:sky_ways/features/location/presentation/blocs/location_position_bloc/location_position_bloc.dart'
+import 'package:sky_trade/features/location/presentation/blocs/location_position_bloc/location_position_bloc.dart'
     show LocationPositionBloc, LocationPositionEvent, LocationPositionState;
-import 'package:sky_ways/features/location/presentation/blocs/location_service_status_bloc/location_service_status_bloc.dart'
+import 'package:sky_trade/features/location/presentation/blocs/location_service_status_bloc/location_service_status_bloc.dart'
     show
         LocationServiceStatusBloc,
         LocationServiceStatusEvent,
         LocationServiceStatusState;
-import 'package:sky_ways/features/u_a_s_restrictions/domain/entities/restriction_entity.dart'
+import 'package:sky_trade/features/remote_i_d_receiver/presentation/blocs/remote_i_d_receiver_bloc/remote_i_d_receiver_bloc.dart'
+    show RemoteIDReceiverBloc, RemoteIDReceiverEvent, RemoteIDReceiverState;
+import 'package:sky_trade/features/remote_i_d_transmitter/presentation/blocs/remote_i_d_transmitter_bloc/remote_i_d_transmitter_bloc.dart'
+    show
+        RemoteIDTransmitterBloc,
+        RemoteIDTransmitterEvent,
+        RemoteIDTransmitterState;
+import 'package:sky_trade/features/u_a_s_activity/presentation/blocs/u_a_s_activity_bloc/u_a_s_activity_bloc.dart'
+    show UASActivityBloc, UASActivityEvent, UASActivityState;
+import 'package:sky_trade/features/u_a_s_restrictions/domain/entities/restriction_entity.dart'
     show RestrictionEntity;
-import 'package:sky_ways/features/u_a_s_restrictions/presentation/blocs/u_a_s_restrictions_bloc/u_a_s_restrictions_bloc.dart'
+import 'package:sky_trade/features/u_a_s_restrictions/presentation/blocs/u_a_s_restrictions_bloc/u_a_s_restrictions_bloc.dart'
     show UASRestrictionsBloc, UASRestrictionsEvent, UASRestrictionsState;
-import 'package:sky_ways/features/u_a_s_restrictions/presentation/widgets/map_overlay.dart';
-import 'package:sky_ways/features/u_a_s_restrictions/presentation/widgets/map_view.dart';
-import 'package:sky_ways/features/u_a_s_restrictions/presentation/widgets/restriction_indicator.dart';
+import 'package:sky_trade/features/u_a_s_restrictions/presentation/widgets/alert_snack_bar.dart';
+import 'package:sky_trade/features/u_a_s_restrictions/presentation/widgets/map_overlay.dart';
+import 'package:sky_trade/features/u_a_s_restrictions/presentation/widgets/map_view.dart';
+import 'package:sky_trade/features/u_a_s_restrictions/presentation/widgets/progress_dialog.dart';
+import 'package:sky_trade/features/u_a_s_restrictions/presentation/widgets/restriction_indicator.dart';
+import 'package:sky_trade/features/u_a_s_restrictions/presentation/widgets/u_a_s_list.dart';
+import 'package:sky_trade/features/weather/presentation/weather_bloc/weather_bloc.dart'
+    show WeatherBloc, WeatherEvent;
+import 'package:sky_trade/features/wifi/presentation/blocs/wifi_permission_bloc/wifi_permission_bloc.dart'
+    show WifiPermissionBloc, WifiPermissionEvent, WifiPermissionState;
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -61,6 +91,7 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   MapboxMap? _mapboxMap;
   PointAnnotationManagerPointAnnotationTuple? _marker;
+  List<PointAnnotationManagerPointAnnotationTuple>? _markers;
   late final ValueNotifier<RestrictionEntity?> _clickedRestriction;
   late final ValueNotifier<bool> _centerLocationNotifier;
   late final ValueNotifier<MapStyle> _mapStyleNotifier;
@@ -83,10 +114,22 @@ class _HomeScreenState extends State<HomeScreen> {
       MapStyle.satellite,
     );
 
+    _startTransmitter();
+
+    _listenUASActivities();
+
     _requestLocationPermission();
 
     super.initState();
   }
+
+  void _startTransmitter() => context.read<RemoteIDTransmitterBloc>().add(
+        const RemoteIDTransmitterEvent.startTransmitter(),
+      );
+
+  void _listenUASActivities() => context.read<UASActivityBloc>().add(
+        const UASActivityEvent.listenUASActivities(),
+      );
 
   void _requestLocationPermission() =>
       context.read<LocationPermissionBloc>().add(
@@ -95,11 +138,22 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   void deactivate() {
+    _stopTransmitter();
+    _stopListeningUASActivities();
     _stopListeningLocationPosition();
     _stopListeningLocationServiceStatus();
+    _stopListeningRemoteIDs();
 
     super.deactivate();
   }
+
+  void _stopTransmitter() => context.read<RemoteIDTransmitterBloc>().add(
+        const RemoteIDTransmitterEvent.stopTransmitter(),
+      );
+
+  void _stopListeningUASActivities() => context.read<UASActivityBloc>().add(
+        const UASActivityEvent.stopListeningUASActivities(),
+      );
 
   void _stopListeningLocationPosition() =>
       context.read<LocationPositionBloc>().add(
@@ -110,6 +164,10 @@ class _HomeScreenState extends State<HomeScreen> {
       .read<LocationServiceStatusBloc>()
       .add(
         const LocationServiceStatusEvent.stopListeningLocationServiceStatus(),
+      );
+
+  void _stopListeningRemoteIDs() => context.read<RemoteIDReceiverBloc>().add(
+        const RemoteIDReceiverEvent.listenRemoteIDs(),
       );
 
   @override
@@ -125,41 +183,82 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) => MultiBlocListener(
         listeners: [
+          BlocListener<Web3AuthLogoutBloc, Web3AuthLogoutState>(
+            listener: (_, web3AuthLogoutState) {
+              web3AuthLogoutState.whenOrNull(
+                loggingOut: () {
+                  ProgressDialog.show(
+                    context,
+                    progressIndicatorColor: hexB3FFFFFF,
+                  );
+                },
+                loggedOut: () {
+                  Navigator.of(
+                    context,
+                  ).pop();
+
+                  Navigator.of(
+                    context,
+                  ).pushReplacementNamed(
+                    loginRoutePath,
+                  );
+                },
+                failedToLogOut: (failure) {
+                  Navigator.of(
+                    context,
+                  ).pop();
+
+                  AlertSnackBar.show(
+                    context,
+                    message: context.localize.weCouldNotLogYouOut,
+                  );
+                },
+              );
+            },
+          ),
           BlocListener<LocationPermissionBloc, LocationPermissionState>(
             listener: (_, locationPermissionState) {
-              locationPermissionState.whenOrNull(
+              locationPermissionState.maybeWhen(
                 maybeGrantedPermission: (locationPermissionEntity) {
                   if (locationPermissionEntity.granted) {
                     context.read<LocationServiceStatusBloc>().add(
                           const LocationServiceStatusEvent
                               .listenLocationServiceStatus(),
                         );
+                  } else {
+                    _stopListeningLocationServiceStatus();
                   }
+                },
+                orElse: () {
+                  _stopListeningLocationServiceStatus();
                 },
               );
             },
           ),
           BlocListener<LocationServiceStatusBloc, LocationServiceStatusState>(
             listener: (_, locationServiceStatusState) {
-              locationServiceStatusState.whenOrNull(
+              locationServiceStatusState.maybeWhen(
                 gotLocationServiceStatus: (locationServiceStatusEntity) {
-                  late final LocationPositionEvent locationPositionEvent;
-
                   if (locationServiceStatusEntity.enabled) {
-                    locationPositionEvent =
-                        const LocationPositionEvent.listenLocationPosition();
+                    context.read<WifiPermissionBloc>().add(
+                          const WifiPermissionEvent.requestPermission(),
+                        );
+
+                    context.read<LocationPositionBloc>().add(
+                          const LocationPositionEvent.listenLocationPosition(),
+                        );
 
                     _centerLocationNotifier.value = true;
                   } else {
-                    locationPositionEvent = const LocationPositionEvent
-                        .stopListeningLocationPosition();
+                    _stopListeningLocationPosition();
 
                     _centerLocationNotifier.value = false;
                   }
+                },
+                orElse: () {
+                  _stopListeningLocationPosition();
 
-                  context.read<LocationPositionBloc>().add(
-                        locationPositionEvent,
-                      );
+                  _centerLocationNotifier.value = false;
                 },
               );
             },
@@ -174,6 +273,76 @@ class _HomeScreenState extends State<HomeScreen> {
                       longitude: locationPositionEntity.longitude,
                     );
                   }
+                },
+              );
+            },
+          ),
+          BlocListener<WifiPermissionBloc, WifiPermissionState>(
+            listener: (_, wifiPermissionState) {
+              wifiPermissionState.whenOrNull(
+                maybeGrantedPermission: (wifiPermissionEntity) {
+                  if (wifiPermissionEntity.granted) {
+                    context.read<BluetoothPermissionsBloc>().add(
+                          const BluetoothPermissionsEvent.requestPermissions(),
+                        );
+                  }
+                },
+              );
+            },
+          ),
+          BlocListener<BluetoothPermissionsBloc, BluetoothPermissionsState>(
+            listener: (_, bluetoothPermissionsState) {
+              bluetoothPermissionsState.whenOrNull(
+                maybeGrantedPermissions: (bluetoothPermissionsEntity) {
+                  if (bluetoothPermissionsEntity.granted) {
+                    context.read<RemoteIDReceiverBloc>().add(
+                          const RemoteIDReceiverEvent.listenRemoteIDs(),
+                        );
+                  }
+                },
+              );
+            },
+          ),
+          BlocListener<RemoteIDReceiverBloc, RemoteIDReceiverState>(
+            listener: (_, remoteIDReceiverState) {
+              remoteIDReceiverState.whenOrNull(
+                gotRemoteIDs: (remoteIDEntities) {
+                  // await _mapboxMap?.removePreviousMarkers(
+                  //   _markers,
+                  // );
+
+                  _mapboxMap
+                      ?.showUASActivitiesOnMapUsing(
+                        remoteIDEntities: remoteIDEntities,
+                      )
+                      .then(
+                        (markers) => _markers = markers,
+                      );
+
+                  final latLng =
+                      context.read<LocationPositionBloc>().state.whenOrNull(
+                            gotLocationPosition: (locationPositionEntity) => (
+                              latitude: locationPositionEntity.latitude,
+                              longitude: locationPositionEntity.longitude,
+                            ),
+                          );
+
+                  context.read<RemoteIDTransmitterBloc>().add(
+                        RemoteIDTransmitterEvent.transmitRemoteID(
+                          remoteIDEntities: remoteIDEntities,
+                          deviceLatitude: latLng?.latitude,
+                          deviceLongitude: latLng?.longitude,
+                        ),
+                      );
+                },
+              );
+            },
+          ),
+          BlocListener<RemoteIDTransmitterBloc, RemoteIDTransmitterState>(
+            listener: (_, remoteIDTransmitterState) {
+              remoteIDTransmitterState.whenOrNull(
+                stoppedTransmitter: () {
+                  _startTransmitter();
                 },
               );
             },
@@ -215,12 +384,33 @@ class _HomeScreenState extends State<HomeScreen> {
             listener: (_, geoHashState) {
               geoHashState.whenOrNull(
                 computedGeoHash: (geoHash) {
+                  context.read<UASActivityBloc>().add(
+                        UASActivityEvent.requestNewUASActivitiesAround(
+                          geoHash: geoHash,
+                        ),
+                      );
+
                   context.read<CachedDataBloc>().add(
                         CachedDataEvent.getCachedData(
                           name: geoHash,
                           type: CacheType.jsonListFile,
                         ),
                       );
+
+                  context.read<WeatherBloc>().add(
+                        WeatherEvent.getWeather(
+                          geoHash: geoHash,
+                        ),
+                      );
+                },
+              );
+            },
+          ),
+          BlocListener<UASActivityBloc, UASActivityState>(
+            listener: (_, uASActivityState) {
+              uASActivityState.whenOrNull(
+                stoppedListeningUASActivities: () {
+                  _listenUASActivities();
                 },
               );
             },
@@ -278,6 +468,21 @@ class _HomeScreenState extends State<HomeScreen> {
               );
             },
           ),
+          BlocListener<UASActivityBloc, UASActivityState>(
+            listener: (context, uASActivityState) {
+              uASActivityState.whenOrNull(
+                gotUASActivities: (uASEntities) async {
+                  // await _mapboxMap?.removePreviousMarkers(
+                  //   _markers,
+                  // );
+
+                  _markers = await _mapboxMap?.showUASActivitiesOnMapUsing(
+                    uASEntities: uASEntities,
+                  );
+                },
+              );
+            },
+          ),
         ],
         child: Scaffold(
           body: Stack(
@@ -327,9 +532,6 @@ class _HomeScreenState extends State<HomeScreen> {
                   );
                 },
               ),
-              RestrictionIndicator(
-                clickedRestriction: _clickedRestriction,
-              ),
               ValueListenableBuilder<bool>(
                 valueListenable: _centerLocationNotifier,
                 builder: (_, centerLocationNotifierValue, __) =>
@@ -338,9 +540,12 @@ class _HomeScreenState extends State<HomeScreen> {
                   builder: (_, mapStyleNotifierValue, __) => MapOverlay(
                     myLocationFollowed: centerLocationNotifierValue,
                     mapStyle: mapStyleNotifierValue,
+                    onGiftTap: () {},
                     onMyLocationIconTap: () {
                       context.read<LocationPermissionBloc>().state.whenOrNull(
-                        maybeGrantedPermission: (locationPermissionEntity) {
+                        maybeGrantedPermission: (
+                          locationPermissionEntity,
+                        ) {
                           if (locationPermissionEntity.granted) {
                             context
                                 .read<LocationServiceStatusBloc>()
@@ -382,9 +587,19 @@ class _HomeScreenState extends State<HomeScreen> {
                           _mapStyleNotifier.value = MapStyle.dark;
                       }
                     },
+                    onDroneTap: () {},
                   ),
                 ),
               ),
+            ],
+          ),
+          bottomSheet: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              RestrictionIndicator(
+                clickedRestriction: _clickedRestriction,
+              ),
+              const UASList(),
             ],
           ),
         ),

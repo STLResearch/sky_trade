@@ -19,19 +19,18 @@ import 'package:flutter/material.dart'
         ValueNotifier,
         Widget,
         showModalBottomSheet;
-import 'package:flutter_svg/svg.dart' show SvgPicture;
-import 'package:sky_ways/core/resources/numbers/ui.dart'
+import 'package:sky_trade/core/resources/numbers/ui.dart'
     show
         eightDotNil,
         eighteenDotNil,
-        fortyFiveDotNil,
         fortyFourDotNil,
+        fourteenDotNil,
         twentyOneDotNil;
-import 'package:sky_ways/core/utils/extensions/restriction_entity_extensions.dart';
-import 'package:sky_ways/features/u_a_s_restrictions/domain/entities/restriction_entity.dart'
+import 'package:sky_trade/core/utils/extensions/restriction_entity_extensions.dart';
+import 'package:sky_trade/features/u_a_s_restrictions/domain/entities/restriction_entity.dart'
     show RestrictionEntity;
-import 'package:sky_ways/features/u_a_s_restrictions/presentation/widgets/restriction_bubble.dart';
-import 'package:sky_ways/features/u_a_s_restrictions/presentation/widgets/restriction_info.dart';
+import 'package:sky_trade/features/u_a_s_restrictions/presentation/widgets/restriction_bubble.dart';
+import 'package:sky_trade/features/u_a_s_restrictions/presentation/widgets/restriction_info.dart';
 
 class RestrictionIndicator extends StatelessWidget {
   const RestrictionIndicator({
@@ -53,7 +52,7 @@ class RestrictionIndicator extends StatelessWidget {
               child: Padding(
                 padding: const EdgeInsetsDirectional.symmetric(
                   horizontal: twentyOneDotNil,
-                  vertical: fortyFiveDotNil,
+                  vertical: fourteenDotNil,
                 ),
                 child: Stack(
                   clipBehavior: Clip.none,
@@ -79,9 +78,9 @@ class RestrictionIndicator extends StatelessWidget {
                             ),
                           ),
                         ),
-                        child: SvgPicture.asset(
-                          clickedRestrictionValue
-                              .restrictionIndicatorInfoAssetPath,
+                        child: clickedRestrictionValue
+                            .restrictionIndicatorInfoAsset
+                            .svg(
                           width: eighteenDotNil,
                           height: eighteenDotNil,
                         ),

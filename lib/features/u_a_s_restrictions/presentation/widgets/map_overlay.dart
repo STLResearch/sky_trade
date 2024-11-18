@@ -12,45 +12,42 @@ import 'package:flutter/material.dart'
         Padding,
         SafeArea,
         SizedBox,
+        Stack,
         StatelessWidget,
-        Text,
-        Theme,
         Widget;
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:flutter_svg/svg.dart' show SvgPicture;
-import 'package:sky_ways/core/resources/colors.dart' show hex222222;
-import 'package:sky_ways/core/resources/numbers/ui.dart'
+import 'package:sky_trade/core/assets/generated/assets.gen.dart' show Assets;
+import 'package:sky_trade/core/resources/colors.dart' show hexE6FFFFFF;
+import 'package:sky_trade/core/resources/numbers/ui.dart'
     show
-        elevenDotNil,
+        fiftyFourDotNil,
+        sevenDotNil,
         seventyEightDotNil,
-        sixtySixDotNil,
         tenDotNil,
-        thirteenDotNil,
-        twentyOneDotNil,
-        twentyOneDotThreeSeven;
-import 'package:sky_ways/core/resources/strings/asset_paths.dart'
-    show
-        mapLayerDarkAssetPath,
-        mapLayerSatelliteAssetPath,
-        myLocationFollowedAssetPath,
-        myLocationNotFollowedAssetPath,
-        sunAssetPath;
-import 'package:sky_ways/core/utils/enums/ui.dart' show MapStyle;
-import 'package:sky_ways/features/u_a_s_restrictions/presentation/widgets/options_card.dart';
+        twelveDotNil,
+        twentyOneDotNil;
+import 'package:sky_trade/core/utils/enums/ui.dart' show MapStyle;
+import 'package:sky_trade/features/u_a_s_restrictions/presentation/widgets/options_card.dart';
+import 'package:sky_trade/features/u_a_s_restrictions/presentation/widgets/search_card.dart';
+import 'package:sky_trade/features/u_a_s_restrictions/presentation/widgets/search_result_card.dart';
+import 'package:sky_trade/features/u_a_s_restrictions/presentation/widgets/weather_card.dart';
 
 class MapOverlay extends StatelessWidget {
   const MapOverlay({
     required this.myLocationFollowed,
     required this.mapStyle,
+    required this.onGiftTap,
     required this.onMyLocationIconTap,
     required this.onMapLayerIconTap,
+    required this.onDroneTap,
     super.key,
   });
 
   final bool myLocationFollowed;
   final MapStyle mapStyle;
+  final Function0<void> onGiftTap;
   final Function0<void> onMyLocationIconTap;
   final Function0<void> onMapLayerIconTap;
+  final Function0<void> onDroneTap;
 
   @override
   Widget build(BuildContext context) => SafeArea(
@@ -60,70 +57,54 @@ class MapOverlay extends StatelessWidget {
             padding: const EdgeInsetsDirectional.symmetric(
               horizontal: twentyOneDotNil,
             ),
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
+            child: Stack(
               children: [
-                Align(
-                  alignment: AlignmentDirectional.topEnd,
-                  child: OptionsCard(
-                    height: seventyEightDotNil,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        InkWell(
-                          onTap: onMyLocationIconTap,
-                          child: SvgPicture.asset(
-                            switch (myLocationFollowed) {
-                              true => myLocationFollowedAssetPath,
-                              false => myLocationNotFollowedAssetPath,
-                            },
-                          ),
-                        ),
-                        const SizedBox(
-                          height: tenDotNil,
-                        ),
-                        InkWell(
-                          onTap: onMapLayerIconTap,
-                          child: SvgPicture.asset(
-                            switch (mapStyle) {
-                              MapStyle.dark => mapLayerDarkAssetPath,
-                              MapStyle.satellite => mapLayerSatelliteAssetPath,
-                            },
-                          ),
-                        ),
-                      ],
+                Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    const SearchCard(),
+                    const SizedBox(
+                      height: twelveDotNil,
                     ),
-                  ),
-                ),
-                const SizedBox(
-                  height: thirteenDotNil,
-                ),
-                Align(
-                  alignment: AlignmentDirectional.topEnd,
-                  child: OptionsCard(
-                    height: sixtySixDotNil,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        SvgPicture.asset(
-                          sunAssetPath,
+                    Align(
+                      alignment: AlignmentDirectional.topEnd,
+                      child: OptionsCard(
+                        width: fiftyFourDotNil,
+                        height: seventyEightDotNil,
+                        backgroundColor: hexE6FFFFFF,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            InkWell(
+                              onTap: onMyLocationIconTap,
+                              child: switch (myLocationFollowed) {
+                                true => Assets.svgs.myLocationFollowed.svg(),
+                                false =>
+                                  Assets.svgs.myLocationNotFollowed.svg(),
+                              },
+                            ),
+                            const SizedBox(
+                              height: tenDotNil,
+                            ),
+                            InkWell(
+                              onTap: onMapLayerIconTap,
+                              child: switch (mapStyle) {
+                                MapStyle.dark => Assets.svgs.mapLayerDark.svg(),
+                                MapStyle.satellite =>
+                                  Assets.svgs.mapLayerSatellite.svg(),
+                              },
+                            ),
+                          ],
                         ),
-                        Text(
-                          AppLocalizations.of(context)!.twenty +
-                              AppLocalizations.of(context)!.degrees,
-                          style: Theme.of(context)
-                              .textTheme
-                              .bodySmall
-                              ?.copyWith(
-                                fontSize: elevenDotNil,
-                                height: twentyOneDotThreeSeven / elevenDotNil,
-                                color: hex222222,
-                              ),
-                        ),
-                      ],
+                      ),
                     ),
-                  ),
+                    const SizedBox(
+                      height: sevenDotNil,
+                    ),
+                    const WeatherCard(),
+                  ],
                 ),
+                const SearchResultCard(),
               ],
             ),
           ),

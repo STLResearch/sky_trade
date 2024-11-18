@@ -1,3 +1,5 @@
+import 'dart:math' show pi;
+
 import 'package:dartz/dartz.dart' show Function1, Function2;
 import 'package:flutter/services.dart' show rootBundle;
 import 'package:geodart/geometries.dart' as geo_dart
@@ -18,17 +20,28 @@ import 'package:mapbox_maps_flutter/mapbox_maps_flutter.dart'
         PolygonAnnotationManager,
         PolygonAnnotationOptions,
         Position;
-import 'package:sky_ways/core/resources/colors.dart' show rawHex2A60C4;
-import 'package:sky_ways/core/resources/numbers/ui.dart'
-    show fiftyDotNil, fourteenDotNil, one, oneThousand, threeDotNil, zero;
-import 'package:sky_ways/core/resources/strings/asset_paths.dart'
-    show locationPuckAssetPath, locationPuckShadowAssetPath;
-import 'package:sky_ways/core/utils/extensions/restriction_entity_extensions.dart';
-import 'package:sky_ways/core/utils/typedefs/ui.dart'
+import 'package:sky_trade/core/assets/generated/assets.gen.dart' show Assets;
+import 'package:sky_trade/core/resources/colors.dart' show rawHex2A60C4;
+import 'package:sky_trade/core/resources/numbers/ui.dart'
+    show
+        fiftyDotNil,
+        fourteenDotNil,
+        nilDotNil,
+        one,
+        oneEighty,
+        oneThousand,
+        threeDotNil,
+        zero;
+import 'package:sky_trade/core/utils/extensions/restriction_entity_extensions.dart';
+import 'package:sky_trade/core/utils/typedefs/ui.dart'
     show
         PointAnnotationManagerPointAnnotationTuple,
         PolygonAnnotationManagerPolygonAnnotationTuple;
-import 'package:sky_ways/features/u_a_s_restrictions/domain/entities/restriction_entity.dart'
+import 'package:sky_trade/features/remote_i_d_receiver/domain/entities/remote_i_d_entity.dart'
+    show RemoteIDEntity;
+import 'package:sky_trade/features/u_a_s_activity/domain/entities/u_a_s_entity.dart'
+    show UASEntity;
+import 'package:sky_trade/features/u_a_s_restrictions/domain/entities/restriction_entity.dart'
     show RestrictionEntity;
 
 extension MapboxMapExtensions on MapboxMap {
@@ -161,6 +174,16 @@ extension MapboxMapExtensions on MapboxMap {
     await marker.pointAnnotationManager.deleteAll();
   }
 
+  Future<void> removePreviousMarkers(
+    List<PointAnnotationManagerPointAnnotationTuple>? markers,
+  ) async {
+    if (markers == null || markers.isEmpty) return;
+
+    for (final marker in markers) {
+      await marker.pointAnnotationManager.deleteAll();
+    }
+  }
+
   Future<void> followUser({
     required double latitude,
     required double longitude,
@@ -181,11 +204,11 @@ extension MapboxMapExtensions on MapboxMap {
     );
 
     final locationPuckByteData = await rootBundle.load(
-      locationPuckAssetPath,
+      Assets.pngs.locationPuck.path,
     );
 
     final locationPuckShadowByteData = await rootBundle.load(
-      locationPuckShadowAssetPath,
+      Assets.pngs.locationPuckShadow.path,
     );
 
     await location.updateSettings(
@@ -203,6 +226,97 @@ extension MapboxMapExtensions on MapboxMap {
         ),
       ),
     );
+  }
+
+  Future<List<PointAnnotationManagerPointAnnotationTuple>>
+      showUASActivitiesOnMapUsing({
+    List<UASEntity>? uASEntities,
+    Set<RemoteIDEntity>? remoteIDEntities,
+  }) async {
+    final pointAnnotationManagerPointAnnotationTuples =
+        List<PointAnnotationManagerPointAnnotationTuple>.empty(
+      growable: true,
+    );
+
+    if (uASEntities == null && remoteIDEntities == null) {
+      return pointAnnotationManagerPointAnnotationTuples;
+    }
+
+    for (var index = zero;
+        index < (uASEntities?.length ?? remoteIDEntities?.length ?? zero);
+        index++) {
+      final pointAnnotationManager =
+          await annotations.createPointAnnotationManager();
+
+      final pointAnnotation = await pointAnnotationManager.create(
+        PointAnnotationOptions(
+          geometry: Point(
+            coordinates: Position(
+              uASEntities?[index].remoteData.location?.location?.longitude ??
+                  uASEntities?[index].remoteData.location?.longitude ??
+                  remoteIDEntities
+                      ?.elementAt(
+                        index,
+                      )
+                      .location
+                      ?.location
+                      ?.longitude ??
+                  remoteIDEntities
+                      ?.elementAt(
+                        index,
+                      )
+                      .location
+                      ?.longitude ??
+                  nilDotNil,
+              uASEntities?[index].remoteData.location?.location?.latitude ??
+                  uASEntities?[index].remoteData.location?.latitude ??
+                  remoteIDEntities
+                      ?.elementAt(
+                        index,
+                      )
+                      .location
+                      ?.location
+                      ?.latitude ??
+                  remoteIDEntities
+                      ?.elementAt(
+                        index,
+                      )
+                      .location
+                      ?.latitude ??
+                  nilDotNil,
+            ),
+          ),
+          image: await rootBundle
+              .load(
+                Assets.pngs.iconDrone.path,
+              )
+              .then(
+                (
+                  byteData,
+                ) =>
+                    byteData.buffer.asUint8List(),
+              ),
+          iconRotate: (uASEntities?[index].remoteData.location?.direction ??
+                  remoteIDEntities
+                      ?.elementAt(
+                        index,
+                      )
+                      .location
+                      ?.direction ??
+                  nilDotNil) *
+              (pi / oneEighty),
+        ),
+      );
+
+      pointAnnotationManagerPointAnnotationTuples.add(
+        (
+          pointAnnotationManager: pointAnnotationManager,
+          pointAnnotation: pointAnnotation,
+        ),
+      );
+    }
+
+    return pointAnnotationManagerPointAnnotationTuples;
   }
 }
 

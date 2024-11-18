@@ -5,34 +5,38 @@ import 'package:flutter/material.dart'
 import 'package:flutter_bloc/flutter_bloc.dart'
     show BlocBuilder, BlocConsumer, ReadContext;
 import 'package:flutter_native_splash/flutter_native_splash.dart';
-import 'package:sky_ways/core/resources/strings/routes.dart'
+import 'package:sky_trade/core/resources/strings/routes.dart'
     show
         baseRoutePath,
+        helpRoutePath,
         homeRoutePath,
+        insightsRoutePath,
         loadingRoutePath,
         loginRoutePath,
         noInternetConnectionRoutePath,
         registerRoutePath;
-import 'package:sky_ways/features/internet_connection_checker/presentation/blocs/internet_connection_checker_bloc/internet_connection_checker_bloc.dart'
-    show
-        InternetConnectionCheckerBloc,
-        InternetConnectionCheckerEvent,
-        InternetConnectionCheckerState;
-import 'package:sky_ways/features/internet_connection_checker/presentation/screens/no_internet_connection_screen.dart';
-import 'package:sky_ways/features/u_a_s_restrictions/presentation/views/home_screen.dart';
-import 'package:sky_ways/features/web_3_auth/presentation/blocs/web_3_auth_initialization_bloc/web_3_auth_initialization_bloc.dart'
+import 'package:sky_trade/features/auth/presentation/blocs/web_3_auth_initialization_bloc/web_3_auth_initialization_bloc.dart'
     show
         Web3AuthInitializationBloc,
         Web3AuthInitializationEvent,
         Web3AuthInitializationState;
-import 'package:sky_ways/features/web_3_auth/presentation/blocs/web_3_auth_user_session_bloc/web_3_auth_user_session_bloc.dart'
+import 'package:sky_trade/features/auth/presentation/blocs/web_3_auth_user_session_bloc/web_3_auth_user_session_bloc.dart'
     show
         Web3AuthUserSessionBloc,
         Web3AuthUserSessionEvent,
         Web3AuthUserSessionState;
-import 'package:sky_ways/features/web_3_auth/presentation/views/loading_screen.dart';
-import 'package:sky_ways/features/web_3_auth/presentation/views/login_screen.dart';
-import 'package:sky_ways/features/web_3_auth/presentation/views/register_screen.dart';
+import 'package:sky_trade/features/auth/presentation/views/loading_screen.dart';
+import 'package:sky_trade/features/auth/presentation/views/login_screen.dart';
+import 'package:sky_trade/features/auth/presentation/views/register_screen.dart';
+import 'package:sky_trade/features/help/presentation/views/help_screen.dart';
+import 'package:sky_trade/features/insights/presentation/views/insights_screen.dart';
+import 'package:sky_trade/features/internet_connection_checker/presentation/blocs/internet_connection_checker_bloc/internet_connection_checker_bloc.dart'
+    show
+        InternetConnectionCheckerBloc,
+        InternetConnectionCheckerEvent,
+        InternetConnectionCheckerState;
+import 'package:sky_trade/features/internet_connection_checker/presentation/screens/no_internet_connection_screen.dart';
+import 'package:sky_trade/features/u_a_s_restrictions/presentation/views/home_screen.dart';
 
 Route routes(RouteSettings settings) => MaterialPageRoute(
       builder: (context) {
@@ -81,8 +85,11 @@ Route routes(RouteSettings settings) => MaterialPageRoute(
                         );
                       },
                     ),
-                    failedToInitialize: (_) =>
-                        Container(), // Replace with error
+                    failedToInitialize: (_) {
+                      FlutterNativeSplash.remove();
+
+                      return const NoInternetConnectionScreen();
+                    },
                     orElse: () => const LoadingScreen(),
                   ),
                 ),
@@ -104,6 +111,10 @@ Route routes(RouteSettings settings) => MaterialPageRoute(
             return const RegisterScreen();
           case homeRoutePath:
             return const HomeScreen();
+          case helpRoutePath:
+            return const HelpScreen();
+          case insightsRoutePath:
+            return const InsightsScreen();
           default:
             return Container(); // Replace with error screen
         }

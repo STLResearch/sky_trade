@@ -6,15 +6,15 @@ import 'dart:io' show File, FileSystemException, PathNotFoundException;
 import 'package:dartz/dartz.dart' show Either;
 import 'package:path_provider/path_provider.dart'
     show getApplicationDocumentsDirectory;
-import 'package:sky_ways/core/errors/exceptions/cache_exception.dart';
-import 'package:sky_ways/core/errors/failures/cache_failure.dart';
-import 'package:sky_ways/core/resources/numbers/ui.dart' show twentyFour;
-import 'package:sky_ways/core/resources/strings/special_characters.dart'
+import 'package:sky_trade/core/errors/exceptions/cache_exception.dart';
+import 'package:sky_trade/core/errors/failures/cache_failure.dart';
+import 'package:sky_trade/core/resources/numbers/ui.dart' show twentyFour;
+import 'package:sky_trade/core/resources/strings/special_characters.dart'
     show forwardSlash;
-import 'package:sky_ways/core/utils/clients/data_handler.dart';
-import 'package:sky_ways/core/utils/enums/local.dart' show CacheType;
-import 'package:sky_ways/features/cache_manager/domain/entities/cache_entity.dart';
-import 'package:sky_ways/features/cache_manager/domain/repositories/cache_manager_repository.dart';
+import 'package:sky_trade/core/utils/clients/data_handler.dart';
+import 'package:sky_trade/core/utils/enums/local.dart' show CacheType;
+import 'package:sky_trade/features/cache_manager/domain/entities/cache_entity.dart';
+import 'package:sky_trade/features/cache_manager/domain/repositories/cache_manager_repository.dart';
 
 final class CacheManagerRepositoryImplementation
     with DataHandler

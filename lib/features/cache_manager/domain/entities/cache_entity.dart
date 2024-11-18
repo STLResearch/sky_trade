@@ -1,5 +1,5 @@
 import 'package:equatable/equatable.dart' show Equatable;
-import 'package:sky_ways/core/utils/enums/local.dart';
+import 'package:sky_trade/core/utils/enums/local.dart';
 
 final class CacheEntity extends Equatable {
   const CacheEntity({

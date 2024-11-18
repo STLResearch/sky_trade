@@ -22,10 +22,9 @@ import 'package:flutter/material.dart'
         Widget,
         WidgetStatePropertyAll;
 import 'package:flutter_bloc/flutter_bloc.dart' show BlocListener, ReadContext;
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:flutter_svg/svg.dart' show SvgPicture;
-import 'package:sky_ways/core/resources/colors.dart' show hexFFFFFF;
-import 'package:sky_ways/core/resources/numbers/ui.dart'
+import 'package:sky_trade/core/assets/generated/assets.gen.dart' show Assets;
+import 'package:sky_trade/core/resources/colors.dart' show hexFFFFFF;
+import 'package:sky_trade/core/resources/numbers/ui.dart'
     show
         fifteenDotNil,
         fiftyFiveDotNil,
@@ -33,11 +32,9 @@ import 'package:sky_ways/core/resources/numbers/ui.dart'
         tenDotNil,
         thirtyDotNil,
         twentyTwoDotFive;
-import 'package:sky_ways/core/resources/strings/asset_paths.dart'
-    show skyTradeLogoAssetPath;
-import 'package:sky_ways/core/resources/strings/routes.dart'
-    show loginRoutePath;
-import 'package:sky_ways/features/internet_connection_checker/presentation/blocs/internet_connection_checker_bloc/internet_connection_checker_bloc.dart'
+import 'package:sky_trade/core/resources/strings/routes.dart' show baseRoutePath;
+import 'package:sky_trade/core/utils/extensions/build_context_extensions.dart';
+import 'package:sky_trade/features/internet_connection_checker/presentation/blocs/internet_connection_checker_bloc/internet_connection_checker_bloc.dart'
     show
         InternetConnectionCheckerBloc,
         InternetConnectionCheckerEvent,
@@ -53,7 +50,7 @@ class NoInternetConnectionScreen extends StatelessWidget {
           internetConnectionCheckerState.whenOrNull(
             hasActiveInternetConnection: () {
               Navigator.of(context).pushReplacementNamed(
-                loginRoutePath,
+                baseRoutePath,
               );
             },
           );
@@ -71,14 +68,12 @@ class NoInternetConnectionScreen extends StatelessWidget {
                     const SizedBox(
                       height: tenDotNil,
                     ),
-                    SvgPicture.asset(
-                      skyTradeLogoAssetPath,
-                    ),
+                    Assets.svgs.skyTradeLogo.svg(),
                     const SizedBox(
                       height: fortyDotNil,
                     ),
                     Text(
-                      AppLocalizations.of(context)!.oopsSomethingWentWrong,
+                      context.localize.oopsSomethingWentWrong,
                       textAlign: TextAlign.center,
                       style: Theme.of(context).textTheme.bodyLarge,
                     ),
@@ -86,7 +81,7 @@ class NoInternetConnectionScreen extends StatelessWidget {
                       height: fifteenDotNil,
                     ),
                     Text(
-                      AppLocalizations.of(context)!
+                      context.localize
                           .itLooksLikeWereHavingTroubleInitializingYourSession,
                       textAlign: TextAlign.center,
                       style: Theme.of(context).textTheme.bodyMedium,
@@ -95,7 +90,7 @@ class NoInternetConnectionScreen extends StatelessWidget {
                       height: fifteenDotNil,
                     ),
                     Text(
-                      AppLocalizations.of(context)!
+                      context.localize
                           .anUnexpectedErrorOccurredPleaseTryRefreshingThePageIfTheIssueContinuesYouMayWantToCheckYourConnectionOrTryAgainLater,
                       textAlign: TextAlign.center,
                       style: Theme.of(context).textTheme.bodySmall,
@@ -122,7 +117,7 @@ class NoInternetConnectionScreen extends StatelessWidget {
                               ),
                             ),
                         child: Text(
-                          AppLocalizations.of(context)!.refreshPage,
+                          context.localize.refreshPage,
                           style:
                               Theme.of(context).textTheme.bodyMedium?.copyWith(
                                     fontSize: fifteenDotNil,

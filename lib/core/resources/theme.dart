@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart'
     show
+        AppBarTheme,
         BorderRadius,
+        BorderRadiusDirectional,
         BorderSide,
         BottomNavigationBarThemeData,
         BottomNavigationBarType,
@@ -10,6 +12,8 @@ import 'package:flutter/material.dart'
         CheckboxThemeData,
         Color,
         ColorScheme,
+        Colors,
+        DialogTheme,
         DividerThemeData,
         EdgeInsetsDirectional,
         ElevatedButtonThemeData,
@@ -17,20 +21,26 @@ import 'package:flutter/material.dart'
         FontWeight,
         IconThemeData,
         InputDecorationTheme,
+        MenuStyle,
+        MenuThemeData,
         OutlineInputBorder,
         OutlinedBorder,
         ProgressIndicatorThemeData,
+        Radius,
         RoundedRectangleBorder,
         Size,
         SnackBarBehavior,
         SnackBarThemeData,
+        TextButtonThemeData,
         TextStyle,
         TextTheme,
         ThemeData,
         WidgetStatePropertyAll;
-import 'package:sky_ways/core/resources/colors.dart'
+import 'package:sky_trade/core/assets/generated/fonts.gen.dart';
+import 'package:sky_trade/core/resources/colors.dart'
     show
         hex00000033,
+        hex00375A,
         hex0653EA,
         hex222222,
         hex4285F4,
@@ -42,7 +52,7 @@ import 'package:sky_ways/core/resources/colors.dart'
         hexE04F64,
         hexEBEBEB,
         hexFFFFFF;
-import 'package:sky_ways/core/resources/numbers/ui.dart'
+import 'package:sky_trade/core/resources/numbers/ui.dart'
     show
         eightDotNil,
         eighteenDotNil,
@@ -52,10 +62,12 @@ import 'package:sky_ways/core/resources/numbers/ui.dart'
         fourteenDotNil,
         nilDotNil,
         nilDotNilOne,
+        ninetySixDotNil,
         oneDotNil,
         sixteenDotFive,
         sixteenDotNil,
         thirtyDotNil,
+        thirtySixDotNil,
         twelveDotNil,
         twentyDotNil,
         twentyFourDotNil,
@@ -64,7 +76,6 @@ import 'package:sky_ways/core/resources/numbers/ui.dart'
         twentyTwoDotNil,
         two,
         twoDotNil;
-import 'package:sky_ways/core/resources/strings/fonts.dart' show poppins;
 
 ThemeData get lightTheme => ThemeData(
       useMaterial3: true,
@@ -127,14 +138,14 @@ ThemeData get lightTheme => ThemeData(
           ),
         ),
         hintStyle: const TextStyle(
-          fontFamily: poppins,
+          fontFamily: FontFamily.poppins,
           fontWeight: FontWeight.w400,
           fontSize: twelveDotNil,
           height: eighteenDotNil / twelveDotNil,
           color: hexB8B8B8,
         ),
         errorStyle: const TextStyle(
-          fontFamily: poppins,
+          fontFamily: FontFamily.poppins,
           fontWeight: FontWeight.w400,
           fontStyle: FontStyle.italic,
           fontSize: elevenDotNil,
@@ -144,21 +155,21 @@ ThemeData get lightTheme => ThemeData(
       ),
       textTheme: const TextTheme(
         bodySmall: TextStyle(
-          fontFamily: poppins,
+          fontFamily: FontFamily.poppins,
           fontWeight: FontWeight.w400,
           fontSize: twelveDotNil,
           height: eighteenDotNil / twelveDotNil,
           color: hex87878D,
         ),
         bodyMedium: TextStyle(
-          fontFamily: poppins,
+          fontFamily: FontFamily.poppins,
           fontWeight: FontWeight.w400,
           fontSize: sixteenDotNil,
           height: twentyFourDotNil / sixteenDotNil,
           color: hex222222,
         ),
         bodyLarge: TextStyle(
-          fontFamily: poppins,
+          fontFamily: FontFamily.poppins,
           fontWeight: FontWeight.w500,
           fontSize: twentyDotNil,
           height: thirtyDotNil / twentyDotNil,
@@ -190,7 +201,7 @@ ThemeData get lightTheme => ThemeData(
           ),
           textStyle: const WidgetStatePropertyAll<TextStyle>(
             TextStyle(
-              fontFamily: poppins,
+              fontFamily: FontFamily.poppins,
               fontWeight: FontWeight.w400,
               fontSize: fifteenDotNil,
               height: twentyTwoDotFive / fifteenDotNil,
@@ -214,10 +225,39 @@ ThemeData get lightTheme => ThemeData(
           ),
         ),
       ),
+      textButtonTheme: TextButtonThemeData(
+        style: ButtonStyle(
+          textStyle: const WidgetStatePropertyAll<TextStyle>(
+            TextStyle(
+              fontFamily: FontFamily.poppins,
+              fontWeight: FontWeight.w400,
+              fontSize: fifteenDotNil,
+              height: twentyTwoDotFive / fifteenDotNil,
+              color: hex0653EA,
+            ),
+          ),
+          shape: WidgetStatePropertyAll<OutlinedBorder>(
+            RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(
+                eightDotNil,
+              ),
+            ),
+          ),
+          elevation: const WidgetStatePropertyAll<double>(
+            nilDotNil,
+          ),
+          fixedSize: const WidgetStatePropertyAll<Size>(
+            Size.fromHeight(
+              fiftyFiveDotNil,
+            ),
+          ),
+        ),
+      ),
       progressIndicatorTheme: const ProgressIndicatorThemeData(
+        color: hexFFFFFF,
         linearTrackColor: hex0653EA,
         circularTrackColor: hex0653EA,
-        refreshBackgroundColor: hex0653EA,
+        refreshBackgroundColor: hexFFFFFF,
       ),
       dividerColor: hex00000033,
       bottomNavigationBarTheme: const BottomNavigationBarThemeData(
@@ -234,14 +274,14 @@ ThemeData get lightTheme => ThemeData(
         selectedItemColor: hex4285F4,
         unselectedItemColor: hex5D7285,
         selectedLabelStyle: TextStyle(
-          fontFamily: poppins,
+          fontFamily: FontFamily.poppins,
           fontWeight: FontWeight.w600,
           fontSize: elevenDotNil,
           height: twentyOneDotThreeSeven / elevenDotNil,
           letterSpacing: nilDotNilOne,
         ),
         unselectedLabelStyle: TextStyle(
-          fontFamily: poppins,
+          fontFamily: FontFamily.poppins,
           fontWeight: FontWeight.w400,
           fontSize: elevenDotNil,
           height: twentyOneDotThreeSeven / elevenDotNil,
@@ -252,7 +292,7 @@ ThemeData get lightTheme => ThemeData(
         backgroundColor: hex0653EA,
         behavior: SnackBarBehavior.floating,
         contentTextStyle: TextStyle(
-          fontFamily: poppins,
+          fontFamily: FontFamily.poppins,
           fontWeight: FontWeight.w400,
           fontSize: twelveDotNil,
           height: eighteenDotNil / twelveDotNil,
@@ -260,13 +300,53 @@ ThemeData get lightTheme => ThemeData(
         ),
       ),
       bottomSheetTheme: const BottomSheetThemeData(
-        backgroundColor: hexFFFFFF,
+        backgroundColor: Colors.transparent,
         showDragHandle: false,
         dragHandleColor: hexD9D9D9,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadiusDirectional.vertical(
+            top: Radius.circular(
+              thirtyDotNil,
+            ),
+          ),
+        ),
       ),
       dividerTheme: const DividerThemeData(
         color: hexEBEBEB,
         thickness: oneDotNil,
+      ),
+      menuTheme: const MenuThemeData(
+        style: MenuStyle(
+          backgroundColor: WidgetStatePropertyAll<Color>(
+            hexFFFFFF,
+          ),
+        ),
+      ),
+      dialogTheme: DialogTheme(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(
+            twentyDotNil,
+          ),
+        ),
+      ),
+      appBarTheme: const AppBarTheme(
+        backgroundColor: hex00375A,
+        titleTextStyle: TextStyle(
+          fontFamily: FontFamily.poppins,
+          fontWeight: FontWeight.w600,
+          fontSize: twentyFourDotNil,
+          height: thirtySixDotNil / twentyFourDotNil,
+          color: hexFFFFFF,
+        ),
+        toolbarHeight: ninetySixDotNil,
+        iconTheme: IconThemeData(
+          color: hexFFFFFF,
+          size: twentyFourDotNil,
+        ),
+        actionsIconTheme: IconThemeData(
+          color: hexFFFFFF,
+          size: twentyFourDotNil,
+        ),
       ),
     );
 
