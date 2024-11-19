@@ -565,4 +565,136 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get thereIsNoOtherWayToProceedUnlessYouCompleteTheLogoutProcessYouWillBeAbleToLogBackInAfterwards => 'There is no other way to proceed unless you complete the logout process. You will be able to log back in afterwards';
+
+  @override
+  String get referralProgram => 'Referral Program';
+
+  @override
+  String get theProgram => 'The Program';
+
+  @override
+  String get share => 'Share';
+
+  @override
+  String get history => 'History';
+
+  @override
+  String get leaderboard => 'Leaderboard';
+
+  @override
+  String get skyPointsBalance => 'SKY Points Balance';
+
+  @override
+  String get skyPoints => 'SKY Points';
+
+  @override
+  String get howCanIEarnSkyPoints => 'How can I earn SKY Points?';
+
+  @override
+  String get shareAndEarn => 'Share And Earn! 🚀✨';
+
+  @override
+  String get registerAndClaim => 'Register & Claim';
+
+  @override
+  String get earn => 'Earn';
+
+  @override
+  String get shareCardDescription => 'Send your invite link or code to your friends and explain to them how cool SkyTrade is';
+
+  @override
+  String get registerAndClaimCardDescription => 'Let them register and claim their airspaces using your referral link or code';
+
+  @override
+  String get earnCardDescription => 'You and your friends are rewarded with 50 credits and more';
+
+  @override
+  String get shareTheReferralLinkOrCode => 'Share the referral link or code';
+
+  @override
+  String get copyCode => 'Copy code';
+
+  @override
+  String get copyLink => 'Copy link';
+
+  @override
+  String get inviteYourFriends => 'Invite your friends';
+
+  @override
+  String get shareYourUniqueQrCode => 'Share your unique QR Code';
+
+  @override
+  String get registeredFriends => 'Registered friends';
+
+  @override
+  String get registeredAirspaces => 'Registered airspaces';
+
+  @override
+  String get validatedProperties => 'Validated properties';
+
+  @override
+  String get yourReferrals => 'Your referrals';
+
+  @override
+  String get date => 'Date';
+
+  @override
+  String get amount => 'Amount';
+
+  @override
+  String get from => 'From';
+
+  @override
+  String get yourEarnings => 'Your Earnings';
+
+  @override
+  String get lifetimeEarnings => 'Lifetime Earnings';
+
+  @override
+  String get user => 'User';
+
+  @override
+  String get balance => 'Balance';
+
+  @override
+  String get next => 'Next';
+
+  @override
+  String get currentPeriodChallengeLeaderboard => 'Current Period Challenge Leaderboard';
+
+  @override
+  String get skyPointsEarningSource1 => 'Account Registration (no KYC required to get these points)';
+
+  @override
+  String get skyPointsEarningSource2 => 'Claim your airspace (full claim/verified airspace). This is per every unique claimed airspace. KYC completed is a precondition for this allocation.';
+
+  @override
+  String get skyPointsEarningSource3 => 'For claimed air space which is fully validated done by the referred account.';
+
+  @override
+  String get skyPointsEarningSource4 => 'Refer a friend (friend registers an account, but KYC on that friend’s account is not required for the introducing account to get their SKY points, fraudulent activity will be minimized by T&Cs where we say we will deduct points for fraudulent acts if discovered)';
+
+  @override
+  String get skyPointsEarningSource5 => 'For making a first valid bid in the Auction House';
+
+  @override
+  String get skyPointsEarningSource6 => 'Claim or refer 1 airspaces in a specific area:  New York: Manhattan & Boroughs Texas: Garland, Murphy, Plano, Richardson, Mesquite, Dallas, Rowlett, Colony, College Station Florida: Clermont, New Port Richey, Valrico, Winter Haven, Tampa, Brandon, Riverview, Seffner Arizona: Phoenix, Glendale, Peoria Arkansas: Farmington, Bentonville, Rogers, Pea Ridge Virginia: Virginia Beach Utah: Lindon, Herriman North Carolina: Raeford';
+
+  @override
+  String get skyPointsEarningSource7 => 'Track a drone with the radar app';
+
+  @override
+  String get skyPointsEarningSource8 => 'Track a drone with the radar app in a specific area:  Texas: Garland, Murphy, Plano, Richardson, Mesquite, Dallas, Rowlett, Colony, College Station Florida: Clermont, New Port Richey, Valrico, Winter Haven, Tampa, Brandon, Riverview, Seffner Arizona: Phoenix, Glendale, Peoria Arkansas: Farmington, Bentonville, Rogers, Pea Ridge Virginia: Virginia Beach Utah: Lindon, Herriman North Carolina: Raeford';
+
+  @override
+  String get skyPoints5 => '5 SKY points';
+
+  @override
+  String get skyPoints100 => '100 SKY points';
+
+  @override
+  String get boostingSkyPointsEgx3 => 'Boosting: SKY points eg x 3';
+
+  @override
+  String get skyPoints100ToYouAnd100SkyPointsToYourFriend => '100 SKY points to you and 100 SKY points to your friend (this is part of the points allocation 2) + 10% bonus on the referred income stream from air-right rental';
 }

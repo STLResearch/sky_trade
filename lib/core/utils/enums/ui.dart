@@ -23,3 +23,8 @@ enum ErrorReason {
   sessionInitializationFailure,
   unknownNavigationRoute,
 }
+
+enum ArrangementType{
+  row,
+  cube
+}

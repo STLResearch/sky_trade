@@ -7,7 +7,7 @@ import 'package:sky_trade/core/resources/strings/networking.dart'
         messageUuidKey,
         messagesKey,
         statusKeyReferral,
-        toKey;
+        toAltKey;
 import 'package:sky_trade/features/referral/domain/entities/referral_entity.dart';
 
 part 'referral_model.g.dart';
@@ -45,7 +45,7 @@ final class MessageModel extends MessageEntity {
   @JsonKey(name: statusKeyReferral)
   final String mStatus;
 
-  @JsonKey(name: toKey)
+  @JsonKey(name: toAltKey)
   final List<RecipientModel> mToRecipients;
 
   Map<String, dynamic> toJson() => _$MessageModelToJson(this);

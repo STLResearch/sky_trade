@@ -1208,6 +1208,270 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'There is no other way to proceed unless you complete the logout process. You will be able to log back in afterwards'**
   String get thereIsNoOtherWayToProceedUnlessYouCompleteTheLogoutProcessYouWillBeAbleToLogBackInAfterwards;
+
+  /// No description provided for @referralProgram.
+  ///
+  /// In en, this message translates to:
+  /// **'Referral Program'**
+  String get referralProgram;
+
+  /// No description provided for @theProgram.
+  ///
+  /// In en, this message translates to:
+  /// **'The Program'**
+  String get theProgram;
+
+  /// No description provided for @share.
+  ///
+  /// In en, this message translates to:
+  /// **'Share'**
+  String get share;
+
+  /// No description provided for @history.
+  ///
+  /// In en, this message translates to:
+  /// **'History'**
+  String get history;
+
+  /// No description provided for @leaderboard.
+  ///
+  /// In en, this message translates to:
+  /// **'Leaderboard'**
+  String get leaderboard;
+
+  /// No description provided for @skyPointsBalance.
+  ///
+  /// In en, this message translates to:
+  /// **'SKY Points Balance'**
+  String get skyPointsBalance;
+
+  /// No description provided for @skyPoints.
+  ///
+  /// In en, this message translates to:
+  /// **'SKY Points'**
+  String get skyPoints;
+
+  /// No description provided for @howCanIEarnSkyPoints.
+  ///
+  /// In en, this message translates to:
+  /// **'How can I earn SKY Points?'**
+  String get howCanIEarnSkyPoints;
+
+  /// No description provided for @shareAndEarn.
+  ///
+  /// In en, this message translates to:
+  /// **'Share And Earn! 🚀✨'**
+  String get shareAndEarn;
+
+  /// No description provided for @registerAndClaim.
+  ///
+  /// In en, this message translates to:
+  /// **'Register & Claim'**
+  String get registerAndClaim;
+
+  /// No description provided for @earn.
+  ///
+  /// In en, this message translates to:
+  /// **'Earn'**
+  String get earn;
+
+  /// No description provided for @shareCardDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Send your invite link or code to your friends and explain to them how cool SkyTrade is'**
+  String get shareCardDescription;
+
+  /// No description provided for @registerAndClaimCardDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Let them register and claim their airspaces using your referral link or code'**
+  String get registerAndClaimCardDescription;
+
+  /// No description provided for @earnCardDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'You and your friends are rewarded with 50 credits and more'**
+  String get earnCardDescription;
+
+  /// No description provided for @shareTheReferralLinkOrCode.
+  ///
+  /// In en, this message translates to:
+  /// **'Share the referral link or code'**
+  String get shareTheReferralLinkOrCode;
+
+  /// No description provided for @copyCode.
+  ///
+  /// In en, this message translates to:
+  /// **'Copy code'**
+  String get copyCode;
+
+  /// No description provided for @copyLink.
+  ///
+  /// In en, this message translates to:
+  /// **'Copy link'**
+  String get copyLink;
+
+  /// No description provided for @inviteYourFriends.
+  ///
+  /// In en, this message translates to:
+  /// **'Invite your friends'**
+  String get inviteYourFriends;
+
+  /// No description provided for @shareYourUniqueQrCode.
+  ///
+  /// In en, this message translates to:
+  /// **'Share your unique QR Code'**
+  String get shareYourUniqueQrCode;
+
+  /// No description provided for @registeredFriends.
+  ///
+  /// In en, this message translates to:
+  /// **'Registered friends'**
+  String get registeredFriends;
+
+  /// No description provided for @registeredAirspaces.
+  ///
+  /// In en, this message translates to:
+  /// **'Registered airspaces'**
+  String get registeredAirspaces;
+
+  /// No description provided for @validatedProperties.
+  ///
+  /// In en, this message translates to:
+  /// **'Validated properties'**
+  String get validatedProperties;
+
+  /// No description provided for @yourReferrals.
+  ///
+  /// In en, this message translates to:
+  /// **'Your referrals'**
+  String get yourReferrals;
+
+  /// No description provided for @date.
+  ///
+  /// In en, this message translates to:
+  /// **'Date'**
+  String get date;
+
+  /// No description provided for @amount.
+  ///
+  /// In en, this message translates to:
+  /// **'Amount'**
+  String get amount;
+
+  /// No description provided for @from.
+  ///
+  /// In en, this message translates to:
+  /// **'From'**
+  String get from;
+
+  /// No description provided for @yourEarnings.
+  ///
+  /// In en, this message translates to:
+  /// **'Your Earnings'**
+  String get yourEarnings;
+
+  /// No description provided for @lifetimeEarnings.
+  ///
+  /// In en, this message translates to:
+  /// **'Lifetime Earnings'**
+  String get lifetimeEarnings;
+
+  /// No description provided for @user.
+  ///
+  /// In en, this message translates to:
+  /// **'User'**
+  String get user;
+
+  /// No description provided for @balance.
+  ///
+  /// In en, this message translates to:
+  /// **'Balance'**
+  String get balance;
+
+  /// No description provided for @next.
+  ///
+  /// In en, this message translates to:
+  /// **'Next'**
+  String get next;
+
+  /// No description provided for @currentPeriodChallengeLeaderboard.
+  ///
+  /// In en, this message translates to:
+  /// **'Current Period Challenge Leaderboard'**
+  String get currentPeriodChallengeLeaderboard;
+
+  /// No description provided for @skyPointsEarningSource1.
+  ///
+  /// In en, this message translates to:
+  /// **'Account Registration (no KYC required to get these points)'**
+  String get skyPointsEarningSource1;
+
+  /// No description provided for @skyPointsEarningSource2.
+  ///
+  /// In en, this message translates to:
+  /// **'Claim your airspace (full claim/verified airspace). This is per every unique claimed airspace. KYC completed is a precondition for this allocation.'**
+  String get skyPointsEarningSource2;
+
+  /// No description provided for @skyPointsEarningSource3.
+  ///
+  /// In en, this message translates to:
+  /// **'For claimed air space which is fully validated done by the referred account.'**
+  String get skyPointsEarningSource3;
+
+  /// No description provided for @skyPointsEarningSource4.
+  ///
+  /// In en, this message translates to:
+  /// **'Refer a friend (friend registers an account, but KYC on that friend’s account is not required for the introducing account to get their SKY points, fraudulent activity will be minimized by T&Cs where we say we will deduct points for fraudulent acts if discovered)'**
+  String get skyPointsEarningSource4;
+
+  /// No description provided for @skyPointsEarningSource5.
+  ///
+  /// In en, this message translates to:
+  /// **'For making a first valid bid in the Auction House'**
+  String get skyPointsEarningSource5;
+
+  /// No description provided for @skyPointsEarningSource6.
+  ///
+  /// In en, this message translates to:
+  /// **'Claim or refer 1 airspaces in a specific area:  New York: Manhattan & Boroughs Texas: Garland, Murphy, Plano, Richardson, Mesquite, Dallas, Rowlett, Colony, College Station Florida: Clermont, New Port Richey, Valrico, Winter Haven, Tampa, Brandon, Riverview, Seffner Arizona: Phoenix, Glendale, Peoria Arkansas: Farmington, Bentonville, Rogers, Pea Ridge Virginia: Virginia Beach Utah: Lindon, Herriman North Carolina: Raeford'**
+  String get skyPointsEarningSource6;
+
+  /// No description provided for @skyPointsEarningSource7.
+  ///
+  /// In en, this message translates to:
+  /// **'Track a drone with the radar app'**
+  String get skyPointsEarningSource7;
+
+  /// No description provided for @skyPointsEarningSource8.
+  ///
+  /// In en, this message translates to:
+  /// **'Track a drone with the radar app in a specific area:  Texas: Garland, Murphy, Plano, Richardson, Mesquite, Dallas, Rowlett, Colony, College Station Florida: Clermont, New Port Richey, Valrico, Winter Haven, Tampa, Brandon, Riverview, Seffner Arizona: Phoenix, Glendale, Peoria Arkansas: Farmington, Bentonville, Rogers, Pea Ridge Virginia: Virginia Beach Utah: Lindon, Herriman North Carolina: Raeford'**
+  String get skyPointsEarningSource8;
+
+  /// No description provided for @skyPoints5.
+  ///
+  /// In en, this message translates to:
+  /// **'5 SKY points'**
+  String get skyPoints5;
+
+  /// No description provided for @skyPoints100.
+  ///
+  /// In en, this message translates to:
+  /// **'100 SKY points'**
+  String get skyPoints100;
+
+  /// No description provided for @boostingSkyPointsEgx3.
+  ///
+  /// In en, this message translates to:
+  /// **'Boosting: SKY points eg x 3'**
+  String get boostingSkyPointsEgx3;
+
+  /// No description provided for @skyPoints100ToYouAnd100SkyPointsToYourFriend.
+  ///
+  /// In en, this message translates to:
+  /// **'100 SKY points to you and 100 SKY points to your friend (this is part of the points allocation 2) + 10% bonus on the referred income stream from air-right rental'**
+  String get skyPoints100ToYouAnd100SkyPointsToYourFriend;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {
