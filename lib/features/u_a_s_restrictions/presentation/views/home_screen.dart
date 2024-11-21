@@ -18,6 +18,7 @@ import 'package:flutter_dotenv/flutter_dotenv.dart' show dotenv;
 import 'package:mapbox_maps_flutter/mapbox_maps_flutter.dart'
     show CompassSettings, MapboxMap, MapboxOptions, ScaleBarSettings;
 import 'package:sky_trade/core/resources/colors.dart' show hexB3FFFFFF;
+import 'package:sky_trade/core/resources/numbers/ui.dart' show twelveDotFive;
 import 'package:sky_trade/core/resources/strings/routes.dart'
     show loginRoutePath;
 import 'package:sky_trade/core/resources/strings/secret_keys.dart'
@@ -111,7 +112,7 @@ class _HomeScreenState extends State<HomeScreen> {
     );
 
     _mapStyleNotifier = ValueNotifier<MapStyle>(
-      MapStyle.satellite,
+      MapStyle.dark,
     );
 
     _startTransmitter();
@@ -489,7 +490,7 @@ class _HomeScreenState extends State<HomeScreen> {
             alignment: AlignmentDirectional.center,
             children: [
               MapView(
-                mapStyleUri: dotenv.env[mapboxMapsSatelliteStyleUri]!,
+                mapStyleUri: dotenv.env[mapboxMapsDarkStyleUri]!,
                 onTap: (_) => _clickedRestriction.value = null,
                 onScroll: (_) => _centerLocationNotifier.value = false,
                 onCreated: (mapboxMap) {
@@ -513,18 +514,20 @@ class _HomeScreenState extends State<HomeScreen> {
                       if (locationPermissionEntity.granted) {
                         _mapboxMap?.getCameraState().then(
                           (cameraState) {
-                            context.read<GeoHashBloc>().add(
-                                  GeoHashEvent.computeGeoHash(
-                                    coordinates: (
-                                      latitude: cameraState
-                                          .center.coordinates.lat
-                                          .toDouble(),
-                                      longitude: cameraState
-                                          .center.coordinates.lng
-                                          .toDouble(),
+                            if (cameraState.zoom >= twelveDotFive) {
+                              context.read<GeoHashBloc>().add(
+                                    GeoHashEvent.computeGeoHash(
+                                      coordinates: (
+                                        latitude: cameraState
+                                            .center.coordinates.lat
+                                            .toDouble(),
+                                        longitude: cameraState
+                                            .center.coordinates.lng
+                                            .toDouble(),
+                                      ),
                                     ),
-                                  ),
-                                );
+                                  );
+                            }
                           },
                         );
                       }
