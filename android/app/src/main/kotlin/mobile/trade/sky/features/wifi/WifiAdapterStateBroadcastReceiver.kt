@@ -45,6 +45,7 @@ class WifiAdapterStateBroadcastReceiver(private val context: Context) :
     override fun onCancel(arguments: Any?) {
         if (wifiAdapterStateBroadcastReceiver != null) {
             context.unregisterReceiver(wifiAdapterStateBroadcastReceiver)
+            wifiAdapterStateBroadcastReceiver = null
         }
     }
 
