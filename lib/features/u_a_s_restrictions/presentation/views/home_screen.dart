@@ -173,7 +173,6 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   void dispose() {
-    _mapboxMap?.dispose();
     _clickedRestriction.dispose();
     _centerLocationNotifier.dispose();
     _mapStyleNotifier.dispose();
