@@ -8,15 +8,7 @@ typedef TerminateSocketIO = bool;
 typedef SocketIOClientMessage = ({
   String roomName,
   Map<String, dynamic> data,
-  Map<String, dynamic> headers,
-});
-
-typedef Signature = ({
-  String sign,
-  String issuedAt,
-  String nonce,
-  String address,
-  String? email,
+  Map<String, dynamic>? headers,
 });
 
 typedef RemoteIDSetDeviceCoordinatesTuple = ({

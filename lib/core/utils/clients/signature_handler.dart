@@ -18,10 +18,10 @@ import 'package:sky_trade/core/resources/strings/networking.dart'
         signatureSeventhLine,
         signatureSixthLine,
         signatureThirdLine,
-        skyTradeServerHttpSignUrl,
+        skyTradeServerHttpBaseUrl,
         skyTradeServerSignUrl;
 import 'package:sky_trade/core/resources/strings/special_characters.dart'
-    show newLine, whiteSpace;
+    show emptyString, newLine, whiteSpace;
 import 'package:solana/solana.dart' show Ed25519HDKeyPair, SignatureExt;
 import 'package:web3auth_flutter/web3auth_flutter.dart';
 
@@ -85,6 +85,7 @@ mixin class SignatureHandler {
     required String issuedAt,
     required String nonce,
     required String userAddress,
+    String? path,
   }) =>
       dotenv.env[skyTradeServerSignUrl]! +
       whiteSpace +
@@ -98,7 +99,8 @@ mixin class SignatureHandler {
       newLine +
       signatureFourthLine +
       whiteSpace +
-      dotenv.env[skyTradeServerHttpSignUrl]! +
+      dotenv.env[skyTradeServerHttpBaseUrl]! +
+      (path ?? emptyString) +
       newLine +
       signatureFifthLine +
       newLine +

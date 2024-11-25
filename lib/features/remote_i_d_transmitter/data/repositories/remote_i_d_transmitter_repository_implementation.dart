@@ -1,7 +1,6 @@
 import 'dart:typed_data' show Uint8List;
 
 import 'package:dartz/dartz.dart' show Function0, Function1;
-import 'package:sky_trade/core/utils/clients/signature_handler.dart';
 import 'package:sky_trade/core/utils/enums/networking.dart'
     show ConnectionState;
 import 'package:sky_trade/features/remote_i_d_receiver/domain/entities/remote_i_d_entity.dart'
@@ -13,7 +12,6 @@ import 'package:sky_trade/features/remote_i_d_transmitter/domain/entities/remote
 import 'package:sky_trade/features/remote_i_d_transmitter/domain/repositories/remote_i_d_transmitter_repository.dart';
 
 final class RemoteIDTransmitterRepositoryImplementation
-    with SignatureHandler
     implements RemoteIDTransmitterRepository {
   const RemoteIDTransmitterRepositoryImplementation(
     RemoteIDTransmitterRemoteDataSource remoteIDTransmitterRemoteDataSource,
@@ -38,33 +36,12 @@ final class RemoteIDTransmitterRepositoryImplementation
     required Set<RemoteIDEntity> remoteIDEntities,
     required DeviceEntity deviceEntity,
     required Uint8List rawData,
-  }) async {
-    final issuedAt = computeIssuedAt();
-    final nonce = computeNonce();
-    final userAddress = await computeUserAddress();
-    final message = computeMessageToSignUsing(
-      issuedAt: issuedAt,
-      nonce: nonce,
-      userAddress: userAddress,
-    );
-    final email = await computeUserEmail();
-    final sign = await signMessage(
-      message,
-    );
-
-    _remoteIDTransmitterRemoteDataSource.transmit(
-      remoteIDEntities: remoteIDEntities,
-      deviceEntity: deviceEntity,
-      rawData: rawData,
-      signature: (
-        sign: sign,
-        issuedAt: issuedAt,
-        nonce: nonce,
-        address: userAddress,
-        email: email,
-      ),
-    );
-  }
+  }) =>
+      _remoteIDTransmitterRemoteDataSource.transmit(
+        remoteIDEntities: remoteIDEntities,
+        deviceEntity: deviceEntity,
+        rawData: rawData,
+      );
 
   @override
   void stopTransmitter() =>

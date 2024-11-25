@@ -2,20 +2,12 @@ import 'dart:typed_data' show Uint8List;
 
 import 'package:dartz/dartz.dart' show Function0, Function1;
 import 'package:sky_trade/core/resources/strings/networking.dart'
-    show
-        emailAddressHeaderKey,
-        remoteIDTransmissionEvent,
-        remoteIDTransmissionRoom,
-        signAddressHeaderKey,
-        signHeaderKey,
-        signIssueAtHeaderKey,
-        signNonceHeaderKey;
+    show remoteIDTransmissionEvent, remoteIDTransmissionRoom;
 import 'package:sky_trade/core/utils/clients/network_client.dart'
     show SocketIOClient;
 import 'package:sky_trade/core/utils/enums/networking.dart'
     show ConnectionState;
 import 'package:sky_trade/core/utils/extensions/remote_i_d_transmission_entity_extensions.dart';
-import 'package:sky_trade/core/utils/typedefs/networking.dart' show Signature;
 import 'package:sky_trade/features/remote_i_d_receiver/domain/entities/remote_i_d_entity.dart'
     show RemoteIDEntity;
 import 'package:sky_trade/features/remote_i_d_transmitter/domain/entities/remote_transmission_entity.dart'
@@ -27,11 +19,10 @@ abstract interface class RemoteIDTransmitterRemoteDataSource {
     required Function1<ConnectionState, void> onConnectionChanged,
   });
 
-  void transmit({
+  Future<void> transmit({
     required Set<RemoteIDEntity> remoteIDEntities,
     required DeviceEntity deviceEntity,
     required Uint8List rawData,
-    required Signature signature,
   });
 
   void stopTransmitter();
@@ -59,14 +50,13 @@ final class RemoteIDTransmitterRemoteDataSourceImplementation
       );
 
   @override
-  void transmit({
+  Future<void> transmit({
     required Set<RemoteIDEntity> remoteIDEntities,
     required DeviceEntity deviceEntity,
     required Uint8List rawData,
-    required Signature signature,
-  }) {
+  }) async {
     for (final remoteIDEntity in remoteIDEntities) {
-      _socketIOClient.send(
+      await _socketIOClient.send(
         roomName: remoteIDTransmissionRoom,
         data: RemoteTransmissionEntity(
           remoteData: remoteIDEntity,
@@ -74,13 +64,7 @@ final class RemoteIDTransmitterRemoteDataSourceImplementation
           device: deviceEntity,
           rawData: rawData,
         ).toRemoteTransmissionModel().toJson(),
-        headers: {
-          signHeaderKey: signature.sign,
-          signIssueAtHeaderKey: signature.issuedAt,
-          signNonceHeaderKey: signature.nonce,
-          signAddressHeaderKey: signature.address,
-          if (signature.email != null) emailAddressHeaderKey: signature.email,
-        },
+        includeSignature: true,
       );
     }
   }

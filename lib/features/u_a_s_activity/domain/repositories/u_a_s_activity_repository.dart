@@ -1,5 +1,6 @@
 import 'package:dartz/dartz.dart' show Function1;
-import 'package:sky_trade/core/utils/enums/networking.dart' show ConnectionState;
+import 'package:sky_trade/core/utils/enums/networking.dart'
+    show ConnectionState;
 import 'package:sky_trade/features/u_a_s_activity/domain/entities/u_a_s_entity.dart'
     show UASEntity;
 
