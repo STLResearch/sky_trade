@@ -18,11 +18,8 @@ import 'package:sky_trade/core/resources/strings/networking.dart'
         acceptHeaderKey,
         applicationJsonHeaderValue,
         bodyKey,
-        connectingEvent,
-        connectionTimeoutEvent,
         contentTypeHeaderKey,
         headersKey,
-        reconnectingEvent,
         skyTradeServerHttpBaseUrl,
         skyTradeServerSocketIOBaseUrl,
         websocketTransport;
@@ -44,7 +41,6 @@ final class SocketIOClient {
                 websocketTransport,
               ])
               .disableAutoConnect()
-              .disableReconnection()
               .setTimeout(
                 requestConnectTimeoutMilliSeconds,
               )
@@ -83,6 +79,10 @@ final class SocketIOClient {
               );
             }
 
+            if (_clientMessageStreamSubscription?.isPaused ?? false) {
+              _clientMessageStreamSubscription?.resume();
+            }
+
             _clientMessageStreamController ??= StreamController<
                 Either<TerminateSocketIO, SocketIOClientMessage>>();
             _clientMessageStreamSubscription ??= _messageStreamSubscription;
@@ -90,50 +90,34 @@ final class SocketIOClient {
         )
         ..onConnectError(
           (_) {
+            final serverDeniedConnection = !_socket.active;
+
             if (onConnectionChanged != null) {
               onConnectionChanged(
-                ConnectionState.connectionError,
+                switch (serverDeniedConnection) {
+                  true => ConnectionState.destroyed,
+                  false => ConnectionState.connectionError,
+                },
               );
             }
-          },
-        )
-        ..on(
-          connectionTimeoutEvent,
-          (_) {
-            if (onConnectionChanged != null) {
-              onConnectionChanged(
-                ConnectionState.connectionTimeout,
-              );
+
+            if (serverDeniedConnection) {
+              _disposeSocketAndCloseMessageStream();
+              return;
             }
-          },
-        )
-        ..on(
-          connectingEvent,
-          (_) {
-            if (onConnectionChanged != null) {
-              onConnectionChanged(
-                ConnectionState.connecting,
-              );
-            }
+
+            _pauseMessageStream();
           },
         )
         ..onDisconnect(
-          (_) async {
+          (_) {
             if (onConnectionChanged != null) {
               onConnectionChanged(
                 ConnectionState.disconnected,
               );
             }
 
-            await Future.wait<dynamic>([
-              _clientMessageStreamController?.close() ?? Future.value(),
-              _clientMessageStreamSubscription?.cancel() ?? Future.value(),
-            ]);
-
-            _clientMessageStreamController = null;
-            _clientMessageStreamSubscription = null;
-
-            _socket.dispose();
+            _pauseMessageStream();
           },
         )
         ..onError(
@@ -143,32 +127,41 @@ final class SocketIOClient {
                 ConnectionState.error,
               );
             }
-          },
-        )
-        ..onReconnect(
-          (_) async {
-            _socket.dispose();
+
+            _pauseMessageStream();
           },
         )
         ..onReconnectAttempt(
           (_) {
-            _socket.dispose();
+            if (onConnectionChanged != null) {
+              onConnectionChanged(
+                ConnectionState.reconnecting,
+              );
+            }
+
+            _pauseMessageStream();
           },
         )
         ..onReconnectFailed(
           (_) {
-            _socket.dispose();
+            if (onConnectionChanged != null) {
+              onConnectionChanged(
+                ConnectionState.reconnectionFailed,
+              );
+            }
+
+            _pauseMessageStream();
           },
         )
         ..onReconnectError(
           (_) {
-            _socket.dispose();
-          },
-        )
-        ..on(
-          reconnectingEvent,
-          (_) {
-            _socket.dispose();
+            if (onConnectionChanged != null) {
+              onConnectionChanged(
+                ConnectionState.reconnectionError,
+              );
+            }
+
+            _pauseMessageStream();
           },
         )
         ..onPing(
@@ -186,13 +179,21 @@ final class SocketIOClient {
           },
         );
 
+  void _pauseMessageStream() {
+    if (_clientMessageStreamSubscription?.isPaused == false) {
+      _clientMessageStreamSubscription?.pause();
+    }
+  }
+
   StreamSubscription<Either<TerminateSocketIO, SocketIOClientMessage>>?
       get _messageStreamSubscription =>
           _clientMessageStreamController?.stream.listen(
             (message) {
               message.fold(
-                (terminate) {
-                  if (terminate) _socket.dispose();
+                (terminate) async {
+                  if (terminate) {
+                    await _disposeSocketAndCloseMessageStream();
+                  }
                 },
                 (socketIOClientMessage) {
                   _socket.emit(
@@ -206,6 +207,18 @@ final class SocketIOClient {
               );
             },
           );
+
+  Future<void> _disposeSocketAndCloseMessageStream() async {
+    _socket.dispose();
+
+    await Future.wait<dynamic>([
+      _clientMessageStreamController?.close() ?? Future.value(),
+      _clientMessageStreamSubscription?.cancel() ?? Future.value(),
+    ]);
+
+    _clientMessageStreamController = null;
+    _clientMessageStreamSubscription = null;
+  }
 
   void send({
     required String roomName,

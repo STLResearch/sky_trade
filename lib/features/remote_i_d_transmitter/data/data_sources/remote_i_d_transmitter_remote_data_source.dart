@@ -12,7 +12,8 @@ import 'package:sky_trade/core/resources/strings/networking.dart'
         signNonceHeaderKey;
 import 'package:sky_trade/core/utils/clients/network_client.dart'
     show SocketIOClient;
-import 'package:sky_trade/core/utils/enums/networking.dart' show ConnectionState;
+import 'package:sky_trade/core/utils/enums/networking.dart'
+    show ConnectionState;
 import 'package:sky_trade/core/utils/extensions/remote_i_d_transmission_entity_extensions.dart';
 import 'package:sky_trade/core/utils/typedefs/networking.dart' show Signature;
 import 'package:sky_trade/features/remote_i_d_receiver/domain/entities/remote_i_d_entity.dart'
@@ -27,7 +28,7 @@ abstract interface class RemoteIDTransmitterRemoteDataSource {
   });
 
   void transmit({
-    required RemoteIDEntity remoteIDEntity,
+    required Set<RemoteIDEntity> remoteIDEntities,
     required DeviceEntity deviceEntity,
     required Uint8List rawData,
     required Signature signature,
@@ -59,11 +60,12 @@ final class RemoteIDTransmitterRemoteDataSourceImplementation
 
   @override
   void transmit({
-    required RemoteIDEntity remoteIDEntity,
+    required Set<RemoteIDEntity> remoteIDEntities,
     required DeviceEntity deviceEntity,
     required Uint8List rawData,
     required Signature signature,
-  }) =>
+  }) {
+    for (final remoteIDEntity in remoteIDEntities) {
       _socketIOClient.send(
         roomName: remoteIDTransmissionRoom,
         data: RemoteTransmissionEntity(
@@ -80,6 +82,8 @@ final class RemoteIDTransmitterRemoteDataSourceImplementation
           if (signature.email != null) emailAddressHeaderKey: signature.email,
         },
       );
+    }
+  }
 
   @override
   void stopTransmitter() => _socketIOClient.close();

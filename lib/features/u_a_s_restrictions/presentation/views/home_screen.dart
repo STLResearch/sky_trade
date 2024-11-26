@@ -61,10 +61,7 @@ import 'package:sky_trade/features/location/presentation/blocs/location_service_
 import 'package:sky_trade/features/remote_i_d_receiver/presentation/blocs/remote_i_d_receiver_bloc/remote_i_d_receiver_bloc.dart'
     show RemoteIDReceiverBloc, RemoteIDReceiverEvent, RemoteIDReceiverState;
 import 'package:sky_trade/features/remote_i_d_transmitter/presentation/blocs/remote_i_d_transmitter_bloc/remote_i_d_transmitter_bloc.dart'
-    show
-        RemoteIDTransmitterBloc,
-        RemoteIDTransmitterEvent,
-        RemoteIDTransmitterState;
+    show RemoteIDTransmitterBloc, RemoteIDTransmitterEvent;
 import 'package:sky_trade/features/u_a_s_activity/presentation/blocs/u_a_s_activity_bloc/u_a_s_activity_bloc.dart'
     show UASActivityBloc, UASActivityEvent, UASActivityState;
 import 'package:sky_trade/features/u_a_s_restrictions/domain/entities/restriction_entity.dart'
@@ -338,15 +335,6 @@ class _HomeScreenState extends State<HomeScreen> {
               );
             },
           ),
-          BlocListener<RemoteIDTransmitterBloc, RemoteIDTransmitterState>(
-            listener: (_, remoteIDTransmitterState) {
-              remoteIDTransmitterState.whenOrNull(
-                stoppedTransmitter: () {
-                  _startTransmitter();
-                },
-              );
-            },
-          ),
           BlocListener<UASRestrictionsBloc, UASRestrictionsState>(
             listener: (_, uASRestrictionsState) {
               uASRestrictionsState.whenOrNull(
@@ -402,15 +390,6 @@ class _HomeScreenState extends State<HomeScreen> {
                           geoHash: geoHash,
                         ),
                       );
-                },
-              );
-            },
-          ),
-          BlocListener<UASActivityBloc, UASActivityState>(
-            listener: (_, uASActivityState) {
-              uASActivityState.whenOrNull(
-                stoppedListeningUASActivities: () {
-                  _listenUASActivities();
                 },
               );
             },
