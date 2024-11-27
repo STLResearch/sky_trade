@@ -33,6 +33,7 @@ const skyTradeTermsOfServiceUrl = 'https://docs.sky.trade/terms.htm';
 // Base URL
 const skyTradeServerHttpBaseUrl = 'SKYTRADE_SERVER_HTTP_BASE_URL';
 const skyTradeServerSignUrl = 'SKYTRADE_SERVER_SIGN_URL';
+const skyTradeServerHttpSignUrl = 'SKYTRADE_SERVER_HTTP_SIGN_URL';
 const skyTradeServerSocketIOBaseUrl = 'SKYTRADE_SERVER_SOCKET_IO_BASE_URL';
 // Paths
 const restrictionsPath = '/restrictions';

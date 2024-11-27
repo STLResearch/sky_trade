@@ -19,6 +19,7 @@ import 'package:sky_trade/core/resources/strings/networking.dart'
         signatureSixthLine,
         signatureThirdLine,
         skyTradeServerHttpBaseUrl,
+        skyTradeServerHttpSignUrl,
         skyTradeServerSignUrl;
 import 'package:sky_trade/core/resources/strings/special_characters.dart'
     show emptyString, newLine, whiteSpace;
@@ -86,6 +87,7 @@ mixin class SignatureHandler {
     required String nonce,
     required String userAddress,
     String? path,
+    bool? useOldUri,
   }) =>
       dotenv.env[skyTradeServerSignUrl]! +
       whiteSpace +
@@ -99,7 +101,10 @@ mixin class SignatureHandler {
       newLine +
       signatureFourthLine +
       whiteSpace +
-      dotenv.env[skyTradeServerHttpBaseUrl]! +
+      switch (useOldUri ?? false) {
+        true => dotenv.env[skyTradeServerHttpSignUrl]!,
+        false => dotenv.env[skyTradeServerHttpBaseUrl]!
+      } +
       (path ?? emptyString) +
       newLine +
       signatureFifthLine +

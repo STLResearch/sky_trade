@@ -54,20 +54,22 @@ final class RemoteIDTransmitterRemoteDataSourceImplementation
     required Set<RemoteIDEntity> remoteIDEntities,
     required DeviceEntity deviceEntity,
     required Uint8List rawData,
-  }) async {
-    for (final remoteIDEntity in remoteIDEntities) {
-      await _socketIOClient.send(
-        roomName: remoteIDTransmissionRoom,
-        data: RemoteTransmissionEntity(
-          remoteData: remoteIDEntity,
-          isTest: false,
-          device: deviceEntity,
-          rawData: rawData,
-        ).toRemoteTransmissionModel().toJson(),
-        includeSignature: true,
+  }) =>
+      Future.forEach(
+        Set<RemoteIDEntity>.from(
+          remoteIDEntities,
+        ),
+        (remoteIDEntity) => _socketIOClient.send(
+          roomName: remoteIDTransmissionRoom,
+          data: RemoteTransmissionEntity(
+            remoteData: remoteIDEntity,
+            isTest: false,
+            device: deviceEntity,
+            rawData: rawData,
+          ).toRemoteTransmissionModel().toJson(),
+          includeSignature: true,
+        ),
       );
-    }
-  }
 
   @override
   void stopTransmitter() => _socketIOClient.close();

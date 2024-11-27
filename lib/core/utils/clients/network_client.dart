@@ -254,6 +254,7 @@ final class SocketIOClient with SignatureHandler {
       issuedAt: issuedAt,
       nonce: nonce,
       userAddress: userAddress,
+      useOldUri: true,
     );
     final email = await computeUserEmail();
     final sign = await signMessage(
