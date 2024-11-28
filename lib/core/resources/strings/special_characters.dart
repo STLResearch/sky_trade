@@ -16,5 +16,6 @@ const hyphen = '-';
 const newLine = '\n';
 const at = '@';
 const question = '?';
+const plus = '+';
 const openingParenthesis = '(';
 const closingParenthesis = ')';

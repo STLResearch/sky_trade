@@ -11,7 +11,7 @@ import 'package:sky_trade/features/referral/data/models/referral_model.dart'
     show ReferralModel;
 
 abstract interface class ReferralRemoteDataSource {
-  Future<ReferralModel> sendReferral({
+  Future<ReferralModel> sendReferralCodeTo({
     required String email,
   });
 }
@@ -26,7 +26,7 @@ class ReferralRemoteDataSourceImplementation
   final HttpClient _httpClient;
 
   @override
-  Future<ReferralModel> sendReferral({
+  Future<ReferralModel> sendReferralCodeTo({
     required String email,
   }) async =>
       handleResponse<ReferralException, Map<String, dynamic>, ReferralModel>(

@@ -4,7 +4,7 @@ import 'package:sky_trade/features/referral/domain/entities/referral_entity.dart
     show ReferralEntity;
 
 abstract interface class ReferralRepository {
-  Future<Either<ReferralFailure, ReferralEntity>> sendReferral({
+  Future<Either<ReferralFailure, ReferralEntity>> sendReferralCodeTo({
     required String email,
   });
 }

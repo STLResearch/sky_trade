@@ -1275,23 +1275,23 @@ abstract class AppLocalizations {
   /// **'Earn'**
   String get earn;
 
-  /// No description provided for @shareCardDescription.
+  /// No description provided for @sendYourInviteLinkOrCodeToYourFriendsAndExplainToThemHowCoolSkyTradeIs.
   ///
   /// In en, this message translates to:
   /// **'Send your invite link or code to your friends and explain to them how cool SkyTrade is'**
-  String get shareCardDescription;
+  String get sendYourInviteLinkOrCodeToYourFriendsAndExplainToThemHowCoolSkyTradeIs;
 
-  /// No description provided for @registerAndClaimCardDescription.
+  /// No description provided for @letThemRegisterAndClaimTheirAirspacesUsingYourReferralLinkOrCode.
   ///
   /// In en, this message translates to:
   /// **'Let them register and claim their airspaces using your referral link or code'**
-  String get registerAndClaimCardDescription;
+  String get letThemRegisterAndClaimTheirAirspacesUsingYourReferralLinkOrCode;
 
-  /// No description provided for @earnCardDescription.
+  /// No description provided for @youAndYourFriendsAreRewardedWith50CreditsAndMore.
   ///
   /// In en, this message translates to:
   /// **'You and your friends are rewarded with 50 credits and more'**
-  String get earnCardDescription;
+  String get youAndYourFriendsAreRewardedWith50CreditsAndMore;
 
   /// No description provided for @shareTheReferralLinkOrCode.
   ///
@@ -1316,6 +1316,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Invite your friends'**
   String get inviteYourFriends;
+
+  /// No description provided for @emailAddress.
+  ///
+  /// In en, this message translates to:
+  /// **'email address'**
+  String get emailAddress;
 
   /// No description provided for @shareYourUniqueQrCode.
   ///
@@ -1401,77 +1407,83 @@ abstract class AppLocalizations {
   /// **'Current Period Challenge Leaderboard'**
   String get currentPeriodChallengeLeaderboard;
 
-  /// No description provided for @skyPointsEarningSource1.
+  /// No description provided for @accountRegistrationNoKycRequiredToGetThesePoints.
   ///
   /// In en, this message translates to:
   /// **'Account Registration (no KYC required to get these points)'**
-  String get skyPointsEarningSource1;
+  String get accountRegistrationNoKycRequiredToGetThesePoints;
 
-  /// No description provided for @skyPointsEarningSource2.
+  /// No description provided for @claimYourAirspaceFullClaimVerifiedAirspaceThisIsPerEveryUniqueClaimedAirspaceKycCompletedIsAPreconditionForThisAllocation.
   ///
   /// In en, this message translates to:
   /// **'Claim your airspace (full claim/verified airspace). This is per every unique claimed airspace. KYC completed is a precondition for this allocation.'**
-  String get skyPointsEarningSource2;
+  String get claimYourAirspaceFullClaimVerifiedAirspaceThisIsPerEveryUniqueClaimedAirspaceKycCompletedIsAPreconditionForThisAllocation;
 
-  /// No description provided for @skyPointsEarningSource3.
+  /// No description provided for @forClaimedAirSpaceWhichIsFullyValidatedDoneByTheReferredAccount.
   ///
   /// In en, this message translates to:
   /// **'For claimed air space which is fully validated done by the referred account.'**
-  String get skyPointsEarningSource3;
+  String get forClaimedAirSpaceWhichIsFullyValidatedDoneByTheReferredAccount;
 
-  /// No description provided for @skyPointsEarningSource4.
+  /// No description provided for @referAFriendFriendRegistersAnAccountButKycOnThatFriendsAccountIsNotRequiredForTheIntroducingAccountToGetTheirSkyPointsFraudulentActivityWillBeMinimizedByTAndCsWhereWeSayWeWillDeductPointsForFraudulentActsIfDiscovered.
   ///
   /// In en, this message translates to:
   /// **'Refer a friend (friend registers an account, but KYC on that friend’s account is not required for the introducing account to get their SKY points, fraudulent activity will be minimized by T&Cs where we say we will deduct points for fraudulent acts if discovered)'**
-  String get skyPointsEarningSource4;
+  String get referAFriendFriendRegistersAnAccountButKycOnThatFriendsAccountIsNotRequiredForTheIntroducingAccountToGetTheirSkyPointsFraudulentActivityWillBeMinimizedByTAndCsWhereWeSayWeWillDeductPointsForFraudulentActsIfDiscovered;
 
-  /// No description provided for @skyPointsEarningSource5.
+  /// No description provided for @forMakingAFirstValidBidInTheAuctionHouse.
   ///
   /// In en, this message translates to:
   /// **'For making a first valid bid in the Auction House'**
-  String get skyPointsEarningSource5;
+  String get forMakingAFirstValidBidInTheAuctionHouse;
 
-  /// No description provided for @skyPointsEarningSource6.
+  /// No description provided for @claimOrReferOneAirspacesInASpecificAreaNewYorkManhattanAndBoroughsTexasGarlandMurphyPlanoRichardsonMesquiteDallasRowlettColonyCollegeStationFloridaClermontNewPortRicheyValricoWinterHavenTampaBrandonRiverviewSeffnerArizonaPhoenixGlendalePeoriaArkansasFarmingtonBentonvilleRogersPeaRidgeVirginiaVirginiaBeachUtahLindonHerrimanNorthCarolinaRaeford.
   ///
   /// In en, this message translates to:
   /// **'Claim or refer 1 airspaces in a specific area:  New York: Manhattan & Boroughs Texas: Garland, Murphy, Plano, Richardson, Mesquite, Dallas, Rowlett, Colony, College Station Florida: Clermont, New Port Richey, Valrico, Winter Haven, Tampa, Brandon, Riverview, Seffner Arizona: Phoenix, Glendale, Peoria Arkansas: Farmington, Bentonville, Rogers, Pea Ridge Virginia: Virginia Beach Utah: Lindon, Herriman North Carolina: Raeford'**
-  String get skyPointsEarningSource6;
+  String get claimOrReferOneAirspacesInASpecificAreaNewYorkManhattanAndBoroughsTexasGarlandMurphyPlanoRichardsonMesquiteDallasRowlettColonyCollegeStationFloridaClermontNewPortRicheyValricoWinterHavenTampaBrandonRiverviewSeffnerArizonaPhoenixGlendalePeoriaArkansasFarmingtonBentonvilleRogersPeaRidgeVirginiaVirginiaBeachUtahLindonHerrimanNorthCarolinaRaeford;
 
-  /// No description provided for @skyPointsEarningSource7.
+  /// No description provided for @trackADroneWithTheRadarApp.
   ///
   /// In en, this message translates to:
   /// **'Track a drone with the radar app'**
-  String get skyPointsEarningSource7;
+  String get trackADroneWithTheRadarApp;
 
-  /// No description provided for @skyPointsEarningSource8.
+  /// No description provided for @trackADroneWithTheRadarAppInASpecificAreaTexasGarlandMurphyPlanoRichardsonMesquiteDallasRowlettColonyCollegeStationFloridaClermontNewPortRicheyValricoWinterHavenTampaBrandonRiverviewSeffnerArizonaPhoenixGlendalePeoriaArkansasFarmingtonBentonvilleRogersPeaRidgeVirginiaVirginiaBeachUtahLindonHerrimanNorthCarolinaRaeford.
   ///
   /// In en, this message translates to:
   /// **'Track a drone with the radar app in a specific area:  Texas: Garland, Murphy, Plano, Richardson, Mesquite, Dallas, Rowlett, Colony, College Station Florida: Clermont, New Port Richey, Valrico, Winter Haven, Tampa, Brandon, Riverview, Seffner Arizona: Phoenix, Glendale, Peoria Arkansas: Farmington, Bentonville, Rogers, Pea Ridge Virginia: Virginia Beach Utah: Lindon, Herriman North Carolina: Raeford'**
-  String get skyPointsEarningSource8;
+  String get trackADroneWithTheRadarAppInASpecificAreaTexasGarlandMurphyPlanoRichardsonMesquiteDallasRowlettColonyCollegeStationFloridaClermontNewPortRicheyValricoWinterHavenTampaBrandonRiverviewSeffnerArizonaPhoenixGlendalePeoriaArkansasFarmingtonBentonvilleRogersPeaRidgeVirginiaVirginiaBeachUtahLindonHerrimanNorthCarolinaRaeford;
 
-  /// No description provided for @skyPoints5.
+  /// No description provided for @fiveSkyPoints.
   ///
   /// In en, this message translates to:
   /// **'5 SKY points'**
-  String get skyPoints5;
+  String get fiveSkyPoints;
 
-  /// No description provided for @skyPoints100.
+  /// No description provided for @hundredSkyPoints.
   ///
   /// In en, this message translates to:
   /// **'100 SKY points'**
-  String get skyPoints100;
+  String get hundredSkyPoints;
 
-  /// No description provided for @boostingSkyPointsEgx3.
+  /// No description provided for @boostingSkyPointsEgXThree.
   ///
   /// In en, this message translates to:
   /// **'Boosting: SKY points eg x 3'**
-  String get boostingSkyPointsEgx3;
+  String get boostingSkyPointsEgXThree;
 
-  /// No description provided for @skyPoints100ToYouAnd100SkyPointsToYourFriend.
+  /// No description provided for @hundredSkyPointsToYouAndHundredSkyPointsToYourFriendThisIsPartOfThePointsAllocationTwoPlusTenPercentBonusOnTheReferredIncomeStreamFromAirRightRental.
   ///
   /// In en, this message translates to:
   /// **'100 SKY points to you and 100 SKY points to your friend (this is part of the points allocation 2) + 10% bonus on the referred income stream from air-right rental'**
-  String get skyPoints100ToYouAnd100SkyPointsToYourFriend;
+  String get hundredSkyPointsToYouAndHundredSkyPointsToYourFriendThisIsPartOfThePointsAllocationTwoPlusTenPercentBonusOnTheReferredIncomeStreamFromAirRightRental;
+
+  /// No description provided for @fiveSkyPointsPerDrone.
+  ///
+  /// In en, this message translates to:
+  /// **'5 SKY points/drone'**
+  String get fiveSkyPointsPerDrone;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

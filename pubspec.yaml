@@ -154,3 +154,8 @@ flutter:
           weight: 400
         - asset: assets/fonts/arial/Arial-Bold-700.ttf
           weight: 700
+
+    - family: Inter
+      fonts:
+        - asset: assets/fonts/inter/Inter-SemiBold-600.otf
+          weight: 600

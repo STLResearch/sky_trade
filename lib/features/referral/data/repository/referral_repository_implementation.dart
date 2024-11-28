@@ -17,11 +17,11 @@ final class ReferralRepositoryImplementation
   final ReferralRemoteDataSource _referralRemoteDataSource;
 
   @override
-  Future<Either<ReferralFailure, ReferralEntity>> sendReferral({
+  Future<Either<ReferralFailure, ReferralEntity>> sendReferralCodeTo({
     required String email,
   }) =>
       handleData<ReferralFailure, ReferralEntity>(
-        dataSourceOperation: () => _referralRemoteDataSource.sendReferral(
+        dataSourceOperation: () => _referralRemoteDataSource.sendReferralCodeTo(
           email: email,
         ),
         onSuccess: (referralEntity) => referralEntity,

@@ -119,6 +119,10 @@ class $AssetsSvgsGen {
   /// File path: assets/svgs/danger.svg
   SvgGenImage get danger => const SvgGenImage('assets/svgs/danger.svg');
 
+  /// File path: assets/svgs/dotted_line.svg
+  SvgGenImage get dottedLine =>
+      const SvgGenImage('assets/svgs/dotted_line.svg');
+
   /// File path: assets/svgs/earth.svg
   SvgGenImage get earth => const SvgGenImage('assets/svgs/earth.svg');
 
@@ -166,10 +170,6 @@ class $AssetsSvgsGen {
 
   /// File path: assets/svgs/insights.svg
   SvgGenImage get insights => const SvgGenImage('assets/svgs/insights.svg');
-
-  /// File path: assets/svgs/invite_friends.svg
-  SvgGenImage get inviteFriends =>
-      const SvgGenImage('assets/svgs/invite_friends.svg');
 
   /// File path: assets/svgs/location_danger.svg
   SvgGenImage get locationDanger =>
@@ -234,13 +234,12 @@ class $AssetsSvgsGen {
   SvgGenImage get referralGoogle =>
       const SvgGenImage('assets/svgs/referral_google.svg');
 
-  /// File path: assets/svgs/referral_linkedIn.svg
+  /// File path: assets/svgs/referral_linked_in.svg
   SvgGenImage get referralLinkedIn =>
-      const SvgGenImage('assets/svgs/referral_linkedIn.svg');
+      const SvgGenImage('assets/svgs/referral_linked_in.svg');
 
-  /// File path: assets/svgs/referral_twitter.svg
-  SvgGenImage get referralTwitter =>
-      const SvgGenImage('assets/svgs/referral_twitter.svg');
+  /// File path: assets/svgs/referral_x.svg
+  SvgGenImage get referralX => const SvgGenImage('assets/svgs/referral_x.svg');
 
   /// File path: assets/svgs/restricted.svg
   SvgGenImage get restricted => const SvgGenImage('assets/svgs/restricted.svg');
@@ -253,6 +252,10 @@ class $AssetsSvgsGen {
 
   /// File path: assets/svgs/share.svg
   SvgGenImage get share => const SvgGenImage('assets/svgs/share.svg');
+
+  /// File path: assets/svgs/share_invite.svg
+  SvgGenImage get shareInvite =>
+      const SvgGenImage('assets/svgs/share_invite.svg');
 
   /// File path: assets/svgs/sky_trade_logo.svg
   SvgGenImage get skyTradeLogo =>
@@ -296,6 +299,7 @@ class $AssetsSvgsGen {
     cloudAlt,
     community,
     danger,
+    dottedLine,
     earth,
     flight,
     gift,
@@ -310,7 +314,6 @@ class $AssetsSvgsGen {
     infoProhibited,
     infoRestricted,
     insights,
-    inviteFriends,
     locationDanger,
     locationProhibited,
     locationRestricted,
@@ -329,11 +332,12 @@ class $AssetsSvgsGen {
     referralGift,
     referralGoogle,
     referralLinkedIn,
-    referralTwitter,
+    referralX,
     restricted,
     search,
     settings,
     share,
+    shareInvite,
     skyTradeLogo,
     skyTradeRadarLogo,
     storm,

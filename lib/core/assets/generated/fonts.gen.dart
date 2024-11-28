@@ -13,6 +13,9 @@ class FontFamily {
   /// Font family: Arial
   static const String arial = 'Arial';
 
+  /// Font family: Inter
+  static const String inter = 'Inter';
+
   /// Font family: Poppins
   static const String poppins = 'Poppins';
 }
