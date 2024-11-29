@@ -205,6 +205,9 @@ class $AssetsSvgsGen {
   SvgGenImage get meatballsMenu =>
       const SvgGenImage('assets/svgs/meatballs_menu.svg');
 
+  /// File path: assets/svgs/menu_gift.svg
+  SvgGenImage get menuGift => const SvgGenImage('assets/svgs/menu_gift.svg');
+
   /// File path: assets/svgs/my_location_followed.svg
   SvgGenImage get myLocationFollowed =>
       const SvgGenImage('assets/svgs/my_location_followed.svg');
@@ -323,6 +326,7 @@ class $AssetsSvgsGen {
     mapLayerDark,
     mapLayerSatellite,
     meatballsMenu,
+    menuGift,
     myLocationFollowed,
     myLocationNotFollowed,
     nextArrow,

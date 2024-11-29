@@ -21,7 +21,7 @@ import 'package:sky_trade/core/assets/generated/assets.gen.dart' show Assets;
 import 'package:sky_trade/core/resources/colors.dart' show hex1D1E2D;
 import 'package:sky_trade/core/resources/numbers/ui.dart' show twentyDotNil;
 import 'package:sky_trade/core/resources/strings/routes.dart'
-    show helpRoutePath, insightsRoutePath, settingsRoutePath;
+    show helpRoutePath, insightsRoutePath, referralRoutePath, settingsRoutePath;
 import 'package:sky_trade/core/utils/enums/ui.dart' show MenuItem;
 import 'package:sky_trade/core/utils/extensions/build_context_extensions.dart';
 import 'package:sky_trade/features/auth/presentation/blocs/auth_0_logout_bloc/auth_0_logout_bloc.dart'
@@ -81,6 +81,7 @@ class Menu extends StatelessWidget {
   }) =>
       switch (MenuItem.values[index]) {
         MenuItem.insights => Assets.svgs.insights.svg(),
+        MenuItem.referral => Assets.svgs.menuGift.svg(),
         MenuItem.about => Assets.svgs.iconDroneAbout.svg(),
         MenuItem.settings => Assets.svgs.settings.svg(),
         MenuItem.help => Assets.svgs.help.svg(),
@@ -96,6 +97,11 @@ class Menu extends StatelessWidget {
               context,
             ).pushNamed(
               insightsRoutePath,
+            ),
+        MenuItem.referral => () => Navigator.of(
+              context,
+            ).pushNamed(
+              referralRoutePath,
             ),
         MenuItem.about => () => AboutDialog.show(
               context,
@@ -143,6 +149,7 @@ class Menu extends StatelessWidget {
   }) =>
       switch (MenuItem.values[index]) {
         MenuItem.insights => context.localize.insights,
+        MenuItem.referral => context.localize.referralProgram,
         MenuItem.about => context.localize.about,
         MenuItem.settings => context.localize.settings,
         MenuItem.help => context.localize.help,

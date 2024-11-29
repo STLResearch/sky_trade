@@ -14,6 +14,7 @@ import 'package:sky_trade/features/drone_insights/presentation/views/insights_sc
     show InsightsScreen;
 import 'package:sky_trade/features/help/presentation/views/help_screen.dart';
 import 'package:sky_trade/features/internet_connection_checker/presentation/screens/no_internet_connection_screen.dart';
+import 'package:sky_trade/features/referral/presentation/views/referral_screen.dart';
 import 'package:sky_trade/features/settings/presentation/views/settings_screen.dart'
     show SettingsScreen;
 import 'package:sky_trade/features/u_a_s_restrictions/presentation/views/home_screen.dart'
@@ -31,6 +32,7 @@ Route routes(RouteSettings settings) => MaterialPageRoute(
         helpRoutePath => const HelpScreen(),
         insightsRoutePath => const InsightsScreen(),
         settingsRoutePath => const SettingsScreen(),
+        referralRoutePath => const ReferralScreen(),
         _ => const ErrorScreen(
             reason: ErrorReason.unknownNavigationRoute,
           ),
