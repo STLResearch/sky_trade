@@ -4,7 +4,8 @@ import 'package:bloc/bloc.dart' show Bloc, Emitter;
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:sky_trade/core/resources/strings/special_characters.dart'
     show emptyString;
-import 'package:sky_trade/core/utils/enums/networking.dart' show ConnectionState;
+import 'package:sky_trade/core/utils/enums/networking.dart'
+    show ConnectionState;
 import 'package:sky_trade/features/u_a_s_activity/domain/entities/u_a_s_entity.dart'
     show UASEntity;
 import 'package:sky_trade/features/u_a_s_activity/domain/repositories/u_a_s_activity_repository.dart';
@@ -62,7 +63,9 @@ class UASActivityBloc extends Bloc<UASActivityEvent, UASActivityState> {
     _ListenUASActivities event,
     Emitter<UASActivityState> emit,
   ) async {
-    if (_establishingListeningUASActivities) return;
+    if (_establishingListeningUASActivities || _startedListeningUASActivities) {
+      return;
+    }
 
     emit(
       const UASActivityState.establishingListeningUASActivities(),
@@ -84,6 +87,7 @@ class UASActivityBloc extends Bloc<UASActivityEvent, UASActivityState> {
             );
 
             _startedListeningUASActivities = true;
+            _establishingListeningUASActivities = false;
           }
 
           _geoHashStreamController ??= StreamController<String>();
@@ -99,14 +103,7 @@ class UASActivityBloc extends Bloc<UASActivityEvent, UASActivityState> {
               }
             },
           );
-        } else if (connectionState == ConnectionState.disconnected ||
-            connectionState == ConnectionState.connectionError ||
-            connectionState == ConnectionState.connectionTimeout ||
-            connectionState == ConnectionState.error) {
-          // Introduce a disconnected reason to know if disconnection was
-          // clean or unclean. Some inherent issues may happen until we
-          // implement this
-
+        } else if (connectionState == ConnectionState.destroyed) {
           await _cancelListeningGeoHash();
 
           add(

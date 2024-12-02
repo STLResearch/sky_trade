@@ -142,10 +142,12 @@ enum RegionType {
 enum ConnectionState {
   connected,
   connectionError,
-  connectionTimeout,
-  connecting,
   disconnected,
   error,
+  reconnecting,
+  reconnectionFailed,
+  reconnectionError,
+  destroyed,
 }
 
 enum BluetoothAdapterState {

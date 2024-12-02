@@ -19,7 +19,7 @@ app:
     - purpose: icon
       uri: ../fastlane/metadata/android/en-GB/images/icon.png
 release:
-  address: 3p1GrfqJapeeHEAptA7hUdkvvyj2SKvvqxSXtG4DStQ8
+  address: H4rV9HBmy6aSoSC4Jk6Z8zwva62y8x9VMdVZirx2QBk8
   media:
     - purpose: icon
       uri: ../fastlane/metadata/android/en-GB/images/icon.png
@@ -39,14 +39,14 @@ release:
       name: SkyTrade
       short_description: Navigate the skies
       long_description: Navigate the skies with confidence using SkyTrade Air Management. Instantly access maps of restricted, controlled, and ready-to-fly zones with real-time updates. Plan your flights efficiently with detailed airspace information and stay compliant with aviation regulations. Download now for smarter, safer flying
-      new_in_version: The SkyTrade mobile app is now available for use
+      new_in_version: We made a couple of bug fixes and improvements
       saga_features: ''
 solana_mobile_dapp_publisher_portal:
   google_store_package: mobile.trade.sky
   testing_instructions: The app uses Web3Auth for authentication. Kindly register with an email. A code will be sent to the email. Go to the email sent and click on Approve login request then go back to the app. You will either see a prompt and click Continue or you will just be signed in automatically after you click Approve login request. If you register an account with email passwordless, make sure to also login with the same method you used to register the account else login will fail with an error
 lastSubmittedVersionOnChain:
-  address: 3p1GrfqJapeeHEAptA7hUdkvvyj2SKvvqxSXtG4DStQ8
-  version_code: 2
-  apk_hash: AaRaqY58yn76jr9Oghcp+TuExv0AfY4LSEyPSlFrpgE=
+  address: H4rV9HBmy6aSoSC4Jk6Z8zwva62y8x9VMdVZirx2QBk8
+  version_code: 3
+  apk_hash: pW/mcKmwGHjAqCvlrfnf6bMwa4xmy0J5dP7OD+JoJaQ=
 lastUpdatedVersionOnStore:
-  address: 3p1GrfqJapeeHEAptA7hUdkvvyj2SKvvqxSXtG4DStQ8
+  address: H4rV9HBmy6aSoSC4Jk6Z8zwva62y8x9VMdVZirx2QBk8

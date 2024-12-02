@@ -63,10 +63,6 @@ const uasActivityRoom = 'get-sql-drone-data';
 const remoteIDTransmissionEvent = 'store-drone-data-response';
 const remoteIDTransmissionRoom = 'store-drone-data';
 
-const connectionTimeoutEvent = 'connect_timeout';
-const connectingEvent = 'connecting';
-const reconnectingEvent = 'reconnecting';
-
 // Request and response header and body keys and values
 // Headers
 const contentTypeHeaderKey = 'Content-Type';

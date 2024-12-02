@@ -21,7 +21,7 @@ class MainActivity : FlutterActivity() {
         EventChannel(
             flutterEngine.dartExecutor.binaryMessenger,
             WIFI_ADAPTER_STATE_BROADCAST_RECEIVER_CHANNEL_NAME
-        ).setStreamHandler(WifiAdapterStateBroadcastReceiver(applicationContext))
+        ).setStreamHandler(WifiAdapterStateBroadcastReceiver(this@MainActivity))
 
     private fun registerInAppUpdateManagerUsing(flutterEngine: FlutterEngine) = MethodChannel(
         flutterEngine.dartExecutor.binaryMessenger,

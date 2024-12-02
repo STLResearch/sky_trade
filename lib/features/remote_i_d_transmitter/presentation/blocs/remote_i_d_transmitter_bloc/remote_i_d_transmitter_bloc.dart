@@ -3,8 +3,10 @@ import 'dart:typed_data' show Uint8List;
 
 import 'package:bloc/bloc.dart' show Bloc, Emitter;
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:sky_trade/core/resources/numbers/networking.dart' show nilDotNil;
-import 'package:sky_trade/core/utils/enums/networking.dart' show ConnectionState;
+import 'package:sky_trade/core/resources/numbers/networking.dart'
+    show nilDotNil;
+import 'package:sky_trade/core/utils/enums/networking.dart'
+    show ConnectionState;
 import 'package:sky_trade/core/utils/typedefs/networking.dart'
     show RemoteIDSetDeviceCoordinatesTuple;
 import 'package:sky_trade/features/remote_i_d_receiver/domain/entities/remote_i_d_entity.dart'
@@ -67,7 +69,7 @@ class RemoteIDTransmitterBloc
     _StartTransmitter event,
     Emitter<RemoteIDTransmitterState> emit,
   ) async {
-    if (_startingTransmitter) return;
+    if (_startingTransmitter || _startedTransmitter) return;
 
     emit(
       const RemoteIDTransmitterState.startingTransmitter(),
@@ -87,6 +89,7 @@ class RemoteIDTransmitterBloc
             );
 
             _startedTransmitter = true;
+            _startingTransmitter = false;
           }
 
           _remoteIDStreamController ??=
@@ -94,26 +97,17 @@ class RemoteIDTransmitterBloc
           _remoteIDStreamSubscription ??=
               _remoteIDStreamController?.stream.listen(
             (remoteIDSetDeviceCoordinatesTuple) {
-              for (final remoteIDEntity
-                  in remoteIDSetDeviceCoordinatesTuple.remoteIDEntities) {
-                _remoteIDTransmitterRepository.transmit(
-                  remoteIDEntity: remoteIDEntity,
-                  deviceEntity: remoteIDSetDeviceCoordinatesTuple.deviceEntity,
-                  rawData: Uint8List.fromList(
-                    [],
-                  ),
-                );
-              }
+              _remoteIDTransmitterRepository.transmit(
+                remoteIDEntities:
+                    remoteIDSetDeviceCoordinatesTuple.remoteIDEntities,
+                deviceEntity: remoteIDSetDeviceCoordinatesTuple.deviceEntity,
+                rawData: Uint8List.fromList(
+                  [],
+                ),
+              );
             },
           );
-        } else if (connectionState == ConnectionState.disconnected ||
-            connectionState == ConnectionState.connectionError ||
-            connectionState == ConnectionState.connectionTimeout ||
-            connectionState == ConnectionState.error) {
-          // Introduce a disconnected reason to know if disconnection was
-          // clean or unclean. Some inherent issues may happen until we
-          // implement this
-
+        } else if (connectionState == ConnectionState.destroyed) {
           await _cancelListeningRemoteID();
 
           add(

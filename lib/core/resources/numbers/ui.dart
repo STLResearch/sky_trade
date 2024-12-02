@@ -58,6 +58,7 @@ const nineDotNil = 9.0;
 const tenDotNil = 10.0;
 const elevenDotNil = 11.0;
 const twelveDotNil = 12.0;
+const twelveDotFive = 12.5;
 const thirteenDotNil = 13.0;
 const thirteenDotFive = 13.5;
 const fourteenDotNil = 14.0;

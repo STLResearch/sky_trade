@@ -210,30 +210,7 @@ final class AuthRepositoryImplementation
   Future<Either<CheckSkyTradeUserFailure, SkyTradeUserEntity>>
       checkSkyTradeUserExists() =>
           handleData<CheckSkyTradeUserFailure, SkyTradeUserEntity>(
-            dataSourceOperation: () async {
-              final issuedAt = computeIssuedAt();
-              final nonce = computeNonce();
-              final userAddress = await computeUserAddress();
-              final message = computeMessageToSignUsing(
-                issuedAt: issuedAt,
-                nonce: nonce,
-                userAddress: userAddress,
-              );
-              final email = await computeUserEmail();
-              final sign = await signMessage(
-                message,
-              );
-
-              return _authRemoteDataSource.checkSkyTradeUserExistsUsing(
-                signature: (
-                  sign: sign,
-                  issuedAt: issuedAt,
-                  nonce: nonce,
-                  address: userAddress,
-                  email: email,
-                ),
-              );
-            },
+            dataSourceOperation: _authRemoteDataSource.checkSkyTradeUserExists,
             onSuccess: (skyTradeUserEntity) => skyTradeUserEntity,
             onFailure: (e) {
               if (e is UnauthorizedException) {

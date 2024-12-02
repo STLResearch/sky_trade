@@ -18,14 +18,17 @@ import 'package:sky_trade/core/resources/strings/networking.dart'
         acceptHeaderKey,
         applicationJsonHeaderValue,
         bodyKey,
-        connectingEvent,
-        connectionTimeoutEvent,
         contentTypeHeaderKey,
+        emailAddressHeaderKey,
         headersKey,
-        reconnectingEvent,
+        signAddressHeaderKey,
+        signHeaderKey,
+        signIssueAtHeaderKey,
+        signNonceHeaderKey,
         skyTradeServerHttpBaseUrl,
         skyTradeServerSocketIOBaseUrl,
         websocketTransport;
+import 'package:sky_trade/core/utils/clients/signature_handler.dart';
 import 'package:sky_trade/core/utils/enums/networking.dart'
     show ConnectionState, RequestMethod;
 import 'package:sky_trade/core/utils/typedefs/networking.dart'
@@ -33,7 +36,7 @@ import 'package:sky_trade/core/utils/typedefs/networking.dart'
 import 'package:socket_io_client/socket_io_client.dart'
     show DartySocket, OptionBuilder, Socket, io;
 
-final class SocketIOClient {
+final class SocketIOClient with SignatureHandler {
   factory SocketIOClient() => SocketIOClient._();
 
   SocketIOClient._()
@@ -44,7 +47,6 @@ final class SocketIOClient {
                 websocketTransport,
               ])
               .disableAutoConnect()
-              .disableReconnection()
               .setTimeout(
                 requestConnectTimeoutMilliSeconds,
               )
@@ -83,6 +85,10 @@ final class SocketIOClient {
               );
             }
 
+            if (_clientMessageStreamSubscription?.isPaused ?? false) {
+              _clientMessageStreamSubscription?.resume();
+            }
+
             _clientMessageStreamController ??= StreamController<
                 Either<TerminateSocketIO, SocketIOClientMessage>>();
             _clientMessageStreamSubscription ??= _messageStreamSubscription;
@@ -90,50 +96,34 @@ final class SocketIOClient {
         )
         ..onConnectError(
           (_) {
+            final serverDeniedConnection = !_socket.active;
+
             if (onConnectionChanged != null) {
               onConnectionChanged(
-                ConnectionState.connectionError,
+                switch (serverDeniedConnection) {
+                  true => ConnectionState.destroyed,
+                  false => ConnectionState.connectionError,
+                },
               );
             }
-          },
-        )
-        ..on(
-          connectionTimeoutEvent,
-          (_) {
-            if (onConnectionChanged != null) {
-              onConnectionChanged(
-                ConnectionState.connectionTimeout,
-              );
+
+            if (serverDeniedConnection) {
+              _disposeSocketAndCloseMessageStream();
+              return;
             }
-          },
-        )
-        ..on(
-          connectingEvent,
-          (_) {
-            if (onConnectionChanged != null) {
-              onConnectionChanged(
-                ConnectionState.connecting,
-              );
-            }
+
+            _pauseMessageStream();
           },
         )
         ..onDisconnect(
-          (_) async {
+          (_) {
             if (onConnectionChanged != null) {
               onConnectionChanged(
                 ConnectionState.disconnected,
               );
             }
 
-            await Future.wait<dynamic>([
-              _clientMessageStreamController?.close() ?? Future.value(),
-              _clientMessageStreamSubscription?.cancel() ?? Future.value(),
-            ]);
-
-            _clientMessageStreamController = null;
-            _clientMessageStreamSubscription = null;
-
-            _socket.dispose();
+            _pauseMessageStream();
           },
         )
         ..onError(
@@ -143,32 +133,41 @@ final class SocketIOClient {
                 ConnectionState.error,
               );
             }
-          },
-        )
-        ..onReconnect(
-          (_) async {
-            _socket.dispose();
+
+            _pauseMessageStream();
           },
         )
         ..onReconnectAttempt(
           (_) {
-            _socket.dispose();
+            if (onConnectionChanged != null) {
+              onConnectionChanged(
+                ConnectionState.reconnecting,
+              );
+            }
+
+            _pauseMessageStream();
           },
         )
         ..onReconnectFailed(
           (_) {
-            _socket.dispose();
+            if (onConnectionChanged != null) {
+              onConnectionChanged(
+                ConnectionState.reconnectionFailed,
+              );
+            }
+
+            _pauseMessageStream();
           },
         )
         ..onReconnectError(
           (_) {
-            _socket.dispose();
-          },
-        )
-        ..on(
-          reconnectingEvent,
-          (_) {
-            _socket.dispose();
+            if (onConnectionChanged != null) {
+              onConnectionChanged(
+                ConnectionState.reconnectionError,
+              );
+            }
+
+            _pauseMessageStream();
           },
         )
         ..onPing(
@@ -186,19 +185,28 @@ final class SocketIOClient {
           },
         );
 
+  void _pauseMessageStream() {
+    if (_clientMessageStreamSubscription?.isPaused == false) {
+      _clientMessageStreamSubscription?.pause();
+    }
+  }
+
   StreamSubscription<Either<TerminateSocketIO, SocketIOClientMessage>>?
       get _messageStreamSubscription =>
           _clientMessageStreamController?.stream.listen(
             (message) {
               message.fold(
-                (terminate) {
-                  if (terminate) _socket.dispose();
+                (terminate) async {
+                  if (terminate) {
+                    await _disposeSocketAndCloseMessageStream();
+                  }
                 },
                 (socketIOClientMessage) {
                   _socket.emit(
                     socketIOClientMessage.roomName,
                     {
-                      headersKey: socketIOClientMessage.headers,
+                      if (socketIOClientMessage.headers != null)
+                        headersKey: socketIOClientMessage.headers,
                       bodyKey: socketIOClientMessage.data,
                     },
                   );
@@ -207,20 +215,63 @@ final class SocketIOClient {
             },
           );
 
-  void send({
+  Future<void> _disposeSocketAndCloseMessageStream() async {
+    _socket.dispose();
+
+    await Future.wait<dynamic>([
+      _clientMessageStreamController?.close() ?? Future.value(),
+      _clientMessageStreamSubscription?.cancel() ?? Future.value(),
+    ]);
+
+    _clientMessageStreamController = null;
+    _clientMessageStreamSubscription = null;
+  }
+
+  Future<void> send({
     required String roomName,
     required Map<String, dynamic> data,
-    required Map<String, dynamic> headers,
-  }) =>
+    bool? includeSignature,
+  }) async =>
       _clientMessageStreamController?.add(
         Right(
           (
             roomName: roomName,
-            headers: headers,
+            headers: await _computeHeadersUsing(
+              includeSignature: includeSignature,
+            ),
             data: data,
           ),
         ),
       );
+
+  Future<Map<String, dynamic>?> _computeHeadersUsing({
+    required bool? includeSignature,
+  }) async {
+    final issuedAt = computeIssuedAt();
+    final nonce = computeNonce();
+    final userAddress = await computeUserAddress();
+    final message = computeMessageToSignUsing(
+      issuedAt: issuedAt,
+      nonce: nonce,
+      userAddress: userAddress,
+      useOldUri: true,
+    );
+    final email = await computeUserEmail();
+    final sign = await signMessage(
+      message,
+    );
+
+    return switch (includeSignature) {
+      != null && true => {
+          signHeaderKey: sign,
+          signIssueAtHeaderKey: issuedAt,
+          signNonceHeaderKey: nonce,
+          signAddressHeaderKey: userAddress,
+          if (email != null) emailAddressHeaderKey: email,
+        },
+      _ => null,
+    };
+  }
 
   void close() => _clientMessageStreamController?.add(
         const Left(
@@ -229,7 +280,7 @@ final class SocketIOClient {
       );
 }
 
-final class HttpClient {
+final class HttpClient with SignatureHandler {
   factory HttpClient() => HttpClient._();
 
   HttpClient._()
@@ -258,67 +309,109 @@ final class HttpClient {
     required RequestMethod requestMethod,
     required String path,
     String? overrideBaseUrl,
+    bool? includeSignature,
     Map<String, dynamic>? data,
     Map<String, dynamic>? queryParameters,
     Map<String, dynamic>? headers,
     String? bearerToken,
-  }) =>
+  }) async =>
       switch (requestMethod) {
         RequestMethod.get => _dio.get(
-            switch (overrideBaseUrl != null) {
-              true => overrideBaseUrl! + path,
-              false => path,
-            },
+            _computePathUsing(
+              path: path,
+              overrideBaseUrl: overrideBaseUrl,
+            ),
             data: data,
             queryParameters: queryParameters,
-            options: switch (headers) {
-              null => null,
-              _ => Options(
-                  headers: headers,
-                )
-            },
+            options: await _computeHeaderOptionsUsing(
+              path: path,
+              includeSignature: includeSignature,
+              headers: headers,
+            ),
           ),
         RequestMethod.post => _dio.post(
-            switch (overrideBaseUrl != null) {
-              true => overrideBaseUrl! + path,
-              false => path,
-            },
+            _computePathUsing(
+              path: path,
+              overrideBaseUrl: overrideBaseUrl,
+            ),
             data: data,
             queryParameters: queryParameters,
-            options: switch (headers) {
-              null => null,
-              _ => Options(
-                  headers: headers,
-                )
-            },
+            options: await _computeHeaderOptionsUsing(
+              path: path,
+              includeSignature: includeSignature,
+              headers: headers,
+            ),
           ),
         RequestMethod.put => _dio.put(
-            switch (overrideBaseUrl != null) {
-              true => overrideBaseUrl! + path,
-              false => path,
-            },
+            _computePathUsing(
+              path: path,
+              overrideBaseUrl: overrideBaseUrl,
+            ),
             data: data,
             queryParameters: queryParameters,
-            options: switch (headers) {
-              null => null,
-              _ => Options(
-                  headers: headers,
-                )
-            },
+            options: await _computeHeaderOptionsUsing(
+              path: path,
+              includeSignature: includeSignature,
+              headers: headers,
+            ),
           ),
         RequestMethod.delete => _dio.delete(
-            switch (overrideBaseUrl != null) {
-              true => overrideBaseUrl! + path,
-              false => path,
-            },
+            _computePathUsing(
+              path: path,
+              overrideBaseUrl: overrideBaseUrl,
+            ),
             data: data,
             queryParameters: queryParameters,
-            options: switch (headers) {
-              null => null,
-              _ => Options(
-                  headers: headers,
-                )
-            },
+            options: await _computeHeaderOptionsUsing(
+              path: path,
+              includeSignature: includeSignature,
+              headers: headers,
+            ),
           ),
       };
+
+  String _computePathUsing({
+    required String path,
+    required String? overrideBaseUrl,
+  }) =>
+      switch (overrideBaseUrl != null) {
+        true => overrideBaseUrl! + path,
+        false => path,
+      };
+
+  Future<Options?> _computeHeaderOptionsUsing({
+    required String path,
+    required bool? includeSignature,
+    required Map<String, dynamic>? headers,
+  }) async {
+    final issuedAt = computeIssuedAt();
+    final nonce = computeNonce();
+    final userAddress = await computeUserAddress();
+    final message = computeMessageToSignUsing(
+      issuedAt: issuedAt,
+      nonce: nonce,
+      userAddress: userAddress,
+      path: path,
+    );
+    final email = await computeUserEmail();
+    final sign = await signMessage(
+      message,
+    );
+
+    return switch (headers) {
+      _ when includeSignature != null && includeSignature => Options(
+          headers: {
+            signHeaderKey: sign,
+            signIssueAtHeaderKey: issuedAt,
+            signNonceHeaderKey: nonce,
+            signAddressHeaderKey: userAddress,
+            if (email != null) emailAddressHeaderKey: email,
+            if (headers != null) ...headers,
+          },
+        ),
+      _ => Options(
+          headers: headers,
+        )
+    };
+  }
 }

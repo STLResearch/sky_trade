@@ -147,20 +147,20 @@ extension RemoteIDEntityExtensions on RemoteIDEntity {
 
   Map<String, String> computeLocalizedRemoteIDBasicIDHeaderContentUsing(
     BuildContext context, {
-    required int index,
+    required int position,
   }) {
-    final basicIDIndexInBasicIDList = index - one;
+    final basicID = switch (basicIDs?.isEmpty ?? false) {
+      true => null,
+      false => basicIDs?[position - one],
+    };
 
     return {
-      context.localize.type:
-          basicIDs?[basicIDIndexInBasicIDList].type.name ?? hyphen,
-      context.localize.idType:
-          basicIDs?[basicIDIndexInBasicIDList].iDType.name ?? hyphen,
-      context.localize.uasId:
-          basicIDs?[basicIDIndexInBasicIDList].iD?.toList().toString() ??
-              basicIDs?[basicIDIndexInBasicIDList].serialNumber ??
-              basicIDs?[basicIDIndexInBasicIDList].registrationID ??
-              hyphen,
+      context.localize.type: basicID?.type.name ?? hyphen,
+      context.localize.idType: basicID?.iDType.name ?? hyphen,
+      context.localize.uasId: basicID?.iD?.toList().toString() ??
+          basicID?.serialNumber ??
+          basicID?.registrationID ??
+          hyphen,
     };
   }
 
