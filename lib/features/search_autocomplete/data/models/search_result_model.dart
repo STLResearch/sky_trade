@@ -2,6 +2,7 @@ import 'package:json_annotation/json_annotation.dart';
 import 'package:sky_trade/core/resources/strings/networking.dart'
     show
         attributionKey,
+        mapboxIDKey,
         nameKey,
         namePreferredKey,
         placeFormattedKey,
@@ -35,10 +36,12 @@ final class SearchResultModel extends SearchResultEntity {
 @JsonSerializable()
 final class SuggestionModel extends SuggestionEntity {
   const SuggestionModel({
+    required this.mID,
     required this.mName,
     required this.mPlaceFormatted,
     required this.mNamePreferred,
   }) : super(
+          id: mID,
           name: mName,
           placeFormatted: mPlaceFormatted,
           namePreferred: mNamePreferred,
@@ -46,6 +49,9 @@ final class SuggestionModel extends SuggestionEntity {
 
   factory SuggestionModel.fromJson(Map<String, dynamic> json) =>
       _$SuggestionModelFromJson(json);
+
+  @JsonKey(name: mapboxIDKey)
+  final String mID;
 
   @JsonKey(name: nameKey)
   final String mName;

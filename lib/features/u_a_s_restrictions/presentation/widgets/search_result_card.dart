@@ -1,3 +1,4 @@
+import 'package:dartz/dartz.dart' show Function1;
 import 'package:flutter/material.dart'
     show
         AlwaysStoppedAnimation,
@@ -11,6 +12,7 @@ import 'package:flutter/material.dart'
         Container,
         CrossAxisAlignment,
         Divider,
+        EdgeInsets,
         EdgeInsetsDirectional,
         InkWell,
         ListView,
@@ -22,7 +24,7 @@ import 'package:flutter/material.dart'
         Text,
         Theme,
         Widget;
-import 'package:flutter_bloc/flutter_bloc.dart' show BlocBuilder;
+import 'package:flutter_bloc/flutter_bloc.dart' show BlocBuilder, ReadContext;
 import 'package:sky_trade/core/resources/colors.dart' show hex333333;
 import 'package:sky_trade/core/resources/numbers/ui.dart'
     show
@@ -39,28 +41,21 @@ import 'package:sky_trade/core/resources/strings/special_characters.dart'
     show emptyString;
 import 'package:sky_trade/core/utils/extensions/build_context_extensions.dart';
 import 'package:sky_trade/features/search_autocomplete/presentation/blocs/search_autocomplete_bloc.dart'
-    show SearchAutocompleteBloc, SearchAutocompleteState;
+    show
+        SearchAutocompleteBloc,
+        SearchAutocompleteEvent,
+        SearchAutocompleteState;
 
 class SearchResultCard extends StatelessWidget {
-  const SearchResultCard({super.key});
+  const SearchResultCard({required this.onSearchCardTap, super.key});
+
+  final Function1<String, void> onSearchCardTap;
 
   @override
   Widget build(BuildContext context) => Column(
         mainAxisAlignment: MainAxisAlignment.center,
         mainAxisSize: MainAxisSize.min,
         children: [
-          BlocBuilder<SearchAutocompleteBloc, SearchAutocompleteState>(
-            builder: (_, searchAutocompleteState) =>
-                searchAutocompleteState.maybeWhen(
-              gettingSearchAutocomplete: () => const SizedBox(
-                height: sixtyOneDotNil + sixDotNil,
-              ),
-              gotSearchAutocomplete: (_) => const SizedBox(
-                height: sixtyOneDotNil + sixDotNil,
-              ),
-              orElse: () => const SizedBox.shrink(),
-            ),
-          ),
           BlocBuilder<SearchAutocompleteBloc, SearchAutocompleteState>(
             builder: (_, searchAutocompleteState) =>
                 searchAutocompleteState.maybeWhen(
@@ -83,7 +78,17 @@ class SearchResultCard extends StatelessWidget {
                   true => ListView.separated(
                       itemCount: searchResultEntity.suggestions.length,
                       itemBuilder: (_, index) => InkWell(
-                        onTap: () {},
+                        onTap: () {
+                          onSearchCardTap
+                              .call(searchResultEntity.suggestions[index].name);
+                          context.read<SearchAutocompleteBloc>().add(
+                                SearchAutocompleteEvent
+                                    .retrieveGeometricCoordinates(
+                                  mapboxID:
+                                      searchResultEntity.suggestions[index].id,
+                                ),
+                              );
+                        },
                         child: Padding(
                           padding: const EdgeInsetsDirectional.symmetric(
                             vertical: twelveDotNil,
@@ -163,14 +168,17 @@ class SearchResultCard extends StatelessWidget {
     BuildContext context, {
     required Widget child,
   }) =>
-      Container(
-        height: oneSeventyNineDotNil,
-        decoration: BoxDecoration(
-          color: Theme.of(context).scaffoldBackgroundColor,
-          borderRadius: BorderRadiusDirectional.circular(
-            eightDotNil,
+      Padding(
+        padding: const EdgeInsets.only(top: sixtyOneDotNil + sixDotNil),
+        child: Container(
+          height: oneSeventyNineDotNil,
+          decoration: BoxDecoration(
+            color: Theme.of(context).scaffoldBackgroundColor,
+            borderRadius: BorderRadiusDirectional.circular(
+              eightDotNil,
+            ),
           ),
+          child: child,
         ),
-        child: child,
       );
 }

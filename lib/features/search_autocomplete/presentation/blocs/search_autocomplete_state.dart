@@ -14,4 +14,12 @@ class SearchAutocompleteState with _$SearchAutocompleteState {
   const factory SearchAutocompleteState.failedToGetSearchAutocomplete({
     required SearchAutocompleteFailure searchAutocompleteFailure,
   }) = _FailedToGetSearchAutocomplete;
+
+  const factory SearchAutocompleteState.retrievedGeometricCoordinates({
+    required RetrieveResultEntity retrieveResultEntity,
+  }) = _RetrievedGeometricCoordinates;
+
+  const factory SearchAutocompleteState.failedToRetrieveGeometricCoordinates({
+    required SearchAutocompleteFailure searchAutocompleteFailure,
+  }) = _FailedToRetrievedGeometricCoordinates;
 }

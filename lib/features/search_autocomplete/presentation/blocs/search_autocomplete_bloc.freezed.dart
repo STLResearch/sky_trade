@@ -24,6 +24,7 @@ mixin _$SearchAutocompleteEvent {
     required TResult Function(
             SearchAutocompleteFailure searchAutocompleteFailure)
         searchAutocompleteNotGotten,
+    required TResult Function(String mapboxID) retrieveGeometricCoordinates,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -33,6 +34,7 @@ mixin _$SearchAutocompleteEvent {
         searchAutocompleteGotten,
     TResult? Function(SearchAutocompleteFailure searchAutocompleteFailure)?
         searchAutocompleteNotGotten,
+    TResult? Function(String mapboxID)? retrieveGeometricCoordinates,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -42,6 +44,7 @@ mixin _$SearchAutocompleteEvent {
         searchAutocompleteGotten,
     TResult Function(SearchAutocompleteFailure searchAutocompleteFailure)?
         searchAutocompleteNotGotten,
+    TResult Function(String mapboxID)? retrieveGeometricCoordinates,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -52,6 +55,8 @@ mixin _$SearchAutocompleteEvent {
         searchAutocompleteGotten,
     required TResult Function(_SearchAutocompleteNotGotten value)
         searchAutocompleteNotGotten,
+    required TResult Function(_RetrieveGeometricCoordinates value)
+        retrieveGeometricCoordinates,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -61,6 +66,8 @@ mixin _$SearchAutocompleteEvent {
         searchAutocompleteGotten,
     TResult? Function(_SearchAutocompleteNotGotten value)?
         searchAutocompleteNotGotten,
+    TResult? Function(_RetrieveGeometricCoordinates value)?
+        retrieveGeometricCoordinates,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -69,6 +76,8 @@ mixin _$SearchAutocompleteEvent {
     TResult Function(_SearchAutocompleteGotten value)? searchAutocompleteGotten,
     TResult Function(_SearchAutocompleteNotGotten value)?
         searchAutocompleteNotGotten,
+    TResult Function(_RetrieveGeometricCoordinates value)?
+        retrieveGeometricCoordinates,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -165,6 +174,7 @@ class _$AutocompleteSearchImpl implements _AutocompleteSearch {
     required TResult Function(
             SearchAutocompleteFailure searchAutocompleteFailure)
         searchAutocompleteNotGotten,
+    required TResult Function(String mapboxID) retrieveGeometricCoordinates,
   }) {
     return autocompleteSearch(query);
   }
@@ -177,6 +187,7 @@ class _$AutocompleteSearchImpl implements _AutocompleteSearch {
         searchAutocompleteGotten,
     TResult? Function(SearchAutocompleteFailure searchAutocompleteFailure)?
         searchAutocompleteNotGotten,
+    TResult? Function(String mapboxID)? retrieveGeometricCoordinates,
   }) {
     return autocompleteSearch?.call(query);
   }
@@ -189,6 +200,7 @@ class _$AutocompleteSearchImpl implements _AutocompleteSearch {
         searchAutocompleteGotten,
     TResult Function(SearchAutocompleteFailure searchAutocompleteFailure)?
         searchAutocompleteNotGotten,
+    TResult Function(String mapboxID)? retrieveGeometricCoordinates,
     required TResult orElse(),
   }) {
     if (autocompleteSearch != null) {
@@ -205,6 +217,8 @@ class _$AutocompleteSearchImpl implements _AutocompleteSearch {
         searchAutocompleteGotten,
     required TResult Function(_SearchAutocompleteNotGotten value)
         searchAutocompleteNotGotten,
+    required TResult Function(_RetrieveGeometricCoordinates value)
+        retrieveGeometricCoordinates,
   }) {
     return autocompleteSearch(this);
   }
@@ -217,6 +231,8 @@ class _$AutocompleteSearchImpl implements _AutocompleteSearch {
         searchAutocompleteGotten,
     TResult? Function(_SearchAutocompleteNotGotten value)?
         searchAutocompleteNotGotten,
+    TResult? Function(_RetrieveGeometricCoordinates value)?
+        retrieveGeometricCoordinates,
   }) {
     return autocompleteSearch?.call(this);
   }
@@ -228,6 +244,8 @@ class _$AutocompleteSearchImpl implements _AutocompleteSearch {
     TResult Function(_SearchAutocompleteGotten value)? searchAutocompleteGotten,
     TResult Function(_SearchAutocompleteNotGotten value)?
         searchAutocompleteNotGotten,
+    TResult Function(_RetrieveGeometricCoordinates value)?
+        retrieveGeometricCoordinates,
     required TResult orElse(),
   }) {
     if (autocompleteSearch != null) {
@@ -322,6 +340,7 @@ class _$SearchAutocompleteGottenImpl implements _SearchAutocompleteGotten {
     required TResult Function(
             SearchAutocompleteFailure searchAutocompleteFailure)
         searchAutocompleteNotGotten,
+    required TResult Function(String mapboxID) retrieveGeometricCoordinates,
   }) {
     return searchAutocompleteGotten(searchResultEntity);
   }
@@ -334,6 +353,7 @@ class _$SearchAutocompleteGottenImpl implements _SearchAutocompleteGotten {
         searchAutocompleteGotten,
     TResult? Function(SearchAutocompleteFailure searchAutocompleteFailure)?
         searchAutocompleteNotGotten,
+    TResult? Function(String mapboxID)? retrieveGeometricCoordinates,
   }) {
     return searchAutocompleteGotten?.call(searchResultEntity);
   }
@@ -346,6 +366,7 @@ class _$SearchAutocompleteGottenImpl implements _SearchAutocompleteGotten {
         searchAutocompleteGotten,
     TResult Function(SearchAutocompleteFailure searchAutocompleteFailure)?
         searchAutocompleteNotGotten,
+    TResult Function(String mapboxID)? retrieveGeometricCoordinates,
     required TResult orElse(),
   }) {
     if (searchAutocompleteGotten != null) {
@@ -362,6 +383,8 @@ class _$SearchAutocompleteGottenImpl implements _SearchAutocompleteGotten {
         searchAutocompleteGotten,
     required TResult Function(_SearchAutocompleteNotGotten value)
         searchAutocompleteNotGotten,
+    required TResult Function(_RetrieveGeometricCoordinates value)
+        retrieveGeometricCoordinates,
   }) {
     return searchAutocompleteGotten(this);
   }
@@ -374,6 +397,8 @@ class _$SearchAutocompleteGottenImpl implements _SearchAutocompleteGotten {
         searchAutocompleteGotten,
     TResult? Function(_SearchAutocompleteNotGotten value)?
         searchAutocompleteNotGotten,
+    TResult? Function(_RetrieveGeometricCoordinates value)?
+        retrieveGeometricCoordinates,
   }) {
     return searchAutocompleteGotten?.call(this);
   }
@@ -385,6 +410,8 @@ class _$SearchAutocompleteGottenImpl implements _SearchAutocompleteGotten {
     TResult Function(_SearchAutocompleteGotten value)? searchAutocompleteGotten,
     TResult Function(_SearchAutocompleteNotGotten value)?
         searchAutocompleteNotGotten,
+    TResult Function(_RetrieveGeometricCoordinates value)?
+        retrieveGeometricCoordinates,
     required TResult orElse(),
   }) {
     if (searchAutocompleteGotten != null) {
@@ -483,6 +510,7 @@ class _$SearchAutocompleteNotGottenImpl
     required TResult Function(
             SearchAutocompleteFailure searchAutocompleteFailure)
         searchAutocompleteNotGotten,
+    required TResult Function(String mapboxID) retrieveGeometricCoordinates,
   }) {
     return searchAutocompleteNotGotten(searchAutocompleteFailure);
   }
@@ -495,6 +523,7 @@ class _$SearchAutocompleteNotGottenImpl
         searchAutocompleteGotten,
     TResult? Function(SearchAutocompleteFailure searchAutocompleteFailure)?
         searchAutocompleteNotGotten,
+    TResult? Function(String mapboxID)? retrieveGeometricCoordinates,
   }) {
     return searchAutocompleteNotGotten?.call(searchAutocompleteFailure);
   }
@@ -507,6 +536,7 @@ class _$SearchAutocompleteNotGottenImpl
         searchAutocompleteGotten,
     TResult Function(SearchAutocompleteFailure searchAutocompleteFailure)?
         searchAutocompleteNotGotten,
+    TResult Function(String mapboxID)? retrieveGeometricCoordinates,
     required TResult orElse(),
   }) {
     if (searchAutocompleteNotGotten != null) {
@@ -523,6 +553,8 @@ class _$SearchAutocompleteNotGottenImpl
         searchAutocompleteGotten,
     required TResult Function(_SearchAutocompleteNotGotten value)
         searchAutocompleteNotGotten,
+    required TResult Function(_RetrieveGeometricCoordinates value)
+        retrieveGeometricCoordinates,
   }) {
     return searchAutocompleteNotGotten(this);
   }
@@ -535,6 +567,8 @@ class _$SearchAutocompleteNotGottenImpl
         searchAutocompleteGotten,
     TResult? Function(_SearchAutocompleteNotGotten value)?
         searchAutocompleteNotGotten,
+    TResult? Function(_RetrieveGeometricCoordinates value)?
+        retrieveGeometricCoordinates,
   }) {
     return searchAutocompleteNotGotten?.call(this);
   }
@@ -546,6 +580,8 @@ class _$SearchAutocompleteNotGottenImpl
     TResult Function(_SearchAutocompleteGotten value)? searchAutocompleteGotten,
     TResult Function(_SearchAutocompleteNotGotten value)?
         searchAutocompleteNotGotten,
+    TResult Function(_RetrieveGeometricCoordinates value)?
+        retrieveGeometricCoordinates,
     required TResult orElse(),
   }) {
     if (searchAutocompleteNotGotten != null) {
@@ -567,6 +603,176 @@ abstract class _SearchAutocompleteNotGotten implements SearchAutocompleteEvent {
 }
 
 /// @nodoc
+abstract class _$$RetrieveGeometricCoordinatesImplCopyWith<$Res> {
+  factory _$$RetrieveGeometricCoordinatesImplCopyWith(
+          _$RetrieveGeometricCoordinatesImpl value,
+          $Res Function(_$RetrieveGeometricCoordinatesImpl) then) =
+      __$$RetrieveGeometricCoordinatesImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String mapboxID});
+}
+
+/// @nodoc
+class __$$RetrieveGeometricCoordinatesImplCopyWithImpl<$Res>
+    extends _$SearchAutocompleteEventCopyWithImpl<$Res,
+        _$RetrieveGeometricCoordinatesImpl>
+    implements _$$RetrieveGeometricCoordinatesImplCopyWith<$Res> {
+  __$$RetrieveGeometricCoordinatesImplCopyWithImpl(
+      _$RetrieveGeometricCoordinatesImpl _value,
+      $Res Function(_$RetrieveGeometricCoordinatesImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? mapboxID = null,
+  }) {
+    return _then(_$RetrieveGeometricCoordinatesImpl(
+      mapboxID: null == mapboxID
+          ? _value.mapboxID
+          : mapboxID // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$RetrieveGeometricCoordinatesImpl
+    implements _RetrieveGeometricCoordinates {
+  const _$RetrieveGeometricCoordinatesImpl({required this.mapboxID});
+
+  @override
+  final String mapboxID;
+
+  @override
+  String toString() {
+    return 'SearchAutocompleteEvent.retrieveGeometricCoordinates(mapboxID: $mapboxID)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$RetrieveGeometricCoordinatesImpl &&
+            (identical(other.mapboxID, mapboxID) ||
+                other.mapboxID == mapboxID));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, mapboxID);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$RetrieveGeometricCoordinatesImplCopyWith<
+          _$RetrieveGeometricCoordinatesImpl>
+      get copyWith => __$$RetrieveGeometricCoordinatesImplCopyWithImpl<
+          _$RetrieveGeometricCoordinatesImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String query) autocompleteSearch,
+    required TResult Function(SearchResultEntity searchResultEntity)
+        searchAutocompleteGotten,
+    required TResult Function(
+            SearchAutocompleteFailure searchAutocompleteFailure)
+        searchAutocompleteNotGotten,
+    required TResult Function(String mapboxID) retrieveGeometricCoordinates,
+  }) {
+    return retrieveGeometricCoordinates(mapboxID);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String query)? autocompleteSearch,
+    TResult? Function(SearchResultEntity searchResultEntity)?
+        searchAutocompleteGotten,
+    TResult? Function(SearchAutocompleteFailure searchAutocompleteFailure)?
+        searchAutocompleteNotGotten,
+    TResult? Function(String mapboxID)? retrieveGeometricCoordinates,
+  }) {
+    return retrieveGeometricCoordinates?.call(mapboxID);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String query)? autocompleteSearch,
+    TResult Function(SearchResultEntity searchResultEntity)?
+        searchAutocompleteGotten,
+    TResult Function(SearchAutocompleteFailure searchAutocompleteFailure)?
+        searchAutocompleteNotGotten,
+    TResult Function(String mapboxID)? retrieveGeometricCoordinates,
+    required TResult orElse(),
+  }) {
+    if (retrieveGeometricCoordinates != null) {
+      return retrieveGeometricCoordinates(mapboxID);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_AutocompleteSearch value) autocompleteSearch,
+    required TResult Function(_SearchAutocompleteGotten value)
+        searchAutocompleteGotten,
+    required TResult Function(_SearchAutocompleteNotGotten value)
+        searchAutocompleteNotGotten,
+    required TResult Function(_RetrieveGeometricCoordinates value)
+        retrieveGeometricCoordinates,
+  }) {
+    return retrieveGeometricCoordinates(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_AutocompleteSearch value)? autocompleteSearch,
+    TResult? Function(_SearchAutocompleteGotten value)?
+        searchAutocompleteGotten,
+    TResult? Function(_SearchAutocompleteNotGotten value)?
+        searchAutocompleteNotGotten,
+    TResult? Function(_RetrieveGeometricCoordinates value)?
+        retrieveGeometricCoordinates,
+  }) {
+    return retrieveGeometricCoordinates?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_AutocompleteSearch value)? autocompleteSearch,
+    TResult Function(_SearchAutocompleteGotten value)? searchAutocompleteGotten,
+    TResult Function(_SearchAutocompleteNotGotten value)?
+        searchAutocompleteNotGotten,
+    TResult Function(_RetrieveGeometricCoordinates value)?
+        retrieveGeometricCoordinates,
+    required TResult orElse(),
+  }) {
+    if (retrieveGeometricCoordinates != null) {
+      return retrieveGeometricCoordinates(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _RetrieveGeometricCoordinates
+    implements SearchAutocompleteEvent {
+  const factory _RetrieveGeometricCoordinates(
+      {required final String mapboxID}) = _$RetrieveGeometricCoordinatesImpl;
+
+  String get mapboxID;
+  @JsonKey(ignore: true)
+  _$$RetrieveGeometricCoordinatesImplCopyWith<
+          _$RetrieveGeometricCoordinatesImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
 mixin _$SearchAutocompleteState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
@@ -577,6 +783,11 @@ mixin _$SearchAutocompleteState {
     required TResult Function(
             SearchAutocompleteFailure searchAutocompleteFailure)
         failedToGetSearchAutocomplete,
+    required TResult Function(RetrieveResultEntity retrieveResultEntity)
+        retrievedGeometricCoordinates,
+    required TResult Function(
+            SearchAutocompleteFailure searchAutocompleteFailure)
+        failedToRetrieveGeometricCoordinates,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -587,6 +798,10 @@ mixin _$SearchAutocompleteState {
         gotSearchAutocomplete,
     TResult? Function(SearchAutocompleteFailure searchAutocompleteFailure)?
         failedToGetSearchAutocomplete,
+    TResult? Function(RetrieveResultEntity retrieveResultEntity)?
+        retrievedGeometricCoordinates,
+    TResult? Function(SearchAutocompleteFailure searchAutocompleteFailure)?
+        failedToRetrieveGeometricCoordinates,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -597,6 +812,10 @@ mixin _$SearchAutocompleteState {
         gotSearchAutocomplete,
     TResult Function(SearchAutocompleteFailure searchAutocompleteFailure)?
         failedToGetSearchAutocomplete,
+    TResult Function(RetrieveResultEntity retrieveResultEntity)?
+        retrievedGeometricCoordinates,
+    TResult Function(SearchAutocompleteFailure searchAutocompleteFailure)?
+        failedToRetrieveGeometricCoordinates,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -609,6 +828,10 @@ mixin _$SearchAutocompleteState {
         gotSearchAutocomplete,
     required TResult Function(_FailedToGetSearchAutocomplete value)
         failedToGetSearchAutocomplete,
+    required TResult Function(_RetrievedGeometricCoordinates value)
+        retrievedGeometricCoordinates,
+    required TResult Function(_FailedToRetrievedGeometricCoordinates value)
+        failedToRetrieveGeometricCoordinates,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -619,6 +842,10 @@ mixin _$SearchAutocompleteState {
     TResult? Function(_GotSearchAutocomplete value)? gotSearchAutocomplete,
     TResult? Function(_FailedToGetSearchAutocomplete value)?
         failedToGetSearchAutocomplete,
+    TResult? Function(_RetrievedGeometricCoordinates value)?
+        retrievedGeometricCoordinates,
+    TResult? Function(_FailedToRetrievedGeometricCoordinates value)?
+        failedToRetrieveGeometricCoordinates,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -629,6 +856,10 @@ mixin _$SearchAutocompleteState {
     TResult Function(_GotSearchAutocomplete value)? gotSearchAutocomplete,
     TResult Function(_FailedToGetSearchAutocomplete value)?
         failedToGetSearchAutocomplete,
+    TResult Function(_RetrievedGeometricCoordinates value)?
+        retrievedGeometricCoordinates,
+    TResult Function(_FailedToRetrievedGeometricCoordinates value)?
+        failedToRetrieveGeometricCoordinates,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -698,6 +929,11 @@ class _$InitialImpl implements _Initial {
     required TResult Function(
             SearchAutocompleteFailure searchAutocompleteFailure)
         failedToGetSearchAutocomplete,
+    required TResult Function(RetrieveResultEntity retrieveResultEntity)
+        retrievedGeometricCoordinates,
+    required TResult Function(
+            SearchAutocompleteFailure searchAutocompleteFailure)
+        failedToRetrieveGeometricCoordinates,
   }) {
     return initial();
   }
@@ -711,6 +947,10 @@ class _$InitialImpl implements _Initial {
         gotSearchAutocomplete,
     TResult? Function(SearchAutocompleteFailure searchAutocompleteFailure)?
         failedToGetSearchAutocomplete,
+    TResult? Function(RetrieveResultEntity retrieveResultEntity)?
+        retrievedGeometricCoordinates,
+    TResult? Function(SearchAutocompleteFailure searchAutocompleteFailure)?
+        failedToRetrieveGeometricCoordinates,
   }) {
     return initial?.call();
   }
@@ -724,6 +964,10 @@ class _$InitialImpl implements _Initial {
         gotSearchAutocomplete,
     TResult Function(SearchAutocompleteFailure searchAutocompleteFailure)?
         failedToGetSearchAutocomplete,
+    TResult Function(RetrieveResultEntity retrieveResultEntity)?
+        retrievedGeometricCoordinates,
+    TResult Function(SearchAutocompleteFailure searchAutocompleteFailure)?
+        failedToRetrieveGeometricCoordinates,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -742,6 +986,10 @@ class _$InitialImpl implements _Initial {
         gotSearchAutocomplete,
     required TResult Function(_FailedToGetSearchAutocomplete value)
         failedToGetSearchAutocomplete,
+    required TResult Function(_RetrievedGeometricCoordinates value)
+        retrievedGeometricCoordinates,
+    required TResult Function(_FailedToRetrievedGeometricCoordinates value)
+        failedToRetrieveGeometricCoordinates,
   }) {
     return initial(this);
   }
@@ -755,6 +1003,10 @@ class _$InitialImpl implements _Initial {
     TResult? Function(_GotSearchAutocomplete value)? gotSearchAutocomplete,
     TResult? Function(_FailedToGetSearchAutocomplete value)?
         failedToGetSearchAutocomplete,
+    TResult? Function(_RetrievedGeometricCoordinates value)?
+        retrievedGeometricCoordinates,
+    TResult? Function(_FailedToRetrievedGeometricCoordinates value)?
+        failedToRetrieveGeometricCoordinates,
   }) {
     return initial?.call(this);
   }
@@ -768,6 +1020,10 @@ class _$InitialImpl implements _Initial {
     TResult Function(_GotSearchAutocomplete value)? gotSearchAutocomplete,
     TResult Function(_FailedToGetSearchAutocomplete value)?
         failedToGetSearchAutocomplete,
+    TResult Function(_RetrievedGeometricCoordinates value)?
+        retrievedGeometricCoordinates,
+    TResult Function(_FailedToRetrievedGeometricCoordinates value)?
+        failedToRetrieveGeometricCoordinates,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -830,6 +1086,11 @@ class _$GettingSearchAutocompleteImpl implements _GettingSearchAutocomplete {
     required TResult Function(
             SearchAutocompleteFailure searchAutocompleteFailure)
         failedToGetSearchAutocomplete,
+    required TResult Function(RetrieveResultEntity retrieveResultEntity)
+        retrievedGeometricCoordinates,
+    required TResult Function(
+            SearchAutocompleteFailure searchAutocompleteFailure)
+        failedToRetrieveGeometricCoordinates,
   }) {
     return gettingSearchAutocomplete();
   }
@@ -843,6 +1104,10 @@ class _$GettingSearchAutocompleteImpl implements _GettingSearchAutocomplete {
         gotSearchAutocomplete,
     TResult? Function(SearchAutocompleteFailure searchAutocompleteFailure)?
         failedToGetSearchAutocomplete,
+    TResult? Function(RetrieveResultEntity retrieveResultEntity)?
+        retrievedGeometricCoordinates,
+    TResult? Function(SearchAutocompleteFailure searchAutocompleteFailure)?
+        failedToRetrieveGeometricCoordinates,
   }) {
     return gettingSearchAutocomplete?.call();
   }
@@ -856,6 +1121,10 @@ class _$GettingSearchAutocompleteImpl implements _GettingSearchAutocomplete {
         gotSearchAutocomplete,
     TResult Function(SearchAutocompleteFailure searchAutocompleteFailure)?
         failedToGetSearchAutocomplete,
+    TResult Function(RetrieveResultEntity retrieveResultEntity)?
+        retrievedGeometricCoordinates,
+    TResult Function(SearchAutocompleteFailure searchAutocompleteFailure)?
+        failedToRetrieveGeometricCoordinates,
     required TResult orElse(),
   }) {
     if (gettingSearchAutocomplete != null) {
@@ -874,6 +1143,10 @@ class _$GettingSearchAutocompleteImpl implements _GettingSearchAutocomplete {
         gotSearchAutocomplete,
     required TResult Function(_FailedToGetSearchAutocomplete value)
         failedToGetSearchAutocomplete,
+    required TResult Function(_RetrievedGeometricCoordinates value)
+        retrievedGeometricCoordinates,
+    required TResult Function(_FailedToRetrievedGeometricCoordinates value)
+        failedToRetrieveGeometricCoordinates,
   }) {
     return gettingSearchAutocomplete(this);
   }
@@ -887,6 +1160,10 @@ class _$GettingSearchAutocompleteImpl implements _GettingSearchAutocomplete {
     TResult? Function(_GotSearchAutocomplete value)? gotSearchAutocomplete,
     TResult? Function(_FailedToGetSearchAutocomplete value)?
         failedToGetSearchAutocomplete,
+    TResult? Function(_RetrievedGeometricCoordinates value)?
+        retrievedGeometricCoordinates,
+    TResult? Function(_FailedToRetrievedGeometricCoordinates value)?
+        failedToRetrieveGeometricCoordinates,
   }) {
     return gettingSearchAutocomplete?.call(this);
   }
@@ -900,6 +1177,10 @@ class _$GettingSearchAutocompleteImpl implements _GettingSearchAutocomplete {
     TResult Function(_GotSearchAutocomplete value)? gotSearchAutocomplete,
     TResult Function(_FailedToGetSearchAutocomplete value)?
         failedToGetSearchAutocomplete,
+    TResult Function(_RetrievedGeometricCoordinates value)?
+        retrievedGeometricCoordinates,
+    TResult Function(_FailedToRetrievedGeometricCoordinates value)?
+        failedToRetrieveGeometricCoordinates,
     required TResult orElse(),
   }) {
     if (gettingSearchAutocomplete != null) {
@@ -988,6 +1269,11 @@ class _$GotSearchAutocompleteImpl implements _GotSearchAutocomplete {
     required TResult Function(
             SearchAutocompleteFailure searchAutocompleteFailure)
         failedToGetSearchAutocomplete,
+    required TResult Function(RetrieveResultEntity retrieveResultEntity)
+        retrievedGeometricCoordinates,
+    required TResult Function(
+            SearchAutocompleteFailure searchAutocompleteFailure)
+        failedToRetrieveGeometricCoordinates,
   }) {
     return gotSearchAutocomplete(searchResultEntity);
   }
@@ -1001,6 +1287,10 @@ class _$GotSearchAutocompleteImpl implements _GotSearchAutocomplete {
         gotSearchAutocomplete,
     TResult? Function(SearchAutocompleteFailure searchAutocompleteFailure)?
         failedToGetSearchAutocomplete,
+    TResult? Function(RetrieveResultEntity retrieveResultEntity)?
+        retrievedGeometricCoordinates,
+    TResult? Function(SearchAutocompleteFailure searchAutocompleteFailure)?
+        failedToRetrieveGeometricCoordinates,
   }) {
     return gotSearchAutocomplete?.call(searchResultEntity);
   }
@@ -1014,6 +1304,10 @@ class _$GotSearchAutocompleteImpl implements _GotSearchAutocomplete {
         gotSearchAutocomplete,
     TResult Function(SearchAutocompleteFailure searchAutocompleteFailure)?
         failedToGetSearchAutocomplete,
+    TResult Function(RetrieveResultEntity retrieveResultEntity)?
+        retrievedGeometricCoordinates,
+    TResult Function(SearchAutocompleteFailure searchAutocompleteFailure)?
+        failedToRetrieveGeometricCoordinates,
     required TResult orElse(),
   }) {
     if (gotSearchAutocomplete != null) {
@@ -1032,6 +1326,10 @@ class _$GotSearchAutocompleteImpl implements _GotSearchAutocomplete {
         gotSearchAutocomplete,
     required TResult Function(_FailedToGetSearchAutocomplete value)
         failedToGetSearchAutocomplete,
+    required TResult Function(_RetrievedGeometricCoordinates value)
+        retrievedGeometricCoordinates,
+    required TResult Function(_FailedToRetrievedGeometricCoordinates value)
+        failedToRetrieveGeometricCoordinates,
   }) {
     return gotSearchAutocomplete(this);
   }
@@ -1045,6 +1343,10 @@ class _$GotSearchAutocompleteImpl implements _GotSearchAutocomplete {
     TResult? Function(_GotSearchAutocomplete value)? gotSearchAutocomplete,
     TResult? Function(_FailedToGetSearchAutocomplete value)?
         failedToGetSearchAutocomplete,
+    TResult? Function(_RetrievedGeometricCoordinates value)?
+        retrievedGeometricCoordinates,
+    TResult? Function(_FailedToRetrievedGeometricCoordinates value)?
+        failedToRetrieveGeometricCoordinates,
   }) {
     return gotSearchAutocomplete?.call(this);
   }
@@ -1058,6 +1360,10 @@ class _$GotSearchAutocompleteImpl implements _GotSearchAutocomplete {
     TResult Function(_GotSearchAutocomplete value)? gotSearchAutocomplete,
     TResult Function(_FailedToGetSearchAutocomplete value)?
         failedToGetSearchAutocomplete,
+    TResult Function(_RetrievedGeometricCoordinates value)?
+        retrievedGeometricCoordinates,
+    TResult Function(_FailedToRetrievedGeometricCoordinates value)?
+        failedToRetrieveGeometricCoordinates,
     required TResult orElse(),
   }) {
     if (gotSearchAutocomplete != null) {
@@ -1158,6 +1464,11 @@ class _$FailedToGetSearchAutocompleteImpl
     required TResult Function(
             SearchAutocompleteFailure searchAutocompleteFailure)
         failedToGetSearchAutocomplete,
+    required TResult Function(RetrieveResultEntity retrieveResultEntity)
+        retrievedGeometricCoordinates,
+    required TResult Function(
+            SearchAutocompleteFailure searchAutocompleteFailure)
+        failedToRetrieveGeometricCoordinates,
   }) {
     return failedToGetSearchAutocomplete(searchAutocompleteFailure);
   }
@@ -1171,6 +1482,10 @@ class _$FailedToGetSearchAutocompleteImpl
         gotSearchAutocomplete,
     TResult? Function(SearchAutocompleteFailure searchAutocompleteFailure)?
         failedToGetSearchAutocomplete,
+    TResult? Function(RetrieveResultEntity retrieveResultEntity)?
+        retrievedGeometricCoordinates,
+    TResult? Function(SearchAutocompleteFailure searchAutocompleteFailure)?
+        failedToRetrieveGeometricCoordinates,
   }) {
     return failedToGetSearchAutocomplete?.call(searchAutocompleteFailure);
   }
@@ -1184,6 +1499,10 @@ class _$FailedToGetSearchAutocompleteImpl
         gotSearchAutocomplete,
     TResult Function(SearchAutocompleteFailure searchAutocompleteFailure)?
         failedToGetSearchAutocomplete,
+    TResult Function(RetrieveResultEntity retrieveResultEntity)?
+        retrievedGeometricCoordinates,
+    TResult Function(SearchAutocompleteFailure searchAutocompleteFailure)?
+        failedToRetrieveGeometricCoordinates,
     required TResult orElse(),
   }) {
     if (failedToGetSearchAutocomplete != null) {
@@ -1202,6 +1521,10 @@ class _$FailedToGetSearchAutocompleteImpl
         gotSearchAutocomplete,
     required TResult Function(_FailedToGetSearchAutocomplete value)
         failedToGetSearchAutocomplete,
+    required TResult Function(_RetrievedGeometricCoordinates value)
+        retrievedGeometricCoordinates,
+    required TResult Function(_FailedToRetrievedGeometricCoordinates value)
+        failedToRetrieveGeometricCoordinates,
   }) {
     return failedToGetSearchAutocomplete(this);
   }
@@ -1215,6 +1538,10 @@ class _$FailedToGetSearchAutocompleteImpl
     TResult? Function(_GotSearchAutocomplete value)? gotSearchAutocomplete,
     TResult? Function(_FailedToGetSearchAutocomplete value)?
         failedToGetSearchAutocomplete,
+    TResult? Function(_RetrievedGeometricCoordinates value)?
+        retrievedGeometricCoordinates,
+    TResult? Function(_FailedToRetrievedGeometricCoordinates value)?
+        failedToRetrieveGeometricCoordinates,
   }) {
     return failedToGetSearchAutocomplete?.call(this);
   }
@@ -1228,6 +1555,10 @@ class _$FailedToGetSearchAutocompleteImpl
     TResult Function(_GotSearchAutocomplete value)? gotSearchAutocomplete,
     TResult Function(_FailedToGetSearchAutocomplete value)?
         failedToGetSearchAutocomplete,
+    TResult Function(_RetrievedGeometricCoordinates value)?
+        retrievedGeometricCoordinates,
+    TResult Function(_FailedToRetrievedGeometricCoordinates value)?
+        failedToRetrieveGeometricCoordinates,
     required TResult orElse(),
   }) {
     if (failedToGetSearchAutocomplete != null) {
@@ -1247,5 +1578,400 @@ abstract class _FailedToGetSearchAutocomplete
   @JsonKey(ignore: true)
   _$$FailedToGetSearchAutocompleteImplCopyWith<
           _$FailedToGetSearchAutocompleteImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$RetrievedGeometricCoordinatesImplCopyWith<$Res> {
+  factory _$$RetrievedGeometricCoordinatesImplCopyWith(
+          _$RetrievedGeometricCoordinatesImpl value,
+          $Res Function(_$RetrievedGeometricCoordinatesImpl) then) =
+      __$$RetrievedGeometricCoordinatesImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({RetrieveResultEntity retrieveResultEntity});
+}
+
+/// @nodoc
+class __$$RetrievedGeometricCoordinatesImplCopyWithImpl<$Res>
+    extends _$SearchAutocompleteStateCopyWithImpl<$Res,
+        _$RetrievedGeometricCoordinatesImpl>
+    implements _$$RetrievedGeometricCoordinatesImplCopyWith<$Res> {
+  __$$RetrievedGeometricCoordinatesImplCopyWithImpl(
+      _$RetrievedGeometricCoordinatesImpl _value,
+      $Res Function(_$RetrievedGeometricCoordinatesImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? retrieveResultEntity = null,
+  }) {
+    return _then(_$RetrievedGeometricCoordinatesImpl(
+      retrieveResultEntity: null == retrieveResultEntity
+          ? _value.retrieveResultEntity
+          : retrieveResultEntity // ignore: cast_nullable_to_non_nullable
+              as RetrieveResultEntity,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$RetrievedGeometricCoordinatesImpl
+    implements _RetrievedGeometricCoordinates {
+  const _$RetrievedGeometricCoordinatesImpl(
+      {required this.retrieveResultEntity});
+
+  @override
+  final RetrieveResultEntity retrieveResultEntity;
+
+  @override
+  String toString() {
+    return 'SearchAutocompleteState.retrievedGeometricCoordinates(retrieveResultEntity: $retrieveResultEntity)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$RetrievedGeometricCoordinatesImpl &&
+            (identical(other.retrieveResultEntity, retrieveResultEntity) ||
+                other.retrieveResultEntity == retrieveResultEntity));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, retrieveResultEntity);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$RetrievedGeometricCoordinatesImplCopyWith<
+          _$RetrievedGeometricCoordinatesImpl>
+      get copyWith => __$$RetrievedGeometricCoordinatesImplCopyWithImpl<
+          _$RetrievedGeometricCoordinatesImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() gettingSearchAutocomplete,
+    required TResult Function(SearchResultEntity searchResultEntity)
+        gotSearchAutocomplete,
+    required TResult Function(
+            SearchAutocompleteFailure searchAutocompleteFailure)
+        failedToGetSearchAutocomplete,
+    required TResult Function(RetrieveResultEntity retrieveResultEntity)
+        retrievedGeometricCoordinates,
+    required TResult Function(
+            SearchAutocompleteFailure searchAutocompleteFailure)
+        failedToRetrieveGeometricCoordinates,
+  }) {
+    return retrievedGeometricCoordinates(retrieveResultEntity);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? gettingSearchAutocomplete,
+    TResult? Function(SearchResultEntity searchResultEntity)?
+        gotSearchAutocomplete,
+    TResult? Function(SearchAutocompleteFailure searchAutocompleteFailure)?
+        failedToGetSearchAutocomplete,
+    TResult? Function(RetrieveResultEntity retrieveResultEntity)?
+        retrievedGeometricCoordinates,
+    TResult? Function(SearchAutocompleteFailure searchAutocompleteFailure)?
+        failedToRetrieveGeometricCoordinates,
+  }) {
+    return retrievedGeometricCoordinates?.call(retrieveResultEntity);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? gettingSearchAutocomplete,
+    TResult Function(SearchResultEntity searchResultEntity)?
+        gotSearchAutocomplete,
+    TResult Function(SearchAutocompleteFailure searchAutocompleteFailure)?
+        failedToGetSearchAutocomplete,
+    TResult Function(RetrieveResultEntity retrieveResultEntity)?
+        retrievedGeometricCoordinates,
+    TResult Function(SearchAutocompleteFailure searchAutocompleteFailure)?
+        failedToRetrieveGeometricCoordinates,
+    required TResult orElse(),
+  }) {
+    if (retrievedGeometricCoordinates != null) {
+      return retrievedGeometricCoordinates(retrieveResultEntity);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_GettingSearchAutocomplete value)
+        gettingSearchAutocomplete,
+    required TResult Function(_GotSearchAutocomplete value)
+        gotSearchAutocomplete,
+    required TResult Function(_FailedToGetSearchAutocomplete value)
+        failedToGetSearchAutocomplete,
+    required TResult Function(_RetrievedGeometricCoordinates value)
+        retrievedGeometricCoordinates,
+    required TResult Function(_FailedToRetrievedGeometricCoordinates value)
+        failedToRetrieveGeometricCoordinates,
+  }) {
+    return retrievedGeometricCoordinates(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(_GettingSearchAutocomplete value)?
+        gettingSearchAutocomplete,
+    TResult? Function(_GotSearchAutocomplete value)? gotSearchAutocomplete,
+    TResult? Function(_FailedToGetSearchAutocomplete value)?
+        failedToGetSearchAutocomplete,
+    TResult? Function(_RetrievedGeometricCoordinates value)?
+        retrievedGeometricCoordinates,
+    TResult? Function(_FailedToRetrievedGeometricCoordinates value)?
+        failedToRetrieveGeometricCoordinates,
+  }) {
+    return retrievedGeometricCoordinates?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_GettingSearchAutocomplete value)?
+        gettingSearchAutocomplete,
+    TResult Function(_GotSearchAutocomplete value)? gotSearchAutocomplete,
+    TResult Function(_FailedToGetSearchAutocomplete value)?
+        failedToGetSearchAutocomplete,
+    TResult Function(_RetrievedGeometricCoordinates value)?
+        retrievedGeometricCoordinates,
+    TResult Function(_FailedToRetrievedGeometricCoordinates value)?
+        failedToRetrieveGeometricCoordinates,
+    required TResult orElse(),
+  }) {
+    if (retrievedGeometricCoordinates != null) {
+      return retrievedGeometricCoordinates(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _RetrievedGeometricCoordinates
+    implements SearchAutocompleteState {
+  const factory _RetrievedGeometricCoordinates(
+          {required final RetrieveResultEntity retrieveResultEntity}) =
+      _$RetrievedGeometricCoordinatesImpl;
+
+  RetrieveResultEntity get retrieveResultEntity;
+  @JsonKey(ignore: true)
+  _$$RetrievedGeometricCoordinatesImplCopyWith<
+          _$RetrievedGeometricCoordinatesImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$FailedToRetrievedGeometricCoordinatesImplCopyWith<$Res> {
+  factory _$$FailedToRetrievedGeometricCoordinatesImplCopyWith(
+          _$FailedToRetrievedGeometricCoordinatesImpl value,
+          $Res Function(_$FailedToRetrievedGeometricCoordinatesImpl) then) =
+      __$$FailedToRetrievedGeometricCoordinatesImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({SearchAutocompleteFailure searchAutocompleteFailure});
+}
+
+/// @nodoc
+class __$$FailedToRetrievedGeometricCoordinatesImplCopyWithImpl<$Res>
+    extends _$SearchAutocompleteStateCopyWithImpl<$Res,
+        _$FailedToRetrievedGeometricCoordinatesImpl>
+    implements _$$FailedToRetrievedGeometricCoordinatesImplCopyWith<$Res> {
+  __$$FailedToRetrievedGeometricCoordinatesImplCopyWithImpl(
+      _$FailedToRetrievedGeometricCoordinatesImpl _value,
+      $Res Function(_$FailedToRetrievedGeometricCoordinatesImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? searchAutocompleteFailure = null,
+  }) {
+    return _then(_$FailedToRetrievedGeometricCoordinatesImpl(
+      searchAutocompleteFailure: null == searchAutocompleteFailure
+          ? _value.searchAutocompleteFailure
+          : searchAutocompleteFailure // ignore: cast_nullable_to_non_nullable
+              as SearchAutocompleteFailure,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$FailedToRetrievedGeometricCoordinatesImpl
+    implements _FailedToRetrievedGeometricCoordinates {
+  const _$FailedToRetrievedGeometricCoordinatesImpl(
+      {required this.searchAutocompleteFailure});
+
+  @override
+  final SearchAutocompleteFailure searchAutocompleteFailure;
+
+  @override
+  String toString() {
+    return 'SearchAutocompleteState.failedToRetrieveGeometricCoordinates(searchAutocompleteFailure: $searchAutocompleteFailure)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$FailedToRetrievedGeometricCoordinatesImpl &&
+            (identical(other.searchAutocompleteFailure,
+                    searchAutocompleteFailure) ||
+                other.searchAutocompleteFailure == searchAutocompleteFailure));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, searchAutocompleteFailure);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$FailedToRetrievedGeometricCoordinatesImplCopyWith<
+          _$FailedToRetrievedGeometricCoordinatesImpl>
+      get copyWith => __$$FailedToRetrievedGeometricCoordinatesImplCopyWithImpl<
+          _$FailedToRetrievedGeometricCoordinatesImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() gettingSearchAutocomplete,
+    required TResult Function(SearchResultEntity searchResultEntity)
+        gotSearchAutocomplete,
+    required TResult Function(
+            SearchAutocompleteFailure searchAutocompleteFailure)
+        failedToGetSearchAutocomplete,
+    required TResult Function(RetrieveResultEntity retrieveResultEntity)
+        retrievedGeometricCoordinates,
+    required TResult Function(
+            SearchAutocompleteFailure searchAutocompleteFailure)
+        failedToRetrieveGeometricCoordinates,
+  }) {
+    return failedToRetrieveGeometricCoordinates(searchAutocompleteFailure);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? gettingSearchAutocomplete,
+    TResult? Function(SearchResultEntity searchResultEntity)?
+        gotSearchAutocomplete,
+    TResult? Function(SearchAutocompleteFailure searchAutocompleteFailure)?
+        failedToGetSearchAutocomplete,
+    TResult? Function(RetrieveResultEntity retrieveResultEntity)?
+        retrievedGeometricCoordinates,
+    TResult? Function(SearchAutocompleteFailure searchAutocompleteFailure)?
+        failedToRetrieveGeometricCoordinates,
+  }) {
+    return failedToRetrieveGeometricCoordinates
+        ?.call(searchAutocompleteFailure);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? gettingSearchAutocomplete,
+    TResult Function(SearchResultEntity searchResultEntity)?
+        gotSearchAutocomplete,
+    TResult Function(SearchAutocompleteFailure searchAutocompleteFailure)?
+        failedToGetSearchAutocomplete,
+    TResult Function(RetrieveResultEntity retrieveResultEntity)?
+        retrievedGeometricCoordinates,
+    TResult Function(SearchAutocompleteFailure searchAutocompleteFailure)?
+        failedToRetrieveGeometricCoordinates,
+    required TResult orElse(),
+  }) {
+    if (failedToRetrieveGeometricCoordinates != null) {
+      return failedToRetrieveGeometricCoordinates(searchAutocompleteFailure);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_GettingSearchAutocomplete value)
+        gettingSearchAutocomplete,
+    required TResult Function(_GotSearchAutocomplete value)
+        gotSearchAutocomplete,
+    required TResult Function(_FailedToGetSearchAutocomplete value)
+        failedToGetSearchAutocomplete,
+    required TResult Function(_RetrievedGeometricCoordinates value)
+        retrievedGeometricCoordinates,
+    required TResult Function(_FailedToRetrievedGeometricCoordinates value)
+        failedToRetrieveGeometricCoordinates,
+  }) {
+    return failedToRetrieveGeometricCoordinates(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(_GettingSearchAutocomplete value)?
+        gettingSearchAutocomplete,
+    TResult? Function(_GotSearchAutocomplete value)? gotSearchAutocomplete,
+    TResult? Function(_FailedToGetSearchAutocomplete value)?
+        failedToGetSearchAutocomplete,
+    TResult? Function(_RetrievedGeometricCoordinates value)?
+        retrievedGeometricCoordinates,
+    TResult? Function(_FailedToRetrievedGeometricCoordinates value)?
+        failedToRetrieveGeometricCoordinates,
+  }) {
+    return failedToRetrieveGeometricCoordinates?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_GettingSearchAutocomplete value)?
+        gettingSearchAutocomplete,
+    TResult Function(_GotSearchAutocomplete value)? gotSearchAutocomplete,
+    TResult Function(_FailedToGetSearchAutocomplete value)?
+        failedToGetSearchAutocomplete,
+    TResult Function(_RetrievedGeometricCoordinates value)?
+        retrievedGeometricCoordinates,
+    TResult Function(_FailedToRetrievedGeometricCoordinates value)?
+        failedToRetrieveGeometricCoordinates,
+    required TResult orElse(),
+  }) {
+    if (failedToRetrieveGeometricCoordinates != null) {
+      return failedToRetrieveGeometricCoordinates(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _FailedToRetrievedGeometricCoordinates
+    implements SearchAutocompleteState {
+  const factory _FailedToRetrievedGeometricCoordinates(
+          {required final SearchAutocompleteFailure
+              searchAutocompleteFailure}) =
+      _$FailedToRetrievedGeometricCoordinatesImpl;
+
+  SearchAutocompleteFailure get searchAutocompleteFailure;
+  @JsonKey(ignore: true)
+  _$$FailedToRetrievedGeometricCoordinatesImplCopyWith<
+          _$FailedToRetrievedGeometricCoordinatesImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

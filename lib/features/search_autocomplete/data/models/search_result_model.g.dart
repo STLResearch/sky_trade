@@ -22,6 +22,7 @@ Map<String, dynamic> _$SearchResultModelToJson(SearchResultModel instance) =>
 
 SuggestionModel _$SuggestionModelFromJson(Map<String, dynamic> json) =>
     SuggestionModel(
+      mID: json['mapbox_id'] as String,
       mName: json['name'] as String,
       mPlaceFormatted: json['place_formatted'] as String,
       mNamePreferred: json['name_preferred'] as String?,
@@ -29,6 +30,7 @@ SuggestionModel _$SuggestionModelFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$SuggestionModelToJson(SuggestionModel instance) =>
     <String, dynamic>{
+      'mapbox_id': instance.mID,
       'name': instance.mName,
       'place_formatted': instance.mPlaceFormatted,
       'name_preferred': instance.mNamePreferred,

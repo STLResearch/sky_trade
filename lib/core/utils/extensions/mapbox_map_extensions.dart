@@ -200,7 +200,7 @@ extension MapboxMapExtensions on MapboxMap {
     required double latitude,
     required double longitude,
   }) async {
-    await easeTo(
+    await flyTo(
       CameraOptions(
         center: Point(
           coordinates: Position(

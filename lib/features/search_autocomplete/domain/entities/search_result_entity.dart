@@ -19,10 +19,13 @@ base class SearchResultEntity extends Equatable {
 
 base class SuggestionEntity extends Equatable {
   const SuggestionEntity({
+    required this.id,
     required this.name,
     required this.placeFormatted,
     required this.namePreferred,
   });
+
+  final String id;
 
   final String name;
 

@@ -5,15 +5,23 @@ import 'package:flutter/material.dart'
         AlignmentDirectional,
         BuildContext,
         Column,
+        EdgeInsets,
         EdgeInsetsDirectional,
+        FocusManager,
+        GestureDetector,
         InkWell,
         MainAxisAlignment,
         MainAxisSize,
         Padding,
+        Positioned,
         SafeArea,
         SizedBox,
         Stack,
+        State,
+        StatefulWidget,
         StatelessWidget,
+        ValueListenableBuilder,
+        ValueNotifier,
         Widget;
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sky_trade/core/assets/generated/assets.gen.dart' show Assets;
@@ -23,6 +31,7 @@ import 'package:sky_trade/core/resources/numbers/ui.dart'
         fiftyFourDotNil,
         sevenDotNil,
         seventyEightDotNil,
+        sixtyOneDotNil,
         tenDotNil,
         twelveDotNil,
         twentyOneDotNil;
@@ -68,7 +77,7 @@ class MapOverlay extends StatelessWidget {
       );
 }
 
-class MapOverlayView extends StatelessWidget {
+class MapOverlayView extends StatefulWidget {
   const MapOverlayView({
     required this.myLocationFollowed,
     required this.mapStyle,
@@ -87,19 +96,41 @@ class MapOverlayView extends StatelessWidget {
   final Function0<void> onDroneTap;
 
   @override
-  Widget build(BuildContext context) => SafeArea(
-        child: Align(
-          alignment: AlignmentDirectional.topCenter,
-          child: Padding(
-            padding: const EdgeInsetsDirectional.symmetric(
-              horizontal: twentyOneDotNil,
-            ),
+  State<MapOverlayView> createState() => _MapOverlayViewState();
+}
+
+class _MapOverlayViewState extends State<MapOverlayView> {
+  final ValueNotifier<String?> _queryTextNotifier =
+      ValueNotifier<String?>(null);
+
+  final ValueNotifier<bool> _showSearchResultCardNotifier =
+      ValueNotifier<bool>(false);
+
+  @override
+  Widget build(BuildContext context) {
+    _queryTextNotifier.value = null;
+    return SafeArea(
+      child: Align(
+        alignment: AlignmentDirectional.topCenter,
+        child: Padding(
+          padding: const EdgeInsetsDirectional.symmetric(
+            horizontal: twentyOneDotNil,
+          ),
+          child: SizedBox(
+            height: double.infinity,
             child: Stack(
               children: [
                 Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    const SearchCard(),
+                    ValueListenableBuilder(
+                      valueListenable: _queryTextNotifier,
+                      builder: (_, queryTextValue, __) => SearchCard(
+                        queryText: queryTextValue,
+                        onSearchCardTap: () =>
+                            _showSearchResultCardNotifier.value = true,
+                      ),
+                    ),
                     const SizedBox(
                       height: twelveDotNil,
                     ),
@@ -113,8 +144,8 @@ class MapOverlayView extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             InkWell(
-                              onTap: onMyLocationIconTap,
-                              child: switch (myLocationFollowed) {
+                              onTap: widget.onMyLocationIconTap,
+                              child: switch (widget.myLocationFollowed) {
                                 true => Assets.svgs.myLocationFollowed.svg(),
                                 false =>
                                   Assets.svgs.myLocationNotFollowed.svg(),
@@ -124,8 +155,8 @@ class MapOverlayView extends StatelessWidget {
                               height: tenDotNil,
                             ),
                             InkWell(
-                              onTap: onMapLayerIconTap,
-                              child: switch (mapStyle) {
+                              onTap: widget.onMapLayerIconTap,
+                              child: switch (widget.mapStyle) {
                                 MapStyle.dark => Assets.svgs.mapLayerDark.svg(),
                                 MapStyle.satellite =>
                                   Assets.svgs.mapLayerSatellite.svg(),
@@ -141,10 +172,41 @@ class MapOverlayView extends StatelessWidget {
                     const WeatherCard(),
                   ],
                 ),
-                const SearchResultCard(),
+                ValueListenableBuilder(
+                  valueListenable: _showSearchResultCardNotifier,
+                  builder: (_, value, __) => switch (value) {
+                    true => Positioned.fill(
+                        child: Padding(
+                          padding: const EdgeInsets.only(top: sixtyOneDotNil),
+                          child: GestureDetector(
+                            onTap: () {
+                              _showSearchResultCardNotifier.value = false;
+                              FocusManager.instance.primaryFocus?.unfocus();
+                            },
+                          ),
+                        ),
+                      ),
+                    false => const SizedBox.shrink(),
+                  },
+                ),
+                ValueListenableBuilder(
+                  valueListenable: _showSearchResultCardNotifier,
+                  builder: (_, showResultCard, __) => switch (showResultCard) {
+                    true => SearchResultCard(
+                        onSearchCardTap: (suggestionPlaceName) {
+                          _queryTextNotifier.value = suggestionPlaceName;
+                          _showSearchResultCardNotifier.value = false;
+                          FocusManager.instance.primaryFocus?.unfocus();
+                        },
+                      ),
+                    false => const SizedBox.shrink(),
+                  },
+                ),
               ],
             ),
           ),
         ),
-      );
+      ),
+    );
+  }
 }

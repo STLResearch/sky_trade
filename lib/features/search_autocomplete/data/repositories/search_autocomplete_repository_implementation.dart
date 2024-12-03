@@ -4,6 +4,7 @@ import 'package:sky_trade/core/errors/failures/search_autocomplete_failure.dart'
 import 'package:sky_trade/core/utils/clients/data_handler.dart';
 import 'package:sky_trade/features/search_autocomplete/data/data_sources/search_autocomplete_remote_data_source.dart'
     show SearchAutocompleteRemoteDataSource;
+import 'package:sky_trade/features/search_autocomplete/domain/entities/retrieve_result_entity.dart';
 import 'package:sky_trade/features/search_autocomplete/domain/entities/search_result_entity.dart'
     show SearchResultEntity;
 import 'package:sky_trade/features/search_autocomplete/domain/repositories/search_autocomplete_repository.dart';
@@ -28,6 +29,20 @@ final class SearchAutocompleteRepositoryImplementation
               query: query,
             ),
             onSuccess: (searchResultEntities) => searchResultEntities,
+            onFailure: (_) => SearchAutocompleteFailure(),
+          );
+
+  @override
+  Future<Either<SearchAutocompleteFailure, RetrieveResultEntity>>
+      retrieveGeometricCoordinatesFor({
+    required String mapboxID,
+  }) =>
+          handleData<SearchAutocompleteFailure, RetrieveResultEntity>(
+            dataSourceOperation: () => _searchAutocompleteRemoteDataSource
+                .retrieveGeometricCoordinatesFor(
+              mapboxID: mapboxID,
+            ),
+            onSuccess: (retrieveResultEntity) => retrieveResultEntity,
             onFailure: (_) => SearchAutocompleteFailure(),
           );
 }

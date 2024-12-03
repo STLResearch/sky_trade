@@ -26,9 +26,18 @@ import 'package:flutter_bloc/flutter_bloc.dart'
         ReadContext;
 import 'package:flutter_dotenv/flutter_dotenv.dart' show dotenv;
 import 'package:mapbox_maps_flutter/mapbox_maps_flutter.dart'
-    show CompassSettings, MapboxMap, MapboxOptions, ScaleBarSettings;
+    show
+        CameraOptions,
+        CompassSettings,
+        MapAnimationOptions,
+        MapboxMap,
+        MapboxOptions,
+        Point,
+        Position,
+        ScaleBarSettings;
 import 'package:sky_trade/core/resources/colors.dart' show hexB3FFFFFF;
-import 'package:sky_trade/core/resources/numbers/ui.dart' show twelveDotFive;
+import 'package:sky_trade/core/resources/numbers/ui.dart'
+    show oneThousand, twelveDotFive;
 import 'package:sky_trade/core/resources/strings/routes.dart'
     show getStartedRoutePath;
 import 'package:sky_trade/core/resources/strings/secret_keys.dart'
@@ -36,7 +45,8 @@ import 'package:sky_trade/core/resources/strings/secret_keys.dart'
         mapboxMapsDarkStyleUri,
         mapboxMapsPublicKey,
         mapboxMapsSatelliteStyleUri;
-import 'package:sky_trade/core/resources/strings/special_characters.dart' show emptyString;
+import 'package:sky_trade/core/resources/strings/special_characters.dart'
+    show emptyString;
 import 'package:sky_trade/core/resources/strings/ui.dart'
     show bridDronesSourceId, nridDronesSourceId;
 import 'package:sky_trade/core/utils/enums/local.dart' show CacheType;
@@ -83,6 +93,11 @@ import 'package:sky_trade/features/remote_i_d_receiver/presentation/blocs/networ
         NetworkRemoteIDReceiverState;
 import 'package:sky_trade/features/remote_i_d_transmitter/presentation/blocs/remote_i_d_transmitter_bloc/remote_i_d_transmitter_bloc.dart'
     show RemoteIDTransmitterBloc, RemoteIDTransmitterEvent;
+import 'package:sky_trade/features/search_autocomplete/presentation/blocs/search_autocomplete_bloc.dart'
+    show
+        SearchAutocompleteBloc,
+        SearchAutocompleteEvent,
+        SearchAutocompleteState;
 import 'package:sky_trade/features/u_a_s_restrictions/domain/entities/restriction_entity.dart'
     show RestrictionEntity;
 import 'package:sky_trade/features/u_a_s_restrictions/presentation/blocs/u_a_s_restrictions_bloc/u_a_s_restrictions_bloc.dart'
@@ -382,7 +397,8 @@ class _HomeViewState extends State<HomeView> {
                       );
 
                   if (_mapboxMap != null) {
-                    previousBridGeoJsonData = await _mapboxMap!.addOrUpdateDronesOnMap(
+                    previousBridGeoJsonData =
+                        await _mapboxMap!.addOrUpdateDronesOnMap(
                       remoteIDEntities: bridEntities,
                       geoJsonSourceId: bridDronesSourceId,
                     );
@@ -518,8 +534,32 @@ class _HomeViewState extends State<HomeView> {
               );
             },
           ),
+          BlocListener<SearchAutocompleteBloc, SearchAutocompleteState>(
+            listener: (context, searchAutocompleteState) {
+              searchAutocompleteState.whenOrNull(
+                retrievedGeometricCoordinates: (latLng) {
+                  _centerLocationNotifier.value = false;
+                  _mapboxMap?.flyTo(
+                    CameraOptions(
+                      center: Point(
+                        coordinates: Position(
+                          latLng.coordinates.longitude,
+                          latLng.coordinates.latitude,
+                        ),
+                      ),
+                      zoom: twelveDotFive,
+                    ),
+                    MapAnimationOptions(
+                      duration: oneThousand,
+                    ),
+                  );
+                },
+              );
+            },
+          ),
         ],
         child: Scaffold(
+          resizeToAvoidBottomInset: false,
           body: Stack(
             alignment: AlignmentDirectional.center,
             children: [

@@ -1,5 +1,6 @@
 import 'dart:io' show Platform;
 
+import 'package:dartz/dartz.dart' show Function0;
 import 'package:flutter/material.dart'
     show
         BorderRadiusDirectional,
@@ -53,7 +54,15 @@ import 'package:sky_trade/features/wifi/presentation/blocs/wifi_adapter_state_bl
 import 'package:sky_trade/injection_container.dart' show serviceLocator;
 
 class SearchCard extends StatelessWidget {
-  const SearchCard({super.key});
+  const SearchCard({
+    required this.queryText,
+    required this.onSearchCardTap,
+    super.key,
+  });
+
+  final String? queryText;
+
+  final Function0<void> onSearchCardTap;
 
   @override
   Widget build(BuildContext context) => MultiBlocProvider(
@@ -65,12 +74,23 @@ class SearchCard extends StatelessWidget {
             create: (_) => serviceLocator(),
           ),
         ],
-        child: const SearchCardView(),
+        child: SearchCardView(
+          queryText: queryText,
+          onSearchCardTap: onSearchCardTap,
+        ),
       );
 }
 
 class SearchCardView extends StatefulWidget {
-  const SearchCardView({super.key});
+  const SearchCardView({
+    required this.queryText,
+    required this.onSearchCardTap,
+    super.key,
+  });
+
+  final String? queryText;
+
+  final Function0<void> onSearchCardTap;
 
   @override
   State<SearchCardView> createState() => _SearchCardViewState();
@@ -110,118 +130,122 @@ class _SearchCardViewState extends State<SearchCardView> {
   }
 
   @override
-  Widget build(BuildContext context) => Container(
-        height: sixtyOneDotNil,
-        decoration: BoxDecoration(
-          color: Theme.of(context).scaffoldBackgroundColor,
-          borderRadius: BorderRadiusDirectional.circular(
-            eightDotNil,
+  Widget build(BuildContext context) {
+    _searchController.text = widget.queryText ?? _searchController.text;
+    return Container(
+      height: sixtyOneDotNil,
+      decoration: BoxDecoration(
+        color: Theme.of(context).scaffoldBackgroundColor,
+        borderRadius: BorderRadiusDirectional.circular(
+          eightDotNil,
+        ),
+      ),
+      child: Row(
+        children: [
+          const SizedBox(
+            width: fifteenDotNil,
           ),
-        ),
-        child: Row(
-          children: [
-            const SizedBox(
-              width: fifteenDotNil,
-            ),
-            Assets.svgs.search.svg(),
-            const SizedBox(
-              width: tenDotNil,
-            ),
-            Expanded(
-              child: TextFormField(
-                controller: _searchController,
-                cursorColor: hex333333,
-                style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                      fontSize: fourteenDotNil,
-                      height: twentyOneDotNil / fourteenDotNil,
-                      color: hex333333,
+          Assets.svgs.search.svg(),
+          const SizedBox(
+            width: tenDotNil,
+          ),
+          Expanded(
+            child: TextFormField(
+              controller: _searchController,
+              cursorColor: hex333333,
+              style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                    fontSize: fourteenDotNil,
+                    height: twentyOneDotNil / fourteenDotNil,
+                    color: hex333333,
+                  ),
+              decoration: InputDecoration(
+                contentPadding: EdgeInsetsDirectional.zero,
+                hintText: context.localize.searchLocation,
+                hintStyle: Theme.of(context).textTheme.bodySmall?.copyWith(
+                      color: hexB8B8B8,
                     ),
-                decoration: InputDecoration(
-                  contentPadding: EdgeInsetsDirectional.zero,
-                  hintText: context.localize.searchLocation,
-                  hintStyle: Theme.of(context).textTheme.bodySmall?.copyWith(
-                        color: hexB8B8B8,
+                enabledBorder: const OutlineInputBorder(
+                  borderSide: BorderSide(
+                    color: Colors.transparent,
+                  ),
+                ),
+                focusedBorder: const OutlineInputBorder(
+                  borderSide: BorderSide(
+                    color: Colors.transparent,
+                  ),
+                ),
+              ),
+              onChanged: (value) {
+                context.read<SearchAutocompleteBloc>().add(
+                      SearchAutocompleteEvent.autocompleteSearch(
+                        query: value,
                       ),
-                  enabledBorder: const OutlineInputBorder(
-                    borderSide: BorderSide(
-                      color: Colors.transparent,
-                    ),
+                    );
+              },
+              onTap: () => widget.onSearchCardTap.call(),
+            ),
+          ),
+          const SizedBox(
+            width: tenDotNil,
+          ),
+          BlocBuilder<BluetoothAdapterStateBloc, BluetoothAdapterStateState>(
+            builder: (_, bluetoothAdapterStateState) =>
+                bluetoothAdapterStateState.maybeWhen(
+              gotBluetoothAdapterState: (bluetoothAdapterStateEntity) =>
+                  switch (bluetoothAdapterStateEntity.adapterState) {
+                BluetoothAdapterState.on => Assets.svgs.bluetoothOn.svg(
+                    width: twentyFourDotNil,
+                    height: twentyFiveDotNil,
                   ),
-                  focusedBorder: const OutlineInputBorder(
-                    borderSide: BorderSide(
-                      color: Colors.transparent,
-                    ),
+                _ => Assets.svgs.bluetoothOff.svg(
+                    width: twentyFourDotNil,
+                    height: twentyFiveDotNil,
                   ),
-                ),
-                onChanged: (value) {
-                  context.read<SearchAutocompleteBloc>().add(
-                        SearchAutocompleteEvent.autocompleteSearch(
-                          query: value,
-                        ),
-                      );
-                },
+              },
+              orElse: () => Assets.svgs.bluetoothOff.svg(
+                width: twentyFourDotNil,
+                height: twentyFiveDotNil,
               ),
             ),
-            const SizedBox(
-              width: tenDotNil,
-            ),
-            BlocBuilder<BluetoothAdapterStateBloc, BluetoothAdapterStateState>(
-              builder: (_, bluetoothAdapterStateState) =>
-                  bluetoothAdapterStateState.maybeWhen(
-                gotBluetoothAdapterState: (bluetoothAdapterStateEntity) =>
-                    switch (bluetoothAdapterStateEntity.adapterState) {
-                  BluetoothAdapterState.on => Assets.svgs.bluetoothOn.svg(
-                      width: twentyFourDotNil,
-                      height: twentyFiveDotNil,
-                    ),
-                  _ => Assets.svgs.bluetoothOff.svg(
-                      width: twentyFourDotNil,
-                      height: twentyFiveDotNil,
-                    ),
-                },
-                orElse: () => Assets.svgs.bluetoothOff.svg(
-                  width: twentyFourDotNil,
-                  height: twentyFiveDotNil,
-                ),
+          ),
+          switch (Platform.isAndroid) {
+            true => const SizedBox(
+                width: tenDotNil,
               ),
-            ),
-            switch (Platform.isAndroid) {
-              true => const SizedBox(
-                  width: tenDotNil,
-                ),
-              false => const SizedBox.shrink(),
-            },
-            switch (Platform.isAndroid) {
-              true => BlocBuilder<WifiAdapterStateBloc, WifiAdapterStateState>(
-                  builder: (_, wifiAdapterStateState) =>
-                      wifiAdapterStateState.maybeWhen(
-                    gotWifiAdapterState: (wifiAdapterStateEntity) =>
-                        switch (wifiAdapterStateEntity.adapterState) {
-                      WifiAdapterState.enabled => Assets.svgs.wifiOn.svg(
-                          width: thirtyTwoDotNil,
-                          height: twentyFourDotNil,
-                        ),
-                      _ => Assets.svgs.wifiOff.svg(
-                          width: thirtyTwoDotNil,
-                          height: twentyFourDotNil,
-                        ),
-                    },
-                    orElse: () => Assets.svgs.wifiOff.svg(
-                      width: thirtyTwoDotNil,
-                      height: twentyFourDotNil,
-                    ),
+            false => const SizedBox.shrink(),
+          },
+          switch (Platform.isAndroid) {
+            true => BlocBuilder<WifiAdapterStateBloc, WifiAdapterStateState>(
+                builder: (_, wifiAdapterStateState) =>
+                    wifiAdapterStateState.maybeWhen(
+                  gotWifiAdapterState: (wifiAdapterStateEntity) =>
+                      switch (wifiAdapterStateEntity.adapterState) {
+                    WifiAdapterState.enabled => Assets.svgs.wifiOn.svg(
+                        width: thirtyTwoDotNil,
+                        height: twentyFourDotNil,
+                      ),
+                    _ => Assets.svgs.wifiOff.svg(
+                        width: thirtyTwoDotNil,
+                        height: twentyFourDotNil,
+                      ),
+                  },
+                  orElse: () => Assets.svgs.wifiOff.svg(
+                    width: thirtyTwoDotNil,
+                    height: twentyFourDotNil,
                   ),
                 ),
-              false => const SizedBox.shrink(),
-            },
-            const SizedBox(
-              width: tenDotNil,
-            ),
-            const Menu(),
-            const SizedBox(
-              width: eighteenDotNil,
-            ),
-          ],
-        ),
-      );
+              ),
+            false => const SizedBox.shrink(),
+          },
+          const SizedBox(
+            width: tenDotNil,
+          ),
+          const Menu(),
+          const SizedBox(
+            width: eighteenDotNil,
+          ),
+        ],
+      ),
+    );
+  }
 }
