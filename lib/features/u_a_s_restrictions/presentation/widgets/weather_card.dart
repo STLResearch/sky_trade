@@ -49,6 +49,7 @@ class WeatherCard extends StatelessWidget {
                     width: twentyFourDotNil,
                     height: twentyFourDotNil,
                     color: hex222222,
+                    errorBuilder: (_, __, ___) => const SizedBox.shrink(),
                   ),
                   gettingWeather: () => Align(
                     alignment: AlignmentDirectional.center,
