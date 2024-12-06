@@ -7,8 +7,9 @@ import 'package:sky_trade/core/errors/exceptions/auth_exception.dart'
         InvalidEmailException,
         InvalidSignatureException,
         UnauthorizedException,
-        UserAlreadyExistsException,
-        UserDoesNotExistException;
+        UserMismatchException,
+        UserNotFoundException,
+        WalletAlreadyExistsException;
 import 'package:sky_trade/core/errors/failures/auth_failure.dart';
 import 'package:sky_trade/core/resources/strings/environments.dart'
     show devEnvironment, flavours, stageEnvironment;
@@ -198,8 +199,8 @@ final class AuthRepositoryImplementation
             onFailure: (e) {
               if (e is InvalidEmailException) {
                 return InvalidEmailFailure();
-              } else if (e is UserAlreadyExistsException) {
-                return UserAlreadyExistsFailure();
+              } else if (e is WalletAlreadyExistsException) {
+                return WalletAlreadyExistsFailure();
               } else {
                 return CreateSkyTradeUserUnknownFailure();
               }
@@ -217,8 +218,10 @@ final class AuthRepositoryImplementation
                 return UnauthorizedFailure();
               } else if (e is InvalidSignatureException) {
                 return InvalidSignatureFailure();
-              } else if (e is UserDoesNotExistException) {
-                return UserDoesNotExistFailure();
+              } else if (e is UserNotFoundException) {
+                return UserNotFoundFailure();
+              } else if (e is UserMismatchException) {
+                return UserMismatchFailure();
               } else {
                 return CheckSkyTradeUserUnknownFailure();
               }

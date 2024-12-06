@@ -1,3 +1,5 @@
+// ignore_for_file: lines_longer_than_80_chars
+
 import 'package:flutter/material.dart'
     show
         AppLifecycleState,
@@ -50,6 +52,8 @@ import 'package:sky_trade/features/auth/presentation/widgets/or_section.dart';
 import 'package:sky_trade/features/auth/presentation/widgets/subscribe_section.dart';
 import 'package:sky_trade/features/link_handler/presentation/blocs/handle_link_bloc/handle_link_bloc.dart'
     show HandleLinkBloc, HandleLinkEvent;
+
+import '../../../../core/errors/failures/auth_failure.dart';
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({super.key});
@@ -157,25 +161,16 @@ class _RegisterScreenState extends State<RegisterScreen>
                     homeRoutePath,
                   );
                 },
-                userEmailInvalid: () {
+                failedToCreateUser: (createSkyTradeUserFailure) {
                   _removeProgressIndicatorFromAuthButtonAndAlertUserWith(
-                    message: context.localize.suppliedEmailCredentialIsInvalid,
-                  );
-
-                  _logout();
-                },
-                userAlreadyExists: () {
-                  _removeProgressIndicatorFromAuthButtonAndAlertUserWith(
-                    message:
-                        context.localize.accountAlreadyExistsPleaseLoginInstead,
-                  );
-
-                  _logout();
-                },
-                failedToCreateUser: (_) {
-                  _removeProgressIndicatorFromAuthButtonAndAlertUserWith(
-                    message: context
-                        .localize.weCouldNotCreateYourAccountPleaseTryAgain,
+                    message: switch (createSkyTradeUserFailure) {
+                      InvalidEmailFailure() =>
+                        context.localize.pleaseEnterAValidEmail,
+                      WalletAlreadyExistsFailure() => context
+                          .localize.thisEmailIsAlreadyLinkedToAnExistingAccount,
+                      CreateSkyTradeUserUnknownFailure() =>
+                        context.localize.anUnknownErrorOccurredPleaseTryAgain,
+                    },
                   );
 
                   _logout();

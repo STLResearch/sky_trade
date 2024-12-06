@@ -2,9 +2,7 @@ import 'package:bloc/bloc.dart' show Bloc, Emitter;
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:sky_trade/core/errors/failures/auth_failure.dart'
     show
-        CreateSkyTradeUserFailure,
-        InvalidEmailFailure,
-        UserAlreadyExistsFailure;
+        CreateSkyTradeUserFailure;
 import 'package:sky_trade/features/auth/domain/entities/auth_entity.dart'
     show SkyTradeUserEntity;
 import 'package:sky_trade/features/auth/domain/repositories/auth_repository.dart';
@@ -44,21 +42,11 @@ class CreateSkyTradeUserBloc
 
     result.fold(
       (createSkyTradeUserFailure) {
-        if (createSkyTradeUserFailure is InvalidEmailFailure) {
-          emit(
-            const CreateSkyTradeUserState.userEmailInvalid(),
-          );
-        } else if (createSkyTradeUserFailure is UserAlreadyExistsFailure) {
-          emit(
-            const CreateSkyTradeUserState.userAlreadyExists(),
-          );
-        } else {
           emit(
             CreateSkyTradeUserState.failedToCreateUser(
               createSkyTradeUserFailure: createSkyTradeUserFailure,
             ),
           );
-        }
       },
       (skyTradeUserEntity) => emit(
         CreateSkyTradeUserState.createdUser(

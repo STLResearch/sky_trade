@@ -295,6 +295,7 @@ const updatedAtKey = 'updatedAt';
 // Error response data message
 const unauthorized = 'UNAUTHORIZED';
 const invalidSignature = 'INVALID_SIGNATURE';
-const userNotExist = 'USER_NOT_EXIST';
+const userNotFound = 'USER_NOT_FOUND';
 const invalidEmail = 'INVALID_EMAIL';
-const userExist = 'USER_EXIST';
+const userMismatch = 'USER_MISMATCH';
+const walletAlreadyExists = 'A wallet already exists for this email address. Kindly sign in with the same method used previously.';
