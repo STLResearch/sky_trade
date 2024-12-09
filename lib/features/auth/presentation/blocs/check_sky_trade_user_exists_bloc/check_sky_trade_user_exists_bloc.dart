@@ -1,11 +1,7 @@
 import 'package:bloc/bloc.dart' show Bloc, Emitter;
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:sky_trade/core/errors/failures/auth_failure.dart'
-    show
-        CheckSkyTradeUserFailure,
-        InvalidSignatureFailure,
-        UnauthorizedFailure,
-        UserDoesNotExistFailure;
+    show CheckSkyTradeUserFailure;
 import 'package:sky_trade/features/auth/domain/entities/auth_entity.dart'
     show SkyTradeUserEntity;
 import 'package:sky_trade/features/auth/domain/repositories/auth_repository.dart';
@@ -43,25 +39,11 @@ class CheckSkyTradeUserExistsBloc
 
     result.fold(
       (checkSkyTradeUserFailure) {
-        if (checkSkyTradeUserFailure is UnauthorizedFailure) {
-          emit(
-            const CheckSkyTradeUserExistsState.userUnauthorized(),
-          );
-        } else if (checkSkyTradeUserFailure is InvalidSignatureFailure) {
-          emit(
-            const CheckSkyTradeUserExistsState.userSignatureInvalid(),
-          );
-        } else if (checkSkyTradeUserFailure is UserDoesNotExistFailure) {
-          emit(
-            const CheckSkyTradeUserExistsState.userDoesNotExist(),
-          );
-        } else {
-          emit(
-            CheckSkyTradeUserExistsState.failedToCheckUser(
-              checkSkyTradeUserFailure: checkSkyTradeUserFailure,
-            ),
-          );
-        }
+        emit(
+          CheckSkyTradeUserExistsState.failedToCheckUser(
+            checkSkyTradeUserFailure: checkSkyTradeUserFailure,
+          ),
+        );
       },
       (skyTradeUserEntity) => emit(
         CheckSkyTradeUserExistsState.userExists(

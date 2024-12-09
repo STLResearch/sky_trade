@@ -1,3 +1,5 @@
+// ignore_for_file: lines_longer_than_80_chars
+
 import 'package:flutter/material.dart'
     show
         AppLifecycleState,
@@ -18,6 +20,11 @@ import 'package:flutter/material.dart'
         WidgetsBindingObserver;
 import 'package:flutter_bloc/flutter_bloc.dart'
     show BlocBuilder, BlocListener, MultiBlocListener, ReadContext;
+import 'package:sky_trade/core/errors/failures/auth_failure.dart'
+    show
+        CreateSkyTradeUserUnknownFailure,
+        InvalidEmailFailure,
+        WalletAlreadyExistsFailure;
 import 'package:sky_trade/core/resources/numbers/ui.dart'
     show fifteenDotNil, tenDotNil, thirtyDotNil;
 import 'package:sky_trade/core/resources/strings/networking.dart'
@@ -157,25 +164,16 @@ class _RegisterScreenState extends State<RegisterScreen>
                     homeRoutePath,
                   );
                 },
-                userEmailInvalid: () {
+                failedToCreateUser: (createSkyTradeUserFailure) {
                   _removeProgressIndicatorFromAuthButtonAndAlertUserWith(
-                    message: context.localize.suppliedEmailCredentialIsInvalid,
-                  );
-
-                  _logout();
-                },
-                userAlreadyExists: () {
-                  _removeProgressIndicatorFromAuthButtonAndAlertUserWith(
-                    message:
-                        context.localize.accountAlreadyExistsPleaseLoginInstead,
-                  );
-
-                  _logout();
-                },
-                failedToCreateUser: (_) {
-                  _removeProgressIndicatorFromAuthButtonAndAlertUserWith(
-                    message: context
-                        .localize.weCouldNotCreateYourAccountPleaseTryAgain,
+                    message: switch (createSkyTradeUserFailure) {
+                      InvalidEmailFailure() =>
+                        context.localize.pleaseEnterAValidEmail,
+                      WalletAlreadyExistsFailure() => context
+                          .localize.thisEmailIsAlreadyLinkedToAnExistingAccount,
+                      CreateSkyTradeUserUnknownFailure() =>
+                        context.localize.anUnknownErrorOccurredPleaseTryAgain,
+                    },
                   );
 
                   _logout();

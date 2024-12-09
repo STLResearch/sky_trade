@@ -174,9 +174,6 @@ mixin _$CheckSkyTradeUserExistsState {
     required TResult Function() initial,
     required TResult Function() checkingUser,
     required TResult Function(SkyTradeUserEntity skyTradeUserEntity) userExists,
-    required TResult Function() userUnauthorized,
-    required TResult Function() userSignatureInvalid,
-    required TResult Function() userDoesNotExist,
     required TResult Function(CheckSkyTradeUserFailure checkSkyTradeUserFailure)
         failedToCheckUser,
   }) =>
@@ -186,9 +183,6 @@ mixin _$CheckSkyTradeUserExistsState {
     TResult? Function()? initial,
     TResult? Function()? checkingUser,
     TResult? Function(SkyTradeUserEntity skyTradeUserEntity)? userExists,
-    TResult? Function()? userUnauthorized,
-    TResult? Function()? userSignatureInvalid,
-    TResult? Function()? userDoesNotExist,
     TResult? Function(CheckSkyTradeUserFailure checkSkyTradeUserFailure)?
         failedToCheckUser,
   }) =>
@@ -198,9 +192,6 @@ mixin _$CheckSkyTradeUserExistsState {
     TResult Function()? initial,
     TResult Function()? checkingUser,
     TResult Function(SkyTradeUserEntity skyTradeUserEntity)? userExists,
-    TResult Function()? userUnauthorized,
-    TResult Function()? userSignatureInvalid,
-    TResult Function()? userDoesNotExist,
     TResult Function(CheckSkyTradeUserFailure checkSkyTradeUserFailure)?
         failedToCheckUser,
     required TResult orElse(),
@@ -211,9 +202,6 @@ mixin _$CheckSkyTradeUserExistsState {
     required TResult Function(_Initial value) initial,
     required TResult Function(_CheckingUser value) checkingUser,
     required TResult Function(_UserExists value) userExists,
-    required TResult Function(_UserUnauthorized value) userUnauthorized,
-    required TResult Function(_UserSignatureInvalid value) userSignatureInvalid,
-    required TResult Function(_UserDoesNotExist value) userDoesNotExist,
     required TResult Function(_FailedToCheckUser value) failedToCheckUser,
   }) =>
       throw _privateConstructorUsedError;
@@ -222,9 +210,6 @@ mixin _$CheckSkyTradeUserExistsState {
     TResult? Function(_Initial value)? initial,
     TResult? Function(_CheckingUser value)? checkingUser,
     TResult? Function(_UserExists value)? userExists,
-    TResult? Function(_UserUnauthorized value)? userUnauthorized,
-    TResult? Function(_UserSignatureInvalid value)? userSignatureInvalid,
-    TResult? Function(_UserDoesNotExist value)? userDoesNotExist,
     TResult? Function(_FailedToCheckUser value)? failedToCheckUser,
   }) =>
       throw _privateConstructorUsedError;
@@ -233,9 +218,6 @@ mixin _$CheckSkyTradeUserExistsState {
     TResult Function(_Initial value)? initial,
     TResult Function(_CheckingUser value)? checkingUser,
     TResult Function(_UserExists value)? userExists,
-    TResult Function(_UserUnauthorized value)? userUnauthorized,
-    TResult Function(_UserSignatureInvalid value)? userSignatureInvalid,
-    TResult Function(_UserDoesNotExist value)? userDoesNotExist,
     TResult Function(_FailedToCheckUser value)? failedToCheckUser,
     required TResult orElse(),
   }) =>
@@ -304,9 +286,6 @@ class _$InitialImpl implements _Initial {
     required TResult Function() initial,
     required TResult Function() checkingUser,
     required TResult Function(SkyTradeUserEntity skyTradeUserEntity) userExists,
-    required TResult Function() userUnauthorized,
-    required TResult Function() userSignatureInvalid,
-    required TResult Function() userDoesNotExist,
     required TResult Function(CheckSkyTradeUserFailure checkSkyTradeUserFailure)
         failedToCheckUser,
   }) {
@@ -319,9 +298,6 @@ class _$InitialImpl implements _Initial {
     TResult? Function()? initial,
     TResult? Function()? checkingUser,
     TResult? Function(SkyTradeUserEntity skyTradeUserEntity)? userExists,
-    TResult? Function()? userUnauthorized,
-    TResult? Function()? userSignatureInvalid,
-    TResult? Function()? userDoesNotExist,
     TResult? Function(CheckSkyTradeUserFailure checkSkyTradeUserFailure)?
         failedToCheckUser,
   }) {
@@ -334,9 +310,6 @@ class _$InitialImpl implements _Initial {
     TResult Function()? initial,
     TResult Function()? checkingUser,
     TResult Function(SkyTradeUserEntity skyTradeUserEntity)? userExists,
-    TResult Function()? userUnauthorized,
-    TResult Function()? userSignatureInvalid,
-    TResult Function()? userDoesNotExist,
     TResult Function(CheckSkyTradeUserFailure checkSkyTradeUserFailure)?
         failedToCheckUser,
     required TResult orElse(),
@@ -353,9 +326,6 @@ class _$InitialImpl implements _Initial {
     required TResult Function(_Initial value) initial,
     required TResult Function(_CheckingUser value) checkingUser,
     required TResult Function(_UserExists value) userExists,
-    required TResult Function(_UserUnauthorized value) userUnauthorized,
-    required TResult Function(_UserSignatureInvalid value) userSignatureInvalid,
-    required TResult Function(_UserDoesNotExist value) userDoesNotExist,
     required TResult Function(_FailedToCheckUser value) failedToCheckUser,
   }) {
     return initial(this);
@@ -367,9 +337,6 @@ class _$InitialImpl implements _Initial {
     TResult? Function(_Initial value)? initial,
     TResult? Function(_CheckingUser value)? checkingUser,
     TResult? Function(_UserExists value)? userExists,
-    TResult? Function(_UserUnauthorized value)? userUnauthorized,
-    TResult? Function(_UserSignatureInvalid value)? userSignatureInvalid,
-    TResult? Function(_UserDoesNotExist value)? userDoesNotExist,
     TResult? Function(_FailedToCheckUser value)? failedToCheckUser,
   }) {
     return initial?.call(this);
@@ -381,9 +348,6 @@ class _$InitialImpl implements _Initial {
     TResult Function(_Initial value)? initial,
     TResult Function(_CheckingUser value)? checkingUser,
     TResult Function(_UserExists value)? userExists,
-    TResult Function(_UserUnauthorized value)? userUnauthorized,
-    TResult Function(_UserSignatureInvalid value)? userSignatureInvalid,
-    TResult Function(_UserDoesNotExist value)? userDoesNotExist,
     TResult Function(_FailedToCheckUser value)? failedToCheckUser,
     required TResult orElse(),
   }) {
@@ -439,9 +403,6 @@ class _$CheckingUserImpl implements _CheckingUser {
     required TResult Function() initial,
     required TResult Function() checkingUser,
     required TResult Function(SkyTradeUserEntity skyTradeUserEntity) userExists,
-    required TResult Function() userUnauthorized,
-    required TResult Function() userSignatureInvalid,
-    required TResult Function() userDoesNotExist,
     required TResult Function(CheckSkyTradeUserFailure checkSkyTradeUserFailure)
         failedToCheckUser,
   }) {
@@ -454,9 +415,6 @@ class _$CheckingUserImpl implements _CheckingUser {
     TResult? Function()? initial,
     TResult? Function()? checkingUser,
     TResult? Function(SkyTradeUserEntity skyTradeUserEntity)? userExists,
-    TResult? Function()? userUnauthorized,
-    TResult? Function()? userSignatureInvalid,
-    TResult? Function()? userDoesNotExist,
     TResult? Function(CheckSkyTradeUserFailure checkSkyTradeUserFailure)?
         failedToCheckUser,
   }) {
@@ -469,9 +427,6 @@ class _$CheckingUserImpl implements _CheckingUser {
     TResult Function()? initial,
     TResult Function()? checkingUser,
     TResult Function(SkyTradeUserEntity skyTradeUserEntity)? userExists,
-    TResult Function()? userUnauthorized,
-    TResult Function()? userSignatureInvalid,
-    TResult Function()? userDoesNotExist,
     TResult Function(CheckSkyTradeUserFailure checkSkyTradeUserFailure)?
         failedToCheckUser,
     required TResult orElse(),
@@ -488,9 +443,6 @@ class _$CheckingUserImpl implements _CheckingUser {
     required TResult Function(_Initial value) initial,
     required TResult Function(_CheckingUser value) checkingUser,
     required TResult Function(_UserExists value) userExists,
-    required TResult Function(_UserUnauthorized value) userUnauthorized,
-    required TResult Function(_UserSignatureInvalid value) userSignatureInvalid,
-    required TResult Function(_UserDoesNotExist value) userDoesNotExist,
     required TResult Function(_FailedToCheckUser value) failedToCheckUser,
   }) {
     return checkingUser(this);
@@ -502,9 +454,6 @@ class _$CheckingUserImpl implements _CheckingUser {
     TResult? Function(_Initial value)? initial,
     TResult? Function(_CheckingUser value)? checkingUser,
     TResult? Function(_UserExists value)? userExists,
-    TResult? Function(_UserUnauthorized value)? userUnauthorized,
-    TResult? Function(_UserSignatureInvalid value)? userSignatureInvalid,
-    TResult? Function(_UserDoesNotExist value)? userDoesNotExist,
     TResult? Function(_FailedToCheckUser value)? failedToCheckUser,
   }) {
     return checkingUser?.call(this);
@@ -516,9 +465,6 @@ class _$CheckingUserImpl implements _CheckingUser {
     TResult Function(_Initial value)? initial,
     TResult Function(_CheckingUser value)? checkingUser,
     TResult Function(_UserExists value)? userExists,
-    TResult Function(_UserUnauthorized value)? userUnauthorized,
-    TResult Function(_UserSignatureInvalid value)? userSignatureInvalid,
-    TResult Function(_UserDoesNotExist value)? userDoesNotExist,
     TResult Function(_FailedToCheckUser value)? failedToCheckUser,
     required TResult orElse(),
   }) {
@@ -601,9 +547,6 @@ class _$UserExistsImpl implements _UserExists {
     required TResult Function() initial,
     required TResult Function() checkingUser,
     required TResult Function(SkyTradeUserEntity skyTradeUserEntity) userExists,
-    required TResult Function() userUnauthorized,
-    required TResult Function() userSignatureInvalid,
-    required TResult Function() userDoesNotExist,
     required TResult Function(CheckSkyTradeUserFailure checkSkyTradeUserFailure)
         failedToCheckUser,
   }) {
@@ -616,9 +559,6 @@ class _$UserExistsImpl implements _UserExists {
     TResult? Function()? initial,
     TResult? Function()? checkingUser,
     TResult? Function(SkyTradeUserEntity skyTradeUserEntity)? userExists,
-    TResult? Function()? userUnauthorized,
-    TResult? Function()? userSignatureInvalid,
-    TResult? Function()? userDoesNotExist,
     TResult? Function(CheckSkyTradeUserFailure checkSkyTradeUserFailure)?
         failedToCheckUser,
   }) {
@@ -631,9 +571,6 @@ class _$UserExistsImpl implements _UserExists {
     TResult Function()? initial,
     TResult Function()? checkingUser,
     TResult Function(SkyTradeUserEntity skyTradeUserEntity)? userExists,
-    TResult Function()? userUnauthorized,
-    TResult Function()? userSignatureInvalid,
-    TResult Function()? userDoesNotExist,
     TResult Function(CheckSkyTradeUserFailure checkSkyTradeUserFailure)?
         failedToCheckUser,
     required TResult orElse(),
@@ -650,9 +587,6 @@ class _$UserExistsImpl implements _UserExists {
     required TResult Function(_Initial value) initial,
     required TResult Function(_CheckingUser value) checkingUser,
     required TResult Function(_UserExists value) userExists,
-    required TResult Function(_UserUnauthorized value) userUnauthorized,
-    required TResult Function(_UserSignatureInvalid value) userSignatureInvalid,
-    required TResult Function(_UserDoesNotExist value) userDoesNotExist,
     required TResult Function(_FailedToCheckUser value) failedToCheckUser,
   }) {
     return userExists(this);
@@ -664,9 +598,6 @@ class _$UserExistsImpl implements _UserExists {
     TResult? Function(_Initial value)? initial,
     TResult? Function(_CheckingUser value)? checkingUser,
     TResult? Function(_UserExists value)? userExists,
-    TResult? Function(_UserUnauthorized value)? userUnauthorized,
-    TResult? Function(_UserSignatureInvalid value)? userSignatureInvalid,
-    TResult? Function(_UserDoesNotExist value)? userDoesNotExist,
     TResult? Function(_FailedToCheckUser value)? failedToCheckUser,
   }) {
     return userExists?.call(this);
@@ -678,9 +609,6 @@ class _$UserExistsImpl implements _UserExists {
     TResult Function(_Initial value)? initial,
     TResult Function(_CheckingUser value)? checkingUser,
     TResult Function(_UserExists value)? userExists,
-    TResult Function(_UserUnauthorized value)? userUnauthorized,
-    TResult Function(_UserSignatureInvalid value)? userSignatureInvalid,
-    TResult Function(_UserDoesNotExist value)? userDoesNotExist,
     TResult Function(_FailedToCheckUser value)? failedToCheckUser,
     required TResult orElse(),
   }) {
@@ -700,415 +628,6 @@ abstract class _UserExists implements CheckSkyTradeUserExistsState {
   @JsonKey(ignore: true)
   _$$UserExistsImplCopyWith<_$UserExistsImpl> get copyWith =>
       throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$$UserUnauthorizedImplCopyWith<$Res> {
-  factory _$$UserUnauthorizedImplCopyWith(_$UserUnauthorizedImpl value,
-          $Res Function(_$UserUnauthorizedImpl) then) =
-      __$$UserUnauthorizedImplCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$UserUnauthorizedImplCopyWithImpl<$Res>
-    extends _$CheckSkyTradeUserExistsStateCopyWithImpl<$Res,
-        _$UserUnauthorizedImpl>
-    implements _$$UserUnauthorizedImplCopyWith<$Res> {
-  __$$UserUnauthorizedImplCopyWithImpl(_$UserUnauthorizedImpl _value,
-      $Res Function(_$UserUnauthorizedImpl) _then)
-      : super(_value, _then);
-}
-
-/// @nodoc
-
-class _$UserUnauthorizedImpl implements _UserUnauthorized {
-  const _$UserUnauthorizedImpl();
-
-  @override
-  String toString() {
-    return 'CheckSkyTradeUserExistsState.userUnauthorized()';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$UserUnauthorizedImpl);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function() checkingUser,
-    required TResult Function(SkyTradeUserEntity skyTradeUserEntity) userExists,
-    required TResult Function() userUnauthorized,
-    required TResult Function() userSignatureInvalid,
-    required TResult Function() userDoesNotExist,
-    required TResult Function(CheckSkyTradeUserFailure checkSkyTradeUserFailure)
-        failedToCheckUser,
-  }) {
-    return userUnauthorized();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
-    TResult? Function()? checkingUser,
-    TResult? Function(SkyTradeUserEntity skyTradeUserEntity)? userExists,
-    TResult? Function()? userUnauthorized,
-    TResult? Function()? userSignatureInvalid,
-    TResult? Function()? userDoesNotExist,
-    TResult? Function(CheckSkyTradeUserFailure checkSkyTradeUserFailure)?
-        failedToCheckUser,
-  }) {
-    return userUnauthorized?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? checkingUser,
-    TResult Function(SkyTradeUserEntity skyTradeUserEntity)? userExists,
-    TResult Function()? userUnauthorized,
-    TResult Function()? userSignatureInvalid,
-    TResult Function()? userDoesNotExist,
-    TResult Function(CheckSkyTradeUserFailure checkSkyTradeUserFailure)?
-        failedToCheckUser,
-    required TResult orElse(),
-  }) {
-    if (userUnauthorized != null) {
-      return userUnauthorized();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_CheckingUser value) checkingUser,
-    required TResult Function(_UserExists value) userExists,
-    required TResult Function(_UserUnauthorized value) userUnauthorized,
-    required TResult Function(_UserSignatureInvalid value) userSignatureInvalid,
-    required TResult Function(_UserDoesNotExist value) userDoesNotExist,
-    required TResult Function(_FailedToCheckUser value) failedToCheckUser,
-  }) {
-    return userUnauthorized(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(_CheckingUser value)? checkingUser,
-    TResult? Function(_UserExists value)? userExists,
-    TResult? Function(_UserUnauthorized value)? userUnauthorized,
-    TResult? Function(_UserSignatureInvalid value)? userSignatureInvalid,
-    TResult? Function(_UserDoesNotExist value)? userDoesNotExist,
-    TResult? Function(_FailedToCheckUser value)? failedToCheckUser,
-  }) {
-    return userUnauthorized?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_CheckingUser value)? checkingUser,
-    TResult Function(_UserExists value)? userExists,
-    TResult Function(_UserUnauthorized value)? userUnauthorized,
-    TResult Function(_UserSignatureInvalid value)? userSignatureInvalid,
-    TResult Function(_UserDoesNotExist value)? userDoesNotExist,
-    TResult Function(_FailedToCheckUser value)? failedToCheckUser,
-    required TResult orElse(),
-  }) {
-    if (userUnauthorized != null) {
-      return userUnauthorized(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _UserUnauthorized implements CheckSkyTradeUserExistsState {
-  const factory _UserUnauthorized() = _$UserUnauthorizedImpl;
-}
-
-/// @nodoc
-abstract class _$$UserSignatureInvalidImplCopyWith<$Res> {
-  factory _$$UserSignatureInvalidImplCopyWith(_$UserSignatureInvalidImpl value,
-          $Res Function(_$UserSignatureInvalidImpl) then) =
-      __$$UserSignatureInvalidImplCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$UserSignatureInvalidImplCopyWithImpl<$Res>
-    extends _$CheckSkyTradeUserExistsStateCopyWithImpl<$Res,
-        _$UserSignatureInvalidImpl>
-    implements _$$UserSignatureInvalidImplCopyWith<$Res> {
-  __$$UserSignatureInvalidImplCopyWithImpl(_$UserSignatureInvalidImpl _value,
-      $Res Function(_$UserSignatureInvalidImpl) _then)
-      : super(_value, _then);
-}
-
-/// @nodoc
-
-class _$UserSignatureInvalidImpl implements _UserSignatureInvalid {
-  const _$UserSignatureInvalidImpl();
-
-  @override
-  String toString() {
-    return 'CheckSkyTradeUserExistsState.userSignatureInvalid()';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$UserSignatureInvalidImpl);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function() checkingUser,
-    required TResult Function(SkyTradeUserEntity skyTradeUserEntity) userExists,
-    required TResult Function() userUnauthorized,
-    required TResult Function() userSignatureInvalid,
-    required TResult Function() userDoesNotExist,
-    required TResult Function(CheckSkyTradeUserFailure checkSkyTradeUserFailure)
-        failedToCheckUser,
-  }) {
-    return userSignatureInvalid();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
-    TResult? Function()? checkingUser,
-    TResult? Function(SkyTradeUserEntity skyTradeUserEntity)? userExists,
-    TResult? Function()? userUnauthorized,
-    TResult? Function()? userSignatureInvalid,
-    TResult? Function()? userDoesNotExist,
-    TResult? Function(CheckSkyTradeUserFailure checkSkyTradeUserFailure)?
-        failedToCheckUser,
-  }) {
-    return userSignatureInvalid?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? checkingUser,
-    TResult Function(SkyTradeUserEntity skyTradeUserEntity)? userExists,
-    TResult Function()? userUnauthorized,
-    TResult Function()? userSignatureInvalid,
-    TResult Function()? userDoesNotExist,
-    TResult Function(CheckSkyTradeUserFailure checkSkyTradeUserFailure)?
-        failedToCheckUser,
-    required TResult orElse(),
-  }) {
-    if (userSignatureInvalid != null) {
-      return userSignatureInvalid();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_CheckingUser value) checkingUser,
-    required TResult Function(_UserExists value) userExists,
-    required TResult Function(_UserUnauthorized value) userUnauthorized,
-    required TResult Function(_UserSignatureInvalid value) userSignatureInvalid,
-    required TResult Function(_UserDoesNotExist value) userDoesNotExist,
-    required TResult Function(_FailedToCheckUser value) failedToCheckUser,
-  }) {
-    return userSignatureInvalid(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(_CheckingUser value)? checkingUser,
-    TResult? Function(_UserExists value)? userExists,
-    TResult? Function(_UserUnauthorized value)? userUnauthorized,
-    TResult? Function(_UserSignatureInvalid value)? userSignatureInvalid,
-    TResult? Function(_UserDoesNotExist value)? userDoesNotExist,
-    TResult? Function(_FailedToCheckUser value)? failedToCheckUser,
-  }) {
-    return userSignatureInvalid?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_CheckingUser value)? checkingUser,
-    TResult Function(_UserExists value)? userExists,
-    TResult Function(_UserUnauthorized value)? userUnauthorized,
-    TResult Function(_UserSignatureInvalid value)? userSignatureInvalid,
-    TResult Function(_UserDoesNotExist value)? userDoesNotExist,
-    TResult Function(_FailedToCheckUser value)? failedToCheckUser,
-    required TResult orElse(),
-  }) {
-    if (userSignatureInvalid != null) {
-      return userSignatureInvalid(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _UserSignatureInvalid implements CheckSkyTradeUserExistsState {
-  const factory _UserSignatureInvalid() = _$UserSignatureInvalidImpl;
-}
-
-/// @nodoc
-abstract class _$$UserDoesNotExistImplCopyWith<$Res> {
-  factory _$$UserDoesNotExistImplCopyWith(_$UserDoesNotExistImpl value,
-          $Res Function(_$UserDoesNotExistImpl) then) =
-      __$$UserDoesNotExistImplCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$UserDoesNotExistImplCopyWithImpl<$Res>
-    extends _$CheckSkyTradeUserExistsStateCopyWithImpl<$Res,
-        _$UserDoesNotExistImpl>
-    implements _$$UserDoesNotExistImplCopyWith<$Res> {
-  __$$UserDoesNotExistImplCopyWithImpl(_$UserDoesNotExistImpl _value,
-      $Res Function(_$UserDoesNotExistImpl) _then)
-      : super(_value, _then);
-}
-
-/// @nodoc
-
-class _$UserDoesNotExistImpl implements _UserDoesNotExist {
-  const _$UserDoesNotExistImpl();
-
-  @override
-  String toString() {
-    return 'CheckSkyTradeUserExistsState.userDoesNotExist()';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$UserDoesNotExistImpl);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function() checkingUser,
-    required TResult Function(SkyTradeUserEntity skyTradeUserEntity) userExists,
-    required TResult Function() userUnauthorized,
-    required TResult Function() userSignatureInvalid,
-    required TResult Function() userDoesNotExist,
-    required TResult Function(CheckSkyTradeUserFailure checkSkyTradeUserFailure)
-        failedToCheckUser,
-  }) {
-    return userDoesNotExist();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
-    TResult? Function()? checkingUser,
-    TResult? Function(SkyTradeUserEntity skyTradeUserEntity)? userExists,
-    TResult? Function()? userUnauthorized,
-    TResult? Function()? userSignatureInvalid,
-    TResult? Function()? userDoesNotExist,
-    TResult? Function(CheckSkyTradeUserFailure checkSkyTradeUserFailure)?
-        failedToCheckUser,
-  }) {
-    return userDoesNotExist?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? checkingUser,
-    TResult Function(SkyTradeUserEntity skyTradeUserEntity)? userExists,
-    TResult Function()? userUnauthorized,
-    TResult Function()? userSignatureInvalid,
-    TResult Function()? userDoesNotExist,
-    TResult Function(CheckSkyTradeUserFailure checkSkyTradeUserFailure)?
-        failedToCheckUser,
-    required TResult orElse(),
-  }) {
-    if (userDoesNotExist != null) {
-      return userDoesNotExist();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_CheckingUser value) checkingUser,
-    required TResult Function(_UserExists value) userExists,
-    required TResult Function(_UserUnauthorized value) userUnauthorized,
-    required TResult Function(_UserSignatureInvalid value) userSignatureInvalid,
-    required TResult Function(_UserDoesNotExist value) userDoesNotExist,
-    required TResult Function(_FailedToCheckUser value) failedToCheckUser,
-  }) {
-    return userDoesNotExist(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(_CheckingUser value)? checkingUser,
-    TResult? Function(_UserExists value)? userExists,
-    TResult? Function(_UserUnauthorized value)? userUnauthorized,
-    TResult? Function(_UserSignatureInvalid value)? userSignatureInvalid,
-    TResult? Function(_UserDoesNotExist value)? userDoesNotExist,
-    TResult? Function(_FailedToCheckUser value)? failedToCheckUser,
-  }) {
-    return userDoesNotExist?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_CheckingUser value)? checkingUser,
-    TResult Function(_UserExists value)? userExists,
-    TResult Function(_UserUnauthorized value)? userUnauthorized,
-    TResult Function(_UserSignatureInvalid value)? userSignatureInvalid,
-    TResult Function(_UserDoesNotExist value)? userDoesNotExist,
-    TResult Function(_FailedToCheckUser value)? failedToCheckUser,
-    required TResult orElse(),
-  }) {
-    if (userDoesNotExist != null) {
-      return userDoesNotExist(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _UserDoesNotExist implements CheckSkyTradeUserExistsState {
-  const factory _UserDoesNotExist() = _$UserDoesNotExistImpl;
 }
 
 /// @nodoc
@@ -1182,9 +701,6 @@ class _$FailedToCheckUserImpl implements _FailedToCheckUser {
     required TResult Function() initial,
     required TResult Function() checkingUser,
     required TResult Function(SkyTradeUserEntity skyTradeUserEntity) userExists,
-    required TResult Function() userUnauthorized,
-    required TResult Function() userSignatureInvalid,
-    required TResult Function() userDoesNotExist,
     required TResult Function(CheckSkyTradeUserFailure checkSkyTradeUserFailure)
         failedToCheckUser,
   }) {
@@ -1197,9 +713,6 @@ class _$FailedToCheckUserImpl implements _FailedToCheckUser {
     TResult? Function()? initial,
     TResult? Function()? checkingUser,
     TResult? Function(SkyTradeUserEntity skyTradeUserEntity)? userExists,
-    TResult? Function()? userUnauthorized,
-    TResult? Function()? userSignatureInvalid,
-    TResult? Function()? userDoesNotExist,
     TResult? Function(CheckSkyTradeUserFailure checkSkyTradeUserFailure)?
         failedToCheckUser,
   }) {
@@ -1212,9 +725,6 @@ class _$FailedToCheckUserImpl implements _FailedToCheckUser {
     TResult Function()? initial,
     TResult Function()? checkingUser,
     TResult Function(SkyTradeUserEntity skyTradeUserEntity)? userExists,
-    TResult Function()? userUnauthorized,
-    TResult Function()? userSignatureInvalid,
-    TResult Function()? userDoesNotExist,
     TResult Function(CheckSkyTradeUserFailure checkSkyTradeUserFailure)?
         failedToCheckUser,
     required TResult orElse(),
@@ -1231,9 +741,6 @@ class _$FailedToCheckUserImpl implements _FailedToCheckUser {
     required TResult Function(_Initial value) initial,
     required TResult Function(_CheckingUser value) checkingUser,
     required TResult Function(_UserExists value) userExists,
-    required TResult Function(_UserUnauthorized value) userUnauthorized,
-    required TResult Function(_UserSignatureInvalid value) userSignatureInvalid,
-    required TResult Function(_UserDoesNotExist value) userDoesNotExist,
     required TResult Function(_FailedToCheckUser value) failedToCheckUser,
   }) {
     return failedToCheckUser(this);
@@ -1245,9 +752,6 @@ class _$FailedToCheckUserImpl implements _FailedToCheckUser {
     TResult? Function(_Initial value)? initial,
     TResult? Function(_CheckingUser value)? checkingUser,
     TResult? Function(_UserExists value)? userExists,
-    TResult? Function(_UserUnauthorized value)? userUnauthorized,
-    TResult? Function(_UserSignatureInvalid value)? userSignatureInvalid,
-    TResult? Function(_UserDoesNotExist value)? userDoesNotExist,
     TResult? Function(_FailedToCheckUser value)? failedToCheckUser,
   }) {
     return failedToCheckUser?.call(this);
@@ -1259,9 +763,6 @@ class _$FailedToCheckUserImpl implements _FailedToCheckUser {
     TResult Function(_Initial value)? initial,
     TResult Function(_CheckingUser value)? checkingUser,
     TResult Function(_UserExists value)? userExists,
-    TResult Function(_UserUnauthorized value)? userUnauthorized,
-    TResult Function(_UserSignatureInvalid value)? userSignatureInvalid,
-    TResult Function(_UserDoesNotExist value)? userDoesNotExist,
     TResult Function(_FailedToCheckUser value)? failedToCheckUser,
     required TResult orElse(),
   }) {

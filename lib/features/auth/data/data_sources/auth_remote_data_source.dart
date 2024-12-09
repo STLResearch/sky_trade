@@ -16,14 +16,16 @@ import 'package:sky_trade/core/resources/strings/networking.dart'
         publicPath,
         sessionPath,
         unauthorized,
-        userExist,
-        userNotExist,
-        usersPath;
+        userMismatch,
+        userNotFound,
+        usersPath,
+        walletAlreadyExists;
 import 'package:sky_trade/core/utils/clients/network_client.dart'
     show HttpClient;
 import 'package:sky_trade/core/utils/clients/response_handler.dart';
 import 'package:sky_trade/core/utils/enums/networking.dart' show RequestMethod;
-import 'package:sky_trade/features/auth/data/models/auth_model.dart';
+import 'package:sky_trade/features/auth/data/models/auth_model.dart'
+    show SkyTradeUserModel;
 
 abstract interface class AuthRemoteDataSource {
   Future<SkyTradeUserModel> createSkyTradeUserUsing({
@@ -67,7 +69,7 @@ final class AuthRemoteDataSourceImplementation
         onSuccess: SkyTradeUserModel.fromJson,
         onError: (e) => switch (e is String) {
           true when e == invalidEmail => InvalidEmailException(),
-          true when e == userExist => UserAlreadyExistsException(),
+          true when e == walletAlreadyExists => WalletAlreadyExistsException(),
           _ => CreateSkyTradeUserUnknownException(),
         },
       );
@@ -84,7 +86,8 @@ final class AuthRemoteDataSourceImplementation
         onError: (e) => switch (e is String) {
           true when e == unauthorized => UnauthorizedException(),
           true when e == invalidSignature => InvalidSignatureException(),
-          true when e == userNotExist => UserDoesNotExistException(),
+          true when e == userNotFound => UserNotFoundException(),
+          true when e == userMismatch => UserMismatchException(),
           _ => CheckSkyTradeUserUnknownException(),
         },
       );

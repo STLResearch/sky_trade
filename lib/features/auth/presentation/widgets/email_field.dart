@@ -1,3 +1,5 @@
+// ignore_for_file: lines_longer_than_80_chars
+
 import 'package:flutter/material.dart'
     show
         AutovalidateMode,
@@ -111,14 +113,15 @@ final class EmailField extends StatelessWidget {
                 email.endsWith(
                   whiteSpace,
                 ) =>
-          context.localize.removeWhitespaces,
+          context.localize
+              .whitespacesAreNotAllowedPleaseRemoveAnyLeadingAndOrTrailingWhitespaces,
         false
             when !email!.contains(
               RegExp(
                 emailRegexPatternRawString,
               ),
             ) =>
-          context.localize.invalidEmail,
+          context.localize.pleaseEnterAValidEmail,
         false => null,
       };
 }

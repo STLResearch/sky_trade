@@ -15,7 +15,7 @@ final class Web3AuthLogoutFailure extends Equatable {
   List<Object?> get props => [];
 }
 
-abstract final class CreateSkyTradeUserFailure extends Equatable {
+sealed class CreateSkyTradeUserFailure extends Equatable {
   @override
   List<Object?> get props => [];
 }
@@ -25,7 +25,7 @@ final class InvalidEmailFailure extends CreateSkyTradeUserFailure {
   List<Object?> get props => [];
 }
 
-final class UserAlreadyExistsFailure extends CreateSkyTradeUserFailure {
+final class WalletAlreadyExistsFailure extends CreateSkyTradeUserFailure {
   @override
   List<Object?> get props => [];
 }
@@ -35,12 +35,12 @@ final class CreateSkyTradeUserUnknownFailure extends CreateSkyTradeUserFailure {
   List<Object?> get props => [];
 }
 
-abstract final class CheckSkyTradeUserFailure extends Equatable {
+sealed class CheckSkyTradeUserFailure extends Equatable {
   @override
   List<Object?> get props => [];
 }
 
-final class UserDoesNotExistFailure extends CheckSkyTradeUserFailure {
+final class UserNotFoundFailure extends CheckSkyTradeUserFailure {
   @override
   List<Object?> get props => [];
 }
@@ -51,6 +51,11 @@ final class UnauthorizedFailure extends CheckSkyTradeUserFailure {
 }
 
 final class InvalidSignatureFailure extends CheckSkyTradeUserFailure {
+  @override
+  List<Object?> get props => [];
+}
+
+final class UserMismatchFailure extends CheckSkyTradeUserFailure {
   @override
   List<Object?> get props => [];
 }

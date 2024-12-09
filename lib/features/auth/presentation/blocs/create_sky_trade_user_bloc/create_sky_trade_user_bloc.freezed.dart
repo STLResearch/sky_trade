@@ -230,8 +230,6 @@ mixin _$CreateSkyTradeUserState {
     required TResult Function() creatingUser,
     required TResult Function(SkyTradeUserEntity skyTradeUserEntity)
         createdUser,
-    required TResult Function() userEmailInvalid,
-    required TResult Function() userAlreadyExists,
     required TResult Function(
             CreateSkyTradeUserFailure createSkyTradeUserFailure)
         failedToCreateUser,
@@ -242,8 +240,6 @@ mixin _$CreateSkyTradeUserState {
     TResult? Function()? initial,
     TResult? Function()? creatingUser,
     TResult? Function(SkyTradeUserEntity skyTradeUserEntity)? createdUser,
-    TResult? Function()? userEmailInvalid,
-    TResult? Function()? userAlreadyExists,
     TResult? Function(CreateSkyTradeUserFailure createSkyTradeUserFailure)?
         failedToCreateUser,
   }) =>
@@ -253,8 +249,6 @@ mixin _$CreateSkyTradeUserState {
     TResult Function()? initial,
     TResult Function()? creatingUser,
     TResult Function(SkyTradeUserEntity skyTradeUserEntity)? createdUser,
-    TResult Function()? userEmailInvalid,
-    TResult Function()? userAlreadyExists,
     TResult Function(CreateSkyTradeUserFailure createSkyTradeUserFailure)?
         failedToCreateUser,
     required TResult orElse(),
@@ -265,8 +259,6 @@ mixin _$CreateSkyTradeUserState {
     required TResult Function(_Initial value) initial,
     required TResult Function(_CreatingUser value) creatingUser,
     required TResult Function(_CreatedUser value) createdUser,
-    required TResult Function(_UserEmailInvalid value) userEmailInvalid,
-    required TResult Function(_UserAlreadyExists value) userAlreadyExists,
     required TResult Function(_FailedToCreateUser value) failedToCreateUser,
   }) =>
       throw _privateConstructorUsedError;
@@ -275,8 +267,6 @@ mixin _$CreateSkyTradeUserState {
     TResult? Function(_Initial value)? initial,
     TResult? Function(_CreatingUser value)? creatingUser,
     TResult? Function(_CreatedUser value)? createdUser,
-    TResult? Function(_UserEmailInvalid value)? userEmailInvalid,
-    TResult? Function(_UserAlreadyExists value)? userAlreadyExists,
     TResult? Function(_FailedToCreateUser value)? failedToCreateUser,
   }) =>
       throw _privateConstructorUsedError;
@@ -285,8 +275,6 @@ mixin _$CreateSkyTradeUserState {
     TResult Function(_Initial value)? initial,
     TResult Function(_CreatingUser value)? creatingUser,
     TResult Function(_CreatedUser value)? createdUser,
-    TResult Function(_UserEmailInvalid value)? userEmailInvalid,
-    TResult Function(_UserAlreadyExists value)? userAlreadyExists,
     TResult Function(_FailedToCreateUser value)? failedToCreateUser,
     required TResult orElse(),
   }) =>
@@ -354,8 +342,6 @@ class _$InitialImpl implements _Initial {
     required TResult Function() creatingUser,
     required TResult Function(SkyTradeUserEntity skyTradeUserEntity)
         createdUser,
-    required TResult Function() userEmailInvalid,
-    required TResult Function() userAlreadyExists,
     required TResult Function(
             CreateSkyTradeUserFailure createSkyTradeUserFailure)
         failedToCreateUser,
@@ -369,8 +355,6 @@ class _$InitialImpl implements _Initial {
     TResult? Function()? initial,
     TResult? Function()? creatingUser,
     TResult? Function(SkyTradeUserEntity skyTradeUserEntity)? createdUser,
-    TResult? Function()? userEmailInvalid,
-    TResult? Function()? userAlreadyExists,
     TResult? Function(CreateSkyTradeUserFailure createSkyTradeUserFailure)?
         failedToCreateUser,
   }) {
@@ -383,8 +367,6 @@ class _$InitialImpl implements _Initial {
     TResult Function()? initial,
     TResult Function()? creatingUser,
     TResult Function(SkyTradeUserEntity skyTradeUserEntity)? createdUser,
-    TResult Function()? userEmailInvalid,
-    TResult Function()? userAlreadyExists,
     TResult Function(CreateSkyTradeUserFailure createSkyTradeUserFailure)?
         failedToCreateUser,
     required TResult orElse(),
@@ -401,8 +383,6 @@ class _$InitialImpl implements _Initial {
     required TResult Function(_Initial value) initial,
     required TResult Function(_CreatingUser value) creatingUser,
     required TResult Function(_CreatedUser value) createdUser,
-    required TResult Function(_UserEmailInvalid value) userEmailInvalid,
-    required TResult Function(_UserAlreadyExists value) userAlreadyExists,
     required TResult Function(_FailedToCreateUser value) failedToCreateUser,
   }) {
     return initial(this);
@@ -414,8 +394,6 @@ class _$InitialImpl implements _Initial {
     TResult? Function(_Initial value)? initial,
     TResult? Function(_CreatingUser value)? creatingUser,
     TResult? Function(_CreatedUser value)? createdUser,
-    TResult? Function(_UserEmailInvalid value)? userEmailInvalid,
-    TResult? Function(_UserAlreadyExists value)? userAlreadyExists,
     TResult? Function(_FailedToCreateUser value)? failedToCreateUser,
   }) {
     return initial?.call(this);
@@ -427,8 +405,6 @@ class _$InitialImpl implements _Initial {
     TResult Function(_Initial value)? initial,
     TResult Function(_CreatingUser value)? creatingUser,
     TResult Function(_CreatedUser value)? createdUser,
-    TResult Function(_UserEmailInvalid value)? userEmailInvalid,
-    TResult Function(_UserAlreadyExists value)? userAlreadyExists,
     TResult Function(_FailedToCreateUser value)? failedToCreateUser,
     required TResult orElse(),
   }) {
@@ -485,8 +461,6 @@ class _$CreatingUserImpl implements _CreatingUser {
     required TResult Function() creatingUser,
     required TResult Function(SkyTradeUserEntity skyTradeUserEntity)
         createdUser,
-    required TResult Function() userEmailInvalid,
-    required TResult Function() userAlreadyExists,
     required TResult Function(
             CreateSkyTradeUserFailure createSkyTradeUserFailure)
         failedToCreateUser,
@@ -500,8 +474,6 @@ class _$CreatingUserImpl implements _CreatingUser {
     TResult? Function()? initial,
     TResult? Function()? creatingUser,
     TResult? Function(SkyTradeUserEntity skyTradeUserEntity)? createdUser,
-    TResult? Function()? userEmailInvalid,
-    TResult? Function()? userAlreadyExists,
     TResult? Function(CreateSkyTradeUserFailure createSkyTradeUserFailure)?
         failedToCreateUser,
   }) {
@@ -514,8 +486,6 @@ class _$CreatingUserImpl implements _CreatingUser {
     TResult Function()? initial,
     TResult Function()? creatingUser,
     TResult Function(SkyTradeUserEntity skyTradeUserEntity)? createdUser,
-    TResult Function()? userEmailInvalid,
-    TResult Function()? userAlreadyExists,
     TResult Function(CreateSkyTradeUserFailure createSkyTradeUserFailure)?
         failedToCreateUser,
     required TResult orElse(),
@@ -532,8 +502,6 @@ class _$CreatingUserImpl implements _CreatingUser {
     required TResult Function(_Initial value) initial,
     required TResult Function(_CreatingUser value) creatingUser,
     required TResult Function(_CreatedUser value) createdUser,
-    required TResult Function(_UserEmailInvalid value) userEmailInvalid,
-    required TResult Function(_UserAlreadyExists value) userAlreadyExists,
     required TResult Function(_FailedToCreateUser value) failedToCreateUser,
   }) {
     return creatingUser(this);
@@ -545,8 +513,6 @@ class _$CreatingUserImpl implements _CreatingUser {
     TResult? Function(_Initial value)? initial,
     TResult? Function(_CreatingUser value)? creatingUser,
     TResult? Function(_CreatedUser value)? createdUser,
-    TResult? Function(_UserEmailInvalid value)? userEmailInvalid,
-    TResult? Function(_UserAlreadyExists value)? userAlreadyExists,
     TResult? Function(_FailedToCreateUser value)? failedToCreateUser,
   }) {
     return creatingUser?.call(this);
@@ -558,8 +524,6 @@ class _$CreatingUserImpl implements _CreatingUser {
     TResult Function(_Initial value)? initial,
     TResult Function(_CreatingUser value)? creatingUser,
     TResult Function(_CreatedUser value)? createdUser,
-    TResult Function(_UserEmailInvalid value)? userEmailInvalid,
-    TResult Function(_UserAlreadyExists value)? userAlreadyExists,
     TResult Function(_FailedToCreateUser value)? failedToCreateUser,
     required TResult orElse(),
   }) {
@@ -643,8 +607,6 @@ class _$CreatedUserImpl implements _CreatedUser {
     required TResult Function() creatingUser,
     required TResult Function(SkyTradeUserEntity skyTradeUserEntity)
         createdUser,
-    required TResult Function() userEmailInvalid,
-    required TResult Function() userAlreadyExists,
     required TResult Function(
             CreateSkyTradeUserFailure createSkyTradeUserFailure)
         failedToCreateUser,
@@ -658,8 +620,6 @@ class _$CreatedUserImpl implements _CreatedUser {
     TResult? Function()? initial,
     TResult? Function()? creatingUser,
     TResult? Function(SkyTradeUserEntity skyTradeUserEntity)? createdUser,
-    TResult? Function()? userEmailInvalid,
-    TResult? Function()? userAlreadyExists,
     TResult? Function(CreateSkyTradeUserFailure createSkyTradeUserFailure)?
         failedToCreateUser,
   }) {
@@ -672,8 +632,6 @@ class _$CreatedUserImpl implements _CreatedUser {
     TResult Function()? initial,
     TResult Function()? creatingUser,
     TResult Function(SkyTradeUserEntity skyTradeUserEntity)? createdUser,
-    TResult Function()? userEmailInvalid,
-    TResult Function()? userAlreadyExists,
     TResult Function(CreateSkyTradeUserFailure createSkyTradeUserFailure)?
         failedToCreateUser,
     required TResult orElse(),
@@ -690,8 +648,6 @@ class _$CreatedUserImpl implements _CreatedUser {
     required TResult Function(_Initial value) initial,
     required TResult Function(_CreatingUser value) creatingUser,
     required TResult Function(_CreatedUser value) createdUser,
-    required TResult Function(_UserEmailInvalid value) userEmailInvalid,
-    required TResult Function(_UserAlreadyExists value) userAlreadyExists,
     required TResult Function(_FailedToCreateUser value) failedToCreateUser,
   }) {
     return createdUser(this);
@@ -703,8 +659,6 @@ class _$CreatedUserImpl implements _CreatedUser {
     TResult? Function(_Initial value)? initial,
     TResult? Function(_CreatingUser value)? creatingUser,
     TResult? Function(_CreatedUser value)? createdUser,
-    TResult? Function(_UserEmailInvalid value)? userEmailInvalid,
-    TResult? Function(_UserAlreadyExists value)? userAlreadyExists,
     TResult? Function(_FailedToCreateUser value)? failedToCreateUser,
   }) {
     return createdUser?.call(this);
@@ -716,8 +670,6 @@ class _$CreatedUserImpl implements _CreatedUser {
     TResult Function(_Initial value)? initial,
     TResult Function(_CreatingUser value)? creatingUser,
     TResult Function(_CreatedUser value)? createdUser,
-    TResult Function(_UserEmailInvalid value)? userEmailInvalid,
-    TResult Function(_UserAlreadyExists value)? userAlreadyExists,
     TResult Function(_FailedToCreateUser value)? failedToCreateUser,
     required TResult orElse(),
   }) {
@@ -737,268 +689,6 @@ abstract class _CreatedUser implements CreateSkyTradeUserState {
   @JsonKey(ignore: true)
   _$$CreatedUserImplCopyWith<_$CreatedUserImpl> get copyWith =>
       throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$$UserEmailInvalidImplCopyWith<$Res> {
-  factory _$$UserEmailInvalidImplCopyWith(_$UserEmailInvalidImpl value,
-          $Res Function(_$UserEmailInvalidImpl) then) =
-      __$$UserEmailInvalidImplCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$UserEmailInvalidImplCopyWithImpl<$Res>
-    extends _$CreateSkyTradeUserStateCopyWithImpl<$Res, _$UserEmailInvalidImpl>
-    implements _$$UserEmailInvalidImplCopyWith<$Res> {
-  __$$UserEmailInvalidImplCopyWithImpl(_$UserEmailInvalidImpl _value,
-      $Res Function(_$UserEmailInvalidImpl) _then)
-      : super(_value, _then);
-}
-
-/// @nodoc
-
-class _$UserEmailInvalidImpl implements _UserEmailInvalid {
-  const _$UserEmailInvalidImpl();
-
-  @override
-  String toString() {
-    return 'CreateSkyTradeUserState.userEmailInvalid()';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$UserEmailInvalidImpl);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function() creatingUser,
-    required TResult Function(SkyTradeUserEntity skyTradeUserEntity)
-        createdUser,
-    required TResult Function() userEmailInvalid,
-    required TResult Function() userAlreadyExists,
-    required TResult Function(
-            CreateSkyTradeUserFailure createSkyTradeUserFailure)
-        failedToCreateUser,
-  }) {
-    return userEmailInvalid();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
-    TResult? Function()? creatingUser,
-    TResult? Function(SkyTradeUserEntity skyTradeUserEntity)? createdUser,
-    TResult? Function()? userEmailInvalid,
-    TResult? Function()? userAlreadyExists,
-    TResult? Function(CreateSkyTradeUserFailure createSkyTradeUserFailure)?
-        failedToCreateUser,
-  }) {
-    return userEmailInvalid?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? creatingUser,
-    TResult Function(SkyTradeUserEntity skyTradeUserEntity)? createdUser,
-    TResult Function()? userEmailInvalid,
-    TResult Function()? userAlreadyExists,
-    TResult Function(CreateSkyTradeUserFailure createSkyTradeUserFailure)?
-        failedToCreateUser,
-    required TResult orElse(),
-  }) {
-    if (userEmailInvalid != null) {
-      return userEmailInvalid();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_CreatingUser value) creatingUser,
-    required TResult Function(_CreatedUser value) createdUser,
-    required TResult Function(_UserEmailInvalid value) userEmailInvalid,
-    required TResult Function(_UserAlreadyExists value) userAlreadyExists,
-    required TResult Function(_FailedToCreateUser value) failedToCreateUser,
-  }) {
-    return userEmailInvalid(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(_CreatingUser value)? creatingUser,
-    TResult? Function(_CreatedUser value)? createdUser,
-    TResult? Function(_UserEmailInvalid value)? userEmailInvalid,
-    TResult? Function(_UserAlreadyExists value)? userAlreadyExists,
-    TResult? Function(_FailedToCreateUser value)? failedToCreateUser,
-  }) {
-    return userEmailInvalid?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_CreatingUser value)? creatingUser,
-    TResult Function(_CreatedUser value)? createdUser,
-    TResult Function(_UserEmailInvalid value)? userEmailInvalid,
-    TResult Function(_UserAlreadyExists value)? userAlreadyExists,
-    TResult Function(_FailedToCreateUser value)? failedToCreateUser,
-    required TResult orElse(),
-  }) {
-    if (userEmailInvalid != null) {
-      return userEmailInvalid(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _UserEmailInvalid implements CreateSkyTradeUserState {
-  const factory _UserEmailInvalid() = _$UserEmailInvalidImpl;
-}
-
-/// @nodoc
-abstract class _$$UserAlreadyExistsImplCopyWith<$Res> {
-  factory _$$UserAlreadyExistsImplCopyWith(_$UserAlreadyExistsImpl value,
-          $Res Function(_$UserAlreadyExistsImpl) then) =
-      __$$UserAlreadyExistsImplCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$UserAlreadyExistsImplCopyWithImpl<$Res>
-    extends _$CreateSkyTradeUserStateCopyWithImpl<$Res, _$UserAlreadyExistsImpl>
-    implements _$$UserAlreadyExistsImplCopyWith<$Res> {
-  __$$UserAlreadyExistsImplCopyWithImpl(_$UserAlreadyExistsImpl _value,
-      $Res Function(_$UserAlreadyExistsImpl) _then)
-      : super(_value, _then);
-}
-
-/// @nodoc
-
-class _$UserAlreadyExistsImpl implements _UserAlreadyExists {
-  const _$UserAlreadyExistsImpl();
-
-  @override
-  String toString() {
-    return 'CreateSkyTradeUserState.userAlreadyExists()';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$UserAlreadyExistsImpl);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function() creatingUser,
-    required TResult Function(SkyTradeUserEntity skyTradeUserEntity)
-        createdUser,
-    required TResult Function() userEmailInvalid,
-    required TResult Function() userAlreadyExists,
-    required TResult Function(
-            CreateSkyTradeUserFailure createSkyTradeUserFailure)
-        failedToCreateUser,
-  }) {
-    return userAlreadyExists();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
-    TResult? Function()? creatingUser,
-    TResult? Function(SkyTradeUserEntity skyTradeUserEntity)? createdUser,
-    TResult? Function()? userEmailInvalid,
-    TResult? Function()? userAlreadyExists,
-    TResult? Function(CreateSkyTradeUserFailure createSkyTradeUserFailure)?
-        failedToCreateUser,
-  }) {
-    return userAlreadyExists?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? creatingUser,
-    TResult Function(SkyTradeUserEntity skyTradeUserEntity)? createdUser,
-    TResult Function()? userEmailInvalid,
-    TResult Function()? userAlreadyExists,
-    TResult Function(CreateSkyTradeUserFailure createSkyTradeUserFailure)?
-        failedToCreateUser,
-    required TResult orElse(),
-  }) {
-    if (userAlreadyExists != null) {
-      return userAlreadyExists();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_CreatingUser value) creatingUser,
-    required TResult Function(_CreatedUser value) createdUser,
-    required TResult Function(_UserEmailInvalid value) userEmailInvalid,
-    required TResult Function(_UserAlreadyExists value) userAlreadyExists,
-    required TResult Function(_FailedToCreateUser value) failedToCreateUser,
-  }) {
-    return userAlreadyExists(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(_CreatingUser value)? creatingUser,
-    TResult? Function(_CreatedUser value)? createdUser,
-    TResult? Function(_UserEmailInvalid value)? userEmailInvalid,
-    TResult? Function(_UserAlreadyExists value)? userAlreadyExists,
-    TResult? Function(_FailedToCreateUser value)? failedToCreateUser,
-  }) {
-    return userAlreadyExists?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_CreatingUser value)? creatingUser,
-    TResult Function(_CreatedUser value)? createdUser,
-    TResult Function(_UserEmailInvalid value)? userEmailInvalid,
-    TResult Function(_UserAlreadyExists value)? userAlreadyExists,
-    TResult Function(_FailedToCreateUser value)? failedToCreateUser,
-    required TResult orElse(),
-  }) {
-    if (userAlreadyExists != null) {
-      return userAlreadyExists(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _UserAlreadyExists implements CreateSkyTradeUserState {
-  const factory _UserAlreadyExists() = _$UserAlreadyExistsImpl;
 }
 
 /// @nodoc
@@ -1073,8 +763,6 @@ class _$FailedToCreateUserImpl implements _FailedToCreateUser {
     required TResult Function() creatingUser,
     required TResult Function(SkyTradeUserEntity skyTradeUserEntity)
         createdUser,
-    required TResult Function() userEmailInvalid,
-    required TResult Function() userAlreadyExists,
     required TResult Function(
             CreateSkyTradeUserFailure createSkyTradeUserFailure)
         failedToCreateUser,
@@ -1088,8 +776,6 @@ class _$FailedToCreateUserImpl implements _FailedToCreateUser {
     TResult? Function()? initial,
     TResult? Function()? creatingUser,
     TResult? Function(SkyTradeUserEntity skyTradeUserEntity)? createdUser,
-    TResult? Function()? userEmailInvalid,
-    TResult? Function()? userAlreadyExists,
     TResult? Function(CreateSkyTradeUserFailure createSkyTradeUserFailure)?
         failedToCreateUser,
   }) {
@@ -1102,8 +788,6 @@ class _$FailedToCreateUserImpl implements _FailedToCreateUser {
     TResult Function()? initial,
     TResult Function()? creatingUser,
     TResult Function(SkyTradeUserEntity skyTradeUserEntity)? createdUser,
-    TResult Function()? userEmailInvalid,
-    TResult Function()? userAlreadyExists,
     TResult Function(CreateSkyTradeUserFailure createSkyTradeUserFailure)?
         failedToCreateUser,
     required TResult orElse(),
@@ -1120,8 +804,6 @@ class _$FailedToCreateUserImpl implements _FailedToCreateUser {
     required TResult Function(_Initial value) initial,
     required TResult Function(_CreatingUser value) creatingUser,
     required TResult Function(_CreatedUser value) createdUser,
-    required TResult Function(_UserEmailInvalid value) userEmailInvalid,
-    required TResult Function(_UserAlreadyExists value) userAlreadyExists,
     required TResult Function(_FailedToCreateUser value) failedToCreateUser,
   }) {
     return failedToCreateUser(this);
@@ -1133,8 +815,6 @@ class _$FailedToCreateUserImpl implements _FailedToCreateUser {
     TResult? Function(_Initial value)? initial,
     TResult? Function(_CreatingUser value)? creatingUser,
     TResult? Function(_CreatedUser value)? createdUser,
-    TResult? Function(_UserEmailInvalid value)? userEmailInvalid,
-    TResult? Function(_UserAlreadyExists value)? userAlreadyExists,
     TResult? Function(_FailedToCreateUser value)? failedToCreateUser,
   }) {
     return failedToCreateUser?.call(this);
@@ -1146,8 +826,6 @@ class _$FailedToCreateUserImpl implements _FailedToCreateUser {
     TResult Function(_Initial value)? initial,
     TResult Function(_CreatingUser value)? creatingUser,
     TResult Function(_CreatedUser value)? createdUser,
-    TResult Function(_UserEmailInvalid value)? userEmailInvalid,
-    TResult Function(_UserAlreadyExists value)? userAlreadyExists,
     TResult Function(_FailedToCreateUser value)? failedToCreateUser,
     required TResult orElse(),
   }) {

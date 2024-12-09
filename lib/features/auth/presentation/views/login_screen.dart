@@ -23,6 +23,13 @@ import 'package:flutter/material.dart'
         WidgetsBindingObserver;
 import 'package:flutter_bloc/flutter_bloc.dart'
     show BlocBuilder, BlocListener, MultiBlocListener, ReadContext;
+import 'package:sky_trade/core/errors/failures/auth_failure.dart'
+    show
+        CheckSkyTradeUserUnknownFailure,
+        InvalidSignatureFailure,
+        UnauthorizedFailure,
+        UserMismatchFailure,
+        UserNotFoundFailure;
 import 'package:sky_trade/core/resources/numbers/ui.dart'
     show fifteenDotNil, fiveDotNil, thirtyDotNil;
 import 'package:sky_trade/core/resources/strings/routes.dart'
@@ -147,34 +154,20 @@ class _LoginScreenState extends State<LoginScreen> with WidgetsBindingObserver {
                     homeRoutePath,
                   );
                 },
-                userUnauthorized: () {
+                failedToCheckUser: (checkSkyTradeUserFailure) {
                   _removeProgressIndicatorFromAuthButtonAndAlertUserWith(
-                    message:
-                        context.localize.youAreNotAuthorizedToPerformThisAction,
-                  );
-
-                  _logout();
-                },
-                userSignatureInvalid: () {
-                  _removeProgressIndicatorFromAuthButtonAndAlertUserWith(
-                    message:
-                        context.localize.computedSignatureCredentialIsInvalid,
-                  );
-
-                  _logout();
-                },
-                userDoesNotExist: () {
-                  _removeProgressIndicatorFromAuthButtonAndAlertUserWith(
-                    message: context
-                        .localize.accountDoesNotExistPleaseRegisterInstead,
-                  );
-
-                  _logout();
-                },
-                failedToCheckUser: (_) {
-                  _removeProgressIndicatorFromAuthButtonAndAlertUserWith(
-                    message: context.localize
-                        .weCouldNotVerifyTheExistenceOfYourAccountPleaseTryAgain,
+                    message: switch (checkSkyTradeUserFailure) {
+                      UserNotFoundFailure() => context
+                          .localize.accountDoesNotExistPleaseRegisterInstead,
+                      UnauthorizedFailure() =>
+                        context.localize.oopsSomethingWentWrongPleaseTryAgain,
+                      InvalidSignatureFailure() =>
+                        context.localize.oopsSomethingWentWrongPleaseTryAgain,
+                      UserMismatchFailure() => context.localize
+                          .loginMethodMismatchKindlySignInWithTheSameMethodYouUsedToRegister,
+                      CheckSkyTradeUserUnknownFailure() =>
+                        context.localize.anUnknownErrorOccurredPleaseTryAgain,
+                    },
                   );
 
                   _logout();
@@ -191,7 +184,8 @@ class _LoginScreenState extends State<LoginScreen> with WidgetsBindingObserver {
           ),
           children: [
             Text(
-              context.localize.signInEffortlessly,
+              context.localize
+                  .signInEffortlesslyUsingTheAuthenticationMethodYouChoseDuringSignUp,
               textAlign: TextAlign.center,
               style: Theme.of(context).textTheme.bodySmall,
             ),
