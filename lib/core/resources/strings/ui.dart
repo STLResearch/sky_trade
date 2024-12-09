@@ -38,3 +38,6 @@ const bridDronesLayerId = 'brid-drones-layer';
 const nridDronesSourceId = 'nrid-drones-source';
 const nridDronesLayerId = 'nrid-drones-layer';
 const iconDroneValue = 'icon-drone';
+
+// Hardcoded strings
+const ref = 'ref';

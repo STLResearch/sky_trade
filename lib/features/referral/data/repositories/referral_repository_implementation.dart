@@ -1,6 +1,8 @@
 import 'package:dartz/dartz.dart' show Either;
+import 'package:flutter/services.dart' show Clipboard, ClipboardData;
 import 'package:sky_trade/core/errors/failures/referral_failure.dart';
 import 'package:sky_trade/core/utils/clients/data_handler.dart';
+import 'package:sky_trade/core/utils/clients/signature_handler.dart';
 import 'package:sky_trade/features/referral/data/data_sources/referral_remote_data_source.dart'
     show ReferralRemoteDataSource;
 import 'package:sky_trade/features/referral/domain/entities/referral_entity.dart'
@@ -14,7 +16,7 @@ import 'package:sky_trade/features/referral/domain/entities/referral_entity.dart
 import 'package:sky_trade/features/referral/domain/repositories/referral_repository.dart';
 
 final class ReferralRepositoryImplementation
-    with DataHandler
+    with DataHandler, SignatureHandler
     implements ReferralRepository {
   const ReferralRepositoryImplementation(
     ReferralRemoteDataSource referralRemoteDataSource,
@@ -91,4 +93,17 @@ final class ReferralRepositoryImplementation
             onSuccess: (earningsReportEntity) => earningsReportEntity,
             onFailure: (_) => EarningsReportFailure(),
           );
+
+  @override
+  Future<void> copyReferralCodeOrLinkToClipboard({
+    required String data,
+  }) =>
+      Clipboard.setData(
+        ClipboardData(
+          text: data,
+        ),
+      );
+
+  @override
+  Future<String?> get userEmail => computeUserEmail();
 }

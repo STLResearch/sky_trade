@@ -33,6 +33,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get pleaseEnterAValidEmail => 'Please enter a valid email';
 
   @override
+  String get emailFieldCannotBeEmpty => 'Email field cannot be empty';
+
+  @override
   String get signInOrSignUpEffortlesslyUseTheAuthenticationMethodYouChoseDuringSignUpToSignIn => 'Sign in or sign up effortlessly. Use the authentication method you chose during sign up to sign in.';
 
   @override
@@ -703,4 +706,34 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get fiveSkyPointsPerDrone => '5 SKY points/drone';
+
+  @override
+  String get itDoesNotMakeSenseToSendYourselfAnInvite => 'It does not make sense to send yourself an invite';
+
+  @override
+  String get weCouldNotSendTheInvitePleaseTryAgain => 'We could not send the invite. Please try again';
+
+  @override
+  String get referralCodeCopied => 'Referral code copied';
+
+  @override
+  String get referralLinkCopied => 'Referral link copied';
+
+  @override
+  String get inviteSent => 'Invite sent';
+
+  @override
+  String get qThree => 'Q3';
+
+  @override
+  String get qTwo => 'Q2';
+
+  @override
+  String get qOne => 'Q1';
+
+  @override
+  String get qFour => 'Q4';
+
+  @override
+  String get earnings => 'Earnings';
 }

@@ -32,4 +32,10 @@ abstract interface class ReferralRepository {
 
   Future<Either<EarningsReportFailure, EarningsReportEntity>>
       get earningsReport;
+
+  Future<void> copyReferralCodeOrLinkToClipboard({
+    required String data,
+  });
+
+  Future<String?> get userEmail;
 }

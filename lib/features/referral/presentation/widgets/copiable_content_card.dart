@@ -1,8 +1,10 @@
+import 'package:dartz/dartz.dart' show Function0;
 import 'package:flutter/material.dart'
     show
         BuildContext,
         EdgeInsetsDirectional,
         Expanded,
+        InkWell,
         MediaQuery,
         Padding,
         Row,
@@ -30,11 +32,13 @@ class CopiableContentCard extends StatelessWidget {
   const CopiableContentCard({
     required this.copiableContent,
     required this.actionText,
+    required this.onActionTap,
     super.key,
   });
 
   final String copiableContent;
   final String actionText;
+  final Function0<void>? onActionTap;
 
   @override
   Widget build(BuildContext context) => Card(
@@ -68,16 +72,19 @@ class CopiableContentCard extends StatelessWidget {
               const SizedBox(
                 width: fifteenDotNil,
               ),
-              Text(
-                actionText,
-                textAlign: TextAlign.center,
-                style: Theme.of(
-                  context,
-                ).textTheme.bodyMedium?.copyWith(
-                      fontSize: fourteenDotNil,
-                      height: twentyOneDotNil / fourteenDotNil,
-                      color: hex0653EA,
-                    ),
+              InkWell(
+                onTap: onActionTap,
+                child: Text(
+                  actionText,
+                  textAlign: TextAlign.center,
+                  style: Theme.of(
+                    context,
+                  ).textTheme.bodyMedium?.copyWith(
+                        fontSize: fourteenDotNil,
+                        height: twentyOneDotNil / fourteenDotNil,
+                        color: hex0653EA,
+                      ),
+                ),
               ),
             ],
           ),

@@ -14,9 +14,11 @@ import 'package:flutter/material.dart'
         MediaQuery,
         Navigator,
         NestedScrollView,
+        OverscrollNotification,
         Padding,
         PageController,
         PageView,
+        RefreshIndicator,
         Scaffold,
         ScrollController,
         SingleChildScrollView,
@@ -27,11 +29,17 @@ import 'package:flutter/material.dart'
         StatefulWidget,
         Text,
         Theme,
+        ValueListenableBuilder,
+        ValueNotifier,
         Widget,
         WidgetStatePropertyAll,
         showModalBottomSheet;
+import 'package:flutter_bloc/flutter_bloc.dart'
+    show BlocBuilder, BlocListener, MultiBlocListener, ReadContext;
+import 'package:skeletonizer/skeletonizer.dart'
+    show BoneMock, ShimmerEffect, Skeletonizer, SoldColorEffect;
 import 'package:sky_trade/core/assets/generated/assets.gen.dart' show Assets;
-import 'package:sky_trade/core/resources/colors.dart' show hex4285F4;
+import 'package:sky_trade/core/resources/colors.dart' show hex4285F4, hexEBEBF4;
 import 'package:sky_trade/core/resources/numbers/ui.dart'
     show
         eightDotNil,
@@ -48,9 +56,29 @@ import 'package:sky_trade/core/resources/numbers/ui.dart'
         twentySevenDotEightNine,
         twentySixDotNil,
         twentyTwoDotThreeOne,
+        two,
         zero;
+import 'package:sky_trade/core/resources/strings/special_characters.dart'
+    show whiteSpace;
 import 'package:sky_trade/core/utils/enums/ui.dart' show ReferralTab;
 import 'package:sky_trade/core/utils/extensions/build_context_extensions.dart';
+import 'package:sky_trade/features/referral/presentation/blocs/earnings_report_bloc/earnings_report_bloc.dart'
+    show EarningsReportBloc, EarningsReportEvent;
+import 'package:sky_trade/features/referral/presentation/blocs/highlights_bloc/highlights_bloc.dart'
+    show HighlightsBloc, HighlightsEvent;
+import 'package:sky_trade/features/referral/presentation/blocs/invite_bloc/invite_bloc.dart'
+    show InviteBloc, InviteState;
+import 'package:sky_trade/features/referral/presentation/blocs/leaderboard_statistics_bloc/leaderboard_statistics_bloc.dart'
+    show LeaderboardStatisticsBloc, LeaderboardStatisticsEvent;
+import 'package:sky_trade/features/referral/presentation/blocs/referral_code_bloc/referral_code_bloc.dart'
+    show ReferralCodeBloc, ReferralCodeState;
+import 'package:sky_trade/features/referral/presentation/blocs/referral_history_bloc/referral_history_bloc.dart'
+    show ReferralHistoryBloc, ReferralHistoryEvent;
+import 'package:sky_trade/features/referral/presentation/blocs/referral_link_bloc/referral_link_bloc.dart'
+    show ReferralLinkBloc, ReferralLinkState;
+import 'package:sky_trade/features/referral/presentation/blocs/sky_points_bloc/sky_points_bloc.dart'
+    show SkyPointsBloc, SkyPointsEvent, SkyPointsState;
+import 'package:sky_trade/features/referral/presentation/widgets/alert_snack_bar.dart';
 import 'package:sky_trade/features/referral/presentation/widgets/card.dart';
 import 'package:sky_trade/features/referral/presentation/widgets/history.dart';
 import 'package:sky_trade/features/referral/presentation/widgets/leaderboard.dart';
@@ -69,173 +97,331 @@ class ReferralScreen extends StatefulWidget {
 class _ReferralScreenState extends State<ReferralScreen> {
   late final PageController _pageController;
   late final ScrollController _tabsScrollController;
+  late final ValueNotifier<ReferralTab> _selectedTabNotifier;
 
   @override
   void initState() {
     _pageController = PageController();
     _tabsScrollController = ScrollController();
+    _selectedTabNotifier = ValueNotifier<ReferralTab>(
+      ReferralTab.theProgram,
+    );
+
+    _maybeGetSkyPoints();
 
     super.initState();
   }
+
+  void _maybeGetSkyPoints() => context.read<SkyPointsBloc>().state.whenOrNull(
+        initial: _getSkyPoints,
+      );
+
+  Future<void> _getSkyPoints() async => context.read<SkyPointsBloc>().add(
+        const SkyPointsEvent.getSkyPoints(),
+      );
+
+  Future<void> _getHighlights() async => context.read<HighlightsBloc>().add(
+        const HighlightsEvent.getHighlights(),
+      );
+
+  Future<void> _getReferralHistory() async =>
+      context.read<ReferralHistoryBloc>().add(
+            const ReferralHistoryEvent.getReferralHistory(
+              page: 1,
+              limit: 10,
+            ),
+          );
+
+  Future<void> _getLeaderboardStatistics() async =>
+      context.read<LeaderboardStatisticsBloc>().add(
+            const LeaderboardStatisticsEvent.getLeaderboardStatistics(
+              page: 1,
+              limit: 10,
+            ),
+          );
+
+  Future<void> _getEarningsReport() async =>
+      context.read<EarningsReportBloc>().add(
+            const EarningsReportEvent.getEarningsReport(),
+          );
 
   @override
   void dispose() {
     _pageController.dispose();
     _tabsScrollController.dispose();
+    _selectedTabNotifier.dispose();
 
     super.dispose();
   }
 
   @override
-  Widget build(BuildContext context) => Scaffold(
-        appBar: AppBar(
-          leading: IconButton(
-            icon: Assets.svgs.chevronLeft.svg(),
-            onPressed: () => Navigator.of(
-              context,
-            ).pop(),
+  Widget build(BuildContext context) => MultiBlocListener(
+        listeners: [
+          BlocListener<ReferralCodeBloc, ReferralCodeState>(
+            listener: (_, referralCodeState) {
+              referralCodeState.whenOrNull(
+                copiedCode: () => AlertSnackBar.show(
+                  context,
+                  message: context.localize.referralCodeCopied,
+                ),
+              );
+            },
           ),
-          title: Text(
-            context.localize.referralProgram,
+          BlocListener<ReferralLinkBloc, ReferralLinkState>(
+            listener: (_, referralLinkState) {
+              referralLinkState.whenOrNull(
+                copiedLink: () => AlertSnackBar.show(
+                  context,
+                  message: context.localize.referralLinkCopied,
+                ),
+              );
+            },
           ),
-        ),
-        body: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const SizedBox(
-              height: eighteenDotNil,
+          BlocListener<InviteBloc, InviteState>(
+            listener: (_, referralLinkState) {
+              referralLinkState.whenOrNull(
+                sentInvite: (_) => AlertSnackBar.show(
+                  context,
+                  message: context.localize.inviteSent,
+                ),
+              );
+            },
+          ),
+        ],
+        child: Scaffold(
+          appBar: AppBar(
+            leading: IconButton(
+              icon: Assets.svgs.chevronLeft.svg(),
+              onPressed: () => Navigator.of(
+                context,
+              ).pop(),
             ),
-            TabsSection(
-              selectedTabItemIndex: zero,
-              onTabItemSelected: (tabItemIndex) {
-                _pageController.animateToPage(
-                  tabItemIndex,
-                  duration: const Duration(
-                    milliseconds: fiveHundred,
-                  ),
-                  curve: Curves.easeIn,
-                );
-              },
+            title: Text(
+              context.localize.referralProgram,
             ),
-            Expanded(
-              child: NestedScrollView(
-                headerSliverBuilder: (_, __) => [
-                  const SliverToBoxAdapter(
-                    child: SizedBox(
-                      height: twentyDotNil,
-                    ),
-                  ),
-                  SliverToBoxAdapter(
-                    child: Padding(
-                      padding: const EdgeInsetsDirectional.symmetric(
-                        horizontal: twentySixDotNil,
+          ),
+          body: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const SizedBox(
+                height: eighteenDotNil,
+              ),
+              ValueListenableBuilder<ReferralTab>(
+                valueListenable: _selectedTabNotifier,
+                builder: (_, selectedTabNotifierValue, __) => TabsSection(
+                  selectedTab: selectedTabNotifierValue,
+                  onTabItemSelected: (referralTab) {
+                    _selectedTabNotifier.value = referralTab;
+
+                    _pageController.animateToPage(
+                      referralTab.index,
+                      duration: const Duration(
+                        milliseconds: fiveHundred,
                       ),
-                      child: Card(
-                        width: MediaQuery.sizeOf(
-                          context,
-                        ).width,
-                        cornerRadius: eightDotNil,
-                        backgroundColor: Theme.of(
-                          context,
-                        ).scaffoldBackgroundColor,
-                        elevated: true,
-                        child: Padding(
-                          padding: const EdgeInsetsDirectional.only(
-                            top: twentySevenDotEightNine,
-                            bottom: twentyTwoDotThreeOne,
-                            start: seventeenDotNil,
-                            end: seventeenDotNil,
-                          ),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                context.localize.skyPointsBalance,
-                                style: Theme.of(
-                                  context,
-                                ).textTheme.bodyLarge,
-                              ),
-                              const SizedBox(
-                                height: twentyOneDotEightFive,
-                              ),
-                              Text(
-                                '50 SKY Points',
-                                style: Theme.of(
-                                  context,
-                                ).textTheme.bodyLarge?.copyWith(
-                                      fontSize: thirtyTwoDotNil,
-                                      height:
-                                          fortyEightDotNil / thirtyTwoDotNil,
-                                      color: hex4285F4,
-                                    ),
-                              ),
-                            ],
-                          ),
+                      curve: Curves.easeIn,
+                    );
+                  },
+                ),
+              ),
+              Expanded(
+                child: RefreshIndicator.adaptive(
+                  notificationPredicate: (scrollNotification) =>
+                      switch (scrollNotification is OverscrollNotification) {
+                    true => scrollNotification.depth == two,
+                    false => scrollNotification.depth == zero,
+                  },
+                  onRefresh: () => switch (_selectedTabNotifier.value) {
+                    ReferralTab.theProgram => _getSkyPoints(),
+                    ReferralTab.share => Future.wait<void>([
+                        _getSkyPoints(),
+                        _getHighlights(),
+                      ]),
+                    ReferralTab.history => Future.wait<void>([
+                        _getSkyPoints(),
+                        _getHighlights(),
+                        _getReferralHistory(),
+                      ]),
+                    ReferralTab.leaderboard => Future.wait<void>([
+                        _getSkyPoints(),
+                        _getLeaderboardStatistics(),
+                        _getEarningsReport(),
+                      ]),
+                  },
+                  child: NestedScrollView(
+                    headerSliverBuilder: (_, __) => [
+                      const SliverToBoxAdapter(
+                        child: SizedBox(
+                          height: twentyDotNil,
                         ),
                       ),
-                    ),
-                  ),
-                  const SliverToBoxAdapter(
-                    child: SizedBox(
-                      height: fourteenDotNil,
-                    ),
-                  ),
-                  SliverToBoxAdapter(
-                    child: Padding(
-                      padding: const EdgeInsetsDirectional.symmetric(
-                        horizontal: twentySixDotNil,
-                      ),
-                      child: ElevatedButton(
-                        style: ButtonStyle(
-                          fixedSize: WidgetStatePropertyAll<Size>(
-                            Size(
-                              MediaQuery.sizeOf(
-                                context,
-                              ).width,
-                              fortyThreeDotNil,
+                      SliverToBoxAdapter(
+                        child: Padding(
+                          padding: const EdgeInsetsDirectional.symmetric(
+                            horizontal: twentySixDotNil,
+                          ),
+                          child: Card(
+                            width: MediaQuery.sizeOf(
+                              context,
+                            ).width,
+                            cornerRadius: eightDotNil,
+                            backgroundColor: Theme.of(
+                              context,
+                            ).scaffoldBackgroundColor,
+                            elevated: true,
+                            child: Padding(
+                              padding: const EdgeInsetsDirectional.only(
+                                top: twentySevenDotEightNine,
+                                bottom: twentyTwoDotThreeOne,
+                                start: seventeenDotNil,
+                                end: seventeenDotNil,
+                              ),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    context.localize.skyPointsBalance,
+                                    style: Theme.of(
+                                      context,
+                                    ).textTheme.bodyLarge,
+                                  ),
+                                  const SizedBox(
+                                    height: twentyOneDotEightFive,
+                                  ),
+                                  BlocBuilder<SkyPointsBloc, SkyPointsState>(
+                                    builder: (_, skyPointsState) =>
+                                        Skeletonizer(
+                                      effect: skyPointsState.maybeWhen(
+                                        failedToGetSkyPoints: (_) =>
+                                            const SoldColorEffect(
+                                          color: hexEBEBF4,
+                                        ),
+                                        orElse: () => ShimmerEffect(
+                                          highlightColor: Theme.of(
+                                            context,
+                                          ).scaffoldBackgroundColor,
+                                        ),
+                                      ),
+                                      enabled: skyPointsState.maybeWhen(
+                                        gotSkyPoints: (_) => false,
+                                        orElse: () => true,
+                                      ),
+                                      child: Text(
+                                        skyPointsState.maybeWhen(
+                                          gotSkyPoints: (skyPointsEntity) =>
+                                              (skyPointsEntity.stats.sum.point
+                                                      ?.toString() ??
+                                                  zero.toString()) +
+                                              whiteSpace +
+                                              context.localize.skyPoints,
+                                          orElse: () => BoneMock.words(
+                                            two,
+                                          ),
+                                        ),
+                                        style: Theme.of(
+                                          context,
+                                        ).textTheme.bodyLarge?.copyWith(
+                                              fontSize: thirtyTwoDotNil,
+                                              height: fortyEightDotNil /
+                                                  thirtyTwoDotNil,
+                                              color: hex4285F4,
+                                            ),
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
                         ),
-                        child: Center(
-                          child: Text(
-                            context.localize.howCanIEarnSkyPoints,
-                            style: Theme.of(
-                              context,
-                            ).textTheme.bodyLarge?.copyWith(
-                                  fontSize: fourteenDotNil,
-                                  height: twentyOneDotNil / fourteenDotNil,
-                                  color: Theme.of(
-                                    context,
-                                  ).scaffoldBackgroundColor,
-                                ),
-                          ),
-                        ),
-                        onPressed: () => showModalBottomSheet<void>(
-                          context: context,
-                          builder: (_) => const SkyPointsRewardDetails(),
+                      ),
+                      const SliverToBoxAdapter(
+                        child: SizedBox(
+                          height: fourteenDotNil,
                         ),
                       ),
+                      SliverToBoxAdapter(
+                        child: Padding(
+                          padding: const EdgeInsetsDirectional.symmetric(
+                            horizontal: twentySixDotNil,
+                          ),
+                          child: ElevatedButton(
+                            style: ButtonStyle(
+                              fixedSize: WidgetStatePropertyAll<Size>(
+                                Size(
+                                  MediaQuery.sizeOf(
+                                    context,
+                                  ).width,
+                                  fortyThreeDotNil,
+                                ),
+                              ),
+                            ),
+                            child: Center(
+                              child: Text(
+                                context.localize.howCanIEarnSkyPoints,
+                                style: Theme.of(
+                                  context,
+                                ).textTheme.bodyLarge?.copyWith(
+                                      fontSize: fourteenDotNil,
+                                      height: twentyOneDotNil / fourteenDotNil,
+                                      color: Theme.of(
+                                        context,
+                                      ).scaffoldBackgroundColor,
+                                    ),
+                              ),
+                            ),
+                            onPressed: () => showModalBottomSheet<void>(
+                              context: context,
+                              builder: (_) => const SkyPointsRewardDetails(),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                    body: PageView.builder(
+                      controller: _pageController,
+                      itemCount: ReferralTab.values.length,
+                      itemBuilder: (_, index) => SingleChildScrollView(
+                        padding: const EdgeInsetsDirectional.symmetric(
+                          horizontal: twentySixDotNil,
+                        ),
+                        child: switch (ReferralTab.values[index]) {
+                          ReferralTab.theProgram => const TheProgram(),
+                          ReferralTab.share => const Share(),
+                          ReferralTab.history => const History(),
+                          ReferralTab.leaderboard => const Leaderboard(),
+                        },
+                      ),
+                      onPageChanged: (index) {
+                        _selectedTabNotifier.value = ReferralTab.values[index];
+                        // final tappedTab = _selectedTabNotifier.value;
+
+                        // final selectedTab = ReferralTab.values[index];
+
+                        // if()
+                        // _selectedTabNotifier.value = selectedTab;
+
+                        // switch (selectedTab) {
+                        //   case ReferralTab.theProgram:
+                        //     ;
+                        //   case ReferralTab.share:
+                        //     // context.read<HighlightsBloc>().state.whenOrNull(
+                        //     //       initial: () =>
+                        //     //           context.read<HighlightsBloc>().add(
+                        //     //                 const HighlightsEvent.getHighlights(),
+                        //     //               ),
+                        //     //     );
+                        //   case ReferralTab.history:
+                        //     ;
+                        //   case ReferralTab.leaderboard:
+                        //     ;
+                        // }
+                      },
                     ),
-                  ),
-                ],
-                body: PageView.builder(
-                  controller: _pageController,
-                  itemCount: ReferralTab.values.length,
-                  itemBuilder: (_, index) => SingleChildScrollView(
-                    padding: const EdgeInsetsDirectional.symmetric(
-                      horizontal: twentySixDotNil,
-                    ),
-                    child: switch (ReferralTab.values[index]) {
-                      ReferralTab.theProgram => const TheProgram(),
-                      ReferralTab.share => const Share(),
-                      ReferralTab.history => const History(),
-                      ReferralTab.leaderboard => const Leaderboard(),
-                    },
                   ),
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       );
 }

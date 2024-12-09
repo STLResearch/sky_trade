@@ -33,12 +33,12 @@ import 'package:sky_trade/features/referral/presentation/widgets/card.dart';
 class TabsSection extends StatelessWidget {
   const TabsSection({
     required this.onTabItemSelected,
-    required this.selectedTabItemIndex,
+    required this.selectedTab,
     super.key,
   });
 
-  final Function1<int, void> onTabItemSelected;
-  final int selectedTabItemIndex;
+  final Function1<ReferralTab, void> onTabItemSelected;
+  final ReferralTab selectedTab;
 
   @override
   Widget build(BuildContext context) => SizedBox(
@@ -53,12 +53,12 @@ class TabsSection extends StatelessWidget {
               ),
             false => Card(
                 cornerRadius: tenDotNil,
-                backgroundColor: switch (selectedTabItemIndex == index - one) {
+                backgroundColor: switch (selectedTab.index == index - one) {
                   true => hex222222,
                   false => hex1A222222,
                 },
                 onTap: () => onTabItemSelected(
-                  index - one,
+                  ReferralTab.values[index - one],
                 ),
                 child: Center(
                   child: Padding(
@@ -76,8 +76,7 @@ class TabsSection extends StatelessWidget {
                       ).textTheme.bodySmall?.copyWith(
                             fontSize: fifteenDotNil,
                             height: twentyTwoDotNil / fifteenDotNil,
-                            color: switch (
-                                selectedTabItemIndex == index - one) {
+                            color: switch (selectedTab.index == index - one) {
                               true => hexFFFFFF,
                               false => hex222222,
                             },

@@ -7,6 +7,7 @@
   "loginOrRegister": "Login or register",
   "logout": "Logout",
   "pleaseEnterAValidEmail": "Please enter a valid email",
+  "emailFieldCannotBeEmpty": "Email field cannot be empty",
   "signInOrSignUpEffortlesslyUseTheAuthenticationMethodYouChoseDuringSignUpToSignIn": "Sign in or sign up effortlessly. Use the authentication method you chose during sign up to sign in.",
   "whitespacesAreNotAllowedPleaseRemoveAnyLeadingAndOrTrailingWhitespaces": "Whitespaces are not allowed. Please remove any leading and/or trailing whitespaces",
   "getStarted": "Get started",
@@ -230,5 +231,15 @@
   "hundredSkyPoints": "100 SKY points",
   "boostingSkyPointsEgXThree": "Boosting: SKY points eg x 3",
   "hundredSkyPointsToYouAndHundredSkyPointsToYourFriendThisIsPartOfThePointsAllocationTwoPlusTenPercentBonusOnTheReferredIncomeStreamFromAirRightRental": "100 SKY points to you and 100 SKY points to your friend (this is part of the points allocation 2) + 10% bonus on the referred income stream from air-right rental",
-  "fiveSkyPointsPerDrone": "5 SKY points/drone"
+  "fiveSkyPointsPerDrone": "5 SKY points/drone",
+  "itDoesNotMakeSenseToSendYourselfAnInvite": "It does not make sense to send yourself an invite",
+  "weCouldNotSendTheInvitePleaseTryAgain": "We could not send the invite. Please try again",
+  "referralCodeCopied": "Referral code copied",
+  "referralLinkCopied": "Referral link copied",
+  "inviteSent": "Invite sent",
+  "qThree": "Q3",
+  "qTwo": "Q2",
+  "qOne": "Q1",
+  "qFour": "Q4",
+  "earnings": "Earnings"
 }

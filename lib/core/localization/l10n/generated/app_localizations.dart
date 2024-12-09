@@ -141,6 +141,12 @@ abstract class AppLocalizations {
   /// **'Please enter a valid email'**
   String get pleaseEnterAValidEmail;
 
+  /// No description provided for @emailFieldCannotBeEmpty.
+  ///
+  /// In en, this message translates to:
+  /// **'Email field cannot be empty'**
+  String get emailFieldCannotBeEmpty;
+
   /// No description provided for @signInOrSignUpEffortlesslyUseTheAuthenticationMethodYouChoseDuringSignUpToSignIn.
   ///
   /// In en, this message translates to:
@@ -1484,6 +1490,66 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'5 SKY points/drone'**
   String get fiveSkyPointsPerDrone;
+
+  /// No description provided for @itDoesNotMakeSenseToSendYourselfAnInvite.
+  ///
+  /// In en, this message translates to:
+  /// **'It does not make sense to send yourself an invite'**
+  String get itDoesNotMakeSenseToSendYourselfAnInvite;
+
+  /// No description provided for @weCouldNotSendTheInvitePleaseTryAgain.
+  ///
+  /// In en, this message translates to:
+  /// **'We could not send the invite. Please try again'**
+  String get weCouldNotSendTheInvitePleaseTryAgain;
+
+  /// No description provided for @referralCodeCopied.
+  ///
+  /// In en, this message translates to:
+  /// **'Referral code copied'**
+  String get referralCodeCopied;
+
+  /// No description provided for @referralLinkCopied.
+  ///
+  /// In en, this message translates to:
+  /// **'Referral link copied'**
+  String get referralLinkCopied;
+
+  /// No description provided for @inviteSent.
+  ///
+  /// In en, this message translates to:
+  /// **'Invite sent'**
+  String get inviteSent;
+
+  /// No description provided for @qThree.
+  ///
+  /// In en, this message translates to:
+  /// **'Q3'**
+  String get qThree;
+
+  /// No description provided for @qTwo.
+  ///
+  /// In en, this message translates to:
+  /// **'Q2'**
+  String get qTwo;
+
+  /// No description provided for @qOne.
+  ///
+  /// In en, this message translates to:
+  /// **'Q1'**
+  String get qOne;
+
+  /// No description provided for @qFour.
+  ///
+  /// In en, this message translates to:
+  /// **'Q4'**
+  String get qFour;
+
+  /// No description provided for @earnings.
+  ///
+  /// In en, this message translates to:
+  /// **'Earnings'**
+  String get earnings;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

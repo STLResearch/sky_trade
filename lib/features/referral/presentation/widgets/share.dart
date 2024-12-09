@@ -7,17 +7,25 @@ import 'package:flutter/material.dart'
         MainAxisAlignment,
         Row,
         SizedBox,
-        StatelessWidget,
+        State,
+        StatefulWidget,
         Text,
         Theme,
         Widget;
+import 'package:flutter_bloc/flutter_bloc.dart' show BlocBuilder, ReadContext;
 import 'package:qr_flutter/qr_flutter.dart' show QrImageView;
+import 'package:skeletonizer/skeletonizer.dart'
+    show BoneMock, ShimmerEffect, Skeletonizer, SoldColorEffect;
+import 'package:sky_trade/core/resources/colors.dart' show hexEBEBF4;
 import 'package:sky_trade/core/resources/numbers/ui.dart'
     show
         elevenDotNil,
+        five,
         fiveDotNil,
         fortyNineDotNil,
+        four,
         oneThirtyNineDotSixEight,
+        six,
         tenDotNil,
         thirteenDotOneSix,
         thirtyFiveDotNil,
@@ -27,12 +35,40 @@ import 'package:sky_trade/core/resources/strings/special_characters.dart'
 import 'package:sky_trade/core/utils/enums/ui.dart'
     show SocialsSectionArrangement;
 import 'package:sky_trade/core/utils/extensions/build_context_extensions.dart';
+import 'package:sky_trade/core/utils/extensions/referral_entity_extensions.dart'
+    show HighlightsEntityExtensions;
+import 'package:sky_trade/features/referral/presentation/blocs/highlights_bloc/highlights_bloc.dart'
+    show HighlightsBloc, HighlightsEvent, HighlightsState;
+import 'package:sky_trade/features/referral/presentation/blocs/referral_code_bloc/referral_code_bloc.dart'
+    show ReferralCodeBloc, ReferralCodeEvent;
+import 'package:sky_trade/features/referral/presentation/blocs/referral_link_bloc/referral_link_bloc.dart'
+    show ReferralLinkBloc, ReferralLinkEvent;
 import 'package:sky_trade/features/referral/presentation/widgets/copiable_content_card.dart';
 import 'package:sky_trade/features/referral/presentation/widgets/email_field.dart';
 import 'package:sky_trade/features/referral/presentation/widgets/socials_section.dart';
 
-class Share extends StatelessWidget {
+class Share extends StatefulWidget {
   const Share({super.key});
+
+  @override
+  State<Share> createState() => _ShareState();
+}
+
+class _ShareState extends State<Share> {
+  @override
+  void initState() {
+    _maybeGetHighlights();
+
+    super.initState();
+  }
+
+  void _maybeGetHighlights() => context.read<HighlightsBloc>().state.whenOrNull(
+        initial: _getHighlights,
+      );
+
+  void _getHighlights() => context.read<HighlightsBloc>().add(
+        const HighlightsEvent.getHighlights(),
+      );
 
   @override
   Widget build(BuildContext context) => Column(
@@ -52,9 +88,42 @@ class Share extends StatelessWidget {
           const SizedBox(
             height: tenDotNil,
           ),
-          CopiableContentCard(
-            copiableContent: 'REF.23GlFa?!',
-            actionText: context.localize.copyCode,
+          BlocBuilder<HighlightsBloc, HighlightsState>(
+            builder: (_, highlightsState) => Skeletonizer(
+              effect: highlightsState.maybeWhen(
+                failedToGetHighlights: (_) => const SoldColorEffect(
+                  color: hexEBEBF4,
+                ),
+                orElse: () => ShimmerEffect(
+                  highlightColor: Theme.of(
+                    context,
+                  ).scaffoldBackgroundColor,
+                ),
+              ),
+              enabled: highlightsState.maybeWhen(
+                gotHighlights: (_) => false,
+                orElse: () => true,
+              ),
+              child: CopiableContentCard(
+                copiableContent: highlightsState.maybeWhen(
+                  gotHighlights: (highlightsEntity) =>
+                      highlightsEntity.referralCode,
+                  orElse: () => BoneMock.chars(
+                    six,
+                  ),
+                ),
+                actionText: context.localize.copyCode,
+                onActionTap: highlightsState.maybeWhen(
+                  gotHighlights: (highlightsEntity) =>
+                      () => context.read<ReferralCodeBloc>().add(
+                            ReferralCodeEvent.copyCode(
+                              code: highlightsEntity.referralCode,
+                            ),
+                          ),
+                  orElse: () => null,
+                ),
+              ),
+            ),
           ),
           const SizedBox(
             height: fiveDotNil,
@@ -66,9 +135,42 @@ class Share extends StatelessWidget {
           const SizedBox(
             height: fiveDotNil,
           ),
-          CopiableContentCard(
-            copiableContent: 'sky.trade/ref=glwadys',
-            actionText: context.localize.copyLink,
+          BlocBuilder<HighlightsBloc, HighlightsState>(
+            builder: (_, highlightsState) => Skeletonizer(
+              effect: highlightsState.maybeWhen(
+                failedToGetHighlights: (_) => const SoldColorEffect(
+                  color: hexEBEBF4,
+                ),
+                orElse: () => ShimmerEffect(
+                  highlightColor: Theme.of(
+                    context,
+                  ).scaffoldBackgroundColor,
+                ),
+              ),
+              enabled: highlightsState.maybeWhen(
+                gotHighlights: (_) => false,
+                orElse: () => true,
+              ),
+              child: CopiableContentCard(
+                copiableContent: highlightsState.maybeWhen(
+                  gotHighlights: (highlightsEntity) =>
+                      highlightsEntity.referralLink,
+                  orElse: () => BoneMock.words(
+                    five,
+                  ),
+                ),
+                actionText: context.localize.copyLink,
+                onActionTap: highlightsState.maybeWhen(
+                  gotHighlights: (highlightsEntity) =>
+                      () => context.read<ReferralLinkBloc>().add(
+                            ReferralLinkEvent.copyLink(
+                              link: highlightsEntity.referralLink,
+                            ),
+                          ),
+                  orElse: () => null,
+                ),
+              ),
+            ),
           ),
           const SizedBox(
             height: fiveDotNil,
@@ -109,10 +211,17 @@ class Share extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              QrImageView(
-                data: 'Hello :-)',
-                size: oneThirtyNineDotSixEight,
-                // version: ,
+              BlocBuilder<HighlightsBloc, HighlightsState>(
+                builder: (_, highlightsState) => QrImageView(
+                  data: highlightsState.maybeWhen(
+                    gotHighlights: (highlightsEntity) =>
+                        highlightsEntity.referralLink,
+                    orElse: () => BoneMock.words(
+                      four,
+                    ),
+                  ),
+                  size: oneThirtyNineDotSixEight,
+                ),
               ),
               const SizedBox(
                 width: thirteenDotOneSix,

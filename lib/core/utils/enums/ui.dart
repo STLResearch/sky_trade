@@ -59,7 +59,7 @@ enum Highlights {
 enum ReferralsHistory {
   date,
   amount,
-  from,
+  description,
   balance,
 }
 
@@ -71,4 +71,11 @@ enum Leaderboard {
 enum ArrangementType {
   row,
   cube,
+}
+
+enum Quarter {
+  q3,
+  q2,
+  q1,
+  q4,
 }

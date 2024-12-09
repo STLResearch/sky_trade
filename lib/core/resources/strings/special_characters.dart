@@ -1,16 +1,11 @@
 const forwardSlash = '/';
-// const backwardSlash = r'\';
-// const tabSpace = '  ';
 const whiteSpace = ' ';
 const asterisk = '*';
 const fullStop = '.';
-// const centerDot = '᛫';
 const emptyString = '';
-// const threeDots = '...';
 const comma = ',';
 const equals = '=';
 const ampersand = '&';
-// const pound = '#';
 const colon = ':';
 const hyphen = '-';
 const newLine = '\n';
