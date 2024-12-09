@@ -24,7 +24,8 @@ import 'package:sky_trade/core/utils/clients/network_client.dart'
     show HttpClient;
 import 'package:sky_trade/core/utils/clients/response_handler.dart';
 import 'package:sky_trade/core/utils/enums/networking.dart' show RequestMethod;
-import 'package:sky_trade/features/auth/data/models/auth_model.dart';
+import 'package:sky_trade/features/auth/data/models/auth_model.dart'
+    show SkyTradeUserModel;
 
 abstract interface class AuthRemoteDataSource {
   Future<SkyTradeUserModel> createSkyTradeUserUsing({

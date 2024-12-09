@@ -4,6 +4,8 @@ import 'package:dartz/dartz.dart' show Either, Unit, unit;
 import 'package:flutter_dotenv/flutter_dotenv.dart' show dotenv;
 import 'package:sky_trade/core/errors/exceptions/auth_exception.dart'
     show
+        CheckSkyTradeUserException,
+        CreateSkyTradeUserException,
         InvalidEmailException,
         InvalidSignatureException,
         UnauthorizedException,
@@ -196,14 +198,11 @@ final class AuthRepositoryImplementation
               );
             },
             onSuccess: (skyTradeUserEntity) => skyTradeUserEntity,
-            onFailure: (e) {
-              if (e is InvalidEmailException) {
-                return InvalidEmailFailure();
-              } else if (e is WalletAlreadyExistsException) {
-                return WalletAlreadyExistsFailure();
-              } else {
-                return CreateSkyTradeUserUnknownFailure();
-              }
+            onFailure: (e) => switch (e is CreateSkyTradeUserException) {
+              true when e is InvalidEmailException => InvalidEmailFailure(),
+              true when e is WalletAlreadyExistsException =>
+                WalletAlreadyExistsFailure(),
+              _ => CreateSkyTradeUserUnknownFailure(),
             },
           );
 
@@ -213,18 +212,13 @@ final class AuthRepositoryImplementation
           handleData<CheckSkyTradeUserFailure, SkyTradeUserEntity>(
             dataSourceOperation: _authRemoteDataSource.checkSkyTradeUserExists,
             onSuccess: (skyTradeUserEntity) => skyTradeUserEntity,
-            onFailure: (e) {
-              if (e is UnauthorizedException) {
-                return UnauthorizedFailure();
-              } else if (e is InvalidSignatureException) {
-                return InvalidSignatureFailure();
-              } else if (e is UserNotFoundException) {
-                return UserNotFoundFailure();
-              } else if (e is UserMismatchException) {
-                return UserMismatchFailure();
-              } else {
-                return CheckSkyTradeUserUnknownFailure();
-              }
+            onFailure: (e) => switch (e is CheckSkyTradeUserException) {
+              true when e is UnauthorizedException => UnauthorizedFailure(),
+              true when e is InvalidSignatureException =>
+                InvalidSignatureFailure(),
+              true when e is UserNotFoundException => UserNotFoundFailure(),
+              true when e is UserMismatchException => UserMismatchFailure(),
+              _ => CheckSkyTradeUserUnknownFailure(),
             },
           );
 

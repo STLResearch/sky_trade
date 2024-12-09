@@ -1,3 +1,5 @@
+// ignore_for_file: lines_longer_than_80_chars
+
 // Web3Auth
 const web3AuthRpcUrl = 'WEB_3_AUTH_RPC_URL';
 // Whitelist origins
@@ -298,4 +300,5 @@ const invalidSignature = 'INVALID_SIGNATURE';
 const userNotFound = 'USER_NOT_FOUND';
 const invalidEmail = 'INVALID_EMAIL';
 const userMismatch = 'USER_MISMATCH';
-const walletAlreadyExists = 'A wallet already exists for this email address. Kindly sign in with the same method used previously.';
+const walletAlreadyExists =
+    'A wallet already exists for this email address. Kindly sign in with the same method used previously.';

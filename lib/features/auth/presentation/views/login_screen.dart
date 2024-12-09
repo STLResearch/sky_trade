@@ -23,7 +23,13 @@ import 'package:flutter/material.dart'
         WidgetsBindingObserver;
 import 'package:flutter_bloc/flutter_bloc.dart'
     show BlocBuilder, BlocListener, MultiBlocListener, ReadContext;
-import 'package:sky_trade/core/errors/failures/auth_failure.dart';
+import 'package:sky_trade/core/errors/failures/auth_failure.dart'
+    show
+        CheckSkyTradeUserUnknownFailure,
+        InvalidSignatureFailure,
+        UnauthorizedFailure,
+        UserMismatchFailure,
+        UserNotFoundFailure;
 import 'package:sky_trade/core/resources/numbers/ui.dart'
     show fifteenDotNil, fiveDotNil, thirtyDotNil;
 import 'package:sky_trade/core/resources/strings/routes.dart'

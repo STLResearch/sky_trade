@@ -20,6 +20,11 @@ import 'package:flutter/material.dart'
         WidgetsBindingObserver;
 import 'package:flutter_bloc/flutter_bloc.dart'
     show BlocBuilder, BlocListener, MultiBlocListener, ReadContext;
+import 'package:sky_trade/core/errors/failures/auth_failure.dart'
+    show
+        CreateSkyTradeUserUnknownFailure,
+        InvalidEmailFailure,
+        WalletAlreadyExistsFailure;
 import 'package:sky_trade/core/resources/numbers/ui.dart'
     show fifteenDotNil, tenDotNil, thirtyDotNil;
 import 'package:sky_trade/core/resources/strings/networking.dart'
@@ -52,8 +57,6 @@ import 'package:sky_trade/features/auth/presentation/widgets/or_section.dart';
 import 'package:sky_trade/features/auth/presentation/widgets/subscribe_section.dart';
 import 'package:sky_trade/features/link_handler/presentation/blocs/handle_link_bloc/handle_link_bloc.dart'
     show HandleLinkBloc, HandleLinkEvent;
-
-import '../../../../core/errors/failures/auth_failure.dart';
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({super.key});
