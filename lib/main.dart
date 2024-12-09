@@ -1,7 +1,8 @@
 import 'package:firebase_analytics/firebase_analytics.dart'
     show FirebaseAnalytics;
 import 'package:firebase_core/firebase_core.dart' show Firebase;
-import 'package:flutter/foundation.dart' show VoidCallback, kDebugMode, kIsWeb;
+import 'package:flutter/foundation.dart'
+    show VoidCallback, kDebugMode, kIsWeb, kProfileMode;
 import 'package:flutter/material.dart' show WidgetsFlutterBinding, runApp;
 import 'package:flutter_dotenv/flutter_dotenv.dart' show dotenv;
 import 'package:flutter_native_splash/flutter_native_splash.dart';
@@ -39,7 +40,7 @@ Future<void> _loadEnv() => dotenv.load(
 Future<void> _maybeInitializeSentryReporting({
   required VoidCallback then,
 }) async {
-  if (kDebugMode || _environment == devEnvironment) {
+  if (kDebugMode || kProfileMode || _environment == devEnvironment) {
     then();
 
     return;
