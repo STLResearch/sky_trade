@@ -16,54 +16,23 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$GeoHashEvent {
-  ({double latitude, double longitude})? get coordinates =>
+  ({double latitude, double longitude}) get coordinates =>
       throw _privateConstructorUsedError;
-  ({
-    double northEastLatitude,
-    double northEastLongitude,
-    double southWestLatitude,
-    double southWestLongitude
-  })? get bounds => throw _privateConstructorUsedError;
-  int? get precision => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(
-            ({double latitude, double longitude})? coordinates,
-            ({
-              double northEastLatitude,
-              double northEastLongitude,
-              double southWestLatitude,
-              double southWestLongitude
-            })? bounds,
-            int? precision)
+    required TResult Function(({double latitude, double longitude}) coordinates)
         computeGeoHash,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(
-            ({double latitude, double longitude})? coordinates,
-            ({
-              double northEastLatitude,
-              double northEastLongitude,
-              double southWestLatitude,
-              double southWestLongitude
-            })? bounds,
-            int? precision)?
+    TResult? Function(({double latitude, double longitude}) coordinates)?
         computeGeoHash,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(
-            ({double latitude, double longitude})? coordinates,
-            ({
-              double northEastLatitude,
-              double northEastLongitude,
-              double southWestLatitude,
-              double southWestLongitude
-            })? bounds,
-            int? precision)?
+    TResult Function(({double latitude, double longitude}) coordinates)?
         computeGeoHash,
     required TResult orElse(),
   }) =>
@@ -96,15 +65,7 @@ abstract class $GeoHashEventCopyWith<$Res> {
           GeoHashEvent value, $Res Function(GeoHashEvent) then) =
       _$GeoHashEventCopyWithImpl<$Res, GeoHashEvent>;
   @useResult
-  $Res call(
-      {({double latitude, double longitude})? coordinates,
-      ({
-        double northEastLatitude,
-        double northEastLongitude,
-        double southWestLatitude,
-        double southWestLongitude
-      })? bounds,
-      int? precision});
+  $Res call({({double latitude, double longitude}) coordinates});
 }
 
 /// @nodoc
@@ -120,28 +81,13 @@ class _$GeoHashEventCopyWithImpl<$Res, $Val extends GeoHashEvent>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? coordinates = freezed,
-    Object? bounds = freezed,
-    Object? precision = freezed,
+    Object? coordinates = null,
   }) {
     return _then(_value.copyWith(
-      coordinates: freezed == coordinates
+      coordinates: null == coordinates
           ? _value.coordinates
           : coordinates // ignore: cast_nullable_to_non_nullable
-              as ({double latitude, double longitude})?,
-      bounds: freezed == bounds
-          ? _value.bounds
-          : bounds // ignore: cast_nullable_to_non_nullable
-              as ({
-              double northEastLatitude,
-              double northEastLongitude,
-              double southWestLatitude,
-              double southWestLongitude
-            })?,
-      precision: freezed == precision
-          ? _value.precision
-          : precision // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as ({double latitude, double longitude}),
     ) as $Val);
   }
 }
@@ -154,15 +100,7 @@ abstract class _$$ComputeGeoHashImplCopyWith<$Res>
       __$$ComputeGeoHashImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {({double latitude, double longitude})? coordinates,
-      ({
-        double northEastLatitude,
-        double northEastLongitude,
-        double southWestLatitude,
-        double southWestLongitude
-      })? bounds,
-      int? precision});
+  $Res call({({double latitude, double longitude}) coordinates});
 }
 
 /// @nodoc
@@ -176,28 +114,13 @@ class __$$ComputeGeoHashImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? coordinates = freezed,
-    Object? bounds = freezed,
-    Object? precision = freezed,
+    Object? coordinates = null,
   }) {
     return _then(_$ComputeGeoHashImpl(
-      coordinates: freezed == coordinates
+      coordinates: null == coordinates
           ? _value.coordinates
           : coordinates // ignore: cast_nullable_to_non_nullable
-              as ({double latitude, double longitude})?,
-      bounds: freezed == bounds
-          ? _value.bounds
-          : bounds // ignore: cast_nullable_to_non_nullable
-              as ({
-              double northEastLatitude,
-              double northEastLongitude,
-              double southWestLatitude,
-              double southWestLongitude
-            })?,
-      precision: freezed == precision
-          ? _value.precision
-          : precision // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as ({double latitude, double longitude}),
     ));
   }
 }
@@ -205,23 +128,14 @@ class __$$ComputeGeoHashImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$ComputeGeoHashImpl implements _ComputeGeoHash {
-  const _$ComputeGeoHashImpl({this.coordinates, this.bounds, this.precision});
+  const _$ComputeGeoHashImpl({required this.coordinates});
 
   @override
-  final ({double latitude, double longitude})? coordinates;
-  @override
-  final ({
-    double northEastLatitude,
-    double northEastLongitude,
-    double southWestLatitude,
-    double southWestLongitude
-  })? bounds;
-  @override
-  final int? precision;
+  final ({double latitude, double longitude}) coordinates;
 
   @override
   String toString() {
-    return 'GeoHashEvent.computeGeoHash(coordinates: $coordinates, bounds: $bounds, precision: $precision)';
+    return 'GeoHashEvent.computeGeoHash(coordinates: $coordinates)';
   }
 
   @override
@@ -230,14 +144,11 @@ class _$ComputeGeoHashImpl implements _ComputeGeoHash {
         (other.runtimeType == runtimeType &&
             other is _$ComputeGeoHashImpl &&
             (identical(other.coordinates, coordinates) ||
-                other.coordinates == coordinates) &&
-            (identical(other.bounds, bounds) || other.bounds == bounds) &&
-            (identical(other.precision, precision) ||
-                other.precision == precision));
+                other.coordinates == coordinates));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, coordinates, bounds, precision);
+  int get hashCode => Object.hash(runtimeType, coordinates);
 
   @JsonKey(ignore: true)
   @override
@@ -249,54 +160,30 @@ class _$ComputeGeoHashImpl implements _ComputeGeoHash {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(
-            ({double latitude, double longitude})? coordinates,
-            ({
-              double northEastLatitude,
-              double northEastLongitude,
-              double southWestLatitude,
-              double southWestLongitude
-            })? bounds,
-            int? precision)
+    required TResult Function(({double latitude, double longitude}) coordinates)
         computeGeoHash,
   }) {
-    return computeGeoHash(coordinates, bounds, precision);
+    return computeGeoHash(coordinates);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(
-            ({double latitude, double longitude})? coordinates,
-            ({
-              double northEastLatitude,
-              double northEastLongitude,
-              double southWestLatitude,
-              double southWestLongitude
-            })? bounds,
-            int? precision)?
+    TResult? Function(({double latitude, double longitude}) coordinates)?
         computeGeoHash,
   }) {
-    return computeGeoHash?.call(coordinates, bounds, precision);
+    return computeGeoHash?.call(coordinates);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(
-            ({double latitude, double longitude})? coordinates,
-            ({
-              double northEastLatitude,
-              double northEastLongitude,
-              double southWestLatitude,
-              double southWestLongitude
-            })? bounds,
-            int? precision)?
+    TResult Function(({double latitude, double longitude}) coordinates)?
         computeGeoHash,
     required TResult orElse(),
   }) {
     if (computeGeoHash != null) {
-      return computeGeoHash(coordinates, bounds, precision);
+      return computeGeoHash(coordinates);
     }
     return orElse();
   }
@@ -332,26 +219,11 @@ class _$ComputeGeoHashImpl implements _ComputeGeoHash {
 
 abstract class _ComputeGeoHash implements GeoHashEvent {
   const factory _ComputeGeoHash(
-      {final ({double latitude, double longitude})? coordinates,
-      final ({
-        double northEastLatitude,
-        double northEastLongitude,
-        double southWestLatitude,
-        double southWestLongitude
-      })? bounds,
-      final int? precision}) = _$ComputeGeoHashImpl;
+          {required final ({double latitude, double longitude}) coordinates}) =
+      _$ComputeGeoHashImpl;
 
   @override
-  ({double latitude, double longitude})? get coordinates;
-  @override
-  ({
-    double northEastLatitude,
-    double northEastLongitude,
-    double southWestLatitude,
-    double southWestLongitude
-  })? get bounds;
-  @override
-  int? get precision;
+  ({double latitude, double longitude}) get coordinates;
   @override
   @JsonKey(ignore: true)
   _$$ComputeGeoHashImplCopyWith<_$ComputeGeoHashImpl> get copyWith =>
@@ -363,45 +235,44 @@ mixin _$GeoHashState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function(String geoHash) computedGeoHash,
-    required TResult Function() failedToComputeGeoHash,
+    required TResult Function(String geoHashP4) computedGeoHashP4,
+    required TResult Function(String geoHashP6) computedGeoHashP6,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function(String geoHash)? computedGeoHash,
-    TResult? Function()? failedToComputeGeoHash,
+    TResult? Function(String geoHashP4)? computedGeoHashP4,
+    TResult? Function(String geoHashP6)? computedGeoHashP6,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(String geoHash)? computedGeoHash,
-    TResult Function()? failedToComputeGeoHash,
+    TResult Function(String geoHashP4)? computedGeoHashP4,
+    TResult Function(String geoHashP6)? computedGeoHashP6,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
-    required TResult Function(_ComputedGeoHash value) computedGeoHash,
-    required TResult Function(_FailedToComputeGeoHash value)
-        failedToComputeGeoHash,
+    required TResult Function(_ComputedGeoHashP4 value) computedGeoHashP4,
+    required TResult Function(_ComputedGeoHashP6 value) computedGeoHashP6,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
-    TResult? Function(_ComputedGeoHash value)? computedGeoHash,
-    TResult? Function(_FailedToComputeGeoHash value)? failedToComputeGeoHash,
+    TResult? Function(_ComputedGeoHashP4 value)? computedGeoHashP4,
+    TResult? Function(_ComputedGeoHashP6 value)? computedGeoHashP6,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(_ComputedGeoHash value)? computedGeoHash,
-    TResult Function(_FailedToComputeGeoHash value)? failedToComputeGeoHash,
+    TResult Function(_ComputedGeoHashP4 value)? computedGeoHashP4,
+    TResult Function(_ComputedGeoHashP6 value)? computedGeoHashP6,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -464,8 +335,8 @@ class _$InitialImpl implements _Initial {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function(String geoHash) computedGeoHash,
-    required TResult Function() failedToComputeGeoHash,
+    required TResult Function(String geoHashP4) computedGeoHashP4,
+    required TResult Function(String geoHashP6) computedGeoHashP6,
   }) {
     return initial();
   }
@@ -474,8 +345,8 @@ class _$InitialImpl implements _Initial {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function(String geoHash)? computedGeoHash,
-    TResult? Function()? failedToComputeGeoHash,
+    TResult? Function(String geoHashP4)? computedGeoHashP4,
+    TResult? Function(String geoHashP6)? computedGeoHashP6,
   }) {
     return initial?.call();
   }
@@ -484,8 +355,8 @@ class _$InitialImpl implements _Initial {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(String geoHash)? computedGeoHash,
-    TResult Function()? failedToComputeGeoHash,
+    TResult Function(String geoHashP4)? computedGeoHashP4,
+    TResult Function(String geoHashP6)? computedGeoHashP6,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -498,9 +369,8 @@ class _$InitialImpl implements _Initial {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
-    required TResult Function(_ComputedGeoHash value) computedGeoHash,
-    required TResult Function(_FailedToComputeGeoHash value)
-        failedToComputeGeoHash,
+    required TResult Function(_ComputedGeoHashP4 value) computedGeoHashP4,
+    required TResult Function(_ComputedGeoHashP6 value) computedGeoHashP6,
   }) {
     return initial(this);
   }
@@ -509,8 +379,8 @@ class _$InitialImpl implements _Initial {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
-    TResult? Function(_ComputedGeoHash value)? computedGeoHash,
-    TResult? Function(_FailedToComputeGeoHash value)? failedToComputeGeoHash,
+    TResult? Function(_ComputedGeoHashP4 value)? computedGeoHashP4,
+    TResult? Function(_ComputedGeoHashP6 value)? computedGeoHashP6,
   }) {
     return initial?.call(this);
   }
@@ -519,8 +389,8 @@ class _$InitialImpl implements _Initial {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(_ComputedGeoHash value)? computedGeoHash,
-    TResult Function(_FailedToComputeGeoHash value)? failedToComputeGeoHash,
+    TResult Function(_ComputedGeoHashP4 value)? computedGeoHashP4,
+    TResult Function(_ComputedGeoHashP6 value)? computedGeoHashP6,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -535,31 +405,31 @@ abstract class _Initial implements GeoHashState {
 }
 
 /// @nodoc
-abstract class _$$ComputedGeoHashImplCopyWith<$Res> {
-  factory _$$ComputedGeoHashImplCopyWith(_$ComputedGeoHashImpl value,
-          $Res Function(_$ComputedGeoHashImpl) then) =
-      __$$ComputedGeoHashImplCopyWithImpl<$Res>;
+abstract class _$$ComputedGeoHashP4ImplCopyWith<$Res> {
+  factory _$$ComputedGeoHashP4ImplCopyWith(_$ComputedGeoHashP4Impl value,
+          $Res Function(_$ComputedGeoHashP4Impl) then) =
+      __$$ComputedGeoHashP4ImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({String geoHash});
+  $Res call({String geoHashP4});
 }
 
 /// @nodoc
-class __$$ComputedGeoHashImplCopyWithImpl<$Res>
-    extends _$GeoHashStateCopyWithImpl<$Res, _$ComputedGeoHashImpl>
-    implements _$$ComputedGeoHashImplCopyWith<$Res> {
-  __$$ComputedGeoHashImplCopyWithImpl(
-      _$ComputedGeoHashImpl _value, $Res Function(_$ComputedGeoHashImpl) _then)
+class __$$ComputedGeoHashP4ImplCopyWithImpl<$Res>
+    extends _$GeoHashStateCopyWithImpl<$Res, _$ComputedGeoHashP4Impl>
+    implements _$$ComputedGeoHashP4ImplCopyWith<$Res> {
+  __$$ComputedGeoHashP4ImplCopyWithImpl(_$ComputedGeoHashP4Impl _value,
+      $Res Function(_$ComputedGeoHashP4Impl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? geoHash = null,
+    Object? geoHashP4 = null,
   }) {
-    return _then(_$ComputedGeoHashImpl(
-      geoHash: null == geoHash
-          ? _value.geoHash
-          : geoHash // ignore: cast_nullable_to_non_nullable
+    return _then(_$ComputedGeoHashP4Impl(
+      geoHashP4: null == geoHashP4
+          ? _value.geoHashP4
+          : geoHashP4 // ignore: cast_nullable_to_non_nullable
               as String,
     ));
   }
@@ -567,65 +437,66 @@ class __$$ComputedGeoHashImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$ComputedGeoHashImpl implements _ComputedGeoHash {
-  const _$ComputedGeoHashImpl({required this.geoHash});
+class _$ComputedGeoHashP4Impl implements _ComputedGeoHashP4 {
+  const _$ComputedGeoHashP4Impl({required this.geoHashP4});
 
   @override
-  final String geoHash;
+  final String geoHashP4;
 
   @override
   String toString() {
-    return 'GeoHashState.computedGeoHash(geoHash: $geoHash)';
+    return 'GeoHashState.computedGeoHashP4(geoHashP4: $geoHashP4)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$ComputedGeoHashImpl &&
-            (identical(other.geoHash, geoHash) || other.geoHash == geoHash));
+            other is _$ComputedGeoHashP4Impl &&
+            (identical(other.geoHashP4, geoHashP4) ||
+                other.geoHashP4 == geoHashP4));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, geoHash);
+  int get hashCode => Object.hash(runtimeType, geoHashP4);
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$ComputedGeoHashImplCopyWith<_$ComputedGeoHashImpl> get copyWith =>
-      __$$ComputedGeoHashImplCopyWithImpl<_$ComputedGeoHashImpl>(
+  _$$ComputedGeoHashP4ImplCopyWith<_$ComputedGeoHashP4Impl> get copyWith =>
+      __$$ComputedGeoHashP4ImplCopyWithImpl<_$ComputedGeoHashP4Impl>(
           this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function(String geoHash) computedGeoHash,
-    required TResult Function() failedToComputeGeoHash,
+    required TResult Function(String geoHashP4) computedGeoHashP4,
+    required TResult Function(String geoHashP6) computedGeoHashP6,
   }) {
-    return computedGeoHash(geoHash);
+    return computedGeoHashP4(geoHashP4);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function(String geoHash)? computedGeoHash,
-    TResult? Function()? failedToComputeGeoHash,
+    TResult? Function(String geoHashP4)? computedGeoHashP4,
+    TResult? Function(String geoHashP6)? computedGeoHashP6,
   }) {
-    return computedGeoHash?.call(geoHash);
+    return computedGeoHashP4?.call(geoHashP4);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(String geoHash)? computedGeoHash,
-    TResult Function()? failedToComputeGeoHash,
+    TResult Function(String geoHashP4)? computedGeoHashP4,
+    TResult Function(String geoHashP6)? computedGeoHashP6,
     required TResult orElse(),
   }) {
-    if (computedGeoHash != null) {
-      return computedGeoHash(geoHash);
+    if (computedGeoHashP4 != null) {
+      return computedGeoHashP4(geoHashP4);
     }
     return orElse();
   }
@@ -634,116 +505,140 @@ class _$ComputedGeoHashImpl implements _ComputedGeoHash {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
-    required TResult Function(_ComputedGeoHash value) computedGeoHash,
-    required TResult Function(_FailedToComputeGeoHash value)
-        failedToComputeGeoHash,
+    required TResult Function(_ComputedGeoHashP4 value) computedGeoHashP4,
+    required TResult Function(_ComputedGeoHashP6 value) computedGeoHashP6,
   }) {
-    return computedGeoHash(this);
+    return computedGeoHashP4(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
-    TResult? Function(_ComputedGeoHash value)? computedGeoHash,
-    TResult? Function(_FailedToComputeGeoHash value)? failedToComputeGeoHash,
+    TResult? Function(_ComputedGeoHashP4 value)? computedGeoHashP4,
+    TResult? Function(_ComputedGeoHashP6 value)? computedGeoHashP6,
   }) {
-    return computedGeoHash?.call(this);
+    return computedGeoHashP4?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(_ComputedGeoHash value)? computedGeoHash,
-    TResult Function(_FailedToComputeGeoHash value)? failedToComputeGeoHash,
+    TResult Function(_ComputedGeoHashP4 value)? computedGeoHashP4,
+    TResult Function(_ComputedGeoHashP6 value)? computedGeoHashP6,
     required TResult orElse(),
   }) {
-    if (computedGeoHash != null) {
-      return computedGeoHash(this);
+    if (computedGeoHashP4 != null) {
+      return computedGeoHashP4(this);
     }
     return orElse();
   }
 }
 
-abstract class _ComputedGeoHash implements GeoHashState {
-  const factory _ComputedGeoHash({required final String geoHash}) =
-      _$ComputedGeoHashImpl;
+abstract class _ComputedGeoHashP4 implements GeoHashState {
+  const factory _ComputedGeoHashP4({required final String geoHashP4}) =
+      _$ComputedGeoHashP4Impl;
 
-  String get geoHash;
+  String get geoHashP4;
   @JsonKey(ignore: true)
-  _$$ComputedGeoHashImplCopyWith<_$ComputedGeoHashImpl> get copyWith =>
+  _$$ComputedGeoHashP4ImplCopyWith<_$ComputedGeoHashP4Impl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$FailedToComputeGeoHashImplCopyWith<$Res> {
-  factory _$$FailedToComputeGeoHashImplCopyWith(
-          _$FailedToComputeGeoHashImpl value,
-          $Res Function(_$FailedToComputeGeoHashImpl) then) =
-      __$$FailedToComputeGeoHashImplCopyWithImpl<$Res>;
+abstract class _$$ComputedGeoHashP6ImplCopyWith<$Res> {
+  factory _$$ComputedGeoHashP6ImplCopyWith(_$ComputedGeoHashP6Impl value,
+          $Res Function(_$ComputedGeoHashP6Impl) then) =
+      __$$ComputedGeoHashP6ImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String geoHashP6});
 }
 
 /// @nodoc
-class __$$FailedToComputeGeoHashImplCopyWithImpl<$Res>
-    extends _$GeoHashStateCopyWithImpl<$Res, _$FailedToComputeGeoHashImpl>
-    implements _$$FailedToComputeGeoHashImplCopyWith<$Res> {
-  __$$FailedToComputeGeoHashImplCopyWithImpl(
-      _$FailedToComputeGeoHashImpl _value,
-      $Res Function(_$FailedToComputeGeoHashImpl) _then)
+class __$$ComputedGeoHashP6ImplCopyWithImpl<$Res>
+    extends _$GeoHashStateCopyWithImpl<$Res, _$ComputedGeoHashP6Impl>
+    implements _$$ComputedGeoHashP6ImplCopyWith<$Res> {
+  __$$ComputedGeoHashP6ImplCopyWithImpl(_$ComputedGeoHashP6Impl _value,
+      $Res Function(_$ComputedGeoHashP6Impl) _then)
       : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? geoHashP6 = null,
+  }) {
+    return _then(_$ComputedGeoHashP6Impl(
+      geoHashP6: null == geoHashP6
+          ? _value.geoHashP6
+          : geoHashP6 // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
 }
 
 /// @nodoc
 
-class _$FailedToComputeGeoHashImpl implements _FailedToComputeGeoHash {
-  const _$FailedToComputeGeoHashImpl();
+class _$ComputedGeoHashP6Impl implements _ComputedGeoHashP6 {
+  const _$ComputedGeoHashP6Impl({required this.geoHashP6});
+
+  @override
+  final String geoHashP6;
 
   @override
   String toString() {
-    return 'GeoHashState.failedToComputeGeoHash()';
+    return 'GeoHashState.computedGeoHashP6(geoHashP6: $geoHashP6)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$FailedToComputeGeoHashImpl);
+            other is _$ComputedGeoHashP6Impl &&
+            (identical(other.geoHashP6, geoHashP6) ||
+                other.geoHashP6 == geoHashP6));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(runtimeType, geoHashP6);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ComputedGeoHashP6ImplCopyWith<_$ComputedGeoHashP6Impl> get copyWith =>
+      __$$ComputedGeoHashP6ImplCopyWithImpl<_$ComputedGeoHashP6Impl>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function(String geoHash) computedGeoHash,
-    required TResult Function() failedToComputeGeoHash,
+    required TResult Function(String geoHashP4) computedGeoHashP4,
+    required TResult Function(String geoHashP6) computedGeoHashP6,
   }) {
-    return failedToComputeGeoHash();
+    return computedGeoHashP6(geoHashP6);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function(String geoHash)? computedGeoHash,
-    TResult? Function()? failedToComputeGeoHash,
+    TResult? Function(String geoHashP4)? computedGeoHashP4,
+    TResult? Function(String geoHashP6)? computedGeoHashP6,
   }) {
-    return failedToComputeGeoHash?.call();
+    return computedGeoHashP6?.call(geoHashP6);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(String geoHash)? computedGeoHash,
-    TResult Function()? failedToComputeGeoHash,
+    TResult Function(String geoHashP4)? computedGeoHashP4,
+    TResult Function(String geoHashP6)? computedGeoHashP6,
     required TResult orElse(),
   }) {
-    if (failedToComputeGeoHash != null) {
-      return failedToComputeGeoHash();
+    if (computedGeoHashP6 != null) {
+      return computedGeoHashP6(geoHashP6);
     }
     return orElse();
   }
@@ -752,38 +647,43 @@ class _$FailedToComputeGeoHashImpl implements _FailedToComputeGeoHash {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
-    required TResult Function(_ComputedGeoHash value) computedGeoHash,
-    required TResult Function(_FailedToComputeGeoHash value)
-        failedToComputeGeoHash,
+    required TResult Function(_ComputedGeoHashP4 value) computedGeoHashP4,
+    required TResult Function(_ComputedGeoHashP6 value) computedGeoHashP6,
   }) {
-    return failedToComputeGeoHash(this);
+    return computedGeoHashP6(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
-    TResult? Function(_ComputedGeoHash value)? computedGeoHash,
-    TResult? Function(_FailedToComputeGeoHash value)? failedToComputeGeoHash,
+    TResult? Function(_ComputedGeoHashP4 value)? computedGeoHashP4,
+    TResult? Function(_ComputedGeoHashP6 value)? computedGeoHashP6,
   }) {
-    return failedToComputeGeoHash?.call(this);
+    return computedGeoHashP6?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(_ComputedGeoHash value)? computedGeoHash,
-    TResult Function(_FailedToComputeGeoHash value)? failedToComputeGeoHash,
+    TResult Function(_ComputedGeoHashP4 value)? computedGeoHashP4,
+    TResult Function(_ComputedGeoHashP6 value)? computedGeoHashP6,
     required TResult orElse(),
   }) {
-    if (failedToComputeGeoHash != null) {
-      return failedToComputeGeoHash(this);
+    if (computedGeoHashP6 != null) {
+      return computedGeoHashP6(this);
     }
     return orElse();
   }
 }
 
-abstract class _FailedToComputeGeoHash implements GeoHashState {
-  const factory _FailedToComputeGeoHash() = _$FailedToComputeGeoHashImpl;
+abstract class _ComputedGeoHashP6 implements GeoHashState {
+  const factory _ComputedGeoHashP6({required final String geoHashP6}) =
+      _$ComputedGeoHashP6Impl;
+
+  String get geoHashP6;
+  @JsonKey(ignore: true)
+  _$$ComputedGeoHashP6ImplCopyWith<_$ComputedGeoHashP6Impl> get copyWith =>
+      throw _privateConstructorUsedError;
 }
