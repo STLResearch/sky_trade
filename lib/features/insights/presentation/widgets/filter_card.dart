@@ -16,12 +16,12 @@ import 'package:flutter/material.dart'
 import 'package:sky_trade/core/resources/colors.dart' show hex4285F4, hex87878D;
 import 'package:sky_trade/core/resources/numbers/ui.dart'
     show
-        eightDotOneEight,
-        fiveDotEightFour,
-        fiveDotFourFive,
-        nilDotThreeNine,
-        sixDotTwoThree,
-        threeDotOneTwo;
+        eightDotNineTwo,
+        fiveDotOne,
+        nilDotSixFour,
+        nineDotFiveSix,
+        tenDotTwo,
+        thirteenDotThreeEight;
 
 class FilterCard extends StatelessWidget {
   const FilterCard({
@@ -44,12 +44,12 @@ class FilterCard extends StatelessWidget {
           false => onTap,
         },
         borderRadius: BorderRadius.circular(
-          threeDotOneTwo,
+          fiveDotOne,
         ),
         child: Container(
           padding: const EdgeInsetsDirectional.symmetric(
-            horizontal: fiveDotEightFour,
-            vertical: sixDotTwoThree,
+            horizontal: nineDotFiveSix,
+            vertical: tenDotTwo,
           ),
           decoration: BoxDecoration(
             color: switch (selected) {
@@ -60,18 +60,18 @@ class FilterCard extends StatelessWidget {
                 ).scaffoldBackgroundColor,
             },
             border: Border.all(
-              width: nilDotThreeNine,
+              width: nilDotSixFour,
               color: hex87878D,
             ),
             borderRadius: BorderRadiusDirectional.circular(
-              threeDotOneTwo,
+              fiveDotOne,
             ),
           ),
           child: Text(
             text,
             style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                  fontSize: fiveDotFourFive,
-                  height: eightDotOneEight / fiveDotFourFive,
+                  fontSize: eightDotNineTwo,
+                  height: thirteenDotThreeEight / eightDotNineTwo,
                   color: switch (selected) {
                     true => Theme.of(
                         context,
