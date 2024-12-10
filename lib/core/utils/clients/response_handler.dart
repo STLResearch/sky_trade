@@ -8,6 +8,7 @@ import 'package:sky_trade/core/resources/numbers/networking.dart'
     show createdStatusCode, okayStatusCode;
 import 'package:sky_trade/core/resources/strings/networking.dart'
     show dataKey, messageKey;
+import 'package:sky_trade/core/utils/clients/remote_logger.dart' show SentryLogger;
 
 mixin class ResponseHandler {
   Future<S> handleResponse<E extends Exception, T, S>({
@@ -46,6 +47,10 @@ mixin class ResponseHandler {
               (data[dataKey] as Map<String, dynamic>)[messageKey] as String;
         }
       }
+
+      await SentryLogger.recordException(
+        message ?? e,
+      );
 
       throw onError(
         message ?? e,
