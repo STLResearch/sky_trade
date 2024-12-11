@@ -38,6 +38,7 @@ const skyTradeServerSignUrl = 'SKYTRADE_SERVER_SIGN_URL';
 const skyTradeServerHttpSignUrl = 'SKYTRADE_SERVER_HTTP_SIGN_URL';
 const skyTradeServerSocketIOBaseUrl = 'SKYTRADE_SERVER_SOCKET_IO_BASE_URL';
 // Paths
+const radarPath = '/radar';
 const restrictionsPath = '/restrictions';
 const suggestPath = '/suggest';
 const privatePath = '/private';
