@@ -4,7 +4,7 @@ import 'package:flutter/material.dart'
         AlignmentDirectional,
         BuildContext,
         CircularProgressIndicator,
-        EdgeInsets,
+        EdgeInsetsDirectional,
         Image,
         Padding,
         SizedBox,
@@ -50,7 +50,9 @@ class WeatherCard extends StatelessWidget {
                   gotWeather: (weatherEntity) => Align(
                     alignment: AlignmentDirectional.topCenter,
                     child: Padding(
-                      padding: const EdgeInsets.only(top: fiveDotNil),
+                      padding: const EdgeInsetsDirectional.only(
+                        top: fiveDotNil,
+                      ),
                       child: Image.network(
                         weatherEntity.weatherConditions[zero].iconUrl,
                         width: thirtyTwoDotNil,
@@ -66,7 +68,9 @@ class WeatherCard extends StatelessWidget {
                       height: twentyFourDotNil,
                       child: CircularProgressIndicator(
                         strokeWidth: threeDotNil,
-                        color: Theme.of(context).scaffoldBackgroundColor,
+                        color: Theme.of(
+                          context,
+                        ).scaffoldBackgroundColor,
                       ),
                     ),
                   ),
@@ -78,11 +82,15 @@ class WeatherCard extends StatelessWidget {
                   gotWeather: (weatherEntity) => Align(
                     alignment: AlignmentDirectional.center,
                     child: Padding(
-                      padding: const EdgeInsets.only(top: twentyDotNil),
+                      padding: const EdgeInsetsDirectional.only(
+                        top: twentyDotNil,
+                      ),
                       child: Text(
-                        ' ${weatherEntity.main.temperature.round()}'
-                        '${context.localize.degrees}',
-                        style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                        weatherEntity.main.temperature.round().toString() +
+                            context.localize.degrees,
+                        style: Theme.of(
+                          context,
+                        ).textTheme.bodySmall?.copyWith(
                               fontSize: elevenDotNil,
                               height: twentyOneDotThreeSeven / elevenDotNil,
                               color: hex222222,
