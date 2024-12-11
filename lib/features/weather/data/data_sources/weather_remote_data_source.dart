@@ -50,6 +50,7 @@ class WeatherRemoteDataSourceImplementation
             appidKey: dotenv.env[openWeatherMapApiKey],
             unitsKey: metricValue,
           },
+          includeSignature: false,
         ),
         onSuccess: WeatherModel.fromJson,
         onError: (_) => WeatherException(),

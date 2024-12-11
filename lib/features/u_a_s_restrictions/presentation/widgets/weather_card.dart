@@ -4,10 +4,11 @@ import 'package:flutter/material.dart'
         AlignmentDirectional,
         BuildContext,
         CircularProgressIndicator,
-        Column,
+        EdgeInsetsDirectional,
         Image,
-        MainAxisAlignment,
+        Padding,
         SizedBox,
+        Stack,
         StatelessWidget,
         Text,
         Theme,
@@ -19,8 +20,11 @@ import 'package:sky_trade/core/resources/numbers/ui.dart'
     show
         elevenDotNil,
         fiftyFourDotNil,
+        fiveDotNil,
         sixtySixDotNil,
+        thirtyTwoDotNil,
         threeDotNil,
+        twentyDotNil,
         twentyFourDotNil,
         twentyOneDotThreeSeven,
         zero;
@@ -39,17 +43,23 @@ class WeatherCard extends StatelessWidget {
           width: fiftyFourDotNil,
           height: sixtySixDotNil,
           backgroundColor: hexE6FFFFFF,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
+          child: Stack(
             children: [
               BlocBuilder<WeatherBloc, WeatherState>(
                 builder: (_, weatherState) => weatherState.maybeWhen(
-                  gotWeather: (weatherEntity) => Image.network(
-                    weatherEntity.weatherConditions[zero].iconUrl,
-                    width: twentyFourDotNil,
-                    height: twentyFourDotNil,
-                    color: hex222222,
-                    errorBuilder: (_, __, ___) => const SizedBox.shrink(),
+                  gotWeather: (weatherEntity) => Align(
+                    alignment: AlignmentDirectional.topCenter,
+                    child: Padding(
+                      padding: const EdgeInsetsDirectional.only(
+                        top: fiveDotNil,
+                      ),
+                      child: Image.network(
+                        weatherEntity.weatherConditions[zero].iconUrl,
+                        width: thirtyTwoDotNil,
+                        height: thirtyTwoDotNil,
+                        errorBuilder: (_, __, ___) => const SizedBox.shrink(),
+                      ),
+                    ),
                   ),
                   gettingWeather: () => Align(
                     alignment: AlignmentDirectional.center,
@@ -58,7 +68,9 @@ class WeatherCard extends StatelessWidget {
                       height: twentyFourDotNil,
                       child: CircularProgressIndicator(
                         strokeWidth: threeDotNil,
-                        color: Theme.of(context).scaffoldBackgroundColor,
+                        color: Theme.of(
+                          context,
+                        ).scaffoldBackgroundColor,
                       ),
                     ),
                   ),
@@ -67,14 +79,24 @@ class WeatherCard extends StatelessWidget {
               ),
               BlocBuilder<WeatherBloc, WeatherState>(
                 builder: (_, weatherState) => weatherState.maybeWhen(
-                  gotWeather: (weatherEntity) => Text(
-                    weatherEntity.main.temperature.round().toString() +
-                        context.localize.degrees,
-                    style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                          fontSize: elevenDotNil,
-                          height: twentyOneDotThreeSeven / elevenDotNil,
-                          color: hex222222,
-                        ),
+                  gotWeather: (weatherEntity) => Align(
+                    alignment: AlignmentDirectional.center,
+                    child: Padding(
+                      padding: const EdgeInsetsDirectional.only(
+                        top: twentyDotNil,
+                      ),
+                      child: Text(
+                        weatherEntity.main.temperature.round().toString() +
+                            context.localize.degrees,
+                        style: Theme.of(
+                          context,
+                        ).textTheme.bodySmall?.copyWith(
+                              fontSize: elevenDotNil,
+                              height: twentyOneDotThreeSeven / elevenDotNil,
+                              color: hex222222,
+                            ),
+                      ),
+                    ),
                   ),
                   orElse: () => const SizedBox.shrink(),
                 ),
