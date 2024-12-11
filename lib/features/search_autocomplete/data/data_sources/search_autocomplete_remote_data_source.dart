@@ -47,6 +47,7 @@ final class SearchAutocompleteRemoteDataSourceImplementation
           overrideBaseUrl: dotenv.env[mapboxMapsSearchBoxBaseUrl],
           requestMethod: RequestMethod.get,
           path: suggestPath,
+          includeSignature: false,
           queryParameters: {
             qKey: query,
             accessTokenKey: dotenv.env[mapboxMapsPublicKey],

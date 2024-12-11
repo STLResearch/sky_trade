@@ -311,8 +311,8 @@ final class HttpClient with SignatureHandler {
   Future<Response> request({
     required RequestMethod requestMethod,
     required String path,
+    required bool includeSignature,
     String? overrideBaseUrl,
-    bool? includeSignature,
     Map<String, dynamic>? data,
     Map<String, dynamic>? queryParameters,
     Map<String, dynamic>? headers,
@@ -384,7 +384,7 @@ final class HttpClient with SignatureHandler {
 
   Future<Options?> _computeHeaderOptionsUsing({
     required String path,
-    required bool? includeSignature,
+    required bool includeSignature,
     required Map<String, dynamic>? headers,
   }) async {
     final issuedAt = computeIssuedAt();
@@ -402,7 +402,7 @@ final class HttpClient with SignatureHandler {
     );
 
     return switch (headers) {
-      _ when includeSignature != null && includeSignature => Options(
+      _ when includeSignature => Options(
           headers: {
             signHeaderKey: sign,
             signIssueAtHeaderKey: issuedAt,

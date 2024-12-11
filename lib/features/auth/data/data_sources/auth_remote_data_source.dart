@@ -57,6 +57,7 @@ final class AuthRemoteDataSourceImplementation
         requestInitiator: _httpClient.request(
           requestMethod: RequestMethod.post,
           path: publicPath + usersPath + createPath,
+          includeSignature: false,
           data: {
             nameKey: pirateValue,
             emailKey: email,

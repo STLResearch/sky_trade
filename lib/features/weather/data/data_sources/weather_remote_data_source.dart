@@ -41,16 +41,16 @@ class WeatherRemoteDataSourceImplementation
   }) async =>
       handleResponse<WeatherException, Map<String, dynamic>, WeatherModel>(
         requestInitiator: _httpClient.request(
-          requestMethod: RequestMethod.get,
           overrideBaseUrl: dotenv.env[openWeatherMapApiBaseUrl],
+          requestMethod: RequestMethod.get,
           path: dataPath + twoDotFivePath + weatherPath,
+          includeSignature: false,
           queryParameters: {
             latKey: coordinates.latitude,
             lonKey: coordinates.longitude,
             appidKey: dotenv.env[openWeatherMapApiKey],
             unitsKey: metricValue,
           },
-          includeSignature: false,
         ),
         onSuccess: WeatherModel.fromJson,
         onError: (_) => WeatherException(),
