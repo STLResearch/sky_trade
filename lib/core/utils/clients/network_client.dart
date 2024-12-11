@@ -20,7 +20,7 @@ import 'package:sky_trade/core/resources/strings/networking.dart'
         bodyKey,
         contentTypeHeaderKey,
         emailAddressHeaderKey,
-        headersKey,
+        radarPath,
         signAddressHeaderKey,
         signHeaderKey,
         signIssueAtHeaderKey,
@@ -28,6 +28,8 @@ import 'package:sky_trade/core/resources/strings/networking.dart'
         skyTradeServerHttpBaseUrl,
         skyTradeServerSocketIOBaseUrl,
         websocketTransport;
+import 'package:sky_trade/core/resources/strings/special_characters.dart'
+    show emptyString;
 import 'package:sky_trade/core/utils/clients/signature_handler.dart';
 import 'package:sky_trade/core/utils/enums/networking.dart'
     show ConnectionState, RequestMethod;
@@ -41,11 +43,17 @@ final class SocketIOClient with SignatureHandler {
 
   SocketIOClient._()
       : _socket = io(
-          dotenv.env[skyTradeServerSocketIOBaseUrl]!,
+          dotenv.env[skyTradeServerSocketIOBaseUrl]! + radarPath,
           OptionBuilder()
               .setTransports([
                 websocketTransport,
               ])
+              .setAuth({
+                signHeaderKey: emptyString,
+                signIssueAtHeaderKey: emptyString,
+                signNonceHeaderKey: emptyString,
+                signAddressHeaderKey: emptyString,
+              })
               .disableAutoConnect()
               .setTimeout(
                 requestConnectTimeoutMilliSeconds,
@@ -66,124 +74,153 @@ final class SocketIOClient with SignatureHandler {
     Function1<ConnectionState, void>? onConnectionChanged,
     Function0<void>? onPing,
     Function0<void>? onPong,
-  }) async =>
-      _socket
-        ..connect()
-        ..on(
-          eventName,
-          (response) {
-            onResponse(
-              response as R,
+  }) async {
+    final headers = await _computeHeaders();
+
+    _socket
+      ..auth[signHeaderKey] = headers[signHeaderKey]
+      ..auth[signIssueAtHeaderKey] = headers[signIssueAtHeaderKey]
+      ..auth[signNonceHeaderKey] = headers[signNonceHeaderKey]
+      ..auth[signAddressHeaderKey] = headers[signAddressHeaderKey]
+      ..connect()
+      ..on(
+        eventName,
+        (response) {
+          onResponse(
+            response as R,
+          );
+        },
+      )
+      ..onConnect(
+        (_) {
+          if (onConnectionChanged != null) {
+            onConnectionChanged(
+              ConnectionState.connected,
             );
-          },
-        )
-        ..onConnect(
-          (_) {
-            if (onConnectionChanged != null) {
-              onConnectionChanged(
-                ConnectionState.connected,
-              );
-            }
+          }
 
-            if (_clientMessageStreamSubscription?.isPaused ?? false) {
-              _clientMessageStreamSubscription?.resume();
-            }
+          if (_clientMessageStreamSubscription?.isPaused ?? false) {
+            _clientMessageStreamSubscription?.resume();
+          }
 
-            _clientMessageStreamController ??= StreamController<
-                Either<TerminateSocketIO, SocketIOClientMessage>>();
-            _clientMessageStreamSubscription ??= _messageStreamSubscription;
-          },
-        )
-        ..onConnectError(
-          (_) {
-            final serverDeniedConnection = !_socket.active;
+          _clientMessageStreamController ??= StreamController<
+              Either<TerminateSocketIO, SocketIOClientMessage>>();
+          _clientMessageStreamSubscription ??= _messageStreamSubscription;
+        },
+      )
+      ..onConnectError(
+        (s) {
+          final serverDeniedConnection = !_socket.active;
 
-            if (onConnectionChanged != null) {
-              onConnectionChanged(
-                switch (serverDeniedConnection) {
-                  true => ConnectionState.destroyed,
-                  false => ConnectionState.connectionError,
-                },
-              );
-            }
+          if (onConnectionChanged != null) {
+            onConnectionChanged(
+              switch (serverDeniedConnection) {
+                true => ConnectionState.destroyed,
+                false => ConnectionState.connectionError,
+              },
+            );
+          }
 
-            if (serverDeniedConnection) {
-              _disposeSocketAndCloseMessageStream();
-              return;
-            }
+          if (serverDeniedConnection) {
+            _disposeSocketAndCloseMessageStream();
+            return;
+          }
 
-            _pauseMessageStream();
-          },
-        )
-        ..onDisconnect(
-          (_) {
-            if (onConnectionChanged != null) {
-              onConnectionChanged(
-                ConnectionState.disconnected,
-              );
-            }
+          _pauseMessageStream();
+        },
+      )
+      ..onDisconnect(
+        (_) {
+          if (onConnectionChanged != null) {
+            onConnectionChanged(
+              ConnectionState.disconnected,
+            );
+          }
 
-            _pauseMessageStream();
-          },
-        )
-        ..onError(
-          (_) {
-            if (onConnectionChanged != null) {
-              onConnectionChanged(
-                ConnectionState.error,
-              );
-            }
+          _pauseMessageStream();
+        },
+      )
+      ..onError(
+        (_) {
+          if (onConnectionChanged != null) {
+            onConnectionChanged(
+              ConnectionState.error,
+            );
+          }
 
-            _pauseMessageStream();
-          },
-        )
-        ..onReconnectAttempt(
-          (_) {
-            if (onConnectionChanged != null) {
-              onConnectionChanged(
-                ConnectionState.reconnecting,
-              );
-            }
+          _pauseMessageStream();
+        },
+      )
+      ..onReconnectAttempt(
+        (s) {
+          if (onConnectionChanged != null) {
+            onConnectionChanged(
+              ConnectionState.reconnecting,
+            );
+          }
 
-            _pauseMessageStream();
-          },
-        )
-        ..onReconnectFailed(
-          (_) {
-            if (onConnectionChanged != null) {
-              onConnectionChanged(
-                ConnectionState.reconnectionFailed,
-              );
-            }
+          _pauseMessageStream();
+        },
+      )
+      ..onReconnectFailed(
+        (_) {
+          if (onConnectionChanged != null) {
+            onConnectionChanged(
+              ConnectionState.reconnectionFailed,
+            );
+          }
 
-            _pauseMessageStream();
-          },
-        )
-        ..onReconnectError(
-          (_) {
-            if (onConnectionChanged != null) {
-              onConnectionChanged(
-                ConnectionState.reconnectionError,
-              );
-            }
+          _pauseMessageStream();
+        },
+      )
+      ..onReconnectError(
+        (_) {
+          if (onConnectionChanged != null) {
+            onConnectionChanged(
+              ConnectionState.reconnectionError,
+            );
+          }
 
-            _pauseMessageStream();
-          },
-        )
-        ..onPing(
-          (_) {
-            if (onPing != null) {
-              onPing();
-            }
-          },
-        )
-        ..onPong(
-          (_) {
-            if (onPong != null) {
-              onPong();
-            }
-          },
-        );
+          _pauseMessageStream();
+        },
+      )
+      ..onPing(
+        (_) {
+          if (onPing != null) {
+            onPing();
+          }
+        },
+      )
+      ..onPong(
+        (_) {
+          if (onPong != null) {
+            onPong();
+          }
+        },
+      );
+  }
+
+  Future<Map<String, dynamic>> _computeHeaders() async {
+    final issuedAt = computeIssuedAt();
+    final nonce = computeNonce();
+    final userAddress = await computeUserAddress();
+    final message = computeMessageToSignUsing(
+      issuedAt: issuedAt,
+      nonce: nonce,
+      userAddress: userAddress,
+      includeRadarNamespace: true,
+    );
+    final sign = await signMessage(
+      message,
+    );
+
+    return {
+      signHeaderKey: sign,
+      signIssueAtHeaderKey: issuedAt,
+      signNonceHeaderKey: nonce,
+      signAddressHeaderKey: userAddress,
+    };
+  }
 
   void _pauseMessageStream() {
     if (_clientMessageStreamSubscription?.isPaused == false) {
@@ -205,8 +242,6 @@ final class SocketIOClient with SignatureHandler {
                   _socket.emit(
                     socketIOClientMessage.roomName,
                     {
-                      if (socketIOClientMessage.headers != null)
-                        headersKey: socketIOClientMessage.headers,
                       bodyKey: socketIOClientMessage.data,
                     },
                   );
@@ -236,42 +271,10 @@ final class SocketIOClient with SignatureHandler {
         Right(
           (
             roomName: roomName,
-            headers: await _computeHeadersUsing(
-              includeSignature: includeSignature,
-            ),
             data: data,
           ),
         ),
       );
-
-  Future<Map<String, dynamic>?> _computeHeadersUsing({
-    required bool? includeSignature,
-  }) async {
-    final issuedAt = computeIssuedAt();
-    final nonce = computeNonce();
-    final userAddress = await computeUserAddress();
-    final message = computeMessageToSignUsing(
-      issuedAt: issuedAt,
-      nonce: nonce,
-      userAddress: userAddress,
-      useOldUri: true,
-    );
-    final email = await computeUserEmail();
-    final sign = await signMessage(
-      message,
-    );
-
-    return switch (includeSignature) {
-      != null && true => {
-          signHeaderKey: sign,
-          signIssueAtHeaderKey: issuedAt,
-          signNonceHeaderKey: nonce,
-          signAddressHeaderKey: userAddress,
-          if (email != null) emailAddressHeaderKey: email,
-        },
-      _ => null,
-    };
-  }
 
   void close() => _clientMessageStreamController?.add(
         const Left(

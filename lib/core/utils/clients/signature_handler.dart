@@ -11,6 +11,7 @@ import 'package:sky_trade/core/resources/strings/local.dart'
     show nonceCharacterSet;
 import 'package:sky_trade/core/resources/strings/networking.dart'
     show
+        radarPath,
         signatureEightLine,
         signatureFifthLine,
         signatureFirstLine,
@@ -18,7 +19,6 @@ import 'package:sky_trade/core/resources/strings/networking.dart'
         signatureSeventhLine,
         signatureSixthLine,
         signatureThirdLine,
-        skyTradeServerHttpBaseUrl,
         skyTradeServerHttpSignUrl,
         skyTradeServerSignUrl;
 import 'package:sky_trade/core/resources/strings/special_characters.dart'
@@ -87,7 +87,7 @@ mixin class SignatureHandler {
     required String nonce,
     required String userAddress,
     String? path,
-    bool? useOldUri,
+    bool? includeRadarNamespace,
   }) =>
       dotenv.env[skyTradeServerSignUrl]! +
       whiteSpace +
@@ -101,11 +101,12 @@ mixin class SignatureHandler {
       newLine +
       signatureFourthLine +
       whiteSpace +
-      switch (useOldUri ?? false) {
-        true => dotenv.env[skyTradeServerHttpSignUrl]!,
-        false => dotenv.env[skyTradeServerHttpBaseUrl]!
-      } +
+      dotenv.env[skyTradeServerHttpSignUrl]! +
       (path ?? emptyString) +
+      switch (includeRadarNamespace ?? false) {
+        true => radarPath,
+        false => emptyString,
+      } +
       newLine +
       signatureFifthLine +
       newLine +
