@@ -77,6 +77,22 @@ class RemoteIDTransmitterBloc
 
     _startingTransmitter = true;
 
+    _remoteIDStreamController ??=
+        StreamController<RemoteIDSetDeviceCoordinatesTuple>();
+    _remoteIDStreamSubscription ??= _remoteIDStreamController?.stream.listen(
+      (remoteIDSetDeviceCoordinatesTuple) {
+        _remoteIDTransmitterRepository.transmit(
+          remoteIDEntities: remoteIDSetDeviceCoordinatesTuple.remoteIDEntities,
+          deviceEntity: remoteIDSetDeviceCoordinatesTuple.deviceEntity,
+          rawData: Uint8List.fromList(
+            [],
+          ),
+        );
+      },
+    );
+
+    _remoteIDStreamSubscription?.pause();
+
     await _remoteIDTransmitterRepository.startTransmitter(
       onRemoteIDSent: () => add(
         const RemoteIDTransmitterEvent.remoteIDTransmitted(),
@@ -92,21 +108,9 @@ class RemoteIDTransmitterBloc
             _startingTransmitter = false;
           }
 
-          _remoteIDStreamController ??=
-              StreamController<RemoteIDSetDeviceCoordinatesTuple>();
-          _remoteIDStreamSubscription ??=
-              _remoteIDStreamController?.stream.listen(
-            (remoteIDSetDeviceCoordinatesTuple) {
-              _remoteIDTransmitterRepository.transmit(
-                remoteIDEntities:
-                    remoteIDSetDeviceCoordinatesTuple.remoteIDEntities,
-                deviceEntity: remoteIDSetDeviceCoordinatesTuple.deviceEntity,
-                rawData: Uint8List.fromList(
-                  [],
-                ),
-              );
-            },
-          );
+          if (_remoteIDStreamSubscription?.isPaused ?? false) {
+            _remoteIDStreamSubscription?.resume();
+          }
         } else if (connectionState == ConnectionState.destroyed) {
           await _cancelListeningRemoteID();
 
