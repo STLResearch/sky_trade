@@ -1,4 +1,5 @@
 import 'dart:async' show StreamController, StreamSubscription;
+import 'dart:io' show Platform;
 
 import 'package:dartz/dartz.dart' show Either, Left, Right;
 import 'package:flutter_opendroneid/flutter_opendroneid.dart'
@@ -27,7 +28,10 @@ final class RemoteIDReceiverRepositoryImplementation
         StreamController<Either<RemoteIDReceiverFailure, Set<RemoteIDEntity>>>(
       onListen: () {
         FlutterOpenDroneId.startScan(
-          UsedTechnologies.Both,
+          switch (Platform.isAndroid) {
+            true => UsedTechnologies.Both,
+            false => UsedTechnologies.Bluetooth,
+          },
         );
 
         void addNewRemoteIDEntityAndEmitNewEventUsing(

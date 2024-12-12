@@ -22,7 +22,7 @@ import 'package:sky_trade/core/resources/strings/networking.dart'
         skyTradeServerHttpSignUrl,
         skyTradeServerSignUrl;
 import 'package:sky_trade/core/resources/strings/special_characters.dart'
-    show emptyString, newLine, whiteSpace;
+    show ampersand, emptyString, equals, newLine, question, whiteSpace;
 import 'package:solana/solana.dart' show Ed25519HDKeyPair, SignatureExt;
 import 'package:web3auth_flutter/web3auth_flutter.dart';
 
@@ -87,6 +87,7 @@ mixin class SignatureHandler {
     required String nonce,
     required String userAddress,
     String? path,
+    Map<String, dynamic>? queryParameters,
     bool? includeRadarNamespace,
   }) =>
       dotenv.env[skyTradeServerSignUrl]! +
@@ -103,6 +104,21 @@ mixin class SignatureHandler {
       whiteSpace +
       dotenv.env[skyTradeServerHttpSignUrl]! +
       (path ?? emptyString) +
+      switch (queryParameters?.isNotEmpty ?? false) {
+        true => question,
+        false => emptyString,
+      } +
+      switch (queryParameters?.isNotEmpty ?? false) {
+        true => queryParameters!.entries
+            .map(
+              (queryParameter) =>
+                  queryParameter.key + equals + queryParameter.value.toString(),
+            )
+            .join(
+              ampersand,
+            ),
+        false => emptyString,
+      } +
       switch (includeRadarNamespace ?? false) {
         true => radarPath,
         false => emptyString,

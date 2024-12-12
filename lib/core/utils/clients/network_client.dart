@@ -329,6 +329,7 @@ final class HttpClient with SignatureHandler {
             options: await _computeHeaderOptionsUsing(
               path: path,
               includeSignature: includeSignature,
+              queryParameters: queryParameters,
               headers: headers,
             ),
           ),
@@ -342,6 +343,7 @@ final class HttpClient with SignatureHandler {
             options: await _computeHeaderOptionsUsing(
               path: path,
               includeSignature: includeSignature,
+              queryParameters: queryParameters,
               headers: headers,
             ),
           ),
@@ -355,6 +357,7 @@ final class HttpClient with SignatureHandler {
             options: await _computeHeaderOptionsUsing(
               path: path,
               includeSignature: includeSignature,
+              queryParameters: queryParameters,
               headers: headers,
             ),
           ),
@@ -368,6 +371,7 @@ final class HttpClient with SignatureHandler {
             options: await _computeHeaderOptionsUsing(
               path: path,
               includeSignature: includeSignature,
+              queryParameters: queryParameters,
               headers: headers,
             ),
           ),
@@ -385,6 +389,7 @@ final class HttpClient with SignatureHandler {
   Future<Options?> _computeHeaderOptionsUsing({
     required String path,
     required bool includeSignature,
+    required Map<String, dynamic>? queryParameters,
     required Map<String, dynamic>? headers,
   }) async {
     final issuedAt = computeIssuedAt();
@@ -395,6 +400,7 @@ final class HttpClient with SignatureHandler {
       nonce: nonce,
       userAddress: userAddress,
       path: path,
+      queryParameters: queryParameters,
     );
     final email = await computeUserEmail();
     final sign = await signMessage(

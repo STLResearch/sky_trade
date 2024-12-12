@@ -1,6 +1,7 @@
 // ignore_for_file: strict_raw_type
 
 import 'dart:async' show StreamController, StreamSubscription;
+import 'dart:convert' show jsonDecode;
 
 import 'package:dartz/dartz.dart' show Function0, Function1;
 import 'package:dio/dio.dart' show DioException, DioExceptionType, Response;
@@ -8,7 +9,8 @@ import 'package:sky_trade/core/resources/numbers/networking.dart'
     show createdStatusCode, okayStatusCode;
 import 'package:sky_trade/core/resources/strings/networking.dart'
     show dataKey, messageKey;
-import 'package:sky_trade/core/utils/clients/remote_logger.dart' show SentryLogger;
+import 'package:sky_trade/core/utils/clients/remote_logger.dart'
+    show SentryLogger;
 
 mixin class ResponseHandler {
   Future<S> handleResponse<E extends Exception, T, S>({
@@ -19,9 +21,17 @@ mixin class ResponseHandler {
     try {
       final response = await requestInitiator;
 
+      dynamic maybeJson = response.data;
+
+      if (maybeJson is String) {
+        maybeJson = jsonDecode(
+          maybeJson,
+        );
+      }
+
       return switch (response.statusCode) {
         createdStatusCode || okayStatusCode => onSuccess(
-            response.data as T,
+            maybeJson as T,
           ),
         _ => throw Exception(),
       };
