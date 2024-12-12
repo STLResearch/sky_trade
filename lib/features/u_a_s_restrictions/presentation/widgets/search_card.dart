@@ -1,3 +1,5 @@
+import 'dart:io' show Platform;
+
 import 'package:flutter/material.dart'
     show
         BorderRadiusDirectional,
@@ -63,21 +65,35 @@ class _SearchCardState extends State<SearchCard> {
     context.read<BluetoothAdapterStateBloc>().add(
           const BluetoothAdapterStateEvent.listenBluetoothAdapterState(),
         );
-    context.read<WifiAdapterStateBloc>().add(
-          const WifiAdapterStateEvent.listenWifiAdapterState(),
-        );
+    _maybeListenWifiAdapterState();
+
     super.initState();
   }
 
   @override
   void deactivate() {
     context.read<BluetoothAdapterStateBloc>().add(
-      const BluetoothAdapterStateEvent.stopListeningBluetoothAdapterState(),
-    );
-    context.read<WifiAdapterStateBloc>().add(
-      const WifiAdapterStateEvent.stopListeningWifiAdapterState(),
-    );
+          const BluetoothAdapterStateEvent.stopListeningBluetoothAdapterState(),
+        );
+    _maybeStopListeningWifiAdapterState();
+
     super.deactivate();
+  }
+
+  void _maybeListenWifiAdapterState() {
+    if (Platform.isAndroid) {
+      context.read<WifiAdapterStateBloc>().add(
+            const WifiAdapterStateEvent.listenWifiAdapterState(),
+          );
+    }
+  }
+
+  void _maybeStopListeningWifiAdapterState() {
+    if (Platform.isAndroid) {
+      context.read<WifiAdapterStateBloc>().add(
+            const WifiAdapterStateEvent.stopListeningWifiAdapterState(),
+          );
+    }
   }
 
   @override
@@ -162,29 +178,35 @@ class _SearchCardState extends State<SearchCard> {
                 ),
               ),
             ),
-            const SizedBox(
-              width: tenDotNil,
-            ),
-            BlocBuilder<WifiAdapterStateBloc, WifiAdapterStateState>(
-              builder: (_, wifiAdapterStateState) =>
-                  wifiAdapterStateState.maybeWhen(
-                gotWifiAdapterState: (wifiAdapterStateEntity) =>
-                    switch (wifiAdapterStateEntity.adapterState) {
-                  WifiAdapterState.enabled => Assets.svgs.wifiOn.svg(
-                      width: thirtyTwoDotNil,
-                      height: twentyFourDotNil,
-                    ),
-                  _ => Assets.svgs.wifiOff.svg(
-                      width: thirtyTwoDotNil,
-                      height: twentyFourDotNil,
-                    ),
-                },
-                orElse: () => Assets.svgs.wifiOff.svg(
-                  width: thirtyTwoDotNil,
-                  height: twentyFourDotNil,
+            switch (Platform.isAndroid) {
+              true => const SizedBox(
+                  width: tenDotNil,
                 ),
-              ),
-            ),
+              false => const SizedBox.shrink(),
+            },
+            switch (Platform.isAndroid) {
+              true => BlocBuilder<WifiAdapterStateBloc, WifiAdapterStateState>(
+                  builder: (_, wifiAdapterStateState) =>
+                      wifiAdapterStateState.maybeWhen(
+                    gotWifiAdapterState: (wifiAdapterStateEntity) =>
+                        switch (wifiAdapterStateEntity.adapterState) {
+                      WifiAdapterState.enabled => Assets.svgs.wifiOn.svg(
+                          width: thirtyTwoDotNil,
+                          height: twentyFourDotNil,
+                        ),
+                      _ => Assets.svgs.wifiOff.svg(
+                          width: thirtyTwoDotNil,
+                          height: twentyFourDotNil,
+                        ),
+                    },
+                    orElse: () => Assets.svgs.wifiOff.svg(
+                      width: thirtyTwoDotNil,
+                      height: twentyFourDotNil,
+                    ),
+                  ),
+                ),
+              false => const SizedBox.shrink(),
+            },
             const SizedBox(
               width: tenDotNil,
             ),
