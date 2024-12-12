@@ -1,3 +1,5 @@
+import 'dart:io' show Platform;
+
 import 'package:dartz/dartz.dart' show Either, Left, Right;
 import 'package:flutter_blue_plus/flutter_blue_plus.dart'
     show BluetoothAdapterState, FlutterBluePlus;
@@ -39,11 +41,17 @@ final class BluetoothRepositoryImplementation
   @override
   Future<Either<BluetoothPermissionsFailure, BluetoothPermissionsEntity>>
       requestBluetoothPermissions() async {
-    final bluetoothPermissionsStatuses = await [
-      Permission.bluetooth,
-      Permission.bluetoothConnect,
-      Permission.bluetoothScan,
-    ].request();
+    final bluetoothPermissionsStatuses = await switch (Platform.isIOS) {
+      true => [
+          Permission.bluetooth,
+        ],
+      false => [
+          Permission.bluetooth,
+          Permission.bluetoothConnect,
+          Permission.bluetoothScan,
+        ]
+    }
+        .request();
 
     final bluetoothPermissionsBlocked =
         bluetoothPermissionsStatuses.containsValue(

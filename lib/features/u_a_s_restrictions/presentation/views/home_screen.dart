@@ -1,3 +1,5 @@
+import 'dart:io' show Platform;
+
 import 'package:flutter/material.dart'
     show
         AlignmentDirectional,
@@ -132,6 +134,11 @@ class _HomeScreenState extends State<HomeScreen> {
   void _requestLocationPermission() =>
       context.read<LocationPermissionBloc>().add(
             const LocationPermissionEvent.requestPermission(),
+          );
+
+  void _requestBluetoothPermissions() =>
+      context.read<BluetoothPermissionsBloc>().add(
+            const BluetoothPermissionsEvent.requestPermissions(),
           );
 
   @override
@@ -279,9 +286,12 @@ class _HomeScreenState extends State<HomeScreen> {
               wifiPermissionState.whenOrNull(
                 maybeGrantedPermission: (wifiPermissionEntity) {
                   if (wifiPermissionEntity.granted) {
-                    context.read<BluetoothPermissionsBloc>().add(
-                          const BluetoothPermissionsEvent.requestPermissions(),
-                        );
+                    _requestBluetoothPermissions();
+                  }
+                },
+                cannotRequestPermission: (_) {
+                  if (Platform.isIOS) {
+                    _requestBluetoothPermissions();
                   }
                 },
               );
