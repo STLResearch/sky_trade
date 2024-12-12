@@ -8,13 +8,11 @@ import 'package:sky_trade/core/errors/failures/u_a_s_receiver_failure.dart';
 import 'package:sky_trade/core/resources/strings/networking.dart';
 import 'package:sky_trade/core/utils/clients/network_client.dart';
 import 'package:sky_trade/core/utils/enums/networking.dart';
-import 'package:sky_trade/core/utils/typedefs/networking.dart' show Signature;
 import 'package:sky_trade/features/u_a_s_receiver/data/models/remote_i_d_model.dart';
 
 abstract interface class UASNetworkDataSource {
   void requestRemoteIDsAround({
     required String geoHash,
-    required Signature signature,
   });
 
   Stream<Either<NetworkRemoteIDFailure, RemoteIDModel>> get networkRemoteIdStream;
@@ -47,7 +45,7 @@ final class UASNetworkDataSourceImplementation implements UASNetworkDataSource {
               onConnectionChanged: (connectionState) {
                 if (connectionState == ConnectionState.error
                     || connectionState == ConnectionState.connectionError
-                    || connectionState == ConnectionState.connectionTimeout)
+                    || connectionState == ConnectionState.disconnected)
                   emitNetworkFailureToStream();
               },
             );
@@ -81,21 +79,13 @@ final class UASNetworkDataSourceImplementation implements UASNetworkDataSource {
   @override
   void requestRemoteIDsAround({
     required String geoHash,
-    required Signature signature,
   }) {
     _socketIOClient.send(
       roomName: uasActivityRoom,
+      includeSignature: true,
       data: {
         geoHashKey: geoHash,
         isTestKey: false,
-      },
-      headers: {
-        signHeaderKey: signature.sign,
-        signIssueAtHeaderKey: signature.issuedAt,
-        signNonceHeaderKey: signature.nonce,
-        signAddressHeaderKey: signature.address,
-        if (signature.email != null)
-          emailAddressHeaderKey: signature.email,
       },
     );
   }

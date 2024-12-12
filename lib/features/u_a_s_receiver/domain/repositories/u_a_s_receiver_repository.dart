@@ -10,10 +10,4 @@ abstract interface class UasReceiverRepository {
     GeoHash userGeoHash,
     GeoHash currentGeoHash,
   );
-
-  void listenBroadcastDataStream();
-
-  void listenNetworkDataStream();
-
-  void clearRemoteIDsFromPreviousGeoHash();
 }

@@ -6,8 +6,6 @@ import 'dart:async';
 import 'package:dart_geohash/dart_geohash.dart';
 import 'package:dartz/dartz.dart';
 import 'package:sky_trade/core/errors/failures/u_a_s_receiver_failure.dart';
-import 'package:sky_trade/core/utils/clients/signature_handler.dart';
-import 'package:sky_trade/core/utils/typedefs/networking.dart';
 import 'package:sky_trade/features/u_a_s_receiver/data/data_sources/u_a_s_broadcast_data_source.dart';
 import 'package:sky_trade/features/u_a_s_receiver/data/data_sources/u_a_s_network_data_source.dart';
 import 'package:sky_trade/features/u_a_s_receiver/data/models/remote_i_d_model.dart';
@@ -16,7 +14,7 @@ import 'package:sky_trade/features/u_a_s_receiver/domain/entities/network_remote
 import 'package:sky_trade/features/u_a_s_receiver/domain/entities/remote_i_d_entity.dart';
 import 'package:sky_trade/features/u_a_s_receiver/domain/repositories/u_a_s_receiver_repository.dart';
 
-final class UASRepositoryImplementation with SignatureHandler implements UasReceiverRepository {
+final class UASRepositoryImplementation implements UasReceiverRepository {
 
   final remoteIDEntities = <RemoteIDEntity>{};
   final UASBroadcastDataSource _uasBroadcastDataSource;
@@ -35,8 +33,8 @@ final class UASRepositoryImplementation with SignatureHandler implements UasRece
   Stream<Either<UASReceiverFailure, Set<RemoteIDEntity>>> get remoteIDStream {
     _remoteIDStreamController = StreamController<Either<UASReceiverFailure, Set<RemoteIDEntity>>>(
       onListen: () {
-        listenBroadcastDataStream();
-        listenNetworkDataStream();
+        _listenBroadcastDataStream();
+        _listenNetworkDataStream();
       },
       onCancel: () {
         _remoteIDStreamController.close();
@@ -53,7 +51,7 @@ final class UASRepositoryImplementation with SignatureHandler implements UasRece
     GeoHash userGeoHash,
     GeoHash currentGeoHash,
   ) async {
-    clearRemoteIDsFromPreviousGeoHash();
+    _clearRemoteIDsFromPreviousGeoHash();
 
     if (userGeoHash.geohash == currentGeoHash.geohash && _broadcastRemoteIdStreamSubscription.isPaused)
       _broadcastRemoteIdStreamSubscription.resume();
@@ -62,33 +60,10 @@ final class UASRepositoryImplementation with SignatureHandler implements UasRece
 
     _uasNetworkDataSource.requestRemoteIDsAround(
       geoHash: currentGeoHash.geohash,
-      signature: await getSiganture(),
     );
   }
 
-  Future<Signature> getSiganture() async {
-    final issuedAt = computeIssuedAt();
-    final nonce = computeNonce();
-    final userAddress = await computeUserAddress();
-    final message = computeMessageToSignUsing(
-      issuedAt: issuedAt,
-      nonce: nonce,
-      userAddress: userAddress,
-    );
-    final email = await computeUserEmail();
-    final sign = await signMessage(message);
-
-    return (
-      sign: sign,
-      issuedAt: issuedAt,
-      nonce: nonce,
-      address: userAddress,
-      email: email,
-    );
-  }
-
-  @override
-  void listenBroadcastDataStream() {
+  void _listenBroadcastDataStream() {
     _broadcastRemoteIdStreamSubscription = _uasBroadcastDataSource.broadcastRemoteIdStream
         .listen((broadcastFailureOrRemoteIDModel) {
           broadcastFailureOrRemoteIDModel.fold(
@@ -98,8 +73,7 @@ final class UASRepositoryImplementation with SignatureHandler implements UasRece
         });
   }
 
-  @override
-  void listenNetworkDataStream() {
+  void _listenNetworkDataStream() {
     _networkRemoteIdStreamSubscription = _uasNetworkDataSource.networkRemoteIdStream
         .listen((networkFailureOrRemoteIDModel) {
           networkFailureOrRemoteIDModel.fold(
@@ -109,8 +83,7 @@ final class UASRepositoryImplementation with SignatureHandler implements UasRece
         });
   }
 
-  @override
-  void clearRemoteIDsFromPreviousGeoHash() => remoteIDEntities.clear();
+  void _clearRemoteIDsFromPreviousGeoHash() => remoteIDEntities.clear();
 
   void broadcastRemoteIDFilter(RemoteIDModel remoteIDModel) {
     var newBroadcastRemoteIDEntity = BroadcastRemoteIDEntity(remoteIDEntity: remoteIDModel);
