@@ -1,18 +1,17 @@
 import 'package:flutter/material.dart'
     show
-        AlignmentDirectional,
         BorderSide,
         BuildContext,
         CircularProgressIndicator,
         Color,
         Colors,
         ElevatedButton,
+        Flexible,
         LayoutBuilder,
         MainAxisAlignment,
         Row,
         Size,
         SizedBox,
-        Stack,
         StatelessWidget,
         Text,
         Theme,
@@ -56,7 +55,8 @@ final class AuthButton extends StatelessWidget {
           style: Theme.of(context).elevatedButtonTheme.style?.copyWith(
                 backgroundColor: switch (type) {
                   AuthButtonType.getStarted => null,
-                  AuthButtonType.connectWithGoogle ||
+                  AuthButtonType.continueWithApple ||
+                  AuthButtonType.continueWithGoogle ||
                   AuthButtonType.moreOptions =>
                     const WidgetStatePropertyAll<Color>(
                       Colors.transparent,
@@ -70,7 +70,8 @@ final class AuthButton extends StatelessWidget {
                 ),
                 side: switch (type) {
                   AuthButtonType.getStarted => null,
-                  AuthButtonType.connectWithGoogle ||
+                  AuthButtonType.continueWithApple ||
+                  AuthButtonType.continueWithGoogle ||
                   AuthButtonType.moreOptions =>
                     const WidgetStatePropertyAll<BorderSide>(
                       BorderSide(
@@ -106,20 +107,28 @@ final class AuthButton extends StatelessWidget {
           _buildTextWith(
             context,
           ),
-        AuthButtonType.connectWithGoogle => Stack(
-            alignment: AlignmentDirectional.centerStart,
+        AuthButtonType.continueWithApple ||
+        AuthButtonType.continueWithGoogle =>
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Assets.svgs.google.svg(
-                width: twentyFourDotNil,
-                height: twentyFourDotNil,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  _buildTextWith(
-                    context,
+              switch (type) {
+                AuthButtonType.continueWithApple => Assets.svgs.apple.svg(
+                    width: twentyFourDotNil,
+                    height: twentyFourDotNil,
                   ),
-                ],
+                _ => Assets.svgs.google.svg(
+                    width: twentyFourDotNil,
+                    height: twentyFourDotNil,
+                  ),
+              },
+              const SizedBox(
+                width: fifteenDotNil,
+              ),
+              Flexible(
+                child: _buildTextWith(
+                  context,
+                ),
               ),
             ],
           ),
@@ -131,8 +140,10 @@ final class AuthButton extends StatelessWidget {
       Text(
         switch (type) {
           AuthButtonType.getStarted => context.localize.getStarted,
-          AuthButtonType.connectWithGoogle =>
-            context.localize.connectWithGoogle,
+          AuthButtonType.continueWithApple =>
+            context.localize.continueWithApple,
+          AuthButtonType.continueWithGoogle =>
+            context.localize.continueWithGoogle,
           AuthButtonType.moreOptions => context.localize.moreOptions,
         },
         style: Theme.of(context).textTheme.bodyMedium?.copyWith(
@@ -140,7 +151,8 @@ final class AuthButton extends StatelessWidget {
               height: twentyTwoDotFive / fifteenDotNil,
               color: switch (type) {
                 AuthButtonType.getStarted => hexFFFFFF,
-                AuthButtonType.connectWithGoogle ||
+                AuthButtonType.continueWithApple ||
+                AuthButtonType.continueWithGoogle ||
                 AuthButtonType.moreOptions =>
                   hex595959,
               },

@@ -15,6 +15,9 @@ import 'package:vector_graphics/vector_graphics.dart' as _vg;
 class $AssetsPngsGen {
   const $AssetsPngsGen();
 
+  /// File path: assets/pngs/app_icon.png
+  AssetGenImage get appIcon => const AssetGenImage('assets/pngs/app_icon.png');
+
   /// File path: assets/pngs/icon_drone.png
   AssetGenImage get iconDrone =>
       const AssetGenImage('assets/pngs/icon_drone.png');
@@ -48,6 +51,7 @@ class $AssetsPngsGen {
 
   /// List of all assets
   List<AssetGenImage> get values => [
+        appIcon,
         iconDrone,
         locationPuck,
         locationPuckShadow,
@@ -64,6 +68,9 @@ class $AssetsSvgsGen {
 
   /// File path: assets/svgs/account.svg
   SvgGenImage get account => const SvgGenImage('assets/svgs/account.svg');
+
+  /// File path: assets/svgs/apple.svg
+  SvgGenImage get apple => const SvgGenImage('assets/svgs/apple.svg');
 
   /// File path: assets/svgs/arrow.svg
   SvgGenImage get arrow => const SvgGenImage('assets/svgs/arrow.svg');
@@ -224,6 +231,7 @@ class $AssetsSvgsGen {
   /// List of all assets
   List<SvgGenImage> get values => [
         account,
+        apple,
         arrow,
         arrowRight,
         bluetoothOff,

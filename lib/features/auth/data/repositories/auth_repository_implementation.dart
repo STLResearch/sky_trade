@@ -130,6 +130,7 @@ final class AuthRepositoryImplementation
     AuthProvider authProvider,
   ) {
     final loginProvider = switch (authProvider) {
+      AuthProvider.apple => Provider.apple,
       AuthProvider.google => Provider.google,
       AuthProvider.emailPasswordless => Provider.email_passwordless,
     };

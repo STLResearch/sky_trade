@@ -1,6 +1,7 @@
 enum AuthButtonType {
   getStarted,
-  connectWithGoogle,
+  continueWithApple,
+  continueWithGoogle,
   moreOptions,
 }
 
