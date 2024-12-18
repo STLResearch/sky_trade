@@ -267,21 +267,55 @@ class _RegisterScreenState extends State<RegisterScreen>
                   __,
                 ) =>
                     AuthButton(
-                  type: AuthButtonType.connectWithGoogle,
+                  type: AuthButtonType.continueWithGoogle,
                   enabled: web3AuthRegisterState.maybeWhen(
                     registering: () => false,
                     orElse: () => true,
                   ),
                   indicateProgress:
                       authButtonTypeToIndicateProgressNotifierValue ==
-                          AuthButtonType.connectWithGoogle,
+                          AuthButtonType.continueWithGoogle,
                   onPressed: () {
                     _authButtonTypeToIndicateProgressNotifier.value =
-                        AuthButtonType.connectWithGoogle;
+                        AuthButtonType.continueWithGoogle;
 
                     context.read<Web3AuthRegisterBloc>().add(
                           const Web3AuthRegisterEvent.register(
                             provider: AuthProvider.google,
+                          ),
+                        );
+                  },
+                ),
+              ),
+            ),
+            const SizedBox(
+              height: fifteenDotNil,
+            ),
+            BlocBuilder<Web3AuthRegisterBloc, Web3AuthRegisterState>(
+              builder: (_, web3AuthRegisterState) =>
+                  ValueListenableBuilder<AuthButtonType?>(
+                valueListenable: _authButtonTypeToIndicateProgressNotifier,
+                builder: (
+                  _,
+                  authButtonTypeToIndicateProgressNotifierValue,
+                  __,
+                ) =>
+                    AuthButton(
+                  type: AuthButtonType.continueWithApple,
+                  enabled: web3AuthRegisterState.maybeWhen(
+                    registering: () => false,
+                    orElse: () => true,
+                  ),
+                  indicateProgress:
+                      authButtonTypeToIndicateProgressNotifierValue ==
+                          AuthButtonType.continueWithApple,
+                  onPressed: () {
+                    _authButtonTypeToIndicateProgressNotifier.value =
+                        AuthButtonType.continueWithApple;
+
+                    context.read<Web3AuthRegisterBloc>().add(
+                          const Web3AuthRegisterEvent.register(
+                            provider: AuthProvider.apple,
                           ),
                         );
                   },

@@ -102,6 +102,7 @@ import 'package:sky_trade/core/resources/strings/networking.dart'
 
 // Web3Auth
 enum AuthProvider {
+  apple,
   google,
   emailPasswordless,
 }
