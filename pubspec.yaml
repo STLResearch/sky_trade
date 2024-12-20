@@ -9,6 +9,7 @@ environment:
   sdk: '>=3.3.4 <4.0.0'
 
 dependencies:
+  app_tracking_transparency: ^2.0.6+1
   bloc: ^8.1.4
   bloc_test: ^9.1.7
   cupertino_icons: ^1.0.6

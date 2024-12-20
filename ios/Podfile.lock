@@ -1,4 +1,6 @@
 PODS:
+  - app_tracking_transparency (0.0.1):
+    - Flutter
   - BigInt (5.2.0)
   - connectivity_plus (0.0.1):
     - Flutter
@@ -154,6 +156,7 @@ PODS:
     - Web3Auth (~> 9.0.0)
 
 DEPENDENCIES:
+  - app_tracking_transparency (from `.symlinks/plugins/app_tracking_transparency/ios`)
   - connectivity_plus (from `.symlinks/plugins/connectivity_plus/darwin`)
   - device_info_plus (from `.symlinks/plugins/device_info_plus/ios`)
   - firebase_analytics (from `.symlinks/plugins/firebase_analytics/ios`)
@@ -195,6 +198,8 @@ SPEC REPOS:
     - Web3Auth
 
 EXTERNAL SOURCES:
+  app_tracking_transparency:
+    :path: ".symlinks/plugins/app_tracking_transparency/ios"
   connectivity_plus:
     :path: ".symlinks/plugins/connectivity_plus/darwin"
   device_info_plus:
@@ -231,6 +236,7 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/web3auth_flutter/ios"
 
 SPEC CHECKSUMS:
+  app_tracking_transparency: e169b653478da7bb15a6c61209015378ca73e375
   BigInt: f668a80089607f521586bbe29513d708491ef2f7
   connectivity_plus: 4c41c08fc6d7c91f63bc7aec70ffe3730b04f563
   curvelib.swift: d0746ae82bee34016c06da3567a97e493b3c979f

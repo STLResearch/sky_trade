@@ -8,3 +8,5 @@ const nonceCharacterSet =
 const sessionTokenKey = 'sessionToken';
 const sessionTokenUsageCountKey = 'sessionTokenUsageCount';
 const sessionTokenAgeKey = 'sessionTokenAge';
+
+const analyticsStateKey = 'analyticsState';
