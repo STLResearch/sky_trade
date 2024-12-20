@@ -18,7 +18,6 @@ const twentyFour = 24;
 const forty = 40;
 const fiftyNine = 59;
 const oneHundred = 100;
-const oneEighty = 180;
 const twoFiftyFive = 255;
 const threeSixtyFive = 365;
 const threeSixtySix = 366;

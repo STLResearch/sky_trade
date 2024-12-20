@@ -265,7 +265,6 @@ final class SocketIOClient with SignatureHandler {
   Future<void> send({
     required String roomName,
     required Map<String, dynamic> data,
-    bool? includeSignature,
   }) async =>
       _clientMessageStreamController?.add(
         Right(

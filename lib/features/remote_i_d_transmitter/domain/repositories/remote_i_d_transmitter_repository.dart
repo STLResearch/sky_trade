@@ -15,7 +15,7 @@ abstract interface class RemoteIDTransmitterRepository {
   });
 
   Future<void> transmit({
-    required Set<RemoteIDEntity> remoteIDEntities,
+    required List<RemoteIDEntity> remoteIDEntities,
     required DeviceEntity deviceEntity,
     required Uint8List rawData,
   });

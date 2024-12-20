@@ -11,7 +11,7 @@ typedef SocketIOClientMessage = ({
 });
 
 typedef RemoteIDSetDeviceCoordinatesTuple = ({
-  Set<RemoteIDEntity> remoteIDEntities,
+  List<RemoteIDEntity> remoteIDEntities,
   DeviceEntity deviceEntity,
 });
 

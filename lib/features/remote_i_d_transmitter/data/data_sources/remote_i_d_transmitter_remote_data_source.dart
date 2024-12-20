@@ -20,7 +20,7 @@ abstract interface class RemoteIDTransmitterRemoteDataSource {
   });
 
   Future<void> transmit({
-    required Set<RemoteIDEntity> remoteIDEntities,
+    required List<RemoteIDEntity> remoteIDEntities,
     required DeviceEntity deviceEntity,
     required Uint8List rawData,
   });
@@ -51,12 +51,12 @@ final class RemoteIDTransmitterRemoteDataSourceImplementation
 
   @override
   Future<void> transmit({
-    required Set<RemoteIDEntity> remoteIDEntities,
+    required List<RemoteIDEntity> remoteIDEntities,
     required DeviceEntity deviceEntity,
     required Uint8List rawData,
   }) =>
       Future.forEach(
-        Set<RemoteIDEntity>.from(
+        List<RemoteIDEntity>.from(
           remoteIDEntities,
         ),
         (remoteIDEntity) => _socketIOClient.send(
@@ -67,7 +67,6 @@ final class RemoteIDTransmitterRemoteDataSourceImplementation
             device: deviceEntity,
             rawData: rawData,
           ).toRemoteTransmissionModel().toJson(),
-          includeSignature: true,
         ),
       );
 

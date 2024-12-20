@@ -31,3 +31,8 @@ typedef Chart = ({
   String xAxis,
   int yAxis,
 });
+
+typedef SourceLayer = ({
+  String sourceId,
+  String layerId,
+});

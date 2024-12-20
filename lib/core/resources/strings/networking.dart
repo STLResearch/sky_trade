@@ -197,6 +197,7 @@ const basicIdsKey = 'basicIds';
 const authenticationKey = 'authentication';
 const serialNumberKey = 'serialNumber';
 const registrationIdKey = 'registrationId';
+const skyTradeBackendKey = 'SkyTrade_Backend';
 const bluetoothLegacyKey = 'Bluetooth_Legacy';
 const bluetoothLongRangeKey = 'Bluetooth_Long_Range';
 const wifiNanKey = 'WiFi_NAN';

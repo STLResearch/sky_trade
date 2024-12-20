@@ -89,6 +89,7 @@ import 'package:sky_trade/core/resources/strings/networking.dart'
         restrictedValue,
         rocketKey,
         serialNumberIDTypeKey,
+        skyTradeBackendKey,
         specificAuthenticationKey,
         specificSessionIDKey,
         takeOffKey,
@@ -190,6 +191,8 @@ enum WifiAdapterState {
 }
 
 enum RemoteIDMessageSource {
+  @JsonValue(skyTradeBackendKey)
+  skyTradeBackend,
   @JsonValue(bluetoothLegacyKey)
   bluetoothLegacy,
   @JsonValue(bluetoothLongRangeKey)
