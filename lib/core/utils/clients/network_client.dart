@@ -126,7 +126,7 @@ final class SocketIOClient with SignatureHandler {
             return;
           }
 
-          _pauseMessageStream();
+          _maybePauseMessageStream();
         },
       )
       ..onDisconnect(
@@ -137,7 +137,7 @@ final class SocketIOClient with SignatureHandler {
             );
           }
 
-          _pauseMessageStream();
+          _maybePauseMessageStream();
         },
       )
       ..onError(
@@ -148,7 +148,7 @@ final class SocketIOClient with SignatureHandler {
             );
           }
 
-          _pauseMessageStream();
+          _maybePauseMessageStream();
         },
       )
       ..onReconnectAttempt(
@@ -159,7 +159,7 @@ final class SocketIOClient with SignatureHandler {
             );
           }
 
-          _pauseMessageStream();
+          _maybePauseMessageStream();
         },
       )
       ..onReconnectFailed(
@@ -170,7 +170,7 @@ final class SocketIOClient with SignatureHandler {
             );
           }
 
-          _pauseMessageStream();
+          _maybePauseMessageStream();
         },
       )
       ..onReconnectError(
@@ -181,7 +181,7 @@ final class SocketIOClient with SignatureHandler {
             );
           }
 
-          _pauseMessageStream();
+          _maybePauseMessageStream();
         },
       )
       ..onPing(
@@ -222,7 +222,7 @@ final class SocketIOClient with SignatureHandler {
     };
   }
 
-  void _pauseMessageStream() {
+  void _maybePauseMessageStream() {
     if (_clientMessageStreamSubscription?.isPaused == false) {
       _clientMessageStreamSubscription?.pause();
     }
@@ -313,10 +313,11 @@ final class HttpClient with SignatureHandler {
     required String path,
     required bool includeSignature,
     String? overrideBaseUrl,
+    Duration? overrideSendTimeout,
+    Duration? overrideReceiveTimeout,
     Map<String, dynamic>? data,
     Map<String, dynamic>? queryParameters,
     Map<String, dynamic>? headers,
-    String? bearerToken,
   }) async =>
       switch (requestMethod) {
         RequestMethod.get => _dio.get(
@@ -326,9 +327,11 @@ final class HttpClient with SignatureHandler {
             ),
             data: data,
             queryParameters: queryParameters,
-            options: await _computeHeaderOptionsUsing(
+            options: await _computeRequestOptionsUsing(
               path: path,
               includeSignature: includeSignature,
+              overrideSendTimeout: overrideSendTimeout,
+              overrideReceiveTimeout: overrideReceiveTimeout,
               queryParameters: queryParameters,
               headers: headers,
             ),
@@ -340,9 +343,11 @@ final class HttpClient with SignatureHandler {
             ),
             data: data,
             queryParameters: queryParameters,
-            options: await _computeHeaderOptionsUsing(
+            options: await _computeRequestOptionsUsing(
               path: path,
               includeSignature: includeSignature,
+              overrideSendTimeout: overrideSendTimeout,
+              overrideReceiveTimeout: overrideReceiveTimeout,
               queryParameters: queryParameters,
               headers: headers,
             ),
@@ -354,9 +359,11 @@ final class HttpClient with SignatureHandler {
             ),
             data: data,
             queryParameters: queryParameters,
-            options: await _computeHeaderOptionsUsing(
+            options: await _computeRequestOptionsUsing(
               path: path,
               includeSignature: includeSignature,
+              overrideSendTimeout: overrideSendTimeout,
+              overrideReceiveTimeout: overrideReceiveTimeout,
               queryParameters: queryParameters,
               headers: headers,
             ),
@@ -368,9 +375,11 @@ final class HttpClient with SignatureHandler {
             ),
             data: data,
             queryParameters: queryParameters,
-            options: await _computeHeaderOptionsUsing(
+            options: await _computeRequestOptionsUsing(
               path: path,
               includeSignature: includeSignature,
+              overrideSendTimeout: overrideSendTimeout,
+              overrideReceiveTimeout: overrideReceiveTimeout,
               queryParameters: queryParameters,
               headers: headers,
             ),
@@ -386,9 +395,11 @@ final class HttpClient with SignatureHandler {
         false => path,
       };
 
-  Future<Options?> _computeHeaderOptionsUsing({
+  Future<Options?> _computeRequestOptionsUsing({
     required String path,
     required bool includeSignature,
+    required Duration? overrideSendTimeout,
+    required Duration? overrideReceiveTimeout,
     required Map<String, dynamic>? queryParameters,
     required Map<String, dynamic>? headers,
   }) async {
@@ -417,9 +428,13 @@ final class HttpClient with SignatureHandler {
             if (email != null) emailAddressHeaderKey: email,
             if (headers != null) ...headers,
           },
+          sendTimeout: overrideSendTimeout,
+          receiveTimeout: overrideReceiveTimeout,
         ),
       _ => Options(
           headers: headers,
+          sendTimeout: overrideSendTimeout,
+          receiveTimeout: overrideReceiveTimeout,
         )
     };
   }
