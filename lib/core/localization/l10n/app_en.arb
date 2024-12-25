@@ -164,5 +164,12 @@
   "beforeWeCanEnableAnalyticsForYouWeNeedYouToGrantUsTrackingAuthorization": "Before we can enable analytics for you we need you to grant us tracking authorization",
   "helpUsImproveYourExperience": "Help Us Improve Your Experience",
   "weWouldLikeYourPermissionToCollectDataAboutHowYouUseTheAppThisHelpsUsProvidePersonalizedFeaturesImprovePerformanceAndDevelopBetterExperiencesYouCanChooseWhetherToAllowThisInTheNextStep": "We would like your permission to collect data about how you use the app. This helps us provide personalized features, improve performance, and develop better experiences. You can choose whether to allow this in the next step",
-  "youHaveForbiddenUsFromRequestingTrackingAuthorizationWithoutYourConsentWeWillNotKnowHowYouUseTheAppAndWeWillNotBeAbleToMakeImprovementsTailoredToYourNeedsToGrantUsTrackingAuthorizationYouWillHaveToEnableItManuallyInSettings": "You have forbidden us from requesting tracking authorization. Without your consent we will not know how you use the app and we will not be able to make improvements tailored to your needs. To grant us tracking authorization, you will have to enable it manually in Settings"
+  "youHaveForbiddenUsFromRequestingTrackingAuthorizationWithoutYourConsentWeWillNotKnowHowYouUseTheAppAndWeWillNotBeAbleToMakeImprovementsTailoredToYourNeedsToGrantUsTrackingAuthorizationYouWillHaveToEnableItManuallyInSettings": "You have forbidden us from requesting tracking authorization. Without your consent we will not know how you use the app and we will not be able to make improvements tailored to your needs. To grant us tracking authorization, you will have to enable it manually in Settings",
+  "accountManagement": "ACCOUNT MANAGEMENT",
+  "requestAccountDeletion": "Request account deletion",
+  "aConfirmationEmailWillBeSentToYourEmailAddressAreYouSureYouWantToProceedToRequestThatYourAccountBeDeleted": "A confirmation email will be sent to your email address. Are you sure you want to proceed to request that your account be deleted",
+  "cancel": "Cancel",
+  "proceed": "Proceed",
+  "weCouldNotCompleteRequestingDeletionForYourAccountPleaseTryAgainLater": "We could not complete requesting deletion for your account. Please try again later",
+  "weSentYouAnEmailOnHowToProceedWithAccountDeletionKindlyCheckYourEmailForNextSteps": "We sent you an email on how to proceed with account deletion. Kindly check your email for next steps"
 }

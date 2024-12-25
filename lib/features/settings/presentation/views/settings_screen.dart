@@ -4,10 +4,14 @@ import 'package:flutter/material.dart'
     show
         AppBar,
         BuildContext,
+        ButtonStyle,
+        Center,
+        CircularProgressIndicator,
         Column,
         CrossAxisAlignment,
         Divider,
         EdgeInsetsDirectional,
+        ElevatedButton,
         Expanded,
         FontStyle,
         IconButton,
@@ -15,6 +19,7 @@ import 'package:flutter/material.dart'
         Row,
         Scaffold,
         SingleChildScrollView,
+        Size,
         SizedBox,
         State,
         StatefulWidget,
@@ -23,6 +28,7 @@ import 'package:flutter/material.dart'
         Text,
         Theme,
         Widget,
+        WidgetStatePropertyAll,
         WidgetsFlutterBinding;
 import 'package:flutter_bloc/flutter_bloc.dart'
     show
@@ -41,25 +47,32 @@ import 'package:sky_trade/core/resources/colors.dart'
 import 'package:sky_trade/core/resources/numbers/ui.dart'
     show
         eighteenDotNil,
+        elevenDotNil,
         fourteenDotNil,
+        nilDotNil,
         nineDotNil,
         oneDotNil,
         seventyThreeDotNil,
+        sixteenDotNil,
         sixteenDotOne,
         tenDotNil,
         thirteenDotFive,
-        twentyOneDotNil;
+        twentyOneDotNil,
+        twoDotNil;
 import 'package:sky_trade/core/utils/enums/networking.dart'
     show TrackingTransparencyRequestStatus;
 import 'package:sky_trade/core/utils/extensions/build_context_extensions.dart';
 import 'package:sky_trade/features/settings/presentation/blocs/analytics_bloc/analytics_bloc.dart'
     show AnalyticsBloc, AnalyticsEvent, AnalyticsState;
+import 'package:sky_trade/features/settings/presentation/blocs/delete_account_bloc/delete_account_bloc.dart'
+    show DeleteAccountBloc, DeleteAccountEvent, DeleteAccountState;
 import 'package:sky_trade/features/settings/presentation/blocs/tracking_authorization_bloc/tracking_authorization_bloc.dart'
     show
         TrackingAuthorizationBloc,
         TrackingAuthorizationEvent,
         TrackingAuthorizationState;
 import 'package:sky_trade/features/settings/presentation/widgets/action_dialog.dart';
+import 'package:sky_trade/features/settings/presentation/widgets/alert_snack_bar.dart';
 import 'package:sky_trade/injection_container.dart' show serviceLocator;
 
 class SettingsScreen extends StatelessWidget {
@@ -68,10 +81,13 @@ class SettingsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) => MultiBlocProvider(
         providers: [
-          BlocProvider<TrackingAuthorizationBloc>(
+          BlocProvider<AnalyticsBloc>(
             create: (_) => serviceLocator(),
           ),
-          BlocProvider<AnalyticsBloc>(
+          BlocProvider<DeleteAccountBloc>(
+            create: (_) => serviceLocator(),
+          ),
+          BlocProvider<TrackingAuthorizationBloc>(
             create: (_) => serviceLocator(),
           ),
         ],
@@ -111,6 +127,26 @@ class _SettingsViewState extends State<SettingsView> {
   @override
   Widget build(BuildContext context) => MultiBlocListener(
         listeners: [
+          BlocListener<DeleteAccountBloc, DeleteAccountState>(
+            listener: (_, deleteAccountState) {
+              deleteAccountState.whenOrNull(
+                failedToDeleteAccount: (_) {
+                  AlertSnackBar.show(
+                    context,
+                    message: context.localize
+                        .weCouldNotCompleteRequestingDeletionForYourAccountPleaseTryAgainLater,
+                  );
+                },
+                deletedAccount: (_) {
+                  AlertSnackBar.show(
+                    context,
+                    message: context.localize
+                        .weSentYouAnEmailOnHowToProceedWithAccountDeletionKindlyCheckYourEmailForNextSteps,
+                  );
+                },
+              );
+            },
+          ),
           BlocListener<TrackingAuthorizationBloc, TrackingAuthorizationState>(
             listener: (_, trackingAuthorizationState) {
               trackingAuthorizationState.whenOrNull(
@@ -167,11 +203,16 @@ class _SettingsViewState extends State<SettingsView> {
         ],
         child: Scaffold(
           appBar: AppBar(
-            leading: IconButton(
-              icon: Assets.svgs.chevronLeft.svg(),
-              onPressed: () => Navigator.of(
-                context,
-              ).pop(),
+            leading: BlocBuilder<DeleteAccountBloc, DeleteAccountState>(
+              builder: (context, deleteAccountState) => IconButton(
+                icon: Assets.svgs.chevronLeft.svg(),
+                onPressed: deleteAccountState.maybeWhen(
+                  deletingAccount: () => null,
+                  orElse: () => () => Navigator.of(
+                        context,
+                      ).pop(),
+                ),
+              ),
             ),
             title: Text(
               context.localize.settings,
@@ -303,6 +344,86 @@ class _SettingsViewState extends State<SettingsView> {
                       ),
                     ),
                   ],
+                ),
+                const SizedBox(
+                  height: elevenDotNil,
+                ),
+                Text(
+                  context.localize.accountManagement,
+                  style: Theme.of(
+                    context,
+                  ).textTheme.bodySmall?.copyWith(
+                        fontFamily: FontFamily.arial,
+                        fontSize: fourteenDotNil,
+                        height: sixteenDotOne / fourteenDotNil,
+                        color: hex4285F4,
+                      ),
+                ),
+                const SizedBox(
+                  height: tenDotNil,
+                ),
+                const Divider(
+                  height: oneDotNil,
+                ),
+                const SizedBox(
+                  height: tenDotNil,
+                ),
+                BlocBuilder<DeleteAccountBloc, DeleteAccountState>(
+                  builder: (context, deleteAccountState) => ElevatedButton(
+                    onPressed: deleteAccountState.maybeWhen(
+                      deletingAccount: () => null,
+                      orElse: () => () => ActionDialog.show(
+                            context,
+                            content: context.localize
+                                .aConfirmationEmailWillBeSentToYourEmailAddressAreYouSureYouWantToProceedToRequestThatYourAccountBeDeleted,
+                            onActionDismissed: () => Navigator.of(
+                              context,
+                            ).pop(),
+                            actionDismissText: context.localize.cancel,
+                            onActionConfirmed: () {
+                              Navigator.of(
+                                context,
+                              ).pop();
+
+                              context.read<DeleteAccountBloc>().add(
+                                    const DeleteAccountEvent.deleteAccount(),
+                                  );
+                            },
+                            actionConfirmText: context.localize.proceed,
+                          ),
+                    ),
+                    style: const ButtonStyle(
+                      fixedSize: WidgetStatePropertyAll<Size>(
+                        Size.fromHeight(
+                          nilDotNil,
+                        ),
+                      ),
+                    ),
+                    child: Center(
+                      child: deleteAccountState.maybeWhen(
+                        deletingAccount: () => SizedBox(
+                          width: sixteenDotNil,
+                          height: sixteenDotNil,
+                          child: CircularProgressIndicator(
+                            color: Theme.of(
+                              context,
+                            ).scaffoldBackgroundColor,
+                            strokeWidth: twoDotNil,
+                          ),
+                        ),
+                        orElse: () => Text(
+                          context.localize.requestAccountDeletion,
+                          style: Theme.of(
+                            context,
+                          ).textTheme.bodySmall?.copyWith(
+                                color: Theme.of(
+                                  context,
+                                ).scaffoldBackgroundColor,
+                              ),
+                        ),
+                      ),
+                    ),
+                  ),
                 ),
                 const SizedBox(
                   height: eighteenDotNil,

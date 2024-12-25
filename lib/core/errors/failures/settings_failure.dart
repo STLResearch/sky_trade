@@ -1,5 +1,10 @@
 import 'package:equatable/equatable.dart' show Equatable;
 
+final class DeleteAccountFailure extends Equatable {
+  @override
+  List<Object?> get props => [];
+}
+
 sealed class TrackingStatusFailure extends Equatable {
   @override
   List<Object?> get props => [];

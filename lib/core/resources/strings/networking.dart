@@ -52,6 +52,7 @@ const propertiesPath = '/properties';
 const airspaceRentalPath = '/airspace-rental';
 const createMintRentalTokenIxPath = '/create-mint-rental-token-ix';
 const executeMintRentalTokenIxPath = '/execute-mint-rental-token-ix';
+const reqDeletePath = '/req_delete';
 // Signature
 const signatureFirstLine = 'wants you to sign in with your Solana account:';
 const signatureThirdLine = 'Sign in to SkyTrade app.';
