@@ -15,6 +15,7 @@ const twelve = 12;
 const sixteen = 16;
 const twentyThree = 23;
 const twentyFour = 24;
+const thirty = 30;
 const forty = 40;
 const fiftyNine = 59;
 const oneHundred = 100;
