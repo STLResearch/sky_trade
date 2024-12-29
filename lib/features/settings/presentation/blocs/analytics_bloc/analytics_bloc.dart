@@ -1,7 +1,5 @@
 import 'package:bloc/bloc.dart' show Bloc, Emitter;
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:sky_trade/features/settings/domain/entities/settings_entity.dart'
-    show AnalyticsEntity;
 import 'package:sky_trade/features/settings/domain/repositories/settings_repository.dart';
 
 part 'analytics_event.dart';
@@ -42,8 +40,7 @@ class AnalyticsBloc extends Bloc<AnalyticsEvent, AnalyticsState> {
 
     emit(
       AnalyticsState.maybeEnabled(
-        analyticsEntity:
-            await _settingsRepository.isAnalyticsCollectionEnabled(),
+        enabled: await _settingsRepository.isAnalyticsCollectionEnabled(),
       ),
     );
   }
@@ -58,8 +55,7 @@ class AnalyticsBloc extends Bloc<AnalyticsEvent, AnalyticsState> {
 
     emit(
       AnalyticsState.maybeEnabled(
-        analyticsEntity:
-            await _settingsRepository.isAnalyticsCollectionEnabled(),
+        enabled: await _settingsRepository.isAnalyticsCollectionEnabled(),
       ),
     );
   }

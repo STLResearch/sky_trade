@@ -2,24 +2,20 @@ import 'dart:io' show Platform;
 
 import 'package:app_tracking_transparency/app_tracking_transparency.dart';
 import 'package:dartz/dartz.dart' show Either, Left, Right;
-import 'package:firebase_analytics/firebase_analytics.dart'
-    show FirebaseAnalytics;
-import 'package:flutter_secure_storage/flutter_secure_storage.dart'
-    show FlutterSecureStorage;
 import 'package:sky_trade/core/errors/failures/settings_failure.dart';
-import 'package:sky_trade/core/resources/strings/local.dart'
-    show analyticsStateKey;
 import 'package:sky_trade/core/utils/enums/networking.dart'
     show TrackingTransparencyRequestStatus;
+import 'package:sky_trade/features/settings/data/data_sources/settings_local_data_source.dart'
+    show SettingsLocalDataSource;
 import 'package:sky_trade/features/settings/domain/entities/settings_entity.dart';
 import 'package:sky_trade/features/settings/domain/repositories/settings_repository.dart';
 
 final class SettingsRepositoryImplementation implements SettingsRepository {
   const SettingsRepositoryImplementation(
-    FlutterSecureStorage flutterSecureStorage,
-  ) : _flutterSecureStorage = flutterSecureStorage;
+    SettingsLocalDataSource settingsLocalDataSource,
+  ) : _settingsLocalDataSource = settingsLocalDataSource;
 
-  final FlutterSecureStorage _flutterSecureStorage;
+  final SettingsLocalDataSource _settingsLocalDataSource;
 
   @override
   Future<Either<TrackingStatusFailure, TrackingStatusEntity>>
@@ -88,32 +84,14 @@ final class SettingsRepositoryImplementation implements SettingsRepository {
           };
 
   @override
-  Future<AnalyticsEntity> isAnalyticsCollectionEnabled() async {
-    final analyticsState = await _flutterSecureStorage.read(
-      key: analyticsStateKey,
-    );
-
-    return AnalyticsEntity(
-      enabled: bool.tryParse(
-            analyticsState ?? false.toString(),
-          ) ??
-          false,
-    );
-  }
+  Future<bool> isAnalyticsCollectionEnabled() =>
+      _settingsLocalDataSource.isAnalyticsCollectionEnabled();
 
   @override
   Future<void> setAnalyticsCollectionEnabled({
     required bool value,
   }) =>
-      Future.wait(
-        [
-          FirebaseAnalytics.instance.setAnalyticsCollectionEnabled(
-            value,
-          ),
-          _flutterSecureStorage.write(
-            key: analyticsStateKey,
-            value: value.toString(),
-          ),
-        ],
+      _settingsLocalDataSource.setAnalyticsCollectionEnabled(
+        value: value,
       );
 }

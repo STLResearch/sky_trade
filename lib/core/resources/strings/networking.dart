@@ -295,6 +295,7 @@ const devicesKey = 'devices';
 const userKey = 'user';
 const ipAddressKey = 'ipAddress';
 const updatedAtKey = 'updatedAt';
+const enabledKey = 'enabled';
 // Error response data message
 const unauthorized = 'UNAUTHORIZED';
 const invalidSignature = 'INVALID_SIGNATURE';

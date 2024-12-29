@@ -158,8 +158,8 @@ class _SettingsViewState extends State<SettingsView> {
           BlocListener<AnalyticsBloc, AnalyticsState>(
             listener: (_, analyticsState) {
               analyticsState.whenOrNull(
-                maybeEnabled: (analyticsEntity) {
-                  _analyticsSwitchState = analyticsEntity.enabled;
+                maybeEnabled: (enabled) {
+                  _analyticsSwitchState = enabled;
                 },
               );
             },
@@ -270,8 +270,7 @@ class _SettingsViewState extends State<SettingsView> {
                         builder: (context, analyticsState) => Switch(
                           activeTrackColor: hex65C466,
                           value: analyticsState.maybeWhen(
-                            maybeEnabled: (analyticsEntity) =>
-                                analyticsEntity.enabled,
+                            maybeEnabled: (enabled) => enabled,
                             orElse: () => false,
                           ),
                           onChanged: (_) =>

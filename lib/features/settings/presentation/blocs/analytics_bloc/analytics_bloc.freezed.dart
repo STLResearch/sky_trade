@@ -315,21 +315,21 @@ mixin _$AnalyticsState {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() processing,
-    required TResult Function(AnalyticsEntity analyticsEntity) maybeEnabled,
+    required TResult Function(bool enabled) maybeEnabled,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? processing,
-    TResult? Function(AnalyticsEntity analyticsEntity)? maybeEnabled,
+    TResult? Function(bool enabled)? maybeEnabled,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? processing,
-    TResult Function(AnalyticsEntity analyticsEntity)? maybeEnabled,
+    TResult Function(bool enabled)? maybeEnabled,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -415,7 +415,7 @@ class _$InitialImpl implements _Initial {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() processing,
-    required TResult Function(AnalyticsEntity analyticsEntity) maybeEnabled,
+    required TResult Function(bool enabled) maybeEnabled,
   }) {
     return initial();
   }
@@ -425,7 +425,7 @@ class _$InitialImpl implements _Initial {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? processing,
-    TResult? Function(AnalyticsEntity analyticsEntity)? maybeEnabled,
+    TResult? Function(bool enabled)? maybeEnabled,
   }) {
     return initial?.call();
   }
@@ -435,7 +435,7 @@ class _$InitialImpl implements _Initial {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? processing,
-    TResult Function(AnalyticsEntity analyticsEntity)? maybeEnabled,
+    TResult Function(bool enabled)? maybeEnabled,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -523,7 +523,7 @@ class _$ProcessingImpl implements _Processing {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() processing,
-    required TResult Function(AnalyticsEntity analyticsEntity) maybeEnabled,
+    required TResult Function(bool enabled) maybeEnabled,
   }) {
     return processing();
   }
@@ -533,7 +533,7 @@ class _$ProcessingImpl implements _Processing {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? processing,
-    TResult? Function(AnalyticsEntity analyticsEntity)? maybeEnabled,
+    TResult? Function(bool enabled)? maybeEnabled,
   }) {
     return processing?.call();
   }
@@ -543,7 +543,7 @@ class _$ProcessingImpl implements _Processing {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? processing,
-    TResult Function(AnalyticsEntity analyticsEntity)? maybeEnabled,
+    TResult Function(bool enabled)? maybeEnabled,
     required TResult orElse(),
   }) {
     if (processing != null) {
@@ -597,7 +597,7 @@ abstract class _$$MaybeEnabledImplCopyWith<$Res> {
           _$MaybeEnabledImpl value, $Res Function(_$MaybeEnabledImpl) then) =
       __$$MaybeEnabledImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({AnalyticsEntity analyticsEntity});
+  $Res call({bool enabled});
 }
 
 /// @nodoc
@@ -611,13 +611,13 @@ class __$$MaybeEnabledImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? analyticsEntity = null,
+    Object? enabled = null,
   }) {
     return _then(_$MaybeEnabledImpl(
-      analyticsEntity: null == analyticsEntity
-          ? _value.analyticsEntity
-          : analyticsEntity // ignore: cast_nullable_to_non_nullable
-              as AnalyticsEntity,
+      enabled: null == enabled
+          ? _value.enabled
+          : enabled // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -625,14 +625,14 @@ class __$$MaybeEnabledImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$MaybeEnabledImpl implements _MaybeEnabled {
-  const _$MaybeEnabledImpl({required this.analyticsEntity});
+  const _$MaybeEnabledImpl({required this.enabled});
 
   @override
-  final AnalyticsEntity analyticsEntity;
+  final bool enabled;
 
   @override
   String toString() {
-    return 'AnalyticsState.maybeEnabled(analyticsEntity: $analyticsEntity)';
+    return 'AnalyticsState.maybeEnabled(enabled: $enabled)';
   }
 
   @override
@@ -640,12 +640,11 @@ class _$MaybeEnabledImpl implements _MaybeEnabled {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$MaybeEnabledImpl &&
-            (identical(other.analyticsEntity, analyticsEntity) ||
-                other.analyticsEntity == analyticsEntity));
+            (identical(other.enabled, enabled) || other.enabled == enabled));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, analyticsEntity);
+  int get hashCode => Object.hash(runtimeType, enabled);
 
   @JsonKey(ignore: true)
   @override
@@ -658,9 +657,9 @@ class _$MaybeEnabledImpl implements _MaybeEnabled {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() processing,
-    required TResult Function(AnalyticsEntity analyticsEntity) maybeEnabled,
+    required TResult Function(bool enabled) maybeEnabled,
   }) {
-    return maybeEnabled(analyticsEntity);
+    return maybeEnabled(enabled);
   }
 
   @override
@@ -668,9 +667,9 @@ class _$MaybeEnabledImpl implements _MaybeEnabled {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? processing,
-    TResult? Function(AnalyticsEntity analyticsEntity)? maybeEnabled,
+    TResult? Function(bool enabled)? maybeEnabled,
   }) {
-    return maybeEnabled?.call(analyticsEntity);
+    return maybeEnabled?.call(enabled);
   }
 
   @override
@@ -678,11 +677,11 @@ class _$MaybeEnabledImpl implements _MaybeEnabled {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? processing,
-    TResult Function(AnalyticsEntity analyticsEntity)? maybeEnabled,
+    TResult Function(bool enabled)? maybeEnabled,
     required TResult orElse(),
   }) {
     if (maybeEnabled != null) {
-      return maybeEnabled(analyticsEntity);
+      return maybeEnabled(enabled);
     }
     return orElse();
   }
@@ -723,10 +722,10 @@ class _$MaybeEnabledImpl implements _MaybeEnabled {
 }
 
 abstract class _MaybeEnabled implements AnalyticsState {
-  const factory _MaybeEnabled(
-      {required final AnalyticsEntity analyticsEntity}) = _$MaybeEnabledImpl;
+  const factory _MaybeEnabled({required final bool enabled}) =
+      _$MaybeEnabledImpl;
 
-  AnalyticsEntity get analyticsEntity;
+  bool get enabled;
   @JsonKey(ignore: true)
   _$$MaybeEnabledImplCopyWith<_$MaybeEnabledImpl> get copyWith =>
       throw _privateConstructorUsedError;

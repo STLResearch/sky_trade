@@ -14,16 +14,3 @@ base class TrackingStatusEntity extends Equatable {
         status,
       ];
 }
-
-base class AnalyticsEntity extends Equatable {
-  const AnalyticsEntity({
-    required this.enabled,
-  });
-
-  final bool enabled;
-
-  @override
-  List<Object?> get props => [
-        enabled,
-      ];
-}

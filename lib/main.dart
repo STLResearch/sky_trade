@@ -9,13 +9,13 @@ import 'package:flutter/foundation.dart'
 import 'package:flutter/material.dart' show WidgetsFlutterBinding, runApp;
 import 'package:flutter_dotenv/flutter_dotenv.dart' show dotenv;
 import 'package:flutter_native_splash/flutter_native_splash.dart';
-import 'package:flutter_secure_storage/flutter_secure_storage.dart'
-    show FlutterSecureStorage;
 import 'package:hydrated_bloc/hydrated_bloc.dart'
     show Bloc, HydratedBloc, HydratedStorage;
 import 'package:path_provider/path_provider.dart'
     show getApplicationDocumentsDirectory;
 import 'package:sentry_flutter/sentry_flutter.dart' show SentryFlutter;
+import 'package:shared_preferences/shared_preferences.dart'
+    show SharedPreferencesWithCache;
 import 'package:sky_trade/app.dart';
 import 'package:sky_trade/app_bloc_observer.dart';
 import 'package:sky_trade/core/resources/numbers/ui.dart' show oneDotNil;
@@ -97,20 +97,18 @@ bool get _isUnsuitableEnvironmentForDataCollection =>
     kDebugMode || kProfileMode || _environment == devEnvironment;
 
 Future<bool> _shouldCollectAnalyticsData() async {
-  final analyticsState = await serviceLocator<FlutterSecureStorage>().read(
-    key: analyticsStateKey,
+  final preferences =
+      await serviceLocator<Future<SharedPreferencesWithCache>>();
+
+  final analyticsState = preferences.getBool(
+    analyticsStateKey,
   );
 
-  final analyticsEnabled = bool.tryParse(
-        analyticsState ?? false.toString(),
-      ) ??
-      false;
-
-  if (!Platform.isIOS) return analyticsEnabled;
+  if (!Platform.isIOS) return analyticsState ?? false;
 
   return await AppTrackingTransparency.trackingAuthorizationStatus ==
           TrackingStatus.authorized &&
-      analyticsEnabled;
+      (analyticsState ?? false);
 }
 
 String get _environment => const String.fromEnvironment(

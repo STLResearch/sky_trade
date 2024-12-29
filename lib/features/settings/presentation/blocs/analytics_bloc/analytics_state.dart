@@ -7,6 +7,6 @@ class AnalyticsState with _$AnalyticsState {
   const factory AnalyticsState.processing() = _Processing;
 
   const factory AnalyticsState.maybeEnabled({
-    required AnalyticsEntity analyticsEntity,
+    required bool enabled,
   }) = _MaybeEnabled;
 }

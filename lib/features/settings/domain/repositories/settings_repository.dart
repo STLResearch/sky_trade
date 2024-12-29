@@ -9,7 +9,7 @@ abstract interface class SettingsRepository {
   Future<Either<TrackingStatusFailure, TrackingStatusEntity>>
       maybeRequestTrackingAuthorization();
 
-  Future<AnalyticsEntity> isAnalyticsCollectionEnabled();
+  Future<bool> isAnalyticsCollectionEnabled();
 
   Future<void> setAnalyticsCollectionEnabled({
     required bool value,

@@ -140,6 +140,9 @@ PODS:
     - Flutter
     - FlutterMacOS
     - Sentry/HybridSDK (= 8.36.0)
+  - shared_preferences_foundation (0.0.1):
+    - Flutter
+    - FlutterMacOS
   - TorusSessionManager (4.0.2):
     - curvelib.swift (~> 1.0.1)
     - KeychainSwift (~> 20.0.0)
@@ -172,6 +175,7 @@ DEPENDENCIES:
   - path_provider_foundation (from `.symlinks/plugins/path_provider_foundation/darwin`)
   - permission_handler_apple (from `.symlinks/plugins/permission_handler_apple/ios`)
   - sentry_flutter (from `.symlinks/plugins/sentry_flutter/ios`)
+  - shared_preferences_foundation (from `.symlinks/plugins/shared_preferences_foundation/darwin`)
   - url_launcher_ios (from `.symlinks/plugins/url_launcher_ios/ios`)
   - web3auth_flutter (from `.symlinks/plugins/web3auth_flutter/ios`)
 
@@ -230,6 +234,8 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/permission_handler_apple/ios"
   sentry_flutter:
     :path: ".symlinks/plugins/sentry_flutter/ios"
+  shared_preferences_foundation:
+    :path: ".symlinks/plugins/shared_preferences_foundation/darwin"
   url_launcher_ios:
     :path: ".symlinks/plugins/url_launcher_ios/ios"
   web3auth_flutter:
@@ -268,6 +274,7 @@ SPEC CHECKSUMS:
   PromisesObjC: f5707f49cb48b9636751c5b2e7d227e43fba9f47
   Sentry: f8374b5415bc38dfb5645941b3ae31230fbeae57
   sentry_flutter: 0eb93e5279eb41e2392212afe1ccd2fecb4f8cbe
+  shared_preferences_foundation: fcdcbc04712aee1108ac7fda236f363274528f78
   TorusSessionManager: 05a1a8f3265d0949a1a342c4ba2c52882445b614
   Turf: a1604e74adce15c58462c9ae2acdbf049d5be35e
   url_launcher_ios: 5334b05cef931de560670eeae103fd3e431ac3fe
