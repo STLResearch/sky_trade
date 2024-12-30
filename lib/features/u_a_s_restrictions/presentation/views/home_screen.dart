@@ -172,7 +172,7 @@ class _HomeScreenState extends State<HomeScreen> {
       );
 
   void _stopListeningRemoteIDs() => context.read<RemoteIDReceiverBloc>().add(
-        const RemoteIDReceiverEvent.listenRemoteIDs(),
+        const RemoteIDReceiverEvent.stopListeningRemoteIDs(),
       );
 
   @override

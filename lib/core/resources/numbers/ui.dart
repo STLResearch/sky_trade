@@ -116,6 +116,7 @@ const sixtyOneDotNil = 61.0;
 const sixtySixDotNil = 66.0;
 const sixtyEightDotNil = 68.0;
 const seventyDotNil = 70.0;
+const seventyThreeDotNil = 73.0;
 const seventyEightDotNil = 78.0;
 const ninetySixDotNil = 96.0;
 const oneHundredDotNil = 100.0;

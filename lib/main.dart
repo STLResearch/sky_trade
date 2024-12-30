@@ -1,3 +1,6 @@
+import 'dart:io' show Platform;
+
+import 'package:app_tracking_transparency/app_tracking_transparency.dart';
 import 'package:firebase_analytics/firebase_analytics.dart'
     show FirebaseAnalytics;
 import 'package:firebase_core/firebase_core.dart' show Firebase;
@@ -11,17 +14,21 @@ import 'package:hydrated_bloc/hydrated_bloc.dart'
 import 'package:path_provider/path_provider.dart'
     show getApplicationDocumentsDirectory;
 import 'package:sentry_flutter/sentry_flutter.dart' show SentryFlutter;
+import 'package:shared_preferences/shared_preferences.dart'
+    show SharedPreferencesWithCache;
 import 'package:sky_trade/app.dart';
 import 'package:sky_trade/app_bloc_observer.dart';
 import 'package:sky_trade/core/resources/numbers/ui.dart' show oneDotNil;
 import 'package:sky_trade/core/resources/strings/environments.dart'
     show devEnvironment, environmentVariablesFileName, flavours;
+import 'package:sky_trade/core/resources/strings/local.dart'
+    show analyticsStateKey;
 import 'package:sky_trade/core/resources/strings/secret_keys.dart'
     show sentryDsn;
 import 'package:sky_trade/core/resources/strings/special_characters.dart'
     show fullStop;
 import 'package:sky_trade/firebase_options.dart';
-import 'package:sky_trade/injection_container.dart' show registerServices;
+import 'package:sky_trade/injection_container.dart';
 
 void main() => _loadEnv().then(
       (_) => _maybeInitializeSentryReporting(
@@ -40,7 +47,7 @@ Future<void> _loadEnv() => dotenv.load(
 Future<void> _maybeInitializeSentryReporting({
   required VoidCallback then,
 }) async {
-  if (kDebugMode || kProfileMode || _environment == devEnvironment) {
+  if (_isUnsuitableEnvironmentForDataCollection) {
     then();
 
     return;
@@ -69,10 +76,6 @@ Future<void> _initializeImportantResources() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
 
-  await FirebaseAnalytics.instance.setAnalyticsCollectionEnabled(
-    !kDebugMode || _environment != devEnvironment,
-  );
-
   HydratedBloc.storage = await HydratedStorage.build(
     storageDirectory: switch (kIsWeb) {
       true => HydratedStorage.webStorageDirectory,
@@ -82,7 +85,30 @@ Future<void> _initializeImportantResources() async {
 
   await registerServices();
 
+  await FirebaseAnalytics.instance.setAnalyticsCollectionEnabled(
+    !_isUnsuitableEnvironmentForDataCollection ||
+        await _shouldCollectAnalyticsData(),
+  );
+
   Bloc.observer = const AppBlocObserver();
+}
+
+bool get _isUnsuitableEnvironmentForDataCollection =>
+    kDebugMode || kProfileMode || _environment == devEnvironment;
+
+Future<bool> _shouldCollectAnalyticsData() async {
+  final preferences =
+      await serviceLocator<Future<SharedPreferencesWithCache>>();
+
+  final analyticsState = preferences.getBool(
+    analyticsStateKey,
+  );
+
+  if (!Platform.isIOS) return analyticsState ?? false;
+
+  return await AppTrackingTransparency.trackingAuthorizationStatus ==
+          TrackingStatus.authorized &&
+      (analyticsState ?? false);
 }
 
 String get _environment => const String.fromEnvironment(

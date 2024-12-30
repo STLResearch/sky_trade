@@ -421,3 +421,9 @@ enum UnmannedAircraftAuthenticationType {
   @JsonValue(privateUse0xFKey)
   privateUse0xF,
 }
+
+enum TrackingTransparencyRequestStatus {
+  notYetAsked,
+  authorized,
+  notAuthorized,
+}
