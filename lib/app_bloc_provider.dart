@@ -1,19 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart' show BlocProvider;
 import 'package:get_it/get_it.dart' show GetIt;
-import 'package:sky_trade/features/auth/presentation/blocs/check_sky_trade_user_exists_bloc/check_sky_trade_user_exists_bloc.dart'
-    show CheckSkyTradeUserExistsBloc;
-import 'package:sky_trade/features/auth/presentation/blocs/create_sky_trade_user_bloc/create_sky_trade_user_bloc.dart'
-    show CreateSkyTradeUserBloc;
-import 'package:sky_trade/features/auth/presentation/blocs/web_3_auth_capture_custom_tabs_closed_bloc/web_3_auth_capture_custom_tabs_closed_bloc.dart'
-    show Web3AuthCaptureCustomTabsClosedBloc;
 import 'package:sky_trade/features/auth/presentation/blocs/web_3_auth_initialization_bloc/web_3_auth_initialization_bloc.dart'
     show Web3AuthInitializationBloc;
-import 'package:sky_trade/features/auth/presentation/blocs/web_3_auth_login_bloc/web_3_auth_login_bloc.dart'
-    show Web3AuthLoginBloc;
-import 'package:sky_trade/features/auth/presentation/blocs/web_3_auth_logout_bloc/web_3_auth_logout_bloc.dart'
-    show Web3AuthLogoutBloc;
-import 'package:sky_trade/features/auth/presentation/blocs/web_3_auth_register_bloc/web_3_auth_register_bloc.dart'
-    show Web3AuthRegisterBloc;
 import 'package:sky_trade/features/auth/presentation/blocs/web_3_auth_user_session_bloc/web_3_auth_user_session_bloc.dart'
     show Web3AuthUserSessionBloc;
 import 'package:sky_trade/features/bluetooth/presentation/blocs/bluetooth_adapter_state_bloc/bluetooth_adapter_state_bloc.dart'
@@ -60,25 +48,7 @@ import 'package:sky_trade/features/wifi/presentation/blocs/wifi_permission_bloc/
 final _sl = GetIt.I;
 
 List<BlocProvider> get appBlocProvider => [
-      BlocProvider<CheckSkyTradeUserExistsBloc>(
-        create: (_) => _sl(),
-      ),
-      BlocProvider<CreateSkyTradeUserBloc>(
-        create: (_) => _sl(),
-      ),
-      BlocProvider<Web3AuthCaptureCustomTabsClosedBloc>(
-        create: (_) => _sl(),
-      ),
       BlocProvider<Web3AuthInitializationBloc>(
-        create: (_) => _sl(),
-      ),
-      BlocProvider<Web3AuthLoginBloc>(
-        create: (_) => _sl(),
-      ),
-      BlocProvider<Web3AuthLogoutBloc>(
-        create: (_) => _sl(),
-      ),
-      BlocProvider<Web3AuthRegisterBloc>(
         create: (_) => _sl(),
       ),
       BlocProvider<Web3AuthUserSessionBloc>(

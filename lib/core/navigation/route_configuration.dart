@@ -27,8 +27,10 @@ import 'package:sky_trade/features/auth/presentation/blocs/web_3_auth_user_sessi
         Web3AuthUserSessionEvent,
         Web3AuthUserSessionState;
 import 'package:sky_trade/features/auth/presentation/views/loading_screen.dart';
-import 'package:sky_trade/features/auth/presentation/views/login_screen.dart';
-import 'package:sky_trade/features/auth/presentation/views/register_screen.dart';
+import 'package:sky_trade/features/auth/presentation/views/login_screen.dart'
+    show LoginScreen;
+import 'package:sky_trade/features/auth/presentation/views/register_screen.dart'
+    show RegisterScreen;
 import 'package:sky_trade/features/help/presentation/views/help_screen.dart';
 import 'package:sky_trade/features/insights/presentation/views/insights_screen.dart';
 import 'package:sky_trade/features/internet_connection_checker/presentation/blocs/internet_connection_checker_bloc/internet_connection_checker_bloc.dart'
@@ -38,7 +40,8 @@ import 'package:sky_trade/features/internet_connection_checker/presentation/bloc
         InternetConnectionCheckerState;
 import 'package:sky_trade/features/internet_connection_checker/presentation/screens/no_internet_connection_screen.dart';
 import 'package:sky_trade/features/settings/presentation/views/settings_screen.dart';
-import 'package:sky_trade/features/u_a_s_restrictions/presentation/views/home_screen.dart';
+import 'package:sky_trade/features/u_a_s_restrictions/presentation/views/home_screen.dart'
+    show HomeScreen;
 
 Route routes(RouteSettings settings) => MaterialPageRoute(
       builder: (context) {
