@@ -12,6 +12,7 @@ import 'package:flutter/material.dart'
         SizedBox,
         State,
         StatefulWidget,
+        StatelessWidget,
         TextEditingController,
         ValueListenableBuilder,
         ValueNotifier,
@@ -19,7 +20,13 @@ import 'package:flutter/material.dart'
         WidgetsBinding,
         WidgetsBindingObserver;
 import 'package:flutter_bloc/flutter_bloc.dart'
-    show BlocBuilder, BlocListener, MultiBlocListener, ReadContext;
+    show
+        BlocBuilder,
+        BlocListener,
+        BlocProvider,
+        MultiBlocListener,
+        MultiBlocProvider,
+        ReadContext;
 import 'package:sky_trade/core/errors/failures/auth_failure.dart'
     show
         CreateSkyTradeUserUnknownFailure,
@@ -57,15 +64,39 @@ import 'package:sky_trade/features/auth/presentation/widgets/or_section.dart';
 import 'package:sky_trade/features/auth/presentation/widgets/subscribe_section.dart';
 import 'package:sky_trade/features/link_handler/presentation/blocs/handle_link_bloc/handle_link_bloc.dart'
     show HandleLinkBloc, HandleLinkEvent;
+import 'package:sky_trade/injection_container.dart' show serviceLocator;
 
-class RegisterScreen extends StatefulWidget {
+class RegisterScreen extends StatelessWidget {
   const RegisterScreen({super.key});
 
   @override
-  State<RegisterScreen> createState() => _RegisterScreenState();
+  Widget build(BuildContext context) => MultiBlocProvider(
+        providers: [
+          BlocProvider<CreateSkyTradeUserBloc>(
+            create: (_) => serviceLocator(),
+          ),
+          BlocProvider<Web3AuthCaptureCustomTabsClosedBloc>(
+            create: (_) => serviceLocator(),
+          ),
+          BlocProvider<Web3AuthRegisterBloc>(
+            create: (_) => serviceLocator(),
+          ),
+          BlocProvider<Web3AuthLogoutBloc>(
+            create: (_) => serviceLocator(),
+          ),
+        ],
+        child: const RegisterView(),
+      );
 }
 
-class _RegisterScreenState extends State<RegisterScreen>
+class RegisterView extends StatefulWidget {
+  const RegisterView({super.key});
+
+  @override
+  State<RegisterView> createState() => _RegisterViewState();
+}
+
+class _RegisterViewState extends State<RegisterView>
     with WidgetsBindingObserver {
   late final GlobalKey<FormState> _formKey;
   late final TextEditingController _emailController;

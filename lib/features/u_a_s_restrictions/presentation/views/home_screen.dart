@@ -11,11 +11,17 @@ import 'package:flutter/material.dart'
         Stack,
         State,
         StatefulWidget,
+        StatelessWidget,
         ValueListenableBuilder,
         ValueNotifier,
         Widget;
 import 'package:flutter_bloc/flutter_bloc.dart'
-    show BlocListener, MultiBlocListener, ReadContext;
+    show
+        BlocListener,
+        BlocProvider,
+        MultiBlocListener,
+        MultiBlocProvider,
+        ReadContext;
 import 'package:flutter_dotenv/flutter_dotenv.dart' show dotenv;
 import 'package:mapbox_maps_flutter/mapbox_maps_flutter.dart'
     show CompassSettings, MapboxMap, MapboxOptions, ScaleBarSettings;
@@ -80,15 +86,30 @@ import 'package:sky_trade/features/weather/presentation/weather_bloc/weather_blo
     show WeatherBloc, WeatherEvent;
 import 'package:sky_trade/features/wifi/presentation/blocs/wifi_permission_bloc/wifi_permission_bloc.dart'
     show WifiPermissionBloc, WifiPermissionEvent, WifiPermissionState;
+import 'package:sky_trade/injection_container.dart' show serviceLocator;
 
-class HomeScreen extends StatefulWidget {
+class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
   @override
-  State<HomeScreen> createState() => _HomeScreenState();
+  Widget build(BuildContext context) => MultiBlocProvider(
+        providers: [
+          BlocProvider<Web3AuthLogoutBloc>(
+            create: (_) => serviceLocator(),
+          ),
+        ],
+        child: const HomeView(),
+      );
 }
 
-class _HomeScreenState extends State<HomeScreen> {
+class HomeView extends StatefulWidget {
+  const HomeView({super.key});
+
+  @override
+  State<HomeView> createState() => _HomeViewState();
+}
+
+class _HomeViewState extends State<HomeView> {
   MapboxMap? _mapboxMap;
   PointAnnotationManagerPointAnnotationTuple? _marker;
   List<PointAnnotationManagerPointAnnotationTuple>? _markers;

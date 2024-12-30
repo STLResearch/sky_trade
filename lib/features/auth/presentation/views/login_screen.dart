@@ -12,6 +12,7 @@ import 'package:flutter/material.dart'
         SizedBox,
         State,
         StatefulWidget,
+        StatelessWidget,
         Text,
         TextAlign,
         TextEditingController,
@@ -22,7 +23,13 @@ import 'package:flutter/material.dart'
         WidgetsBinding,
         WidgetsBindingObserver;
 import 'package:flutter_bloc/flutter_bloc.dart'
-    show BlocBuilder, BlocListener, MultiBlocListener, ReadContext;
+    show
+        BlocBuilder,
+        BlocListener,
+        BlocProvider,
+        MultiBlocListener,
+        MultiBlocProvider,
+        ReadContext;
 import 'package:sky_trade/core/errors/failures/auth_failure.dart'
     show
         CheckSkyTradeUserUnknownFailure,
@@ -56,15 +63,39 @@ import 'package:sky_trade/features/auth/presentation/widgets/auth_screen.dart';
 import 'package:sky_trade/features/auth/presentation/widgets/email_field.dart';
 import 'package:sky_trade/features/auth/presentation/widgets/footer_section.dart';
 import 'package:sky_trade/features/auth/presentation/widgets/or_section.dart';
+import 'package:sky_trade/injection_container.dart' show serviceLocator;
 
-class LoginScreen extends StatefulWidget {
+class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
 
   @override
-  State<StatefulWidget> createState() => _LoginScreenState();
+  Widget build(BuildContext context) => MultiBlocProvider(
+        providers: [
+          BlocProvider<CheckSkyTradeUserExistsBloc>(
+            create: (_) => serviceLocator(),
+          ),
+          BlocProvider<Web3AuthCaptureCustomTabsClosedBloc>(
+            create: (_) => serviceLocator(),
+          ),
+          BlocProvider<Web3AuthLoginBloc>(
+            create: (_) => serviceLocator(),
+          ),
+          BlocProvider<Web3AuthLogoutBloc>(
+            create: (_) => serviceLocator(),
+          ),
+        ],
+        child: const LoginView(),
+      );
 }
 
-class _LoginScreenState extends State<LoginScreen> with WidgetsBindingObserver {
+class LoginView extends StatefulWidget {
+  const LoginView({super.key});
+
+  @override
+  State<StatefulWidget> createState() => _LoginViewState();
+}
+
+class _LoginViewState extends State<LoginView> with WidgetsBindingObserver {
   late final GlobalKey<FormState> _formKey;
   late final TextEditingController _emailController;
   late final ValueNotifier<AuthButtonType?>
