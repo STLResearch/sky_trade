@@ -16,19 +16,20 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$DeleteAccountEvent {
+  String get otp => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() deleteAccount,
+    required TResult Function(String otp) deleteAccount,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? deleteAccount,
+    TResult? Function(String otp)? deleteAccount,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? deleteAccount,
+    TResult Function(String otp)? deleteAccount,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -48,6 +49,10 @@ mixin _$DeleteAccountEvent {
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
+
+  @JsonKey(ignore: true)
+  $DeleteAccountEventCopyWith<DeleteAccountEvent> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -55,6 +60,8 @@ abstract class $DeleteAccountEventCopyWith<$Res> {
   factory $DeleteAccountEventCopyWith(
           DeleteAccountEvent value, $Res Function(DeleteAccountEvent) then) =
       _$DeleteAccountEventCopyWithImpl<$Res, DeleteAccountEvent>;
+  @useResult
+  $Res call({String otp});
 }
 
 /// @nodoc
@@ -66,13 +73,30 @@ class _$DeleteAccountEventCopyWithImpl<$Res, $Val extends DeleteAccountEvent>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? otp = null,
+  }) {
+    return _then(_value.copyWith(
+      otp: null == otp
+          ? _value.otp
+          : otp // ignore: cast_nullable_to_non_nullable
+              as String,
+    ) as $Val);
+  }
 }
 
 /// @nodoc
-abstract class _$$DeleteAccountImplCopyWith<$Res> {
+abstract class _$$DeleteAccountImplCopyWith<$Res>
+    implements $DeleteAccountEventCopyWith<$Res> {
   factory _$$DeleteAccountImplCopyWith(
           _$DeleteAccountImpl value, $Res Function(_$DeleteAccountImpl) then) =
       __$$DeleteAccountImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({String otp});
 }
 
 /// @nodoc
@@ -82,51 +106,75 @@ class __$$DeleteAccountImplCopyWithImpl<$Res>
   __$$DeleteAccountImplCopyWithImpl(
       _$DeleteAccountImpl _value, $Res Function(_$DeleteAccountImpl) _then)
       : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? otp = null,
+  }) {
+    return _then(_$DeleteAccountImpl(
+      otp: null == otp
+          ? _value.otp
+          : otp // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$DeleteAccountImpl implements _DeleteAccount {
-  const _$DeleteAccountImpl();
+  const _$DeleteAccountImpl({required this.otp});
+
+  @override
+  final String otp;
 
   @override
   String toString() {
-    return 'DeleteAccountEvent.deleteAccount()';
+    return 'DeleteAccountEvent.deleteAccount(otp: $otp)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$DeleteAccountImpl);
+        (other.runtimeType == runtimeType &&
+            other is _$DeleteAccountImpl &&
+            (identical(other.otp, otp) || other.otp == otp));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(runtimeType, otp);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$DeleteAccountImplCopyWith<_$DeleteAccountImpl> get copyWith =>
+      __$$DeleteAccountImplCopyWithImpl<_$DeleteAccountImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() deleteAccount,
+    required TResult Function(String otp) deleteAccount,
   }) {
-    return deleteAccount();
+    return deleteAccount(otp);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? deleteAccount,
+    TResult? Function(String otp)? deleteAccount,
   }) {
-    return deleteAccount?.call();
+    return deleteAccount?.call(otp);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? deleteAccount,
+    TResult Function(String otp)? deleteAccount,
     required TResult orElse(),
   }) {
     if (deleteAccount != null) {
-      return deleteAccount();
+      return deleteAccount(otp);
     }
     return orElse();
   }
@@ -161,7 +209,15 @@ class _$DeleteAccountImpl implements _DeleteAccount {
 }
 
 abstract class _DeleteAccount implements DeleteAccountEvent {
-  const factory _DeleteAccount() = _$DeleteAccountImpl;
+  const factory _DeleteAccount({required final String otp}) =
+      _$DeleteAccountImpl;
+
+  @override
+  String get otp;
+  @override
+  @JsonKey(ignore: true)
+  _$$DeleteAccountImplCopyWith<_$DeleteAccountImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc

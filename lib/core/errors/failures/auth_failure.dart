@@ -30,6 +30,11 @@ final class WalletAlreadyExistsFailure extends CreateSkyTradeUserFailure {
   List<Object?> get props => [];
 }
 
+final class EmailReuseNotAllowedFailure extends CreateSkyTradeUserFailure {
+  @override
+  List<Object?> get props => [];
+}
+
 final class CreateSkyTradeUserUnknownFailure extends CreateSkyTradeUserFailure {
   @override
   List<Object?> get props => [];
@@ -56,6 +61,11 @@ final class InvalidSignatureFailure extends CheckSkyTradeUserFailure {
 }
 
 final class UserMismatchFailure extends CheckSkyTradeUserFailure {
+  @override
+  List<Object?> get props => [];
+}
+
+final class UserDeletedFailure extends CheckSkyTradeUserFailure {
   @override
   List<Object?> get props => [];
 }

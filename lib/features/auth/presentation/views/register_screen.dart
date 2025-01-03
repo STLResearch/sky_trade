@@ -30,6 +30,7 @@ import 'package:flutter_bloc/flutter_bloc.dart'
 import 'package:sky_trade/core/errors/failures/auth_failure.dart'
     show
         CreateSkyTradeUserUnknownFailure,
+        EmailReuseNotAllowedFailure,
         InvalidEmailFailure,
         WalletAlreadyExistsFailure;
 import 'package:sky_trade/core/resources/numbers/ui.dart'
@@ -205,6 +206,8 @@ class _RegisterViewState extends State<RegisterView>
                         context.localize.pleaseEnterAValidEmail,
                       WalletAlreadyExistsFailure() => context
                           .localize.thisEmailIsAlreadyLinkedToAnExistingAccount,
+                      EmailReuseNotAllowedFailure() => context.localize
+                          .thisEmailCannotBeUsedToCreateANewAccountPleaseUseADifferentEmail,
                       CreateSkyTradeUserUnknownFailure() =>
                         context.localize.anUnknownErrorOccurredPleaseTryAgain,
                     },

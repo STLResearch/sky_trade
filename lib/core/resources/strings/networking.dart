@@ -52,7 +52,8 @@ const propertiesPath = '/properties';
 const airspaceRentalPath = '/airspace-rental';
 const createMintRentalTokenIxPath = '/create-mint-rental-token-ix';
 const executeMintRentalTokenIxPath = '/execute-mint-rental-token-ix';
-const reqDeletePath = '/req_delete';
+const requestDeletePath = '/requestDelete';
+const deleteUserPath = '/delete-user';
 // Signature
 const signatureFirstLine = 'wants you to sign in with your Solana account:';
 const signatureThirdLine = 'Sign in to SkyTrade app.';
@@ -301,6 +302,7 @@ const userKey = 'user';
 const ipAddressKey = 'ipAddress';
 const updatedAtKey = 'updatedAt';
 const enabledKey = 'enabled';
+const otpKey = 'otp';
 const titleKey = 'title';
 const transitFeeKey = 'transitFee';
 const addressKey = 'address';
@@ -352,5 +354,7 @@ const invalidSignature = 'INVALID_SIGNATURE';
 const userNotFound = 'USER_NOT_FOUND';
 const invalidEmail = 'INVALID_EMAIL';
 const userMismatch = 'USER_MISMATCH';
+const userDeleted = 'USER_DELETED';
 const walletAlreadyExists =
     'A wallet already exists for this email address. Kindly sign in with the same method used previously.';
+const invalidDeleteLink = 'Invalid delete link';

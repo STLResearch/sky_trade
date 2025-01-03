@@ -7,6 +7,9 @@ import 'package:sky_trade/features/settings/presentation/blocs/analytics_bloc/an
     show AnalyticsBloc;
 import 'package:sky_trade/features/settings/presentation/blocs/delete_account_bloc/delete_account_bloc.dart'
     show DeleteAccountBloc;
+import 'package:sky_trade/features/settings/presentation/blocs/otp_resend_timer_bloc/otp_resend_timer_bloc.dart';
+import 'package:sky_trade/features/settings/presentation/blocs/request_delete_account_bloc/request_delete_account_bloc.dart'
+    show RequestDeleteAccountBloc;
 import 'package:sky_trade/features/settings/presentation/blocs/tracking_authorization_bloc/tracking_authorization_bloc.dart'
     show TrackingAuthorizationBloc;
 
@@ -22,6 +25,14 @@ Future<void> registerSettingsServices() async {
     )
     ..registerFactory<DeleteAccountBloc>(
       () => DeleteAccountBloc(
+        _sl(),
+      ),
+    )
+    ..registerFactory<OtpResendTimerBloc>(
+      OtpResendTimerBloc.new,
+    )
+    ..registerFactory<RequestDeleteAccountBloc>(
+      () => RequestDeleteAccountBloc(
         _sl(),
       ),
     )

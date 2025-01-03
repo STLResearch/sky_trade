@@ -1,7 +1,12 @@
-import 'package:sky_trade/core/errors/exceptions/settings_exception.dart'
-    show DeleteAccountException;
+import 'package:sky_trade/core/errors/exceptions/settings_exception.dart';
 import 'package:sky_trade/core/resources/strings/networking.dart'
-    show privatePath, reqDeletePath, usersPath;
+    show
+        deleteUserPath,
+        invalidDeleteLink,
+        otpKey,
+        privatePath,
+        requestDeletePath,
+        usersPath;
 import 'package:sky_trade/core/utils/clients/network_client.dart'
     show HttpClient;
 import 'package:sky_trade/core/utils/clients/response_handler.dart';
@@ -9,7 +14,11 @@ import 'package:sky_trade/core/utils/enums/networking.dart' show RequestMethod;
 import 'package:sky_trade/features/settings/data/models/settings_model.dart';
 
 abstract interface class SettingsRemoteDataSource {
-  Future<MessageModel> deleteAccount();
+  Future<MessageModel> requestDeleteAccount();
+
+  Future<MessageModel> deleteAccount({
+    required int otp,
+  });
 }
 
 final class SettingsRemoteDataSourceImplementation
@@ -22,14 +31,35 @@ final class SettingsRemoteDataSourceImplementation
   final HttpClient _httpClient;
 
   @override
-  Future<MessageModel> deleteAccount() => handleResponse<DeleteAccountException,
-          Map<String, dynamic>, MessageModel>(
+  Future<MessageModel> requestDeleteAccount() => handleResponse<
+          RequestDeleteAccountException, Map<String, dynamic>, MessageModel>(
         requestInitiator: _httpClient.request(
           requestMethod: RequestMethod.get,
-          path: privatePath + usersPath + reqDeletePath,
+          path: privatePath + usersPath + requestDeletePath,
           includeSignature: true,
         ),
         onSuccess: MessageModel.fromJson,
-        onError: (_) => DeleteAccountException(),
+        onError: (_) => RequestDeleteAccountException(),
+      );
+
+  @override
+  Future<MessageModel> deleteAccount({
+    required int otp,
+  }) =>
+      handleResponse<DeleteAccountException, Map<String, dynamic>,
+          MessageModel>(
+        requestInitiator: _httpClient.request(
+          requestMethod: RequestMethod.delete,
+          path: privatePath + usersPath + deleteUserPath,
+          includeSignature: true,
+          data: {
+            otpKey: otp,
+          },
+        ),
+        onSuccess: MessageModel.fromJson,
+        onError: (e) => switch (e is String) {
+          true when e == invalidDeleteLink => InvalidCodeException(),
+          _ => DeleteAccountUnknownException(),
+        },
       );
 }

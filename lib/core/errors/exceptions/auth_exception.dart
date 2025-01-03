@@ -5,6 +5,9 @@ final class InvalidEmailException implements CreateSkyTradeUserException {}
 final class WalletAlreadyExistsException
     implements CreateSkyTradeUserException {}
 
+final class EmailReuseNotAllowedException
+    implements CreateSkyTradeUserException {}
+
 final class CreateSkyTradeUserUnknownException
     implements CreateSkyTradeUserException {}
 
@@ -17,6 +20,8 @@ final class UnauthorizedException implements CheckSkyTradeUserException {}
 final class InvalidSignatureException implements CheckSkyTradeUserException {}
 
 final class UserMismatchException implements CheckSkyTradeUserException {}
+
+final class UserDeletedException implements CheckSkyTradeUserException {}
 
 final class CheckSkyTradeUserUnknownException
     implements CheckSkyTradeUserException {}

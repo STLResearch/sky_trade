@@ -13,6 +13,7 @@ const ten = 10;
 const eleven = 11;
 const twelve = 12;
 const sixteen = 16;
+const twenty = 20;
 const twentyThree = 23;
 const twentyFour = 24;
 const forty = 40;

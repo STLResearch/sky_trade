@@ -2,6 +2,8 @@ import 'dart:io' show Platform;
 
 import 'package:app_tracking_transparency/app_tracking_transparency.dart';
 import 'package:dartz/dartz.dart' show Either, Left, Right;
+import 'package:sky_trade/core/errors/exceptions/settings_exception.dart'
+    show DeleteAccountException, InvalidCodeException;
 import 'package:sky_trade/core/errors/failures/settings_failure.dart';
 import 'package:sky_trade/core/utils/clients/data_handler.dart';
 import 'package:sky_trade/core/utils/enums/networking.dart'
@@ -27,11 +29,27 @@ final class SettingsRepositoryImplementation
   final SettingsRemoteDataSource _settingsRemoteDataSource;
 
   @override
-  Future<Either<DeleteAccountFailure, MessageEntity>> deleteAccount() async =>
+  Future<Either<RequestDeleteAccountFailure, MessageEntity>>
+      requestDeleteAccount() =>
+          handleData<RequestDeleteAccountFailure, MessageEntity>(
+            dataSourceOperation: _settingsRemoteDataSource.requestDeleteAccount,
+            onSuccess: (messageEntity) => messageEntity,
+            onFailure: (_) => RequestDeleteAccountFailure(),
+          );
+
+  @override
+  Future<Either<DeleteAccountFailure, MessageEntity>> deleteAccount({
+    required int otp,
+  }) =>
       handleData<DeleteAccountFailure, MessageEntity>(
-        dataSourceOperation: _settingsRemoteDataSource.deleteAccount,
+        dataSourceOperation: () => _settingsRemoteDataSource.deleteAccount(
+          otp: otp,
+        ),
         onSuccess: (messageEntity) => messageEntity,
-        onFailure: (_) => DeleteAccountFailure(),
+        onFailure: (e) => switch (e is DeleteAccountException) {
+          true when e is InvalidCodeException => InvalidCodeFailure(),
+          _ => DeleteAccountUnknownFailure(),
+        },
       );
 
   @override

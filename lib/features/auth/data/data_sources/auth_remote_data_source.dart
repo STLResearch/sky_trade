@@ -16,6 +16,7 @@ import 'package:sky_trade/core/resources/strings/networking.dart'
         publicPath,
         sessionPath,
         unauthorized,
+        userDeleted,
         userMismatch,
         userNotFound,
         usersPath,
@@ -71,6 +72,7 @@ final class AuthRemoteDataSourceImplementation
         onError: (e) => switch (e is String) {
           true when e == invalidEmail => InvalidEmailException(),
           true when e == walletAlreadyExists => WalletAlreadyExistsException(),
+          true when e == userDeleted => EmailReuseNotAllowedException(),
           _ => CreateSkyTradeUserUnknownException(),
         },
       );
@@ -89,6 +91,7 @@ final class AuthRemoteDataSourceImplementation
           true when e == invalidSignature => InvalidSignatureException(),
           true when e == userNotFound => UserNotFoundException(),
           true when e == userMismatch => UserMismatchException(),
+          true when e == userDeleted => UserDeletedException(),
           _ => CheckSkyTradeUserUnknownException(),
         },
       );

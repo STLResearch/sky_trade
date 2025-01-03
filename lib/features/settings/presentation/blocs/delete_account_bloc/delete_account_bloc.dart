@@ -1,6 +1,7 @@
 import 'package:bloc/bloc.dart' show Bloc, Emitter;
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:sky_trade/core/errors/failures/settings_failure.dart';
+import 'package:sky_trade/core/errors/failures/settings_failure.dart'
+    show DeleteAccountFailure;
 import 'package:sky_trade/features/settings/domain/entities/settings_entity.dart'
     show MessageEntity;
 import 'package:sky_trade/features/settings/domain/repositories/settings_repository.dart';
@@ -33,7 +34,11 @@ class DeleteAccountBloc extends Bloc<DeleteAccountEvent, DeleteAccountState> {
       const DeleteAccountState.deletingAccount(),
     );
 
-    final result = await _settingsRepository.deleteAccount();
+    final result = await _settingsRepository.deleteAccount(
+      otp: int.parse(
+        event.otp,
+      ),
+    );
 
     result.fold(
       (deleteAccountFailure) => emit(
