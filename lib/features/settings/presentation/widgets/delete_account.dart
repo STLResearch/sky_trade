@@ -72,9 +72,13 @@ import 'package:sky_trade/core/resources/numbers/ui.dart'
         twentyOneDotNil,
         twoDotNil,
         zero;
+import 'package:sky_trade/core/resources/strings/routes.dart'
+    show loginRoutePath;
 import 'package:sky_trade/core/resources/strings/special_characters.dart'
     show emptyString, whiteSpace;
 import 'package:sky_trade/core/utils/extensions/build_context_extensions.dart';
+import 'package:sky_trade/features/auth/presentation/blocs/web_3_auth_logout_bloc/web_3_auth_logout_bloc.dart'
+    show Web3AuthLogoutBloc, Web3AuthLogoutEvent;
 import 'package:sky_trade/features/settings/presentation/blocs/delete_account_bloc/delete_account_bloc.dart'
     show DeleteAccountBloc, DeleteAccountEvent, DeleteAccountState;
 import 'package:sky_trade/features/settings/presentation/blocs/otp_resend_timer_bloc/otp_resend_timer_bloc.dart'
@@ -91,6 +95,9 @@ class DeleteAccount extends StatelessWidget {
   @override
   Widget build(BuildContext context) => MultiBlocProvider(
         providers: [
+          BlocProvider<Web3AuthLogoutBloc>(
+            create: (_) => serviceLocator(),
+          ),
           BlocProvider<OtpResendTimerBloc>(
             create: (_) => serviceLocator(),
           ),
@@ -174,7 +181,17 @@ class _DeleteAccountViewState extends State<DeleteAccountView> {
             deletedAccount: (_) {
               Navigator.of(
                 context,
-              ).pop();
+              )
+                ..pop()
+                ..pop();
+
+              context.read<Web3AuthLogoutBloc>().add(
+                    const Web3AuthLogoutEvent.logout(),
+                  );
+
+              Navigator.of(context).pushReplacementNamed(
+                loginRoutePath,
+              );
             },
           );
         },

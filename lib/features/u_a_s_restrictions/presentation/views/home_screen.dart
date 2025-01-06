@@ -70,8 +70,6 @@ import 'package:sky_trade/features/remote_i_d_receiver/presentation/blocs/remote
     show RemoteIDReceiverBloc, RemoteIDReceiverEvent, RemoteIDReceiverState;
 import 'package:sky_trade/features/remote_i_d_transmitter/presentation/blocs/remote_i_d_transmitter_bloc/remote_i_d_transmitter_bloc.dart'
     show RemoteIDTransmitterBloc, RemoteIDTransmitterEvent;
-import 'package:sky_trade/features/settings/presentation/blocs/delete_account_bloc/delete_account_bloc.dart'
-    show DeleteAccountBloc, DeleteAccountState;
 import 'package:sky_trade/features/u_a_s_activity/presentation/blocs/u_a_s_activity_bloc/u_a_s_activity_bloc.dart'
     show UASActivityBloc, UASActivityEvent, UASActivityState;
 import 'package:sky_trade/features/u_a_s_restrictions/domain/entities/restriction_entity.dart'
@@ -98,9 +96,6 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) => MultiBlocProvider(
         providers: [
           BlocProvider<Web3AuthLogoutBloc>(
-            create: (_) => serviceLocator(),
-          ),
-          BlocProvider<DeleteAccountBloc>(
             create: (_) => serviceLocator(),
           ),
           BlocProvider<BluetoothPermissionsBloc>(

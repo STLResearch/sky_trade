@@ -3,7 +3,7 @@ import 'dart:async' show Timer;
 import 'package:bloc/bloc.dart' show Bloc, Emitter;
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:sky_trade/core/resources/numbers/ui.dart'
-    show one, twenty, zero;
+    show one, thirty, zero;
 
 part 'otp_resend_timer_event.dart';
 
@@ -44,7 +44,7 @@ class OtpResendTimerBloc
       _countdownTimer?.cancel();
     }
 
-    var secondsLeft = twenty;
+    var secondsLeft = thirty;
 
     add(
       OtpResendTimerEvent.tick(
