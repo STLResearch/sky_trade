@@ -42,7 +42,6 @@ const radarPath = '/radar';
 const restrictionsPath = '/restrictions';
 const suggestPath = '/suggest';
 const privatePath = '/private';
-const publicPath = '/public';
 const usersPath = '/users';
 const sessionPath = '/session';
 const createPath = '/create';

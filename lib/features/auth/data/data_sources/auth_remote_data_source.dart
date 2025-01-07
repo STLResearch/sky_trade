@@ -13,7 +13,6 @@ import 'package:sky_trade/core/resources/strings/networking.dart'
         phoneNumberKey,
         pirateValue,
         privatePath,
-        publicPath,
         sessionPath,
         unauthorized,
         userDeleted,
@@ -57,8 +56,8 @@ final class AuthRemoteDataSourceImplementation
           SkyTradeUserModel>(
         requestInitiator: _httpClient.request(
           requestMethod: RequestMethod.post,
-          path: publicPath + usersPath + createPath,
-          includeSignature: false,
+          path: privatePath + usersPath + createPath,
+          includeSignature: true,
           data: {
             nameKey: pirateValue,
             emailKey: email,
