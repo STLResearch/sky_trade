@@ -42,6 +42,7 @@ const radarPath = '/radar';
 const restrictionsPath = '/restrictions';
 const suggestPath = '/suggest';
 const privatePath = '/private';
+const publicPath = '/public';
 const usersPath = '/users';
 const sessionPath = '/session';
 const createPath = '/create';
@@ -348,12 +349,17 @@ const endTimeKey = 'endTime';
 const transactionKey = 'transaction';
 const ansKey = 'ans';
 // Error response data message
-const unauthorized = 'UNAUTHORIZED';
-const invalidSignature = 'INVALID_SIGNATURE';
-const userNotFound = 'USER_NOT_FOUND';
-const invalidEmail = 'INVALID_EMAIL';
-const userMismatch = 'USER_MISMATCH';
-const userDeleted = 'USER_DELETED';
-const walletAlreadyExists =
+const unauthorizedCode = 'UNAUTHORIZED';
+const invalidSignatureCode = 'INVALID_SIGNATURE';
+const userNotFoundCode = 'USER_NOT_FOUND';
+const invalidEmailCode = 'INVALID_EMAIL';
+const userMismatchCode = 'USER_MISMATCH';
+const userDeletedCode = 'USER_DELETED';
+const aWalletAlreadyExistsForThisEmailAddressKindlySignInWithTheSameMethodUsedPreviouslyCode =
     'A wallet already exists for this email address. Kindly sign in with the same method used previously.';
-const invalidDeleteLink = 'Invalid delete link';
+const walletExistCode = 'WALLET_EXIST';
+const invalidDeleteLinkCode = 'Invalid delete link';
+const invalidDeleteOtpCode = 'Invalid delete OTP';
+const errorInDeletionSkyUserErrorExceptionInvalidDeleteOtpCode =
+    'Error in deletion: SKYUserErrorException: Invalid delete OTP';
+const invalidOtpCode = 'INVALID_OTP';

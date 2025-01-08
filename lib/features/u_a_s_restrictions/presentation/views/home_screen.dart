@@ -248,18 +248,6 @@ class _HomeViewState extends State<HomeView> {
   @override
   Widget build(BuildContext context) => MultiBlocListener(
         listeners: [
-          BlocListener<DeleteAccountBloc, DeleteAccountState>(
-            listener: (_, deleteAccountState) {
-              deleteAccountState.whenOrNull(
-                deletedAccount: (_) {
-                  Navigator.of(context).pushNamedAndRemoveUntil(
-                    loginRoutePath,
-                    (route) => !route.isActive,
-                  );
-                },
-              );
-            },
-          ),
           BlocListener<Web3AuthLogoutBloc, Web3AuthLogoutState>(
             listener: (_, web3AuthLogoutState) {
               web3AuthLogoutState.whenOrNull(
