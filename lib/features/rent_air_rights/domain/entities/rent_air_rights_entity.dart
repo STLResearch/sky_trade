@@ -4,7 +4,7 @@ base class PropertyEntity extends Equatable {
   const PropertyEntity({
     required this.id,
     required this.createdAt,
-    required this.updatedAt,
+    required this.updateAt,
     required this.title,
     required this.transitFee,
     required this.address,
@@ -42,7 +42,7 @@ base class PropertyEntity extends Equatable {
 
   final DateTime createdAt;
 
-  final DateTime updatedAt;
+  final DateTime updateAt;
 
   final String title;
 
@@ -110,7 +110,7 @@ base class PropertyEntity extends Equatable {
   List<Object?> get props => [
         id,
         createdAt,
-        updatedAt,
+        updateAt,
         title,
         transitFee,
         address,
@@ -147,7 +147,7 @@ base class PropertyEntity extends Equatable {
 
 base class LayersEntity extends Equatable {
   const LayersEntity({
-    required this.layerId,
+    required this.id,
     required this.createdAt,
     required this.updateAt,
     required this.tokenId,
@@ -155,7 +155,7 @@ base class LayersEntity extends Equatable {
     required this.isCurrentlyInAuction,
   });
 
-  final int layerId;
+  final int id;
 
   final DateTime createdAt;
 
@@ -169,7 +169,7 @@ base class LayersEntity extends Equatable {
 
   @override
   List<Object?> get props => [
-        layerId,
+        id,
         createdAt,
         updateAt,
         tokenId,
@@ -180,24 +180,24 @@ base class LayersEntity extends Equatable {
 
 base class PropertyStatusEntity extends Equatable {
   const PropertyStatusEntity({
-    required this.propertyStatusId,
+    required this.id,
     required this.type,
   });
 
-  final int propertyStatusId;
+  final int id;
 
   final String type;
 
   @override
   List<Object?> get props => [
-        propertyStatusId,
+        id,
         type,
       ];
 }
 
 base class VertexEntity extends Equatable {
   const VertexEntity({
-    required this.vertexId,
+    required this.id,
     required this.createdAt,
     required this.updateAt,
     required this.latitude,
@@ -206,7 +206,7 @@ base class VertexEntity extends Equatable {
     required this.isSoftDelete,
   });
 
-  final int vertexId;
+  final int id;
 
   final DateTime createdAt;
 
@@ -222,7 +222,9 @@ base class VertexEntity extends Equatable {
 
   @override
   List<Object?> get props => [
-        vertexId,
+        id,
+        createdAt,
+        updateAt,
         latitude,
         longitude,
         propertyId,
@@ -267,8 +269,8 @@ base class WeekDayRangeEntity extends Equatable {
       ];
 }
 
-base class ExecuteMintRentalTokenEntity extends Equatable {
-  const ExecuteMintRentalTokenEntity({
+base class RentalTokenEntity extends Equatable {
+  const RentalTokenEntity({
     required this.ans,
   });
 

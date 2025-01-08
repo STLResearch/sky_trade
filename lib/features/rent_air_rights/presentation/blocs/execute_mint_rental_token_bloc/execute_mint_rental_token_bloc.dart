@@ -3,7 +3,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:sky_trade/core/errors/failures/rent_air_rights_failure.dart'
     show ExecuteMintRentalTokenFailure;
 import 'package:sky_trade/features/rent_air_rights/domain/entities/rent_air_rights_entity.dart'
-    show ExecuteMintRentalTokenEntity;
+    show RentalTokenEntity;
 import 'package:sky_trade/features/rent_air_rights/domain/repositories/rent_air_rights_repository.dart';
 
 part 'execute_mint_rental_token_event.dart';
@@ -20,7 +20,9 @@ class ExecuteMintRentalTokenBloc
         super(
           const ExecuteMintRentalTokenState.initial(),
         ) {
-    on<_ExecuteMintRentalToken>(_executeMintRentalToken);
+    on<_ExecuteMintRentalToken>(
+      _executeMintRentalToken,
+    );
   }
 
   final RentAirRightsRepository _rentAirRightsRepository;
@@ -29,7 +31,9 @@ class ExecuteMintRentalTokenBloc
     _ExecuteMintRentalToken event,
     Emitter<ExecuteMintRentalTokenState> emit,
   ) async {
-    emit(const ExecuteMintRentalTokenState.executingMintRentalToken());
+    emit(
+      const ExecuteMintRentalTokenState.executingMintRentalToken(),
+    );
 
     final result = await _rentAirRightsRepository.executeMintRentalToken(
       transaction: event.transaction,
@@ -40,13 +44,13 @@ class ExecuteMintRentalTokenBloc
 
     result.fold(
       (executeMintRentalTokenFailure) => emit(
-        ExecuteMintRentalTokenState.executeMintRentalTokenFailed(
+        ExecuteMintRentalTokenState.failedToExecuteMintRentalToken(
           executeMintRentalTokenFailure: executeMintRentalTokenFailure,
         ),
       ),
-      (rentalToken) => emit(
+      (rentalTokenEntity) => emit(
         ExecuteMintRentalTokenState.executedMintRentalToken(
-          rentalToken: rentalToken,
+          rentalTokenEntity: rentalTokenEntity,
         ),
       ),
     );

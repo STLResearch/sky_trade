@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart' show Equatable;
 
-final class PropertyFailure extends Equatable {
+final class GetPropertiesFailure extends Equatable {
   @override
   List<Object?> get props => [];
 }

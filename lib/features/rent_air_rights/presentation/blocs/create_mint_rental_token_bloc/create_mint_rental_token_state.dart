@@ -7,10 +7,11 @@ class CreateMintRentalTokenState with _$CreateMintRentalTokenState {
   const factory CreateMintRentalTokenState.creatingMintRentalToken() =
       _CreatingMintRentalToken;
 
-  const factory CreateMintRentalTokenState.createdMintRentalToken() =
-      _CreatedMintRentalToken;
+  const factory CreateMintRentalTokenState.createdMintRentalToken({
+    required String mintToken,
+  }) = _CreatedMintRentalToken;
 
-  const factory CreateMintRentalTokenState.createdMintRentalTokenFailed({
+  const factory CreateMintRentalTokenState.failedToCreateMintRentalToken({
     required CreateMintRentalTokenFailure createMintRentalTokenFailure,
-  }) = _CreateMintRentalTokenFailed;
+  }) = _FailedToCreateMintRentalToken;
 }

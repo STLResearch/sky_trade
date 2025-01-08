@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'get_property_within_bloc.dart';
+part of 'get_properties_bloc.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -15,7 +15,7 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
-mixin _$GetPropertyWithinEvent {
+mixin _$GetPropertiesEvent {
   double get minLongitude => throw _privateConstructorUsedError;
   double get minLatitude => throw _privateConstructorUsedError;
   double get maxLongitude => throw _privateConstructorUsedError;
@@ -24,51 +24,51 @@ mixin _$GetPropertyWithinEvent {
   TResult when<TResult extends Object?>({
     required TResult Function(double minLongitude, double minLatitude,
             double maxLongitude, double maxLatitude)
-        getPropertyWithin,
+        getPropertiesWithin,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(double minLongitude, double minLatitude,
             double maxLongitude, double maxLatitude)?
-        getPropertyWithin,
+        getPropertiesWithin,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(double minLongitude, double minLatitude,
             double maxLongitude, double maxLatitude)?
-        getPropertyWithin,
+        getPropertiesWithin,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_GetPropertyWithin value) getPropertyWithin,
+    required TResult Function(_GetPropertiesWithin value) getPropertiesWithin,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_GetPropertyWithin value)? getPropertyWithin,
+    TResult? Function(_GetPropertiesWithin value)? getPropertiesWithin,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_GetPropertyWithin value)? getPropertyWithin,
+    TResult Function(_GetPropertiesWithin value)? getPropertiesWithin,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
-  $GetPropertyWithinEventCopyWith<GetPropertyWithinEvent> get copyWith =>
+  $GetPropertiesEventCopyWith<GetPropertiesEvent> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $GetPropertyWithinEventCopyWith<$Res> {
-  factory $GetPropertyWithinEventCopyWith(GetPropertyWithinEvent value,
-          $Res Function(GetPropertyWithinEvent) then) =
-      _$GetPropertyWithinEventCopyWithImpl<$Res, GetPropertyWithinEvent>;
+abstract class $GetPropertiesEventCopyWith<$Res> {
+  factory $GetPropertiesEventCopyWith(
+          GetPropertiesEvent value, $Res Function(GetPropertiesEvent) then) =
+      _$GetPropertiesEventCopyWithImpl<$Res, GetPropertiesEvent>;
   @useResult
   $Res call(
       {double minLongitude,
@@ -78,10 +78,9 @@ abstract class $GetPropertyWithinEventCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$GetPropertyWithinEventCopyWithImpl<$Res,
-        $Val extends GetPropertyWithinEvent>
-    implements $GetPropertyWithinEventCopyWith<$Res> {
-  _$GetPropertyWithinEventCopyWithImpl(this._value, this._then);
+class _$GetPropertiesEventCopyWithImpl<$Res, $Val extends GetPropertiesEvent>
+    implements $GetPropertiesEventCopyWith<$Res> {
+  _$GetPropertiesEventCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -118,11 +117,11 @@ class _$GetPropertyWithinEventCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$GetPropertyWithinImplCopyWith<$Res>
-    implements $GetPropertyWithinEventCopyWith<$Res> {
-  factory _$$GetPropertyWithinImplCopyWith(_$GetPropertyWithinImpl value,
-          $Res Function(_$GetPropertyWithinImpl) then) =
-      __$$GetPropertyWithinImplCopyWithImpl<$Res>;
+abstract class _$$GetPropertiesWithinImplCopyWith<$Res>
+    implements $GetPropertiesEventCopyWith<$Res> {
+  factory _$$GetPropertiesWithinImplCopyWith(_$GetPropertiesWithinImpl value,
+          $Res Function(_$GetPropertiesWithinImpl) then) =
+      __$$GetPropertiesWithinImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -133,11 +132,11 @@ abstract class _$$GetPropertyWithinImplCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$GetPropertyWithinImplCopyWithImpl<$Res>
-    extends _$GetPropertyWithinEventCopyWithImpl<$Res, _$GetPropertyWithinImpl>
-    implements _$$GetPropertyWithinImplCopyWith<$Res> {
-  __$$GetPropertyWithinImplCopyWithImpl(_$GetPropertyWithinImpl _value,
-      $Res Function(_$GetPropertyWithinImpl) _then)
+class __$$GetPropertiesWithinImplCopyWithImpl<$Res>
+    extends _$GetPropertiesEventCopyWithImpl<$Res, _$GetPropertiesWithinImpl>
+    implements _$$GetPropertiesWithinImplCopyWith<$Res> {
+  __$$GetPropertiesWithinImplCopyWithImpl(_$GetPropertiesWithinImpl _value,
+      $Res Function(_$GetPropertiesWithinImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -148,7 +147,7 @@ class __$$GetPropertyWithinImplCopyWithImpl<$Res>
     Object? maxLongitude = null,
     Object? maxLatitude = null,
   }) {
-    return _then(_$GetPropertyWithinImpl(
+    return _then(_$GetPropertiesWithinImpl(
       minLongitude: null == minLongitude
           ? _value.minLongitude
           : minLongitude // ignore: cast_nullable_to_non_nullable
@@ -171,8 +170,8 @@ class __$$GetPropertyWithinImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$GetPropertyWithinImpl implements _GetPropertyWithin {
-  const _$GetPropertyWithinImpl(
+class _$GetPropertiesWithinImpl implements _GetPropertiesWithin {
+  const _$GetPropertiesWithinImpl(
       {required this.minLongitude,
       required this.minLatitude,
       required this.maxLongitude,
@@ -189,14 +188,14 @@ class _$GetPropertyWithinImpl implements _GetPropertyWithin {
 
   @override
   String toString() {
-    return 'GetPropertyWithinEvent.getPropertyWithin(minLongitude: $minLongitude, minLatitude: $minLatitude, maxLongitude: $maxLongitude, maxLatitude: $maxLatitude)';
+    return 'GetPropertiesEvent.getPropertiesWithin(minLongitude: $minLongitude, minLatitude: $minLatitude, maxLongitude: $maxLongitude, maxLatitude: $maxLatitude)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$GetPropertyWithinImpl &&
+            other is _$GetPropertiesWithinImpl &&
             (identical(other.minLongitude, minLongitude) ||
                 other.minLongitude == minLongitude) &&
             (identical(other.minLatitude, minLatitude) ||
@@ -214,8 +213,8 @@ class _$GetPropertyWithinImpl implements _GetPropertyWithin {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$GetPropertyWithinImplCopyWith<_$GetPropertyWithinImpl> get copyWith =>
-      __$$GetPropertyWithinImplCopyWithImpl<_$GetPropertyWithinImpl>(
+  _$$GetPropertiesWithinImplCopyWith<_$GetPropertiesWithinImpl> get copyWith =>
+      __$$GetPropertiesWithinImplCopyWithImpl<_$GetPropertiesWithinImpl>(
           this, _$identity);
 
   @override
@@ -223,9 +222,9 @@ class _$GetPropertyWithinImpl implements _GetPropertyWithin {
   TResult when<TResult extends Object?>({
     required TResult Function(double minLongitude, double minLatitude,
             double maxLongitude, double maxLatitude)
-        getPropertyWithin,
+        getPropertiesWithin,
   }) {
-    return getPropertyWithin(
+    return getPropertiesWithin(
         minLongitude, minLatitude, maxLongitude, maxLatitude);
   }
 
@@ -234,9 +233,9 @@ class _$GetPropertyWithinImpl implements _GetPropertyWithin {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(double minLongitude, double minLatitude,
             double maxLongitude, double maxLatitude)?
-        getPropertyWithin,
+        getPropertiesWithin,
   }) {
-    return getPropertyWithin?.call(
+    return getPropertiesWithin?.call(
         minLongitude, minLatitude, maxLongitude, maxLatitude);
   }
 
@@ -245,11 +244,11 @@ class _$GetPropertyWithinImpl implements _GetPropertyWithin {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(double minLongitude, double minLatitude,
             double maxLongitude, double maxLatitude)?
-        getPropertyWithin,
+        getPropertiesWithin,
     required TResult orElse(),
   }) {
-    if (getPropertyWithin != null) {
-      return getPropertyWithin(
+    if (getPropertiesWithin != null) {
+      return getPropertiesWithin(
           minLongitude, minLatitude, maxLongitude, maxLatitude);
     }
     return orElse();
@@ -258,38 +257,38 @@ class _$GetPropertyWithinImpl implements _GetPropertyWithin {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_GetPropertyWithin value) getPropertyWithin,
+    required TResult Function(_GetPropertiesWithin value) getPropertiesWithin,
   }) {
-    return getPropertyWithin(this);
+    return getPropertiesWithin(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_GetPropertyWithin value)? getPropertyWithin,
+    TResult? Function(_GetPropertiesWithin value)? getPropertiesWithin,
   }) {
-    return getPropertyWithin?.call(this);
+    return getPropertiesWithin?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_GetPropertyWithin value)? getPropertyWithin,
+    TResult Function(_GetPropertiesWithin value)? getPropertiesWithin,
     required TResult orElse(),
   }) {
-    if (getPropertyWithin != null) {
-      return getPropertyWithin(this);
+    if (getPropertiesWithin != null) {
+      return getPropertiesWithin(this);
     }
     return orElse();
   }
 }
 
-abstract class _GetPropertyWithin implements GetPropertyWithinEvent {
-  const factory _GetPropertyWithin(
+abstract class _GetPropertiesWithin implements GetPropertiesEvent {
+  const factory _GetPropertiesWithin(
       {required final double minLongitude,
       required final double minLatitude,
       required final double maxLongitude,
-      required final double maxLatitude}) = _$GetPropertyWithinImpl;
+      required final double maxLatitude}) = _$GetPropertiesWithinImpl;
 
   @override
   double get minLongitude;
@@ -301,19 +300,19 @@ abstract class _GetPropertyWithin implements GetPropertyWithinEvent {
   double get maxLatitude;
   @override
   @JsonKey(ignore: true)
-  _$$GetPropertyWithinImplCopyWith<_$GetPropertyWithinImpl> get copyWith =>
+  _$$GetPropertiesWithinImplCopyWith<_$GetPropertiesWithinImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-mixin _$GetPropertiesWithinState {
+mixin _$GetPropertiesState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() gettingProperties,
-    required TResult Function(List<PropertyEntity> propertyEntity)
+    required TResult Function(List<PropertyEntity> propertyEntities)
         gotProperties,
-    required TResult Function(PropertyFailure propertyFailure)
+    required TResult Function(GetPropertiesFailure getPropertiesFailure)
         failedToGetProperties,
   }) =>
       throw _privateConstructorUsedError;
@@ -321,16 +320,18 @@ mixin _$GetPropertiesWithinState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? gettingProperties,
-    TResult? Function(List<PropertyEntity> propertyEntity)? gotProperties,
-    TResult? Function(PropertyFailure propertyFailure)? failedToGetProperties,
+    TResult? Function(List<PropertyEntity> propertyEntities)? gotProperties,
+    TResult? Function(GetPropertiesFailure getPropertiesFailure)?
+        failedToGetProperties,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? gettingProperties,
-    TResult Function(List<PropertyEntity> propertyEntity)? gotProperties,
-    TResult Function(PropertyFailure propertyFailure)? failedToGetProperties,
+    TResult Function(List<PropertyEntity> propertyEntities)? gotProperties,
+    TResult Function(GetPropertiesFailure getPropertiesFailure)?
+        failedToGetProperties,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -363,17 +364,16 @@ mixin _$GetPropertiesWithinState {
 }
 
 /// @nodoc
-abstract class $GetPropertiesWithinStateCopyWith<$Res> {
-  factory $GetPropertiesWithinStateCopyWith(GetPropertiesWithinState value,
-          $Res Function(GetPropertiesWithinState) then) =
-      _$GetPropertiesWithinStateCopyWithImpl<$Res, GetPropertiesWithinState>;
+abstract class $GetPropertiesStateCopyWith<$Res> {
+  factory $GetPropertiesStateCopyWith(
+          GetPropertiesState value, $Res Function(GetPropertiesState) then) =
+      _$GetPropertiesStateCopyWithImpl<$Res, GetPropertiesState>;
 }
 
 /// @nodoc
-class _$GetPropertiesWithinStateCopyWithImpl<$Res,
-        $Val extends GetPropertiesWithinState>
-    implements $GetPropertiesWithinStateCopyWith<$Res> {
-  _$GetPropertiesWithinStateCopyWithImpl(this._value, this._then);
+class _$GetPropertiesStateCopyWithImpl<$Res, $Val extends GetPropertiesState>
+    implements $GetPropertiesStateCopyWith<$Res> {
+  _$GetPropertiesStateCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -390,7 +390,7 @@ abstract class _$$InitialImplCopyWith<$Res> {
 
 /// @nodoc
 class __$$InitialImplCopyWithImpl<$Res>
-    extends _$GetPropertiesWithinStateCopyWithImpl<$Res, _$InitialImpl>
+    extends _$GetPropertiesStateCopyWithImpl<$Res, _$InitialImpl>
     implements _$$InitialImplCopyWith<$Res> {
   __$$InitialImplCopyWithImpl(
       _$InitialImpl _value, $Res Function(_$InitialImpl) _then)
@@ -404,7 +404,7 @@ class _$InitialImpl implements _Initial {
 
   @override
   String toString() {
-    return 'GetPropertiesWithinState.initial()';
+    return 'GetPropertiesState.initial()';
   }
 
   @override
@@ -421,9 +421,9 @@ class _$InitialImpl implements _Initial {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() gettingProperties,
-    required TResult Function(List<PropertyEntity> propertyEntity)
+    required TResult Function(List<PropertyEntity> propertyEntities)
         gotProperties,
-    required TResult Function(PropertyFailure propertyFailure)
+    required TResult Function(GetPropertiesFailure getPropertiesFailure)
         failedToGetProperties,
   }) {
     return initial();
@@ -434,8 +434,9 @@ class _$InitialImpl implements _Initial {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? gettingProperties,
-    TResult? Function(List<PropertyEntity> propertyEntity)? gotProperties,
-    TResult? Function(PropertyFailure propertyFailure)? failedToGetProperties,
+    TResult? Function(List<PropertyEntity> propertyEntities)? gotProperties,
+    TResult? Function(GetPropertiesFailure getPropertiesFailure)?
+        failedToGetProperties,
   }) {
     return initial?.call();
   }
@@ -445,8 +446,9 @@ class _$InitialImpl implements _Initial {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? gettingProperties,
-    TResult Function(List<PropertyEntity> propertyEntity)? gotProperties,
-    TResult Function(PropertyFailure propertyFailure)? failedToGetProperties,
+    TResult Function(List<PropertyEntity> propertyEntities)? gotProperties,
+    TResult Function(GetPropertiesFailure getPropertiesFailure)?
+        failedToGetProperties,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -494,7 +496,7 @@ class _$InitialImpl implements _Initial {
   }
 }
 
-abstract class _Initial implements GetPropertiesWithinState {
+abstract class _Initial implements GetPropertiesState {
   const factory _Initial() = _$InitialImpl;
 }
 
@@ -507,8 +509,7 @@ abstract class _$$GettingPropertiesImplCopyWith<$Res> {
 
 /// @nodoc
 class __$$GettingPropertiesImplCopyWithImpl<$Res>
-    extends _$GetPropertiesWithinStateCopyWithImpl<$Res,
-        _$GettingPropertiesImpl>
+    extends _$GetPropertiesStateCopyWithImpl<$Res, _$GettingPropertiesImpl>
     implements _$$GettingPropertiesImplCopyWith<$Res> {
   __$$GettingPropertiesImplCopyWithImpl(_$GettingPropertiesImpl _value,
       $Res Function(_$GettingPropertiesImpl) _then)
@@ -522,7 +523,7 @@ class _$GettingPropertiesImpl implements _GettingProperties {
 
   @override
   String toString() {
-    return 'GetPropertiesWithinState.gettingProperties()';
+    return 'GetPropertiesState.gettingProperties()';
   }
 
   @override
@@ -539,9 +540,9 @@ class _$GettingPropertiesImpl implements _GettingProperties {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() gettingProperties,
-    required TResult Function(List<PropertyEntity> propertyEntity)
+    required TResult Function(List<PropertyEntity> propertyEntities)
         gotProperties,
-    required TResult Function(PropertyFailure propertyFailure)
+    required TResult Function(GetPropertiesFailure getPropertiesFailure)
         failedToGetProperties,
   }) {
     return gettingProperties();
@@ -552,8 +553,9 @@ class _$GettingPropertiesImpl implements _GettingProperties {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? gettingProperties,
-    TResult? Function(List<PropertyEntity> propertyEntity)? gotProperties,
-    TResult? Function(PropertyFailure propertyFailure)? failedToGetProperties,
+    TResult? Function(List<PropertyEntity> propertyEntities)? gotProperties,
+    TResult? Function(GetPropertiesFailure getPropertiesFailure)?
+        failedToGetProperties,
   }) {
     return gettingProperties?.call();
   }
@@ -563,8 +565,9 @@ class _$GettingPropertiesImpl implements _GettingProperties {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? gettingProperties,
-    TResult Function(List<PropertyEntity> propertyEntity)? gotProperties,
-    TResult Function(PropertyFailure propertyFailure)? failedToGetProperties,
+    TResult Function(List<PropertyEntity> propertyEntities)? gotProperties,
+    TResult Function(GetPropertiesFailure getPropertiesFailure)?
+        failedToGetProperties,
     required TResult orElse(),
   }) {
     if (gettingProperties != null) {
@@ -612,7 +615,7 @@ class _$GettingPropertiesImpl implements _GettingProperties {
   }
 }
 
-abstract class _GettingProperties implements GetPropertiesWithinState {
+abstract class _GettingProperties implements GetPropertiesState {
   const factory _GettingProperties() = _$GettingPropertiesImpl;
 }
 
@@ -622,12 +625,12 @@ abstract class _$$GotPropertiesImplCopyWith<$Res> {
           _$GotPropertiesImpl value, $Res Function(_$GotPropertiesImpl) then) =
       __$$GotPropertiesImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({List<PropertyEntity> propertyEntity});
+  $Res call({List<PropertyEntity> propertyEntities});
 }
 
 /// @nodoc
 class __$$GotPropertiesImplCopyWithImpl<$Res>
-    extends _$GetPropertiesWithinStateCopyWithImpl<$Res, _$GotPropertiesImpl>
+    extends _$GetPropertiesStateCopyWithImpl<$Res, _$GotPropertiesImpl>
     implements _$$GotPropertiesImplCopyWith<$Res> {
   __$$GotPropertiesImplCopyWithImpl(
       _$GotPropertiesImpl _value, $Res Function(_$GotPropertiesImpl) _then)
@@ -636,12 +639,12 @@ class __$$GotPropertiesImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? propertyEntity = null,
+    Object? propertyEntities = null,
   }) {
     return _then(_$GotPropertiesImpl(
-      propertyEntity: null == propertyEntity
-          ? _value._propertyEntity
-          : propertyEntity // ignore: cast_nullable_to_non_nullable
+      propertyEntities: null == propertyEntities
+          ? _value._propertyEntities
+          : propertyEntities // ignore: cast_nullable_to_non_nullable
               as List<PropertyEntity>,
     ));
   }
@@ -651,20 +654,21 @@ class __$$GotPropertiesImplCopyWithImpl<$Res>
 
 class _$GotPropertiesImpl implements _GotProperties {
   const _$GotPropertiesImpl(
-      {required final List<PropertyEntity> propertyEntity})
-      : _propertyEntity = propertyEntity;
+      {required final List<PropertyEntity> propertyEntities})
+      : _propertyEntities = propertyEntities;
 
-  final List<PropertyEntity> _propertyEntity;
+  final List<PropertyEntity> _propertyEntities;
   @override
-  List<PropertyEntity> get propertyEntity {
-    if (_propertyEntity is EqualUnmodifiableListView) return _propertyEntity;
+  List<PropertyEntity> get propertyEntities {
+    if (_propertyEntities is EqualUnmodifiableListView)
+      return _propertyEntities;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_propertyEntity);
+    return EqualUnmodifiableListView(_propertyEntities);
   }
 
   @override
   String toString() {
-    return 'GetPropertiesWithinState.gotProperties(propertyEntity: $propertyEntity)';
+    return 'GetPropertiesState.gotProperties(propertyEntities: $propertyEntities)';
   }
 
   @override
@@ -673,12 +677,12 @@ class _$GotPropertiesImpl implements _GotProperties {
         (other.runtimeType == runtimeType &&
             other is _$GotPropertiesImpl &&
             const DeepCollectionEquality()
-                .equals(other._propertyEntity, _propertyEntity));
+                .equals(other._propertyEntities, _propertyEntities));
   }
 
   @override
   int get hashCode => Object.hash(
-      runtimeType, const DeepCollectionEquality().hash(_propertyEntity));
+      runtimeType, const DeepCollectionEquality().hash(_propertyEntities));
 
   @JsonKey(ignore: true)
   @override
@@ -691,12 +695,12 @@ class _$GotPropertiesImpl implements _GotProperties {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() gettingProperties,
-    required TResult Function(List<PropertyEntity> propertyEntity)
+    required TResult Function(List<PropertyEntity> propertyEntities)
         gotProperties,
-    required TResult Function(PropertyFailure propertyFailure)
+    required TResult Function(GetPropertiesFailure getPropertiesFailure)
         failedToGetProperties,
   }) {
-    return gotProperties(propertyEntity);
+    return gotProperties(propertyEntities);
   }
 
   @override
@@ -704,10 +708,11 @@ class _$GotPropertiesImpl implements _GotProperties {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? gettingProperties,
-    TResult? Function(List<PropertyEntity> propertyEntity)? gotProperties,
-    TResult? Function(PropertyFailure propertyFailure)? failedToGetProperties,
+    TResult? Function(List<PropertyEntity> propertyEntities)? gotProperties,
+    TResult? Function(GetPropertiesFailure getPropertiesFailure)?
+        failedToGetProperties,
   }) {
-    return gotProperties?.call(propertyEntity);
+    return gotProperties?.call(propertyEntities);
   }
 
   @override
@@ -715,12 +720,13 @@ class _$GotPropertiesImpl implements _GotProperties {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? gettingProperties,
-    TResult Function(List<PropertyEntity> propertyEntity)? gotProperties,
-    TResult Function(PropertyFailure propertyFailure)? failedToGetProperties,
+    TResult Function(List<PropertyEntity> propertyEntities)? gotProperties,
+    TResult Function(GetPropertiesFailure getPropertiesFailure)?
+        failedToGetProperties,
     required TResult orElse(),
   }) {
     if (gotProperties != null) {
-      return gotProperties(propertyEntity);
+      return gotProperties(propertyEntities);
     }
     return orElse();
   }
@@ -764,12 +770,12 @@ class _$GotPropertiesImpl implements _GotProperties {
   }
 }
 
-abstract class _GotProperties implements GetPropertiesWithinState {
+abstract class _GotProperties implements GetPropertiesState {
   const factory _GotProperties(
-          {required final List<PropertyEntity> propertyEntity}) =
+          {required final List<PropertyEntity> propertyEntities}) =
       _$GotPropertiesImpl;
 
-  List<PropertyEntity> get propertyEntity;
+  List<PropertyEntity> get propertyEntities;
   @JsonKey(ignore: true)
   _$$GotPropertiesImplCopyWith<_$GotPropertiesImpl> get copyWith =>
       throw _privateConstructorUsedError;
@@ -782,13 +788,12 @@ abstract class _$$FailedToGetPropertiesImplCopyWith<$Res> {
           $Res Function(_$FailedToGetPropertiesImpl) then) =
       __$$FailedToGetPropertiesImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({PropertyFailure propertyFailure});
+  $Res call({GetPropertiesFailure getPropertiesFailure});
 }
 
 /// @nodoc
 class __$$FailedToGetPropertiesImplCopyWithImpl<$Res>
-    extends _$GetPropertiesWithinStateCopyWithImpl<$Res,
-        _$FailedToGetPropertiesImpl>
+    extends _$GetPropertiesStateCopyWithImpl<$Res, _$FailedToGetPropertiesImpl>
     implements _$$FailedToGetPropertiesImplCopyWith<$Res> {
   __$$FailedToGetPropertiesImplCopyWithImpl(_$FailedToGetPropertiesImpl _value,
       $Res Function(_$FailedToGetPropertiesImpl) _then)
@@ -797,13 +802,13 @@ class __$$FailedToGetPropertiesImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? propertyFailure = null,
+    Object? getPropertiesFailure = null,
   }) {
     return _then(_$FailedToGetPropertiesImpl(
-      propertyFailure: null == propertyFailure
-          ? _value.propertyFailure
-          : propertyFailure // ignore: cast_nullable_to_non_nullable
-              as PropertyFailure,
+      getPropertiesFailure: null == getPropertiesFailure
+          ? _value.getPropertiesFailure
+          : getPropertiesFailure // ignore: cast_nullable_to_non_nullable
+              as GetPropertiesFailure,
     ));
   }
 }
@@ -811,14 +816,14 @@ class __$$FailedToGetPropertiesImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$FailedToGetPropertiesImpl implements _FailedToGetProperties {
-  const _$FailedToGetPropertiesImpl({required this.propertyFailure});
+  const _$FailedToGetPropertiesImpl({required this.getPropertiesFailure});
 
   @override
-  final PropertyFailure propertyFailure;
+  final GetPropertiesFailure getPropertiesFailure;
 
   @override
   String toString() {
-    return 'GetPropertiesWithinState.failedToGetProperties(propertyFailure: $propertyFailure)';
+    return 'GetPropertiesState.failedToGetProperties(getPropertiesFailure: $getPropertiesFailure)';
   }
 
   @override
@@ -826,12 +831,12 @@ class _$FailedToGetPropertiesImpl implements _FailedToGetProperties {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$FailedToGetPropertiesImpl &&
-            (identical(other.propertyFailure, propertyFailure) ||
-                other.propertyFailure == propertyFailure));
+            (identical(other.getPropertiesFailure, getPropertiesFailure) ||
+                other.getPropertiesFailure == getPropertiesFailure));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, propertyFailure);
+  int get hashCode => Object.hash(runtimeType, getPropertiesFailure);
 
   @JsonKey(ignore: true)
   @override
@@ -845,12 +850,12 @@ class _$FailedToGetPropertiesImpl implements _FailedToGetProperties {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() gettingProperties,
-    required TResult Function(List<PropertyEntity> propertyEntity)
+    required TResult Function(List<PropertyEntity> propertyEntities)
         gotProperties,
-    required TResult Function(PropertyFailure propertyFailure)
+    required TResult Function(GetPropertiesFailure getPropertiesFailure)
         failedToGetProperties,
   }) {
-    return failedToGetProperties(propertyFailure);
+    return failedToGetProperties(getPropertiesFailure);
   }
 
   @override
@@ -858,10 +863,11 @@ class _$FailedToGetPropertiesImpl implements _FailedToGetProperties {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? gettingProperties,
-    TResult? Function(List<PropertyEntity> propertyEntity)? gotProperties,
-    TResult? Function(PropertyFailure propertyFailure)? failedToGetProperties,
+    TResult? Function(List<PropertyEntity> propertyEntities)? gotProperties,
+    TResult? Function(GetPropertiesFailure getPropertiesFailure)?
+        failedToGetProperties,
   }) {
-    return failedToGetProperties?.call(propertyFailure);
+    return failedToGetProperties?.call(getPropertiesFailure);
   }
 
   @override
@@ -869,12 +875,13 @@ class _$FailedToGetPropertiesImpl implements _FailedToGetProperties {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? gettingProperties,
-    TResult Function(List<PropertyEntity> propertyEntity)? gotProperties,
-    TResult Function(PropertyFailure propertyFailure)? failedToGetProperties,
+    TResult Function(List<PropertyEntity> propertyEntities)? gotProperties,
+    TResult Function(GetPropertiesFailure getPropertiesFailure)?
+        failedToGetProperties,
     required TResult orElse(),
   }) {
     if (failedToGetProperties != null) {
-      return failedToGetProperties(propertyFailure);
+      return failedToGetProperties(getPropertiesFailure);
     }
     return orElse();
   }
@@ -918,12 +925,12 @@ class _$FailedToGetPropertiesImpl implements _FailedToGetProperties {
   }
 }
 
-abstract class _FailedToGetProperties implements GetPropertiesWithinState {
+abstract class _FailedToGetProperties implements GetPropertiesState {
   const factory _FailedToGetProperties(
-          {required final PropertyFailure propertyFailure}) =
+          {required final GetPropertiesFailure getPropertiesFailure}) =
       _$FailedToGetPropertiesImpl;
 
-  PropertyFailure get propertyFailure;
+  GetPropertiesFailure get getPropertiesFailure;
   @JsonKey(ignore: true)
   _$$FailedToGetPropertiesImplCopyWith<_$FailedToGetPropertiesImpl>
       get copyWith => throw _privateConstructorUsedError;

@@ -1,26 +1,25 @@
 import 'package:bloc/bloc.dart' show Bloc, Emitter;
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:sky_trade/core/errors/failures/rent_air_rights_failure.dart'
-    show PropertyFailure;
+    show GetPropertiesFailure;
 import 'package:sky_trade/features/rent_air_rights/domain/entities/rent_air_rights_entity.dart'
     show PropertyEntity;
 import 'package:sky_trade/features/rent_air_rights/domain/repositories/rent_air_rights_repository.dart';
 
-part 'get_property_within_bloc.freezed.dart';
+part 'get_properties_bloc.freezed.dart';
 
-part 'get_property_within_event.dart';
+part 'get_properties_event.dart';
 
-part 'get_property_within_state.dart';
+part 'get_properties_state.dart';
 
-class GetPropertyWithinBloc
-    extends Bloc<GetPropertyWithinEvent, GetPropertiesWithinState> {
-  GetPropertyWithinBloc(
+class GetPropertiesBloc extends Bloc<GetPropertiesEvent, GetPropertiesState> {
+  GetPropertiesBloc(
     RentAirRightsRepository rentAirRightsRepository,
   )   : _rentAirRightsRepository = rentAirRightsRepository,
         super(
-          const GetPropertiesWithinState.initial(),
+          const GetPropertiesState.initial(),
         ) {
-    on<_GetPropertyWithin>(
+    on<_GetPropertiesWithin>(
       _getPropertiesWithin,
     );
   }
@@ -28,14 +27,14 @@ class GetPropertyWithinBloc
   final RentAirRightsRepository _rentAirRightsRepository;
 
   Future<void> _getPropertiesWithin(
-    _GetPropertyWithin event,
-    Emitter<GetPropertiesWithinState> emit,
+    _GetPropertiesWithin event,
+    Emitter<GetPropertiesState> emit,
   ) async {
     emit(
-      const GetPropertiesWithinState.gettingProperties(),
+      const GetPropertiesState.gettingProperties(),
     );
 
-    final result = await _rentAirRightsRepository.getPropertyWithin(
+    final result = await _rentAirRightsRepository.getPropertiesWithin(
       minLongitude: event.minLongitude,
       minLatitude: event.minLatitude,
       maxLongitude: event.maxLongitude,
@@ -43,17 +42,17 @@ class GetPropertyWithinBloc
     );
 
     result.fold(
-      (propertyFailure) {
+      (getPropertiesFailure) {
         emit(
-          GetPropertiesWithinState.failedToGetProperties(
-            propertyFailure: propertyFailure,
+          GetPropertiesState.failedToGetProperties(
+            getPropertiesFailure: getPropertiesFailure,
           ),
         );
       },
       (propertyEntities) {
         emit(
-          GetPropertiesWithinState.gotProperties(
-            propertyEntity: propertyEntities,
+          GetPropertiesState.gotProperties(
+            propertyEntities: propertyEntities,
           ),
         );
       },

@@ -324,33 +324,33 @@ mixin _$ExecuteMintRentalTokenState {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() executingMintRentalToken,
-    required TResult Function(ExecuteMintRentalTokenEntity rentalToken)
+    required TResult Function(RentalTokenEntity rentalTokenEntity)
         executedMintRentalToken,
     required TResult Function(
             ExecuteMintRentalTokenFailure executeMintRentalTokenFailure)
-        executeMintRentalTokenFailed,
+        failedToExecuteMintRentalToken,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? executingMintRentalToken,
-    TResult? Function(ExecuteMintRentalTokenEntity rentalToken)?
+    TResult? Function(RentalTokenEntity rentalTokenEntity)?
         executedMintRentalToken,
     TResult? Function(
             ExecuteMintRentalTokenFailure executeMintRentalTokenFailure)?
-        executeMintRentalTokenFailed,
+        failedToExecuteMintRentalToken,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? executingMintRentalToken,
-    TResult Function(ExecuteMintRentalTokenEntity rentalToken)?
+    TResult Function(RentalTokenEntity rentalTokenEntity)?
         executedMintRentalToken,
     TResult Function(
             ExecuteMintRentalTokenFailure executeMintRentalTokenFailure)?
-        executeMintRentalTokenFailed,
+        failedToExecuteMintRentalToken,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -359,10 +359,10 @@ mixin _$ExecuteMintRentalTokenState {
     required TResult Function(_Initial value) initial,
     required TResult Function(_ExecutingMintRentalToken value)
         executingMintRentalToken,
-    required TResult Function(_executedMintRentalToken value)
+    required TResult Function(_ExecutedMintRentalToken value)
         executedMintRentalToken,
-    required TResult Function(_executeMintRentalTokenFailed value)
-        executeMintRentalTokenFailed,
+    required TResult Function(_FailedToExecuteMintRentalToken value)
+        failedToExecuteMintRentalToken,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -370,18 +370,18 @@ mixin _$ExecuteMintRentalTokenState {
     TResult? Function(_Initial value)? initial,
     TResult? Function(_ExecutingMintRentalToken value)?
         executingMintRentalToken,
-    TResult? Function(_executedMintRentalToken value)? executedMintRentalToken,
-    TResult? Function(_executeMintRentalTokenFailed value)?
-        executeMintRentalTokenFailed,
+    TResult? Function(_ExecutedMintRentalToken value)? executedMintRentalToken,
+    TResult? Function(_FailedToExecuteMintRentalToken value)?
+        failedToExecuteMintRentalToken,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_ExecutingMintRentalToken value)? executingMintRentalToken,
-    TResult Function(_executedMintRentalToken value)? executedMintRentalToken,
-    TResult Function(_executeMintRentalTokenFailed value)?
-        executeMintRentalTokenFailed,
+    TResult Function(_ExecutedMintRentalToken value)? executedMintRentalToken,
+    TResult Function(_FailedToExecuteMintRentalToken value)?
+        failedToExecuteMintRentalToken,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -448,11 +448,11 @@ class _$InitialImpl implements _Initial {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() executingMintRentalToken,
-    required TResult Function(ExecuteMintRentalTokenEntity rentalToken)
+    required TResult Function(RentalTokenEntity rentalTokenEntity)
         executedMintRentalToken,
     required TResult Function(
             ExecuteMintRentalTokenFailure executeMintRentalTokenFailure)
-        executeMintRentalTokenFailed,
+        failedToExecuteMintRentalToken,
   }) {
     return initial();
   }
@@ -462,11 +462,11 @@ class _$InitialImpl implements _Initial {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? executingMintRentalToken,
-    TResult? Function(ExecuteMintRentalTokenEntity rentalToken)?
+    TResult? Function(RentalTokenEntity rentalTokenEntity)?
         executedMintRentalToken,
     TResult? Function(
             ExecuteMintRentalTokenFailure executeMintRentalTokenFailure)?
-        executeMintRentalTokenFailed,
+        failedToExecuteMintRentalToken,
   }) {
     return initial?.call();
   }
@@ -476,11 +476,11 @@ class _$InitialImpl implements _Initial {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? executingMintRentalToken,
-    TResult Function(ExecuteMintRentalTokenEntity rentalToken)?
+    TResult Function(RentalTokenEntity rentalTokenEntity)?
         executedMintRentalToken,
     TResult Function(
             ExecuteMintRentalTokenFailure executeMintRentalTokenFailure)?
-        executeMintRentalTokenFailed,
+        failedToExecuteMintRentalToken,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -495,10 +495,10 @@ class _$InitialImpl implements _Initial {
     required TResult Function(_Initial value) initial,
     required TResult Function(_ExecutingMintRentalToken value)
         executingMintRentalToken,
-    required TResult Function(_executedMintRentalToken value)
+    required TResult Function(_ExecutedMintRentalToken value)
         executedMintRentalToken,
-    required TResult Function(_executeMintRentalTokenFailed value)
-        executeMintRentalTokenFailed,
+    required TResult Function(_FailedToExecuteMintRentalToken value)
+        failedToExecuteMintRentalToken,
   }) {
     return initial(this);
   }
@@ -509,9 +509,9 @@ class _$InitialImpl implements _Initial {
     TResult? Function(_Initial value)? initial,
     TResult? Function(_ExecutingMintRentalToken value)?
         executingMintRentalToken,
-    TResult? Function(_executedMintRentalToken value)? executedMintRentalToken,
-    TResult? Function(_executeMintRentalTokenFailed value)?
-        executeMintRentalTokenFailed,
+    TResult? Function(_ExecutedMintRentalToken value)? executedMintRentalToken,
+    TResult? Function(_FailedToExecuteMintRentalToken value)?
+        failedToExecuteMintRentalToken,
   }) {
     return initial?.call(this);
   }
@@ -521,9 +521,9 @@ class _$InitialImpl implements _Initial {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_ExecutingMintRentalToken value)? executingMintRentalToken,
-    TResult Function(_executedMintRentalToken value)? executedMintRentalToken,
-    TResult Function(_executeMintRentalTokenFailed value)?
-        executeMintRentalTokenFailed,
+    TResult Function(_ExecutedMintRentalToken value)? executedMintRentalToken,
+    TResult Function(_FailedToExecuteMintRentalToken value)?
+        failedToExecuteMintRentalToken,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -581,11 +581,11 @@ class _$ExecutingMintRentalTokenImpl implements _ExecutingMintRentalToken {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() executingMintRentalToken,
-    required TResult Function(ExecuteMintRentalTokenEntity rentalToken)
+    required TResult Function(RentalTokenEntity rentalTokenEntity)
         executedMintRentalToken,
     required TResult Function(
             ExecuteMintRentalTokenFailure executeMintRentalTokenFailure)
-        executeMintRentalTokenFailed,
+        failedToExecuteMintRentalToken,
   }) {
     return executingMintRentalToken();
   }
@@ -595,11 +595,11 @@ class _$ExecutingMintRentalTokenImpl implements _ExecutingMintRentalToken {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? executingMintRentalToken,
-    TResult? Function(ExecuteMintRentalTokenEntity rentalToken)?
+    TResult? Function(RentalTokenEntity rentalTokenEntity)?
         executedMintRentalToken,
     TResult? Function(
             ExecuteMintRentalTokenFailure executeMintRentalTokenFailure)?
-        executeMintRentalTokenFailed,
+        failedToExecuteMintRentalToken,
   }) {
     return executingMintRentalToken?.call();
   }
@@ -609,11 +609,11 @@ class _$ExecutingMintRentalTokenImpl implements _ExecutingMintRentalToken {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? executingMintRentalToken,
-    TResult Function(ExecuteMintRentalTokenEntity rentalToken)?
+    TResult Function(RentalTokenEntity rentalTokenEntity)?
         executedMintRentalToken,
     TResult Function(
             ExecuteMintRentalTokenFailure executeMintRentalTokenFailure)?
-        executeMintRentalTokenFailed,
+        failedToExecuteMintRentalToken,
     required TResult orElse(),
   }) {
     if (executingMintRentalToken != null) {
@@ -628,10 +628,10 @@ class _$ExecutingMintRentalTokenImpl implements _ExecutingMintRentalToken {
     required TResult Function(_Initial value) initial,
     required TResult Function(_ExecutingMintRentalToken value)
         executingMintRentalToken,
-    required TResult Function(_executedMintRentalToken value)
+    required TResult Function(_ExecutedMintRentalToken value)
         executedMintRentalToken,
-    required TResult Function(_executeMintRentalTokenFailed value)
-        executeMintRentalTokenFailed,
+    required TResult Function(_FailedToExecuteMintRentalToken value)
+        failedToExecuteMintRentalToken,
   }) {
     return executingMintRentalToken(this);
   }
@@ -642,9 +642,9 @@ class _$ExecutingMintRentalTokenImpl implements _ExecutingMintRentalToken {
     TResult? Function(_Initial value)? initial,
     TResult? Function(_ExecutingMintRentalToken value)?
         executingMintRentalToken,
-    TResult? Function(_executedMintRentalToken value)? executedMintRentalToken,
-    TResult? Function(_executeMintRentalTokenFailed value)?
-        executeMintRentalTokenFailed,
+    TResult? Function(_ExecutedMintRentalToken value)? executedMintRentalToken,
+    TResult? Function(_FailedToExecuteMintRentalToken value)?
+        failedToExecuteMintRentalToken,
   }) {
     return executingMintRentalToken?.call(this);
   }
@@ -654,9 +654,9 @@ class _$ExecutingMintRentalTokenImpl implements _ExecutingMintRentalToken {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_ExecutingMintRentalToken value)? executingMintRentalToken,
-    TResult Function(_executedMintRentalToken value)? executedMintRentalToken,
-    TResult Function(_executeMintRentalTokenFailed value)?
-        executeMintRentalTokenFailed,
+    TResult Function(_ExecutedMintRentalToken value)? executedMintRentalToken,
+    TResult Function(_FailedToExecuteMintRentalToken value)?
+        failedToExecuteMintRentalToken,
     required TResult orElse(),
   }) {
     if (executingMintRentalToken != null) {
@@ -672,83 +672,83 @@ abstract class _ExecutingMintRentalToken
 }
 
 /// @nodoc
-abstract class _$$executedMintRentalTokenImplCopyWith<$Res> {
-  factory _$$executedMintRentalTokenImplCopyWith(
-          _$executedMintRentalTokenImpl value,
-          $Res Function(_$executedMintRentalTokenImpl) then) =
-      __$$executedMintRentalTokenImplCopyWithImpl<$Res>;
+abstract class _$$ExecutedMintRentalTokenImplCopyWith<$Res> {
+  factory _$$ExecutedMintRentalTokenImplCopyWith(
+          _$ExecutedMintRentalTokenImpl value,
+          $Res Function(_$ExecutedMintRentalTokenImpl) then) =
+      __$$ExecutedMintRentalTokenImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({ExecuteMintRentalTokenEntity rentalToken});
+  $Res call({RentalTokenEntity rentalTokenEntity});
 }
 
 /// @nodoc
-class __$$executedMintRentalTokenImplCopyWithImpl<$Res>
+class __$$ExecutedMintRentalTokenImplCopyWithImpl<$Res>
     extends _$ExecuteMintRentalTokenStateCopyWithImpl<$Res,
-        _$executedMintRentalTokenImpl>
-    implements _$$executedMintRentalTokenImplCopyWith<$Res> {
-  __$$executedMintRentalTokenImplCopyWithImpl(
-      _$executedMintRentalTokenImpl _value,
-      $Res Function(_$executedMintRentalTokenImpl) _then)
+        _$ExecutedMintRentalTokenImpl>
+    implements _$$ExecutedMintRentalTokenImplCopyWith<$Res> {
+  __$$ExecutedMintRentalTokenImplCopyWithImpl(
+      _$ExecutedMintRentalTokenImpl _value,
+      $Res Function(_$ExecutedMintRentalTokenImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? rentalToken = null,
+    Object? rentalTokenEntity = null,
   }) {
-    return _then(_$executedMintRentalTokenImpl(
-      rentalToken: null == rentalToken
-          ? _value.rentalToken
-          : rentalToken // ignore: cast_nullable_to_non_nullable
-              as ExecuteMintRentalTokenEntity,
+    return _then(_$ExecutedMintRentalTokenImpl(
+      rentalTokenEntity: null == rentalTokenEntity
+          ? _value.rentalTokenEntity
+          : rentalTokenEntity // ignore: cast_nullable_to_non_nullable
+              as RentalTokenEntity,
     ));
   }
 }
 
 /// @nodoc
 
-class _$executedMintRentalTokenImpl implements _executedMintRentalToken {
-  const _$executedMintRentalTokenImpl({required this.rentalToken});
+class _$ExecutedMintRentalTokenImpl implements _ExecutedMintRentalToken {
+  const _$ExecutedMintRentalTokenImpl({required this.rentalTokenEntity});
 
   @override
-  final ExecuteMintRentalTokenEntity rentalToken;
+  final RentalTokenEntity rentalTokenEntity;
 
   @override
   String toString() {
-    return 'ExecuteMintRentalTokenState.executedMintRentalToken(rentalToken: $rentalToken)';
+    return 'ExecuteMintRentalTokenState.executedMintRentalToken(rentalTokenEntity: $rentalTokenEntity)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$executedMintRentalTokenImpl &&
-            (identical(other.rentalToken, rentalToken) ||
-                other.rentalToken == rentalToken));
+            other is _$ExecutedMintRentalTokenImpl &&
+            (identical(other.rentalTokenEntity, rentalTokenEntity) ||
+                other.rentalTokenEntity == rentalTokenEntity));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, rentalToken);
+  int get hashCode => Object.hash(runtimeType, rentalTokenEntity);
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$executedMintRentalTokenImplCopyWith<_$executedMintRentalTokenImpl>
-      get copyWith => __$$executedMintRentalTokenImplCopyWithImpl<
-          _$executedMintRentalTokenImpl>(this, _$identity);
+  _$$ExecutedMintRentalTokenImplCopyWith<_$ExecutedMintRentalTokenImpl>
+      get copyWith => __$$ExecutedMintRentalTokenImplCopyWithImpl<
+          _$ExecutedMintRentalTokenImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() executingMintRentalToken,
-    required TResult Function(ExecuteMintRentalTokenEntity rentalToken)
+    required TResult Function(RentalTokenEntity rentalTokenEntity)
         executedMintRentalToken,
     required TResult Function(
             ExecuteMintRentalTokenFailure executeMintRentalTokenFailure)
-        executeMintRentalTokenFailed,
+        failedToExecuteMintRentalToken,
   }) {
-    return executedMintRentalToken(rentalToken);
+    return executedMintRentalToken(rentalTokenEntity);
   }
 
   @override
@@ -756,13 +756,13 @@ class _$executedMintRentalTokenImpl implements _executedMintRentalToken {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? executingMintRentalToken,
-    TResult? Function(ExecuteMintRentalTokenEntity rentalToken)?
+    TResult? Function(RentalTokenEntity rentalTokenEntity)?
         executedMintRentalToken,
     TResult? Function(
             ExecuteMintRentalTokenFailure executeMintRentalTokenFailure)?
-        executeMintRentalTokenFailed,
+        failedToExecuteMintRentalToken,
   }) {
-    return executedMintRentalToken?.call(rentalToken);
+    return executedMintRentalToken?.call(rentalTokenEntity);
   }
 
   @override
@@ -770,15 +770,15 @@ class _$executedMintRentalTokenImpl implements _executedMintRentalToken {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? executingMintRentalToken,
-    TResult Function(ExecuteMintRentalTokenEntity rentalToken)?
+    TResult Function(RentalTokenEntity rentalTokenEntity)?
         executedMintRentalToken,
     TResult Function(
             ExecuteMintRentalTokenFailure executeMintRentalTokenFailure)?
-        executeMintRentalTokenFailed,
+        failedToExecuteMintRentalToken,
     required TResult orElse(),
   }) {
     if (executedMintRentalToken != null) {
-      return executedMintRentalToken(rentalToken);
+      return executedMintRentalToken(rentalTokenEntity);
     }
     return orElse();
   }
@@ -789,10 +789,10 @@ class _$executedMintRentalTokenImpl implements _executedMintRentalToken {
     required TResult Function(_Initial value) initial,
     required TResult Function(_ExecutingMintRentalToken value)
         executingMintRentalToken,
-    required TResult Function(_executedMintRentalToken value)
+    required TResult Function(_ExecutedMintRentalToken value)
         executedMintRentalToken,
-    required TResult Function(_executeMintRentalTokenFailed value)
-        executeMintRentalTokenFailed,
+    required TResult Function(_FailedToExecuteMintRentalToken value)
+        failedToExecuteMintRentalToken,
   }) {
     return executedMintRentalToken(this);
   }
@@ -803,9 +803,9 @@ class _$executedMintRentalTokenImpl implements _executedMintRentalToken {
     TResult? Function(_Initial value)? initial,
     TResult? Function(_ExecutingMintRentalToken value)?
         executingMintRentalToken,
-    TResult? Function(_executedMintRentalToken value)? executedMintRentalToken,
-    TResult? Function(_executeMintRentalTokenFailed value)?
-        executeMintRentalTokenFailed,
+    TResult? Function(_ExecutedMintRentalToken value)? executedMintRentalToken,
+    TResult? Function(_FailedToExecuteMintRentalToken value)?
+        failedToExecuteMintRentalToken,
   }) {
     return executedMintRentalToken?.call(this);
   }
@@ -815,9 +815,9 @@ class _$executedMintRentalTokenImpl implements _executedMintRentalToken {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_ExecutingMintRentalToken value)? executingMintRentalToken,
-    TResult Function(_executedMintRentalToken value)? executedMintRentalToken,
-    TResult Function(_executeMintRentalTokenFailed value)?
-        executeMintRentalTokenFailed,
+    TResult Function(_ExecutedMintRentalToken value)? executedMintRentalToken,
+    TResult Function(_FailedToExecuteMintRentalToken value)?
+        failedToExecuteMintRentalToken,
     required TResult orElse(),
   }) {
     if (executedMintRentalToken != null) {
@@ -827,35 +827,35 @@ class _$executedMintRentalTokenImpl implements _executedMintRentalToken {
   }
 }
 
-abstract class _executedMintRentalToken implements ExecuteMintRentalTokenState {
-  const factory _executedMintRentalToken(
-          {required final ExecuteMintRentalTokenEntity rentalToken}) =
-      _$executedMintRentalTokenImpl;
+abstract class _ExecutedMintRentalToken implements ExecuteMintRentalTokenState {
+  const factory _ExecutedMintRentalToken(
+          {required final RentalTokenEntity rentalTokenEntity}) =
+      _$ExecutedMintRentalTokenImpl;
 
-  ExecuteMintRentalTokenEntity get rentalToken;
+  RentalTokenEntity get rentalTokenEntity;
   @JsonKey(ignore: true)
-  _$$executedMintRentalTokenImplCopyWith<_$executedMintRentalTokenImpl>
+  _$$ExecutedMintRentalTokenImplCopyWith<_$ExecutedMintRentalTokenImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$executeMintRentalTokenFailedImplCopyWith<$Res> {
-  factory _$$executeMintRentalTokenFailedImplCopyWith(
-          _$executeMintRentalTokenFailedImpl value,
-          $Res Function(_$executeMintRentalTokenFailedImpl) then) =
-      __$$executeMintRentalTokenFailedImplCopyWithImpl<$Res>;
+abstract class _$$FailedToExecuteMintRentalTokenImplCopyWith<$Res> {
+  factory _$$FailedToExecuteMintRentalTokenImplCopyWith(
+          _$FailedToExecuteMintRentalTokenImpl value,
+          $Res Function(_$FailedToExecuteMintRentalTokenImpl) then) =
+      __$$FailedToExecuteMintRentalTokenImplCopyWithImpl<$Res>;
   @useResult
   $Res call({ExecuteMintRentalTokenFailure executeMintRentalTokenFailure});
 }
 
 /// @nodoc
-class __$$executeMintRentalTokenFailedImplCopyWithImpl<$Res>
+class __$$FailedToExecuteMintRentalTokenImplCopyWithImpl<$Res>
     extends _$ExecuteMintRentalTokenStateCopyWithImpl<$Res,
-        _$executeMintRentalTokenFailedImpl>
-    implements _$$executeMintRentalTokenFailedImplCopyWith<$Res> {
-  __$$executeMintRentalTokenFailedImplCopyWithImpl(
-      _$executeMintRentalTokenFailedImpl _value,
-      $Res Function(_$executeMintRentalTokenFailedImpl) _then)
+        _$FailedToExecuteMintRentalTokenImpl>
+    implements _$$FailedToExecuteMintRentalTokenImplCopyWith<$Res> {
+  __$$FailedToExecuteMintRentalTokenImplCopyWithImpl(
+      _$FailedToExecuteMintRentalTokenImpl _value,
+      $Res Function(_$FailedToExecuteMintRentalTokenImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -863,7 +863,7 @@ class __$$executeMintRentalTokenFailedImplCopyWithImpl<$Res>
   $Res call({
     Object? executeMintRentalTokenFailure = null,
   }) {
-    return _then(_$executeMintRentalTokenFailedImpl(
+    return _then(_$FailedToExecuteMintRentalTokenImpl(
       executeMintRentalTokenFailure: null == executeMintRentalTokenFailure
           ? _value.executeMintRentalTokenFailure
           : executeMintRentalTokenFailure // ignore: cast_nullable_to_non_nullable
@@ -874,9 +874,9 @@ class __$$executeMintRentalTokenFailedImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$executeMintRentalTokenFailedImpl
-    implements _executeMintRentalTokenFailed {
-  const _$executeMintRentalTokenFailedImpl(
+class _$FailedToExecuteMintRentalTokenImpl
+    implements _FailedToExecuteMintRentalToken {
+  const _$FailedToExecuteMintRentalTokenImpl(
       {required this.executeMintRentalTokenFailure});
 
   @override
@@ -884,14 +884,14 @@ class _$executeMintRentalTokenFailedImpl
 
   @override
   String toString() {
-    return 'ExecuteMintRentalTokenState.executeMintRentalTokenFailed(executeMintRentalTokenFailure: $executeMintRentalTokenFailure)';
+    return 'ExecuteMintRentalTokenState.failedToExecuteMintRentalToken(executeMintRentalTokenFailure: $executeMintRentalTokenFailure)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$executeMintRentalTokenFailedImpl &&
+            other is _$FailedToExecuteMintRentalTokenImpl &&
             (identical(other.executeMintRentalTokenFailure,
                     executeMintRentalTokenFailure) ||
                 other.executeMintRentalTokenFailure ==
@@ -904,23 +904,23 @@ class _$executeMintRentalTokenFailedImpl
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$executeMintRentalTokenFailedImplCopyWith<
-          _$executeMintRentalTokenFailedImpl>
-      get copyWith => __$$executeMintRentalTokenFailedImplCopyWithImpl<
-          _$executeMintRentalTokenFailedImpl>(this, _$identity);
+  _$$FailedToExecuteMintRentalTokenImplCopyWith<
+          _$FailedToExecuteMintRentalTokenImpl>
+      get copyWith => __$$FailedToExecuteMintRentalTokenImplCopyWithImpl<
+          _$FailedToExecuteMintRentalTokenImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() executingMintRentalToken,
-    required TResult Function(ExecuteMintRentalTokenEntity rentalToken)
+    required TResult Function(RentalTokenEntity rentalTokenEntity)
         executedMintRentalToken,
     required TResult Function(
             ExecuteMintRentalTokenFailure executeMintRentalTokenFailure)
-        executeMintRentalTokenFailed,
+        failedToExecuteMintRentalToken,
   }) {
-    return executeMintRentalTokenFailed(executeMintRentalTokenFailure);
+    return failedToExecuteMintRentalToken(executeMintRentalTokenFailure);
   }
 
   @override
@@ -928,13 +928,13 @@ class _$executeMintRentalTokenFailedImpl
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? executingMintRentalToken,
-    TResult? Function(ExecuteMintRentalTokenEntity rentalToken)?
+    TResult? Function(RentalTokenEntity rentalTokenEntity)?
         executedMintRentalToken,
     TResult? Function(
             ExecuteMintRentalTokenFailure executeMintRentalTokenFailure)?
-        executeMintRentalTokenFailed,
+        failedToExecuteMintRentalToken,
   }) {
-    return executeMintRentalTokenFailed?.call(executeMintRentalTokenFailure);
+    return failedToExecuteMintRentalToken?.call(executeMintRentalTokenFailure);
   }
 
   @override
@@ -942,15 +942,15 @@ class _$executeMintRentalTokenFailedImpl
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? executingMintRentalToken,
-    TResult Function(ExecuteMintRentalTokenEntity rentalToken)?
+    TResult Function(RentalTokenEntity rentalTokenEntity)?
         executedMintRentalToken,
     TResult Function(
             ExecuteMintRentalTokenFailure executeMintRentalTokenFailure)?
-        executeMintRentalTokenFailed,
+        failedToExecuteMintRentalToken,
     required TResult orElse(),
   }) {
-    if (executeMintRentalTokenFailed != null) {
-      return executeMintRentalTokenFailed(executeMintRentalTokenFailure);
+    if (failedToExecuteMintRentalToken != null) {
+      return failedToExecuteMintRentalToken(executeMintRentalTokenFailure);
     }
     return orElse();
   }
@@ -961,12 +961,12 @@ class _$executeMintRentalTokenFailedImpl
     required TResult Function(_Initial value) initial,
     required TResult Function(_ExecutingMintRentalToken value)
         executingMintRentalToken,
-    required TResult Function(_executedMintRentalToken value)
+    required TResult Function(_ExecutedMintRentalToken value)
         executedMintRentalToken,
-    required TResult Function(_executeMintRentalTokenFailed value)
-        executeMintRentalTokenFailed,
+    required TResult Function(_FailedToExecuteMintRentalToken value)
+        failedToExecuteMintRentalToken,
   }) {
-    return executeMintRentalTokenFailed(this);
+    return failedToExecuteMintRentalToken(this);
   }
 
   @override
@@ -975,11 +975,11 @@ class _$executeMintRentalTokenFailedImpl
     TResult? Function(_Initial value)? initial,
     TResult? Function(_ExecutingMintRentalToken value)?
         executingMintRentalToken,
-    TResult? Function(_executedMintRentalToken value)? executedMintRentalToken,
-    TResult? Function(_executeMintRentalTokenFailed value)?
-        executeMintRentalTokenFailed,
+    TResult? Function(_ExecutedMintRentalToken value)? executedMintRentalToken,
+    TResult? Function(_FailedToExecuteMintRentalToken value)?
+        failedToExecuteMintRentalToken,
   }) {
-    return executeMintRentalTokenFailed?.call(this);
+    return failedToExecuteMintRentalToken?.call(this);
   }
 
   @override
@@ -987,27 +987,28 @@ class _$executeMintRentalTokenFailedImpl
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_ExecutingMintRentalToken value)? executingMintRentalToken,
-    TResult Function(_executedMintRentalToken value)? executedMintRentalToken,
-    TResult Function(_executeMintRentalTokenFailed value)?
-        executeMintRentalTokenFailed,
+    TResult Function(_ExecutedMintRentalToken value)? executedMintRentalToken,
+    TResult Function(_FailedToExecuteMintRentalToken value)?
+        failedToExecuteMintRentalToken,
     required TResult orElse(),
   }) {
-    if (executeMintRentalTokenFailed != null) {
-      return executeMintRentalTokenFailed(this);
+    if (failedToExecuteMintRentalToken != null) {
+      return failedToExecuteMintRentalToken(this);
     }
     return orElse();
   }
 }
 
-abstract class _executeMintRentalTokenFailed
+abstract class _FailedToExecuteMintRentalToken
     implements ExecuteMintRentalTokenState {
-  const factory _executeMintRentalTokenFailed(
-      {required final ExecuteMintRentalTokenFailure
-          executeMintRentalTokenFailure}) = _$executeMintRentalTokenFailedImpl;
+  const factory _FailedToExecuteMintRentalToken(
+          {required final ExecuteMintRentalTokenFailure
+              executeMintRentalTokenFailure}) =
+      _$FailedToExecuteMintRentalTokenImpl;
 
   ExecuteMintRentalTokenFailure get executeMintRentalTokenFailure;
   @JsonKey(ignore: true)
-  _$$executeMintRentalTokenFailedImplCopyWith<
-          _$executeMintRentalTokenFailedImpl>
+  _$$FailedToExecuteMintRentalTokenImplCopyWith<
+          _$FailedToExecuteMintRentalTokenImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

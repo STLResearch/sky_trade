@@ -46,14 +46,15 @@ import 'package:sky_trade/core/resources/strings/networking.dart'
         vertexesKey,
         weekDayIdKey,
         weekDayRangesKey;
-import 'package:sky_trade/core/utils/converters/date_time_converter.dart';
+import 'package:sky_trade/core/utils/converters/date_time_converter.dart'
+    show StringDateTimeConverter;
 import 'package:sky_trade/features/rent_air_rights/domain/entities/rent_air_rights_entity.dart'
     show
         AnsEntity,
-        ExecuteMintRentalTokenEntity,
         LayersEntity,
         PropertyEntity,
         PropertyStatusEntity,
+        RentalTokenEntity,
         VertexEntity,
         WeekDayRangeEntity;
 
@@ -64,7 +65,7 @@ final class PropertyModel extends PropertyEntity {
   const PropertyModel({
     required this.mId,
     required this.mCreatedAt,
-    required this.mUpdatedAt,
+    required this.mUpdateAt,
     required this.mTitle,
     required this.mTransitFee,
     required this.mAddress,
@@ -99,7 +100,7 @@ final class PropertyModel extends PropertyEntity {
   }) : super(
           id: mId,
           createdAt: mCreatedAt,
-          updatedAt: mUpdatedAt,
+          updateAt: mUpdateAt,
           title: mTitle,
           transitFee: mTransitFee,
           address: mAddress,
@@ -145,7 +146,7 @@ final class PropertyModel extends PropertyEntity {
 
   @JsonKey(name: updateAtKey)
   @StringDateTimeConverter()
-  final DateTime mUpdatedAt;
+  final DateTime mUpdateAt;
 
   @JsonKey(name: titleKey)
   final String mTitle;
@@ -246,14 +247,14 @@ final class PropertyModel extends PropertyEntity {
 @JsonSerializable()
 final class LayersModel extends LayersEntity {
   const LayersModel({
-    required this.mLayerId,
+    required this.mId,
     required this.mCreatedAt,
     required this.mUpdateAt,
     required this.mTokenId,
     required this.mPropertyId,
     required this.mIsCurrentlyInAuction,
   }) : super(
-          layerId: mLayerId,
+          id: mId,
           createdAt: mCreatedAt,
           updateAt: mUpdateAt,
           tokenId: mTokenId,
@@ -265,7 +266,7 @@ final class LayersModel extends LayersEntity {
       _$LayersModelFromJson(json);
 
   @JsonKey(name: idKey)
-  final int mLayerId;
+  final int mId;
 
   @JsonKey(name: createdAtKey)
   @StringDateTimeConverter()
@@ -290,10 +291,10 @@ final class LayersModel extends LayersEntity {
 @JsonSerializable()
 final class PropertyStatusModel extends PropertyStatusEntity {
   const PropertyStatusModel({
-    required this.mPropertyStatusId,
+    required this.mId,
     required this.mType,
   }) : super(
-          propertyStatusId: mPropertyStatusId,
+          id: mId,
           type: mType,
         );
 
@@ -301,7 +302,7 @@ final class PropertyStatusModel extends PropertyStatusEntity {
       _$PropertyStatusModelFromJson(json);
 
   @JsonKey(name: idKey)
-  final int mPropertyStatusId;
+  final int mId;
 
   @JsonKey(name: typeKey)
   final String mType;
@@ -312,7 +313,7 @@ final class PropertyStatusModel extends PropertyStatusEntity {
 @JsonSerializable()
 final class VertexModel extends VertexEntity {
   const VertexModel({
-    required this.mVertexId,
+    required this.mId,
     required this.mCreatedAt,
     required this.mUpdateAt,
     required this.mLatitude,
@@ -320,7 +321,7 @@ final class VertexModel extends VertexEntity {
     required this.mPropertyId,
     required this.mIsSoftDelete,
   }) : super(
-          vertexId: mVertexId,
+          id: mId,
           createdAt: mCreatedAt,
           updateAt: mUpdateAt,
           latitude: mLatitude,
@@ -333,7 +334,7 @@ final class VertexModel extends VertexEntity {
       _$VertexModelFromJson(json);
 
   @JsonKey(name: idKey)
-  final int mVertexId;
+  final int mId;
 
   @JsonKey(name: createdAtKey)
   @StringDateTimeConverter()
@@ -408,20 +409,20 @@ final class WeekDayRangeModel extends WeekDayRangeEntity {
 }
 
 @JsonSerializable()
-final class ExecuteMintRentalTokenModel extends ExecuteMintRentalTokenEntity {
-  const ExecuteMintRentalTokenModel({
+final class RentalTokenModel extends RentalTokenEntity {
+  const RentalTokenModel({
     required this.mAns,
   }) : super(
           ans: mAns,
         );
 
-  factory ExecuteMintRentalTokenModel.fromJson(Map<String, dynamic> json) =>
-      _$ExecuteMintRentalTokenModelFromJson(json);
+  factory RentalTokenModel.fromJson(Map<String, dynamic> json) =>
+      _$RentalTokenModelFromJson(json);
 
   @JsonKey(name: ansKey)
   final AnsModel mAns;
 
-  Map<String, dynamic> toJson() => _$ExecuteMintRentalTokenModelToJson(this);
+  Map<String, dynamic> toJson() => _$RentalTokenModelToJson(this);
 }
 
 @JsonSerializable()

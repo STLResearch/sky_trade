@@ -11,7 +11,7 @@ PropertyModel _$PropertyModelFromJson(Map<String, dynamic> json) =>
       mId: (json['id'] as num).toInt(),
       mCreatedAt:
           const StringDateTimeConverter().fromJson(json['createdAt'] as String),
-      mUpdatedAt:
+      mUpdateAt:
           const StringDateTimeConverter().fromJson(json['updateAt'] as String),
       mTitle: json['title'] as String,
       mTransitFee: json['transitFee'] as String,
@@ -58,7 +58,7 @@ Map<String, dynamic> _$PropertyModelToJson(PropertyModel instance) =>
     <String, dynamic>{
       'id': instance.mId,
       'createdAt': const StringDateTimeConverter().toJson(instance.mCreatedAt),
-      'updateAt': const StringDateTimeConverter().toJson(instance.mUpdatedAt),
+      'updateAt': const StringDateTimeConverter().toJson(instance.mUpdateAt),
       'title': instance.mTitle,
       'transitFee': instance.mTransitFee,
       'address': instance.mAddress,
@@ -93,7 +93,7 @@ Map<String, dynamic> _$PropertyModelToJson(PropertyModel instance) =>
     };
 
 LayersModel _$LayersModelFromJson(Map<String, dynamic> json) => LayersModel(
-      mLayerId: (json['id'] as num).toInt(),
+      mId: (json['id'] as num).toInt(),
       mCreatedAt:
           const StringDateTimeConverter().fromJson(json['createdAt'] as String),
       mUpdateAt:
@@ -105,7 +105,7 @@ LayersModel _$LayersModelFromJson(Map<String, dynamic> json) => LayersModel(
 
 Map<String, dynamic> _$LayersModelToJson(LayersModel instance) =>
     <String, dynamic>{
-      'id': instance.mLayerId,
+      'id': instance.mId,
       'createdAt': const StringDateTimeConverter().toJson(instance.mCreatedAt),
       'updateAt': const StringDateTimeConverter().toJson(instance.mUpdateAt),
       'tokenId': instance.mTokenId,
@@ -115,19 +115,19 @@ Map<String, dynamic> _$LayersModelToJson(LayersModel instance) =>
 
 PropertyStatusModel _$PropertyStatusModelFromJson(Map<String, dynamic> json) =>
     PropertyStatusModel(
-      mPropertyStatusId: (json['id'] as num).toInt(),
+      mId: (json['id'] as num).toInt(),
       mType: json['type'] as String,
     );
 
 Map<String, dynamic> _$PropertyStatusModelToJson(
         PropertyStatusModel instance) =>
     <String, dynamic>{
-      'id': instance.mPropertyStatusId,
+      'id': instance.mId,
       'type': instance.mType,
     };
 
 VertexModel _$VertexModelFromJson(Map<String, dynamic> json) => VertexModel(
-      mVertexId: (json['id'] as num).toInt(),
+      mId: (json['id'] as num).toInt(),
       mCreatedAt:
           const StringDateTimeConverter().fromJson(json['createdAt'] as String),
       mUpdateAt:
@@ -140,7 +140,7 @@ VertexModel _$VertexModelFromJson(Map<String, dynamic> json) => VertexModel(
 
 Map<String, dynamic> _$VertexModelToJson(VertexModel instance) =>
     <String, dynamic>{
-      'id': instance.mVertexId,
+      'id': instance.mId,
       'createdAt': const StringDateTimeConverter().toJson(instance.mCreatedAt),
       'updateAt': const StringDateTimeConverter().toJson(instance.mUpdateAt),
       'latitude': instance.mLatitude,
@@ -173,14 +173,12 @@ Map<String, dynamic> _$WeekDayRangeModelToJson(WeekDayRangeModel instance) =>
       'propertyId': instance.mPropertyId,
     };
 
-ExecuteMintRentalTokenModel _$ExecuteMintRentalTokenModelFromJson(
-        Map<String, dynamic> json) =>
-    ExecuteMintRentalTokenModel(
+RentalTokenModel _$RentalTokenModelFromJson(Map<String, dynamic> json) =>
+    RentalTokenModel(
       mAns: AnsModel.fromJson(json['ans'] as Map<String, dynamic>),
     );
 
-Map<String, dynamic> _$ExecuteMintRentalTokenModelToJson(
-        ExecuteMintRentalTokenModel instance) =>
+Map<String, dynamic> _$RentalTokenModelToJson(RentalTokenModel instance) =>
     <String, dynamic>{
       'ans': instance.mAns,
     };

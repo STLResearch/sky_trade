@@ -1,4 +1,4 @@
-final class PropertyException implements Exception {}
+final class GetPropertiesException implements Exception {}
 
 final class CreateMintRentalTokenException implements Exception {}
 

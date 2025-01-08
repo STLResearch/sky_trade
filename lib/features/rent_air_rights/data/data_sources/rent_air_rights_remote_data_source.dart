@@ -1,12 +1,12 @@
 import 'package:sky_trade/core/errors/exceptions/rent_air_rights_exception.dart';
-import 'package:sky_trade/core/resources/numbers/ui.dart' show thirty;
+import 'package:sky_trade/core/resources/numbers/networking.dart' show thirty;
 import 'package:sky_trade/core/resources/strings/networking.dart'
     show
         airspaceRentalPath,
         callerAddressKey,
-        createMintRentalTokenIx,
+        createMintRentalTokenIxPath,
         endTimeKey,
-        executeMintRentalTokenIx,
+        executeMintRentalTokenIxPath,
         landAssetIdsKey,
         maxLatitudeKey,
         maxLongitudeKey,
@@ -22,10 +22,10 @@ import 'package:sky_trade/core/utils/clients/network_client.dart'
 import 'package:sky_trade/core/utils/clients/response_handler.dart';
 import 'package:sky_trade/core/utils/enums/networking.dart' show RequestMethod;
 import 'package:sky_trade/features/rent_air_rights/data/models/rent_air_rights_model.dart'
-    show ExecuteMintRentalTokenModel, PropertyModel;
+    show PropertyModel, RentalTokenModel;
 
 abstract interface class RentAirRightsRemoteDataSource {
-  Future<List<PropertyModel>> getPropertyWithin({
+  Future<List<PropertyModel>> getPropertiesWithin({
     required double minLongitude,
     required double minLatitude,
     required double maxLongitude,
@@ -39,7 +39,7 @@ abstract interface class RentAirRightsRemoteDataSource {
     required DateTime endTime,
   });
 
-  Future<ExecuteMintRentalTokenModel> executeMintRentalToken({
+  Future<RentalTokenModel> executeMintRentalToken({
     required String transaction,
     required List<String> landAssetIds,
     required DateTime startTime,
@@ -57,13 +57,13 @@ final class RentAirRightsRemoteDataSourceImplementation
   final HttpClient _httpClient;
 
   @override
-  Future<List<PropertyModel>> getPropertyWithin({
+  Future<List<PropertyModel>> getPropertiesWithin({
     required double minLongitude,
     required double minLatitude,
     required double maxLongitude,
     required double maxLatitude,
   }) =>
-      handleResponse<PropertyException, List<dynamic>,
+      handleResponse<GetPropertiesException, List<dynamic>,
           List<PropertyModel>>(
         requestInitiator: _httpClient.request(
           requestMethod: RequestMethod.get,
@@ -77,13 +77,13 @@ final class RentAirRightsRemoteDataSourceImplementation
           },
         ),
         onSuccess: (jsonList) => jsonList
-            .map<PropertyModel>(
+            .map(
               (json) => PropertyModel.fromJson(
                 json as Map<String, dynamic>,
               ),
             )
             .toList(),
-        onError: (_) => PropertyException(),
+        onError: (_) => GetPropertiesException(),
       );
 
   @override
@@ -96,7 +96,7 @@ final class RentAirRightsRemoteDataSourceImplementation
       handleResponse<CreateMintRentalTokenException, String, String>(
         requestInitiator: _httpClient.request(
           requestMethod: RequestMethod.post,
-          path: privatePath + airspaceRentalPath + createMintRentalTokenIx,
+          path: privatePath + airspaceRentalPath + createMintRentalTokenIxPath,
           includeSignature: true,
           data: {
             callerAddressKey: callerAddress,
@@ -104,24 +104,26 @@ final class RentAirRightsRemoteDataSourceImplementation
             startTimeKey: startTime.toIso8601String(),
             endTimeKey: endTime.toIso8601String(),
           },
-          overrideReceiveTimeout: const Duration(seconds: thirty),
+          overrideReceiveTimeout: const Duration(
+            seconds: thirty,
+          ),
         ),
-        onSuccess: (response) => response,
+        onSuccess: (mintToken) => mintToken,
         onError: (_) => CreateMintRentalTokenException(),
       );
 
   @override
-  Future<ExecuteMintRentalTokenModel> executeMintRentalToken({
+  Future<RentalTokenModel> executeMintRentalToken({
     required String transaction,
     required List<String> landAssetIds,
     required DateTime startTime,
     required DateTime endTime,
   }) =>
-      handleResponse<ExecuteMintRentalTokenException,
-          Map<String, dynamic>, ExecuteMintRentalTokenModel>(
+      handleResponse<ExecuteMintRentalTokenException, Map<String, dynamic>,
+          RentalTokenModel>(
         requestInitiator: _httpClient.request(
           requestMethod: RequestMethod.post,
-          path: privatePath + airspaceRentalPath + executeMintRentalTokenIx,
+          path: privatePath + airspaceRentalPath + executeMintRentalTokenIxPath,
           includeSignature: true,
           data: {
             transactionKey: transaction,
@@ -133,7 +135,7 @@ final class RentAirRightsRemoteDataSourceImplementation
             seconds: thirty,
           ),
         ),
-        onSuccess: ExecuteMintRentalTokenModel.fromJson,
+        onSuccess: RentalTokenModel.fromJson,
         onError: (_) => ExecuteMintRentalTokenException(),
       );
 }

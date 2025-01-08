@@ -50,8 +50,8 @@ const remoteIdentifierPath = '/remoteIdentifier';
 const getDroneInsightsPath = '/get-drone-insights';
 const propertiesPath = '/properties';
 const airspaceRentalPath = '/airspace-rental';
-const createMintRentalTokenIx = '/create-mint-rental-token-ix';
-const executeMintRentalTokenIx = '/execute-mint-rental-token-ix';
+const createMintRentalTokenIxPath = '/create-mint-rental-token-ix';
+const executeMintRentalTokenIxPath = '/execute-mint-rental-token-ix';
 // Signature
 const signatureFirstLine = 'wants you to sign in with your Solana account:';
 const signatureThirdLine = 'Sign in to SkyTrade app.';

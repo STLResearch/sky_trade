@@ -4,13 +4,14 @@ part of 'execute_mint_rental_token_bloc.dart';
 class ExecuteMintRentalTokenState with _$ExecuteMintRentalTokenState {
   const factory ExecuteMintRentalTokenState.initial() = _Initial;
 
-  const factory ExecuteMintRentalTokenState.executingMintRentalToken() = _ExecutingMintRentalToken;
+  const factory ExecuteMintRentalTokenState.executingMintRentalToken() =
+      _ExecutingMintRentalToken;
 
   const factory ExecuteMintRentalTokenState.executedMintRentalToken({
-    required ExecuteMintRentalTokenEntity rentalToken,
-  }) = _executedMintRentalToken;
+    required RentalTokenEntity rentalTokenEntity,
+  }) = _ExecutedMintRentalToken;
 
-  const factory ExecuteMintRentalTokenState.executeMintRentalTokenFailed({
+  const factory ExecuteMintRentalTokenState.failedToExecuteMintRentalToken({
     required ExecuteMintRentalTokenFailure executeMintRentalTokenFailure,
-  }) = _executeMintRentalTokenFailed;
+  }) = _FailedToExecuteMintRentalToken;
 }

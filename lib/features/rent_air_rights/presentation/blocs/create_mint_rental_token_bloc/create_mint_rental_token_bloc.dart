@@ -42,12 +42,14 @@ class CreateMintRentalTokenBloc
 
     result.fold(
       (createMintRentalTokenFailure) => emit(
-        CreateMintRentalTokenState.createdMintRentalTokenFailed(
+        CreateMintRentalTokenState.failedToCreateMintRentalToken(
           createMintRentalTokenFailure: createMintRentalTokenFailure,
         ),
       ),
-      (_) => emit(
-        const CreateMintRentalTokenState.createdMintRentalToken(),
+      (mintToken) => emit(
+        CreateMintRentalTokenState.createdMintRentalToken(
+          mintToken: mintToken,
+        ),
       ),
     );
   }
