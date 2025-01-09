@@ -31,24 +31,14 @@ import 'package:sky_trade/features/insights/presentation/blocs/insights_bloc/ins
 import 'package:sky_trade/features/insights/presentation/widgets/filter_card.dart';
 import 'package:sky_trade/features/insights/presentation/widgets/graph.dart';
 
-class GraphSection extends StatelessWidget {
+class GraphSection extends StatefulWidget {
   const GraphSection({super.key});
 
   @override
-  Widget build(BuildContext context) => BlocProvider<InsightsBloc>.value(
-        value: context.read<InsightsBloc>(),
-        child: const GraphSectionView(),
-      );
+  State<GraphSection> createState() => _GraphSectionState();
 }
 
-class GraphSectionView extends StatefulWidget {
-  const GraphSectionView({super.key});
-
-  @override
-  State<GraphSectionView> createState() => _GraphSectionViewState();
-}
-
-class _GraphSectionViewState extends State<GraphSectionView> {
+class _GraphSectionState extends State<GraphSection> {
   late final ValueNotifier<Period> _periodNotifier;
 
   @override

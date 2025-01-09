@@ -29,7 +29,8 @@ import 'package:flutter/material.dart'
         Widget,
         WidgetSpan,
         WidgetsBinding;
-import 'package:flutter_bloc/flutter_bloc.dart' show BlocBuilder, BlocProvider;
+import 'package:flutter_bloc/flutter_bloc.dart'
+    show BlocBuilder, BlocProvider, ReadContext;
 import 'package:sky_trade/core/assets/generated/assets.gen.dart';
 import 'package:sky_trade/core/resources/numbers/ui.dart'
     show
@@ -51,16 +52,24 @@ import 'package:sky_trade/core/utils/extensions/remote_i_d_entity_extensions.dar
 import 'package:sky_trade/features/remote_i_d_receiver/presentation/blocs/remote_i_d_receiver_bloc/remote_i_d_receiver_bloc.dart'
     show RemoteIDReceiverBloc, RemoteIDReceiverState;
 import 'package:sky_trade/features/u_a_s_restrictions/presentation/widgets/u_a_s_detail_section.dart';
-import 'package:sky_trade/injection_container.dart' show serviceLocator;
 
 class UASDetails extends StatelessWidget {
-  const UASDetails({super.key});
+  const UASDetails(
+    this.remoteIDReceiverBloc, {
+    required this.index,
+    super.key,
+  });
+
+  final RemoteIDReceiverBloc remoteIDReceiverBloc;
+  final int index;
 
   @override
-  Widget build(BuildContext context) => BlocProvider<RemoteIDReceiverBloc>.value(
-    value: context.read<RemoteIDReceiver>()
-        create: (_) => serviceLocator(),
-        child: UASDetailsView();
+  Widget build(BuildContext context) =>
+      BlocProvider<RemoteIDReceiverBloc>.value(
+        value: remoteIDReceiverBloc,
+        child: UASDetailsView(
+          index: index,
+        ),
       );
 }
 

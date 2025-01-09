@@ -64,9 +64,6 @@ class SearchCard extends StatelessWidget {
           BlocProvider<BluetoothAdapterStateBloc>(
             create: (_) => serviceLocator(),
           ),
-          BlocProvider<SearchAutocompleteBloc>.value(
-            value: context.read<SearchAutocompleteBloc>(),
-          ),
         ],
         child: const SearchCardView(),
       );

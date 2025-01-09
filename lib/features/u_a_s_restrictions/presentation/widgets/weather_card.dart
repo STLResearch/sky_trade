@@ -9,14 +9,11 @@ import 'package:flutter/material.dart'
         Padding,
         SizedBox,
         Stack,
-        State,
-        StatefulWidget,
         StatelessWidget,
         Text,
         Theme,
         Widget;
-import 'package:flutter_bloc/flutter_bloc.dart'
-    show BlocBuilder, BlocProvider, ReadContext;
+import 'package:flutter_bloc/flutter_bloc.dart' show BlocBuilder;
 import 'package:sky_trade/core/resources/colors.dart'
     show hex222222, hexE6FFFFFF;
 import 'package:sky_trade/core/resources/numbers/ui.dart'
@@ -40,22 +37,6 @@ import 'package:sky_trade/features/weather/presentation/weather_bloc/weather_blo
 class WeatherCard extends StatelessWidget {
   const WeatherCard({super.key});
 
-  @override
-  Widget build(BuildContext context) =>
-      BlocProvider<WeatherBloc>.value(
-        value: context.read<WeatherBloc>(),
-        child: const WeatherCardView(),
-      );
-}
-
-class WeatherCardView extends StatefulWidget {
-  const WeatherCardView({super.key});
-
-  @override
-  State<WeatherCardView> createState() => _WeatherCardViewState();
-}
-
-class _WeatherCardViewState extends State<WeatherCardView> {
   @override
   Widget build(BuildContext context) => Align(
         alignment: AlignmentDirectional.topEnd,

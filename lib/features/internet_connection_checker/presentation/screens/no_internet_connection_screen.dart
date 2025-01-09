@@ -32,7 +32,8 @@ import 'package:sky_trade/core/resources/numbers/ui.dart'
         tenDotNil,
         thirtyDotNil,
         twentyTwoDotFive;
-import 'package:sky_trade/core/resources/strings/routes.dart' show baseRoutePath;
+import 'package:sky_trade/core/resources/strings/routes.dart'
+    show baseRoutePath;
 import 'package:sky_trade/core/utils/extensions/build_context_extensions.dart';
 import 'package:sky_trade/features/internet_connection_checker/presentation/blocs/internet_connection_checker_bloc/internet_connection_checker_bloc.dart'
     show

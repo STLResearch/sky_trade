@@ -32,8 +32,7 @@ import 'package:sky_trade/features/search_autocomplete/presentation/blocs/search
 import 'package:sky_trade/features/u_a_s_restrictions/presentation/widgets/options_card.dart';
 import 'package:sky_trade/features/u_a_s_restrictions/presentation/widgets/search_card.dart'
     show SearchCard;
-import 'package:sky_trade/features/u_a_s_restrictions/presentation/widgets/search_result_card.dart'
-    show SearchResultCard;
+import 'package:sky_trade/features/u_a_s_restrictions/presentation/widgets/search_result_card.dart';
 import 'package:sky_trade/features/u_a_s_restrictions/presentation/widgets/weather_card.dart';
 import 'package:sky_trade/injection_container.dart' show serviceLocator;
 

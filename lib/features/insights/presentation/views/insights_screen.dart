@@ -49,8 +49,7 @@ import 'package:sky_trade/core/resources/numbers/ui.dart'
 import 'package:sky_trade/core/utils/extensions/build_context_extensions.dart';
 import 'package:sky_trade/features/insights/presentation/blocs/insights_bloc/insights_bloc.dart'
     show InsightsBloc, InsightsEvent, InsightsState;
-import 'package:sky_trade/features/insights/presentation/widgets/graph_section.dart'
-    show GraphSection;
+import 'package:sky_trade/features/insights/presentation/widgets/graph_section.dart';
 import 'package:sky_trade/features/insights/presentation/widgets/tracked_drone.dart';
 import 'package:sky_trade/injection_container.dart' show serviceLocator;
 

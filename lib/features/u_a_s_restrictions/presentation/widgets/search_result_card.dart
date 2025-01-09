@@ -22,8 +22,7 @@ import 'package:flutter/material.dart'
         Text,
         Theme,
         Widget;
-import 'package:flutter_bloc/flutter_bloc.dart'
-    show BlocBuilder, BlocProvider, ReadContext;
+import 'package:flutter_bloc/flutter_bloc.dart' show BlocBuilder;
 import 'package:sky_trade/core/resources/colors.dart' show hex333333;
 import 'package:sky_trade/core/resources/numbers/ui.dart'
     show
@@ -44,17 +43,6 @@ import 'package:sky_trade/features/search_autocomplete/presentation/blocs/search
 
 class SearchResultCard extends StatelessWidget {
   const SearchResultCard({super.key});
-
-  @override
-  Widget build(BuildContext context) =>
-      BlocProvider<SearchAutocompleteBloc>.value(
-        value: context.read<SearchAutocompleteBloc>(),
-        child: const SearchResultCardView(),
-      );
-}
-
-class SearchResultCardView extends StatelessWidget {
-  const SearchResultCardView({super.key});
 
   @override
   Widget build(BuildContext context) => Column(

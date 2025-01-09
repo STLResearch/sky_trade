@@ -82,8 +82,7 @@ import 'package:sky_trade/features/u_a_s_restrictions/presentation/widgets/map_o
 import 'package:sky_trade/features/u_a_s_restrictions/presentation/widgets/map_view.dart';
 import 'package:sky_trade/features/u_a_s_restrictions/presentation/widgets/progress_dialog.dart';
 import 'package:sky_trade/features/u_a_s_restrictions/presentation/widgets/restriction_indicator.dart';
-import 'package:sky_trade/features/u_a_s_restrictions/presentation/widgets/u_a_s_list.dart'
-    show UASList;
+import 'package:sky_trade/features/u_a_s_restrictions/presentation/widgets/u_a_s_list.dart';
 import 'package:sky_trade/features/weather/presentation/weather_bloc/weather_bloc.dart'
     show WeatherBloc, WeatherEvent;
 import 'package:sky_trade/features/wifi/presentation/blocs/wifi_permission_bloc/wifi_permission_bloc.dart'
@@ -99,28 +98,7 @@ class HomeScreen extends StatelessWidget {
           BlocProvider<Web3AuthLogoutBloc>(
             create: (_) => serviceLocator(),
           ),
-          BlocProvider<RemoteIDTransmitterBloc>(
-            create: (_) => serviceLocator(),
-          ),
-          BlocProvider<UASActivityBloc>(
-            create: (_) => serviceLocator(),
-          ),
-          BlocProvider<LocationPermissionBloc>(
-            create: (_) => serviceLocator(),
-          ),
           BlocProvider<BluetoothPermissionsBloc>(
-            create: (_) => serviceLocator(),
-          ),
-          BlocProvider<LocationPositionBloc>(
-            create: (_) => serviceLocator(),
-          ),
-          BlocProvider<LocationServiceStatusBloc>(
-            create: (_) => serviceLocator(),
-          ),
-          BlocProvider<WifiPermissionBloc>(
-            create: (_) => serviceLocator(),
-          ),
-          BlocProvider<UASRestrictionsBloc>(
             create: (_) => serviceLocator(),
           ),
           BlocProvider<CacheDataBloc>(
@@ -132,7 +110,31 @@ class HomeScreen extends StatelessWidget {
           BlocProvider<GeoHashBloc>(
             create: (_) => serviceLocator(),
           ),
+          BlocProvider<LocationPermissionBloc>(
+            create: (_) => serviceLocator(),
+          ),
+          BlocProvider<LocationPositionBloc>(
+            create: (_) => serviceLocator(),
+          ),
+          BlocProvider<LocationServiceStatusBloc>(
+            create: (_) => serviceLocator(),
+          ),
+          BlocProvider<RemoteIDReceiverBloc>(
+            create: (_) => serviceLocator(),
+          ),
+          BlocProvider<RemoteIDTransmitterBloc>(
+            create: (_) => serviceLocator(),
+          ),
+          BlocProvider<UASActivityBloc>(
+            create: (_) => serviceLocator(),
+          ),
+          BlocProvider<UASRestrictionsBloc>(
+            create: (_) => serviceLocator(),
+          ),
           BlocProvider<WeatherBloc>(
+            create: (_) => serviceLocator(),
+          ),
+          BlocProvider<WifiPermissionBloc>(
             create: (_) => serviceLocator(),
           ),
         ],
