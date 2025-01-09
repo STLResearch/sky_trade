@@ -77,11 +77,13 @@ import 'package:sky_trade/features/u_a_s_restrictions/domain/entities/restrictio
 import 'package:sky_trade/features/u_a_s_restrictions/presentation/blocs/u_a_s_restrictions_bloc/u_a_s_restrictions_bloc.dart'
     show UASRestrictionsBloc, UASRestrictionsEvent, UASRestrictionsState;
 import 'package:sky_trade/features/u_a_s_restrictions/presentation/widgets/alert_snack_bar.dart';
-import 'package:sky_trade/features/u_a_s_restrictions/presentation/widgets/map_overlay.dart';
+import 'package:sky_trade/features/u_a_s_restrictions/presentation/widgets/map_overlay.dart'
+    show MapOverlay;
 import 'package:sky_trade/features/u_a_s_restrictions/presentation/widgets/map_view.dart';
 import 'package:sky_trade/features/u_a_s_restrictions/presentation/widgets/progress_dialog.dart';
 import 'package:sky_trade/features/u_a_s_restrictions/presentation/widgets/restriction_indicator.dart';
-import 'package:sky_trade/features/u_a_s_restrictions/presentation/widgets/u_a_s_list.dart';
+import 'package:sky_trade/features/u_a_s_restrictions/presentation/widgets/u_a_s_list.dart'
+    show UASList;
 import 'package:sky_trade/features/weather/presentation/weather_bloc/weather_bloc.dart'
     show WeatherBloc, WeatherEvent;
 import 'package:sky_trade/features/wifi/presentation/blocs/wifi_permission_bloc/wifi_permission_bloc.dart'
@@ -95,6 +97,42 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) => MultiBlocProvider(
         providers: [
           BlocProvider<Web3AuthLogoutBloc>(
+            create: (_) => serviceLocator(),
+          ),
+          BlocProvider<RemoteIDTransmitterBloc>(
+            create: (_) => serviceLocator(),
+          ),
+          BlocProvider<UASActivityBloc>(
+            create: (_) => serviceLocator(),
+          ),
+          BlocProvider<LocationPermissionBloc>(
+            create: (_) => serviceLocator(),
+          ),
+          BlocProvider<BluetoothPermissionsBloc>(
+            create: (_) => serviceLocator(),
+          ),
+          BlocProvider<LocationPositionBloc>(
+            create: (_) => serviceLocator(),
+          ),
+          BlocProvider<LocationServiceStatusBloc>(
+            create: (_) => serviceLocator(),
+          ),
+          BlocProvider<WifiPermissionBloc>(
+            create: (_) => serviceLocator(),
+          ),
+          BlocProvider<UASRestrictionsBloc>(
+            create: (_) => serviceLocator(),
+          ),
+          BlocProvider<CacheDataBloc>(
+            create: (_) => serviceLocator(),
+          ),
+          BlocProvider<CachedDataBloc>(
+            create: (_) => serviceLocator(),
+          ),
+          BlocProvider<GeoHashBloc>(
+            create: (_) => serviceLocator(),
+          ),
+          BlocProvider<WeatherBloc>(
             create: (_) => serviceLocator(),
           ),
         ],

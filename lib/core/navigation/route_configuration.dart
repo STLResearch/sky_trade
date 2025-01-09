@@ -32,14 +32,16 @@ import 'package:sky_trade/features/auth/presentation/views/login_screen.dart'
 import 'package:sky_trade/features/auth/presentation/views/register_screen.dart'
     show RegisterScreen;
 import 'package:sky_trade/features/help/presentation/views/help_screen.dart';
-import 'package:sky_trade/features/insights/presentation/views/insights_screen.dart';
+import 'package:sky_trade/features/insights/presentation/views/insights_screen.dart'
+    show InsightsScreen;
 import 'package:sky_trade/features/internet_connection_checker/presentation/blocs/internet_connection_checker_bloc/internet_connection_checker_bloc.dart'
     show
         InternetConnectionCheckerBloc,
         InternetConnectionCheckerEvent,
         InternetConnectionCheckerState;
 import 'package:sky_trade/features/internet_connection_checker/presentation/screens/no_internet_connection_screen.dart';
-import 'package:sky_trade/features/settings/presentation/views/settings_screen.dart';
+import 'package:sky_trade/features/settings/presentation/views/settings_screen.dart'
+    show SettingsScreen;
 import 'package:sky_trade/features/u_a_s_restrictions/presentation/views/home_screen.dart'
     show HomeScreen;
 

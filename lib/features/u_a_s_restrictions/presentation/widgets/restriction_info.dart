@@ -26,7 +26,7 @@ import 'package:flutter/material.dart'
         Text,
         Theme,
         Widget;
-import 'package:flutter_bloc/flutter_bloc.dart' show ReadContext;
+import 'package:flutter_bloc/flutter_bloc.dart' show BlocProvider, ReadContext;
 import 'package:sky_trade/core/assets/generated/assets.gen.dart' show Assets;
 import 'package:sky_trade/core/resources/colors.dart'
     show hex1E1E1E, hex9D9D9D, hexF4F4F4;
@@ -56,9 +56,27 @@ import 'package:sky_trade/features/link_handler/presentation/blocs/handle_link_b
     show HandleLinkBloc, HandleLinkEvent;
 import 'package:sky_trade/features/u_a_s_restrictions/domain/entities/restriction_entity.dart'
     show RestrictionEntity;
+import 'package:sky_trade/injection_container.dart' show serviceLocator;
 
 class RestrictionInfo extends StatelessWidget {
   const RestrictionInfo({
+    required this.restrictionEntity,
+    super.key,
+  });
+
+  final RestrictionEntity restrictionEntity;
+
+  @override
+  Widget build(BuildContext context) => BlocProvider<HandleLinkBloc>(
+        create: (_) => serviceLocator(),
+        child: RestrictionInfoView(
+          restrictionEntity: restrictionEntity,
+        ),
+      );
+}
+
+class RestrictionInfoView extends StatelessWidget {
+  const RestrictionInfoView({
     required this.restrictionEntity,
     super.key,
   });

@@ -9,6 +9,7 @@ import 'package:flutter/material.dart'
         SizedBox,
         State,
         StatefulWidget,
+        StatelessWidget,
         Text,
         TextAlign,
         Theme,
@@ -18,7 +19,8 @@ import 'package:flutter/material.dart'
         Wrap,
         WrapAlignment,
         WrapCrossAlignment;
-import 'package:flutter_bloc/flutter_bloc.dart' show BlocBuilder;
+import 'package:flutter_bloc/flutter_bloc.dart'
+    show BlocBuilder, BlocProvider, ReadContext;
 import 'package:sky_trade/core/resources/colors.dart' show hex838187;
 import 'package:sky_trade/core/resources/numbers/ui.dart'
     show threeDotEightNine, threeFifteenDotFourSeven, twentyFourDotNil;
@@ -29,14 +31,24 @@ import 'package:sky_trade/features/insights/presentation/blocs/insights_bloc/ins
 import 'package:sky_trade/features/insights/presentation/widgets/filter_card.dart';
 import 'package:sky_trade/features/insights/presentation/widgets/graph.dart';
 
-class GraphSection extends StatefulWidget {
+class GraphSection extends StatelessWidget {
   const GraphSection({super.key});
 
   @override
-  State<GraphSection> createState() => _GraphSectionState();
+  Widget build(BuildContext context) => BlocProvider<InsightsBloc>.value(
+        value: context.read<InsightsBloc>(),
+        child: const GraphSectionView(),
+      );
 }
 
-class _GraphSectionState extends State<GraphSection> {
+class GraphSectionView extends StatefulWidget {
+  const GraphSectionView({super.key});
+
+  @override
+  State<GraphSectionView> createState() => _GraphSectionViewState();
+}
+
+class _GraphSectionViewState extends State<GraphSectionView> {
   late final ValueNotifier<Period> _periodNotifier;
 
   @override
