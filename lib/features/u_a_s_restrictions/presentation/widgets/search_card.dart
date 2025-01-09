@@ -16,11 +16,13 @@ import 'package:flutter/material.dart'
         SizedBox,
         State,
         StatefulWidget,
+        StatelessWidget,
         TextEditingController,
         TextFormField,
         Theme,
         Widget;
-import 'package:flutter_bloc/flutter_bloc.dart' show BlocBuilder, ReadContext;
+import 'package:flutter_bloc/flutter_bloc.dart'
+    show BlocBuilder, BlocProvider, MultiBlocProvider, ReadContext;
 import 'package:sky_trade/core/assets/generated/assets.gen.dart' show Assets;
 import 'package:sky_trade/core/resources/colors.dart' show hex333333, hexB8B8B8;
 import 'package:sky_trade/core/resources/numbers/ui.dart'
@@ -48,15 +50,33 @@ import 'package:sky_trade/features/search_autocomplete/presentation/blocs/search
 import 'package:sky_trade/features/u_a_s_restrictions/presentation/widgets/menu.dart';
 import 'package:sky_trade/features/wifi/presentation/blocs/wifi_adapter_state_bloc/wifi_adapter_state_bloc.dart'
     show WifiAdapterStateBloc, WifiAdapterStateEvent, WifiAdapterStateState;
+import 'package:sky_trade/injection_container.dart' show serviceLocator;
 
-class SearchCard extends StatefulWidget {
+class SearchCard extends StatelessWidget {
   const SearchCard({super.key});
 
   @override
-  State<SearchCard> createState() => _SearchCardState();
+  Widget build(BuildContext context) => MultiBlocProvider(
+        providers: [
+          BlocProvider<WifiAdapterStateBloc>(
+            create: (_) => serviceLocator(),
+          ),
+          BlocProvider<BluetoothAdapterStateBloc>(
+            create: (_) => serviceLocator(),
+          ),
+        ],
+        child: const SearchCardView(),
+      );
 }
 
-class _SearchCardState extends State<SearchCard> {
+class SearchCardView extends StatefulWidget {
+  const SearchCardView({super.key});
+
+  @override
+  State<SearchCardView> createState() => _SearchCardViewState();
+}
+
+class _SearchCardViewState extends State<SearchCardView> {
   late final TextEditingController _searchController;
 
   @override

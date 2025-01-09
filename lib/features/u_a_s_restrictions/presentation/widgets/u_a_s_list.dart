@@ -27,7 +27,7 @@ import 'package:flutter/material.dart'
         Widget,
         WidgetsBinding,
         showModalBottomSheet;
-import 'package:flutter_bloc/flutter_bloc.dart' show BlocBuilder;
+import 'package:flutter_bloc/flutter_bloc.dart' show BlocBuilder, ReadContext;
 import 'package:sky_trade/core/assets/generated/assets.gen.dart' show Assets;
 import 'package:sky_trade/core/resources/colors.dart' show hex3A4DE9;
 import 'package:sky_trade/core/resources/numbers/ui.dart'
@@ -59,7 +59,8 @@ import 'package:sky_trade/core/resources/strings/special_characters.dart'
 import 'package:sky_trade/core/utils/extensions/build_context_extensions.dart';
 import 'package:sky_trade/features/remote_i_d_receiver/presentation/blocs/remote_i_d_receiver_bloc/remote_i_d_receiver_bloc.dart'
     show RemoteIDReceiverBloc, RemoteIDReceiverState;
-import 'package:sky_trade/features/u_a_s_restrictions/presentation/widgets/u_a_s_details.dart';
+import 'package:sky_trade/features/u_a_s_restrictions/presentation/widgets/u_a_s_details.dart'
+    show UASDetails;
 
 class UASList extends StatelessWidget {
   const UASList({super.key});
@@ -176,6 +177,7 @@ class UASList extends StatelessWidget {
                                 showModalBottomSheet<void>(
                                   context: context,
                                   builder: (_) => UASDetails(
+                                    context.read<RemoteIDReceiverBloc>(),
                                     index: index,
                                   ),
                                 );

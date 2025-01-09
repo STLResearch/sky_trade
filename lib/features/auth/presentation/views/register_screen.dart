@@ -84,6 +84,9 @@ class RegisterScreen extends StatelessWidget {
           BlocProvider<Web3AuthLogoutBloc>(
             create: (_) => serviceLocator(),
           ),
+          BlocProvider<HandleLinkBloc>(
+            create: (_) => serviceLocator(),
+          ),
         ],
         child: const RegisterView(),
       );

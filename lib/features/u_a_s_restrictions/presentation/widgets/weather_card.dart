@@ -31,7 +31,8 @@ import 'package:sky_trade/core/resources/numbers/ui.dart'
 import 'package:sky_trade/core/utils/extensions/build_context_extensions.dart';
 import 'package:sky_trade/core/utils/extensions/weather_entity_extensions.dart';
 import 'package:sky_trade/features/u_a_s_restrictions/presentation/widgets/options_card.dart';
-import 'package:sky_trade/features/weather/presentation/weather_bloc/weather_bloc.dart';
+import 'package:sky_trade/features/weather/presentation/weather_bloc/weather_bloc.dart'
+    show WeatherBloc, WeatherState;
 
 class WeatherCard extends StatelessWidget {
   const WeatherCard({super.key});

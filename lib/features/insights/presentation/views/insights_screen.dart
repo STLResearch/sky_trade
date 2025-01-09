@@ -24,11 +24,13 @@ import 'package:flutter/material.dart'
         SizedBox,
         State,
         StatefulWidget,
+        StatelessWidget,
         Text,
         TextAlign,
         Theme,
         Widget;
-import 'package:flutter_bloc/flutter_bloc.dart' show BlocBuilder, ReadContext;
+import 'package:flutter_bloc/flutter_bloc.dart'
+    show BlocBuilder, BlocProvider, ReadContext;
 import 'package:sky_trade/core/assets/generated/assets.gen.dart' show Assets;
 import 'package:sky_trade/core/resources/colors.dart' show hex4285F4, hex838187;
 import 'package:sky_trade/core/resources/numbers/ui.dart'
@@ -49,15 +51,26 @@ import 'package:sky_trade/features/insights/presentation/blocs/insights_bloc/ins
     show InsightsBloc, InsightsEvent, InsightsState;
 import 'package:sky_trade/features/insights/presentation/widgets/graph_section.dart';
 import 'package:sky_trade/features/insights/presentation/widgets/tracked_drone.dart';
+import 'package:sky_trade/injection_container.dart' show serviceLocator;
 
-class InsightsScreen extends StatefulWidget {
+class InsightsScreen extends StatelessWidget {
   const InsightsScreen({super.key});
 
   @override
-  State<InsightsScreen> createState() => _InsightsScreenState();
+  Widget build(BuildContext context) => BlocProvider<InsightsBloc>(
+        create: (_) => serviceLocator(),
+        child: const InsightsScreenView(),
+      );
 }
 
-class _InsightsScreenState extends State<InsightsScreen> {
+class InsightsScreenView extends StatefulWidget {
+  const InsightsScreenView({super.key});
+
+  @override
+  State<InsightsScreenView> createState() => _InsightsScreenViewState();
+}
+
+class _InsightsScreenViewState extends State<InsightsScreenView> {
   @override
   void initState() {
     _getInsights();
