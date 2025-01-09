@@ -6,9 +6,11 @@ import 'package:sky_trade/core/errors/exceptions/auth_exception.dart'
     show
         CheckSkyTradeUserException,
         CreateSkyTradeUserException,
+        EmailReuseNotAllowedException,
         InvalidEmailException,
         InvalidSignatureException,
         UnauthorizedException,
+        UserDeletedException,
         UserMismatchException,
         UserNotFoundException,
         WalletAlreadyExistsException;
@@ -203,6 +205,8 @@ final class AuthRepositoryImplementation
               true when e is InvalidEmailException => InvalidEmailFailure(),
               true when e is WalletAlreadyExistsException =>
                 WalletAlreadyExistsFailure(),
+              true when e is EmailReuseNotAllowedException =>
+                EmailReuseNotAllowedFailure(),
               _ => CreateSkyTradeUserUnknownFailure(),
             },
           );
@@ -219,6 +223,7 @@ final class AuthRepositoryImplementation
                 InvalidSignatureFailure(),
               true when e is UserNotFoundException => UserNotFoundFailure(),
               true when e is UserMismatchException => UserMismatchFailure(),
+              true when e is UserDeletedException => UserDeletedFailure(),
               _ => CheckSkyTradeUserUnknownFailure(),
             },
           );

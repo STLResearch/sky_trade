@@ -3,6 +3,13 @@ import 'package:sky_trade/core/errors/failures/settings_failure.dart';
 import 'package:sky_trade/features/settings/domain/entities/settings_entity.dart';
 
 abstract interface class SettingsRepository {
+  Future<Either<RequestDeleteAccountFailure, MessageEntity>>
+      requestDeleteAccount();
+
+  Future<Either<DeleteAccountFailure, MessageEntity>> deleteAccount({
+    required int otp,
+  });
+
   Future<Either<TrackingStatusFailure, TrackingStatusEntity>>
       get trackingAuthorizationStatus;
 

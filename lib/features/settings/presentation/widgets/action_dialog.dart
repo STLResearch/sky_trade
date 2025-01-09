@@ -15,7 +15,9 @@ final class ActionDialog {
     required String content,
     String? title,
     VoidCallback? onActionDismissed,
+    String? actionDismissText,
     VoidCallback? onActionConfirmed,
+    String? actionConfirmText,
   }) {
     showDialog<void>(
       context: context,
@@ -40,14 +42,14 @@ final class ActionDialog {
             TextButton(
               onPressed: onActionDismissed,
               child: Text(
-                context.localize.no,
+                actionDismissText ?? context.localize.no,
               ),
             ),
           if (onActionConfirmed != null)
             TextButton(
               onPressed: onActionConfirmed,
               child: Text(
-                context.localize.yes,
+                actionConfirmText ?? context.localize.yes,
               ),
             ),
         ],

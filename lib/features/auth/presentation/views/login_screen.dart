@@ -35,6 +35,7 @@ import 'package:sky_trade/core/errors/failures/auth_failure.dart'
         CheckSkyTradeUserUnknownFailure,
         InvalidSignatureFailure,
         UnauthorizedFailure,
+        UserDeletedFailure,
         UserMismatchFailure,
         UserNotFoundFailure;
 import 'package:sky_trade/core/resources/numbers/ui.dart'
@@ -196,6 +197,8 @@ class _LoginViewState extends State<LoginView> with WidgetsBindingObserver {
                         context.localize.oopsSomethingWentWrongPleaseTryAgain,
                       UserMismatchFailure() => context.localize
                           .loginMethodMismatchKindlySignInWithTheSameMethodYouUsedToRegister,
+                      UserDeletedFailure() => context.localize
+                          .accountDoesNotExistIfItPreviouslyDidItMayHaveBeenDeleted,
                       CheckSkyTradeUserUnknownFailure() =>
                         context.localize.anUnknownErrorOccurredPleaseTryAgain,
                     },
