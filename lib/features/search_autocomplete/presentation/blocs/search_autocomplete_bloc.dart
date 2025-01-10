@@ -34,18 +34,22 @@ class SearchAutocompleteBloc
     on<_SearchAutocompleteNotGotten>(
       _searchAutocompleteNotGotten,
     );
+
+    on<_DisposeAutocompleteSearchDebounceTimer>(
+      _disposeAutocompleteSearchDebounceTimer,
+    );
   }
 
   final SearchAutocompleteRepository _searchAutocompleteRepository;
 
-  Timer? _debouceTimer;
+  Timer? _debounceTimer;
 
   Future<void> _autocompleteSearch(
     _AutocompleteSearch event,
     Emitter<SearchAutocompleteState> emit,
   ) async {
-    if (_debouceTimer?.isActive ?? false) {
-      _debouceTimer?.cancel();
+    if (_debounceTimer?.isActive ?? false) {
+      _debounceTimer?.cancel();
     }
 
     if (event.query.isEmpty) {
@@ -60,7 +64,7 @@ class SearchAutocompleteBloc
       const SearchAutocompleteState.gettingSearchAutocomplete(),
     );
 
-    _debouceTimer = Timer(
+    _debounceTimer = Timer(
       const Duration(
         milliseconds: oneThousandFiveHundred,
       ),
@@ -85,6 +89,12 @@ class SearchAutocompleteBloc
       },
     );
   }
+
+  void _disposeAutocompleteSearchDebounceTimer(
+    _DisposeAutocompleteSearchDebounceTimer event,
+    Emitter<SearchAutocompleteState> emit,
+  ) =>
+      _debounceTimer?.cancel();
 
   void _searchAutocompleteNotGotten(
     _SearchAutocompleteNotGotten event,

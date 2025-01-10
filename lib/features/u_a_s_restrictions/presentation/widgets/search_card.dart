@@ -96,6 +96,7 @@ class _SearchCardViewState extends State<SearchCardView> {
           const BluetoothAdapterStateEvent.stopListeningBluetoothAdapterState(),
         );
     _maybeStopListeningWifiAdapterState();
+    _maybeDisposeSearchDebounceTimer();
 
     super.deactivate();
   }
@@ -115,6 +116,12 @@ class _SearchCardViewState extends State<SearchCardView> {
           );
     }
   }
+
+  void _maybeDisposeSearchDebounceTimer() => context
+      .read<SearchAutocompleteBloc>()
+      .add(
+        const SearchAutocompleteEvent.disposeAutocompleteSearchDebounceTimer(),
+      );
 
   @override
   void dispose() {
