@@ -1,16 +1,21 @@
-import 'package:equatable/equatable.dart';
+import 'package:equatable/equatable.dart' show Equatable;
 
-final class AirSpaceDetailsFailure extends Equatable{
+final class AirspaceDetailsFailure extends Equatable {
   @override
   List<Object?> get props => [];
 }
 
-final class AirSpaceHistoryFailure extends Equatable{
+final class AirspaceHistoryInfoFailure extends Equatable {
   @override
   List<Object?> get props => [];
 }
 
-final class AuctionBidHistoryFailure extends Equatable{
+final class AuctionBidHistoryFailure extends Equatable {
+  @override
+  List<Object?> get props => [];
+}
+
+final class GeneratePlaceBidFailure extends Equatable {
   @override
   List<Object?> get props => [];
 }

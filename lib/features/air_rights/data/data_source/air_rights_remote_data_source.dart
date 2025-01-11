@@ -1,94 +1,96 @@
 import 'package:sky_trade/core/errors/exceptions/air_rights_exception.dart';
+import 'package:sky_trade/core/resources/numbers/networking.dart' show thirty;
 import 'package:sky_trade/core/resources/strings/networking.dart'
     show
         accountKey,
-        amountQueryKey,
+        amountKey,
         auctionHousePath,
-        auctionQueryKey,
-        generatePlaceBidTX,
-        getAirSpaceDetailsPath,
-        getAirSpaceHistoryPath,
+        auctionKey,
+        generatePlaceBidTxPath,
+        getAirspaceDetailsPath,
+        getAirspaceHistoryPath,
         getAuctionBidHistoryPath,
         privatePath,
-        propertyIdQueryKey;
+        propertyIdAltKey;
 import 'package:sky_trade/core/utils/clients/network_client.dart'
     show HttpClient;
 import 'package:sky_trade/core/utils/clients/response_handler.dart';
-import 'package:sky_trade/core/utils/clients/user_info_provider.dart';
-import 'package:sky_trade/core/utils/enums/networking.dart';
-import 'package:sky_trade/features/air_rights/data/models/air_space_details_model.dart';
-import 'package:sky_trade/features/air_rights/data/models/air_space_history_model.dart';
-import 'package:sky_trade/features/air_rights/data/models/auction_bid_history_model.dart';
+import 'package:sky_trade/core/utils/enums/networking.dart' show RequestMethod;
+import 'package:sky_trade/features/air_rights/data/models/air_rights_model.dart'
+    show
+        AirspaceDetailsModel,
+        AirspaceHistoryInfoModel,
+        AuctionBidHistoryModel,
+        TransactionModel;
 
 abstract interface class AirRightsRemoteDataSource {
-  Future<AirSpaceDetailsModel> getAirSpaceDetails({
-    required int propertyID,
+  Future<AirspaceDetailsModel> getAirspaceDetailsOf({
+    required int propertyId,
   });
 
-  Future<AirSpaceHistoryModel> getAirSpaceHistory({
-    required int propertyID,
+  Future<AirspaceHistoryInfoModel> getAirspaceHistoryOf({
+    required int propertyId,
   });
 
-  Future<AuctionBidHistoryModel> getAuctionBidHistory({
-    required int propertyID,
+  Future<AuctionBidHistoryModel> getAuctionBidHistoryOf({
+    required int propertyId,
   });
 
-  Future<void> generateBidTx({
+  Future<TransactionModel> generatePlaceBidUsing({
     required String auction,
-    required double amount,
+    required int amount,
+    required String account,
   });
-
-  Future<void> rentAirspace();
 }
 
 class AirRightsRemoteDataSourceImplementation
-    with ResponseHandler, UserInfoProvider
+    with ResponseHandler
     implements AirRightsRemoteDataSource {
-  AirRightsRemoteDataSourceImplementation({
-    required HttpClient httpClient,
-  }) : _httpClient = httpClient;
+  AirRightsRemoteDataSourceImplementation(
+    HttpClient httpClient,
+  ) : _httpClient = httpClient;
 
   final HttpClient _httpClient;
 
   @override
-  Future<AirSpaceDetailsModel> getAirSpaceDetails({
-    required int propertyID,
+  Future<AirspaceDetailsModel> getAirspaceDetailsOf({
+    required int propertyId,
   }) =>
-      handleResponse<AirSpaceDetailsException, Map<String, dynamic>,
-          AirSpaceDetailsModel>(
+      handleResponse<AirspaceDetailsException, Map<String, dynamic>,
+          AirspaceDetailsModel>(
         requestInitiator: _httpClient.request(
           requestMethod: RequestMethod.get,
-          path: privatePath + auctionHousePath + getAirSpaceDetailsPath,
+          path: privatePath + auctionHousePath + getAirspaceDetailsPath,
           includeSignature: true,
           queryParameters: {
-            propertyIdQueryKey: propertyID,
+            propertyIdAltKey: propertyId,
           },
         ),
-        onSuccess: AirSpaceDetailsModel.fromJson,
-        onError: (_) => AirSpaceDetailsException(),
+        onSuccess: AirspaceDetailsModel.fromJson,
+        onError: (_) => AirspaceDetailsException(),
       );
 
   @override
-  Future<AirSpaceHistoryModel> getAirSpaceHistory({
-    required int propertyID,
+  Future<AirspaceHistoryInfoModel> getAirspaceHistoryOf({
+    required int propertyId,
   }) =>
-      handleResponse<AirSpaceHistoryException, Map<String, dynamic>,
-          AirSpaceHistoryModel>(
+      handleResponse<AirspaceHistoryInfoException, Map<String, dynamic>,
+          AirspaceHistoryInfoModel>(
         requestInitiator: _httpClient.request(
           requestMethod: RequestMethod.get,
-          path: privatePath + auctionHousePath + getAirSpaceHistoryPath,
+          path: privatePath + auctionHousePath + getAirspaceHistoryPath,
           includeSignature: true,
           queryParameters: {
-            propertyIdQueryKey: propertyID,
+            propertyIdAltKey: propertyId,
           },
         ),
-        onSuccess: AirSpaceHistoryModel.fromJson,
-        onError: (_) => AirSpaceHistoryException(),
+        onSuccess: AirspaceHistoryInfoModel.fromJson,
+        onError: (_) => AirspaceHistoryInfoException(),
       );
 
   @override
-  Future<AuctionBidHistoryModel> getAuctionBidHistory({
-    required int propertyID,
+  Future<AuctionBidHistoryModel> getAuctionBidHistoryOf({
+    required int propertyId,
   }) =>
       handleResponse<AuctionBidHistoryException, Map<String, dynamic>,
           AuctionBidHistoryModel>(
@@ -97,7 +99,7 @@ class AirRightsRemoteDataSourceImplementation
           path: privatePath + auctionHousePath + getAuctionBidHistoryPath,
           includeSignature: true,
           queryParameters: {
-            propertyIdQueryKey: propertyID,
+            propertyIdAltKey: propertyId,
           },
         ),
         onSuccess: AuctionBidHistoryModel.fromJson,
@@ -105,42 +107,29 @@ class AirRightsRemoteDataSourceImplementation
       );
 
   @override
-  Future<void> generateBidTx({
+  Future<TransactionModel> generatePlaceBidUsing({
     required String auction,
-    required double amount,
-  }) async {
-    await _httpClient.request(
-      requestMethod: RequestMethod.post,
-      path: privatePath + auctionHousePath + generatePlaceBidTX,
-      includeSignature: true,
-      data: {
-        accountKey: await getUserEmail(),
-      },
-      queryParameters: {
-        auctionQueryKey: auction,
-        amountQueryKey: amount,
-      },
-    );
-    final x = 10;
-    // handleResponse<BidException, Map<String, dynamic>, >(
-    //   requestInitiator: _httpClient.request(
-    //     requestMethod: RequestMethod.get,
-    //     path: privatePath + auctionHousePath + generatePlaceBidTX,
-    //     includeSignature: true,
-    //     queryParameters: {
-    //       auctionQueryKey: auction,
-    //       amountQueryKey: amount,
-    //     },
-    //   ),
-    //   onSuccess: (response) {
-    //
-    //   },
-    //   onError: (_) => BidGenerationException(),
-    // );
-  }
-
-  @override
-  Future<void> rentAirspace() async {
-    // TODO: implement rentAirspace
-  }
+    required int amount,
+    required String account,
+  }) =>
+      handleResponse<GeneratePlaceBidException, Map<String, dynamic>,
+          TransactionModel>(
+        requestInitiator: _httpClient.request(
+          requestMethod: RequestMethod.post,
+          path: privatePath + auctionHousePath + generatePlaceBidTxPath,
+          includeSignature: true,
+          data: {
+            accountKey: account,
+          },
+          overrideReceiveTimeout: const Duration(
+            seconds: thirty,
+          ),
+          queryParameters: {
+            auctionKey: auction,
+            amountKey: amount,
+          },
+        ),
+        onSuccess: TransactionModel.fromJson,
+        onError: (_) => GeneratePlaceBidException(),
+      );
 }

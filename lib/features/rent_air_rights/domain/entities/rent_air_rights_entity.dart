@@ -1,4 +1,5 @@
 import 'package:equatable/equatable.dart' show Equatable;
+import 'package:sky_trade/core/utils/enums/networking.dart' show PropertyStatusType;
 
 base class PropertyEntity extends Equatable {
   const PropertyEntity({
@@ -186,7 +187,7 @@ base class PropertyStatusEntity extends Equatable {
 
   final int id;
 
-  final String type;
+  final PropertyStatusType type;
 
   @override
   List<Object?> get props => [

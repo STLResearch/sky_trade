@@ -1,67 +1,82 @@
-import 'package:dartz/dartz.dart';
+import 'package:dartz/dartz.dart' show Either;
 import 'package:sky_trade/core/errors/failures/air_rights_failure.dart';
 import 'package:sky_trade/core/utils/clients/data_handler.dart';
-import 'package:sky_trade/features/air_rights/data/data_source/air_rights_remote_data_source.dart';
-import 'package:sky_trade/features/air_rights/domain/entities/air_space_details_entity.dart';
-import 'package:sky_trade/features/air_rights/domain/entities/air_space_history_entity.dart';
-import 'package:sky_trade/features/air_rights/domain/entities/auction_bid_history_entity.dart';
+import 'package:sky_trade/features/air_rights/data/data_source/air_rights_remote_data_source.dart'
+    show AirRightsRemoteDataSource;
+import 'package:sky_trade/features/air_rights/domain/entities/air_rights_entity.dart'
+    show
+        AirspaceDetailsEntity,
+        AirspaceHistoryInfoEntity,
+        AuctionBidHistoryEntity,
+        TransactionEntity;
 import 'package:sky_trade/features/air_rights/domain/repositories/air_rights_repository.dart';
 
-final class AirRightsRepositoriesImplementation
+final class AirRightsRepositoryImplementation
     with DataHandler
     implements AirRightsRepository {
-  AirRightsRepositoriesImplementation({
-    required AirRightsRemoteDataSource airRightsRemoteDataSource,
-  }) : _airRightsRemoteDataSource = airRightsRemoteDataSource;
+  AirRightsRepositoryImplementation(
+    AirRightsRemoteDataSource airRightsRemoteDataSource,
+  ) : _airRightsRemoteDataSource = airRightsRemoteDataSource;
 
   final AirRightsRemoteDataSource _airRightsRemoteDataSource;
 
   @override
-  Future<Either<AirSpaceDetailsFailure, AirSpaceDetailsEntity>>
-      getAirSpaceDetails({
-    required int propertyID,
-  }) async =>
-          handleData<AirSpaceDetailsFailure, AirSpaceDetailsEntity>(
+  Future<Either<AirspaceDetailsFailure, AirspaceDetailsEntity>>
+      getAirspaceDetailsOf({
+    required int propertyId,
+  }) =>
+          handleData<AirspaceDetailsFailure, AirspaceDetailsEntity>(
             dataSourceOperation: () =>
-                _airRightsRemoteDataSource.getAirSpaceDetails(
-              propertyID: propertyID,
+                _airRightsRemoteDataSource.getAirspaceDetailsOf(
+              propertyId: propertyId,
             ),
-            onSuccess: (airSpaceDetailsEntity) => airSpaceDetailsEntity,
-            onFailure: (_) => AirSpaceDetailsFailure(),
+            onSuccess: (airspaceDetailsEntity) => airspaceDetailsEntity,
+            onFailure: (_) => AirspaceDetailsFailure(),
           );
 
   @override
-  Future<Either<AirSpaceHistoryFailure, AirSpaceHistoryEntity>>
-      getAirSpaceHistory({required int propertyID}) async =>
-          handleData<AirSpaceHistoryFailure, AirSpaceHistoryEntity>(
+  Future<Either<AirspaceHistoryInfoFailure, AirspaceHistoryInfoEntity>>
+      getAirspaceHistoryOf({
+    required int propertyId,
+  }) =>
+          handleData<AirspaceHistoryInfoFailure, AirspaceHistoryInfoEntity>(
             dataSourceOperation: () =>
-                _airRightsRemoteDataSource.getAirSpaceHistory(
-              propertyID: propertyID,
+                _airRightsRemoteDataSource.getAirspaceHistoryOf(
+              propertyId: propertyId,
             ),
-            onSuccess: (airSpaceHistoryEntity) => airSpaceHistoryEntity,
-            onFailure: (_) => AirSpaceHistoryFailure(),
+            onSuccess: (airspaceHistoryInfoEntity) => airspaceHistoryInfoEntity,
+            onFailure: (_) => AirspaceHistoryInfoFailure(),
           );
 
   @override
   Future<Either<AuctionBidHistoryFailure, AuctionBidHistoryEntity>>
-      getAuctionBidHistory({required int propertyID}) =>
+      getAuctionBidHistoryOf({
+    required int propertyId,
+  }) =>
           handleData<AuctionBidHistoryFailure, AuctionBidHistoryEntity>(
             dataSourceOperation: () =>
-                _airRightsRemoteDataSource.getAuctionBidHistory(
-              propertyID: propertyID,
+                _airRightsRemoteDataSource.getAuctionBidHistoryOf(
+              propertyId: propertyId,
             ),
             onSuccess: (auctionBidHistoryEntity) => auctionBidHistoryEntity,
             onFailure: (_) => AuctionBidHistoryFailure(),
           );
 
   @override
-  Future<void> placeBid({
+  Future<Either<GeneratePlaceBidFailure, TransactionEntity>>
+      generatePlaceBidUsing({
     required String auction,
-    required double amount,
-  }) async {
-    await _airRightsRemoteDataSource.generateBidTx(
-      auction: auction,
-      amount: amount,
-    );
-  }
+    required int amount,
+    required String account,
+  }) =>
+          handleData<GeneratePlaceBidFailure, TransactionEntity>(
+            dataSourceOperation: () =>
+                _airRightsRemoteDataSource.generatePlaceBidUsing(
+              auction: auction,
+              amount: amount,
+              account: account,
+            ),
+            onSuccess: (transactionEntity) => transactionEntity,
+            onFailure: (_) => GeneratePlaceBidFailure(),
+          );
 }

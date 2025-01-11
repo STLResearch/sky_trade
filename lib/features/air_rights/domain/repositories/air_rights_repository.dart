@@ -1,22 +1,32 @@
-import 'package:dartz/dartz.dart';
+import 'package:dartz/dartz.dart' show Either;
 import 'package:sky_trade/core/errors/failures/air_rights_failure.dart';
-import 'package:sky_trade/features/air_rights/domain/entities/air_space_details_entity.dart';
-import 'package:sky_trade/features/air_rights/domain/entities/air_space_history_entity.dart';
-
-import 'package:sky_trade/features/air_rights/domain/entities/auction_bid_history_entity.dart';
+import 'package:sky_trade/features/air_rights/domain/entities/air_rights_entity.dart'
+    show
+        AirspaceDetailsEntity,
+        AirspaceHistoryInfoEntity,
+        AuctionBidHistoryEntity,
+        TransactionEntity;
 
 abstract interface class AirRightsRepository {
-  Future<Either<AirSpaceDetailsFailure, AirSpaceDetailsEntity>>
-      getAirSpaceDetails({required int propertyID});
+  Future<Either<AirspaceDetailsFailure, AirspaceDetailsEntity>>
+      getAirspaceDetailsOf({
+    required int propertyId,
+  });
 
-  Future<Either<AirSpaceHistoryFailure, AirSpaceHistoryEntity>>
-      getAirSpaceHistory({required int propertyID});
+  Future<Either<AirspaceHistoryInfoFailure, AirspaceHistoryInfoEntity>>
+      getAirspaceHistoryOf({
+    required int propertyId,
+  });
 
   Future<Either<AuctionBidHistoryFailure, AuctionBidHistoryEntity>>
-      getAuctionBidHistory({required int propertyID});
+      getAuctionBidHistoryOf({
+    required int propertyId,
+  });
 
-  Future<void> placeBid({
+  Future<Either<GeneratePlaceBidFailure, TransactionEntity>>
+      generatePlaceBidUsing({
     required String auction,
-    required double amount,
+    required int amount,
+    required String account,
   });
 }

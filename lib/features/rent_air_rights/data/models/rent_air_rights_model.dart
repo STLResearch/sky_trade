@@ -48,6 +48,8 @@ import 'package:sky_trade/core/resources/strings/networking.dart'
         weekDayRangesKey;
 import 'package:sky_trade/core/utils/converters/date_time_converter.dart'
     show StringDateTimeConverter;
+import 'package:sky_trade/core/utils/enums/networking.dart'
+    show PropertyStatusType;
 import 'package:sky_trade/features/rent_air_rights/domain/entities/rent_air_rights_entity.dart'
     show
         AnsEntity,
@@ -305,7 +307,7 @@ final class PropertyStatusModel extends PropertyStatusEntity {
   final int mId;
 
   @JsonKey(name: typeKey)
-  final String mType;
+  final PropertyStatusType mType;
 
   Map<String, dynamic> toJson() => _$PropertyStatusModelToJson(this);
 }
