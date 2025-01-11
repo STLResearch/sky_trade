@@ -1,4 +1,5 @@
 import 'package:get_it/get_it.dart' show GetIt;
+import 'package:sky_trade/core/injection_container/air_rights.dart';
 import 'package:sky_trade/core/injection_container/auth.dart';
 import 'package:sky_trade/core/injection_container/bluetooth.dart';
 import 'package:sky_trade/core/injection_container/cache_manager.dart';
@@ -22,6 +23,7 @@ import 'package:sky_trade/core/injection_container/wifi.dart';
 final serviceLocator = GetIt.I;
 
 Future<void> registerServices() => Future.wait<void>([
+      registerAirRightsServices(),
       registerAuthServices(),
       registerBluetoothServices(),
       registerCacheManagerServices(),

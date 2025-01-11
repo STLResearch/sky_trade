@@ -116,15 +116,22 @@ Map<String, dynamic> _$LayersModelToJson(LayersModel instance) =>
 PropertyStatusModel _$PropertyStatusModelFromJson(Map<String, dynamic> json) =>
     PropertyStatusModel(
       mId: (json['id'] as num).toInt(),
-      mType: json['type'] as String,
+      mType: $enumDecode(_$PropertyStatusTypeEnumMap, json['type']),
     );
 
 Map<String, dynamic> _$PropertyStatusModelToJson(
         PropertyStatusModel instance) =>
     <String, dynamic>{
       'id': instance.mId,
-      'type': instance.mType,
+      'type': _$PropertyStatusTypeEnumMap[instance.mType]!,
     };
+
+const _$PropertyStatusTypeEnumMap = {
+  PropertyStatusType.verified: 'Verified',
+  PropertyStatusType.partiallyVerified: 'PartiallyVerified',
+  PropertyStatusType.notVerified: 'NotVerified',
+  PropertyStatusType.rejected: 'Rejected',
+};
 
 VertexModel _$VertexModelFromJson(Map<String, dynamic> json) => VertexModel(
       mId: (json['id'] as num).toInt(),

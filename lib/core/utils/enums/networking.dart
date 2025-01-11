@@ -68,10 +68,12 @@ import 'package:sky_trade/core/resources/strings/networking.dart'
         multiPolygonValue,
         networkRemoteIdKey,
         noneKey,
+        notVerifiedKey,
         operatorIDKey,
         operatorIdSignatureKey,
         ornithopterKey,
         otherKey,
+        partiallyVerifiedKey,
         pointValue,
         polygonValue,
         privateKey,
@@ -82,6 +84,7 @@ import 'package:sky_trade/core/resources/strings/networking.dart'
         privateUse0xEKey,
         privateUse0xFKey,
         prohibitedValue,
+        rejectedKey,
         remoteIDSystemFailureKey,
         restrictedValue,
         rocketKey,
@@ -97,6 +100,7 @@ import 'package:sky_trade/core/resources/strings/networking.dart'
         undeclaredKey,
         undefinedKey,
         unknownKey,
+        verifiedKey,
         wifiBeaconKey,
         wifiNanKey;
 
@@ -426,4 +430,15 @@ enum TrackingTransparencyRequestStatus {
   notYetAsked,
   authorized,
   notAuthorized,
+}
+
+enum PropertyStatusType {
+  @JsonValue(verifiedKey)
+  verified,
+  @JsonValue(partiallyVerifiedKey)
+  partiallyVerified,
+  @JsonValue(notVerifiedKey)
+  notVerified,
+  @JsonValue(rejectedKey)
+  rejected,
 }
