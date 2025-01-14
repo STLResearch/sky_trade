@@ -5,6 +5,7 @@ class OtpResendTimerState with _$OtpResendTimerState {
   const factory OtpResendTimerState.initial() = _Initial;
 
   const factory OtpResendTimerState.ticked({
+    required int minutesLeft,
     required int secondsLeft,
   }) = _Ticked;
 

@@ -382,8 +382,4 @@ const userDeletedCode = 'USER_DELETED';
 const aWalletAlreadyExistsForThisEmailAddressKindlySignInWithTheSameMethodUsedPreviouslyCode =
     'A wallet already exists for this email address. Kindly sign in with the same method used previously.';
 const walletExistCode = 'WALLET_EXIST';
-const invalidDeleteLinkCode = 'Invalid delete link';
-const invalidDeleteOtpCode = 'Invalid delete OTP';
-const errorInDeletionSkyUserErrorExceptionInvalidDeleteOtpCode =
-    'Error in deletion: SKYUserErrorException: Invalid delete OTP';
-const invalidOtpCode = 'INVALID_OTP';
+const invalidDeleteOtpCode = 'INVALID_DELETE_OTP';

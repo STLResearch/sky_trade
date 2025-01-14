@@ -19,7 +19,7 @@ mixin _$OtpResendTimerEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() countdown,
-    required TResult Function(int secondsLeft) tick,
+    required TResult Function(int minutesLeft, int secondsLeft) tick,
     required TResult Function() elapse,
     required TResult Function() dispose,
   }) =>
@@ -27,7 +27,7 @@ mixin _$OtpResendTimerEvent {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? countdown,
-    TResult? Function(int secondsLeft)? tick,
+    TResult? Function(int minutesLeft, int secondsLeft)? tick,
     TResult? Function()? elapse,
     TResult? Function()? dispose,
   }) =>
@@ -35,7 +35,7 @@ mixin _$OtpResendTimerEvent {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? countdown,
-    TResult Function(int secondsLeft)? tick,
+    TResult Function(int minutesLeft, int secondsLeft)? tick,
     TResult Function()? elapse,
     TResult Function()? dispose,
     required TResult orElse(),
@@ -125,7 +125,7 @@ class _$CountdownImpl implements _Countdown {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() countdown,
-    required TResult Function(int secondsLeft) tick,
+    required TResult Function(int minutesLeft, int secondsLeft) tick,
     required TResult Function() elapse,
     required TResult Function() dispose,
   }) {
@@ -136,7 +136,7 @@ class _$CountdownImpl implements _Countdown {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? countdown,
-    TResult? Function(int secondsLeft)? tick,
+    TResult? Function(int minutesLeft, int secondsLeft)? tick,
     TResult? Function()? elapse,
     TResult? Function()? dispose,
   }) {
@@ -147,7 +147,7 @@ class _$CountdownImpl implements _Countdown {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? countdown,
-    TResult Function(int secondsLeft)? tick,
+    TResult Function(int minutesLeft, int secondsLeft)? tick,
     TResult Function()? elapse,
     TResult Function()? dispose,
     required TResult orElse(),
@@ -206,7 +206,7 @@ abstract class _$$TickImplCopyWith<$Res> {
           _$TickImpl value, $Res Function(_$TickImpl) then) =
       __$$TickImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({int secondsLeft});
+  $Res call({int minutesLeft, int secondsLeft});
 }
 
 /// @nodoc
@@ -219,9 +219,14 @@ class __$$TickImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? minutesLeft = null,
     Object? secondsLeft = null,
   }) {
     return _then(_$TickImpl(
+      minutesLeft: null == minutesLeft
+          ? _value.minutesLeft
+          : minutesLeft // ignore: cast_nullable_to_non_nullable
+              as int,
       secondsLeft: null == secondsLeft
           ? _value.secondsLeft
           : secondsLeft // ignore: cast_nullable_to_non_nullable
@@ -233,14 +238,16 @@ class __$$TickImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$TickImpl implements _Tick {
-  const _$TickImpl({required this.secondsLeft});
+  const _$TickImpl({required this.minutesLeft, required this.secondsLeft});
 
+  @override
+  final int minutesLeft;
   @override
   final int secondsLeft;
 
   @override
   String toString() {
-    return 'OtpResendTimerEvent.tick(secondsLeft: $secondsLeft)';
+    return 'OtpResendTimerEvent.tick(minutesLeft: $minutesLeft, secondsLeft: $secondsLeft)';
   }
 
   @override
@@ -248,12 +255,14 @@ class _$TickImpl implements _Tick {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$TickImpl &&
+            (identical(other.minutesLeft, minutesLeft) ||
+                other.minutesLeft == minutesLeft) &&
             (identical(other.secondsLeft, secondsLeft) ||
                 other.secondsLeft == secondsLeft));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, secondsLeft);
+  int get hashCode => Object.hash(runtimeType, minutesLeft, secondsLeft);
 
   @JsonKey(ignore: true)
   @override
@@ -265,35 +274,35 @@ class _$TickImpl implements _Tick {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() countdown,
-    required TResult Function(int secondsLeft) tick,
+    required TResult Function(int minutesLeft, int secondsLeft) tick,
     required TResult Function() elapse,
     required TResult Function() dispose,
   }) {
-    return tick(secondsLeft);
+    return tick(minutesLeft, secondsLeft);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? countdown,
-    TResult? Function(int secondsLeft)? tick,
+    TResult? Function(int minutesLeft, int secondsLeft)? tick,
     TResult? Function()? elapse,
     TResult? Function()? dispose,
   }) {
-    return tick?.call(secondsLeft);
+    return tick?.call(minutesLeft, secondsLeft);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? countdown,
-    TResult Function(int secondsLeft)? tick,
+    TResult Function(int minutesLeft, int secondsLeft)? tick,
     TResult Function()? elapse,
     TResult Function()? dispose,
     required TResult orElse(),
   }) {
     if (tick != null) {
-      return tick(secondsLeft);
+      return tick(minutesLeft, secondsLeft);
     }
     return orElse();
   }
@@ -337,8 +346,11 @@ class _$TickImpl implements _Tick {
 }
 
 abstract class _Tick implements OtpResendTimerEvent {
-  const factory _Tick({required final int secondsLeft}) = _$TickImpl;
+  const factory _Tick(
+      {required final int minutesLeft,
+      required final int secondsLeft}) = _$TickImpl;
 
+  int get minutesLeft;
   int get secondsLeft;
   @JsonKey(ignore: true)
   _$$TickImplCopyWith<_$TickImpl> get copyWith =>
@@ -384,7 +396,7 @@ class _$ElapseImpl implements _Elapse {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() countdown,
-    required TResult Function(int secondsLeft) tick,
+    required TResult Function(int minutesLeft, int secondsLeft) tick,
     required TResult Function() elapse,
     required TResult Function() dispose,
   }) {
@@ -395,7 +407,7 @@ class _$ElapseImpl implements _Elapse {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? countdown,
-    TResult? Function(int secondsLeft)? tick,
+    TResult? Function(int minutesLeft, int secondsLeft)? tick,
     TResult? Function()? elapse,
     TResult? Function()? dispose,
   }) {
@@ -406,7 +418,7 @@ class _$ElapseImpl implements _Elapse {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? countdown,
-    TResult Function(int secondsLeft)? tick,
+    TResult Function(int minutesLeft, int secondsLeft)? tick,
     TResult Function()? elapse,
     TResult Function()? dispose,
     required TResult orElse(),
@@ -498,7 +510,7 @@ class _$DisposeImpl implements _Dispose {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() countdown,
-    required TResult Function(int secondsLeft) tick,
+    required TResult Function(int minutesLeft, int secondsLeft) tick,
     required TResult Function() elapse,
     required TResult Function() dispose,
   }) {
@@ -509,7 +521,7 @@ class _$DisposeImpl implements _Dispose {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? countdown,
-    TResult? Function(int secondsLeft)? tick,
+    TResult? Function(int minutesLeft, int secondsLeft)? tick,
     TResult? Function()? elapse,
     TResult? Function()? dispose,
   }) {
@@ -520,7 +532,7 @@ class _$DisposeImpl implements _Dispose {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? countdown,
-    TResult Function(int secondsLeft)? tick,
+    TResult Function(int minutesLeft, int secondsLeft)? tick,
     TResult Function()? elapse,
     TResult Function()? dispose,
     required TResult orElse(),
@@ -578,21 +590,21 @@ mixin _$OtpResendTimerState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function(int secondsLeft) ticked,
+    required TResult Function(int minutesLeft, int secondsLeft) ticked,
     required TResult Function() elapsed,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function(int secondsLeft)? ticked,
+    TResult? Function(int minutesLeft, int secondsLeft)? ticked,
     TResult? Function()? elapsed,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(int secondsLeft)? ticked,
+    TResult Function(int minutesLeft, int secondsLeft)? ticked,
     TResult Function()? elapsed,
     required TResult orElse(),
   }) =>
@@ -678,7 +690,7 @@ class _$InitialImpl implements _Initial {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function(int secondsLeft) ticked,
+    required TResult Function(int minutesLeft, int secondsLeft) ticked,
     required TResult Function() elapsed,
   }) {
     return initial();
@@ -688,7 +700,7 @@ class _$InitialImpl implements _Initial {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function(int secondsLeft)? ticked,
+    TResult? Function(int minutesLeft, int secondsLeft)? ticked,
     TResult? Function()? elapsed,
   }) {
     return initial?.call();
@@ -698,7 +710,7 @@ class _$InitialImpl implements _Initial {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(int secondsLeft)? ticked,
+    TResult Function(int minutesLeft, int secondsLeft)? ticked,
     TResult Function()? elapsed,
     required TResult orElse(),
   }) {
@@ -753,7 +765,7 @@ abstract class _$$TickedImplCopyWith<$Res> {
           _$TickedImpl value, $Res Function(_$TickedImpl) then) =
       __$$TickedImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({int secondsLeft});
+  $Res call({int minutesLeft, int secondsLeft});
 }
 
 /// @nodoc
@@ -767,9 +779,14 @@ class __$$TickedImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? minutesLeft = null,
     Object? secondsLeft = null,
   }) {
     return _then(_$TickedImpl(
+      minutesLeft: null == minutesLeft
+          ? _value.minutesLeft
+          : minutesLeft // ignore: cast_nullable_to_non_nullable
+              as int,
       secondsLeft: null == secondsLeft
           ? _value.secondsLeft
           : secondsLeft // ignore: cast_nullable_to_non_nullable
@@ -781,14 +798,16 @@ class __$$TickedImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$TickedImpl implements _Ticked {
-  const _$TickedImpl({required this.secondsLeft});
+  const _$TickedImpl({required this.minutesLeft, required this.secondsLeft});
 
+  @override
+  final int minutesLeft;
   @override
   final int secondsLeft;
 
   @override
   String toString() {
-    return 'OtpResendTimerState.ticked(secondsLeft: $secondsLeft)';
+    return 'OtpResendTimerState.ticked(minutesLeft: $minutesLeft, secondsLeft: $secondsLeft)';
   }
 
   @override
@@ -796,12 +815,14 @@ class _$TickedImpl implements _Ticked {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$TickedImpl &&
+            (identical(other.minutesLeft, minutesLeft) ||
+                other.minutesLeft == minutesLeft) &&
             (identical(other.secondsLeft, secondsLeft) ||
                 other.secondsLeft == secondsLeft));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, secondsLeft);
+  int get hashCode => Object.hash(runtimeType, minutesLeft, secondsLeft);
 
   @JsonKey(ignore: true)
   @override
@@ -813,32 +834,32 @@ class _$TickedImpl implements _Ticked {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function(int secondsLeft) ticked,
+    required TResult Function(int minutesLeft, int secondsLeft) ticked,
     required TResult Function() elapsed,
   }) {
-    return ticked(secondsLeft);
+    return ticked(minutesLeft, secondsLeft);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function(int secondsLeft)? ticked,
+    TResult? Function(int minutesLeft, int secondsLeft)? ticked,
     TResult? Function()? elapsed,
   }) {
-    return ticked?.call(secondsLeft);
+    return ticked?.call(minutesLeft, secondsLeft);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(int secondsLeft)? ticked,
+    TResult Function(int minutesLeft, int secondsLeft)? ticked,
     TResult Function()? elapsed,
     required TResult orElse(),
   }) {
     if (ticked != null) {
-      return ticked(secondsLeft);
+      return ticked(minutesLeft, secondsLeft);
     }
     return orElse();
   }
@@ -879,8 +900,11 @@ class _$TickedImpl implements _Ticked {
 }
 
 abstract class _Ticked implements OtpResendTimerState {
-  const factory _Ticked({required final int secondsLeft}) = _$TickedImpl;
+  const factory _Ticked(
+      {required final int minutesLeft,
+      required final int secondsLeft}) = _$TickedImpl;
 
+  int get minutesLeft;
   int get secondsLeft;
   @JsonKey(ignore: true)
   _$$TickedImplCopyWith<_$TickedImpl> get copyWith =>
@@ -926,7 +950,7 @@ class _$ElapsedImpl implements _Elapsed {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function(int secondsLeft) ticked,
+    required TResult Function(int minutesLeft, int secondsLeft) ticked,
     required TResult Function() elapsed,
   }) {
     return elapsed();
@@ -936,7 +960,7 @@ class _$ElapsedImpl implements _Elapsed {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function(int secondsLeft)? ticked,
+    TResult? Function(int minutesLeft, int secondsLeft)? ticked,
     TResult? Function()? elapsed,
   }) {
     return elapsed?.call();
@@ -946,7 +970,7 @@ class _$ElapsedImpl implements _Elapsed {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(int secondsLeft)? ticked,
+    TResult Function(int minutesLeft, int secondsLeft)? ticked,
     TResult Function()? elapsed,
     required TResult orElse(),
   }) {
