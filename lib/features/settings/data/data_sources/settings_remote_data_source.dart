@@ -4,10 +4,7 @@ import 'package:sky_trade/core/errors/exceptions/settings_exception.dart';
 import 'package:sky_trade/core/resources/strings/networking.dart'
     show
         deleteUserPath,
-        errorInDeletionSkyUserErrorExceptionInvalidDeleteOtpCode,
-        invalidDeleteLinkCode,
         invalidDeleteOtpCode,
-        invalidOtpCode,
         otpKey,
         privatePath,
         requestDeletePath,
@@ -63,13 +60,7 @@ final class SettingsRemoteDataSourceImplementation
         ),
         onSuccess: MessageModel.fromJson,
         onError: (e) => switch (e is String) {
-          true
-              when e == invalidDeleteLinkCode ||
-                  e == invalidDeleteOtpCode ||
-                  e ==
-                      errorInDeletionSkyUserErrorExceptionInvalidDeleteOtpCode ||
-                  e == invalidOtpCode =>
-            InvalidCodeException(),
+          true when e == invalidDeleteOtpCode => InvalidCodeException(),
           _ => DeleteAccountUnknownException(),
         },
       );

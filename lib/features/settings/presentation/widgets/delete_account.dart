@@ -375,17 +375,30 @@ class _DeleteAccountViewState extends State<DeleteAccountView> {
                                     OtpResendTimerState>(
                               builder: (context, otpResendTimerState) =>
                                   RichText(
+                                textAlign: TextAlign.center,
                                 text: TextSpan(
                                   text: otpResendTimerState.maybeWhen(
-                                    ticked: (secondsLeft) =>
+                                    ticked: (
+                                      minutesLeft,
+                                      secondsLeft,
+                                    ) =>
                                         context.localize.resendOtpIn +
                                         whiteSpace +
-                                        secondsLeft.toString() +
-                                        context.localize.s,
+                                        switch (minutesLeft == zero) {
+                                          true => emptyString,
+                                          false => minutesLeft.toString() +
+                                              context.localize.m +
+                                              whiteSpace,
+                                        } +
+                                        switch (secondsLeft == zero) {
+                                          true => emptyString,
+                                          false => secondsLeft.toString() +
+                                              context.localize.s,
+                                        },
                                     orElse: () => context.localize.resendOtp,
                                   ),
                                   style: otpResendTimerState.maybeWhen(
-                                    ticked: (_) => Theme.of(
+                                    ticked: (_, __) => Theme.of(
                                       context,
                                     ).textTheme.bodySmall?.copyWith(
                                           fontSize: fourteenDotNil,
@@ -403,7 +416,7 @@ class _DeleteAccountViewState extends State<DeleteAccountView> {
                                         ),
                                   ),
                                   recognizer: otpResendTimerState.maybeWhen(
-                                    ticked: (_) => null,
+                                    ticked: (_, __) => null,
                                     orElse: () => deleteAccountState.maybeWhen(
                                       deletingAccount: () => null,
                                       orElse: () => TapGestureRecognizer()

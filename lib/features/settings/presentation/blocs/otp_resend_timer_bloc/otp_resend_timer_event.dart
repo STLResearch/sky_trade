@@ -5,6 +5,7 @@ class OtpResendTimerEvent with _$OtpResendTimerEvent {
   const factory OtpResendTimerEvent.countdown() = _Countdown;
 
   const factory OtpResendTimerEvent.tick({
+    required int minutesLeft,
     required int secondsLeft,
   }) = _Tick;
 

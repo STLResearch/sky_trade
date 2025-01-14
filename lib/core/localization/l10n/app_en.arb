@@ -181,5 +181,6 @@
   "resendOtp": "Resend OTP",
   "resendOtpIn": "Resend OTP in",
   "s": "s",
+  "m": "m",
   "theCodeYouEnteredDoesNotMatchWhatWeSentYou": "The code you entered does not match what we sent you"
 }
