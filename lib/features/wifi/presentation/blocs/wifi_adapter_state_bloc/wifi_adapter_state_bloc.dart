@@ -34,10 +34,6 @@ class WifiAdapterStateBloc
     on<_WifiAdapterStateNotGotten>(
       _wifiAdapterStateNotGotten,
     );
-
-    on<_StopListeningWifiAdapterState>(
-      _stopListeningWifiAdapterState,
-    );
   }
 
   final WifiRepository _wifiRepository;
@@ -49,9 +45,8 @@ class WifiAdapterStateBloc
     _ListenWifiAdapterState _,
     Emitter<WifiAdapterStateState> emit,
   ) async {
-    await _cancelListeningWifiAdapterState(
-      emit: emit,
-    );
+
+    await ensureCleanState();
 
     emit(
       const WifiAdapterStateState.gettingWifiAdapterState(),
@@ -107,25 +102,15 @@ class WifiAdapterStateBloc
         ),
       );
 
-  Future<void> _stopListeningWifiAdapterState(
-    _StopListeningWifiAdapterState _,
-    Emitter<WifiAdapterStateState> emit,
-  ) =>
-      _cancelListeningWifiAdapterState(
-        emit: emit,
-      );
-
-  Future<void> _cancelListeningWifiAdapterState({
-    required Emitter<WifiAdapterStateState> emit,
-  }) async {
+  Future<void> ensureCleanState() async {
     await _wifiAdapterStateStreamSubscription?.cancel();
-
-    if (_wifiAdapterStateStreamSubscription != null) {
-      _wifiAdapterStateStreamSubscription = null;
-    }
-
-    emit(
-      const WifiAdapterStateState.initial(),
-    );
+    _wifiAdapterStateStreamSubscription = null;
   }
+
+  @override
+  Future<void> close() async {
+    await ensureCleanState();
+    return super.close();
+  }
+
 }

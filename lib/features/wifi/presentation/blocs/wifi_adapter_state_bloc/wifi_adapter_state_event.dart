@@ -12,7 +12,4 @@ class WifiAdapterStateEvent with _$WifiAdapterStateEvent {
   const factory WifiAdapterStateEvent.wifiAdapterStateNotGotten({
     required WifiAdapterStateFailure wifiAdapterStateFailure,
   }) = _WifiAdapterStateNotGotten;
-
-  const factory WifiAdapterStateEvent.stopListeningWifiAdapterState() =
-      _StopListeningWifiAdapterState;
 }

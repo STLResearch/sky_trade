@@ -92,12 +92,7 @@ class _SearchCardViewState extends State<SearchCardView> {
 
   @override
   void deactivate() {
-    context.read<BluetoothAdapterStateBloc>().add(
-          const BluetoothAdapterStateEvent.stopListeningBluetoothAdapterState(),
-        );
-    _maybeStopListeningWifiAdapterState();
     _maybeDisposeSearchDebounceTimer();
-
     super.deactivate();
   }
 
@@ -105,14 +100,6 @@ class _SearchCardViewState extends State<SearchCardView> {
     if (Platform.isAndroid) {
       context.read<WifiAdapterStateBloc>().add(
             const WifiAdapterStateEvent.listenWifiAdapterState(),
-          );
-    }
-  }
-
-  void _maybeStopListeningWifiAdapterState() {
-    if (Platform.isAndroid) {
-      context.read<WifiAdapterStateBloc>().add(
-            const WifiAdapterStateEvent.stopListeningWifiAdapterState(),
           );
     }
   }
