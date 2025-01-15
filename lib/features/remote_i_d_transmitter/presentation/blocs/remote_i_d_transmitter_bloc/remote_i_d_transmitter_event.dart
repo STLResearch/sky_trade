@@ -18,6 +18,4 @@ class RemoteIDTransmitterEvent with _$RemoteIDTransmitterEvent {
     required double? deviceLatitude,
     required double? deviceLongitude,
   }) = _TransmitRemoteID;
-
-  const factory RemoteIDTransmitterEvent.stopTransmitter() = _StopTransmitter;
 }

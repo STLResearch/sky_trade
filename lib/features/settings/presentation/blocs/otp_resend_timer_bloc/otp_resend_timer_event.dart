@@ -10,6 +10,4 @@ class OtpResendTimerEvent with _$OtpResendTimerEvent {
   }) = _Tick;
 
   const factory OtpResendTimerEvent.elapse() = _Elapse;
-
-  const factory OtpResendTimerEvent.dispose() = _Dispose;
 }

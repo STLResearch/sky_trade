@@ -45,8 +45,7 @@ class WifiAdapterStateBloc
     _ListenWifiAdapterState _,
     Emitter<WifiAdapterStateState> emit,
   ) async {
-
-    await ensureCleanState();
+    await cleanupStreamSubscription();
 
     emit(
       const WifiAdapterStateState.gettingWifiAdapterState(),
@@ -102,15 +101,15 @@ class WifiAdapterStateBloc
         ),
       );
 
-  Future<void> ensureCleanState() async {
+  Future<void> cleanupStreamSubscription() async {
     await _wifiAdapterStateStreamSubscription?.cancel();
     _wifiAdapterStateStreamSubscription = null;
   }
 
   @override
   Future<void> close() async {
-    await ensureCleanState();
+    await cleanupStreamSubscription();
+
     return super.close();
   }
-
 }

@@ -24,7 +24,6 @@ mixin _$SearchAutocompleteEvent {
     required TResult Function(
             SearchAutocompleteFailure searchAutocompleteFailure)
         searchAutocompleteNotGotten,
-    required TResult Function() disposeAutocompleteSearchDebounceTimer,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -34,7 +33,6 @@ mixin _$SearchAutocompleteEvent {
         searchAutocompleteGotten,
     TResult? Function(SearchAutocompleteFailure searchAutocompleteFailure)?
         searchAutocompleteNotGotten,
-    TResult? Function()? disposeAutocompleteSearchDebounceTimer,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -44,7 +42,6 @@ mixin _$SearchAutocompleteEvent {
         searchAutocompleteGotten,
     TResult Function(SearchAutocompleteFailure searchAutocompleteFailure)?
         searchAutocompleteNotGotten,
-    TResult Function()? disposeAutocompleteSearchDebounceTimer,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -55,8 +52,6 @@ mixin _$SearchAutocompleteEvent {
         searchAutocompleteGotten,
     required TResult Function(_SearchAutocompleteNotGotten value)
         searchAutocompleteNotGotten,
-    required TResult Function(_DisposeAutocompleteSearchDebounceTimer value)
-        disposeAutocompleteSearchDebounceTimer,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -66,8 +61,6 @@ mixin _$SearchAutocompleteEvent {
         searchAutocompleteGotten,
     TResult? Function(_SearchAutocompleteNotGotten value)?
         searchAutocompleteNotGotten,
-    TResult? Function(_DisposeAutocompleteSearchDebounceTimer value)?
-        disposeAutocompleteSearchDebounceTimer,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -76,8 +69,6 @@ mixin _$SearchAutocompleteEvent {
     TResult Function(_SearchAutocompleteGotten value)? searchAutocompleteGotten,
     TResult Function(_SearchAutocompleteNotGotten value)?
         searchAutocompleteNotGotten,
-    TResult Function(_DisposeAutocompleteSearchDebounceTimer value)?
-        disposeAutocompleteSearchDebounceTimer,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -174,7 +165,6 @@ class _$AutocompleteSearchImpl implements _AutocompleteSearch {
     required TResult Function(
             SearchAutocompleteFailure searchAutocompleteFailure)
         searchAutocompleteNotGotten,
-    required TResult Function() disposeAutocompleteSearchDebounceTimer,
   }) {
     return autocompleteSearch(query);
   }
@@ -187,7 +177,6 @@ class _$AutocompleteSearchImpl implements _AutocompleteSearch {
         searchAutocompleteGotten,
     TResult? Function(SearchAutocompleteFailure searchAutocompleteFailure)?
         searchAutocompleteNotGotten,
-    TResult? Function()? disposeAutocompleteSearchDebounceTimer,
   }) {
     return autocompleteSearch?.call(query);
   }
@@ -200,7 +189,6 @@ class _$AutocompleteSearchImpl implements _AutocompleteSearch {
         searchAutocompleteGotten,
     TResult Function(SearchAutocompleteFailure searchAutocompleteFailure)?
         searchAutocompleteNotGotten,
-    TResult Function()? disposeAutocompleteSearchDebounceTimer,
     required TResult orElse(),
   }) {
     if (autocompleteSearch != null) {
@@ -217,8 +205,6 @@ class _$AutocompleteSearchImpl implements _AutocompleteSearch {
         searchAutocompleteGotten,
     required TResult Function(_SearchAutocompleteNotGotten value)
         searchAutocompleteNotGotten,
-    required TResult Function(_DisposeAutocompleteSearchDebounceTimer value)
-        disposeAutocompleteSearchDebounceTimer,
   }) {
     return autocompleteSearch(this);
   }
@@ -231,8 +217,6 @@ class _$AutocompleteSearchImpl implements _AutocompleteSearch {
         searchAutocompleteGotten,
     TResult? Function(_SearchAutocompleteNotGotten value)?
         searchAutocompleteNotGotten,
-    TResult? Function(_DisposeAutocompleteSearchDebounceTimer value)?
-        disposeAutocompleteSearchDebounceTimer,
   }) {
     return autocompleteSearch?.call(this);
   }
@@ -244,8 +228,6 @@ class _$AutocompleteSearchImpl implements _AutocompleteSearch {
     TResult Function(_SearchAutocompleteGotten value)? searchAutocompleteGotten,
     TResult Function(_SearchAutocompleteNotGotten value)?
         searchAutocompleteNotGotten,
-    TResult Function(_DisposeAutocompleteSearchDebounceTimer value)?
-        disposeAutocompleteSearchDebounceTimer,
     required TResult orElse(),
   }) {
     if (autocompleteSearch != null) {
@@ -340,7 +322,6 @@ class _$SearchAutocompleteGottenImpl implements _SearchAutocompleteGotten {
     required TResult Function(
             SearchAutocompleteFailure searchAutocompleteFailure)
         searchAutocompleteNotGotten,
-    required TResult Function() disposeAutocompleteSearchDebounceTimer,
   }) {
     return searchAutocompleteGotten(searchResultEntity);
   }
@@ -353,7 +334,6 @@ class _$SearchAutocompleteGottenImpl implements _SearchAutocompleteGotten {
         searchAutocompleteGotten,
     TResult? Function(SearchAutocompleteFailure searchAutocompleteFailure)?
         searchAutocompleteNotGotten,
-    TResult? Function()? disposeAutocompleteSearchDebounceTimer,
   }) {
     return searchAutocompleteGotten?.call(searchResultEntity);
   }
@@ -366,7 +346,6 @@ class _$SearchAutocompleteGottenImpl implements _SearchAutocompleteGotten {
         searchAutocompleteGotten,
     TResult Function(SearchAutocompleteFailure searchAutocompleteFailure)?
         searchAutocompleteNotGotten,
-    TResult Function()? disposeAutocompleteSearchDebounceTimer,
     required TResult orElse(),
   }) {
     if (searchAutocompleteGotten != null) {
@@ -383,8 +362,6 @@ class _$SearchAutocompleteGottenImpl implements _SearchAutocompleteGotten {
         searchAutocompleteGotten,
     required TResult Function(_SearchAutocompleteNotGotten value)
         searchAutocompleteNotGotten,
-    required TResult Function(_DisposeAutocompleteSearchDebounceTimer value)
-        disposeAutocompleteSearchDebounceTimer,
   }) {
     return searchAutocompleteGotten(this);
   }
@@ -397,8 +374,6 @@ class _$SearchAutocompleteGottenImpl implements _SearchAutocompleteGotten {
         searchAutocompleteGotten,
     TResult? Function(_SearchAutocompleteNotGotten value)?
         searchAutocompleteNotGotten,
-    TResult? Function(_DisposeAutocompleteSearchDebounceTimer value)?
-        disposeAutocompleteSearchDebounceTimer,
   }) {
     return searchAutocompleteGotten?.call(this);
   }
@@ -410,8 +385,6 @@ class _$SearchAutocompleteGottenImpl implements _SearchAutocompleteGotten {
     TResult Function(_SearchAutocompleteGotten value)? searchAutocompleteGotten,
     TResult Function(_SearchAutocompleteNotGotten value)?
         searchAutocompleteNotGotten,
-    TResult Function(_DisposeAutocompleteSearchDebounceTimer value)?
-        disposeAutocompleteSearchDebounceTimer,
     required TResult orElse(),
   }) {
     if (searchAutocompleteGotten != null) {
@@ -510,7 +483,6 @@ class _$SearchAutocompleteNotGottenImpl
     required TResult Function(
             SearchAutocompleteFailure searchAutocompleteFailure)
         searchAutocompleteNotGotten,
-    required TResult Function() disposeAutocompleteSearchDebounceTimer,
   }) {
     return searchAutocompleteNotGotten(searchAutocompleteFailure);
   }
@@ -523,7 +495,6 @@ class _$SearchAutocompleteNotGottenImpl
         searchAutocompleteGotten,
     TResult? Function(SearchAutocompleteFailure searchAutocompleteFailure)?
         searchAutocompleteNotGotten,
-    TResult? Function()? disposeAutocompleteSearchDebounceTimer,
   }) {
     return searchAutocompleteNotGotten?.call(searchAutocompleteFailure);
   }
@@ -536,7 +507,6 @@ class _$SearchAutocompleteNotGottenImpl
         searchAutocompleteGotten,
     TResult Function(SearchAutocompleteFailure searchAutocompleteFailure)?
         searchAutocompleteNotGotten,
-    TResult Function()? disposeAutocompleteSearchDebounceTimer,
     required TResult orElse(),
   }) {
     if (searchAutocompleteNotGotten != null) {
@@ -553,8 +523,6 @@ class _$SearchAutocompleteNotGottenImpl
         searchAutocompleteGotten,
     required TResult Function(_SearchAutocompleteNotGotten value)
         searchAutocompleteNotGotten,
-    required TResult Function(_DisposeAutocompleteSearchDebounceTimer value)
-        disposeAutocompleteSearchDebounceTimer,
   }) {
     return searchAutocompleteNotGotten(this);
   }
@@ -567,8 +535,6 @@ class _$SearchAutocompleteNotGottenImpl
         searchAutocompleteGotten,
     TResult? Function(_SearchAutocompleteNotGotten value)?
         searchAutocompleteNotGotten,
-    TResult? Function(_DisposeAutocompleteSearchDebounceTimer value)?
-        disposeAutocompleteSearchDebounceTimer,
   }) {
     return searchAutocompleteNotGotten?.call(this);
   }
@@ -580,8 +546,6 @@ class _$SearchAutocompleteNotGottenImpl
     TResult Function(_SearchAutocompleteGotten value)? searchAutocompleteGotten,
     TResult Function(_SearchAutocompleteNotGotten value)?
         searchAutocompleteNotGotten,
-    TResult Function(_DisposeAutocompleteSearchDebounceTimer value)?
-        disposeAutocompleteSearchDebounceTimer,
     required TResult orElse(),
   }) {
     if (searchAutocompleteNotGotten != null) {
@@ -600,142 +564,6 @@ abstract class _SearchAutocompleteNotGotten implements SearchAutocompleteEvent {
   @JsonKey(ignore: true)
   _$$SearchAutocompleteNotGottenImplCopyWith<_$SearchAutocompleteNotGottenImpl>
       get copyWith => throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$$DisposeAutocompleteSearchDebounceTimerImplCopyWith<$Res> {
-  factory _$$DisposeAutocompleteSearchDebounceTimerImplCopyWith(
-          _$DisposeAutocompleteSearchDebounceTimerImpl value,
-          $Res Function(_$DisposeAutocompleteSearchDebounceTimerImpl) then) =
-      __$$DisposeAutocompleteSearchDebounceTimerImplCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$DisposeAutocompleteSearchDebounceTimerImplCopyWithImpl<$Res>
-    extends _$SearchAutocompleteEventCopyWithImpl<$Res,
-        _$DisposeAutocompleteSearchDebounceTimerImpl>
-    implements _$$DisposeAutocompleteSearchDebounceTimerImplCopyWith<$Res> {
-  __$$DisposeAutocompleteSearchDebounceTimerImplCopyWithImpl(
-      _$DisposeAutocompleteSearchDebounceTimerImpl _value,
-      $Res Function(_$DisposeAutocompleteSearchDebounceTimerImpl) _then)
-      : super(_value, _then);
-}
-
-/// @nodoc
-
-class _$DisposeAutocompleteSearchDebounceTimerImpl
-    implements _DisposeAutocompleteSearchDebounceTimer {
-  const _$DisposeAutocompleteSearchDebounceTimerImpl();
-
-  @override
-  String toString() {
-    return 'SearchAutocompleteEvent.disposeAutocompleteSearchDebounceTimer()';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$DisposeAutocompleteSearchDebounceTimerImpl);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(String query) autocompleteSearch,
-    required TResult Function(SearchResultEntity searchResultEntity)
-        searchAutocompleteGotten,
-    required TResult Function(
-            SearchAutocompleteFailure searchAutocompleteFailure)
-        searchAutocompleteNotGotten,
-    required TResult Function() disposeAutocompleteSearchDebounceTimer,
-  }) {
-    return disposeAutocompleteSearchDebounceTimer();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String query)? autocompleteSearch,
-    TResult? Function(SearchResultEntity searchResultEntity)?
-        searchAutocompleteGotten,
-    TResult? Function(SearchAutocompleteFailure searchAutocompleteFailure)?
-        searchAutocompleteNotGotten,
-    TResult? Function()? disposeAutocompleteSearchDebounceTimer,
-  }) {
-    return disposeAutocompleteSearchDebounceTimer?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String query)? autocompleteSearch,
-    TResult Function(SearchResultEntity searchResultEntity)?
-        searchAutocompleteGotten,
-    TResult Function(SearchAutocompleteFailure searchAutocompleteFailure)?
-        searchAutocompleteNotGotten,
-    TResult Function()? disposeAutocompleteSearchDebounceTimer,
-    required TResult orElse(),
-  }) {
-    if (disposeAutocompleteSearchDebounceTimer != null) {
-      return disposeAutocompleteSearchDebounceTimer();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_AutocompleteSearch value) autocompleteSearch,
-    required TResult Function(_SearchAutocompleteGotten value)
-        searchAutocompleteGotten,
-    required TResult Function(_SearchAutocompleteNotGotten value)
-        searchAutocompleteNotGotten,
-    required TResult Function(_DisposeAutocompleteSearchDebounceTimer value)
-        disposeAutocompleteSearchDebounceTimer,
-  }) {
-    return disposeAutocompleteSearchDebounceTimer(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_AutocompleteSearch value)? autocompleteSearch,
-    TResult? Function(_SearchAutocompleteGotten value)?
-        searchAutocompleteGotten,
-    TResult? Function(_SearchAutocompleteNotGotten value)?
-        searchAutocompleteNotGotten,
-    TResult? Function(_DisposeAutocompleteSearchDebounceTimer value)?
-        disposeAutocompleteSearchDebounceTimer,
-  }) {
-    return disposeAutocompleteSearchDebounceTimer?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_AutocompleteSearch value)? autocompleteSearch,
-    TResult Function(_SearchAutocompleteGotten value)? searchAutocompleteGotten,
-    TResult Function(_SearchAutocompleteNotGotten value)?
-        searchAutocompleteNotGotten,
-    TResult Function(_DisposeAutocompleteSearchDebounceTimer value)?
-        disposeAutocompleteSearchDebounceTimer,
-    required TResult orElse(),
-  }) {
-    if (disposeAutocompleteSearchDebounceTimer != null) {
-      return disposeAutocompleteSearchDebounceTimer(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _DisposeAutocompleteSearchDebounceTimer
-    implements SearchAutocompleteEvent {
-  const factory _DisposeAutocompleteSearchDebounceTimer() =
-      _$DisposeAutocompleteSearchDebounceTimerImpl;
 }
 
 /// @nodoc

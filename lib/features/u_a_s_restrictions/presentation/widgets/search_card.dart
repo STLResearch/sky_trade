@@ -90,12 +90,6 @@ class _SearchCardViewState extends State<SearchCardView> {
     super.initState();
   }
 
-  @override
-  void deactivate() {
-    _maybeDisposeSearchDebounceTimer();
-    super.deactivate();
-  }
-
   void _maybeListenWifiAdapterState() {
     if (Platform.isAndroid) {
       context.read<WifiAdapterStateBloc>().add(
@@ -103,12 +97,6 @@ class _SearchCardViewState extends State<SearchCardView> {
           );
     }
   }
-
-  void _maybeDisposeSearchDebounceTimer() => context
-      .read<SearchAutocompleteBloc>()
-      .add(
-        const SearchAutocompleteEvent.disposeAutocompleteSearchDebounceTimer(),
-      );
 
   @override
   void dispose() {

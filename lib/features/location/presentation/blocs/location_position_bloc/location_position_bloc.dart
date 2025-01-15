@@ -70,7 +70,7 @@ class LocationPositionBloc
     _ListenLocationPosition _,
     Emitter<LocationPositionState> emit,
   ) async {
-    await ensureCleanState();
+    await cleanupStreamSubscription();
 
     emit(
       const LocationPositionState.gettingLocationPosition(),
@@ -130,20 +130,22 @@ class LocationPositionBloc
     _StopListeningLocationPosition _,
     Emitter<LocationPositionState> emit,
   ) async {
-    await ensureCleanState();
+    await cleanupStreamSubscription();
+
     emit(
       const LocationPositionState.initial(),
     );
   }
 
-  Future<void> ensureCleanState() async {
+  Future<void> cleanupStreamSubscription() async {
     await _locationPositionStreamSubscription?.cancel();
     _locationPositionStreamSubscription = null;
   }
 
   @override
   Future<void> close() async {
-    await ensureCleanState();
+    await cleanupStreamSubscription();
+
     return super.close();
   }
 }

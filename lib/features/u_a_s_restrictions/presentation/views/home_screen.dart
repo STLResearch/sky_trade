@@ -204,16 +204,11 @@ class _HomeViewState extends State<HomeView> {
 
   @override
   void deactivate() {
-    _stopTransmitter();
     _stopListeningUASActivities();
     _stopListeningRemoteIDs();
 
     super.deactivate();
   }
-
-  void _stopTransmitter() => context.read<RemoteIDTransmitterBloc>().add(
-        const RemoteIDTransmitterEvent.stopTransmitter(),
-      );
 
   void _stopListeningUASActivities() => context.read<UASActivityBloc>().add(
         const UASActivityEvent.stopListeningUASActivities(),

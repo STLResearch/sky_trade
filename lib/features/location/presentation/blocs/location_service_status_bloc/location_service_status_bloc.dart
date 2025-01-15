@@ -50,7 +50,7 @@ class LocationServiceStatusBloc
     _ListenLocationServiceStatus _,
     Emitter<LocationServiceStatusState> emit,
   ) async {
-    await ensureCleanState();
+    await cleanupStreamSubscription();
 
     emit(
       const LocationServiceStatusState.gettingLocationServiceStatus(),
@@ -119,20 +119,22 @@ class LocationServiceStatusBloc
     _StopListeningLocationServiceStatus _,
     Emitter<LocationServiceStatusState> emit,
   ) async {
-    await ensureCleanState();
+    await cleanupStreamSubscription();
+
     emit(
       const LocationServiceStatusState.initial(),
     );
   }
 
-  Future<void> ensureCleanState() async {
+  Future<void> cleanupStreamSubscription() async {
     await _locationServiceStatusStreamSubscription?.cancel();
     _locationServiceStatusStreamSubscription = null;
   }
 
   @override
   Future<void> close() async {
-    await ensureCleanState();
+    await cleanupStreamSubscription();
+
     return super.close();
   }
 }

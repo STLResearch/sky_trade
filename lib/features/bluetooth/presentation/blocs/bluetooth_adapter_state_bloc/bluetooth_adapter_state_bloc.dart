@@ -44,8 +44,7 @@ class BluetoothAdapterStateBloc
     _ListenBluetoothAdapterState _,
     Emitter<BluetoothAdapterStateState> emit,
   ) async {
-
-    await ensureCleanState();
+    await cleanupStreamSubscription();
 
     emit(
       const BluetoothAdapterStateState.gettingBluetoothAdapterState(),
@@ -110,14 +109,15 @@ class BluetoothAdapterStateBloc
         ),
       );
 
-  Future<void> ensureCleanState() async {
+  Future<void> cleanupStreamSubscription() async {
     await _bluetoothAdapterStateStreamSubscription?.cancel();
     _bluetoothAdapterStateStreamSubscription = null;
   }
 
   @override
   Future<void> close() async {
-    await ensureCleanState();
+    await cleanupStreamSubscription();
+
     return super.close();
   }
 }

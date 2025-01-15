@@ -34,10 +34,6 @@ class SearchAutocompleteBloc
     on<_SearchAutocompleteNotGotten>(
       _searchAutocompleteNotGotten,
     );
-
-    on<_DisposeAutocompleteSearchDebounceTimer>(
-      _disposeAutocompleteSearchDebounceTimer,
-    );
   }
 
   final SearchAutocompleteRepository _searchAutocompleteRepository;
@@ -49,7 +45,7 @@ class SearchAutocompleteBloc
     Emitter<SearchAutocompleteState> emit,
   ) async {
     if (_debounceTimer?.isActive ?? false) {
-      _debounceTimer?.cancel();
+      cleanupDebounceTimer();
     }
 
     if (event.query.isEmpty) {
@@ -90,12 +86,6 @@ class SearchAutocompleteBloc
     );
   }
 
-  void _disposeAutocompleteSearchDebounceTimer(
-    _DisposeAutocompleteSearchDebounceTimer event,
-    Emitter<SearchAutocompleteState> emit,
-  ) =>
-      _debounceTimer?.cancel();
-
   void _searchAutocompleteNotGotten(
     _SearchAutocompleteNotGotten event,
     Emitter<SearchAutocompleteState> emit,
@@ -115,4 +105,15 @@ class SearchAutocompleteBloc
           searchResultEntity: event.searchResultEntity,
         ),
       );
+
+  void cleanupDebounceTimer() {
+    _debounceTimer?.cancel();
+    _debounceTimer = null;
+  }
+
+  @override
+  Future<void> close() {
+    cleanupDebounceTimer();
+    return super.close();
+  }
 }

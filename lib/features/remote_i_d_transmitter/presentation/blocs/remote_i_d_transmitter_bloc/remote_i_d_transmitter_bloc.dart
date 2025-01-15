@@ -48,10 +48,6 @@ class RemoteIDTransmitterBloc
     on<_TransmitRemoteID>(
       _transmitRemoteID,
     );
-
-    on<_StopTransmitter>(
-      _stopTransmitter,
-    );
   }
 
   final RemoteIDTransmitterRepository _remoteIDTransmitterRepository;
@@ -112,8 +108,6 @@ class RemoteIDTransmitterBloc
             _remoteIDStreamSubscription?.resume();
           }
         } else if (connectionState == ConnectionState.destroyed) {
-          await _cancelListeningRemoteID();
-
           add(
             const RemoteIDTransmitterEvent.transmitterStopped(),
           );
@@ -138,13 +132,15 @@ class RemoteIDTransmitterBloc
         const RemoteIDTransmitterState.startedTransmitter(),
       );
 
-  void _transmitterStopped(
+  Future<void> _transmitterStopped(
     _TransmitterStopped event,
     Emitter<RemoteIDTransmitterState> emit,
-  ) =>
-      emit(
-        const RemoteIDTransmitterState.stoppedTransmitter(),
-      );
+  ) async {
+    await _cleanupTransmitter();
+    emit(
+      const RemoteIDTransmitterState.stoppedTransmitter(),
+    );
+  }
 
   void _transmitRemoteID(
     _TransmitRemoteID event,
@@ -160,20 +156,7 @@ class RemoteIDTransmitterBloc
         ),
       );
 
-  Future<void> _stopTransmitter(
-    _StopTransmitter event,
-    Emitter<RemoteIDTransmitterState> emit,
-  ) async {
-    await _cancelListeningRemoteID();
-
-    _remoteIDTransmitterRepository.stopTransmitter();
-
-    emit(
-      const RemoteIDTransmitterState.initial(),
-    );
-  }
-
-  Future<void> _cancelListeningRemoteID() async {
+  Future<void> _cleanupTransmitter() async {
     await Future.wait<dynamic>([
       _remoteIDStreamController?.close() ?? Future.value(),
       _remoteIDStreamSubscription?.cancel() ?? Future.value(),
@@ -184,5 +167,12 @@ class RemoteIDTransmitterBloc
 
     _startingTransmitter = false;
     _startedTransmitter = false;
+  }
+
+  @override
+  Future<void> close() async {
+    await _cleanupTransmitter();
+
+    return super.close();
   }
 }

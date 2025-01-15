@@ -25,7 +25,6 @@ mixin _$RemoteIDTransmitterEvent {
     required TResult Function(Set<RemoteIDEntity> remoteIDEntities,
             double? deviceLatitude, double? deviceLongitude)
         transmitRemoteID,
-    required TResult Function() stopTransmitter,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -37,7 +36,6 @@ mixin _$RemoteIDTransmitterEvent {
     TResult? Function(Set<RemoteIDEntity> remoteIDEntities,
             double? deviceLatitude, double? deviceLongitude)?
         transmitRemoteID,
-    TResult? Function()? stopTransmitter,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -49,7 +47,6 @@ mixin _$RemoteIDTransmitterEvent {
     TResult Function(Set<RemoteIDEntity> remoteIDEntities,
             double? deviceLatitude, double? deviceLongitude)?
         transmitRemoteID,
-    TResult Function()? stopTransmitter,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -60,7 +57,6 @@ mixin _$RemoteIDTransmitterEvent {
     required TResult Function(_TransmitterStarted value) transmitterStarted,
     required TResult Function(_TransmitterStopped value) transmitterStopped,
     required TResult Function(_TransmitRemoteID value) transmitRemoteID,
-    required TResult Function(_StopTransmitter value) stopTransmitter,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -70,7 +66,6 @@ mixin _$RemoteIDTransmitterEvent {
     TResult? Function(_TransmitterStarted value)? transmitterStarted,
     TResult? Function(_TransmitterStopped value)? transmitterStopped,
     TResult? Function(_TransmitRemoteID value)? transmitRemoteID,
-    TResult? Function(_StopTransmitter value)? stopTransmitter,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -80,7 +75,6 @@ mixin _$RemoteIDTransmitterEvent {
     TResult Function(_TransmitterStarted value)? transmitterStarted,
     TResult Function(_TransmitterStopped value)? transmitterStopped,
     TResult Function(_TransmitRemoteID value)? transmitRemoteID,
-    TResult Function(_StopTransmitter value)? stopTransmitter,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -150,7 +144,6 @@ class _$StartTransmitterImpl implements _StartTransmitter {
     required TResult Function(Set<RemoteIDEntity> remoteIDEntities,
             double? deviceLatitude, double? deviceLongitude)
         transmitRemoteID,
-    required TResult Function() stopTransmitter,
   }) {
     return startTransmitter();
   }
@@ -165,7 +158,6 @@ class _$StartTransmitterImpl implements _StartTransmitter {
     TResult? Function(Set<RemoteIDEntity> remoteIDEntities,
             double? deviceLatitude, double? deviceLongitude)?
         transmitRemoteID,
-    TResult? Function()? stopTransmitter,
   }) {
     return startTransmitter?.call();
   }
@@ -180,7 +172,6 @@ class _$StartTransmitterImpl implements _StartTransmitter {
     TResult Function(Set<RemoteIDEntity> remoteIDEntities,
             double? deviceLatitude, double? deviceLongitude)?
         transmitRemoteID,
-    TResult Function()? stopTransmitter,
     required TResult orElse(),
   }) {
     if (startTransmitter != null) {
@@ -197,7 +188,6 @@ class _$StartTransmitterImpl implements _StartTransmitter {
     required TResult Function(_TransmitterStarted value) transmitterStarted,
     required TResult Function(_TransmitterStopped value) transmitterStopped,
     required TResult Function(_TransmitRemoteID value) transmitRemoteID,
-    required TResult Function(_StopTransmitter value) stopTransmitter,
   }) {
     return startTransmitter(this);
   }
@@ -210,7 +200,6 @@ class _$StartTransmitterImpl implements _StartTransmitter {
     TResult? Function(_TransmitterStarted value)? transmitterStarted,
     TResult? Function(_TransmitterStopped value)? transmitterStopped,
     TResult? Function(_TransmitRemoteID value)? transmitRemoteID,
-    TResult? Function(_StopTransmitter value)? stopTransmitter,
   }) {
     return startTransmitter?.call(this);
   }
@@ -223,7 +212,6 @@ class _$StartTransmitterImpl implements _StartTransmitter {
     TResult Function(_TransmitterStarted value)? transmitterStarted,
     TResult Function(_TransmitterStopped value)? transmitterStopped,
     TResult Function(_TransmitRemoteID value)? transmitRemoteID,
-    TResult Function(_StopTransmitter value)? stopTransmitter,
     required TResult orElse(),
   }) {
     if (startTransmitter != null) {
@@ -284,7 +272,6 @@ class _$RemoteIDTransmittedImpl implements _RemoteIDTransmitted {
     required TResult Function(Set<RemoteIDEntity> remoteIDEntities,
             double? deviceLatitude, double? deviceLongitude)
         transmitRemoteID,
-    required TResult Function() stopTransmitter,
   }) {
     return remoteIDTransmitted();
   }
@@ -299,7 +286,6 @@ class _$RemoteIDTransmittedImpl implements _RemoteIDTransmitted {
     TResult? Function(Set<RemoteIDEntity> remoteIDEntities,
             double? deviceLatitude, double? deviceLongitude)?
         transmitRemoteID,
-    TResult? Function()? stopTransmitter,
   }) {
     return remoteIDTransmitted?.call();
   }
@@ -314,7 +300,6 @@ class _$RemoteIDTransmittedImpl implements _RemoteIDTransmitted {
     TResult Function(Set<RemoteIDEntity> remoteIDEntities,
             double? deviceLatitude, double? deviceLongitude)?
         transmitRemoteID,
-    TResult Function()? stopTransmitter,
     required TResult orElse(),
   }) {
     if (remoteIDTransmitted != null) {
@@ -331,7 +316,6 @@ class _$RemoteIDTransmittedImpl implements _RemoteIDTransmitted {
     required TResult Function(_TransmitterStarted value) transmitterStarted,
     required TResult Function(_TransmitterStopped value) transmitterStopped,
     required TResult Function(_TransmitRemoteID value) transmitRemoteID,
-    required TResult Function(_StopTransmitter value) stopTransmitter,
   }) {
     return remoteIDTransmitted(this);
   }
@@ -344,7 +328,6 @@ class _$RemoteIDTransmittedImpl implements _RemoteIDTransmitted {
     TResult? Function(_TransmitterStarted value)? transmitterStarted,
     TResult? Function(_TransmitterStopped value)? transmitterStopped,
     TResult? Function(_TransmitRemoteID value)? transmitRemoteID,
-    TResult? Function(_StopTransmitter value)? stopTransmitter,
   }) {
     return remoteIDTransmitted?.call(this);
   }
@@ -357,7 +340,6 @@ class _$RemoteIDTransmittedImpl implements _RemoteIDTransmitted {
     TResult Function(_TransmitterStarted value)? transmitterStarted,
     TResult Function(_TransmitterStopped value)? transmitterStopped,
     TResult Function(_TransmitRemoteID value)? transmitRemoteID,
-    TResult Function(_StopTransmitter value)? stopTransmitter,
     required TResult orElse(),
   }) {
     if (remoteIDTransmitted != null) {
@@ -417,7 +399,6 @@ class _$TransmitterStartedImpl implements _TransmitterStarted {
     required TResult Function(Set<RemoteIDEntity> remoteIDEntities,
             double? deviceLatitude, double? deviceLongitude)
         transmitRemoteID,
-    required TResult Function() stopTransmitter,
   }) {
     return transmitterStarted();
   }
@@ -432,7 +413,6 @@ class _$TransmitterStartedImpl implements _TransmitterStarted {
     TResult? Function(Set<RemoteIDEntity> remoteIDEntities,
             double? deviceLatitude, double? deviceLongitude)?
         transmitRemoteID,
-    TResult? Function()? stopTransmitter,
   }) {
     return transmitterStarted?.call();
   }
@@ -447,7 +427,6 @@ class _$TransmitterStartedImpl implements _TransmitterStarted {
     TResult Function(Set<RemoteIDEntity> remoteIDEntities,
             double? deviceLatitude, double? deviceLongitude)?
         transmitRemoteID,
-    TResult Function()? stopTransmitter,
     required TResult orElse(),
   }) {
     if (transmitterStarted != null) {
@@ -464,7 +443,6 @@ class _$TransmitterStartedImpl implements _TransmitterStarted {
     required TResult Function(_TransmitterStarted value) transmitterStarted,
     required TResult Function(_TransmitterStopped value) transmitterStopped,
     required TResult Function(_TransmitRemoteID value) transmitRemoteID,
-    required TResult Function(_StopTransmitter value) stopTransmitter,
   }) {
     return transmitterStarted(this);
   }
@@ -477,7 +455,6 @@ class _$TransmitterStartedImpl implements _TransmitterStarted {
     TResult? Function(_TransmitterStarted value)? transmitterStarted,
     TResult? Function(_TransmitterStopped value)? transmitterStopped,
     TResult? Function(_TransmitRemoteID value)? transmitRemoteID,
-    TResult? Function(_StopTransmitter value)? stopTransmitter,
   }) {
     return transmitterStarted?.call(this);
   }
@@ -490,7 +467,6 @@ class _$TransmitterStartedImpl implements _TransmitterStarted {
     TResult Function(_TransmitterStarted value)? transmitterStarted,
     TResult Function(_TransmitterStopped value)? transmitterStopped,
     TResult Function(_TransmitRemoteID value)? transmitRemoteID,
-    TResult Function(_StopTransmitter value)? stopTransmitter,
     required TResult orElse(),
   }) {
     if (transmitterStarted != null) {
@@ -550,7 +526,6 @@ class _$TransmitterStoppedImpl implements _TransmitterStopped {
     required TResult Function(Set<RemoteIDEntity> remoteIDEntities,
             double? deviceLatitude, double? deviceLongitude)
         transmitRemoteID,
-    required TResult Function() stopTransmitter,
   }) {
     return transmitterStopped();
   }
@@ -565,7 +540,6 @@ class _$TransmitterStoppedImpl implements _TransmitterStopped {
     TResult? Function(Set<RemoteIDEntity> remoteIDEntities,
             double? deviceLatitude, double? deviceLongitude)?
         transmitRemoteID,
-    TResult? Function()? stopTransmitter,
   }) {
     return transmitterStopped?.call();
   }
@@ -580,7 +554,6 @@ class _$TransmitterStoppedImpl implements _TransmitterStopped {
     TResult Function(Set<RemoteIDEntity> remoteIDEntities,
             double? deviceLatitude, double? deviceLongitude)?
         transmitRemoteID,
-    TResult Function()? stopTransmitter,
     required TResult orElse(),
   }) {
     if (transmitterStopped != null) {
@@ -597,7 +570,6 @@ class _$TransmitterStoppedImpl implements _TransmitterStopped {
     required TResult Function(_TransmitterStarted value) transmitterStarted,
     required TResult Function(_TransmitterStopped value) transmitterStopped,
     required TResult Function(_TransmitRemoteID value) transmitRemoteID,
-    required TResult Function(_StopTransmitter value) stopTransmitter,
   }) {
     return transmitterStopped(this);
   }
@@ -610,7 +582,6 @@ class _$TransmitterStoppedImpl implements _TransmitterStopped {
     TResult? Function(_TransmitterStarted value)? transmitterStarted,
     TResult? Function(_TransmitterStopped value)? transmitterStopped,
     TResult? Function(_TransmitRemoteID value)? transmitRemoteID,
-    TResult? Function(_StopTransmitter value)? stopTransmitter,
   }) {
     return transmitterStopped?.call(this);
   }
@@ -623,7 +594,6 @@ class _$TransmitterStoppedImpl implements _TransmitterStopped {
     TResult Function(_TransmitterStarted value)? transmitterStarted,
     TResult Function(_TransmitterStopped value)? transmitterStopped,
     TResult Function(_TransmitRemoteID value)? transmitRemoteID,
-    TResult Function(_StopTransmitter value)? stopTransmitter,
     required TResult orElse(),
   }) {
     if (transmitterStopped != null) {
@@ -745,7 +715,6 @@ class _$TransmitRemoteIDImpl implements _TransmitRemoteID {
     required TResult Function(Set<RemoteIDEntity> remoteIDEntities,
             double? deviceLatitude, double? deviceLongitude)
         transmitRemoteID,
-    required TResult Function() stopTransmitter,
   }) {
     return transmitRemoteID(remoteIDEntities, deviceLatitude, deviceLongitude);
   }
@@ -760,7 +729,6 @@ class _$TransmitRemoteIDImpl implements _TransmitRemoteID {
     TResult? Function(Set<RemoteIDEntity> remoteIDEntities,
             double? deviceLatitude, double? deviceLongitude)?
         transmitRemoteID,
-    TResult? Function()? stopTransmitter,
   }) {
     return transmitRemoteID?.call(
         remoteIDEntities, deviceLatitude, deviceLongitude);
@@ -776,7 +744,6 @@ class _$TransmitRemoteIDImpl implements _TransmitRemoteID {
     TResult Function(Set<RemoteIDEntity> remoteIDEntities,
             double? deviceLatitude, double? deviceLongitude)?
         transmitRemoteID,
-    TResult Function()? stopTransmitter,
     required TResult orElse(),
   }) {
     if (transmitRemoteID != null) {
@@ -794,7 +761,6 @@ class _$TransmitRemoteIDImpl implements _TransmitRemoteID {
     required TResult Function(_TransmitterStarted value) transmitterStarted,
     required TResult Function(_TransmitterStopped value) transmitterStopped,
     required TResult Function(_TransmitRemoteID value) transmitRemoteID,
-    required TResult Function(_StopTransmitter value) stopTransmitter,
   }) {
     return transmitRemoteID(this);
   }
@@ -807,7 +773,6 @@ class _$TransmitRemoteIDImpl implements _TransmitRemoteID {
     TResult? Function(_TransmitterStarted value)? transmitterStarted,
     TResult? Function(_TransmitterStopped value)? transmitterStopped,
     TResult? Function(_TransmitRemoteID value)? transmitRemoteID,
-    TResult? Function(_StopTransmitter value)? stopTransmitter,
   }) {
     return transmitRemoteID?.call(this);
   }
@@ -820,7 +785,6 @@ class _$TransmitRemoteIDImpl implements _TransmitRemoteID {
     TResult Function(_TransmitterStarted value)? transmitterStarted,
     TResult Function(_TransmitterStopped value)? transmitterStopped,
     TResult Function(_TransmitRemoteID value)? transmitRemoteID,
-    TResult Function(_StopTransmitter value)? stopTransmitter,
     required TResult orElse(),
   }) {
     if (transmitRemoteID != null) {
@@ -842,138 +806,6 @@ abstract class _TransmitRemoteID implements RemoteIDTransmitterEvent {
   @JsonKey(ignore: true)
   _$$TransmitRemoteIDImplCopyWith<_$TransmitRemoteIDImpl> get copyWith =>
       throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$$StopTransmitterImplCopyWith<$Res> {
-  factory _$$StopTransmitterImplCopyWith(_$StopTransmitterImpl value,
-          $Res Function(_$StopTransmitterImpl) then) =
-      __$$StopTransmitterImplCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$StopTransmitterImplCopyWithImpl<$Res>
-    extends _$RemoteIDTransmitterEventCopyWithImpl<$Res, _$StopTransmitterImpl>
-    implements _$$StopTransmitterImplCopyWith<$Res> {
-  __$$StopTransmitterImplCopyWithImpl(
-      _$StopTransmitterImpl _value, $Res Function(_$StopTransmitterImpl) _then)
-      : super(_value, _then);
-}
-
-/// @nodoc
-
-class _$StopTransmitterImpl implements _StopTransmitter {
-  const _$StopTransmitterImpl();
-
-  @override
-  String toString() {
-    return 'RemoteIDTransmitterEvent.stopTransmitter()';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$StopTransmitterImpl);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() startTransmitter,
-    required TResult Function() remoteIDTransmitted,
-    required TResult Function() transmitterStarted,
-    required TResult Function() transmitterStopped,
-    required TResult Function(Set<RemoteIDEntity> remoteIDEntities,
-            double? deviceLatitude, double? deviceLongitude)
-        transmitRemoteID,
-    required TResult Function() stopTransmitter,
-  }) {
-    return stopTransmitter();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? startTransmitter,
-    TResult? Function()? remoteIDTransmitted,
-    TResult? Function()? transmitterStarted,
-    TResult? Function()? transmitterStopped,
-    TResult? Function(Set<RemoteIDEntity> remoteIDEntities,
-            double? deviceLatitude, double? deviceLongitude)?
-        transmitRemoteID,
-    TResult? Function()? stopTransmitter,
-  }) {
-    return stopTransmitter?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? startTransmitter,
-    TResult Function()? remoteIDTransmitted,
-    TResult Function()? transmitterStarted,
-    TResult Function()? transmitterStopped,
-    TResult Function(Set<RemoteIDEntity> remoteIDEntities,
-            double? deviceLatitude, double? deviceLongitude)?
-        transmitRemoteID,
-    TResult Function()? stopTransmitter,
-    required TResult orElse(),
-  }) {
-    if (stopTransmitter != null) {
-      return stopTransmitter();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_StartTransmitter value) startTransmitter,
-    required TResult Function(_RemoteIDTransmitted value) remoteIDTransmitted,
-    required TResult Function(_TransmitterStarted value) transmitterStarted,
-    required TResult Function(_TransmitterStopped value) transmitterStopped,
-    required TResult Function(_TransmitRemoteID value) transmitRemoteID,
-    required TResult Function(_StopTransmitter value) stopTransmitter,
-  }) {
-    return stopTransmitter(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_StartTransmitter value)? startTransmitter,
-    TResult? Function(_RemoteIDTransmitted value)? remoteIDTransmitted,
-    TResult? Function(_TransmitterStarted value)? transmitterStarted,
-    TResult? Function(_TransmitterStopped value)? transmitterStopped,
-    TResult? Function(_TransmitRemoteID value)? transmitRemoteID,
-    TResult? Function(_StopTransmitter value)? stopTransmitter,
-  }) {
-    return stopTransmitter?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_StartTransmitter value)? startTransmitter,
-    TResult Function(_RemoteIDTransmitted value)? remoteIDTransmitted,
-    TResult Function(_TransmitterStarted value)? transmitterStarted,
-    TResult Function(_TransmitterStopped value)? transmitterStopped,
-    TResult Function(_TransmitRemoteID value)? transmitRemoteID,
-    TResult Function(_StopTransmitter value)? stopTransmitter,
-    required TResult orElse(),
-  }) {
-    if (stopTransmitter != null) {
-      return stopTransmitter(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _StopTransmitter implements RemoteIDTransmitterEvent {
-  const factory _StopTransmitter() = _$StopTransmitterImpl;
 }
 
 /// @nodoc

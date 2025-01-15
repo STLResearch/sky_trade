@@ -145,17 +145,6 @@ class _DeleteAccountViewState extends State<DeleteAccountView> {
           );
 
   @override
-  void deactivate() {
-    _disposeOtpResendTimer();
-
-    super.deactivate();
-  }
-
-  void _disposeOtpResendTimer() => context.read<OtpResendTimerBloc>().add(
-        const OtpResendTimerEvent.dispose(),
-      );
-
-  @override
   void dispose() {
     _otpController.dispose();
     _deleteAccountErrorMessageNotifier.dispose();
