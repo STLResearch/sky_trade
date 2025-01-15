@@ -206,8 +206,6 @@ class _HomeViewState extends State<HomeView> {
   void deactivate() {
     _stopTransmitter();
     _stopListeningUASActivities();
-    _stopListeningLocationPosition();
-    _stopListeningLocationServiceStatus();
     _stopListeningRemoteIDs();
 
     super.deactivate();
@@ -294,9 +292,7 @@ class _HomeViewState extends State<HomeView> {
                     _stopListeningLocationServiceStatus();
                   }
                 },
-                orElse: () {
-                  _stopListeningLocationServiceStatus();
-                },
+                orElse: _stopListeningLocationServiceStatus,
               );
             },
           ),
