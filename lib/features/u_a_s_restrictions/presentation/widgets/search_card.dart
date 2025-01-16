@@ -82,24 +82,18 @@ class _SearchCardViewState extends State<SearchCardView> {
   @override
   void initState() {
     _searchController = TextEditingController();
-    context.read<BluetoothAdapterStateBloc>().add(
-          const BluetoothAdapterStateEvent.listenBluetoothAdapterState(),
-        );
+
+    _listenBluetoothAdapterState();
+
     _maybeListenWifiAdapterState();
 
     super.initState();
   }
 
-  @override
-  void deactivate() {
-    context.read<BluetoothAdapterStateBloc>().add(
-          const BluetoothAdapterStateEvent.stopListeningBluetoothAdapterState(),
-        );
-    _maybeStopListeningWifiAdapterState();
-    _maybeDisposeSearchDebounceTimer();
-
-    super.deactivate();
-  }
+  void _listenBluetoothAdapterState() =>
+      context.read<BluetoothAdapterStateBloc>().add(
+            const BluetoothAdapterStateEvent.listenBluetoothAdapterState(),
+          );
 
   void _maybeListenWifiAdapterState() {
     if (Platform.isAndroid) {
@@ -108,20 +102,6 @@ class _SearchCardViewState extends State<SearchCardView> {
           );
     }
   }
-
-  void _maybeStopListeningWifiAdapterState() {
-    if (Platform.isAndroid) {
-      context.read<WifiAdapterStateBloc>().add(
-            const WifiAdapterStateEvent.stopListeningWifiAdapterState(),
-          );
-    }
-  }
-
-  void _maybeDisposeSearchDebounceTimer() => context
-      .read<SearchAutocompleteBloc>()
-      .add(
-        const SearchAutocompleteEvent.disposeAutocompleteSearchDebounceTimer(),
-      );
 
   @override
   void dispose() {

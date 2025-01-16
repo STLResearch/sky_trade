@@ -41,17 +41,16 @@ class RemoteIDTransmitterBloc
       _transmitterStarted,
     );
 
-    on<_TransmitterStopped>(
-      _transmitterStopped,
-    );
-
     on<_TransmitRemoteID>(
       _transmitRemoteID,
     );
+  }
 
-    on<_StopTransmitter>(
-      _stopTransmitter,
-    );
+  @override
+  Future<void> close() async {
+    await _cleanupTransmitter();
+
+    return super.close();
   }
 
   final RemoteIDTransmitterRepository _remoteIDTransmitterRepository;
@@ -112,11 +111,7 @@ class RemoteIDTransmitterBloc
             _remoteIDStreamSubscription?.resume();
           }
         } else if (connectionState == ConnectionState.destroyed) {
-          await _cancelListeningRemoteID();
-
-          add(
-            const RemoteIDTransmitterEvent.transmitterStopped(),
-          );
+          await _cleanupTransmitter();
         }
       },
     );
@@ -138,14 +133,6 @@ class RemoteIDTransmitterBloc
         const RemoteIDTransmitterState.startedTransmitter(),
       );
 
-  void _transmitterStopped(
-    _TransmitterStopped event,
-    Emitter<RemoteIDTransmitterState> emit,
-  ) =>
-      emit(
-        const RemoteIDTransmitterState.stoppedTransmitter(),
-      );
-
   void _transmitRemoteID(
     _TransmitRemoteID event,
     Emitter<RemoteIDTransmitterState> emit,
@@ -160,20 +147,7 @@ class RemoteIDTransmitterBloc
         ),
       );
 
-  Future<void> _stopTransmitter(
-    _StopTransmitter event,
-    Emitter<RemoteIDTransmitterState> emit,
-  ) async {
-    await _cancelListeningRemoteID();
-
-    _remoteIDTransmitterRepository.stopTransmitter();
-
-    emit(
-      const RemoteIDTransmitterState.initial(),
-    );
-  }
-
-  Future<void> _cancelListeningRemoteID() async {
+  Future<void> _cleanupTransmitter() async {
     await Future.wait<dynamic>([
       _remoteIDStreamController?.close() ?? Future.value(),
       _remoteIDStreamSubscription?.cancel() ?? Future.value(),
@@ -184,5 +158,7 @@ class RemoteIDTransmitterBloc
 
     _startingTransmitter = false;
     _startedTransmitter = false;
+
+    _remoteIDTransmitterRepository.stopTransmitter();
   }
 }

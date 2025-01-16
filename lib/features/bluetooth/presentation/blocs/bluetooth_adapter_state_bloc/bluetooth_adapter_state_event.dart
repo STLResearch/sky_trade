@@ -14,7 +14,4 @@ class BluetoothAdapterStateEvent with _$BluetoothAdapterStateEvent {
   const factory BluetoothAdapterStateEvent.bluetoothAdapterStateNotGotten({
     required BluetoothAdapterStateFailure bluetoothAdapterStateFailure,
   }) = _BluetoothAdapterStateNotGotten;
-
-  const factory BluetoothAdapterStateEvent.stopListeningBluetoothAdapterState() =
-      _StopListeningBluetoothAdapterState;
 }

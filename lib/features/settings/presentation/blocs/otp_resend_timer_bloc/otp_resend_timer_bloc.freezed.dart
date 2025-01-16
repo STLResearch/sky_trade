@@ -21,7 +21,6 @@ mixin _$OtpResendTimerEvent {
     required TResult Function() countdown,
     required TResult Function(int minutesLeft, int secondsLeft) tick,
     required TResult Function() elapse,
-    required TResult Function() dispose,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -29,7 +28,6 @@ mixin _$OtpResendTimerEvent {
     TResult? Function()? countdown,
     TResult? Function(int minutesLeft, int secondsLeft)? tick,
     TResult? Function()? elapse,
-    TResult? Function()? dispose,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -37,7 +35,6 @@ mixin _$OtpResendTimerEvent {
     TResult Function()? countdown,
     TResult Function(int minutesLeft, int secondsLeft)? tick,
     TResult Function()? elapse,
-    TResult Function()? dispose,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -46,7 +43,6 @@ mixin _$OtpResendTimerEvent {
     required TResult Function(_Countdown value) countdown,
     required TResult Function(_Tick value) tick,
     required TResult Function(_Elapse value) elapse,
-    required TResult Function(_Dispose value) dispose,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -54,7 +50,6 @@ mixin _$OtpResendTimerEvent {
     TResult? Function(_Countdown value)? countdown,
     TResult? Function(_Tick value)? tick,
     TResult? Function(_Elapse value)? elapse,
-    TResult? Function(_Dispose value)? dispose,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -62,7 +57,6 @@ mixin _$OtpResendTimerEvent {
     TResult Function(_Countdown value)? countdown,
     TResult Function(_Tick value)? tick,
     TResult Function(_Elapse value)? elapse,
-    TResult Function(_Dispose value)? dispose,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -127,7 +121,6 @@ class _$CountdownImpl implements _Countdown {
     required TResult Function() countdown,
     required TResult Function(int minutesLeft, int secondsLeft) tick,
     required TResult Function() elapse,
-    required TResult Function() dispose,
   }) {
     return countdown();
   }
@@ -138,7 +131,6 @@ class _$CountdownImpl implements _Countdown {
     TResult? Function()? countdown,
     TResult? Function(int minutesLeft, int secondsLeft)? tick,
     TResult? Function()? elapse,
-    TResult? Function()? dispose,
   }) {
     return countdown?.call();
   }
@@ -149,7 +141,6 @@ class _$CountdownImpl implements _Countdown {
     TResult Function()? countdown,
     TResult Function(int minutesLeft, int secondsLeft)? tick,
     TResult Function()? elapse,
-    TResult Function()? dispose,
     required TResult orElse(),
   }) {
     if (countdown != null) {
@@ -164,7 +155,6 @@ class _$CountdownImpl implements _Countdown {
     required TResult Function(_Countdown value) countdown,
     required TResult Function(_Tick value) tick,
     required TResult Function(_Elapse value) elapse,
-    required TResult Function(_Dispose value) dispose,
   }) {
     return countdown(this);
   }
@@ -175,7 +165,6 @@ class _$CountdownImpl implements _Countdown {
     TResult? Function(_Countdown value)? countdown,
     TResult? Function(_Tick value)? tick,
     TResult? Function(_Elapse value)? elapse,
-    TResult? Function(_Dispose value)? dispose,
   }) {
     return countdown?.call(this);
   }
@@ -186,7 +175,6 @@ class _$CountdownImpl implements _Countdown {
     TResult Function(_Countdown value)? countdown,
     TResult Function(_Tick value)? tick,
     TResult Function(_Elapse value)? elapse,
-    TResult Function(_Dispose value)? dispose,
     required TResult orElse(),
   }) {
     if (countdown != null) {
@@ -276,7 +264,6 @@ class _$TickImpl implements _Tick {
     required TResult Function() countdown,
     required TResult Function(int minutesLeft, int secondsLeft) tick,
     required TResult Function() elapse,
-    required TResult Function() dispose,
   }) {
     return tick(minutesLeft, secondsLeft);
   }
@@ -287,7 +274,6 @@ class _$TickImpl implements _Tick {
     TResult? Function()? countdown,
     TResult? Function(int minutesLeft, int secondsLeft)? tick,
     TResult? Function()? elapse,
-    TResult? Function()? dispose,
   }) {
     return tick?.call(minutesLeft, secondsLeft);
   }
@@ -298,7 +284,6 @@ class _$TickImpl implements _Tick {
     TResult Function()? countdown,
     TResult Function(int minutesLeft, int secondsLeft)? tick,
     TResult Function()? elapse,
-    TResult Function()? dispose,
     required TResult orElse(),
   }) {
     if (tick != null) {
@@ -313,7 +298,6 @@ class _$TickImpl implements _Tick {
     required TResult Function(_Countdown value) countdown,
     required TResult Function(_Tick value) tick,
     required TResult Function(_Elapse value) elapse,
-    required TResult Function(_Dispose value) dispose,
   }) {
     return tick(this);
   }
@@ -324,7 +308,6 @@ class _$TickImpl implements _Tick {
     TResult? Function(_Countdown value)? countdown,
     TResult? Function(_Tick value)? tick,
     TResult? Function(_Elapse value)? elapse,
-    TResult? Function(_Dispose value)? dispose,
   }) {
     return tick?.call(this);
   }
@@ -335,7 +318,6 @@ class _$TickImpl implements _Tick {
     TResult Function(_Countdown value)? countdown,
     TResult Function(_Tick value)? tick,
     TResult Function(_Elapse value)? elapse,
-    TResult Function(_Dispose value)? dispose,
     required TResult orElse(),
   }) {
     if (tick != null) {
@@ -398,7 +380,6 @@ class _$ElapseImpl implements _Elapse {
     required TResult Function() countdown,
     required TResult Function(int minutesLeft, int secondsLeft) tick,
     required TResult Function() elapse,
-    required TResult Function() dispose,
   }) {
     return elapse();
   }
@@ -409,7 +390,6 @@ class _$ElapseImpl implements _Elapse {
     TResult? Function()? countdown,
     TResult? Function(int minutesLeft, int secondsLeft)? tick,
     TResult? Function()? elapse,
-    TResult? Function()? dispose,
   }) {
     return elapse?.call();
   }
@@ -420,7 +400,6 @@ class _$ElapseImpl implements _Elapse {
     TResult Function()? countdown,
     TResult Function(int minutesLeft, int secondsLeft)? tick,
     TResult Function()? elapse,
-    TResult Function()? dispose,
     required TResult orElse(),
   }) {
     if (elapse != null) {
@@ -435,7 +414,6 @@ class _$ElapseImpl implements _Elapse {
     required TResult Function(_Countdown value) countdown,
     required TResult Function(_Tick value) tick,
     required TResult Function(_Elapse value) elapse,
-    required TResult Function(_Dispose value) dispose,
   }) {
     return elapse(this);
   }
@@ -446,7 +424,6 @@ class _$ElapseImpl implements _Elapse {
     TResult? Function(_Countdown value)? countdown,
     TResult? Function(_Tick value)? tick,
     TResult? Function(_Elapse value)? elapse,
-    TResult? Function(_Dispose value)? dispose,
   }) {
     return elapse?.call(this);
   }
@@ -457,7 +434,6 @@ class _$ElapseImpl implements _Elapse {
     TResult Function(_Countdown value)? countdown,
     TResult Function(_Tick value)? tick,
     TResult Function(_Elapse value)? elapse,
-    TResult Function(_Dispose value)? dispose,
     required TResult orElse(),
   }) {
     if (elapse != null) {
@@ -469,120 +445,6 @@ class _$ElapseImpl implements _Elapse {
 
 abstract class _Elapse implements OtpResendTimerEvent {
   const factory _Elapse() = _$ElapseImpl;
-}
-
-/// @nodoc
-abstract class _$$DisposeImplCopyWith<$Res> {
-  factory _$$DisposeImplCopyWith(
-          _$DisposeImpl value, $Res Function(_$DisposeImpl) then) =
-      __$$DisposeImplCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$DisposeImplCopyWithImpl<$Res>
-    extends _$OtpResendTimerEventCopyWithImpl<$Res, _$DisposeImpl>
-    implements _$$DisposeImplCopyWith<$Res> {
-  __$$DisposeImplCopyWithImpl(
-      _$DisposeImpl _value, $Res Function(_$DisposeImpl) _then)
-      : super(_value, _then);
-}
-
-/// @nodoc
-
-class _$DisposeImpl implements _Dispose {
-  const _$DisposeImpl();
-
-  @override
-  String toString() {
-    return 'OtpResendTimerEvent.dispose()';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$DisposeImpl);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() countdown,
-    required TResult Function(int minutesLeft, int secondsLeft) tick,
-    required TResult Function() elapse,
-    required TResult Function() dispose,
-  }) {
-    return dispose();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? countdown,
-    TResult? Function(int minutesLeft, int secondsLeft)? tick,
-    TResult? Function()? elapse,
-    TResult? Function()? dispose,
-  }) {
-    return dispose?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? countdown,
-    TResult Function(int minutesLeft, int secondsLeft)? tick,
-    TResult Function()? elapse,
-    TResult Function()? dispose,
-    required TResult orElse(),
-  }) {
-    if (dispose != null) {
-      return dispose();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Countdown value) countdown,
-    required TResult Function(_Tick value) tick,
-    required TResult Function(_Elapse value) elapse,
-    required TResult Function(_Dispose value) dispose,
-  }) {
-    return dispose(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Countdown value)? countdown,
-    TResult? Function(_Tick value)? tick,
-    TResult? Function(_Elapse value)? elapse,
-    TResult? Function(_Dispose value)? dispose,
-  }) {
-    return dispose?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Countdown value)? countdown,
-    TResult Function(_Tick value)? tick,
-    TResult Function(_Elapse value)? elapse,
-    TResult Function(_Dispose value)? dispose,
-    required TResult orElse(),
-  }) {
-    if (dispose != null) {
-      return dispose(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _Dispose implements OtpResendTimerEvent {
-  const factory _Dispose() = _$DisposeImpl;
 }
 
 /// @nodoc

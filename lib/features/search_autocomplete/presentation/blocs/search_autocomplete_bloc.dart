@@ -34,10 +34,13 @@ class SearchAutocompleteBloc
     on<_SearchAutocompleteNotGotten>(
       _searchAutocompleteNotGotten,
     );
+  }
 
-    on<_DisposeAutocompleteSearchDebounceTimer>(
-      _disposeAutocompleteSearchDebounceTimer,
-    );
+  @override
+  Future<void> close() {
+    _cleanupDebounceTimer();
+
+    return super.close();
   }
 
   final SearchAutocompleteRepository _searchAutocompleteRepository;
@@ -90,12 +93,6 @@ class SearchAutocompleteBloc
     );
   }
 
-  void _disposeAutocompleteSearchDebounceTimer(
-    _DisposeAutocompleteSearchDebounceTimer event,
-    Emitter<SearchAutocompleteState> emit,
-  ) =>
-      _debounceTimer?.cancel();
-
   void _searchAutocompleteNotGotten(
     _SearchAutocompleteNotGotten event,
     Emitter<SearchAutocompleteState> emit,
@@ -115,4 +112,9 @@ class SearchAutocompleteBloc
           searchResultEntity: event.searchResultEntity,
         ),
       );
+
+  void _cleanupDebounceTimer() {
+    _debounceTimer?.cancel();
+    _debounceTimer = null;
+  }
 }

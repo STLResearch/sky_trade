@@ -28,10 +28,13 @@ class OtpResendTimerBloc
     on<_Elapse>(
       _elapse,
     );
+  }
 
-    on<_Dispose>(
-      _dispose,
-    );
+  @override
+  Future<void> close() {
+    _cleanupCountdownTimer();
+
+    return super.close();
   }
 
   Timer? _countdownTimer;
@@ -105,9 +108,8 @@ class OtpResendTimerBloc
         const OtpResendTimerState.elapsed(),
       );
 
-  void _dispose(
-    _Dispose event,
-    Emitter<OtpResendTimerState> emit,
-  ) =>
-      _countdownTimer?.cancel();
+  void _cleanupCountdownTimer() {
+    _countdownTimer?.cancel();
+    _countdownTimer = null;
+  }
 }
