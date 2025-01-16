@@ -82,13 +82,18 @@ class _SearchCardViewState extends State<SearchCardView> {
   @override
   void initState() {
     _searchController = TextEditingController();
-    context.read<BluetoothAdapterStateBloc>().add(
-          const BluetoothAdapterStateEvent.listenBluetoothAdapterState(),
-        );
+
+    _listenBluetoothAdapterState();
+
     _maybeListenWifiAdapterState();
 
     super.initState();
   }
+
+  void _listenBluetoothAdapterState() =>
+      context.read<BluetoothAdapterStateBloc>().add(
+            const BluetoothAdapterStateEvent.listenBluetoothAdapterState(),
+          );
 
   void _maybeListenWifiAdapterState() {
     if (Platform.isAndroid) {

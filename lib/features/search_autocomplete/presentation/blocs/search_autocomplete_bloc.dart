@@ -36,6 +36,13 @@ class SearchAutocompleteBloc
     );
   }
 
+  @override
+  Future<void> close() {
+    _cleanupDebounceTimer();
+
+    return super.close();
+  }
+
   final SearchAutocompleteRepository _searchAutocompleteRepository;
 
   Timer? _debounceTimer;
@@ -45,7 +52,7 @@ class SearchAutocompleteBloc
     Emitter<SearchAutocompleteState> emit,
   ) async {
     if (_debounceTimer?.isActive ?? false) {
-      cleanupDebounceTimer();
+      _debounceTimer?.cancel();
     }
 
     if (event.query.isEmpty) {
@@ -106,14 +113,8 @@ class SearchAutocompleteBloc
         ),
       );
 
-  void cleanupDebounceTimer() {
+  void _cleanupDebounceTimer() {
     _debounceTimer?.cancel();
     _debounceTimer = null;
-  }
-
-  @override
-  Future<void> close() {
-    cleanupDebounceTimer();
-    return super.close();
   }
 }

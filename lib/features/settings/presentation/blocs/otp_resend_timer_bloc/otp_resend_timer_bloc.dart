@@ -30,6 +30,13 @@ class OtpResendTimerBloc
     );
   }
 
+  @override
+  Future<void> close() {
+    _cleanupCountdownTimer();
+
+    return super.close();
+  }
+
   Timer? _countdownTimer;
 
   Future<void> _countdown(
@@ -101,15 +108,8 @@ class OtpResendTimerBloc
         const OtpResendTimerState.elapsed(),
       );
 
-  void cleanupCountDownTimer(){
+  void _cleanupCountdownTimer() {
     _countdownTimer?.cancel();
     _countdownTimer = null;
-  }
-
-  @override
-  Future<void> close() {
-    cleanupCountDownTimer();
-
-    return super.close();
   }
 }

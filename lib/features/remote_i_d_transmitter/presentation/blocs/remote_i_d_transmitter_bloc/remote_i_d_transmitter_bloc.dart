@@ -41,13 +41,16 @@ class RemoteIDTransmitterBloc
       _transmitterStarted,
     );
 
-    on<_TransmitterStopped>(
-      _transmitterStopped,
-    );
-
     on<_TransmitRemoteID>(
       _transmitRemoteID,
     );
+  }
+
+  @override
+  Future<void> close() async {
+    await _cleanupTransmitter();
+
+    return super.close();
   }
 
   final RemoteIDTransmitterRepository _remoteIDTransmitterRepository;
@@ -108,9 +111,7 @@ class RemoteIDTransmitterBloc
             _remoteIDStreamSubscription?.resume();
           }
         } else if (connectionState == ConnectionState.destroyed) {
-          add(
-            const RemoteIDTransmitterEvent.transmitterStopped(),
-          );
+          await _cleanupTransmitter();
         }
       },
     );
@@ -131,16 +132,6 @@ class RemoteIDTransmitterBloc
       emit(
         const RemoteIDTransmitterState.startedTransmitter(),
       );
-
-  Future<void> _transmitterStopped(
-    _TransmitterStopped event,
-    Emitter<RemoteIDTransmitterState> emit,
-  ) async {
-    await _cleanupTransmitter();
-    emit(
-      const RemoteIDTransmitterState.stoppedTransmitter(),
-    );
-  }
 
   void _transmitRemoteID(
     _TransmitRemoteID event,
@@ -167,12 +158,7 @@ class RemoteIDTransmitterBloc
 
     _startingTransmitter = false;
     _startedTransmitter = false;
-  }
 
-  @override
-  Future<void> close() async {
-    await _cleanupTransmitter();
-
-    return super.close();
+    _remoteIDTransmitterRepository.stopTransmitter();
   }
 }

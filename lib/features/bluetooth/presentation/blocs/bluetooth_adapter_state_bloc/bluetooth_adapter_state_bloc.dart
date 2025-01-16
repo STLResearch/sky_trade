@@ -20,7 +20,9 @@ class BluetoothAdapterStateBloc
   BluetoothAdapterStateBloc(
     BluetoothRepository bluetoothRepository,
   )   : _bluetoothRepository = bluetoothRepository,
-        super(const BluetoothAdapterStateState.initial()) {
+        super(
+          const BluetoothAdapterStateState.initial(),
+        ) {
     on<_ListenBluetoothAdapterState>(
       _listenBluetoothAdapterState,
     );
@@ -34,6 +36,13 @@ class BluetoothAdapterStateBloc
     );
   }
 
+  @override
+  Future<void> close() async {
+    await _cleanupStreamSubscription();
+
+    return super.close();
+  }
+
   final BluetoothRepository _bluetoothRepository;
 
   StreamSubscription<
@@ -44,7 +53,7 @@ class BluetoothAdapterStateBloc
     _ListenBluetoothAdapterState _,
     Emitter<BluetoothAdapterStateState> emit,
   ) async {
-    await cleanupStreamSubscription();
+    await _cleanupStreamSubscription();
 
     emit(
       const BluetoothAdapterStateState.gettingBluetoothAdapterState(),
@@ -109,15 +118,8 @@ class BluetoothAdapterStateBloc
         ),
       );
 
-  Future<void> cleanupStreamSubscription() async {
+  Future<void> _cleanupStreamSubscription() async {
     await _bluetoothAdapterStateStreamSubscription?.cancel();
     _bluetoothAdapterStateStreamSubscription = null;
-  }
-
-  @override
-  Future<void> close() async {
-    await cleanupStreamSubscription();
-
-    return super.close();
   }
 }

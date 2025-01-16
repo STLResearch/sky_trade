@@ -36,6 +36,13 @@ class WifiAdapterStateBloc
     );
   }
 
+  @override
+  Future<void> close() async {
+    await _cleanupStreamSubscription();
+
+    return super.close();
+  }
+
   final WifiRepository _wifiRepository;
 
   StreamSubscription<Either<WifiAdapterStateFailure, WifiAdapterStateEntity>>?
@@ -45,7 +52,7 @@ class WifiAdapterStateBloc
     _ListenWifiAdapterState _,
     Emitter<WifiAdapterStateState> emit,
   ) async {
-    await cleanupStreamSubscription();
+    await _cleanupStreamSubscription();
 
     emit(
       const WifiAdapterStateState.gettingWifiAdapterState(),
@@ -101,15 +108,8 @@ class WifiAdapterStateBloc
         ),
       );
 
-  Future<void> cleanupStreamSubscription() async {
+  Future<void> _cleanupStreamSubscription() async {
     await _wifiAdapterStateStreamSubscription?.cancel();
     _wifiAdapterStateStreamSubscription = null;
-  }
-
-  @override
-  Future<void> close() async {
-    await cleanupStreamSubscription();
-
-    return super.close();
   }
 }
