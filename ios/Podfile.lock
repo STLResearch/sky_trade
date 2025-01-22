@@ -111,17 +111,18 @@ PODS:
     - GoogleUtilities/Logger
     - GoogleUtilities/Privacy
   - KeychainSwift (20.0.0)
-  - mapbox_maps_flutter (2.3.0):
+  - mapbox_maps_flutter (2.5.1):
     - Flutter
-    - MapboxMaps (~> 11.7.0)
-    - Turf (= 3.0.0)
-  - MapboxCommon (24.7.1)
-  - MapboxCoreMaps (11.7.1):
-    - MapboxCommon (~> 24.7)
-  - MapboxMaps (11.7.1):
-    - MapboxCommon (= 24.7.1)
-    - MapboxCoreMaps (= 11.7.1)
-    - Turf (= 3.0.0)
+    - MapboxMaps (~> 11.9.1)
+    - Turf (= 4.0.0)
+  - MapboxCommon (24.9.0):
+    - Turf (= 4.0.0)
+  - MapboxCoreMaps (11.9.2):
+    - MapboxCommon (~> 24.9)
+  - MapboxMaps (11.9.1):
+    - MapboxCommon (= 24.9.0)
+    - MapboxCoreMaps (= 11.9.2)
+    - Turf (= 4.0.0)
   - nanopb (2.30910.0):
     - nanopb/decode (= 2.30910.0)
     - nanopb/encode (= 2.30910.0)
@@ -146,7 +147,7 @@ PODS:
   - TorusSessionManager (4.0.2):
     - curvelib.swift (~> 1.0.1)
     - KeychainSwift (~> 20.0.0)
-  - Turf (3.0.0)
+  - Turf (4.0.0)
   - url_launcher_ios (0.0.1):
     - Flutter
   - Web3Auth (9.0.0):
@@ -263,10 +264,10 @@ SPEC CHECKSUMS:
   GoogleAppMeasurement: 9abf64b682732fed36da827aa2a68f0221fd2356
   GoogleUtilities: ea963c370a38a8069cc5f7ba4ca849a60b6d7d15
   KeychainSwift: 0ce6a4d13f7228054d1a71bb1b500448fb2ab837
-  mapbox_maps_flutter: fb6e57802405af69ecd96a9a2c7cdf9c756c4985
-  MapboxCommon: 0ba7bc2bbf20b6e7687747a9959ef5f82adffd85
-  MapboxCoreMaps: 02656fd04e2e2ad8c7db39adba301cef55a4c2cf
-  MapboxMaps: 3a77eda93f83ad27c178df86122dc3ad8645078d
+  mapbox_maps_flutter: c4a7d79d553ca71c02b6d1ef8bf7eee34ffd4c7e
+  MapboxCommon: 678bfc4b477a804244fd7323c79cc7f2402f844e
+  MapboxCoreMaps: c22e65380c0e11551081196f083b20cab662a5fe
+  MapboxMaps: dbe3b02f9adcee903d5217c9b251536828bc6304
   nanopb: 438bc412db1928dac798aa6fd75726007be04262
   package_info_plus: c0502532a26c7662a62a356cebe2692ec5fe4ec4
   path_provider_foundation: 2b6b4c569c0fb62ec74538f866245ac84301af46
@@ -276,7 +277,7 @@ SPEC CHECKSUMS:
   sentry_flutter: 0eb93e5279eb41e2392212afe1ccd2fecb4f8cbe
   shared_preferences_foundation: fcdcbc04712aee1108ac7fda236f363274528f78
   TorusSessionManager: 05a1a8f3265d0949a1a342c4ba2c52882445b614
-  Turf: a1604e74adce15c58462c9ae2acdbf049d5be35e
+  Turf: c9eb11a65d96af58cac523460fd40fec5061b081
   url_launcher_ios: 5334b05cef931de560670eeae103fd3e431ac3fe
   Web3Auth: 086b5152a43df347ceff196c0ce67f6330838884
   web3auth_flutter: bc5ffefe573c72f7fb1814573269952b045b7b22
