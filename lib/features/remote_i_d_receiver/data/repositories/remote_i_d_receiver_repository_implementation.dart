@@ -1,31 +1,42 @@
 import 'dart:async' show StreamController, StreamSubscription;
 import 'dart:io' show Platform;
 
-import 'package:dartz/dartz.dart' show Either, Left, Right;
+import 'package:dartz/dartz.dart' show Either, Function1, Left, Right;
 import 'package:flutter_opendroneid/flutter_opendroneid.dart'
     show FlutterOpenDroneId, UsedTechnologies;
 import 'package:flutter_opendroneid/models/message_container.dart';
-import 'package:sky_trade/core/errors/failures/remote_i_d_receiver_failure.dart';
+import 'package:sky_trade/core/errors/failures/remote_i_d_receiver_failure.dart'
+    show BroadcastRemoteIDReceiverFailure;
 import 'package:sky_trade/core/resources/numbers/networking.dart' show zero;
+import 'package:sky_trade/core/utils/enums/networking.dart'
+    show ConnectionState;
+import 'package:sky_trade/features/remote_i_d_receiver/data/data_sources/remote_i_d_receiver_remote_data_source.dart'
+    show RemoteIDReceiverRemoteDataSource;
 import 'package:sky_trade/features/remote_i_d_receiver/domain/entities/remote_i_d_entity.dart'
     show RemoteIDEntity;
 import 'package:sky_trade/features/remote_i_d_receiver/domain/repositories/remote_i_d_receiver_repository.dart';
 
 final class RemoteIDReceiverRepositoryImplementation
     implements RemoteIDReceiverRepository {
+  const RemoteIDReceiverRepositoryImplementation(
+    RemoteIDReceiverRemoteDataSource remoteIDReceiverRemoteDataSource,
+  ) : _remoteIDReceiverRemoteDataSource = remoteIDReceiverRemoteDataSource;
+
+  final RemoteIDReceiverRemoteDataSource _remoteIDReceiverRemoteDataSource;
+
   @override
-  Stream<Either<RemoteIDReceiverFailure, Set<RemoteIDEntity>>>
-      get remoteIDStream {
+  Stream<Either<BroadcastRemoteIDReceiverFailure, List<RemoteIDEntity>>>
+      get broadcastRemoteIDs {
     late final StreamController<
-            Either<RemoteIDReceiverFailure, Set<RemoteIDEntity>>>
+            Either<BroadcastRemoteIDReceiverFailure, List<RemoteIDEntity>>>
         remoteIDStreamController;
 
     late final StreamSubscription<MessageContainer> remoteIDStreamSubscription;
 
     final remoteIDEntities = <RemoteIDEntity>{};
 
-    remoteIDStreamController =
-        StreamController<Either<RemoteIDReceiverFailure, Set<RemoteIDEntity>>>(
+    remoteIDStreamController = StreamController<
+        Either<BroadcastRemoteIDReceiverFailure, List<RemoteIDEntity>>>(
       onListen: () {
         FlutterOpenDroneId.startScan(
           switch (Platform.isAndroid) {
@@ -43,7 +54,7 @@ final class RemoteIDReceiverRepositoryImplementation
 
           remoteIDStreamController.add(
             Right(
-              remoteIDEntities,
+              remoteIDEntities.toList(),
             ),
           );
         }
@@ -89,7 +100,7 @@ final class RemoteIDReceiverRepositoryImplementation
 
                   remoteIDStreamController.add(
                     Right(
-                      remoteIDEntities,
+                      remoteIDEntities.toList(),
                     ),
                   );
 
@@ -104,7 +115,7 @@ final class RemoteIDReceiverRepositoryImplementation
           },
           onError: (_) => remoteIDStreamController.add(
             Left(
-              RemoteIDReceiverFailure(),
+              BroadcastRemoteIDReceiverFailure(),
             ),
           ),
         );
@@ -118,4 +129,26 @@ final class RemoteIDReceiverRepositoryImplementation
 
     return remoteIDStreamController.stream;
   }
+
+  @override
+  Future<void> listenNetworkRemoteIDs({
+    required Function1<List<RemoteIDEntity>, void> onNetworkRemoteIDsGotten,
+    required Function1<ConnectionState, void> onConnectionChanged,
+  }) =>
+      _remoteIDReceiverRemoteDataSource.listenNetworkRemoteIDs(
+        onNetworkRemoteIDsGotten: onNetworkRemoteIDsGotten,
+        onConnectionChanged: onConnectionChanged,
+      );
+
+  @override
+  Future<void> requestNetworkRemoteIDsAround({
+    required String geoHash,
+  }) =>
+      _remoteIDReceiverRemoteDataSource.requestNetworkRemoteIDsAround(
+        geoHash: geoHash,
+      );
+
+  @override
+  void stopListeningNetworkRemoteIDs() =>
+      _remoteIDReceiverRemoteDataSource.stopListeningNetworkRemoteIDs();
 }

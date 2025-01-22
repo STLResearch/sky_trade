@@ -1,3 +1,5 @@
+// ignore_for_file: lines_longer_than_80_chars
+
 import 'dart:io' show Platform;
 
 import 'package:flutter/material.dart'
@@ -34,6 +36,8 @@ import 'package:sky_trade/core/resources/strings/secret_keys.dart'
         mapboxMapsDarkStyleUri,
         mapboxMapsPublicKey,
         mapboxMapsSatelliteStyleUri;
+import 'package:sky_trade/core/resources/strings/ui.dart'
+    show nridDronesLayer, nridDronesSource;
 import 'package:sky_trade/core/utils/enums/local.dart' show CacheType;
 import 'package:sky_trade/core/utils/enums/ui.dart' show MapStyle;
 import 'package:sky_trade/core/utils/extensions/build_context_extensions.dart';
@@ -66,12 +70,18 @@ import 'package:sky_trade/features/location/presentation/blocs/location_service_
         LocationServiceStatusBloc,
         LocationServiceStatusEvent,
         LocationServiceStatusState;
-import 'package:sky_trade/features/remote_i_d_receiver/presentation/blocs/remote_i_d_receiver_bloc/remote_i_d_receiver_bloc.dart'
-    show RemoteIDReceiverBloc, RemoteIDReceiverEvent, RemoteIDReceiverState;
+import 'package:sky_trade/features/remote_i_d_receiver/presentation/blocs/broadcast_remote_i_d_receiver_bloc/broadcast_remote_i_d_receiver_bloc.dart'
+    show
+        BroadcastRemoteIDReceiverBloc,
+        BroadcastRemoteIDReceiverEvent,
+        BroadcastRemoteIDReceiverState;
+import 'package:sky_trade/features/remote_i_d_receiver/presentation/blocs/network_remote_i_d_receiver_bloc/network_remote_i_d_receiver_bloc.dart'
+    show
+        NetworkRemoteIDReceiverBloc,
+        NetworkRemoteIDReceiverEvent,
+        NetworkRemoteIDReceiverState;
 import 'package:sky_trade/features/remote_i_d_transmitter/presentation/blocs/remote_i_d_transmitter_bloc/remote_i_d_transmitter_bloc.dart'
     show RemoteIDTransmitterBloc, RemoteIDTransmitterEvent;
-import 'package:sky_trade/features/u_a_s_activity/presentation/blocs/u_a_s_activity_bloc/u_a_s_activity_bloc.dart'
-    show UASActivityBloc, UASActivityEvent, UASActivityState;
 import 'package:sky_trade/features/u_a_s_restrictions/domain/entities/restriction_entity.dart'
     show RestrictionEntity;
 import 'package:sky_trade/features/u_a_s_restrictions/presentation/blocs/u_a_s_restrictions_bloc/u_a_s_restrictions_bloc.dart'
@@ -119,13 +129,13 @@ class HomeScreen extends StatelessWidget {
           BlocProvider<LocationServiceStatusBloc>(
             create: (_) => serviceLocator(),
           ),
-          BlocProvider<RemoteIDReceiverBloc>(
+          BlocProvider<BroadcastRemoteIDReceiverBloc>(
+            create: (_) => serviceLocator(),
+          ),
+          BlocProvider<NetworkRemoteIDReceiverBloc>(
             create: (_) => serviceLocator(),
           ),
           BlocProvider<RemoteIDTransmitterBloc>(
-            create: (_) => serviceLocator(),
-          ),
-          BlocProvider<UASActivityBloc>(
             create: (_) => serviceLocator(),
           ),
           BlocProvider<UASRestrictionsBloc>(
@@ -152,7 +162,6 @@ class HomeView extends StatefulWidget {
 class _HomeViewState extends State<HomeView> {
   MapboxMap? _mapboxMap;
   PointAnnotationManagerPointAnnotationTuple? _marker;
-  List<PointAnnotationManagerPointAnnotationTuple>? _markers;
   late final ValueNotifier<RestrictionEntity?> _clickedRestriction;
   late final ValueNotifier<bool> _centerLocationNotifier;
   late final ValueNotifier<MapStyle> _mapStyleNotifier;
@@ -177,7 +186,7 @@ class _HomeViewState extends State<HomeView> {
 
     _startTransmitter();
 
-    _listenUASActivities();
+    _listenNetworkRemoteIDs();
 
     _requestLocationPermission();
 
@@ -188,9 +197,10 @@ class _HomeViewState extends State<HomeView> {
         const RemoteIDTransmitterEvent.startTransmitter(),
       );
 
-  void _listenUASActivities() => context.read<UASActivityBloc>().add(
-        const UASActivityEvent.listenUASActivities(),
-      );
+  void _listenNetworkRemoteIDs() =>
+      context.read<NetworkRemoteIDReceiverBloc>().add(
+            const NetworkRemoteIDReceiverEvent.listenRemoteIDs(),
+          );
 
   void _requestLocationPermission() =>
       context.read<LocationPermissionBloc>().add(
@@ -202,18 +212,6 @@ class _HomeViewState extends State<HomeView> {
             const BluetoothPermissionsEvent.requestPermissions(),
           );
 
-  @override
-  void deactivate() {
-    _stopListeningUASActivities();
-    _stopListeningRemoteIDs();
-
-    super.deactivate();
-  }
-
-  void _stopListeningUASActivities() => context.read<UASActivityBloc>().add(
-        const UASActivityEvent.stopListeningUASActivities(),
-      );
-
   void _stopListeningLocationPosition() =>
       context.read<LocationPositionBloc>().add(
             const LocationPositionEvent.stopListeningLocationPosition(),
@@ -223,10 +221,6 @@ class _HomeViewState extends State<HomeView> {
       .read<LocationServiceStatusBloc>()
       .add(
         const LocationServiceStatusEvent.stopListeningLocationServiceStatus(),
-      );
-
-  void _stopListeningRemoteIDs() => context.read<RemoteIDReceiverBloc>().add(
-        const RemoteIDReceiverEvent.stopListeningRemoteIDs(),
       );
 
   @override
@@ -354,30 +348,20 @@ class _HomeViewState extends State<HomeView> {
               bluetoothPermissionsState.whenOrNull(
                 maybeGrantedPermissions: (bluetoothPermissionsEntity) {
                   if (bluetoothPermissionsEntity.granted) {
-                    context.read<RemoteIDReceiverBloc>().add(
-                          const RemoteIDReceiverEvent.listenRemoteIDs(),
+                    context.read<BroadcastRemoteIDReceiverBloc>().add(
+                          const BroadcastRemoteIDReceiverEvent
+                              .listenRemoteIDs(),
                         );
                   }
                 },
               );
             },
           ),
-          BlocListener<RemoteIDReceiverBloc, RemoteIDReceiverState>(
-            listener: (_, remoteIDReceiverState) {
-              remoteIDReceiverState.whenOrNull(
-                gotRemoteIDs: (remoteIDEntities) {
-                  // await _mapboxMap?.removePreviousMarkers(
-                  //   _markers,
-                  // );
-
-                  _mapboxMap
-                      ?.showUASActivitiesOnMapUsing(
-                        remoteIDEntities: remoteIDEntities,
-                      )
-                      .then(
-                        (markers) => _markers = markers,
-                      );
-
+          BlocListener<BroadcastRemoteIDReceiverBloc,
+              BroadcastRemoteIDReceiverState>(
+            listener: (_, broadcastRemoteIDReceiverState) {
+              broadcastRemoteIDReceiverState.whenOrNull(
+                gotRemoteIDs: (remoteIDEntities) async {
                   final latLng =
                       context.read<LocationPositionBloc>().state.whenOrNull(
                             gotLocationPosition: (locationPositionEntity) => (
@@ -393,6 +377,22 @@ class _HomeViewState extends State<HomeView> {
                           deviceLongitude: latLng?.longitude,
                         ),
                       );
+                },
+              );
+            },
+          ),
+          BlocListener<NetworkRemoteIDReceiverBloc,
+              NetworkRemoteIDReceiverState>(
+            listener: (_, networkRemoteIDReceiverState) {
+              networkRemoteIDReceiverState.whenOrNull(
+                gotRemoteIDs: (remoteIDEntities) async {
+                  await _mapboxMap?.showUASOnMapUsing(
+                    remoteIDEntities: remoteIDEntities,
+                    sourceLayerId: (
+                      sourceId: nridDronesSource,
+                      layerId: nridDronesLayer,
+                    ),
+                  );
                 },
               );
             },
@@ -434,8 +434,8 @@ class _HomeViewState extends State<HomeView> {
             listener: (_, geoHashState) {
               geoHashState.whenOrNull(
                 computedGeoHash: (geoHash) {
-                  context.read<UASActivityBloc>().add(
-                        UASActivityEvent.requestNewUASActivitiesAround(
+                  context.read<NetworkRemoteIDReceiverBloc>().add(
+                        NetworkRemoteIDReceiverEvent.requestRemoteIDsAround(
                           geoHash: geoHash,
                         ),
                       );
@@ -509,21 +509,6 @@ class _HomeViewState extends State<HomeView> {
               );
             },
           ),
-          BlocListener<UASActivityBloc, UASActivityState>(
-            listener: (context, uASActivityState) {
-              uASActivityState.whenOrNull(
-                gotUASActivities: (uASEntities) async {
-                  // await _mapboxMap?.removePreviousMarkers(
-                  //   _markers,
-                  // );
-
-                  _markers = await _mapboxMap?.showUASActivitiesOnMapUsing(
-                    uASEntities: uASEntities,
-                  );
-                },
-              );
-            },
-          ),
         ],
         child: Scaffold(
           body: Stack(
@@ -534,17 +519,17 @@ class _HomeViewState extends State<HomeView> {
                 onTap: (_) => _clickedRestriction.value = null,
                 onScroll: (_) => _centerLocationNotifier.value = false,
                 onCreated: (mapboxMap) {
-                  mapboxMap.compass.updateSettings(
-                    CompassSettings(
-                      enabled: false,
-                    ),
-                  );
-
-                  mapboxMap.scaleBar.updateSettings(
-                    ScaleBarSettings(
-                      enabled: false,
-                    ),
-                  );
+                  mapboxMap
+                    ..compass.updateSettings(
+                      CompassSettings(
+                        enabled: false,
+                      ),
+                    )
+                    ..scaleBar.updateSettings(
+                      ScaleBarSettings(
+                        enabled: false,
+                      ),
+                    );
 
                   _mapboxMap = mapboxMap;
                 },
@@ -574,6 +559,7 @@ class _HomeViewState extends State<HomeView> {
                     },
                   );
                 },
+                onStyleLoaded: (_) => _mapboxMap?.reapplyClearedSymbolLayers(),
               ),
               ValueListenableBuilder<bool>(
                 valueListenable: _centerLocationNotifier,

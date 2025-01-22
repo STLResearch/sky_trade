@@ -33,7 +33,7 @@ final class RemoteIDTransmitterRepositoryImplementation
 
   @override
   Future<void> transmit({
-    required Set<RemoteIDEntity> remoteIDEntities,
+    required List<RemoteIDEntity> remoteIDEntities,
     required DeviceEntity deviceEntity,
     required Uint8List rawData,
   }) =>

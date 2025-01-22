@@ -21,7 +21,7 @@ mixin _$RemoteIDTransmitterEvent {
     required TResult Function() startTransmitter,
     required TResult Function() remoteIDTransmitted,
     required TResult Function() transmitterStarted,
-    required TResult Function(Set<RemoteIDEntity> remoteIDEntities,
+    required TResult Function(List<RemoteIDEntity> remoteIDEntities,
             double? deviceLatitude, double? deviceLongitude)
         transmitRemoteID,
   }) =>
@@ -31,7 +31,7 @@ mixin _$RemoteIDTransmitterEvent {
     TResult? Function()? startTransmitter,
     TResult? Function()? remoteIDTransmitted,
     TResult? Function()? transmitterStarted,
-    TResult? Function(Set<RemoteIDEntity> remoteIDEntities,
+    TResult? Function(List<RemoteIDEntity> remoteIDEntities,
             double? deviceLatitude, double? deviceLongitude)?
         transmitRemoteID,
   }) =>
@@ -41,7 +41,7 @@ mixin _$RemoteIDTransmitterEvent {
     TResult Function()? startTransmitter,
     TResult Function()? remoteIDTransmitted,
     TResult Function()? transmitterStarted,
-    TResult Function(Set<RemoteIDEntity> remoteIDEntities,
+    TResult Function(List<RemoteIDEntity> remoteIDEntities,
             double? deviceLatitude, double? deviceLongitude)?
         transmitRemoteID,
     required TResult orElse(),
@@ -134,7 +134,7 @@ class _$StartTransmitterImpl implements _StartTransmitter {
     required TResult Function() startTransmitter,
     required TResult Function() remoteIDTransmitted,
     required TResult Function() transmitterStarted,
-    required TResult Function(Set<RemoteIDEntity> remoteIDEntities,
+    required TResult Function(List<RemoteIDEntity> remoteIDEntities,
             double? deviceLatitude, double? deviceLongitude)
         transmitRemoteID,
   }) {
@@ -147,7 +147,7 @@ class _$StartTransmitterImpl implements _StartTransmitter {
     TResult? Function()? startTransmitter,
     TResult? Function()? remoteIDTransmitted,
     TResult? Function()? transmitterStarted,
-    TResult? Function(Set<RemoteIDEntity> remoteIDEntities,
+    TResult? Function(List<RemoteIDEntity> remoteIDEntities,
             double? deviceLatitude, double? deviceLongitude)?
         transmitRemoteID,
   }) {
@@ -160,7 +160,7 @@ class _$StartTransmitterImpl implements _StartTransmitter {
     TResult Function()? startTransmitter,
     TResult Function()? remoteIDTransmitted,
     TResult Function()? transmitterStarted,
-    TResult Function(Set<RemoteIDEntity> remoteIDEntities,
+    TResult Function(List<RemoteIDEntity> remoteIDEntities,
             double? deviceLatitude, double? deviceLongitude)?
         transmitRemoteID,
     required TResult orElse(),
@@ -256,7 +256,7 @@ class _$RemoteIDTransmittedImpl implements _RemoteIDTransmitted {
     required TResult Function() startTransmitter,
     required TResult Function() remoteIDTransmitted,
     required TResult Function() transmitterStarted,
-    required TResult Function(Set<RemoteIDEntity> remoteIDEntities,
+    required TResult Function(List<RemoteIDEntity> remoteIDEntities,
             double? deviceLatitude, double? deviceLongitude)
         transmitRemoteID,
   }) {
@@ -269,7 +269,7 @@ class _$RemoteIDTransmittedImpl implements _RemoteIDTransmitted {
     TResult? Function()? startTransmitter,
     TResult? Function()? remoteIDTransmitted,
     TResult? Function()? transmitterStarted,
-    TResult? Function(Set<RemoteIDEntity> remoteIDEntities,
+    TResult? Function(List<RemoteIDEntity> remoteIDEntities,
             double? deviceLatitude, double? deviceLongitude)?
         transmitRemoteID,
   }) {
@@ -282,7 +282,7 @@ class _$RemoteIDTransmittedImpl implements _RemoteIDTransmitted {
     TResult Function()? startTransmitter,
     TResult Function()? remoteIDTransmitted,
     TResult Function()? transmitterStarted,
-    TResult Function(Set<RemoteIDEntity> remoteIDEntities,
+    TResult Function(List<RemoteIDEntity> remoteIDEntities,
             double? deviceLatitude, double? deviceLongitude)?
         transmitRemoteID,
     required TResult orElse(),
@@ -377,7 +377,7 @@ class _$TransmitterStartedImpl implements _TransmitterStarted {
     required TResult Function() startTransmitter,
     required TResult Function() remoteIDTransmitted,
     required TResult Function() transmitterStarted,
-    required TResult Function(Set<RemoteIDEntity> remoteIDEntities,
+    required TResult Function(List<RemoteIDEntity> remoteIDEntities,
             double? deviceLatitude, double? deviceLongitude)
         transmitRemoteID,
   }) {
@@ -390,7 +390,7 @@ class _$TransmitterStartedImpl implements _TransmitterStarted {
     TResult? Function()? startTransmitter,
     TResult? Function()? remoteIDTransmitted,
     TResult? Function()? transmitterStarted,
-    TResult? Function(Set<RemoteIDEntity> remoteIDEntities,
+    TResult? Function(List<RemoteIDEntity> remoteIDEntities,
             double? deviceLatitude, double? deviceLongitude)?
         transmitRemoteID,
   }) {
@@ -403,7 +403,7 @@ class _$TransmitterStartedImpl implements _TransmitterStarted {
     TResult Function()? startTransmitter,
     TResult Function()? remoteIDTransmitted,
     TResult Function()? transmitterStarted,
-    TResult Function(Set<RemoteIDEntity> remoteIDEntities,
+    TResult Function(List<RemoteIDEntity> remoteIDEntities,
             double? deviceLatitude, double? deviceLongitude)?
         transmitRemoteID,
     required TResult orElse(),
@@ -463,7 +463,7 @@ abstract class _$$TransmitRemoteIDImplCopyWith<$Res> {
       __$$TransmitRemoteIDImplCopyWithImpl<$Res>;
   @useResult
   $Res call(
-      {Set<RemoteIDEntity> remoteIDEntities,
+      {List<RemoteIDEntity> remoteIDEntities,
       double? deviceLatitude,
       double? deviceLongitude});
 }
@@ -487,7 +487,7 @@ class __$$TransmitRemoteIDImplCopyWithImpl<$Res>
       remoteIDEntities: null == remoteIDEntities
           ? _value._remoteIDEntities
           : remoteIDEntities // ignore: cast_nullable_to_non_nullable
-              as Set<RemoteIDEntity>,
+              as List<RemoteIDEntity>,
       deviceLatitude: freezed == deviceLatitude
           ? _value.deviceLatitude
           : deviceLatitude // ignore: cast_nullable_to_non_nullable
@@ -504,17 +504,18 @@ class __$$TransmitRemoteIDImplCopyWithImpl<$Res>
 
 class _$TransmitRemoteIDImpl implements _TransmitRemoteID {
   const _$TransmitRemoteIDImpl(
-      {required final Set<RemoteIDEntity> remoteIDEntities,
+      {required final List<RemoteIDEntity> remoteIDEntities,
       required this.deviceLatitude,
       required this.deviceLongitude})
       : _remoteIDEntities = remoteIDEntities;
 
-  final Set<RemoteIDEntity> _remoteIDEntities;
+  final List<RemoteIDEntity> _remoteIDEntities;
   @override
-  Set<RemoteIDEntity> get remoteIDEntities {
-    if (_remoteIDEntities is EqualUnmodifiableSetView) return _remoteIDEntities;
+  List<RemoteIDEntity> get remoteIDEntities {
+    if (_remoteIDEntities is EqualUnmodifiableListView)
+      return _remoteIDEntities;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableSetView(_remoteIDEntities);
+    return EqualUnmodifiableListView(_remoteIDEntities);
   }
 
   @override
@@ -560,7 +561,7 @@ class _$TransmitRemoteIDImpl implements _TransmitRemoteID {
     required TResult Function() startTransmitter,
     required TResult Function() remoteIDTransmitted,
     required TResult Function() transmitterStarted,
-    required TResult Function(Set<RemoteIDEntity> remoteIDEntities,
+    required TResult Function(List<RemoteIDEntity> remoteIDEntities,
             double? deviceLatitude, double? deviceLongitude)
         transmitRemoteID,
   }) {
@@ -573,7 +574,7 @@ class _$TransmitRemoteIDImpl implements _TransmitRemoteID {
     TResult? Function()? startTransmitter,
     TResult? Function()? remoteIDTransmitted,
     TResult? Function()? transmitterStarted,
-    TResult? Function(Set<RemoteIDEntity> remoteIDEntities,
+    TResult? Function(List<RemoteIDEntity> remoteIDEntities,
             double? deviceLatitude, double? deviceLongitude)?
         transmitRemoteID,
   }) {
@@ -587,7 +588,7 @@ class _$TransmitRemoteIDImpl implements _TransmitRemoteID {
     TResult Function()? startTransmitter,
     TResult Function()? remoteIDTransmitted,
     TResult Function()? transmitterStarted,
-    TResult Function(Set<RemoteIDEntity> remoteIDEntities,
+    TResult Function(List<RemoteIDEntity> remoteIDEntities,
             double? deviceLatitude, double? deviceLongitude)?
         transmitRemoteID,
     required TResult orElse(),
@@ -639,11 +640,11 @@ class _$TransmitRemoteIDImpl implements _TransmitRemoteID {
 
 abstract class _TransmitRemoteID implements RemoteIDTransmitterEvent {
   const factory _TransmitRemoteID(
-      {required final Set<RemoteIDEntity> remoteIDEntities,
+      {required final List<RemoteIDEntity> remoteIDEntities,
       required final double? deviceLatitude,
       required final double? deviceLongitude}) = _$TransmitRemoteIDImpl;
 
-  Set<RemoteIDEntity> get remoteIDEntities;
+  List<RemoteIDEntity> get remoteIDEntities;
   double? get deviceLatitude;
   double? get deviceLongitude;
   @JsonKey(ignore: true)

@@ -1,37 +1,43 @@
 import 'package:dartz/dartz.dart' show Function1;
 import 'package:sky_trade/core/resources/strings/networking.dart'
-    show dataKey, geoHashKey, isTestKey, uasActivityEvent, uasActivityRoom;
+    show
+        dataKey,
+        geoHashKey,
+        isTestKey,
+        remoteDataKey,
+        uasActivityEvent,
+        uasActivityRoom;
 import 'package:sky_trade/core/utils/clients/network_client.dart'
     show SocketIOClient;
 import 'package:sky_trade/core/utils/enums/networking.dart'
     show ConnectionState;
-import 'package:sky_trade/features/u_a_s_activity/data/models/u_a_s_model.dart'
-    show UASModel;
+import 'package:sky_trade/features/remote_i_d_receiver/data/models/remote_i_d_model.dart'
+    show RemoteIDModel;
 
-abstract interface class UASActivityRemoteDataSource {
-  Future<void> listenUASActivities({
-    required Function1<List<UASModel>, void> onUASActivitiesGotten,
+abstract interface class RemoteIDReceiverRemoteDataSource {
+  Future<void> listenNetworkRemoteIDs({
+    required Function1<List<RemoteIDModel>, void> onNetworkRemoteIDsGotten,
     required Function1<ConnectionState, void> onConnectionChanged,
   });
 
-  Future<void> requestNewUASActivitiesAround({
+  Future<void> requestNetworkRemoteIDsAround({
     required String geoHash,
   });
 
-  void stopListeningUASActivities();
+  void stopListeningNetworkRemoteIDs();
 }
 
-final class UASActivityRemoteDataSourceImplementation
-    implements UASActivityRemoteDataSource {
-  const UASActivityRemoteDataSourceImplementation(
+final class RemoteIDReceiverRemoteDataSourceImplementation
+    implements RemoteIDReceiverRemoteDataSource {
+  const RemoteIDReceiverRemoteDataSourceImplementation(
     SocketIOClient socketIOClient,
   ) : _socketIOClient = socketIOClient;
 
   final SocketIOClient _socketIOClient;
 
   @override
-  Future<void> listenUASActivities({
-    required Function1<List<UASModel>, void> onUASActivitiesGotten,
+  Future<void> listenNetworkRemoteIDs({
+    required Function1<List<RemoteIDModel>, void> onNetworkRemoteIDsGotten,
     required Function1<ConnectionState, void> onConnectionChanged,
   }) =>
       _socketIOClient.handshake<Map<String, dynamic>>(
@@ -39,23 +45,24 @@ final class UASActivityRemoteDataSourceImplementation
         onResponse: (response) {
           final jsonList = response[dataKey] as List<dynamic>;
 
-          final uasModels = jsonList
+          final remoteIDModels = jsonList
               .map(
-                (json) => UASModel.fromJson(
-                  json as Map<String, dynamic>,
+                (json) => RemoteIDModel.fromJson(
+                  (json as Map<String, dynamic>)[remoteDataKey]
+                      as Map<String, dynamic>,
                 ),
               )
               .toList();
 
-          onUASActivitiesGotten(
-            uasModels,
+          onNetworkRemoteIDsGotten(
+            remoteIDModels,
           );
         },
         onConnectionChanged: onConnectionChanged,
       );
 
   @override
-  Future<void> requestNewUASActivitiesAround({
+  Future<void> requestNetworkRemoteIDsAround({
     required String geoHash,
   }) =>
       _socketIOClient.send(
@@ -64,9 +71,8 @@ final class UASActivityRemoteDataSourceImplementation
           geoHashKey: geoHash,
           isTestKey: false,
         },
-        includeSignature: true,
       );
 
   @override
-  void stopListeningUASActivities() => _socketIOClient.close();
+  void stopListeningNetworkRemoteIDs() => _socketIOClient.close();
 }

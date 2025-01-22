@@ -63,6 +63,7 @@ Map<String, dynamic> _$ConnectionModelToJson(ConnectionModel instance) =>
     };
 
 const _$RemoteIDMessageSourceEnumMap = {
+  RemoteIDMessageSource.skyTradeBackend: 'SkyTrade_Backend',
   RemoteIDMessageSource.bluetoothLegacy: 'Bluetooth_Legacy',
   RemoteIDMessageSource.bluetoothLongRange: 'Bluetooth_Long_Range',
   RemoteIDMessageSource.wifiNan: 'WiFi_NAN',

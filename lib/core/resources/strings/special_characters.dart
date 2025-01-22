@@ -7,7 +7,7 @@ const fullStop = '.';
 // const centerDot = '᛫';
 const emptyString = '';
 // const threeDots = '...';
-// const comma = ',';
+const comma = ',';
 const equals = '=';
 const ampersand = '&';
 // const pound = '#';

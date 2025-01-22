@@ -9,19 +9,19 @@ import 'package:sky_trade/features/remote_i_d_receiver/domain/entities/remote_i_
 import 'package:sky_trade/features/remote_i_d_receiver/domain/repositories/remote_i_d_receiver_repository.dart'
     show RemoteIDReceiverRepository;
 
-part 'remote_i_d_receiver_event.dart';
+part 'broadcast_remote_i_d_receiver_event.dart';
 
-part 'remote_i_d_receiver_state.dart';
+part 'broadcast_remote_i_d_receiver_state.dart';
 
-part 'remote_i_d_receiver_bloc.freezed.dart';
+part 'broadcast_remote_i_d_receiver_bloc.freezed.dart';
 
-class RemoteIDReceiverBloc
-    extends Bloc<RemoteIDReceiverEvent, RemoteIDReceiverState> {
-  RemoteIDReceiverBloc(
+class BroadcastRemoteIDReceiverBloc extends Bloc<BroadcastRemoteIDReceiverEvent,
+    BroadcastRemoteIDReceiverState> {
+  BroadcastRemoteIDReceiverBloc(
     RemoteIDReceiverRepository remoteIDReceiverRepository,
   )   : _remoteIDReceiverRepository = remoteIDReceiverRepository,
         super(
-          const RemoteIDReceiverState.initial(),
+          const BroadcastRemoteIDReceiverState.initial(),
         ) {
     on<_ListenRemoteIDs>(
       _listenRemoteIDs,
@@ -38,66 +38,67 @@ class RemoteIDReceiverBloc
     on<_RemoteIDsNotGotten>(
       _remoteIDsNotGotten,
     );
+  }
 
-    on<_StopListeningRemoteIDs>(
-      _stopListeningRemoteIDs,
-    );
+  @override
+  Future<void> close() async {
+    await _cleanupStreamSubscription();
+
+    return super.close();
   }
 
   final RemoteIDReceiverRepository _remoteIDReceiverRepository;
 
-  StreamSubscription<Either<RemoteIDReceiverFailure, Set<RemoteIDEntity>>>?
+  StreamSubscription<Either<RemoteIDReceiverFailure, List<RemoteIDEntity>>>?
       _remoteIDReceiverStreamSubscription;
 
   Future<void> _listenRemoteIDs(
     _ListenRemoteIDs _,
-    Emitter<RemoteIDReceiverState> emit,
+    Emitter<BroadcastRemoteIDReceiverState> emit,
   ) async {
-    await _cancelListeningRemoteIDs(
-      emit: emit,
-    );
+    await _cleanupStreamSubscription();
 
     add(
-      const RemoteIDReceiverEvent.remoteIDsGetting(),
+      const BroadcastRemoteIDReceiverEvent.remoteIDsGetting(),
     );
 
     _remoteIDReceiverStreamSubscription ??=
-        _remoteIDReceiverRepository.remoteIDStream.listen(
+        _remoteIDReceiverRepository.broadcastRemoteIDs.listen(
       (
         remoteIDReceiverFailureOrRemoteIDEntities,
       ) =>
-          _listenRemoteIDReceiverStream(
-        remoteIDReceiverFailureOrRemoteIDEntities:
+          _listenRemoteIDsReceiverStream(
+        remoteIDsReceiverFailureOrRemoteIDEntities:
             remoteIDReceiverFailureOrRemoteIDEntities,
         emit: emit,
       ),
     );
   }
 
-  void _listenRemoteIDReceiverStream({
-    required Either<RemoteIDReceiverFailure, Set<RemoteIDEntity>>
-        remoteIDReceiverFailureOrRemoteIDEntities,
-    required Emitter<RemoteIDReceiverState> emit,
+  void _listenRemoteIDsReceiverStream({
+    required Either<RemoteIDReceiverFailure, List<RemoteIDEntity>>
+        remoteIDsReceiverFailureOrRemoteIDEntities,
+    required Emitter<BroadcastRemoteIDReceiverState> emit,
   }) =>
-      remoteIDReceiverFailureOrRemoteIDEntities.fold(
+      remoteIDsReceiverFailureOrRemoteIDEntities.fold(
         (remoteIDReceiverFailure) {
           add(
-            const RemoteIDReceiverEvent.remoteIDsGetting(),
+            const BroadcastRemoteIDReceiverEvent.remoteIDsGetting(),
           );
 
           add(
-            RemoteIDReceiverEvent.remoteIDsNotGotten(
+            BroadcastRemoteIDReceiverEvent.remoteIDsNotGotten(
               remoteIDReceiverFailure: remoteIDReceiverFailure,
             ),
           );
         },
         (remoteIDEntities) {
           add(
-            const RemoteIDReceiverEvent.remoteIDsGetting(),
+            const BroadcastRemoteIDReceiverEvent.remoteIDsGetting(),
           );
 
           add(
-            RemoteIDReceiverEvent.remoteIDsGotten(
+            BroadcastRemoteIDReceiverEvent.remoteIDsGotten(
               remoteIDEntities: remoteIDEntities,
             ),
           );
@@ -106,51 +107,34 @@ class RemoteIDReceiverBloc
 
   void _remoteIDsNotGotten(
     _RemoteIDsNotGotten event,
-    Emitter<RemoteIDReceiverState> emit,
+    Emitter<BroadcastRemoteIDReceiverState> emit,
   ) =>
       emit(
-        RemoteIDReceiverState.failedToGetRemoteIDs(
+        BroadcastRemoteIDReceiverState.failedToGetRemoteIDs(
           remoteIDReceiverFailure: event.remoteIDReceiverFailure,
         ),
       );
 
   void _remoteIDsGetting(
     _RemoteIDsGetting event,
-    Emitter<RemoteIDReceiverState> emit,
+    Emitter<BroadcastRemoteIDReceiverState> emit,
   ) =>
       emit(
-        const RemoteIDReceiverState.gettingRemoteIDs(),
+        const BroadcastRemoteIDReceiverState.gettingRemoteIDs(),
       );
 
   void _remoteIDsGotten(
     _RemoteIDsGotten event,
-    Emitter<RemoteIDReceiverState> emit,
+    Emitter<BroadcastRemoteIDReceiverState> emit,
   ) =>
       emit(
-        RemoteIDReceiverState.gotRemoteIDs(
+        BroadcastRemoteIDReceiverState.gotRemoteIDs(
           remoteIDEntities: event.remoteIDEntities,
         ),
       );
 
-  Future<void> _stopListeningRemoteIDs(
-    _StopListeningRemoteIDs _,
-    Emitter<RemoteIDReceiverState> emit,
-  ) =>
-      _cancelListeningRemoteIDs(
-        emit: emit,
-      );
-
-  Future<void> _cancelListeningRemoteIDs({
-    required Emitter<RemoteIDReceiverState> emit,
-  }) async {
+  Future<void> _cleanupStreamSubscription() async {
     await _remoteIDReceiverStreamSubscription?.cancel();
-
-    if (_remoteIDReceiverStreamSubscription != null) {
-      _remoteIDReceiverStreamSubscription = null;
-    }
-
-    emit(
-      const RemoteIDReceiverState.initial(),
-    );
+    _remoteIDReceiverStreamSubscription = null;
   }
 }

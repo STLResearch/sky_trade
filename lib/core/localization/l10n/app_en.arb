@@ -182,5 +182,7 @@
   "resendOtpIn": "Resend OTP in",
   "s": "s",
   "m": "m",
-  "theCodeYouEnteredDoesNotMatchWhatWeSentYou": "The code you entered does not match what we sent you"
+  "theCodeYouEnteredDoesNotMatchWhatWeSentYou": "The code you entered does not match what we sent you",
+  "tracked": "tracked",
+  "trackedByOthersInThisArea": "tracked by others in this area"
 }
