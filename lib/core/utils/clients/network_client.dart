@@ -68,7 +68,7 @@ final class SocketIOClient with SignatureHandler {
   StreamSubscription<Either<TerminateSocketIO, SocketIOClientMessage>>?
       _clientMessageStreamSubscription;
 
-  Future<void> handshake<R>({
+  Future<void> listenToEvent<R>({
     required String eventName,
     required Function1<R, void> onResponse,
     Function1<ConnectionState, void>? onConnectionChanged,
@@ -240,7 +240,7 @@ final class SocketIOClient with SignatureHandler {
                 },
                 (socketIOClientMessage) {
                   _socket.emit(
-                    socketIOClientMessage.roomName,
+                    socketIOClientMessage.eventName,
                     {
                       bodyKey: socketIOClientMessage.data,
                     },
@@ -262,14 +262,14 @@ final class SocketIOClient with SignatureHandler {
     _clientMessageStreamSubscription = null;
   }
 
-  Future<void> send({
-    required String roomName,
+  Future<void> sendDataToEvent({
+    required String eventName,
     required Map<String, dynamic> data,
   }) async =>
       _clientMessageStreamController?.add(
         Right(
           (
-            roomName: roomName,
+            eventName: eventName,
             data: data,
           ),
         ),

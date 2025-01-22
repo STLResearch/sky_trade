@@ -6,7 +6,7 @@ import 'package:sky_trade/features/remote_i_d_transmitter/domain/entities/remote
 typedef TerminateSocketIO = bool;
 
 typedef SocketIOClientMessage = ({
-  String roomName,
+  String eventName,
   Map<String, dynamic> data,
 });
 
@@ -15,7 +15,7 @@ typedef RemoteIDSetDeviceCoordinatesTuple = ({
   DeviceEntity deviceEntity,
 });
 
-typedef LatLng = ({
-  double latitude,
+typedef LngLat = ({
   double longitude,
+  double latitude,
 });
