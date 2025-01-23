@@ -2,9 +2,7 @@
 
 import 'dart:async';
 import 'package:bloc/bloc.dart';
-import 'package:dartz/dartz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:sky_trade/core/errors/failures/drone_flight_path_failure.dart';
 import 'package:sky_trade/core/utils/enums/networking.dart';
 import 'package:sky_trade/features/drone_flight_path/domain/entities/drone_flight_path_entity.dart';
 import 'package:sky_trade/features/drone_flight_path/domain/repositories/drone_flight_path_repository.dart';
@@ -19,13 +17,12 @@ class DroneFlightPathBloc
     extends Bloc<DroneFlightPathEvent, DroneFlightPathState> {
   DroneFlightPathBloc({
     required DroneFlightPathRepository droneFlightPathRepository,
-  }): _droneFlightPathRepository = droneFlightPathRepository,
+  })  : _droneFlightPathRepository = droneFlightPathRepository,
         super(const DroneFlightPathState.initial()) {
     on<_GetDroneFlightPathUpdatesFor>(_getDroneFlightPathUpdatesFor);
   }
 
   final DroneFlightPathRepository _droneFlightPathRepository;
-  late final StreamSubscription<Either<DroneFlightPathFailure, DroneFlightPathEntity>>? _droneFlightPathSubscription;
   String? _bufferedData;
   ConnectionState? _connectionState;
 
@@ -37,7 +34,7 @@ class DroneFlightPathBloc
 
     if (_connectionState == null) {
       _bufferedData = event.macAddress;
-      await _setupDroneFlightPathUpdateConnection(emit);
+      await _setupConnectionToDroneFlightPathUpdates(emit);
     }
 
     if (_connectionState == ConnectionState.disconnected || _connectionState == ConnectionState.reconnecting) {
@@ -51,35 +48,31 @@ class DroneFlightPathBloc
     }
   }
 
-  Future<void> _setupDroneFlightPathUpdateConnection(
+  Future<void> _setupConnectionToDroneFlightPathUpdates(
     Emitter<DroneFlightPathState> emit,
   ) async =>
-      _droneFlightPathSubscription =
-          (await _droneFlightPathRepository.listenToDroneFlightPathUpdates(
-            onConnectionChanged: (connectionState) {
-              _connectionState = connectionState;
-              if (connectionState == ConnectionState.connected && _bufferedData != null) {
-                _droneFlightPathRepository.getDroneFlightPathUpdatesFor(macAddress: _bufferedData!);
-                _bufferedData = null;
-              }
-            },
-          )).listen((droneFlightPathEntity) {
-                droneFlightPathEntity.fold(
-                      (droneFlightPathFailure) => emit(const DroneFlightPathState.failedToGetDroneFlightPathUpdate()),
-                      (droneFlightPathData) => emit(
-                        DroneFlightPathState.gotDroneFlightPathUpdates(
-                          droneFlightPath: droneFlightPathData,
-                        ),
-                      ),
-                );
-                emit(const DroneFlightPathState.gettingDroneFlightPathUpdates());
-          });
+      _droneFlightPathRepository.listenToDroneFlightPathUpdates(
+        onDroneFlightPathReceived: (droneFlightPathEntity) {
+          emit(
+            DroneFlightPathState.gotDroneFlightPathUpdates(
+              droneFlightPath: droneFlightPathEntity,
+            ),
+          );
+          emit(const DroneFlightPathState.gettingDroneFlightPathUpdates());
+        },
+        onConnectionChanged: (connectionState) {
+          _connectionState = connectionState;
+          if (connectionState == ConnectionState.connected && _bufferedData != null) {
+            _droneFlightPathRepository.getDroneFlightPathUpdatesFor(macAddress: _bufferedData!);
+            _bufferedData = null;
+          }
+        },
+      );
 
   void _stopDroneFlightPathUpdates() {
-    _droneFlightPathSubscription?.cancel();
     _bufferedData = null;
     _connectionState = null;
-    _droneFlightPathSubscription = null;
+    _droneFlightPathRepository.stopDroneFlightPathUpdates();
   }
 
   @override

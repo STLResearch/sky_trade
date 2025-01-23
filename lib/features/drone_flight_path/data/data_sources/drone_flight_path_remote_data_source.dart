@@ -9,13 +9,16 @@ import 'package:sky_trade/core/utils/enums/networking.dart';
 import 'package:sky_trade/features/drone_flight_path/data/models/drone_flight_path_model.dart';
 
 abstract interface class DroneFlightPathRemoteDataSource {
-  Future<Stream<DroneFlightPathModel>> listenToDroneFlightPathUpdates({
-    required Function1<ConnectionState, void> onConnectionChanged,
+  Future<void> listenToDroneFlightPathUpdates({
+    required Function1<DroneFlightPathModel,void> onDroneFlightPathReceived,
+    required Function1<ConnectionState,void> onConnectionChanged,
   });
 
   Future<void> getDroneFlightPathUpdatesFor({
     required String macAddress,
   });
+
+  void stopDroneFlightPathUpdates();
 }
 
 final class DroneFlightPathRemoteDataSourceImplementation
@@ -25,28 +28,23 @@ final class DroneFlightPathRemoteDataSourceImplementation
   ) : _socketIOClient = socketIOClient;
 
   final SocketIOClient _socketIOClient;
-  late final StreamController<DroneFlightPathModel>
-      _droneFlightPathModelStreamController;
 
   @override
-  Future<Stream<DroneFlightPathModel>> listenToDroneFlightPathUpdates({
-    required Function1<ConnectionState, void> onConnectionChanged,
+  Future<void> listenToDroneFlightPathUpdates({
+    required Function1<DroneFlightPathModel,void> onDroneFlightPathReceived,
+    required Function1<ConnectionState,void> onConnectionChanged,
   }) async {
-    _droneFlightPathModelStreamController = StreamController<DroneFlightPathModel>(
-      onCancel: _stopListeningToDroneFlightPathUpdates,
-    );
     await _socketIOClient.listenToEvent(
       eventName: droneFlightPathResponseEvent,
       onResponse: (response) {
         if (response != null) {
-          _droneFlightPathModelStreamController.add(
+          onDroneFlightPathReceived(
             DroneFlightPathModel.fromJson(response as Map<String, dynamic>),
           );
         }
       },
       onConnectionChanged: onConnectionChanged,
     );
-    return _droneFlightPathModelStreamController.stream;
   }
 
   @override
@@ -63,8 +61,6 @@ final class DroneFlightPathRemoteDataSourceImplementation
         },
       );
 
-  void _stopListeningToDroneFlightPathUpdates() {
-    _droneFlightPathModelStreamController.close();
-    _socketIOClient.close();
-  }
+  @override
+  void stopDroneFlightPathUpdates() => _socketIOClient.close();
 }
