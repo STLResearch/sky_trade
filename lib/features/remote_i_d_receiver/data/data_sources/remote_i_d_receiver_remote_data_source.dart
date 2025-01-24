@@ -6,7 +6,7 @@ import 'package:sky_trade/core/resources/strings/networking.dart'
         isTestKey,
         remoteDataKey,
         uasActivityEvent,
-        uasActivityRoom;
+        uasActivityResponseEvent;
 import 'package:sky_trade/core/utils/clients/network_client.dart'
     show SocketIOClient;
 import 'package:sky_trade/core/utils/enums/networking.dart'
@@ -20,7 +20,7 @@ abstract interface class RemoteIDReceiverRemoteDataSource {
     required Function1<ConnectionState, void> onConnectionChanged,
   });
 
-  Future<void> requestNetworkRemoteIDsAround({
+  void requestNetworkRemoteIDsAround({
     required String geoHash,
   });
 
@@ -40,8 +40,8 @@ final class RemoteIDReceiverRemoteDataSourceImplementation
     required Function1<List<RemoteIDModel>, void> onNetworkRemoteIDsGotten,
     required Function1<ConnectionState, void> onConnectionChanged,
   }) =>
-      _socketIOClient.handshake<Map<String, dynamic>>(
-        eventName: uasActivityEvent,
+      _socketIOClient.listenToEvent<Map<String, dynamic>>(
+        eventName: uasActivityResponseEvent,
         onResponse: (response) {
           final jsonList = response[dataKey] as List<dynamic>;
 
@@ -62,11 +62,11 @@ final class RemoteIDReceiverRemoteDataSourceImplementation
       );
 
   @override
-  Future<void> requestNetworkRemoteIDsAround({
+  void requestNetworkRemoteIDsAround({
     required String geoHash,
   }) =>
-      _socketIOClient.send(
-        roomName: uasActivityRoom,
+      _socketIOClient.sendDataToEvent(
+        eventName: uasActivityEvent,
         data: {
           geoHashKey: geoHash,
           isTestKey: false,

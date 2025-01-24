@@ -71,11 +71,14 @@ const signatureEightLine = 'Issued At:';
 // Socket IO
 const websocketTransport = 'websocket';
 
-const uasActivityEvent = 'get-sql-drone-data-response';
-const uasActivityRoom = 'get-sql-drone-data';
+const uasActivityResponseEvent = 'get-sql-drone-data-response';
+const uasActivityEvent = 'get-sql-drone-data';
 
-const remoteIDTransmissionEvent = 'store-drone-data-response';
-const remoteIDTransmissionRoom = 'store-drone-data';
+const remoteIDTransmissionResponseEvent = 'store-drone-data-response';
+const remoteIDTransmissionEvent = 'store-drone-data';
+
+const droneFlightPathResponseEvent = 'retrieve-drone-data-response';
+const droneFlightPathEvent = 'retrieve-drone-data';
 
 // Request and response header and body keys and values
 // Headers
@@ -354,6 +357,10 @@ const startTimeKey = 'startTime';
 const endTimeKey = 'endTime';
 const transactionKey = 'transaction';
 const ansKey = 'ans';
+const geoJsonKey = 'geojson';
+const featuresKey = 'features';
+const geometryKey = 'geometry';
+const geometryTypeKey = 'type';
 const rentPriceKey = 'rent_price';
 const propertyIdAltKey = 'property_id';
 const auctionKey = 'auction';
@@ -373,6 +380,8 @@ const totalIncomeWtdKey = 'total_income_wtd';
 const airspaceHistoryKey = 'airspace_history';
 const dateKey = 'date';
 const bidsHistoryKey = 'bids_history';
+const featureCollectionKey = 'FeatureCollection';
+const geometryCollectionKey = 'GeometryCollection';
 // Error response data message
 const unauthorizedCode = 'UNAUTHORIZED';
 const invalidSignatureCode = 'INVALID_SIGNATURE';

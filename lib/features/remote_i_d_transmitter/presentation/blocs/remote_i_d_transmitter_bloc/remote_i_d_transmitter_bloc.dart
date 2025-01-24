@@ -33,6 +33,10 @@ class RemoteIDTransmitterBloc
       _startTransmitter,
     );
 
+    on<_RemoteIDTransmitting>(
+      _remoteIDTransmitting,
+    );
+
     on<_RemoteIDTransmitted>(
       _remoteIDTransmitted,
     );
@@ -48,7 +52,9 @@ class RemoteIDTransmitterBloc
 
   @override
   Future<void> close() async {
-    await _cleanupTransmitter();
+    await _cleanupTransmitter(
+      andStopListening: true,
+    );
 
     return super.close();
   }
@@ -93,9 +99,15 @@ class RemoteIDTransmitterBloc
     _remoteIDStreamSubscription?.pause();
 
     await _remoteIDTransmitterRepository.startTransmitter(
-      onRemoteIDSent: () => add(
-        const RemoteIDTransmitterEvent.remoteIDTransmitted(),
-      ),
+      onRemoteIDSent: () {
+        add(
+          const RemoteIDTransmitterEvent.remoteIDTransmitting(),
+        );
+
+        add(
+          const RemoteIDTransmitterEvent.remoteIDTransmitted(),
+        );
+      },
       onConnectionChanged: (connectionState) async {
         if (connectionState == ConnectionState.connected) {
           if (!_startedTransmitter) {
@@ -111,11 +123,21 @@ class RemoteIDTransmitterBloc
             _remoteIDStreamSubscription?.resume();
           }
         } else if (connectionState == ConnectionState.destroyed) {
-          await _cleanupTransmitter();
+          await _cleanupTransmitter(
+            andStopListening: false,
+          );
         }
       },
     );
   }
+
+  void _remoteIDTransmitting(
+    _RemoteIDTransmitting event,
+    Emitter<RemoteIDTransmitterState> emit,
+  ) =>
+      emit(
+        const RemoteIDTransmitterState.transmittingRemoteID(),
+      );
 
   void _remoteIDTransmitted(
     _RemoteIDTransmitted event,
@@ -147,7 +169,9 @@ class RemoteIDTransmitterBloc
         ),
       );
 
-  Future<void> _cleanupTransmitter() async {
+  Future<void> _cleanupTransmitter({
+    required bool andStopListening,
+  }) async {
     await Future.wait<dynamic>([
       _remoteIDStreamController?.close() ?? Future.value(),
       _remoteIDStreamSubscription?.cancel() ?? Future.value(),
@@ -158,6 +182,8 @@ class RemoteIDTransmitterBloc
 
     _startingTransmitter = false;
     _startedTransmitter = false;
+
+    if (!andStopListening) return;
 
     _remoteIDTransmitterRepository.stopTransmitter();
   }

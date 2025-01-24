@@ -2,7 +2,7 @@ import 'dart:typed_data' show Uint8List;
 
 import 'package:dartz/dartz.dart' show Function0, Function1;
 import 'package:sky_trade/core/resources/strings/networking.dart'
-    show remoteIDTransmissionEvent, remoteIDTransmissionRoom;
+    show remoteIDTransmissionEvent, remoteIDTransmissionResponseEvent;
 import 'package:sky_trade/core/utils/clients/network_client.dart'
     show SocketIOClient;
 import 'package:sky_trade/core/utils/enums/networking.dart'
@@ -19,7 +19,7 @@ abstract interface class RemoteIDTransmitterRemoteDataSource {
     required Function1<ConnectionState, void> onConnectionChanged,
   });
 
-  Future<void> transmit({
+  void transmit({
     required List<RemoteIDEntity> remoteIDEntities,
     required DeviceEntity deviceEntity,
     required Uint8List rawData,
@@ -41,8 +41,8 @@ final class RemoteIDTransmitterRemoteDataSourceImplementation
     required Function0<void> onRemoteIDSent,
     required Function1<ConnectionState, void> onConnectionChanged,
   }) =>
-      _socketIOClient.handshake<dynamic>(
-        eventName: remoteIDTransmissionEvent,
+      _socketIOClient.listenToEvent<dynamic>(
+        eventName: remoteIDTransmissionResponseEvent,
         onResponse: (response) {
           onRemoteIDSent();
         },
@@ -50,7 +50,7 @@ final class RemoteIDTransmitterRemoteDataSourceImplementation
       );
 
   @override
-  Future<void> transmit({
+  void transmit({
     required List<RemoteIDEntity> remoteIDEntities,
     required DeviceEntity deviceEntity,
     required Uint8List rawData,
@@ -59,8 +59,8 @@ final class RemoteIDTransmitterRemoteDataSourceImplementation
         List<RemoteIDEntity>.from(
           remoteIDEntities,
         ),
-        (remoteIDEntity) => _socketIOClient.send(
-          roomName: remoteIDTransmissionRoom,
+        (remoteIDEntity) => _socketIOClient.sendDataToEvent(
+          eventName: remoteIDTransmissionEvent,
           data: RemoteTransmissionEntity(
             remoteData: remoteIDEntity,
             isTest: false,

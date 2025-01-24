@@ -7,7 +7,7 @@ import 'package:mockito/mockito.dart'
 import 'package:sky_trade/core/errors/failures/u_a_s_restrictions_failure.dart'
     show UASRestrictionsFailure;
 import 'package:sky_trade/core/utils/enums/networking.dart'
-    show RegionType, RestrictionType;
+    show GeometryType, RestrictionType;
 import 'package:sky_trade/features/u_a_s_restrictions/domain/entities/restriction_entity.dart';
 import 'package:sky_trade/features/u_a_s_restrictions/domain/repositories/u_a_s_restrictions_repository.dart';
 import 'package:sky_trade/features/u_a_s_restrictions/presentation/blocs/u_a_s_restrictions_bloc/u_a_s_restrictions_bloc.dart'
@@ -48,7 +48,7 @@ void main() {
           lowerLimit: 'testRestrictionEntityLowerLimit$index',
           message: 'testRestrictionEntityMessage$index',
           region: RegionEntity(
-            type: RegionType.polygon,
+            type: GeometryType.polygon,
             coordinates: [
               [
                 [

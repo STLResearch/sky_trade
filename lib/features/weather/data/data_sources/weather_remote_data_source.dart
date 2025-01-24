@@ -16,13 +16,13 @@ import 'package:sky_trade/core/utils/clients/network_client.dart'
     show HttpClient;
 import 'package:sky_trade/core/utils/clients/response_handler.dart';
 import 'package:sky_trade/core/utils/enums/networking.dart' show RequestMethod;
-import 'package:sky_trade/core/utils/typedefs/networking.dart' show LatLng;
+import 'package:sky_trade/core/utils/typedefs/networking.dart' show LngLat;
 import 'package:sky_trade/features/weather/data/models/weather_model.dart'
     show WeatherModel;
 
 abstract interface class WeatherRemoteDataSource {
   Future<WeatherModel> getWeatherConditionOf({
-    required LatLng coordinates,
+    required LngLat coordinates,
   });
 }
 
@@ -37,7 +37,7 @@ class WeatherRemoteDataSourceImplementation
 
   @override
   Future<WeatherModel> getWeatherConditionOf({
-    required LatLng coordinates,
+    required LngLat coordinates,
   }) async =>
       handleResponse<WeatherException, Map<String, dynamic>, WeatherModel>(
         requestInitiator: _httpClient.request(

@@ -15,7 +15,7 @@ abstract interface class RemoteIDReceiverRepository {
     required Function1<ConnectionState, void> onConnectionChanged,
   });
 
-  Future<void> requestNetworkRemoteIDsAround({
+  void requestNetworkRemoteIDsAround({
     required String geoHash,
   });
 

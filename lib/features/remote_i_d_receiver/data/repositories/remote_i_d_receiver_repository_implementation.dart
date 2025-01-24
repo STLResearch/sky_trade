@@ -141,7 +141,7 @@ final class RemoteIDReceiverRepositoryImplementation
       );
 
   @override
-  Future<void> requestNetworkRemoteIDsAround({
+  void requestNetworkRemoteIDsAround({
     required String geoHash,
   }) =>
       _remoteIDReceiverRemoteDataSource.requestNetworkRemoteIDsAround(

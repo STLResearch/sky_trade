@@ -31,9 +31,11 @@ import 'package:sky_trade/core/resources/strings/networking.dart'
         euOpenKey,
         euSpecificKey,
         extendedStatusKey,
+        featureCollectionKey,
         fixedKey,
         freeBalloonKey,
         freeFallParachuteKey,
+        geometryCollectionKey,
         gliderKey,
         groundKey,
         groundObstacleKey,
@@ -130,7 +132,7 @@ enum RestrictionType {
   restricted,
 }
 
-enum RegionType {
+enum GeometryType {
   @JsonValue(pointValue)
   point,
   @JsonValue(lineStringValue)
@@ -444,4 +446,11 @@ enum PropertyStatusType {
   notVerified,
   @JsonValue(rejectedKey)
   rejected,
+}
+
+enum GeoJsonType {
+  @JsonValue(featureCollectionKey)
+  featureCollection,
+  @JsonValue(geometryCollectionKey)
+  geometryCollection,
 }

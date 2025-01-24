@@ -10,6 +10,7 @@ const createdStatusCode = 201;
 
 // others
 const zero = 0;
+const one = 1;
 const eight = 8;
 const thirty = 30;
 

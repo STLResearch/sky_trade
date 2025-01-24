@@ -14,7 +14,7 @@ abstract interface class RemoteIDTransmitterRepository {
     required Function1<ConnectionState, void> onConnectionChanged,
   });
 
-  Future<void> transmit({
+  void transmit({
     required List<RemoteIDEntity> remoteIDEntities,
     required DeviceEntity deviceEntity,
     required Uint8List rawData,

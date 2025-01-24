@@ -28,6 +28,10 @@ class NetworkRemoteIDReceiverBloc
       _listenRemoteIDs,
     );
 
+    on<_RemoteIDsGetting>(
+      _remoteIDsGetting,
+    );
+
     on<_RemoteIDsGotten>(
       _remoteIDsGotten,
     );
@@ -43,7 +47,9 @@ class NetworkRemoteIDReceiverBloc
 
   @override
   Future<void> close() async {
-    await _cleanupReceiver();
+    await _cleanupReceiver(
+      andStopListening: true,
+    );
 
     return super.close();
   }
@@ -74,11 +80,17 @@ class NetworkRemoteIDReceiverBloc
     _establishingListeningRemoteIDs = true;
 
     await _remoteIDReceiverRepository.listenNetworkRemoteIDs(
-      onNetworkRemoteIDsGotten: (remoteIDEntities) => add(
-        NetworkRemoteIDReceiverEvent.remoteIDsGotten(
-          remoteIDEntities: remoteIDEntities,
-        ),
-      ),
+      onNetworkRemoteIDsGotten: (remoteIDEntities) {
+        add(
+          const NetworkRemoteIDReceiverEvent.remoteIDsGetting(),
+        );
+
+        add(
+          NetworkRemoteIDReceiverEvent.remoteIDsGotten(
+            remoteIDEntities: remoteIDEntities,
+          ),
+        );
+      },
       onConnectionChanged: (connectionState) async {
         if (connectionState == ConnectionState.connected) {
           if (!_startedListeningRemoteIDs) {
@@ -95,7 +107,7 @@ class NetworkRemoteIDReceiverBloc
               _geoHashStreamController?.stream.listen(
             (geoHash) async {
               if (geoHash != _oldGeoHash) {
-                await _remoteIDReceiverRepository.requestNetworkRemoteIDsAround(
+                _remoteIDReceiverRepository.requestNetworkRemoteIDsAround(
                   geoHash: geoHash,
                 );
 
@@ -104,11 +116,21 @@ class NetworkRemoteIDReceiverBloc
             },
           );
         } else if (connectionState == ConnectionState.destroyed) {
-          await _cleanupReceiver();
+          await _cleanupReceiver(
+            andStopListening: false,
+          );
         }
       },
     );
   }
+
+  void _remoteIDsGetting(
+    _RemoteIDsGetting event,
+    Emitter<NetworkRemoteIDReceiverState> emit,
+  ) =>
+      emit(
+        const NetworkRemoteIDReceiverState.gettingRemoteIDs(),
+      );
 
   void _remoteIDsGotten(
     _RemoteIDsGotten event,
@@ -136,7 +158,9 @@ class NetworkRemoteIDReceiverBloc
         event.geoHash,
       );
 
-  Future<void> _cleanupReceiver() async {
+  Future<void> _cleanupReceiver({
+    required bool andStopListening,
+  }) async {
     await Future.wait<dynamic>([
       _geoHashStreamController?.close() ?? Future.value(),
       _geoHashStreamSubscription?.cancel() ?? Future.value(),
@@ -147,6 +171,8 @@ class NetworkRemoteIDReceiverBloc
 
     _establishingListeningRemoteIDs = false;
     _startedListeningRemoteIDs = false;
+
+    if (!andStopListening) return;
 
     _remoteIDReceiverRepository.stopListeningNetworkRemoteIDs();
   }

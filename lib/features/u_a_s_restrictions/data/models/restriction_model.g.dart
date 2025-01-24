@@ -50,7 +50,7 @@ Map<String, dynamic> _$AdditionalLinkModelToJson(
     };
 
 RegionModel _$RegionModelFromJson(Map<String, dynamic> json) => RegionModel(
-      mType: $enumDecode(_$RegionTypeEnumMap, json['type']),
+      mType: $enumDecode(_$GeometryTypeEnumMap, json['type']),
       mCoordinates: (json['coordinates'] as List<dynamic>)
           .map((e) => (e as List<dynamic>)
               .map((e) => (e as List<dynamic>)
@@ -62,15 +62,15 @@ RegionModel _$RegionModelFromJson(Map<String, dynamic> json) => RegionModel(
 
 Map<String, dynamic> _$RegionModelToJson(RegionModel instance) =>
     <String, dynamic>{
-      'type': _$RegionTypeEnumMap[instance.mType]!,
+      'type': _$GeometryTypeEnumMap[instance.mType]!,
       'coordinates': instance.mCoordinates,
     };
 
-const _$RegionTypeEnumMap = {
-  RegionType.point: 'Point',
-  RegionType.lineString: 'LineString',
-  RegionType.polygon: 'Polygon',
-  RegionType.multiPoint: 'MultiPoint',
-  RegionType.multiLineString: 'MultiLineString',
-  RegionType.multiPolygon: 'MultiPolygon',
+const _$GeometryTypeEnumMap = {
+  GeometryType.point: 'Point',
+  GeometryType.lineString: 'LineString',
+  GeometryType.polygon: 'Polygon',
+  GeometryType.multiPoint: 'MultiPoint',
+  GeometryType.multiLineString: 'MultiLineString',
+  GeometryType.multiPolygon: 'MultiPolygon',
 };
