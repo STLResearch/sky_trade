@@ -262,10 +262,10 @@ final class SocketIOClient with SignatureHandler {
     _clientMessageStreamSubscription = null;
   }
 
-  Future<void> sendDataToEvent({
+  void sendDataToEvent({
     required String eventName,
     required Map<String, dynamic> data,
-  }) async =>
+  }) =>
       _clientMessageStreamController?.add(
         Right(
           (

@@ -4,6 +4,9 @@ part of 'remote_i_d_transmitter_bloc.dart';
 class RemoteIDTransmitterEvent with _$RemoteIDTransmitterEvent {
   const factory RemoteIDTransmitterEvent.startTransmitter() = _StartTransmitter;
 
+  const factory RemoteIDTransmitterEvent.remoteIDTransmitting() =
+      _RemoteIDTransmitting;
+
   const factory RemoteIDTransmitterEvent.remoteIDTransmitted() =
       _RemoteIDTransmitted;
 

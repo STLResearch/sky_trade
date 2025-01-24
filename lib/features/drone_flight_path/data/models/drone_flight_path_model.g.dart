@@ -9,75 +9,73 @@ part of 'drone_flight_path_model.dart';
 DroneFlightPathModel _$DroneFlightPathModelFromJson(
         Map<String, dynamic> json) =>
     DroneFlightPathModel(
-      data: DataModel.fromJson(json['data'] as Map<String, dynamic>),
+      mData: DataModel.fromJson(json['data'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$DroneFlightPathModelToJson(
         DroneFlightPathModel instance) =>
     <String, dynamic>{
-      'data': instance.data,
+      'data': instance.mData,
     };
 
 DataModel _$DataModelFromJson(Map<String, dynamic> json) => DataModel(
-      geoJson: GeoJsonModel.fromJson(json['geojson'] as Map<String, dynamic>),
+      mGeoJson: GeoJsonModel.fromJson(json['geojson'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$DataModelToJson(DataModel instance) => <String, dynamic>{
-      'geojson': instance.geoJson,
+      'geojson': instance.mGeoJson,
     };
 
 GeoJsonModel _$GeoJsonModelFromJson(Map<String, dynamic> json) => GeoJsonModel(
-      collectionType: json['type'] as String,
-      features: (json['features'] as List<dynamic>)
+      mType: $enumDecode(_$GeoJsonTypeEnumMap, json['type']),
+      mFeatures: (json['features'] as List<dynamic>)
           .map((e) => FeatureModel.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
 
 Map<String, dynamic> _$GeoJsonModelToJson(GeoJsonModel instance) =>
     <String, dynamic>{
-      'type': instance.collectionType,
-      'features': instance.features,
+      'type': _$GeoJsonTypeEnumMap[instance.mType]!,
+      'features': instance.mFeatures,
     };
 
+const _$GeoJsonTypeEnumMap = {
+  GeoJsonType.featureCollection: 'FeatureCollection',
+  GeoJsonType.geometryCollection: 'GeometryCollection',
+};
+
 FeatureModel _$FeatureModelFromJson(Map<String, dynamic> json) => FeatureModel(
-      featureType: json['type'] as String,
-      geometry:
+      mType: json['type'] as String,
+      mGeometry:
           GeometryModel.fromJson(json['geometry'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$FeatureModelToJson(FeatureModel instance) =>
     <String, dynamic>{
-      'type': instance.featureType,
-      'geometry': instance.geometry,
+      'type': instance.mType,
+      'geometry': instance.mGeometry,
     };
 
 GeometryModel _$GeometryModelFromJson(Map<String, dynamic> json) =>
     GeometryModel(
-      geometryType: json['type'] as String,
-      geometryCoordinates: (json['coordinates'] as List<dynamic>)
-          .map((e) => _$recordConvert(
-                e,
-                ($jsonValue) => (
-                  latitude: ($jsonValue['latitude'] as num).toDouble(),
-                  longitude: ($jsonValue['longitude'] as num).toDouble(),
-                ),
-              ))
+      mType: $enumDecode(_$GeometryTypeEnumMap, json['type']),
+      mCoordinates: (json['coordinates'] as List<dynamic>)
+          .map((e) => const LngLatConverter().fromJson(e as List<double>))
           .toList(),
     );
 
 Map<String, dynamic> _$GeometryModelToJson(GeometryModel instance) =>
     <String, dynamic>{
-      'type': instance.geometryType,
-      'coordinates': instance.geometryCoordinates
-          .map((e) => <String, dynamic>{
-                'latitude': e.latitude,
-                'longitude': e.longitude,
-              })
-          .toList(),
+      'type': _$GeometryTypeEnumMap[instance.mType]!,
+      'coordinates':
+          instance.mCoordinates.map(const LngLatConverter().toJson).toList(),
     };
 
-$Rec _$recordConvert<$Rec>(
-  Object? value,
-  $Rec Function(Map) convert,
-) =>
-    convert(value as Map<String, dynamic>);
+const _$GeometryTypeEnumMap = {
+  GeometryType.point: 'Point',
+  GeometryType.lineString: 'LineString',
+  GeometryType.polygon: 'Polygon',
+  GeometryType.multiPoint: 'MultiPoint',
+  GeometryType.multiLineString: 'MultiLineString',
+  GeometryType.multiPolygon: 'MultiPolygon',
+};

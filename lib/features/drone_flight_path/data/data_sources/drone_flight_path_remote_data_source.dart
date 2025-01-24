@@ -1,56 +1,58 @@
-//ignore_for_file: lines_longer_than_80_chars
-
-import 'dart:async';
-import 'package:dartz/dartz.dart';
-import 'package:sky_trade/core/resources/strings/networking.dart';
-import 'package:sky_trade/core/utils/clients/network_client.dart';
-import 'package:sky_trade/core/utils/enums/networking.dart';
-
-import 'package:sky_trade/features/drone_flight_path/data/models/drone_flight_path_model.dart';
+import 'package:dartz/dartz.dart' show Function1;
+import 'package:sky_trade/core/resources/strings/networking.dart'
+    show
+        bodyKey,
+        droneFlightPathEvent,
+        droneFlightPathResponseEvent,
+        isTestKey,
+        macAddressKey;
+import 'package:sky_trade/core/utils/clients/network_client.dart'
+    show SocketIOClient;
+import 'package:sky_trade/core/utils/enums/networking.dart'
+    show ConnectionState;
+import 'package:sky_trade/features/drone_flight_path/data/models/drone_flight_path_model.dart'
+    show DroneFlightPathModel;
 
 abstract interface class DroneFlightPathRemoteDataSource {
-  Future<void> listenToDroneFlightPathUpdates({
-    required Function1<DroneFlightPathModel,void> onDroneFlightPathReceived,
-    required Function1<ConnectionState,void> onConnectionChanged,
+  Future<void> listenFlightPath({
+    required Function1<DroneFlightPathModel, void> onFlightPathReceived,
+    required Function1<ConnectionState, void> onConnectionChanged,
   });
 
-  Future<void> getDroneFlightPathUpdatesFor({
+  void requestFlightPathFor({
     required String macAddress,
   });
 
-  void stopDroneFlightPathUpdates();
+  void stopListeningFlightPath();
 }
 
 final class DroneFlightPathRemoteDataSourceImplementation
     implements DroneFlightPathRemoteDataSource {
-  DroneFlightPathRemoteDataSourceImplementation(
+  const DroneFlightPathRemoteDataSourceImplementation(
     SocketIOClient socketIOClient,
   ) : _socketIOClient = socketIOClient;
 
   final SocketIOClient _socketIOClient;
 
   @override
-  Future<void> listenToDroneFlightPathUpdates({
-    required Function1<DroneFlightPathModel,void> onDroneFlightPathReceived,
-    required Function1<ConnectionState,void> onConnectionChanged,
-  }) async {
-    await _socketIOClient.listenToEvent(
-      eventName: droneFlightPathResponseEvent,
-      onResponse: (response) {
-        if (response != null) {
-          onDroneFlightPathReceived(
-            DroneFlightPathModel.fromJson(response as Map<String, dynamic>),
-          );
-        }
-      },
-      onConnectionChanged: onConnectionChanged,
-    );
-  }
+  Future<void> listenFlightPath({
+    required Function1<DroneFlightPathModel, void> onFlightPathReceived,
+    required Function1<ConnectionState, void> onConnectionChanged,
+  }) =>
+      _socketIOClient.listenToEvent<Map<String, dynamic>>(
+        eventName: droneFlightPathResponseEvent,
+        onResponse: (response) => onFlightPathReceived(
+          DroneFlightPathModel.fromJson(
+            response,
+          ),
+        ),
+        onConnectionChanged: onConnectionChanged,
+      );
 
   @override
-  Future<void> getDroneFlightPathUpdatesFor({
+  void requestFlightPathFor({
     required String macAddress,
-  }) async =>
+  }) =>
       _socketIOClient.sendDataToEvent(
         eventName: droneFlightPathEvent,
         data: {
@@ -62,5 +64,5 @@ final class DroneFlightPathRemoteDataSourceImplementation
       );
 
   @override
-  void stopDroneFlightPathUpdates() => _socketIOClient.close();
+  void stopListeningFlightPath() => _socketIOClient.close();
 }

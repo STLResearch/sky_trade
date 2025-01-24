@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart' show Equatable;
 import 'package:sky_trade/core/utils/enums/networking.dart'
-    show RegionType, RestrictionType;
+    show GeometryType, RestrictionType;
 
 base class RestrictionEntity extends Equatable {
   const RestrictionEntity({
@@ -55,7 +55,7 @@ base class RegionEntity extends Equatable {
     required this.coordinates,
   });
 
-  final RegionType type;
+  final GeometryType type;
   final List<List<List<double>>> coordinates;
 
   @override

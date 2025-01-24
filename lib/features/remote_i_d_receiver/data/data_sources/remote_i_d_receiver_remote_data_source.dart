@@ -20,7 +20,7 @@ abstract interface class RemoteIDReceiverRemoteDataSource {
     required Function1<ConnectionState, void> onConnectionChanged,
   });
 
-  Future<void> requestNetworkRemoteIDsAround({
+  void requestNetworkRemoteIDsAround({
     required String geoHash,
   });
 
@@ -62,7 +62,7 @@ final class RemoteIDReceiverRemoteDataSourceImplementation
       );
 
   @override
-  Future<void> requestNetworkRemoteIDsAround({
+  void requestNetworkRemoteIDsAround({
     required String geoHash,
   }) =>
       _socketIOClient.sendDataToEvent(

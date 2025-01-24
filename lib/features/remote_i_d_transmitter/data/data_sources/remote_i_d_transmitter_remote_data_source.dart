@@ -19,7 +19,7 @@ abstract interface class RemoteIDTransmitterRemoteDataSource {
     required Function1<ConnectionState, void> onConnectionChanged,
   });
 
-  Future<void> transmit({
+  void transmit({
     required List<RemoteIDEntity> remoteIDEntities,
     required DeviceEntity deviceEntity,
     required Uint8List rawData,
@@ -50,7 +50,7 @@ final class RemoteIDTransmitterRemoteDataSourceImplementation
       );
 
   @override
-  Future<void> transmit({
+  void transmit({
     required List<RemoteIDEntity> remoteIDEntities,
     required DeviceEntity deviceEntity,
     required Uint8List rawData,
