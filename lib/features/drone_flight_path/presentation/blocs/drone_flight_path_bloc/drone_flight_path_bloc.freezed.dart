@@ -22,7 +22,6 @@ mixin _$DroneFlightPathEvent {
     required TResult Function() flightPathGetting,
     required TResult Function(DroneFlightPathEntity droneFlightPathEntity)
         flightPathGotten,
-    required TResult Function() flightPathListeningStarted,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -31,7 +30,6 @@ mixin _$DroneFlightPathEvent {
     TResult? Function()? flightPathGetting,
     TResult? Function(DroneFlightPathEntity droneFlightPathEntity)?
         flightPathGotten,
-    TResult? Function()? flightPathListeningStarted,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -40,7 +38,6 @@ mixin _$DroneFlightPathEvent {
     TResult Function()? flightPathGetting,
     TResult Function(DroneFlightPathEntity droneFlightPathEntity)?
         flightPathGotten,
-    TResult Function()? flightPathListeningStarted,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -49,8 +46,6 @@ mixin _$DroneFlightPathEvent {
     required TResult Function(_RequestFlightPathFor value) requestFlightPathFor,
     required TResult Function(_FlightPathGetting value) flightPathGetting,
     required TResult Function(_FlightPathGotten value) flightPathGotten,
-    required TResult Function(_FlightPathListeningStarted value)
-        flightPathListeningStarted,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -58,8 +53,6 @@ mixin _$DroneFlightPathEvent {
     TResult? Function(_RequestFlightPathFor value)? requestFlightPathFor,
     TResult? Function(_FlightPathGetting value)? flightPathGetting,
     TResult? Function(_FlightPathGotten value)? flightPathGotten,
-    TResult? Function(_FlightPathListeningStarted value)?
-        flightPathListeningStarted,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -67,8 +60,6 @@ mixin _$DroneFlightPathEvent {
     TResult Function(_RequestFlightPathFor value)? requestFlightPathFor,
     TResult Function(_FlightPathGetting value)? flightPathGetting,
     TResult Function(_FlightPathGotten value)? flightPathGotten,
-    TResult Function(_FlightPathListeningStarted value)?
-        flightPathListeningStarted,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -164,7 +155,6 @@ class _$RequestFlightPathForImpl implements _RequestFlightPathFor {
     required TResult Function() flightPathGetting,
     required TResult Function(DroneFlightPathEntity droneFlightPathEntity)
         flightPathGotten,
-    required TResult Function() flightPathListeningStarted,
   }) {
     return requestFlightPathFor(macAddress);
   }
@@ -176,7 +166,6 @@ class _$RequestFlightPathForImpl implements _RequestFlightPathFor {
     TResult? Function()? flightPathGetting,
     TResult? Function(DroneFlightPathEntity droneFlightPathEntity)?
         flightPathGotten,
-    TResult? Function()? flightPathListeningStarted,
   }) {
     return requestFlightPathFor?.call(macAddress);
   }
@@ -188,7 +177,6 @@ class _$RequestFlightPathForImpl implements _RequestFlightPathFor {
     TResult Function()? flightPathGetting,
     TResult Function(DroneFlightPathEntity droneFlightPathEntity)?
         flightPathGotten,
-    TResult Function()? flightPathListeningStarted,
     required TResult orElse(),
   }) {
     if (requestFlightPathFor != null) {
@@ -203,8 +191,6 @@ class _$RequestFlightPathForImpl implements _RequestFlightPathFor {
     required TResult Function(_RequestFlightPathFor value) requestFlightPathFor,
     required TResult Function(_FlightPathGetting value) flightPathGetting,
     required TResult Function(_FlightPathGotten value) flightPathGotten,
-    required TResult Function(_FlightPathListeningStarted value)
-        flightPathListeningStarted,
   }) {
     return requestFlightPathFor(this);
   }
@@ -215,8 +201,6 @@ class _$RequestFlightPathForImpl implements _RequestFlightPathFor {
     TResult? Function(_RequestFlightPathFor value)? requestFlightPathFor,
     TResult? Function(_FlightPathGetting value)? flightPathGetting,
     TResult? Function(_FlightPathGotten value)? flightPathGotten,
-    TResult? Function(_FlightPathListeningStarted value)?
-        flightPathListeningStarted,
   }) {
     return requestFlightPathFor?.call(this);
   }
@@ -227,8 +211,6 @@ class _$RequestFlightPathForImpl implements _RequestFlightPathFor {
     TResult Function(_RequestFlightPathFor value)? requestFlightPathFor,
     TResult Function(_FlightPathGetting value)? flightPathGetting,
     TResult Function(_FlightPathGotten value)? flightPathGotten,
-    TResult Function(_FlightPathListeningStarted value)?
-        flightPathListeningStarted,
     required TResult orElse(),
   }) {
     if (requestFlightPathFor != null) {
@@ -290,7 +272,6 @@ class _$FlightPathGettingImpl implements _FlightPathGetting {
     required TResult Function() flightPathGetting,
     required TResult Function(DroneFlightPathEntity droneFlightPathEntity)
         flightPathGotten,
-    required TResult Function() flightPathListeningStarted,
   }) {
     return flightPathGetting();
   }
@@ -302,7 +283,6 @@ class _$FlightPathGettingImpl implements _FlightPathGetting {
     TResult? Function()? flightPathGetting,
     TResult? Function(DroneFlightPathEntity droneFlightPathEntity)?
         flightPathGotten,
-    TResult? Function()? flightPathListeningStarted,
   }) {
     return flightPathGetting?.call();
   }
@@ -314,7 +294,6 @@ class _$FlightPathGettingImpl implements _FlightPathGetting {
     TResult Function()? flightPathGetting,
     TResult Function(DroneFlightPathEntity droneFlightPathEntity)?
         flightPathGotten,
-    TResult Function()? flightPathListeningStarted,
     required TResult orElse(),
   }) {
     if (flightPathGetting != null) {
@@ -329,8 +308,6 @@ class _$FlightPathGettingImpl implements _FlightPathGetting {
     required TResult Function(_RequestFlightPathFor value) requestFlightPathFor,
     required TResult Function(_FlightPathGetting value) flightPathGetting,
     required TResult Function(_FlightPathGotten value) flightPathGotten,
-    required TResult Function(_FlightPathListeningStarted value)
-        flightPathListeningStarted,
   }) {
     return flightPathGetting(this);
   }
@@ -341,8 +318,6 @@ class _$FlightPathGettingImpl implements _FlightPathGetting {
     TResult? Function(_RequestFlightPathFor value)? requestFlightPathFor,
     TResult? Function(_FlightPathGetting value)? flightPathGetting,
     TResult? Function(_FlightPathGotten value)? flightPathGotten,
-    TResult? Function(_FlightPathListeningStarted value)?
-        flightPathListeningStarted,
   }) {
     return flightPathGetting?.call(this);
   }
@@ -353,8 +328,6 @@ class _$FlightPathGettingImpl implements _FlightPathGetting {
     TResult Function(_RequestFlightPathFor value)? requestFlightPathFor,
     TResult Function(_FlightPathGetting value)? flightPathGetting,
     TResult Function(_FlightPathGotten value)? flightPathGotten,
-    TResult Function(_FlightPathListeningStarted value)?
-        flightPathListeningStarted,
     required TResult orElse(),
   }) {
     if (flightPathGetting != null) {
@@ -438,7 +411,6 @@ class _$FlightPathGottenImpl implements _FlightPathGotten {
     required TResult Function() flightPathGetting,
     required TResult Function(DroneFlightPathEntity droneFlightPathEntity)
         flightPathGotten,
-    required TResult Function() flightPathListeningStarted,
   }) {
     return flightPathGotten(droneFlightPathEntity);
   }
@@ -450,7 +422,6 @@ class _$FlightPathGottenImpl implements _FlightPathGotten {
     TResult? Function()? flightPathGetting,
     TResult? Function(DroneFlightPathEntity droneFlightPathEntity)?
         flightPathGotten,
-    TResult? Function()? flightPathListeningStarted,
   }) {
     return flightPathGotten?.call(droneFlightPathEntity);
   }
@@ -462,7 +433,6 @@ class _$FlightPathGottenImpl implements _FlightPathGotten {
     TResult Function()? flightPathGetting,
     TResult Function(DroneFlightPathEntity droneFlightPathEntity)?
         flightPathGotten,
-    TResult Function()? flightPathListeningStarted,
     required TResult orElse(),
   }) {
     if (flightPathGotten != null) {
@@ -477,8 +447,6 @@ class _$FlightPathGottenImpl implements _FlightPathGotten {
     required TResult Function(_RequestFlightPathFor value) requestFlightPathFor,
     required TResult Function(_FlightPathGetting value) flightPathGetting,
     required TResult Function(_FlightPathGotten value) flightPathGotten,
-    required TResult Function(_FlightPathListeningStarted value)
-        flightPathListeningStarted,
   }) {
     return flightPathGotten(this);
   }
@@ -489,8 +457,6 @@ class _$FlightPathGottenImpl implements _FlightPathGotten {
     TResult? Function(_RequestFlightPathFor value)? requestFlightPathFor,
     TResult? Function(_FlightPathGetting value)? flightPathGetting,
     TResult? Function(_FlightPathGotten value)? flightPathGotten,
-    TResult? Function(_FlightPathListeningStarted value)?
-        flightPathListeningStarted,
   }) {
     return flightPathGotten?.call(this);
   }
@@ -501,8 +467,6 @@ class _$FlightPathGottenImpl implements _FlightPathGotten {
     TResult Function(_RequestFlightPathFor value)? requestFlightPathFor,
     TResult Function(_FlightPathGetting value)? flightPathGetting,
     TResult Function(_FlightPathGotten value)? flightPathGotten,
-    TResult Function(_FlightPathListeningStarted value)?
-        flightPathListeningStarted,
     required TResult orElse(),
   }) {
     if (flightPathGotten != null) {
@@ -524,137 +488,10 @@ abstract class _FlightPathGotten implements DroneFlightPathEvent {
 }
 
 /// @nodoc
-abstract class _$$FlightPathListeningStartedImplCopyWith<$Res> {
-  factory _$$FlightPathListeningStartedImplCopyWith(
-          _$FlightPathListeningStartedImpl value,
-          $Res Function(_$FlightPathListeningStartedImpl) then) =
-      __$$FlightPathListeningStartedImplCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$FlightPathListeningStartedImplCopyWithImpl<$Res>
-    extends _$DroneFlightPathEventCopyWithImpl<$Res,
-        _$FlightPathListeningStartedImpl>
-    implements _$$FlightPathListeningStartedImplCopyWith<$Res> {
-  __$$FlightPathListeningStartedImplCopyWithImpl(
-      _$FlightPathListeningStartedImpl _value,
-      $Res Function(_$FlightPathListeningStartedImpl) _then)
-      : super(_value, _then);
-}
-
-/// @nodoc
-
-class _$FlightPathListeningStartedImpl implements _FlightPathListeningStarted {
-  const _$FlightPathListeningStartedImpl();
-
-  @override
-  String toString() {
-    return 'DroneFlightPathEvent.flightPathListeningStarted()';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$FlightPathListeningStartedImpl);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(String macAddress) requestFlightPathFor,
-    required TResult Function() flightPathGetting,
-    required TResult Function(DroneFlightPathEntity droneFlightPathEntity)
-        flightPathGotten,
-    required TResult Function() flightPathListeningStarted,
-  }) {
-    return flightPathListeningStarted();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String macAddress)? requestFlightPathFor,
-    TResult? Function()? flightPathGetting,
-    TResult? Function(DroneFlightPathEntity droneFlightPathEntity)?
-        flightPathGotten,
-    TResult? Function()? flightPathListeningStarted,
-  }) {
-    return flightPathListeningStarted?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String macAddress)? requestFlightPathFor,
-    TResult Function()? flightPathGetting,
-    TResult Function(DroneFlightPathEntity droneFlightPathEntity)?
-        flightPathGotten,
-    TResult Function()? flightPathListeningStarted,
-    required TResult orElse(),
-  }) {
-    if (flightPathListeningStarted != null) {
-      return flightPathListeningStarted();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_RequestFlightPathFor value) requestFlightPathFor,
-    required TResult Function(_FlightPathGetting value) flightPathGetting,
-    required TResult Function(_FlightPathGotten value) flightPathGotten,
-    required TResult Function(_FlightPathListeningStarted value)
-        flightPathListeningStarted,
-  }) {
-    return flightPathListeningStarted(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_RequestFlightPathFor value)? requestFlightPathFor,
-    TResult? Function(_FlightPathGetting value)? flightPathGetting,
-    TResult? Function(_FlightPathGotten value)? flightPathGotten,
-    TResult? Function(_FlightPathListeningStarted value)?
-        flightPathListeningStarted,
-  }) {
-    return flightPathListeningStarted?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_RequestFlightPathFor value)? requestFlightPathFor,
-    TResult Function(_FlightPathGetting value)? flightPathGetting,
-    TResult Function(_FlightPathGotten value)? flightPathGotten,
-    TResult Function(_FlightPathListeningStarted value)?
-        flightPathListeningStarted,
-    required TResult orElse(),
-  }) {
-    if (flightPathListeningStarted != null) {
-      return flightPathListeningStarted(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _FlightPathListeningStarted implements DroneFlightPathEvent {
-  const factory _FlightPathListeningStarted() =
-      _$FlightPathListeningStartedImpl;
-}
-
-/// @nodoc
 mixin _$DroneFlightPathState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function() establishingListeningFlightPath,
-    required TResult Function() startedListeningFlightPath,
     required TResult Function() gettingFlightPath,
     required TResult Function(DroneFlightPathEntity droneFlightPathEntity)
         gotFlightPath,
@@ -663,8 +500,6 @@ mixin _$DroneFlightPathState {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function()? establishingListeningFlightPath,
-    TResult? Function()? startedListeningFlightPath,
     TResult? Function()? gettingFlightPath,
     TResult? Function(DroneFlightPathEntity droneFlightPathEntity)?
         gotFlightPath,
@@ -673,8 +508,6 @@ mixin _$DroneFlightPathState {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function()? establishingListeningFlightPath,
-    TResult Function()? startedListeningFlightPath,
     TResult Function()? gettingFlightPath,
     TResult Function(DroneFlightPathEntity droneFlightPathEntity)?
         gotFlightPath,
@@ -684,10 +517,6 @@ mixin _$DroneFlightPathState {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
-    required TResult Function(_EstablishingListeningFlightPath value)
-        establishingListeningFlightPath,
-    required TResult Function(_StartedListeningFlightPath value)
-        startedListeningFlightPath,
     required TResult Function(_GettingFlightPath value) gettingFlightPath,
     required TResult Function(_GotFlightPath value) gotFlightPath,
   }) =>
@@ -695,10 +524,6 @@ mixin _$DroneFlightPathState {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
-    TResult? Function(_EstablishingListeningFlightPath value)?
-        establishingListeningFlightPath,
-    TResult? Function(_StartedListeningFlightPath value)?
-        startedListeningFlightPath,
     TResult? Function(_GettingFlightPath value)? gettingFlightPath,
     TResult? Function(_GotFlightPath value)? gotFlightPath,
   }) =>
@@ -706,10 +531,6 @@ mixin _$DroneFlightPathState {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(_EstablishingListeningFlightPath value)?
-        establishingListeningFlightPath,
-    TResult Function(_StartedListeningFlightPath value)?
-        startedListeningFlightPath,
     TResult Function(_GettingFlightPath value)? gettingFlightPath,
     TResult Function(_GotFlightPath value)? gotFlightPath,
     required TResult orElse(),
@@ -775,8 +596,6 @@ class _$InitialImpl implements _Initial {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function() establishingListeningFlightPath,
-    required TResult Function() startedListeningFlightPath,
     required TResult Function() gettingFlightPath,
     required TResult Function(DroneFlightPathEntity droneFlightPathEntity)
         gotFlightPath,
@@ -788,8 +607,6 @@ class _$InitialImpl implements _Initial {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function()? establishingListeningFlightPath,
-    TResult? Function()? startedListeningFlightPath,
     TResult? Function()? gettingFlightPath,
     TResult? Function(DroneFlightPathEntity droneFlightPathEntity)?
         gotFlightPath,
@@ -801,8 +618,6 @@ class _$InitialImpl implements _Initial {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function()? establishingListeningFlightPath,
-    TResult Function()? startedListeningFlightPath,
     TResult Function()? gettingFlightPath,
     TResult Function(DroneFlightPathEntity droneFlightPathEntity)?
         gotFlightPath,
@@ -818,10 +633,6 @@ class _$InitialImpl implements _Initial {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
-    required TResult Function(_EstablishingListeningFlightPath value)
-        establishingListeningFlightPath,
-    required TResult Function(_StartedListeningFlightPath value)
-        startedListeningFlightPath,
     required TResult Function(_GettingFlightPath value) gettingFlightPath,
     required TResult Function(_GotFlightPath value) gotFlightPath,
   }) {
@@ -832,10 +643,6 @@ class _$InitialImpl implements _Initial {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
-    TResult? Function(_EstablishingListeningFlightPath value)?
-        establishingListeningFlightPath,
-    TResult? Function(_StartedListeningFlightPath value)?
-        startedListeningFlightPath,
     TResult? Function(_GettingFlightPath value)? gettingFlightPath,
     TResult? Function(_GotFlightPath value)? gotFlightPath,
   }) {
@@ -846,10 +653,6 @@ class _$InitialImpl implements _Initial {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(_EstablishingListeningFlightPath value)?
-        establishingListeningFlightPath,
-    TResult Function(_StartedListeningFlightPath value)?
-        startedListeningFlightPath,
     TResult Function(_GettingFlightPath value)? gettingFlightPath,
     TResult Function(_GotFlightPath value)? gotFlightPath,
     required TResult orElse(),
@@ -863,276 +666,6 @@ class _$InitialImpl implements _Initial {
 
 abstract class _Initial implements DroneFlightPathState {
   const factory _Initial() = _$InitialImpl;
-}
-
-/// @nodoc
-abstract class _$$EstablishingListeningFlightPathImplCopyWith<$Res> {
-  factory _$$EstablishingListeningFlightPathImplCopyWith(
-          _$EstablishingListeningFlightPathImpl value,
-          $Res Function(_$EstablishingListeningFlightPathImpl) then) =
-      __$$EstablishingListeningFlightPathImplCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$EstablishingListeningFlightPathImplCopyWithImpl<$Res>
-    extends _$DroneFlightPathStateCopyWithImpl<$Res,
-        _$EstablishingListeningFlightPathImpl>
-    implements _$$EstablishingListeningFlightPathImplCopyWith<$Res> {
-  __$$EstablishingListeningFlightPathImplCopyWithImpl(
-      _$EstablishingListeningFlightPathImpl _value,
-      $Res Function(_$EstablishingListeningFlightPathImpl) _then)
-      : super(_value, _then);
-}
-
-/// @nodoc
-
-class _$EstablishingListeningFlightPathImpl
-    implements _EstablishingListeningFlightPath {
-  const _$EstablishingListeningFlightPathImpl();
-
-  @override
-  String toString() {
-    return 'DroneFlightPathState.establishingListeningFlightPath()';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$EstablishingListeningFlightPathImpl);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function() establishingListeningFlightPath,
-    required TResult Function() startedListeningFlightPath,
-    required TResult Function() gettingFlightPath,
-    required TResult Function(DroneFlightPathEntity droneFlightPathEntity)
-        gotFlightPath,
-  }) {
-    return establishingListeningFlightPath();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
-    TResult? Function()? establishingListeningFlightPath,
-    TResult? Function()? startedListeningFlightPath,
-    TResult? Function()? gettingFlightPath,
-    TResult? Function(DroneFlightPathEntity droneFlightPathEntity)?
-        gotFlightPath,
-  }) {
-    return establishingListeningFlightPath?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? establishingListeningFlightPath,
-    TResult Function()? startedListeningFlightPath,
-    TResult Function()? gettingFlightPath,
-    TResult Function(DroneFlightPathEntity droneFlightPathEntity)?
-        gotFlightPath,
-    required TResult orElse(),
-  }) {
-    if (establishingListeningFlightPath != null) {
-      return establishingListeningFlightPath();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_EstablishingListeningFlightPath value)
-        establishingListeningFlightPath,
-    required TResult Function(_StartedListeningFlightPath value)
-        startedListeningFlightPath,
-    required TResult Function(_GettingFlightPath value) gettingFlightPath,
-    required TResult Function(_GotFlightPath value) gotFlightPath,
-  }) {
-    return establishingListeningFlightPath(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(_EstablishingListeningFlightPath value)?
-        establishingListeningFlightPath,
-    TResult? Function(_StartedListeningFlightPath value)?
-        startedListeningFlightPath,
-    TResult? Function(_GettingFlightPath value)? gettingFlightPath,
-    TResult? Function(_GotFlightPath value)? gotFlightPath,
-  }) {
-    return establishingListeningFlightPath?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_EstablishingListeningFlightPath value)?
-        establishingListeningFlightPath,
-    TResult Function(_StartedListeningFlightPath value)?
-        startedListeningFlightPath,
-    TResult Function(_GettingFlightPath value)? gettingFlightPath,
-    TResult Function(_GotFlightPath value)? gotFlightPath,
-    required TResult orElse(),
-  }) {
-    if (establishingListeningFlightPath != null) {
-      return establishingListeningFlightPath(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _EstablishingListeningFlightPath
-    implements DroneFlightPathState {
-  const factory _EstablishingListeningFlightPath() =
-      _$EstablishingListeningFlightPathImpl;
-}
-
-/// @nodoc
-abstract class _$$StartedListeningFlightPathImplCopyWith<$Res> {
-  factory _$$StartedListeningFlightPathImplCopyWith(
-          _$StartedListeningFlightPathImpl value,
-          $Res Function(_$StartedListeningFlightPathImpl) then) =
-      __$$StartedListeningFlightPathImplCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$StartedListeningFlightPathImplCopyWithImpl<$Res>
-    extends _$DroneFlightPathStateCopyWithImpl<$Res,
-        _$StartedListeningFlightPathImpl>
-    implements _$$StartedListeningFlightPathImplCopyWith<$Res> {
-  __$$StartedListeningFlightPathImplCopyWithImpl(
-      _$StartedListeningFlightPathImpl _value,
-      $Res Function(_$StartedListeningFlightPathImpl) _then)
-      : super(_value, _then);
-}
-
-/// @nodoc
-
-class _$StartedListeningFlightPathImpl implements _StartedListeningFlightPath {
-  const _$StartedListeningFlightPathImpl();
-
-  @override
-  String toString() {
-    return 'DroneFlightPathState.startedListeningFlightPath()';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$StartedListeningFlightPathImpl);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function() establishingListeningFlightPath,
-    required TResult Function() startedListeningFlightPath,
-    required TResult Function() gettingFlightPath,
-    required TResult Function(DroneFlightPathEntity droneFlightPathEntity)
-        gotFlightPath,
-  }) {
-    return startedListeningFlightPath();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
-    TResult? Function()? establishingListeningFlightPath,
-    TResult? Function()? startedListeningFlightPath,
-    TResult? Function()? gettingFlightPath,
-    TResult? Function(DroneFlightPathEntity droneFlightPathEntity)?
-        gotFlightPath,
-  }) {
-    return startedListeningFlightPath?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? establishingListeningFlightPath,
-    TResult Function()? startedListeningFlightPath,
-    TResult Function()? gettingFlightPath,
-    TResult Function(DroneFlightPathEntity droneFlightPathEntity)?
-        gotFlightPath,
-    required TResult orElse(),
-  }) {
-    if (startedListeningFlightPath != null) {
-      return startedListeningFlightPath();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_EstablishingListeningFlightPath value)
-        establishingListeningFlightPath,
-    required TResult Function(_StartedListeningFlightPath value)
-        startedListeningFlightPath,
-    required TResult Function(_GettingFlightPath value) gettingFlightPath,
-    required TResult Function(_GotFlightPath value) gotFlightPath,
-  }) {
-    return startedListeningFlightPath(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(_EstablishingListeningFlightPath value)?
-        establishingListeningFlightPath,
-    TResult? Function(_StartedListeningFlightPath value)?
-        startedListeningFlightPath,
-    TResult? Function(_GettingFlightPath value)? gettingFlightPath,
-    TResult? Function(_GotFlightPath value)? gotFlightPath,
-  }) {
-    return startedListeningFlightPath?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_EstablishingListeningFlightPath value)?
-        establishingListeningFlightPath,
-    TResult Function(_StartedListeningFlightPath value)?
-        startedListeningFlightPath,
-    TResult Function(_GettingFlightPath value)? gettingFlightPath,
-    TResult Function(_GotFlightPath value)? gotFlightPath,
-    required TResult orElse(),
-  }) {
-    if (startedListeningFlightPath != null) {
-      return startedListeningFlightPath(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _StartedListeningFlightPath implements DroneFlightPathState {
-  const factory _StartedListeningFlightPath() =
-      _$StartedListeningFlightPathImpl;
 }
 
 /// @nodoc
@@ -1174,8 +707,6 @@ class _$GettingFlightPathImpl implements _GettingFlightPath {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function() establishingListeningFlightPath,
-    required TResult Function() startedListeningFlightPath,
     required TResult Function() gettingFlightPath,
     required TResult Function(DroneFlightPathEntity droneFlightPathEntity)
         gotFlightPath,
@@ -1187,8 +718,6 @@ class _$GettingFlightPathImpl implements _GettingFlightPath {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function()? establishingListeningFlightPath,
-    TResult? Function()? startedListeningFlightPath,
     TResult? Function()? gettingFlightPath,
     TResult? Function(DroneFlightPathEntity droneFlightPathEntity)?
         gotFlightPath,
@@ -1200,8 +729,6 @@ class _$GettingFlightPathImpl implements _GettingFlightPath {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function()? establishingListeningFlightPath,
-    TResult Function()? startedListeningFlightPath,
     TResult Function()? gettingFlightPath,
     TResult Function(DroneFlightPathEntity droneFlightPathEntity)?
         gotFlightPath,
@@ -1217,10 +744,6 @@ class _$GettingFlightPathImpl implements _GettingFlightPath {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
-    required TResult Function(_EstablishingListeningFlightPath value)
-        establishingListeningFlightPath,
-    required TResult Function(_StartedListeningFlightPath value)
-        startedListeningFlightPath,
     required TResult Function(_GettingFlightPath value) gettingFlightPath,
     required TResult Function(_GotFlightPath value) gotFlightPath,
   }) {
@@ -1231,10 +754,6 @@ class _$GettingFlightPathImpl implements _GettingFlightPath {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
-    TResult? Function(_EstablishingListeningFlightPath value)?
-        establishingListeningFlightPath,
-    TResult? Function(_StartedListeningFlightPath value)?
-        startedListeningFlightPath,
     TResult? Function(_GettingFlightPath value)? gettingFlightPath,
     TResult? Function(_GotFlightPath value)? gotFlightPath,
   }) {
@@ -1245,10 +764,6 @@ class _$GettingFlightPathImpl implements _GettingFlightPath {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(_EstablishingListeningFlightPath value)?
-        establishingListeningFlightPath,
-    TResult Function(_StartedListeningFlightPath value)?
-        startedListeningFlightPath,
     TResult Function(_GettingFlightPath value)? gettingFlightPath,
     TResult Function(_GotFlightPath value)? gotFlightPath,
     required TResult orElse(),
@@ -1330,8 +845,6 @@ class _$GotFlightPathImpl implements _GotFlightPath {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function() establishingListeningFlightPath,
-    required TResult Function() startedListeningFlightPath,
     required TResult Function() gettingFlightPath,
     required TResult Function(DroneFlightPathEntity droneFlightPathEntity)
         gotFlightPath,
@@ -1343,8 +856,6 @@ class _$GotFlightPathImpl implements _GotFlightPath {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function()? establishingListeningFlightPath,
-    TResult? Function()? startedListeningFlightPath,
     TResult? Function()? gettingFlightPath,
     TResult? Function(DroneFlightPathEntity droneFlightPathEntity)?
         gotFlightPath,
@@ -1356,8 +867,6 @@ class _$GotFlightPathImpl implements _GotFlightPath {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function()? establishingListeningFlightPath,
-    TResult Function()? startedListeningFlightPath,
     TResult Function()? gettingFlightPath,
     TResult Function(DroneFlightPathEntity droneFlightPathEntity)?
         gotFlightPath,
@@ -1373,10 +882,6 @@ class _$GotFlightPathImpl implements _GotFlightPath {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
-    required TResult Function(_EstablishingListeningFlightPath value)
-        establishingListeningFlightPath,
-    required TResult Function(_StartedListeningFlightPath value)
-        startedListeningFlightPath,
     required TResult Function(_GettingFlightPath value) gettingFlightPath,
     required TResult Function(_GotFlightPath value) gotFlightPath,
   }) {
@@ -1387,10 +892,6 @@ class _$GotFlightPathImpl implements _GotFlightPath {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
-    TResult? Function(_EstablishingListeningFlightPath value)?
-        establishingListeningFlightPath,
-    TResult? Function(_StartedListeningFlightPath value)?
-        startedListeningFlightPath,
     TResult? Function(_GettingFlightPath value)? gettingFlightPath,
     TResult? Function(_GotFlightPath value)? gotFlightPath,
   }) {
@@ -1401,10 +902,6 @@ class _$GotFlightPathImpl implements _GotFlightPath {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(_EstablishingListeningFlightPath value)?
-        establishingListeningFlightPath,
-    TResult Function(_StartedListeningFlightPath value)?
-        startedListeningFlightPath,
     TResult Function(_GettingFlightPath value)? gettingFlightPath,
     TResult Function(_GotFlightPath value)? gotFlightPath,
     required TResult orElse(),

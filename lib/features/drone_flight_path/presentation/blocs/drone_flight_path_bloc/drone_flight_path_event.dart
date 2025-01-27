@@ -11,7 +11,4 @@ class DroneFlightPathEvent with _$DroneFlightPathEvent {
   const factory DroneFlightPathEvent.flightPathGotten({
     required DroneFlightPathEntity droneFlightPathEntity,
   }) = _FlightPathGotten;
-
-  const factory DroneFlightPathEvent.flightPathListeningStarted() =
-      _FlightPathListeningStarted;
 }
