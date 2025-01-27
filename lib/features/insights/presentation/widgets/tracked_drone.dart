@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart'
     show
         BuildContext,
+        Expanded,
         MainAxisAlignment,
         Row,
         SizedBox,
@@ -29,11 +30,13 @@ class TrackedDrone extends StatelessWidget {
   Widget build(BuildContext context) => Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Text(
-            givenName ?? macAddress,
-            style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                  color: hex838187,
-                ),
+          Expanded(
+            child: Text(
+              givenName ?? macAddress,
+              style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                    color: hex838187,
+                  ),
+            ),
           ),
           const SizedBox(
             width: sixteenDotNil,
