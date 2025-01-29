@@ -1,46 +1,51 @@
-import 'package:dartz/dartz.dart';
+import 'package:dartz/dartz.dart' show Either;
 import 'package:sky_trade/core/errors/failures/buy_air_rights_failure.dart';
-import 'package:sky_trade/features/buy_air_rights/domain/entities/buy_air_rights_entity.dart';
+import 'package:sky_trade/features/buy_air_rights/domain/entities/buy_air_rights_entity.dart'
+    show
+        AirspaceEntity,
+        AuctionEntity,
+        BidEntity,
+        TransactionEntity,
+        TransactionMessageEntity,
+        UnclaimedPropertyEntity;
 
 abstract interface class BuyAirRightsRepository {
-  Future<Either<GetAllAuctionsFailure, AuctionEntity>> getAllAuctions({
-    required double page,
-    required double limit,
+  Future<Either<GetAllAuctionsFailure, List<AuctionEntity>>> getAllAuctions({
+    required int page,
+    required int limit,
     required double minPrice,
     required double maxPrice,
     required String filter,
   });
 
-  Future<Either<GetAuctionWithBidsFailure, AuctionWithBidsEntity>>
-      getAuctionWithBids({
+  Future<Either<GetAuctionWithBidsFailure, AuctionEntity>> getAuctionWithBids({
     required double auctionId,
   });
 
-  Future<Either<GetAuctionableAirspacesFailure, AuctionableAirspaceEntity>>
+  Future<Either<GetAuctionableAirspacesFailure, List<AirspaceEntity>>>
       getAuctionableAirspaces({
-    required double page,
-    required double limit,
+    required int page,
+    required int limit,
   });
 
-  Future<Either<GeneratePlaceBidFailure, PlaceBidEntity>> generatePlaceBid({
+  Future<Either<GeneratePlaceBidFailure, BidEntity>> generatePlaceBid({
     required String auction,
-    required double amount,
+    required String amount,
   });
 
-  Future<Either<SendTransactionFailure, SendTransactionEntity>>
-      sendTransaction({
+  Future<Either<SendTransactionFailure, TransactionEntity>> sendTransaction({
     required String serializedTx,
   });
 
-  Future<Either<CreateAuctionFailure, CreateAuctionEntity>>
+  Future<Either<CreateAuctionFailure, TransactionMessageEntity>>
       generateCreateAuction({
     required String assetId,
     required String seller,
     required double initialPrice,
-    required double secsDuration,
+    required int secsDuration,
   });
 
-  Future<Either<OfferForUnclaimedPropertyFailure, void>>
+  Future<Either<GetOfferForUnclaimedPropertyFailure, UnclaimedPropertyEntity>>
       getOfferForUnclaimedProperty({
     required String signedTransaction,
     required String landAddress,

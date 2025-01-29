@@ -1,10 +1,17 @@
-import 'package:dartz/dartz.dart';
+import 'package:dartz/dartz.dart' show Either;
 import 'package:sky_trade/core/errors/failures/buy_air_rights_failure.dart';
 import 'package:sky_trade/core/utils/clients/data_handler.dart';
-import 'package:sky_trade/features/buy_air_rights/data/data_sources/buy_air_rights_remote_data_source.dart';
+import 'package:sky_trade/features/buy_air_rights/data/data_sources/buy_air_rights_remote_data_source.dart'
+    show BuyAirRightsRemoteDataSource;
+import 'package:sky_trade/features/buy_air_rights/domain/entities/buy_air_rights_entity.dart'
+    show
+        AirspaceEntity,
+        AuctionEntity,
+        BidEntity,
+        TransactionEntity,
+        TransactionMessageEntity,
+        UnclaimedPropertyEntity;
 import 'package:sky_trade/features/buy_air_rights/domain/repositories/buy_air_rights_repository.dart';
-
-import '../../domain/entities/buy_air_rights_entity.dart';
 
 final class BuyAirRightsRepositoryImplementation
     with DataHandler
@@ -16,14 +23,14 @@ final class BuyAirRightsRepositoryImplementation
   final BuyAirRightsRemoteDataSource _buyAirRightsRemoteDataSource;
 
   @override
-  Future<Either<GetAllAuctionsFailure, AuctionEntity>> getAllAuctions({
-    required double page,
-    required double limit,
+  Future<Either<GetAllAuctionsFailure, List<AuctionEntity>>> getAllAuctions({
+    required int page,
+    required int limit,
     required double minPrice,
     required double maxPrice,
     required String filter,
   }) =>
-      handleData<GetAllAuctionsFailure, AuctionEntity>(
+      handleData<GetAllAuctionsFailure, List<AuctionEntity>>(
         dataSourceOperation: () => _buyAirRightsRemoteDataSource.getAllAuctions(
           page: page,
           limit: limit,
@@ -36,26 +43,25 @@ final class BuyAirRightsRepositoryImplementation
       );
 
   @override
-  Future<Either<GetAuctionWithBidsFailure, AuctionWithBidsEntity>>
-      getAuctionWithBids({
+  Future<Either<GetAuctionWithBidsFailure, AuctionEntity>> getAuctionWithBids({
     required double auctionId,
   }) =>
-          handleData<GetAuctionWithBidsFailure, AuctionWithBidsEntity>(
-            dataSourceOperation: () =>
-                _buyAirRightsRemoteDataSource.getAuctionWithBids(
-              auctionId: auctionId,
-            ),
-            onSuccess: (auctionWithBidsEntity) => auctionWithBidsEntity,
-            onFailure: (_) => GetAuctionWithBidsFailure(),
-          );
+      handleData<GetAuctionWithBidsFailure, AuctionEntity>(
+        dataSourceOperation: () =>
+            _buyAirRightsRemoteDataSource.getAuctionWithBids(
+          auctionId: auctionId,
+        ),
+        onSuccess: (auctionWithBidsEntity) => auctionWithBidsEntity,
+        onFailure: (_) => GetAuctionWithBidsFailure(),
+      );
 
   @override
-  Future<Either<GetAuctionableAirspacesFailure, AuctionableAirspaceEntity>>
+  Future<Either<GetAuctionableAirspacesFailure, List<AirspaceEntity>>>
       getAuctionableAirspaces({
-    required double page,
-    required double limit,
+    required int page,
+    required int limit,
   }) =>
-          handleData<GetAuctionableAirspacesFailure, AuctionableAirspaceEntity>(
+          handleData<GetAuctionableAirspacesFailure, List<AirspaceEntity>>(
             dataSourceOperation: () =>
                 _buyAirRightsRemoteDataSource.getAuctionableAirspaces(
               page: page,
@@ -66,11 +72,11 @@ final class BuyAirRightsRepositoryImplementation
           );
 
   @override
-  Future<Either<GeneratePlaceBidFailure, PlaceBidEntity>> generatePlaceBid({
+  Future<Either<GeneratePlaceBidFailure, BidEntity>> generatePlaceBid({
     required String auction,
-    required double amount,
+    required String amount,
   }) =>
-      handleData<GeneratePlaceBidFailure, PlaceBidEntity>(
+      handleData<GeneratePlaceBidFailure, BidEntity>(
         dataSourceOperation: () =>
             _buyAirRightsRemoteDataSource.generatePlaceBid(
           auction: auction,
@@ -81,28 +87,27 @@ final class BuyAirRightsRepositoryImplementation
       );
 
   @override
-  Future<Either<SendTransactionFailure, SendTransactionEntity>>
-      sendTransaction({
+  Future<Either<SendTransactionFailure, TransactionEntity>> sendTransaction({
     required String serializedTx,
   }) =>
-          handleData<SendTransactionFailure, SendTransactionEntity>(
-            dataSourceOperation: () =>
-                _buyAirRightsRemoteDataSource.sendTransaction(
-              serializedTx: serializedTx,
-            ),
-            onSuccess: (sendTransactionEntity) => sendTransactionEntity,
-            onFailure: (_) => SendTransactionFailure(),
-          );
+      handleData<SendTransactionFailure, TransactionEntity>(
+        dataSourceOperation: () =>
+            _buyAirRightsRemoteDataSource.sendTransaction(
+          serializedTx: serializedTx,
+        ),
+        onSuccess: (sendTransactionEntity) => sendTransactionEntity,
+        onFailure: (_) => SendTransactionFailure(),
+      );
 
   @override
-  Future<Either<CreateAuctionFailure, CreateAuctionEntity>>
+  Future<Either<CreateAuctionFailure, TransactionMessageEntity>>
       generateCreateAuction({
     required String assetId,
     required String seller,
     required double initialPrice,
-    required double secsDuration,
+    required int secsDuration,
   }) =>
-          handleData<CreateAuctionFailure, CreateAuctionEntity>(
+          handleData<CreateAuctionFailure, TransactionMessageEntity>(
             dataSourceOperation: () =>
                 _buyAirRightsRemoteDataSource.generateCreateAuction(
               assetId: assetId,
@@ -115,26 +120,26 @@ final class BuyAirRightsRepositoryImplementation
           );
 
   @override
-  Future<Either<OfferForUnclaimedPropertyFailure,
-          OfferForUnclaimedPropertyEntity>> getOfferForUnclaimedProperty({
+  Future<Either<GetOfferForUnclaimedPropertyFailure, UnclaimedPropertyEntity>>
+      getOfferForUnclaimedProperty({
     required String signedTransaction,
     required String landAddress,
     required double latitude,
     required double longitude,
     required double offerAmount,
   }) =>
-      handleData<OfferForUnclaimedPropertyFailure,
-          OfferForUnclaimedPropertyEntity>(
-        dataSourceOperation: () =>
-            _buyAirRightsRemoteDataSource.getOfferForUnclaimedProperty(
-          signedTransaction: signedTransaction,
-          landAddress: landAddress,
-          latitude: latitude,
-          longitude: longitude,
-          offerAmount: offerAmount,
-        ),
-        onSuccess: (offerForUnclaimedPropertyEntity) =>
-            offerForUnclaimedPropertyEntity,
-        onFailure: (_) => OfferForUnclaimedPropertyFailure(),
-      );
+          handleData<GetOfferForUnclaimedPropertyFailure,
+              UnclaimedPropertyEntity>(
+            dataSourceOperation: () =>
+                _buyAirRightsRemoteDataSource.getOfferForUnclaimedProperty(
+              signedTransaction: signedTransaction,
+              landAddress: landAddress,
+              latitude: latitude,
+              longitude: longitude,
+              offerAmount: offerAmount,
+            ),
+            onSuccess: (offerForUnclaimedPropertyEntity) =>
+                offerForUnclaimedPropertyEntity,
+            onFailure: (_) => GetOfferForUnclaimedPropertyFailure(),
+          );
 }

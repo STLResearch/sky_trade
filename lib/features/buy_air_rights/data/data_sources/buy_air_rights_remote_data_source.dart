@@ -1,45 +1,82 @@
 import 'package:sky_trade/core/errors/exceptions/buy_air_rights_exception.dart';
-import 'package:sky_trade/core/resources/strings/networking.dart';
-import 'package:sky_trade/core/utils/clients/network_client.dart';
+import 'package:sky_trade/core/resources/strings/networking.dart'
+    show
+        amountKey,
+        assetIdKey,
+        auctionHousePath,
+        auctionIdKey,
+        auctionKey,
+        filterKey,
+        generateCreateAuctionTxPath,
+        generatePlaceBidTxPath,
+        getAllAuctionsPath,
+        getAuctionWithBidsPath,
+        getAuctionableAirspacesPath,
+        getOfferForUnclaimedPropertyPath,
+        initialPriceKey,
+        landAddressKey,
+        latitudeKey,
+        limitKey,
+        longitudeKey,
+        maxPriceKey,
+        minPriceKey,
+        offerAmountKey,
+        pageKey,
+        privatePath,
+        propertiesPath,
+        secsDurationKey,
+        sellerKey,
+        sendTxPath,
+        serializedTxKey,
+        signedTransactionKey;
+import 'package:sky_trade/core/utils/clients/network_client.dart'
+    show HttpClient;
 import 'package:sky_trade/core/utils/clients/response_handler.dart';
-import 'package:sky_trade/core/utils/enums/networking.dart';
-import 'package:sky_trade/features/buy_air_rights/data/models/buy_air_rights_model.dart';
+import 'package:sky_trade/core/utils/enums/networking.dart' show RequestMethod;
+import 'package:sky_trade/features/buy_air_rights/data/models/buy_air_rights_model.dart'
+    show
+        AirspaceModel,
+        AuctionModel,
+        BidModel,
+        TransactionMessageModel,
+        TransactionModel,
+        UnclaimedPropertyModel;
 
 abstract interface class BuyAirRightsRemoteDataSource {
-  Future<AuctionModel> getAllAuctions({
-    required double page,
-    required double limit,
+  Future<List<AuctionModel>> getAllAuctions({
+    required int page,
+    required int limit,
     required double minPrice,
     required double maxPrice,
     required String filter,
   });
 
-  Future<AuctionWithBidsModel> getAuctionWithBids({
+  Future<AuctionModel> getAuctionWithBids({
     required double auctionId,
   });
 
-  Future<AuctionableAirspaceModel> getAuctionableAirspaces({
-    required double page,
-    required double limit,
+  Future<List<AirspaceModel>> getAuctionableAirspaces({
+    required int page,
+    required int limit,
   });
 
-  Future<PlaceBidModel> generatePlaceBid({
+  Future<BidModel> generatePlaceBid({
     required String auction,
-    required double amount,
+    required String amount,
   });
 
-  Future<SendTransactionModel> sendTransaction({
+  Future<TransactionModel> sendTransaction({
     required String serializedTx,
   });
 
-  Future<CreateAuctionModel> generateCreateAuction({
+  Future<TransactionMessageModel> generateCreateAuction({
     required String assetId,
     required String seller,
     required double initialPrice,
-    required double secsDuration,
+    required int secsDuration,
   });
 
-  Future<OfferForUnclaimedPropertyModel> getOfferForUnclaimedProperty({
+  Future<UnclaimedPropertyModel> getOfferForUnclaimedProperty({
     required String signedTransaction,
     required String landAddress,
     required double latitude,
@@ -58,15 +95,15 @@ final class BuyAirRightsRemoteDataSourceImplementation
   final HttpClient _httpClient;
 
   @override
-  Future<AuctionModel> getAllAuctions({
-    required double page,
-    required double limit,
+  Future<List<AuctionModel>> getAllAuctions({
+    required int page,
+    required int limit,
     required double minPrice,
     required double maxPrice,
     required String filter,
   }) =>
-      handleResponse<GetAllAuctionsException, Map<String, dynamic>,
-          AuctionModel>(
+      handleResponse<GetAllAuctionsException, List<dynamic>,
+          List<AuctionModel>>(
         requestInitiator: _httpClient.request(
           requestMethod: RequestMethod.get,
           path: privatePath + auctionHousePath + getAllAuctionsPath,
@@ -79,35 +116,41 @@ final class BuyAirRightsRemoteDataSourceImplementation
             filterKey: filter,
           },
         ),
-        onSuccess: AuctionModel.fromJson,
+        onSuccess: (jsonList) => jsonList
+            .map(
+              (json) => AuctionModel.fromJson(
+                json as Map<String, dynamic>,
+              ),
+            )
+            .toList(),
         onError: (_) => GetAllAuctionsException(),
       );
 
   @override
-  Future<AuctionWithBidsModel> getAuctionWithBids({
+  Future<AuctionModel> getAuctionWithBids({
     required double auctionId,
   }) =>
       handleResponse<GetAuctionWithBidsException, Map<String, dynamic>,
-          AuctionWithBidsModel>(
+          AuctionModel>(
         requestInitiator: _httpClient.request(
           requestMethod: RequestMethod.get,
           path: privatePath + auctionHousePath + getAuctionWithBidsPath,
           includeSignature: true,
           queryParameters: {
-            auction_IdKey: auctionId,
+            auctionIdKey: auctionId,
           },
         ),
-        onSuccess: AuctionWithBidsModel.fromJson,
+        onSuccess: AuctionModel.fromJson,
         onError: (_) => GetAuctionWithBidsException(),
       );
 
   @override
-  Future<AuctionableAirspaceModel> getAuctionableAirspaces({
-    required double page,
-    required double limit,
+  Future<List<AirspaceModel>> getAuctionableAirspaces({
+    required int page,
+    required int limit,
   }) =>
-      handleResponse<GetAuctionableAirspacesException, Map<String, dynamic>,
-          AuctionableAirspaceModel>(
+      handleResponse<GetAuctionableAirspacesException, List<dynamic>,
+          List<AirspaceModel>>(
         requestInitiator: _httpClient.request(
           requestMethod: RequestMethod.get,
           path: privatePath + auctionHousePath + getAuctionableAirspacesPath,
@@ -117,17 +160,22 @@ final class BuyAirRightsRemoteDataSourceImplementation
             limitKey: limit,
           },
         ),
-        onSuccess: AuctionableAirspaceModel.fromJson,
+        onSuccess: (jsonList) => jsonList
+            .map(
+              (json) => AirspaceModel.fromJson(
+                json as Map<String, dynamic>,
+              ),
+            )
+            .toList(),
         onError: (_) => GetAuctionableAirspacesException(),
       );
 
   @override
-  Future<PlaceBidModel> generatePlaceBid({
+  Future<BidModel> generatePlaceBid({
     required String auction,
-    required double amount,
+    required String amount,
   }) =>
-      handleResponse<GeneratePlaceBidException, Map<String, dynamic>,
-          PlaceBidModel>(
+      handleResponse<GeneratePlaceBidException, Map<String, dynamic>, BidModel>(
         requestInitiator: _httpClient.request(
           requestMethod: RequestMethod.post,
           path: privatePath + auctionHousePath + generatePlaceBidTxPath,
@@ -137,16 +185,16 @@ final class BuyAirRightsRemoteDataSourceImplementation
             amountKey: amount,
           },
         ),
-        onSuccess: PlaceBidModel.fromJson,
+        onSuccess: BidModel.fromJson,
         onError: (_) => GeneratePlaceBidException(),
       );
 
   @override
-  Future<SendTransactionModel> sendTransaction({
+  Future<TransactionModel> sendTransaction({
     required String serializedTx,
   }) =>
       handleResponse<SendTransactionException, Map<String, dynamic>,
-          SendTransactionModel>(
+          TransactionModel>(
         requestInitiator: _httpClient.request(
           requestMethod: RequestMethod.post,
           path: privatePath + auctionHousePath + sendTxPath,
@@ -155,19 +203,19 @@ final class BuyAirRightsRemoteDataSourceImplementation
             serializedTxKey: serializedTx,
           },
         ),
-        onSuccess: SendTransactionModel.fromJson,
+        onSuccess: TransactionModel.fromJson,
         onError: (_) => SendTransactionException(),
       );
 
   @override
-  Future<CreateAuctionModel> generateCreateAuction({
+  Future<TransactionMessageModel> generateCreateAuction({
     required String assetId,
     required String seller,
     required double initialPrice,
-    required double secsDuration,
+    required int secsDuration,
   }) =>
       handleResponse<CreateAuctionException, Map<String, dynamic>,
-          CreateAuctionModel>(
+          TransactionMessageModel>(
         requestInitiator: _httpClient.request(
           requestMethod: RequestMethod.post,
           path: privatePath + auctionHousePath + generateCreateAuctionTxPath,
@@ -179,20 +227,20 @@ final class BuyAirRightsRemoteDataSourceImplementation
             secsDurationKey: secsDuration,
           },
         ),
-        onSuccess: CreateAuctionModel.fromJson,
+        onSuccess: TransactionMessageModel.fromJson,
         onError: (_) => CreateAuctionException(),
       );
 
   @override
-  Future<OfferForUnclaimedPropertyModel> getOfferForUnclaimedProperty({
+  Future<UnclaimedPropertyModel> getOfferForUnclaimedProperty({
     required String signedTransaction,
     required String landAddress,
     required double latitude,
     required double longitude,
     required double offerAmount,
   }) =>
-      handleResponse<OfferForUnclaimedPropertyException, Map<String, dynamic>,
-          OfferForUnclaimedPropertyModel>(
+      handleResponse<GetOfferForUnclaimedPropertyException,
+          Map<String, dynamic>, UnclaimedPropertyModel>(
         requestInitiator: _httpClient.request(
           requestMethod: RequestMethod.post,
           path: privatePath + propertiesPath + getOfferForUnclaimedPropertyPath,
@@ -205,7 +253,7 @@ final class BuyAirRightsRemoteDataSourceImplementation
             offerAmountKey: offerAmount,
           },
         ),
-        onSuccess: OfferForUnclaimedPropertyModel.fromJson,
-        onError: (_) => OfferForUnclaimedPropertyException(),
+        onSuccess: UnclaimedPropertyModel.fromJson,
+        onError: (_) => GetOfferForUnclaimedPropertyException(),
       );
 }

@@ -90,7 +90,7 @@ import 'package:sky_trade/core/resources/strings/networking.dart'
         remoteIDSystemFailureKey,
         restrictedValue,
         rocketKey,
-        serialNumberIDTypeKey,
+        serialNumberAltKey,
         skyTradeBackendKey,
         specificAuthenticationKey,
         specificSessionIDKey,
@@ -245,7 +245,7 @@ enum UnmannedAircraftType {
 enum UnmannedAircraftIDType {
   @JsonValue(noneKey)
   none,
-  @JsonValue(serialNumberIDTypeKey)
+  @JsonValue(serialNumberAltKey)
   serialNumber,
   @JsonValue(cAARegistrationIDKey)
   cAARegistrationID,

@@ -1,12 +1,12 @@
 import 'package:json_annotation/json_annotation.dart';
 import 'package:sky_trade/core/resources/strings/networking.dart'
     show
-        AuctionBidKey,
         addressKey,
         areaPolygonKey,
         assessorParcelNumberKey,
         assetIdKey,
-        auctionIdKey,
+        auctionBidKey,
+        auctionIdAltKey,
         bidderKey,
         createdAtKey,
         currentBidderKey,
@@ -40,7 +40,7 @@ import 'package:sky_trade/core/resources/strings/networking.dart'
         longitudeKey,
         messageKey,
         noFlyZoneKey,
-        orderPhotoforGeneratedMapKey,
+        orderPhotoForGeneratedMapKey,
         ownerIdKey,
         paymentTokenKey,
         pdaAddressKey,
@@ -60,7 +60,8 @@ import 'package:sky_trade/core/resources/strings/networking.dart'
         txKey,
         txSignatureKey,
         updateAtKey;
-import 'package:sky_trade/core/utils/converters/date_time_converter.dart';
+import 'package:sky_trade/core/utils/converters/date_time_converter.dart'
+    show StringDateTimeConverter;
 import 'package:sky_trade/features/buy_air_rights/domain/entities/buy_air_rights_entity.dart';
 
 part 'buy_air_rights_model.g.dart';
@@ -124,6 +125,7 @@ final class AuctionModel extends AuctionEntity {
   final double mInitialPrice;
 
   @JsonKey(name: endDateKey)
+  @StringDateTimeConverter()
   final DateTime mEndDate;
 
   @JsonKey(name: currentPriceKey)
@@ -151,9 +153,9 @@ final class AuctionModel extends AuctionEntity {
   final bool mIsFilled;
 
   @JsonKey(name: filledAmountKey)
-  final double? mFilledAmount;
+  final num? mFilledAmount;
 
-  @JsonKey(name: AuctionBidKey)
+  @JsonKey(name: auctionBidKey)
   final List<AuctionBidModel> mAuctionBids;
 
   @JsonKey(name: layerKey)
@@ -187,7 +189,7 @@ final class AuctionBidModel extends AuctionBidEntity {
   final int mId;
 
   @JsonKey(name: priceKey)
-  final double mPrice;
+  final num mPrice;
 
   @JsonKey(name: bidderKey)
   final String mBidder;
@@ -195,7 +197,7 @@ final class AuctionBidModel extends AuctionBidEntity {
   @JsonKey(name: transactionKey)
   final String mTransaction;
 
-  @JsonKey(name: auctionIdKey)
+  @JsonKey(name: auctionIdAltKey)
   final int mAuctionId;
 
   @JsonKey(name: createdAtKey)
@@ -203,55 +205,6 @@ final class AuctionBidModel extends AuctionBidEntity {
   final DateTime mCreatedAt;
 
   Map<String, dynamic> toJson() => _$AuctionBidModelToJson(this);
-}
-
-@JsonSerializable()
-final class LayerModel extends LayerEntity {
-  const LayerModel({
-    required this.mId,
-    required this.mCreatedAt,
-    required this.mUpdateAt,
-    required this.mTokenId,
-    required this.mPropertyId,
-    required this.mIsCurrentlyInAuction,
-    required this.mProperty,
-  }) : super(
-          id: mId,
-          createdAt: mCreatedAt,
-          updateAt: mUpdateAt,
-          tokenId: mTokenId,
-          propertyId: mPropertyId,
-          isCurrentlyInAuction: mIsCurrentlyInAuction,
-          property: mProperty,
-        );
-
-  factory LayerModel.fromJson(Map<String, dynamic> json) =>
-      _$LayerModelFromJson(json);
-
-  @JsonKey(name: idKey)
-  final int mId;
-
-  @JsonKey(name: createdAtKey)
-  @StringDateTimeConverter()
-  final DateTime mCreatedAt;
-
-  @JsonKey(name: updateAtKey)
-  @StringDateTimeConverter()
-  final DateTime mUpdateAt;
-
-  @JsonKey(name: tokenIdKey)
-  final String mTokenId;
-
-  @JsonKey(name: propertyIdKey)
-  final int mPropertyId;
-
-  @JsonKey(name: isCurrentlyInAuctionKey)
-  final bool mIsCurrentlyInAuction;
-
-  @JsonKey(name: propertyKey)
-  final PropertyModel mProperty;
-
-  Map<String, dynamic> toJson() => _$LayerModelToJson(this);
 }
 
 @JsonSerializable()
@@ -280,7 +233,7 @@ final class PropertyModel extends PropertyEntity {
     required this.mIsPropertyRewardClaimed,
     required this.mIsSoftDelete,
     required this.mHasZoningPermission,
-    required this.mOrderPhotoforGeneratedMap,
+    required this.mOrderPhotoForGeneratedMap,
     required this.mAssessorParcelNumber,
     required this.mExternalBlockchainAddress,
     required this.mAreaPolygon,
@@ -309,7 +262,7 @@ final class PropertyModel extends PropertyEntity {
           isPropertyRewardClaimed: mIsPropertyRewardClaimed,
           isSoftDelete: mIsSoftDelete,
           hasZoningPermission: mHasZoningPermission,
-          orderPhotoforGeneratedMap: mOrderPhotoforGeneratedMap,
+          orderPhotoForGeneratedMap: mOrderPhotoForGeneratedMap,
           assessorParcelNumber: mAssessorParcelNumber,
           externalBlockchainAddress: mExternalBlockchainAddress,
           areaPolygon: mAreaPolygon,
@@ -318,160 +271,6 @@ final class PropertyModel extends PropertyEntity {
 
   factory PropertyModel.fromJson(Map<String, dynamic> json) =>
       _$PropertyModelFromJson(json);
-
-  @JsonKey(name: idKey)
-  final int mId;
-
-  @JsonKey(name: createdAtKey)
-  final DateTime mCreatedAt;
-
-  @JsonKey(name: updateAtKey)
-  final DateTime mUpdateAt;
-
-  @JsonKey(name: titleKey)
-  final String mTitle;
-
-  @JsonKey(name: transitFeeKey)
-  final String mTransitFee;
-
-  @JsonKey(name: addressKey)
-  final String mAddress;
-
-  @JsonKey(name: timezoneKey)
-  final String mTimezone;
-
-  @JsonKey(name: fullTimezoneKey)
-  final String mFullTimezone;
-
-  @JsonKey(name: hasLandingDeckKey)
-  final bool mHasLandingDeck;
-
-  @JsonKey(name: hasChargingStationKey)
-  final bool mHasChargingStation;
-
-  @JsonKey(name: hasStorageHubKey)
-  final bool mHasStorageHub;
-
-  @JsonKey(name: isFixedTransitFeeKey)
-  final bool mIsFixedTransitFee;
-
-  @JsonKey(name: isRentableAirspaceKey)
-  final bool mIsRentableAirspace;
-
-  @JsonKey(name: ownerIdKey)
-  final int mOwnerId;
-
-  @JsonKey(name: noFlyZoneKey)
-  final bool mNoFlyZone;
-
-  @JsonKey(name: isBoostedAreaKey)
-  final bool mIsBoostedArea;
-
-  @JsonKey(name: latitudeKey)
-  final double mLatitude;
-
-  @JsonKey(name: longitudeKey)
-  final double mLongitude;
-
-  @JsonKey(name: propertyStatusIdKey)
-  final int mPropertyStatusId;
-
-  @JsonKey(name: isActiveKey)
-  final bool mIsActive;
-
-  @JsonKey(name: isPropertyRewardClaimedKey)
-  final bool mIsPropertyRewardClaimed;
-
-  @JsonKey(name: isSoftDeleteKey)
-  final bool mIsSoftDelete;
-
-  @JsonKey(name: hasZoningPermissionKey)
-  final bool mHasZoningPermission;
-
-  @JsonKey(name: orderPhotoforGeneratedMapKey)
-  final bool mOrderPhotoforGeneratedMap;
-
-  @JsonKey(name: assessorParcelNumberKey)
-  final String mAssessorParcelNumber;
-
-  @JsonKey(name: externalBlockchainAddressKey)
-  final String? mExternalBlockchainAddress;
-
-  @JsonKey(name: areaPolygonKey)
-  final String mAreaPolygon;
-
-  @JsonKey(name: tokenValueKey)
-  final double? mTokenValue;
-
-  Map<String, dynamic> toJson() => _$PropertyModelToJson(this);
-}
-
-@JsonSerializable()
-final class AuctionableAirspaceModel extends AuctionableAirspaceEntity {
-  const AuctionableAirspaceModel({
-    required this.mId,
-    required this.mCreatedAt,
-    required this.mUpdateAt,
-    required this.mTitle,
-    required this.mTransitFee,
-    required this.mAddress,
-    required this.mTimezone,
-    required this.mFullTimezone,
-    required this.mHasLandingDeck,
-    required this.mHasChargingStation,
-    required this.mHasStorageHub,
-    required this.mIsFixedTransitFee,
-    required this.mIsRentableAirspace,
-    required this.mOwnerId,
-    required this.mNoFlyZone,
-    required this.mIsBoostedArea,
-    required this.mLatitude,
-    required this.mLongitude,
-    required this.mPropertyStatusId,
-    required this.mIsActive,
-    required this.mIsPropertyRewardClaimed,
-    required this.mIsSoftDelete,
-    required this.mHasZoningPermission,
-    required this.mOrderPhotoforGeneratedMap,
-    required this.mAssessorParcelNumber,
-    required this.mExternalBlockchainAddress,
-    required this.mAreaPolygon,
-    required this.mTokenValue,
-    required this.mLayers,
-  }) : super(
-          id: mId,
-          createdAt: mCreatedAt,
-          updateAt: mUpdateAt,
-          title: mTitle,
-          transitFee: mTransitFee,
-          address: mAddress,
-          timezone: mTimezone,
-          fullTimezone: mFullTimezone,
-          hasLandingDeck: mHasLandingDeck,
-          hasChargingStation: mHasChargingStation,
-          hasStorageHub: mHasStorageHub,
-          isFixedTransitFee: mIsFixedTransitFee,
-          isRentableAirspace: mIsRentableAirspace,
-          ownerId: mOwnerId,
-          noFlyZone: mNoFlyZone,
-          isBoostedArea: mIsBoostedArea,
-          latitude: mLatitude,
-          longitude: mLongitude,
-          propertyStatusId: mPropertyStatusId,
-          isActive: mIsActive,
-          isPropertyRewardClaimed: mIsPropertyRewardClaimed,
-          isSoftDelete: mIsSoftDelete,
-          hasZoningPermission: mHasZoningPermission,
-          orderPhotoForGeneratedMap: mOrderPhotoforGeneratedMap,
-          assessorParcelNumber: mAssessorParcelNumber,
-          externalBlockchainAddress: mExternalBlockchainAddress,
-          areaPolygon: mAreaPolygon,
-          tokenValue: mTokenValue,
-          layers: mLayers,
-        );
-
-  factory AuctionableAirspaceModel.fromJson(Map<String, dynamic> json) =>
-      _$AuctionableAirspaceModelFromJson(json);
 
   @JsonKey(name: idKey)
   final int mId;
@@ -542,10 +341,10 @@ final class AuctionableAirspaceModel extends AuctionableAirspaceEntity {
   final bool mIsSoftDelete;
 
   @JsonKey(name: hasZoningPermissionKey)
-  final bool? mHasZoningPermission;
+  final bool mHasZoningPermission;
 
-  @JsonKey(name: orderPhotoforGeneratedMapKey)
-  final bool mOrderPhotoforGeneratedMap;
+  @JsonKey(name: orderPhotoForGeneratedMapKey)
+  final bool mOrderPhotoForGeneratedMap;
 
   @JsonKey(name: assessorParcelNumberKey)
   final String mAssessorParcelNumber;
@@ -557,23 +356,180 @@ final class AuctionableAirspaceModel extends AuctionableAirspaceEntity {
   final String mAreaPolygon;
 
   @JsonKey(name: tokenValueKey)
-  final int? mTokenValue;
+  final double? mTokenValue;
 
-  @JsonKey(name: layersKey)
-  final List<LayersModel> mLayers;
-
-  Map<String, dynamic> toJson() => _$AuctionableAirspaceModelToJson(this);
+  Map<String, dynamic> toJson() => _$PropertyModelToJson(this);
 }
 
 @JsonSerializable()
-final class LayersModel extends LayersEntity {
-  const LayersModel({
+final class AirspaceModel extends AirspaceEntity {
+  const AirspaceModel({
+    required this.mId,
+    required this.mCreatedAt,
+    required this.mUpdateAt,
+    required this.mTitle,
+    required this.mTransitFee,
+    required this.mAddress,
+    required this.mTimezone,
+    required this.mFullTimezone,
+    required this.mHasLandingDeck,
+    required this.mHasChargingStation,
+    required this.mHasStorageHub,
+    required this.mIsFixedTransitFee,
+    required this.mIsRentableAirspace,
+    required this.mOwnerId,
+    required this.mNoFlyZone,
+    required this.mIsBoostedArea,
+    required this.mLatitude,
+    required this.mLongitude,
+    required this.mPropertyStatusId,
+    required this.mIsActive,
+    required this.mIsPropertyRewardClaimed,
+    required this.mIsSoftDelete,
+    required this.mHasZoningPermission,
+    required this.mOrderPhotoForGeneratedMap,
+    required this.mAssessorParcelNumber,
+    required this.mExternalBlockchainAddress,
+    required this.mAreaPolygon,
+    required this.mTokenValue,
+    required this.mLayers,
+  }) : super(
+          id: mId,
+          createdAt: mCreatedAt,
+          updateAt: mUpdateAt,
+          title: mTitle,
+          transitFee: mTransitFee,
+          address: mAddress,
+          timezone: mTimezone,
+          fullTimezone: mFullTimezone,
+          hasLandingDeck: mHasLandingDeck,
+          hasChargingStation: mHasChargingStation,
+          hasStorageHub: mHasStorageHub,
+          isFixedTransitFee: mIsFixedTransitFee,
+          isRentableAirspace: mIsRentableAirspace,
+          ownerId: mOwnerId,
+          noFlyZone: mNoFlyZone,
+          isBoostedArea: mIsBoostedArea,
+          latitude: mLatitude,
+          longitude: mLongitude,
+          propertyStatusId: mPropertyStatusId,
+          isActive: mIsActive,
+          isPropertyRewardClaimed: mIsPropertyRewardClaimed,
+          isSoftDelete: mIsSoftDelete,
+          hasZoningPermission: mHasZoningPermission,
+          orderPhotoForGeneratedMap: mOrderPhotoForGeneratedMap,
+          assessorParcelNumber: mAssessorParcelNumber,
+          externalBlockchainAddress: mExternalBlockchainAddress,
+          areaPolygon: mAreaPolygon,
+          tokenValue: mTokenValue,
+          layers: mLayers,
+        );
+
+  factory AirspaceModel.fromJson(Map<String, dynamic> json) =>
+      _$AirspaceModelFromJson(json);
+
+  @JsonKey(name: idKey)
+  final int mId;
+
+  @JsonKey(name: createdAtKey)
+  @StringDateTimeConverter()
+  final DateTime mCreatedAt;
+
+  @JsonKey(name: updateAtKey)
+  @StringDateTimeConverter()
+  final DateTime mUpdateAt;
+
+  @JsonKey(name: titleKey)
+  final String mTitle;
+
+  @JsonKey(name: transitFeeKey)
+  final String mTransitFee;
+
+  @JsonKey(name: addressKey)
+  final String mAddress;
+
+  @JsonKey(name: timezoneKey)
+  final String mTimezone;
+
+  @JsonKey(name: fullTimezoneKey)
+  final String? mFullTimezone;
+
+  @JsonKey(name: hasLandingDeckKey)
+  final bool mHasLandingDeck;
+
+  @JsonKey(name: hasChargingStationKey)
+  final bool mHasChargingStation;
+
+  @JsonKey(name: hasStorageHubKey)
+  final bool mHasStorageHub;
+
+  @JsonKey(name: isFixedTransitFeeKey)
+  final bool mIsFixedTransitFee;
+
+  @JsonKey(name: isRentableAirspaceKey)
+  final bool mIsRentableAirspace;
+
+  @JsonKey(name: ownerIdKey)
+  final int mOwnerId;
+
+  @JsonKey(name: noFlyZoneKey)
+  final bool mNoFlyZone;
+
+  @JsonKey(name: isBoostedAreaKey)
+  final bool mIsBoostedArea;
+
+  @JsonKey(name: latitudeKey)
+  final double mLatitude;
+
+  @JsonKey(name: longitudeKey)
+  final double mLongitude;
+
+  @JsonKey(name: propertyStatusIdKey)
+  final int mPropertyStatusId;
+
+  @JsonKey(name: isActiveKey)
+  final bool mIsActive;
+
+  @JsonKey(name: isPropertyRewardClaimedKey)
+  final bool mIsPropertyRewardClaimed;
+
+  @JsonKey(name: isSoftDeleteKey)
+  final bool mIsSoftDelete;
+
+  @JsonKey(name: hasZoningPermissionKey)
+  final bool mHasZoningPermission;
+
+  @JsonKey(name: orderPhotoForGeneratedMapKey)
+  final bool mOrderPhotoForGeneratedMap;
+
+  @JsonKey(name: assessorParcelNumberKey)
+  final String mAssessorParcelNumber;
+
+  @JsonKey(name: externalBlockchainAddressKey)
+  final String? mExternalBlockchainAddress;
+
+  @JsonKey(name: areaPolygonKey)
+  final String mAreaPolygon;
+
+  @JsonKey(name: tokenValueKey)
+  final double? mTokenValue;
+
+  @JsonKey(name: layersKey)
+  final List<LayerModel> mLayers;
+
+  Map<String, dynamic> toJson() => _$AirspaceModelToJson(this);
+}
+
+@JsonSerializable()
+final class LayerModel extends LayerEntity {
+  const LayerModel({
     required this.mId,
     required this.mCreatedAt,
     required this.mUpdateAt,
     required this.mTokenId,
     required this.mPropertyId,
     required this.mIsCurrentlyInAuction,
+    required this.mProperty,
   }) : super(
           id: mId,
           createdAt: mCreatedAt,
@@ -581,10 +537,11 @@ final class LayersModel extends LayersEntity {
           tokenId: mTokenId,
           propertyId: mPropertyId,
           isCurrentlyInAuction: mIsCurrentlyInAuction,
+          property: mProperty,
         );
 
-  factory LayersModel.fromJson(Map<String, dynamic> json) =>
-      _$LayersModelFromJson(json);
+  factory LayerModel.fromJson(Map<String, dynamic> json) =>
+      _$LayerModelFromJson(json);
 
   @JsonKey(name: idKey)
   final int mId;
@@ -606,132 +563,15 @@ final class LayersModel extends LayersEntity {
   @JsonKey(name: isCurrentlyInAuctionKey)
   final bool mIsCurrentlyInAuction;
 
-  Map<String, dynamic> toJson() => _$LayersModelToJson(this);
+  @JsonKey(name: propertyKey)
+  final PropertyModel? mProperty;
+
+  Map<String, dynamic> toJson() => _$LayerModelToJson(this);
 }
 
 @JsonSerializable()
-final class AuctionWithBidsModel extends AuctionWithBidsEntity {
-  const AuctionWithBidsModel({
-    required this.mId,
-    required this.mAssetId,
-    required this.mSeller,
-    required this.mPdaAddress,
-    required this.mInitialPrice,
-    required this.mEndDate,
-    required this.mCurrentPrice,
-    required this.mCurrentBidder,
-    required this.mPaymentToken,
-    required this.mTransactions,
-    required this.mIsCancelled,
-    required this.mIsExecuted,
-    required this.mIsVerified,
-    required this.mIsFilled,
-    required this.mFilledAmount,
-    required this.mAuctionBid,
-    required this.mLayer,
-  }) : super(
-          id: mId,
-          assetId: mAssetId,
-          seller: mSeller,
-          pdaAddress: mPdaAddress,
-          initialPrice: mInitialPrice,
-          endDate: mEndDate,
-          currentPrice: mCurrentPrice,
-          currentBidder: mCurrentBidder,
-          paymentToken: mPaymentToken,
-          transactions: mTransactions,
-          isCancelled: mIsCancelled,
-          isExecuted: mIsExecuted,
-          isVerified: mIsVerified,
-          isFilled: mIsFilled,
-          filledAmount: mFilledAmount,
-          auctionBid: mAuctionBid,
-          layer: mLayer,
-        );
-
-  factory AuctionWithBidsModel.fromJson(Map<String, dynamic> json) =>
-      _$AuctionWithBidsModelFromJson(json);
-
-  @JsonKey(name: idKey)
-  final int mId;
-
-  @JsonKey(name: assetIdKey)
-  final String mAssetId;
-
-  @JsonKey(name: sellerKey)
-  final String mSeller;
-
-  @JsonKey(name: pdaAddressKey)
-  final String mPdaAddress;
-
-  @JsonKey(name: initialPriceKey)
-  final double mInitialPrice;
-
-  @JsonKey(name: endDateKey)
-  @StringDateTimeConverter()
-  final DateTime mEndDate;
-
-  @JsonKey(name: currentPriceKey)
-  final double mCurrentPrice;
-
-  @JsonKey(name: currentBidderKey)
-  final String? mCurrentBidder;
-
-  @JsonKey(name: paymentTokenKey)
-  final String mPaymentToken;
-
-  @JsonKey(name: transactionsKey)
-  final List<String> mTransactions;
-
-  @JsonKey(name: isCancelledKey)
-  final bool mIsCancelled;
-
-  @JsonKey(name: isExecutedKey)
-  final bool mIsExecuted;
-
-  @JsonKey(name: isVerifiedKey)
-  final bool mIsVerified;
-
-  @JsonKey(name: isFilledKey)
-  final bool mIsFilled;
-
-  @JsonKey(name: filledAmountKey)
-  final double? mFilledAmount;
-
-  @JsonKey(name: AuctionBidKey)
-  final List<AuctionBidModel> mAuctionBid;
-
-  @JsonKey(name: layerKey)
-  final LayerModel mLayer;
-
-  Map<String, dynamic> toJson() => _$AuctionWithBidsModelToJson(this);
-}
-
-@JsonSerializable()
-final class CreateAuctionModel extends CreateAuctionEntity {
-  const CreateAuctionModel({
-    required this.mMessage,
-    required this.mTx,
-  }) : super(
-          message: mMessage,
-          tx: mTx,
-        );
-
-  factory CreateAuctionModel.fromJson(Map<String, dynamic> json) =>
-      _$CreateAuctionModelFromJson(json);
-
-  @JsonKey(name: messageKey)
-  final String mMessage;
-
-  @JsonKey(name: txKey)
-  final List<String> mTx;
-
-  Map<String, dynamic> toJson() => _$CreateAuctionModelToJson(this);
-}
-
-@JsonSerializable()
-final class PlaceBidModel extends PlaceBidEntity {
-  const PlaceBidModel({
+final class BidModel extends BidEntity {
+  const BidModel({
     required this.mMessage,
     required this.mTransaction,
   }) : super(
@@ -739,8 +579,8 @@ final class PlaceBidModel extends PlaceBidEntity {
           transaction: mTransaction,
         );
 
-  factory PlaceBidModel.fromJson(Map<String, dynamic> json) =>
-      _$PlaceBidModelFromJson(json);
+  factory BidModel.fromJson(Map<String, dynamic> json) =>
+      _$BidModelFromJson(json);
 
   @JsonKey(name: messageKey)
   final String mMessage;
@@ -748,12 +588,12 @@ final class PlaceBidModel extends PlaceBidEntity {
   @JsonKey(name: transactionKey)
   final String mTransaction;
 
-  Map<String, dynamic> toJson() => _$PlaceBidModelToJson(this);
+  Map<String, dynamic> toJson() => _$BidModelToJson(this);
 }
 
 @JsonSerializable()
-final class SendTransactionModel extends SendTransactionEntity {
-  const SendTransactionModel({
+final class TransactionModel extends TransactionEntity {
+  const TransactionModel({
     required this.mTxSignature,
     required this.mError,
   }) : super(
@@ -761,8 +601,8 @@ final class SendTransactionModel extends SendTransactionEntity {
           error: mError,
         );
 
-  factory SendTransactionModel.fromJson(Map<String, dynamic> json) =>
-      _$SendTransactionModelFromJson(json);
+  factory TransactionModel.fromJson(Map<String, dynamic> json) =>
+      _$TransactionModelFromJson(json);
 
   @JsonKey(name: txSignatureKey)
   final String mTxSignature;
@@ -770,24 +610,46 @@ final class SendTransactionModel extends SendTransactionEntity {
   @JsonKey(name: errorKey)
   final String mError;
 
-  Map<String, dynamic> toJson() => _$SendTransactionModelToJson(this);
+  Map<String, dynamic> toJson() => _$TransactionModelToJson(this);
 }
 
 @JsonSerializable()
-final class OfferForUnclaimedPropertyModel
-    extends OfferForUnclaimedPropertyEntity {
-  const OfferForUnclaimedPropertyModel({required this.mData})
-      : super(
+final class TransactionMessageModel extends TransactionMessageEntity {
+  const TransactionMessageModel({
+    required this.mMessage,
+    required this.mTx,
+  }) : super(
+          message: mMessage,
+          tx: mTx,
+        );
+
+  factory TransactionMessageModel.fromJson(Map<String, dynamic> json) =>
+      _$TransactionMessageModelFromJson(json);
+
+  @JsonKey(name: messageKey)
+  final String mMessage;
+
+  @JsonKey(name: txKey)
+  final List<String> mTx;
+
+  Map<String, dynamic> toJson() => _$TransactionMessageModelToJson(this);
+}
+
+@JsonSerializable()
+final class UnclaimedPropertyModel extends UnclaimedPropertyEntity {
+  const UnclaimedPropertyModel({
+    required this.mData,
+  }) : super(
           data: mData,
         );
 
-  factory OfferForUnclaimedPropertyModel.fromJson(Map<String, dynamic> json) =>
-      _$OfferForUnclaimedPropertyModelFromJson(json);
+  factory UnclaimedPropertyModel.fromJson(Map<String, dynamic> json) =>
+      _$UnclaimedPropertyModelFromJson(json);
 
   @JsonKey(name: dataKey)
   final DataModel mData;
 
-  Map<String, dynamic> toJson() => _$OfferForUnclaimedPropertyModelToJson(this);
+  Map<String, dynamic> toJson() => _$UnclaimedPropertyModelToJson(this);
 }
 
 @JsonSerializable()

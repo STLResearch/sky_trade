@@ -10,4 +10,4 @@ final class SendTransactionException implements Exception {}
 
 final class CreateAuctionException implements Exception {}
 
-final class OfferForUnclaimedPropertyException implements Exception {}
+final class GetOfferForUnclaimedPropertyException implements Exception {}

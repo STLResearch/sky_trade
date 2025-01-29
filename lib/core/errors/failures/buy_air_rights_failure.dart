@@ -1,4 +1,4 @@
-import 'package:equatable/equatable.dart';
+import 'package:equatable/equatable.dart' show Equatable;
 
 final class GetAllAuctionsFailure extends Equatable {
   @override
@@ -30,7 +30,7 @@ final class CreateAuctionFailure extends Equatable {
   List<Object?> get props => [];
 }
 
-final class OfferForUnclaimedPropertyFailure extends Equatable {
+final class GetOfferForUnclaimedPropertyFailure extends Equatable {
   @override
   List<Object?> get props => [];
 }

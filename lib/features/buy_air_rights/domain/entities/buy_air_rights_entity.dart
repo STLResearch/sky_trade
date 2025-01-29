@@ -1,4 +1,4 @@
-import 'package:equatable/equatable.dart';
+import 'package:equatable/equatable.dart' show Equatable;
 
 base class AuctionEntity extends Equatable {
   const AuctionEntity({
@@ -49,7 +49,7 @@ base class AuctionEntity extends Equatable {
 
   final bool isFilled;
 
-  final double? filledAmount;
+  final num? filledAmount;
 
   final List<AuctionBidEntity> auctionBids;
 
@@ -59,6 +59,7 @@ base class AuctionEntity extends Equatable {
   List<Object?> get props => [
         id,
         assetId,
+        seller,
         pdaAddress,
         initialPrice,
         endDate,
@@ -88,7 +89,7 @@ base class AuctionBidEntity extends Equatable {
 
   final int id;
 
-  final double price;
+  final num price;
 
   final String bidder;
 
@@ -106,43 +107,6 @@ base class AuctionBidEntity extends Equatable {
         transaction,
         auctionId,
         createdAt,
-      ];
-}
-
-base class LayerEntity extends Equatable {
-  const LayerEntity({
-    required this.id,
-    required this.createdAt,
-    required this.updateAt,
-    required this.tokenId,
-    required this.propertyId,
-    required this.isCurrentlyInAuction,
-    required this.property,
-  });
-
-  final int id;
-
-  final DateTime createdAt;
-
-  final DateTime updateAt;
-
-  final String tokenId;
-
-  final int propertyId;
-
-  final bool isCurrentlyInAuction;
-
-  final PropertyEntity property;
-
-  @override
-  List<Object?> get props => [
-        id,
-        createdAt,
-        updateAt,
-        tokenId,
-        propertyId,
-        isCurrentlyInAuction,
-        property,
       ];
 }
 
@@ -171,7 +135,7 @@ base class PropertyEntity extends Equatable {
     required this.isPropertyRewardClaimed,
     required this.isSoftDelete,
     required this.hasZoningPermission,
-    required this.orderPhotoforGeneratedMap,
+    required this.orderPhotoForGeneratedMap,
     required this.assessorParcelNumber,
     required this.externalBlockchainAddress,
     required this.areaPolygon,
@@ -192,7 +156,7 @@ base class PropertyEntity extends Equatable {
 
   final String timezone;
 
-  final String fullTimezone;
+  final String? fullTimezone;
 
   final bool hasLandingDeck;
 
@@ -224,7 +188,7 @@ base class PropertyEntity extends Equatable {
 
   final bool hasZoningPermission;
 
-  final bool orderPhotoforGeneratedMap;
+  final bool orderPhotoForGeneratedMap;
 
   final String assessorParcelNumber;
 
@@ -259,7 +223,7 @@ base class PropertyEntity extends Equatable {
         isPropertyRewardClaimed,
         isSoftDelete,
         hasZoningPermission,
-        orderPhotoforGeneratedMap,
+        orderPhotoForGeneratedMap,
         assessorParcelNumber,
         externalBlockchainAddress,
         areaPolygon,
@@ -267,8 +231,8 @@ base class PropertyEntity extends Equatable {
       ];
 }
 
-base class AuctionableAirspaceEntity extends Equatable {
-  const AuctionableAirspaceEntity({
+base class AirspaceEntity extends Equatable {
+  const AirspaceEntity({
     required this.id,
     required this.createdAt,
     required this.updateAt,
@@ -344,7 +308,7 @@ base class AuctionableAirspaceEntity extends Equatable {
 
   final bool isSoftDelete;
 
-  final bool? hasZoningPermission;
+  final bool hasZoningPermission;
 
   final bool orderPhotoForGeneratedMap;
 
@@ -354,9 +318,9 @@ base class AuctionableAirspaceEntity extends Equatable {
 
   final String areaPolygon;
 
-  final int? tokenValue;
+  final double? tokenValue;
 
-  final List<LayersEntity> layers;
+  final List<LayerEntity> layers;
 
   @override
   List<Object?> get props => [
@@ -392,14 +356,15 @@ base class AuctionableAirspaceEntity extends Equatable {
       ];
 }
 
-base class LayersEntity extends Equatable {
-  const LayersEntity({
+base class LayerEntity extends Equatable {
+  const LayerEntity({
     required this.id,
     required this.createdAt,
     required this.updateAt,
     required this.tokenId,
     required this.propertyId,
     required this.isCurrentlyInAuction,
+    required this.property,
   });
 
   final int id;
@@ -414,6 +379,8 @@ base class LayersEntity extends Equatable {
 
   final bool isCurrentlyInAuction;
 
+  final PropertyEntity? property;
+
   @override
   List<Object?> get props => [
         id,
@@ -422,89 +389,12 @@ base class LayersEntity extends Equatable {
         tokenId,
         propertyId,
         isCurrentlyInAuction,
+        property,
       ];
 }
 
-base class AuctionWithBidsEntity extends Equatable {
-  const AuctionWithBidsEntity({
-    required this.id,
-    required this.assetId,
-    required this.seller,
-    required this.pdaAddress,
-    required this.initialPrice,
-    required this.endDate,
-    required this.currentPrice,
-    required this.currentBidder,
-    required this.paymentToken,
-    required this.transactions,
-    required this.isCancelled,
-    required this.isExecuted,
-    required this.isVerified,
-    required this.isFilled,
-    required this.filledAmount,
-    required this.auctionBid,
-    required this.layer,
-  });
-
-  final int id;
-  final String assetId;
-  final String seller;
-  final String pdaAddress;
-  final double initialPrice;
-  final DateTime endDate;
-  final double currentPrice;
-  final String? currentBidder;
-  final String paymentToken;
-  final List<String> transactions;
-  final bool isCancelled;
-  final bool isExecuted;
-  final bool isVerified;
-  final bool isFilled;
-  final double? filledAmount;
-  final List<AuctionBidEntity> auctionBid;
-  final LayerEntity layer;
-
-  @override
-  List<Object?> get props => [
-        id,
-        assetId,
-        seller,
-        pdaAddress,
-        initialPrice,
-        endDate,
-        currentPrice,
-        currentBidder,
-        paymentToken,
-        transactions,
-        isCancelled,
-        isExecuted,
-        isVerified,
-        isFilled,
-        filledAmount,
-        auctionBid,
-        layer,
-      ];
-}
-
-base class CreateAuctionEntity extends Equatable {
-  const CreateAuctionEntity({
-    required this.message,
-    required this.tx,
-  });
-
-  final String message;
-
-  final List<String> tx;
-
-  @override
-  List<Object?> get props => [
-        message,
-        tx,
-      ];
-}
-
-base class PlaceBidEntity extends Equatable {
-  const PlaceBidEntity({
+base class BidEntity extends Equatable {
+  const BidEntity({
     required this.message,
     required this.transaction,
   });
@@ -520,13 +410,14 @@ base class PlaceBidEntity extends Equatable {
       ];
 }
 
-base class SendTransactionEntity extends Equatable {
-  const SendTransactionEntity({
+base class TransactionEntity extends Equatable {
+  const TransactionEntity({
     required this.txSignature,
     required this.error,
   });
 
   final String txSignature;
+
   final String error;
 
   @override
@@ -536,8 +427,25 @@ base class SendTransactionEntity extends Equatable {
       ];
 }
 
-base class OfferForUnclaimedPropertyEntity extends Equatable {
-  const OfferForUnclaimedPropertyEntity({
+base class TransactionMessageEntity extends Equatable {
+  const TransactionMessageEntity({
+    required this.message,
+    required this.tx,
+  });
+
+  final String message;
+
+  final List<String> tx;
+
+  @override
+  List<Object?> get props => [
+        message,
+        tx,
+      ];
+}
+
+base class UnclaimedPropertyEntity extends Equatable {
+  const UnclaimedPropertyEntity({
     required this.data,
   });
 
@@ -549,13 +457,14 @@ base class OfferForUnclaimedPropertyEntity extends Equatable {
       ];
 }
 
-class DataEntity extends Equatable {
+base class DataEntity extends Equatable {
   const DataEntity({
     required this.status,
     required this.message,
   });
 
   final String status;
+
   final String message;
 
   @override
