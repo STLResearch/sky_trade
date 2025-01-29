@@ -28,7 +28,7 @@ import 'package:sky_trade/core/resources/strings/networking.dart'
         longitudeKey,
         messageKey,
         noFlyZoneKey,
-        orderPhotoforGeneratedMapKey,
+        orderPhotoForGeneratedMapKey,
         ownerIdKey,
         priceKey,
         propertyIdKey,
@@ -210,7 +210,7 @@ final class PropertyModel extends PropertyEntity {
   @JsonKey(name: hasZoningPermissionKey)
   final bool? mHasZoningPermission;
 
-  @JsonKey(name: orderPhotoforGeneratedMapKey)
+  @JsonKey(name: orderPhotoForGeneratedMapKey)
   final bool mOrderPhotoForGeneratedMap;
 
   @JsonKey(name: assessorParcelNumberKey)
