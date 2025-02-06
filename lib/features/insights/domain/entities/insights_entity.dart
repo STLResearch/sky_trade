@@ -72,3 +72,39 @@ base class UserEntity extends Equatable {
         id,
       ];
 }
+
+base class FilterInsightsEntity extends Equatable {
+  const FilterInsightsEntity({
+    required this.filterRange,
+    required this.intervals,
+  });
+
+  final String filterRange;
+
+  final List<IntervalsEntity> intervals;
+
+  @override
+  List<Object?> get props => [
+        filterRange,
+        intervals,
+      ];
+}
+
+base class IntervalsEntity extends Equatable {
+  const IntervalsEntity({
+    required this.from,
+    required this.to,
+    required this.value,
+  });
+
+  final DateTime from;
+  final DateTime to;
+  final int value;
+
+  @override
+  List<Object?> get props => [
+        from,
+        to,
+        value,
+      ];
+}

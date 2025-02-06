@@ -53,3 +53,32 @@ UserModel _$UserModelFromJson(Map<String, dynamic> json) => UserModel(
 Map<String, dynamic> _$UserModelToJson(UserModel instance) => <String, dynamic>{
       'id': instance.mId,
     };
+
+FilterInsightsModel _$FilterInsightsModelFromJson(Map<String, dynamic> json) =>
+    FilterInsightsModel(
+      mFilterRange: json['filterRange'] as String,
+      mIntervals: (json['intervals'] as List<dynamic>)
+          .map((e) => IntervalsModel.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+
+Map<String, dynamic> _$FilterInsightsModelToJson(
+        FilterInsightsModel instance) =>
+    <String, dynamic>{
+      'filterRange': instance.mFilterRange,
+      'intervals': instance.mIntervals,
+    };
+
+IntervalsModel _$IntervalsModelFromJson(Map<String, dynamic> json) =>
+    IntervalsModel(
+      mFrom: const StringDateTimeConverter().fromJson(json['from'] as String),
+      mTo: const StringDateTimeConverter().fromJson(json['to'] as String),
+      mValue: (json['value'] as num).toInt(),
+    );
+
+Map<String, dynamic> _$IntervalsModelToJson(IntervalsModel instance) =>
+    <String, dynamic>{
+      'from': const StringDateTimeConverter().toJson(instance.mFrom),
+      'to': const StringDateTimeConverter().toJson(instance.mTo),
+      'value': instance.mValue,
+    };

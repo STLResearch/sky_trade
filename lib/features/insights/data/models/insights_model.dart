@@ -4,13 +4,18 @@ import 'package:sky_trade/core/resources/strings/networking.dart'
         createdAtKey,
         devicesKey,
         devicesObservedKey,
+        filterRangeKey,
+        fromKey,
         idKey,
+        intervalsKey,
         ipAddressKey,
         isTestKey,
         remoteDataKey,
+        toKey,
         updatedAtKey,
         userIdKey,
-        userKey;
+        userKey,
+        valueKey;
 import 'package:sky_trade/core/utils/converters/date_time_converter.dart'
     show StringDateTimeConverter;
 import 'package:sky_trade/features/insights/domain/entities/insights_entity.dart';
@@ -110,4 +115,51 @@ final class UserModel extends UserEntity {
   final int mId;
 
   Map<String, dynamic> toJson() => _$UserModelToJson(this);
+}
+
+@JsonSerializable()
+final class FilterInsightsModel extends FilterInsightsEntity {
+  const FilterInsightsModel({
+    required this.mFilterRange,
+    required this.mIntervals,
+  }) : super(
+          filterRange: mFilterRange,
+          intervals: mIntervals,
+        );
+
+  factory FilterInsightsModel.fromJson(Map<String, dynamic> json) =>
+      _$FilterInsightsModelFromJson(json);
+
+  @JsonKey(name: filterRangeKey)
+  final String mFilterRange;
+
+  @JsonKey(name: intervalsKey)
+  final List<IntervalsModel> mIntervals;
+}
+
+@JsonSerializable()
+final class IntervalsModel extends IntervalsEntity {
+  const IntervalsModel({
+    required this.mFrom,
+    required this.mTo,
+    required this.mValue,
+  }) : super(
+          from: mFrom,
+          to: mTo,
+          value: mValue,
+        );
+
+  factory IntervalsModel.fromJson(Map<String, dynamic> json) =>
+      _$IntervalsModelFromJson(json);
+
+  @JsonKey(name: fromKey)
+  @StringDateTimeConverter()
+  final DateTime mFrom;
+
+  @JsonKey(name: toKey)
+  @StringDateTimeConverter()
+  final DateTime mTo;
+
+  @JsonKey(name: valueKey)
+  final int mValue;
 }
