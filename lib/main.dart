@@ -7,7 +7,8 @@ import 'package:firebase_analytics/firebase_analytics.dart'
 import 'package:firebase_core/firebase_core.dart' show Firebase;
 import 'package:flutter/foundation.dart'
     show VoidCallback, kDebugMode, kIsWeb, kProfileMode;
-import 'package:flutter/material.dart' show WidgetsFlutterBinding, runApp;
+import 'package:flutter/material.dart'
+    show Widget, WidgetsFlutterBinding, runApp;
 import 'package:flutter_clarity/clarity.dart'
     show Clarity, ClarityConfig, LogLevel;
 import 'package:flutter_dotenv/flutter_dotenv.dart' show dotenv;
@@ -43,10 +44,7 @@ void main() => _loadEnv().then(
       (_) => _maybeInitializeSentryReporting(
         then: () => _initializeImportantResources().then(
           (_) => runApp(
-            Clarity(
-              app: const App(),
-              clarityConfig: _clarityConfig,
-            ),
+            _app,
           ),
         ),
       ),
@@ -122,6 +120,14 @@ Future<bool> _shouldCollectAnalyticsData() async {
           TrackingStatus.authorized &&
       (analyticsState ?? false);
 }
+
+Widget get _app => switch (_environment == devEnvironment && kDebugMode) {
+      true => const App(),
+      false => Clarity(
+          app: const App(),
+          clarityConfig: _clarityConfig,
+        ),
+    };
 
 ClarityConfig get _clarityConfig => ClarityConfig(
       projectId: dotenv.env[clarityProjectId]!,
