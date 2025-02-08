@@ -8,3 +8,6 @@ const web3AuthClientId = 'WEB_3_AUTH_CLIENT_ID';
 
 // Sentry
 const sentryDsn = 'SENTRY_DSN';
+
+// Clarity
+const clarityProjectId = 'CLARITY_PROJECT_ID';
