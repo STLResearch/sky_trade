@@ -23,6 +23,10 @@ dependencies:
     sdk: flutter
   flutter_bloc: ^8.1.5
   flutter_blue_plus: ^1.32.12
+  flutter_clarity:
+    git:
+      url: https://github.com/microsoft/clarity-flutter-preview
+      ref: main
   flutter_dotenv: ^5.1.0
   flutter_localizations:
     sdk: flutter

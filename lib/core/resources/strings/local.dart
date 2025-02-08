@@ -10,3 +10,5 @@ const sessionTokenUsageCountKey = 'sessionTokenUsageCount';
 const sessionTokenAgeKey = 'sessionTokenAge';
 
 const analyticsStateKey = 'analyticsState';
+
+const base36UpperBound = '1z141z4';
