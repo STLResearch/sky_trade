@@ -1,42 +1,20 @@
 // ignore_for_file: lines_longer_than_80_chars
 
-// Web3Auth
-const web3AuthRpcUrl = 'WEB_3_AUTH_RPC_URL';
-// Whitelist origins
-const web3AuthWhitelistOriginIos = 'WEB_3_AUTH_WHITELIST_ORIGIN_IOS';
-const web3AuthWhitelistOriginAndroid = 'WEB_3_AUTH_WHITELIST_ORIGIN_ANDROID';
-// Paths
-// Param keys and values for extra login options
-const flowTypeKey = 'flow_type';
-const linkValue = 'link';
-
-// Mapbox maps
-const mapboxMapsPublicKey = 'MAPBOX_MAPS_PUBLIC_KEY';
-const mapboxMapsSearchBoxBaseUrl = 'MAPBOX_MAPS_SEARCH_BOX_BASE_URL';
-
-//OpenWeather
-const openWeatherMapApiKey = 'OPEN_WEATHER_MAP_API_KEY';
+// OpenWeather
 // Endpoints
-// Base URL
-const openWeatherMapApiBaseUrl = 'OPEN_WEATHER_MAP_API_BASE_URL';
-const openWeatherMapIconBaseUrl = 'OPEN_WEATHER_MAP_ICON_BASE_URL';
 // Paths
 const dataPath = '/data';
 const twoDotFivePath = '/2.5';
 const weatherPath = '/weather';
 const imgPath = '/img';
 const wnPath = '/wn';
+
 // SkyTrade
 // Privacy policy
 const skyTradePrivacyPolicyUrl = 'https://docs.sky.trade/privacy.htm';
 // Terms of service
 const skyTradeTermsOfServiceUrl = 'https://docs.sky.trade/terms.htm';
-// Endpoints
-// Base URL
-const skyTradeServerHttpBaseUrl = 'SKYTRADE_SERVER_HTTP_BASE_URL';
-const skyTradeServerSignUrl = 'SKYTRADE_SERVER_SIGN_URL';
-const skyTradeServerHttpSignUrl = 'SKYTRADE_SERVER_HTTP_SIGN_URL';
-const skyTradeServerSocketIOBaseUrl = 'SKYTRADE_SERVER_SOCKET_IO_BASE_URL';
+
 // Paths
 const radarPath = '/radar';
 const restrictionsPath = '/restrictions';
@@ -422,7 +400,7 @@ const errorKey = 'error';
 // Error response data message
 const unauthorizedCode = 'UNAUTHORIZED';
 const invalidSignatureCode = 'INVALID_SIGNATURE';
-const userNotFoundCode = 'USER_NOT_FOUND';
+const userNotFoundCode = 'USER_NOT_FOUND'; // user does not exist
 const invalidEmailCode = 'INVALID_EMAIL';
 const userMismatchCode = 'USER_MISMATCH';
 const userDeletedCode = 'USER_DELETED';

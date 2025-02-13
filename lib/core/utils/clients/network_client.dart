@@ -25,9 +25,9 @@ import 'package:sky_trade/core/resources/strings/networking.dart'
         signHeaderKey,
         signIssueAtHeaderKey,
         signNonceHeaderKey,
-        skyTradeServerHttpBaseUrl,
-        skyTradeServerSocketIOBaseUrl,
         websocketTransport;
+import 'package:sky_trade/core/resources/strings/secret_keys.dart'
+    show skyTradeServerHttpBaseUrl, skyTradeServerSocketIOBaseUrl;
 import 'package:sky_trade/core/resources/strings/special_characters.dart'
     show emptyString;
 import 'package:sky_trade/core/utils/clients/signature_handler.dart';

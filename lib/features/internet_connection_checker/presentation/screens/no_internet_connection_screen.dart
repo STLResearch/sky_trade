@@ -33,7 +33,7 @@ import 'package:sky_trade/core/resources/numbers/ui.dart'
         thirtyDotNil,
         twentyTwoDotFive;
 import 'package:sky_trade/core/resources/strings/routes.dart'
-    show baseRoutePath;
+    show loadingRoutePath;
 import 'package:sky_trade/core/utils/extensions/build_context_extensions.dart';
 import 'package:sky_trade/features/internet_connection_checker/presentation/blocs/internet_connection_checker_bloc/internet_connection_checker_bloc.dart'
     show
@@ -50,8 +50,10 @@ class NoInternetConnectionScreen extends StatelessWidget {
         listener: (_, internetConnectionCheckerState) {
           internetConnectionCheckerState.whenOrNull(
             hasActiveInternetConnection: () {
-              Navigator.of(context).pushReplacementNamed(
-                baseRoutePath,
+              Navigator.of(
+                context,
+              ).pushReplacementNamed(
+                loadingRoutePath,
               );
             },
           );
@@ -83,7 +85,7 @@ class NoInternetConnectionScreen extends StatelessWidget {
                     ),
                     Text(
                       context.localize
-                          .itLooksLikeWereHavingTroubleInitializingYourSession,
+                          .itLooksLikeYouDontHaveAnActiveInternetConnection,
                       textAlign: TextAlign.center,
                       style: Theme.of(context).textTheme.bodyMedium,
                     ),
@@ -92,7 +94,7 @@ class NoInternetConnectionScreen extends StatelessWidget {
                     ),
                     Text(
                       context.localize
-                          .anUnexpectedErrorOccurredPleaseTryRefreshingThePageIfTheIssueContinuesYouMayWantToCheckYourConnectionOrTryAgainLater,
+                          .yourInternetConnectionMayBePoorOrYouAreProbablyJustOutOfCoveragePleaseCheckYourConnectionOrTryAgain,
                       textAlign: TextAlign.center,
                       style: Theme.of(context).textTheme.bodySmall,
                     ),

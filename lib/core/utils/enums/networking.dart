@@ -107,13 +107,6 @@ import 'package:sky_trade/core/resources/strings/networking.dart'
         wifiBeaconKey,
         wifiNanKey;
 
-// Web3Auth
-enum AuthProvider {
-  apple,
-  google,
-  emailPasswordless,
-}
-
 // Network request method
 enum RequestMethod {
   get,

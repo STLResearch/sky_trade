@@ -21,8 +21,8 @@ final class AgreementSection extends StatelessWidget {
     super.key,
   });
 
-  final VoidCallback onTermsAndConditionsTap;
-  final VoidCallback onPrivacyPolicyTap;
+  final VoidCallback? onTermsAndConditionsTap;
+  final VoidCallback? onPrivacyPolicyTap;
 
   @override
   Widget build(BuildContext context) => RichText(

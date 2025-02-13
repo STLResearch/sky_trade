@@ -30,7 +30,7 @@ import 'package:mapbox_maps_flutter/mapbox_maps_flutter.dart'
 import 'package:sky_trade/core/resources/colors.dart' show hexB3FFFFFF;
 import 'package:sky_trade/core/resources/numbers/ui.dart' show twelveDotFive;
 import 'package:sky_trade/core/resources/strings/routes.dart'
-    show loginRoutePath;
+    show getStartedRoutePath;
 import 'package:sky_trade/core/resources/strings/secret_keys.dart'
     show
         mapboxMapsDarkStyleUri,
@@ -45,8 +45,8 @@ import 'package:sky_trade/core/utils/extensions/cache_entity_extensions.dart';
 import 'package:sky_trade/core/utils/extensions/mapbox_map_extensions.dart';
 import 'package:sky_trade/core/utils/typedefs/ui.dart'
     show PointAnnotationManagerPointAnnotationTuple;
-import 'package:sky_trade/features/auth/presentation/blocs/web_3_auth_logout_bloc/web_3_auth_logout_bloc.dart'
-    show Web3AuthLogoutBloc, Web3AuthLogoutState;
+import 'package:sky_trade/features/auth/presentation/blocs/auth_0_logout_bloc/auth_0_logout_bloc.dart'
+    show Auth0LogoutBloc, Auth0LogoutState;
 import 'package:sky_trade/features/bluetooth/presentation/blocs/bluetooth_permissions_bloc/bluetooth_permissions_bloc.dart'
     show
         BluetoothPermissionsBloc,
@@ -105,7 +105,7 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) => MultiBlocProvider(
         providers: [
-          BlocProvider<Web3AuthLogoutBloc>(
+          BlocProvider<Auth0LogoutBloc>(
             create: (_) => serviceLocator(),
           ),
           BlocProvider<BluetoothPermissionsBloc>(
@@ -235,9 +235,9 @@ class _HomeViewState extends State<HomeView> {
   @override
   Widget build(BuildContext context) => MultiBlocListener(
         listeners: [
-          BlocListener<Web3AuthLogoutBloc, Web3AuthLogoutState>(
-            listener: (_, web3AuthLogoutState) {
-              web3AuthLogoutState.whenOrNull(
+          BlocListener<Auth0LogoutBloc, Auth0LogoutState>(
+            listener: (context, auth0LogoutState) {
+              auth0LogoutState.whenOrNull(
                 loggingOut: () {
                   ProgressDialog.show(
                     context,
@@ -252,10 +252,10 @@ class _HomeViewState extends State<HomeView> {
                   Navigator.of(
                     context,
                   ).pushReplacementNamed(
-                    loginRoutePath,
+                    getStartedRoutePath,
                   );
                 },
-                failedToLogOut: (failure) {
+                failedToLogOut: (_) {
                   Navigator.of(
                     context,
                   ).pop();

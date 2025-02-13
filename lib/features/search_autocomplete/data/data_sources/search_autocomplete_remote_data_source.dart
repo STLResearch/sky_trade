@@ -1,13 +1,9 @@
 import 'package:flutter_dotenv/flutter_dotenv.dart' show dotenv;
 import 'package:sky_trade/core/errors/exceptions/search_autocomplete_exception.dart';
 import 'package:sky_trade/core/resources/strings/networking.dart'
-    show
-        accessTokenKey,
-        mapboxMapsPublicKey,
-        mapboxMapsSearchBoxBaseUrl,
-        qKey,
-        sessionTokenKey,
-        suggestPath;
+    show accessTokenKey, qKey, sessionTokenKey, suggestPath;
+import 'package:sky_trade/core/resources/strings/secret_keys.dart'
+    show mapboxMapsPublicKey, mapboxMapsSearchBoxBaseUrl;
 import 'package:sky_trade/core/utils/clients/network_client.dart'
     show HttpClient;
 import 'package:sky_trade/core/utils/clients/response_handler.dart';
