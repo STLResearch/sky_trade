@@ -14,7 +14,7 @@ import 'package:flutter_clarity/clarity.dart'
 import 'package:flutter_dotenv/flutter_dotenv.dart' show dotenv;
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart'
-    show Bloc, HydratedBloc, HydratedStorage;
+    show Bloc, HydratedBloc, HydratedStorage, HydratedStorageDirectory;
 import 'package:path_provider/path_provider.dart'
     show getApplicationDocumentsDirectory;
 import 'package:sentry_flutter/sentry_flutter.dart' show SentryFlutter;
@@ -88,8 +88,10 @@ Future<void> _initializeImportantResources() async {
 
   HydratedBloc.storage = await HydratedStorage.build(
     storageDirectory: switch (kIsWeb) {
-      true => HydratedStorage.webStorageDirectory,
-      false => await getApplicationDocumentsDirectory(),
+      true => HydratedStorageDirectory.web,
+      false => HydratedStorageDirectory(
+          (await getApplicationDocumentsDirectory()).path,
+        ),
     },
   );
 
@@ -121,7 +123,7 @@ Future<bool> _shouldCollectAnalyticsData() async {
       (analyticsState ?? false);
 }
 
-Widget get _app => switch (_environment == devEnvironment && kDebugMode) {
+Widget get _app => switch (_environment == devEnvironment || kDebugMode) {
       true => const App(),
       false => Clarity(
           app: const App(),

@@ -1,7 +1,9 @@
 import 'package:flutter_dotenv/flutter_dotenv.dart' show dotenv;
 import 'package:sky_trade/core/resources/strings/local.dart' show pngFileEnding;
 import 'package:sky_trade/core/resources/strings/networking.dart'
-    show imgPath, openWeatherMapIconBaseUrl, twoXValue, wnPath;
+    show imgPath, twoXValue, wnPath;
+import 'package:sky_trade/core/resources/strings/secret_keys.dart'
+    show openWeatherMapIconBaseUrl;
 import 'package:sky_trade/core/resources/strings/special_characters.dart'
     show at, forwardSlash;
 import 'package:sky_trade/features/weather/domain/entities/weather_entity.dart'

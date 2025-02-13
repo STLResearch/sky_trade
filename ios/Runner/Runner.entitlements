@@ -4,5 +4,10 @@
 <dict>
 	<key>aps-environment</key>
 	<string>development</string>
+	<key>com.apple.developer.associated-domains</key>
+	<array>
+		<string>webcredentials:dev-auth.sky.trade</string>
+		<string>applinks:dev.sky.trade</string>
+	</array>
 </dict>
 </plist>

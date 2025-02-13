@@ -53,6 +53,7 @@ import 'package:flutter_bloc/flutter_bloc.dart'
         BlocBuilder,
         BlocListener,
         BlocProvider,
+        MultiBlocListener,
         MultiBlocProvider,
         ReadContext;
 import 'package:sky_trade/core/assets/generated/assets.gen.dart' show Assets;
@@ -73,12 +74,12 @@ import 'package:sky_trade/core/resources/numbers/ui.dart'
         twoDotNil,
         zero;
 import 'package:sky_trade/core/resources/strings/routes.dart'
-    show loginRoutePath;
+    show getStartedRoutePath;
 import 'package:sky_trade/core/resources/strings/special_characters.dart'
     show emptyString, whiteSpace;
 import 'package:sky_trade/core/utils/extensions/build_context_extensions.dart';
-import 'package:sky_trade/features/auth/presentation/blocs/web_3_auth_logout_bloc/web_3_auth_logout_bloc.dart'
-    show Web3AuthLogoutBloc, Web3AuthLogoutEvent;
+import 'package:sky_trade/features/auth/presentation/blocs/auth_0_logout_bloc/auth_0_logout_bloc.dart'
+    show Auth0LogoutBloc, Auth0LogoutEvent, Auth0LogoutState;
 import 'package:sky_trade/features/settings/presentation/blocs/delete_account_bloc/delete_account_bloc.dart'
     show DeleteAccountBloc, DeleteAccountEvent, DeleteAccountState;
 import 'package:sky_trade/features/settings/presentation/blocs/otp_resend_timer_bloc/otp_resend_timer_bloc.dart'
@@ -95,7 +96,7 @@ class DeleteAccount extends StatelessWidget {
   @override
   Widget build(BuildContext context) => MultiBlocProvider(
         providers: [
-          BlocProvider<Web3AuthLogoutBloc>(
+          BlocProvider<Auth0LogoutBloc>(
             create: (_) => serviceLocator(),
           ),
           BlocProvider<OtpResendTimerBloc>(
@@ -152,38 +153,57 @@ class _DeleteAccountViewState extends State<DeleteAccountView> {
     super.dispose();
   }
 
+  void _closeSheetSettingsScreenAndNavigateToGetStartedScreen() {
+    Navigator.of(
+      context,
+    )
+      ..pop()
+      ..pop();
+
+    Navigator.of(
+      context,
+    ).pushReplacementNamed(
+      getStartedRoutePath,
+    );
+  }
+
   @override
-  Widget build(BuildContext context) =>
-      BlocListener<DeleteAccountBloc, DeleteAccountState>(
-        listener: (context, deleteAccountState) {
-          deleteAccountState.whenOrNull(
-            failedToDeleteAccount: (deleteAccountFailure) {
-              _showErrorMessage = true;
-              _deleteAccountErrorMessageNotifier.value =
-                  switch (deleteAccountFailure) {
-                InvalidCodeFailure() =>
-                  context.localize.theCodeYouEnteredDoesNotMatchWhatWeSentYou,
-                DeleteAccountUnknownFailure() => context
-                    .localize.weCouldNotDeleteYourAccountPleaseTryAgainLater,
-              };
-            },
-            deletedAccount: (_) {
-              Navigator.of(
-                context,
-              )
-                ..pop()
-                ..pop();
-
-              context.read<Web3AuthLogoutBloc>().add(
-                    const Web3AuthLogoutEvent.logout(),
-                  );
-
-              Navigator.of(context).pushReplacementNamed(
-                loginRoutePath,
+  Widget build(BuildContext context) => MultiBlocListener(
+        listeners: [
+          BlocListener<DeleteAccountBloc, DeleteAccountState>(
+            listener: (context, deleteAccountState) {
+              deleteAccountState.whenOrNull(
+                failedToDeleteAccount: (deleteAccountFailure) {
+                  _showErrorMessage = true;
+                  _deleteAccountErrorMessageNotifier.value =
+                      switch (deleteAccountFailure) {
+                    InvalidCodeFailure() => context
+                        .localize.theCodeYouEnteredDoesNotMatchWhatWeSentYou,
+                    DeleteAccountUnknownFailure() => context.localize
+                        .weCouldNotDeleteYourAccountPleaseTryAgainLater,
+                  };
+                },
+                deletedAccount: (_) {
+                  context.read<Auth0LogoutBloc>().add(
+                        const Auth0LogoutEvent.logout(),
+                      );
+                },
               );
             },
-          );
-        },
+          ),
+          BlocListener<Auth0LogoutBloc, Auth0LogoutState>(
+            listener: (context, auth0LogoutState) {
+              auth0LogoutState.whenOrNull(
+                loggedOut: () {
+                  _closeSheetSettingsScreenAndNavigateToGetStartedScreen();
+                },
+                failedToLogOut: (_) {
+                  _closeSheetSettingsScreenAndNavigateToGetStartedScreen();
+                },
+              );
+            },
+          ),
+        ],
         child: LayoutBuilder(
           builder: (context, boxConstraints) => SingleChildScrollView(
             child: Container(

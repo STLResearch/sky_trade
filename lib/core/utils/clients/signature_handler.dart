@@ -3,8 +3,10 @@
 import 'dart:convert' show utf8;
 import 'dart:math' show Random;
 
+import 'package:auth0_flutter/auth0_flutter.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart' show dotenv;
 import 'package:hex/hex.dart' show HEX;
+import 'package:single_factor_auth_flutter/single_factor_auth_flutter.dart';
 import 'package:sky_trade/core/resources/numbers/local.dart'
     show sixteen, thirtyTwo;
 import 'package:sky_trade/core/resources/strings/local.dart'
@@ -18,13 +20,13 @@ import 'package:sky_trade/core/resources/strings/networking.dart'
         signatureFourthLine,
         signatureSeventhLine,
         signatureSixthLine,
-        signatureThirdLine,
-        skyTradeServerHttpSignUrl,
-        skyTradeServerSignUrl;
+        signatureThirdLine;
+import 'package:sky_trade/core/resources/strings/secret_keys.dart'
+    show skyTradeServerHttpSignUrl, skyTradeServerSignUrl;
 import 'package:sky_trade/core/resources/strings/special_characters.dart'
     show ampersand, emptyString, equals, newLine, question, whiteSpace;
+import 'package:sky_trade/injection_container.dart' show serviceLocator;
 import 'package:solana/solana.dart' show Ed25519HDKeyPair, SignatureExt;
-import 'package:web3auth_flutter/web3auth_flutter.dart';
 
 mixin class SignatureHandler {
   Future<String> signMessage(
@@ -137,11 +139,11 @@ mixin class SignatureHandler {
       issuedAt;
 
   Future<Ed25519HDKeyPair> computeEd25519KeyPair() async {
-    final ed25519PrivateKey = await computeEd25519PrivateKey();
+    final sFAPrivateKey = await _computeSFAPrivateKey();
 
     final decodedEd25519PrivateKey = HEX
         .decode(
-          ed25519PrivateKey,
+          sFAPrivateKey,
         )
         .take(
           thirtyTwo,
@@ -155,10 +157,16 @@ mixin class SignatureHandler {
     return ed25519HDKeyPair;
   }
 
-  Future<String> computeEd25519PrivateKey() =>
-      Web3AuthFlutter.getEd25519PrivKey();
+  Future<String> _computeSFAPrivateKey() async {
+    final sFAKey = await serviceLocator<SingleFactAuthFlutter>().initialize();
 
-  Future<String?> computeUserEmail() => Web3AuthFlutter.getUserInfo().then(
-        (userInfo) => userInfo.email,
-      );
+    return sFAKey!.privateKey;
+  }
+
+  Future<String?> computeUserEmail() async {
+    final credentials =
+        await serviceLocator<Auth0>().credentialsManager.credentials();
+
+    return credentials.user.email;
+  }
 }

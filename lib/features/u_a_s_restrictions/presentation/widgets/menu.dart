@@ -23,8 +23,8 @@ import 'package:sky_trade/core/resources/strings/routes.dart'
     show helpRoutePath, insightsRoutePath, settingsRoutePath;
 import 'package:sky_trade/core/utils/enums/ui.dart' show MenuItem;
 import 'package:sky_trade/core/utils/extensions/build_context_extensions.dart';
-import 'package:sky_trade/features/auth/presentation/blocs/web_3_auth_logout_bloc/web_3_auth_logout_bloc.dart'
-    show Web3AuthLogoutBloc, Web3AuthLogoutEvent;
+import 'package:sky_trade/features/auth/presentation/blocs/auth_0_logout_bloc/auth_0_logout_bloc.dart'
+    show Auth0LogoutBloc, Auth0LogoutEvent;
 import 'package:sky_trade/features/u_a_s_restrictions/presentation/widgets/about_dialog.dart';
 import 'package:sky_trade/features/u_a_s_restrictions/presentation/widgets/action_dialog.dart';
 
@@ -130,8 +130,8 @@ class Menu extends StatelessWidget {
             context,
           ).pop();
 
-          context.read<Web3AuthLogoutBloc>().add(
-                const Web3AuthLogoutEvent.logout(),
+          context.read<Auth0LogoutBloc>().add(
+                const Auth0LogoutEvent.logout(),
               );
         },
       );

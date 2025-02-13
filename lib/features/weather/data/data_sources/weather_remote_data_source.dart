@@ -7,11 +7,11 @@ import 'package:sky_trade/core/resources/strings/networking.dart'
         latKey,
         lonKey,
         metricValue,
-        openWeatherMapApiBaseUrl,
-        openWeatherMapApiKey,
         twoDotFivePath,
         unitsKey,
         weatherPath;
+import 'package:sky_trade/core/resources/strings/secret_keys.dart'
+    show openWeatherMapApiBaseUrl, openWeatherMapApiKey;
 import 'package:sky_trade/core/utils/clients/network_client.dart'
     show HttpClient;
 import 'package:sky_trade/core/utils/clients/response_handler.dart';

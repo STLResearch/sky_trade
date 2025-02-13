@@ -43,6 +43,8 @@
     <string>SkyTrade Radar uses tracking to analyze app performance. This helps us understand how our app is used and performs and ensures we provide the best possible service</string>
 	<key>FIREBASE_ANALYTICS_COLLECTION_ENABLED</key>
 	<false/>
+	<key>FlutterDeepLinkingEnabled</key>
+    <false/>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
 	<key>UILaunchStoryboardName</key>

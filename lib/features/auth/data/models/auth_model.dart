@@ -23,6 +23,7 @@ import 'package:sky_trade/core/resources/strings/networking.dart'
         usedByBonusEarnedKey,
         usedReferralCodeIdKey,
         usernameKey;
+import 'package:sky_trade/core/utils/converters/date_time_converter.dart';
 import 'package:sky_trade/features/auth/domain/entities/auth_entity.dart'
     show OwnedReferralCodeEntity, SkyTradeUserEntity;
 
@@ -33,7 +34,7 @@ final class SkyTradeUserModel extends SkyTradeUserEntity {
   const SkyTradeUserModel({
     required this.mId,
     required this.mCreatedAt,
-    required this.mUpdatedAt,
+    required this.mUpdateAt,
     required this.mUsername,
     required this.mPassword,
     required this.mName,
@@ -52,7 +53,7 @@ final class SkyTradeUserModel extends SkyTradeUserEntity {
   }) : super(
           id: mId,
           createdAt: mCreatedAt,
-          updatedAt: mUpdatedAt,
+          updateAt: mUpdateAt,
           username: mUsername,
           password: mPassword,
           name: mName,
@@ -74,13 +75,15 @@ final class SkyTradeUserModel extends SkyTradeUserEntity {
       _$SkyTradeUserModelFromJson(json);
 
   @JsonKey(name: idKey)
-  final int mId;
+  final String mId;
 
   @JsonKey(name: createdAtKey)
-  final String mCreatedAt;
+  @StringDateTimeConverter()
+  final DateTime mCreatedAt;
 
   @JsonKey(name: updateAtKey)
-  final String mUpdatedAt;
+  @StringDateTimeConverter()
+  final DateTime mUpdateAt;
 
   @JsonKey(name: usernameKey)
   final String? mUsername;
@@ -119,7 +122,7 @@ final class SkyTradeUserModel extends SkyTradeUserEntity {
   final int? mUsedReferralCodeId;
 
   @JsonKey(name: ownedReferralCodeIdKey)
-  final int mOwnedReferralCodeId;
+  final String mOwnedReferralCodeId;
 
   @JsonKey(name: isUserRewardClaimedKey)
   final bool mIsUserRewardClaimed;
@@ -150,7 +153,7 @@ final class OwnedReferralCodeModel extends OwnedReferralCodeEntity {
       _$OwnedReferralCodeModelFromJson(json);
 
   @JsonKey(name: idKey)
-  final int mId;
+  final String mId;
 
   @JsonKey(name: codeKey)
   final String mCode;

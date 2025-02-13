@@ -1,7 +1,9 @@
-import 'dart:io' show Platform;
-
+import 'package:auth0_flutter/auth0_flutter.dart' show Auth0;
 import 'package:dartz/dartz.dart' show Either, Unit, unit;
 import 'package:flutter_dotenv/flutter_dotenv.dart' show dotenv;
+import 'package:single_factor_auth_flutter/input.dart'
+    show LoginParams, SFAParams, Web3AuthNetwork;
+import 'package:single_factor_auth_flutter/single_factor_auth_flutter.dart';
 import 'package:sky_trade/core/errors/exceptions/auth_exception.dart'
     show
         CheckSkyTradeUserException,
@@ -17,175 +19,142 @@ import 'package:sky_trade/core/errors/exceptions/auth_exception.dart'
 import 'package:sky_trade/core/errors/failures/auth_failure.dart';
 import 'package:sky_trade/core/resources/strings/environments.dart'
     show devEnvironment, flavours, stageEnvironment;
-import 'package:sky_trade/core/resources/strings/networking.dart'
-    show
-        flowTypeKey,
-        linkValue,
-        web3AuthWhitelistOriginAndroid,
-        web3AuthWhitelistOriginIos;
 import 'package:sky_trade/core/resources/strings/secret_keys.dart'
-    show web3AuthClientId;
+    show sFAAggregateVerifier, sFAVerifier, web3AuthClientId;
 import 'package:sky_trade/core/utils/clients/data_handler.dart';
 import 'package:sky_trade/core/utils/clients/signature_handler.dart';
-import 'package:sky_trade/core/utils/enums/networking.dart' show AuthProvider;
 import 'package:sky_trade/features/auth/data/data_sources/auth_remote_data_source.dart'
     show AuthRemoteDataSource;
 import 'package:sky_trade/features/auth/domain/entities/auth_entity.dart';
 import 'package:sky_trade/features/auth/domain/repositories/auth_repository.dart';
-import 'package:web3auth_flutter/enums.dart' show Network, Provider;
-import 'package:web3auth_flutter/input.dart'
-    show ExtraLoginOptions, LoginParams, Web3AuthOptions;
-import 'package:web3auth_flutter/output.dart' show Web3AuthResponse;
-import 'package:web3auth_flutter/web3auth_flutter.dart';
 
 final class AuthRepositoryImplementation
     with DataHandler, SignatureHandler
     implements AuthRepository {
-  const AuthRepositoryImplementation(
-    AuthRemoteDataSource authRemoteDataSource,
-  ) : _authRemoteDataSource = authRemoteDataSource;
+  const AuthRepositoryImplementation({
+    required Auth0 auth0,
+    required SingleFactAuthFlutter singleFactorAuthentication,
+    required AuthRemoteDataSource authRemoteDataSource,
+  })  : _auth0 = auth0,
+        _singleFactorAuthentication = singleFactorAuthentication,
+        _authRemoteDataSource = authRemoteDataSource;
+
+  final Auth0 _auth0;
+
+  final SingleFactAuthFlutter _singleFactorAuthentication;
 
   final AuthRemoteDataSource _authRemoteDataSource;
 
   @override
-  Future<Either<Web3AuthInitializationFailure, Unit>> initializeWeb3Auth() =>
-      handleData<Web3AuthInitializationFailure, Unit>(
+  Future<Either<Auth0AuthenticationFailure, Auth0UserEntity>>
+      authenticateUserWithAuth0() =>
+          handleData<Auth0AuthenticationFailure, Auth0UserEntity>(
+            dataSourceOperation: () async {
+              final credentials = await _auth0.webAuthentication().login();
+
+              return Auth0UserEntity(
+                idToken: credentials.idToken,
+                email: credentials.user.email,
+              );
+            },
+            onSuccess: (auth0UserEntity) => auth0UserEntity,
+            onFailure: (_) => Auth0AuthenticationFailure(),
+          );
+
+  @override
+  Future<bool> checkAuth0UserSessionExists() =>
+      _auth0.credentialsManager.hasValidCredentials();
+
+  @override
+  Future<Either<Auth0UserNotFoundFailure, Auth0UserEntity>> get auth0User =>
+      handleData<Auth0UserNotFoundFailure, Auth0UserEntity>(
         dataSourceOperation: () async {
-          final web3AuthOptions = Web3AuthOptions(
-            clientId: dotenv.env[web3AuthClientId]!,
-            network: _computeNetwork(),
-            redirectUrl: _computeRedirectUrl(),
-          );
+          final credentials = await _auth0.credentialsManager.credentials();
 
-          await Web3AuthFlutter.init(
-            web3AuthOptions,
+          return Auth0UserEntity(
+            idToken: credentials.idToken,
+            email: credentials.user.email,
           );
+        },
+        onSuccess: (auth0UserEntity) => auth0UserEntity,
+        onFailure: (_) => Auth0UserNotFoundFailure(),
+      );
 
-          await Web3AuthFlutter.initialize();
+  @override
+  Future<Either<Auth0LogoutFailure, Unit>> logoutCurrentAuth0User() =>
+      handleData<Auth0LogoutFailure, Unit>(
+        dataSourceOperation: () async {
+          await _auth0.webAuthentication().logout();
 
           return unit;
         },
         onSuccess: (unit) => unit,
-        onFailure: (_) => Web3AuthInitializationFailure(),
+        onFailure: (_) => Auth0LogoutFailure(),
       );
 
-  Network _computeNetwork() {
+  @override
+  Future<Either<SFAInitializationFailure, Unit>> initializeSFA() =>
+      handleData<SFAInitializationFailure, Unit>(
+        dataSourceOperation: () async {
+          final sFAParameters = SFAParams(
+            network: _computeWeb3AuthNetwork(),
+            clientId: dotenv.env[web3AuthClientId]!,
+          );
+
+          await _singleFactorAuthentication.init(
+            sFAParameters,
+          );
+
+          return unit;
+        },
+        onSuccess: (unit) => unit,
+        onFailure: (_) => SFAInitializationFailure(),
+      );
+
+  Web3AuthNetwork _computeWeb3AuthNetwork() {
     const environment = String.fromEnvironment(
       flavours,
       defaultValue: devEnvironment,
     );
 
     if (environment == devEnvironment || environment == stageEnvironment) {
-      return Network.sapphire_devnet;
+      return Web3AuthNetwork.sapphire_devnet;
     }
 
-    return Network.cyan;
-  }
-
-  Uri _computeRedirectUrl() {
-    final iosRedirect = dotenv.env[web3AuthWhitelistOriginIos]!;
-    final androidRedirect = dotenv.env[web3AuthWhitelistOriginAndroid]!;
-
-    final redirectUrl = Uri.parse(
-      switch (Platform.isIOS) {
-        true => iosRedirect,
-        false => androidRedirect,
-      },
-    );
-
-    return redirectUrl;
+    return Web3AuthNetwork.cyan;
   }
 
   @override
-  Future<Either<Web3AuthAuthenticationFailure, Web3AuthUserEntity>>
-      authenticateWeb3AuthUserUsing({
-    required AuthProvider authProvider,
-    String? credential,
+  Future<Either<SFAAuthenticationFailure, SFAUserEntity>>
+      authenticateUserWithSFAUsing({
+    required String? email,
+    required String idToken,
   }) =>
-          handleData<Web3AuthAuthenticationFailure, Web3AuthUserEntity>(
+          handleData<SFAAuthenticationFailure, SFAUserEntity>(
             dataSourceOperation: () async {
-              final loginParameters = LoginParams(
-                loginProvider: _computeLoginProviderFrom(
-                  authProvider,
-                ),
-                extraLoginOptions: _computeExtraLoginOptionsFrom(
-                  authProvider: authProvider,
-                  credential: credential,
-                ),
+              final loginParams = LoginParams(
+                verifier: dotenv.env[sFAVerifier]!,
+                verifierId: email!,
+                idToken: idToken,
+                aggregateVerifier: dotenv.env[sFAAggregateVerifier],
               );
 
-              final web3AuthResponse = await Web3AuthFlutter.login(
-                loginParameters,
+              final sFAKey = await _singleFactorAuthentication.connect(
+                loginParams,
               );
 
-              final web3AuthUserEntity = _computeWeb3AuthUserEntityFrom(
-                web3AuthResponse,
+              return SFAUserEntity(
+                privateKey: sFAKey.privateKey,
+                publicAddress: sFAKey.publicAddress,
               );
-
-              return web3AuthUserEntity;
             },
-            onSuccess: (web3AuthUserEntity) => web3AuthUserEntity,
-            onFailure: (_) => Web3AuthAuthenticationFailure(),
+            onSuccess: (sFAUserEntity) => sFAUserEntity,
+            onFailure: (_) => SFAAuthenticationFailure(),
           );
-
-  Provider _computeLoginProviderFrom(
-    AuthProvider authProvider,
-  ) {
-    final loginProvider = switch (authProvider) {
-      AuthProvider.apple => Provider.apple,
-      AuthProvider.google => Provider.google,
-      AuthProvider.emailPasswordless => Provider.email_passwordless,
-    };
-
-    return loginProvider;
-  }
-
-  ExtraLoginOptions? _computeExtraLoginOptionsFrom({
-    required AuthProvider authProvider,
-    String? credential,
-  }) {
-    final extraLoginOptions = switch (authProvider) {
-      AuthProvider.emailPasswordless => ExtraLoginOptions(
-          login_hint: credential,
-          additionalParams: {
-            flowTypeKey: linkValue,
-          },
-        ),
-      _ => null,
-    };
-
-    return extraLoginOptions;
-  }
-
-  Web3AuthUserEntity _computeWeb3AuthUserEntityFrom(
-    Web3AuthResponse web3AuthResponse,
-  ) =>
-      Web3AuthUserEntity(
-        name: web3AuthResponse.userInfo?.name,
-        email: web3AuthResponse.userInfo?.email,
-        profileImage: web3AuthResponse.userInfo?.profileImage,
-        verifier: web3AuthResponse.userInfo?.verifier,
-        verifierId: web3AuthResponse.userInfo?.verifierId,
-        typeOfLogin: web3AuthResponse.userInfo?.typeOfLogin,
-        aggregateVerifier: web3AuthResponse.userInfo?.aggregateVerifier,
-        dappShare: web3AuthResponse.userInfo?.dappShare,
-        idToken: web3AuthResponse.userInfo?.idToken,
-        sessionId: web3AuthResponse.sessionId,
-        oAuthIdToken: web3AuthResponse.userInfo?.oAuthIdToken,
-        oAuthAccessToken: web3AuthResponse.userInfo?.oAuthAccessToken,
-        isMfaEnabled: web3AuthResponse.userInfo?.isMfaEnabled,
-        secp256k1PrivateKey: web3AuthResponse.privKey,
-        ed25519PrivateKey: web3AuthResponse.ed25519PrivKey,
-        secp256k1CoreKitKey: web3AuthResponse.coreKitKey,
-        ed25519CoreKitKey: web3AuthResponse.coreKitEd25519PrivKey,
-        error: web3AuthResponse.error,
-      );
 
   @override
   Future<Either<CreateSkyTradeUserFailure, SkyTradeUserEntity>>
-      createSkyTradeUserAnd({
-    required bool subscribeToNewsletter,
-  }) =>
+      createSkyTradeUser() =>
           handleData<CreateSkyTradeUserFailure, SkyTradeUserEntity>(
             dataSourceOperation: () async {
               final email = await computeUserEmail();
@@ -197,7 +166,7 @@ final class AuthRepositoryImplementation
               return _authRemoteDataSource.createSkyTradeUserUsing(
                 email: email!,
                 blockchainAddress: walletAddress,
-                subscribeToNewsletter: subscribeToNewsletter,
+                subscribeToNewsletter: true,
               );
             },
             onSuccess: (skyTradeUserEntity) => skyTradeUserEntity,
@@ -227,26 +196,4 @@ final class AuthRepositoryImplementation
               _ => CheckSkyTradeUserUnknownFailure(),
             },
           );
-
-  @override
-  Future<bool> checkWeb3AuthSessionExists() async {
-    final ed25519PrivateKey = await computeEd25519PrivateKey();
-
-    return ed25519PrivateKey.isNotEmpty;
-  }
-
-  @override
-  Future<void> captureWhenWeb3AuthCustomTabsClosed() =>
-      Web3AuthFlutter.setCustomTabsClosed();
-
-  @override
-  Future<Either<Web3AuthLogoutFailure, Unit>> logoutCurrentWeb3AuthUser() =>
-      handleData<Web3AuthLogoutFailure, Unit>(
-        dataSourceOperation: () async {
-          await Web3AuthFlutter.logout();
-          return unit;
-        },
-        onSuccess: (unit) => unit,
-        onFailure: (_) => Web3AuthLogoutFailure(),
-      );
 }

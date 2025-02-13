@@ -8,9 +8,11 @@ part of 'auth_model.dart';
 
 SkyTradeUserModel _$SkyTradeUserModelFromJson(Map<String, dynamic> json) =>
     SkyTradeUserModel(
-      mId: (json['id'] as num).toInt(),
-      mCreatedAt: json['createdAt'] as String,
-      mUpdatedAt: json['updateAt'] as String,
+      mId: json['id'] as String,
+      mCreatedAt:
+          const StringDateTimeConverter().fromJson(json['createdAt'] as String),
+      mUpdateAt:
+          const StringDateTimeConverter().fromJson(json['updateAt'] as String),
       mUsername: json['username'] as String?,
       mPassword: json['password'] as String?,
       mName: json['name'] as String,
@@ -23,7 +25,7 @@ SkyTradeUserModel _$SkyTradeUserModelFromJson(Map<String, dynamic> json) =>
       mKYCStatusId: (json['KYCStatusId'] as num).toInt(),
       mIsActive: json['isActive'] as bool,
       mUsedReferralCodeId: (json['usedReferralCodeId'] as num?)?.toInt(),
-      mOwnedReferralCodeId: (json['ownedReferralCodeId'] as num).toInt(),
+      mOwnedReferralCodeId: json['ownedReferralCodeId'] as String,
       mIsUserRewardClaimed: json['isUserRewardClaimed'] as bool,
       mOwnedReferralCode: OwnedReferralCodeModel.fromJson(
           json['ownedReferralCode'] as Map<String, dynamic>),
@@ -32,8 +34,8 @@ SkyTradeUserModel _$SkyTradeUserModelFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$SkyTradeUserModelToJson(SkyTradeUserModel instance) =>
     <String, dynamic>{
       'id': instance.mId,
-      'createdAt': instance.mCreatedAt,
-      'updateAt': instance.mUpdatedAt,
+      'createdAt': const StringDateTimeConverter().toJson(instance.mCreatedAt),
+      'updateAt': const StringDateTimeConverter().toJson(instance.mUpdateAt),
       'username': instance.mUsername,
       'password': instance.mPassword,
       'name': instance.mName,
@@ -54,7 +56,7 @@ Map<String, dynamic> _$SkyTradeUserModelToJson(SkyTradeUserModel instance) =>
 OwnedReferralCodeModel _$OwnedReferralCodeModelFromJson(
         Map<String, dynamic> json) =>
     OwnedReferralCodeModel(
-      mId: (json['id'] as num).toInt(),
+      mId: json['id'] as String,
       mCode: json['code'] as String,
       mCodeChanged: json['codeChanged'] as bool,
       mUsedByBonusEarned: json['usedByBonusEarned'] as bool,

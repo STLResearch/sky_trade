@@ -1,6 +1,17 @@
 PODS:
+  - app_links (0.0.2):
+    - Flutter
   - app_tracking_transparency (0.0.1):
     - Flutter
+  - Auth0 (2.7.2):
+    - JWTDecode (~> 3.1)
+    - SimpleKeychain (~> 1.1)
+  - auth0_flutter (1.7.2):
+    - Auth0 (= 2.7.2)
+    - Flutter
+    - FlutterMacOS
+    - JWTDecode (= 3.1.0)
+    - SimpleKeychain (= 1.1.0)
   - BigInt (5.2.0)
   - connectivity_plus (0.0.1):
     - Flutter
@@ -110,6 +121,7 @@ PODS:
   - GoogleUtilities/UserDefaults (7.13.3):
     - GoogleUtilities/Logger
     - GoogleUtilities/Privacy
+  - JWTDecode (3.1.0)
   - KeychainSwift (20.0.0)
   - mapbox_maps_flutter (2.5.1):
     - Flutter
@@ -144,23 +156,31 @@ PODS:
   - shared_preferences_foundation (0.0.1):
     - Flutter
     - FlutterMacOS
-  - TorusSessionManager (4.0.2):
+  - SimpleKeychain (1.1.0)
+  - single_factor_auth_flutter (0.0.1):
+    - Flutter
+    - SingleFactorAuth (= 8.0.0)
+  - SingleFactorAuth (8.0.0):
+    - curvelib.swift (~> 1.0.1)
+    - Torus-fetchNodeDetails (~> 6.0.3)
+    - Torus-utils (~> 9.0.1)
+    - TorusSessionManager (~> 5.0.0)
+  - Torus-fetchNodeDetails (6.0.3):
+    - BigInt (~> 5.2.0)
+  - Torus-utils (9.0.2):
+    - curvelib.swift (~> 1.0.1)
+    - Torus-fetchNodeDetails (~> 6.0.3)
+  - TorusSessionManager (5.0.0):
     - curvelib.swift (~> 1.0.1)
     - KeychainSwift (~> 20.0.0)
   - Turf (4.0.0)
   - url_launcher_ios (0.0.1):
     - Flutter
-  - Web3Auth (9.0.0):
-    - BigInt (~> 5.2.0)
-    - curvelib.swift (~> 1.0.1)
-    - KeychainSwift (~> 20.0.0)
-    - TorusSessionManager (~> 4.0.2)
-  - web3auth_flutter (2.0.1):
-    - Flutter
-    - Web3Auth (~> 9.0.0)
 
 DEPENDENCIES:
+  - app_links (from `.symlinks/plugins/app_links/ios`)
   - app_tracking_transparency (from `.symlinks/plugins/app_tracking_transparency/ios`)
+  - auth0_flutter (from `.symlinks/plugins/auth0_flutter/darwin`)
   - connectivity_plus (from `.symlinks/plugins/connectivity_plus/darwin`)
   - device_info_plus (from `.symlinks/plugins/device_info_plus/ios`)
   - firebase_analytics (from `.symlinks/plugins/firebase_analytics/ios`)
@@ -177,11 +197,12 @@ DEPENDENCIES:
   - permission_handler_apple (from `.symlinks/plugins/permission_handler_apple/ios`)
   - sentry_flutter (from `.symlinks/plugins/sentry_flutter/ios`)
   - shared_preferences_foundation (from `.symlinks/plugins/shared_preferences_foundation/darwin`)
+  - single_factor_auth_flutter (from `.symlinks/plugins/single_factor_auth_flutter/ios`)
   - url_launcher_ios (from `.symlinks/plugins/url_launcher_ios/ios`)
-  - web3auth_flutter (from `.symlinks/plugins/web3auth_flutter/ios`)
 
 SPEC REPOS:
   trunk:
+    - Auth0
     - BigInt
     - curvelib.swift
     - Firebase
@@ -191,6 +212,7 @@ SPEC REPOS:
     - FirebaseInstallations
     - GoogleAppMeasurement
     - GoogleUtilities
+    - JWTDecode
     - KeychainSwift
     - MapboxCommon
     - MapboxCoreMaps
@@ -198,13 +220,20 @@ SPEC REPOS:
     - nanopb
     - PromisesObjC
     - Sentry
+    - SimpleKeychain
+    - SingleFactorAuth
+    - Torus-fetchNodeDetails
+    - Torus-utils
     - TorusSessionManager
     - Turf
-    - Web3Auth
 
 EXTERNAL SOURCES:
+  app_links:
+    :path: ".symlinks/plugins/app_links/ios"
   app_tracking_transparency:
     :path: ".symlinks/plugins/app_tracking_transparency/ios"
+  auth0_flutter:
+    :path: ".symlinks/plugins/auth0_flutter/darwin"
   connectivity_plus:
     :path: ".symlinks/plugins/connectivity_plus/darwin"
   device_info_plus:
@@ -237,13 +266,16 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/sentry_flutter/ios"
   shared_preferences_foundation:
     :path: ".symlinks/plugins/shared_preferences_foundation/darwin"
+  single_factor_auth_flutter:
+    :path: ".symlinks/plugins/single_factor_auth_flutter/ios"
   url_launcher_ios:
     :path: ".symlinks/plugins/url_launcher_ios/ios"
-  web3auth_flutter:
-    :path: ".symlinks/plugins/web3auth_flutter/ios"
 
 SPEC CHECKSUMS:
+  app_links: e7a6750a915a9e161c58d91bc610e8cd1d4d0ad0
   app_tracking_transparency: e169b653478da7bb15a6c61209015378ca73e375
+  Auth0: 28cb24cb19ebd51f0b07751f16d83b59f4019532
+  auth0_flutter: f085572268059bc194c7b023d7f432f5ebb72413
   BigInt: f668a80089607f521586bbe29513d708491ef2f7
   connectivity_plus: 4c41c08fc6d7c91f63bc7aec70ffe3730b04f563
   curvelib.swift: d0746ae82bee34016c06da3567a97e493b3c979f
@@ -263,6 +295,7 @@ SPEC CHECKSUMS:
   geolocator_apple: 6cbaf322953988e009e5ecb481f07efece75c450
   GoogleAppMeasurement: 9abf64b682732fed36da827aa2a68f0221fd2356
   GoogleUtilities: ea963c370a38a8069cc5f7ba4ca849a60b6d7d15
+  JWTDecode: 3eaab1e06b6f4dcbdd6716aff09ba4c2104ca8b7
   KeychainSwift: 0ce6a4d13f7228054d1a71bb1b500448fb2ab837
   mapbox_maps_flutter: c4a7d79d553ca71c02b6d1ef8bf7eee34ffd4c7e
   MapboxCommon: 678bfc4b477a804244fd7323c79cc7f2402f844e
@@ -276,11 +309,14 @@ SPEC CHECKSUMS:
   Sentry: f8374b5415bc38dfb5645941b3ae31230fbeae57
   sentry_flutter: 0eb93e5279eb41e2392212afe1ccd2fecb4f8cbe
   shared_preferences_foundation: fcdcbc04712aee1108ac7fda236f363274528f78
-  TorusSessionManager: 05a1a8f3265d0949a1a342c4ba2c52882445b614
+  SimpleKeychain: f8707c8e97b38c6a6e687b17732afc9bcef06439
+  single_factor_auth_flutter: 9617e5ffce9c0251bddb19cbe49293f921c13b79
+  SingleFactorAuth: 2bfa8ad0fe8d0023fffdf1a5f0c9634ca3ee66d8
+  Torus-fetchNodeDetails: 6c349f47cbca36a4b3f276fe26d03c1b39b20949
+  Torus-utils: ced66811dea2e59bc21a2af1dc1f6f7d5230acd9
+  TorusSessionManager: 42c21f100d895976fabe3806cb9c575392f6e424
   Turf: c9eb11a65d96af58cac523460fd40fec5061b081
   url_launcher_ios: 5334b05cef931de560670eeae103fd3e431ac3fe
-  Web3Auth: 086b5152a43df347ceff196c0ce67f6330838884
-  web3auth_flutter: bc5ffefe573c72f7fb1814573269952b045b7b22
 
 PODFILE CHECKSUM: 9b95580263aa8cdfea9e05a60f0148ef25fe3dea
 

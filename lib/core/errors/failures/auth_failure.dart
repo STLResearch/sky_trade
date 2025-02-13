@@ -1,16 +1,26 @@
 import 'package:equatable/equatable.dart' show Equatable;
 
-final class Web3AuthInitializationFailure extends Equatable {
+final class Auth0AuthenticationFailure extends Equatable {
   @override
   List<Object?> get props => [];
 }
 
-final class Web3AuthAuthenticationFailure extends Equatable {
+final class Auth0UserNotFoundFailure extends Equatable {
   @override
   List<Object?> get props => [];
 }
 
-final class Web3AuthLogoutFailure extends Equatable {
+final class Auth0LogoutFailure extends Equatable {
+  @override
+  List<Object?> get props => [];
+}
+
+final class SFAInitializationFailure extends Equatable {
+  @override
+  List<Object?> get props => [];
+}
+
+final class SFAAuthenticationFailure extends Equatable {
   @override
   List<Object?> get props => [];
 }
