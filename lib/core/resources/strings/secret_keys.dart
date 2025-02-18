@@ -1,4 +1,4 @@
-// Mapbox maps
+// Mapbox
 const mapboxMapsPublicKey = 'MAPBOX_MAPS_PUBLIC_KEY';
 const mapboxMapsDarkStyleUri = 'MAPBOX_MAPS_DARK_STYLE_URI';
 const mapboxMapsSatelliteStyleUri = 'MAPBOX_MAPS_SATELLITE_STYLE_URI';
@@ -21,7 +21,7 @@ const skyTradeServerSignUrl = 'SKYTRADE_SERVER_SIGN_URL';
 const skyTradeServerHttpSignUrl = 'SKYTRADE_SERVER_HTTP_SIGN_URL';
 const skyTradeServerSocketIOBaseUrl = 'SKYTRADE_SERVER_SOCKET_IO_BASE_URL';
 
-// Open weather map
+// Open Weather Map
 const openWeatherMapApiKey = 'OPEN_WEATHER_MAP_API_KEY';
 const openWeatherMapApiBaseUrl = 'OPEN_WEATHER_MAP_API_BASE_URL';
 const openWeatherMapIconBaseUrl = 'OPEN_WEATHER_MAP_ICON_BASE_URL';
@@ -31,3 +31,7 @@ const sentryDsn = 'SENTRY_DSN';
 
 // Clarity
 const clarityProjectId = 'CLARITY_PROJECT_ID';
+
+// App Links
+const skyTradeAppLinkHost1 = 'SKYTRADE_APP_LINK_HOST_1';
+const skyTradeAppLinkHost2 = 'SKYTRADE_APP_LINK_HOST_2';

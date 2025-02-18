@@ -24,10 +24,16 @@ import 'package:sky_trade/core/resources/numbers/ui.dart'
     show fifteenDotNil, fortyDotNil, tenDotNil, thirtyDotNil, twentyTwoDotFive;
 import 'package:sky_trade/core/resources/strings/routes.dart'
     show loadingRoutePath;
+import 'package:sky_trade/core/utils/enums/ui.dart' show ErrorReason;
 import 'package:sky_trade/core/utils/extensions/build_context_extensions.dart';
 
 class ErrorScreen extends StatelessWidget {
-  const ErrorScreen({super.key});
+  const ErrorScreen({
+    required this.reason,
+    super.key,
+  });
+
+  final ErrorReason reason;
 
   @override
   Widget build(BuildContext context) => Scaffold(
@@ -48,7 +54,12 @@ class ErrorScreen extends StatelessWidget {
                     height: fortyDotNil,
                   ),
                   Text(
-                    context.localize.oopsSomethingWentWrong,
+                    switch (reason) {
+                      ErrorReason.sessionInitializationFailure =>
+                        context.localize.oopsSomethingWentWrong,
+                      ErrorReason.unknownNavigationRoute =>
+                        context.localize.ohMyThisIsOnUs,
+                    },
                     textAlign: TextAlign.center,
                     style: Theme.of(context).textTheme.bodyLarge,
                   ),
@@ -56,8 +67,13 @@ class ErrorScreen extends StatelessWidget {
                     height: fifteenDotNil,
                   ),
                   Text(
-                    context.localize
-                        .itLooksLikeWereHavingTroubleInitializingYourSession,
+                    switch (reason) {
+                      ErrorReason.sessionInitializationFailure => context
+                          .localize
+                          .itLooksLikeWereHavingTroubleInitializingYourSession,
+                      ErrorReason.unknownNavigationRoute =>
+                        context.localize.weTookYouToAnUnknownRoute,
+                    },
                     textAlign: TextAlign.center,
                     style: Theme.of(context).textTheme.bodyMedium,
                   ),
@@ -65,8 +81,13 @@ class ErrorScreen extends StatelessWidget {
                     height: fifteenDotNil,
                   ),
                   Text(
-                    context.localize
-                        .anUnexpectedErrorOccurredPleaseTryRefreshingThePageIfTheIssueContinuesYouMayWantToCheckYourConnectionOrTryAgainLater,
+                    switch (reason) {
+                      ErrorReason.sessionInitializationFailure => context
+                          .localize
+                          .anUnexpectedErrorOccurredPleaseTryRefreshingThePageIfTheIssueContinuesYouMayWantToCheckYourConnectionOrTryAgainLater,
+                      ErrorReason.unknownNavigationRoute => context.localize
+                          .weMustHaveDoneSomethingWrongSomewhereWeAreReallySorryAboutThatRegardlessRefreshingThisPageWillFixThis,
+                    },
                     textAlign: TextAlign.center,
                     style: Theme.of(context).textTheme.bodySmall,
                   ),

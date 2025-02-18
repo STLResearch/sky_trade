@@ -1,8 +1,9 @@
 // ignore_for_file: strict_raw_type
 
 import 'package:flutter/material.dart'
-    show Container, MaterialPageRoute, Route, RouteSettings;
+    show MaterialPageRoute, Route, RouteSettings;
 import 'package:sky_trade/core/resources/strings/routes.dart';
+import 'package:sky_trade/core/utils/enums/ui.dart' show ErrorReason;
 import 'package:sky_trade/features/auth/presentation/views/error_screen.dart';
 import 'package:sky_trade/features/auth/presentation/views/get_started_screen.dart'
     show GetStartedScreen;
@@ -21,12 +22,16 @@ Route routes(RouteSettings settings) => MaterialPageRoute(
       builder: (context) => switch (settings.name) {
         baseRoutePath || loadingRoutePath => const LoadingScreen(),
         noInternetConnectionRoutePath => const NoInternetConnectionScreen(),
-        errorRoutePath => const ErrorScreen(),
+        errorRoutePath => ErrorScreen(
+            reason: settings.arguments! as ErrorReason,
+          ),
         getStartedRoutePath => const GetStartedScreen(),
         homeRoutePath => const HomeScreen(),
         helpRoutePath => const HelpScreen(),
         insightsRoutePath => const InsightsScreen(),
         settingsRoutePath => const SettingsScreen(),
-        _ => Container(), // Replace with error screen,
+        _ => const ErrorScreen(
+            reason: ErrorReason.unknownNavigationRoute,
+          ),
       },
     );

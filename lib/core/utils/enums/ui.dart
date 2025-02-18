@@ -24,3 +24,8 @@ enum Period {
   oneMonth,
   oneYear,
 }
+
+enum ErrorReason {
+  sessionInitializationFailure,
+  unknownNavigationRoute,
+}

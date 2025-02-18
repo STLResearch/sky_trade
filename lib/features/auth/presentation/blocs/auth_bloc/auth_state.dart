@@ -8,6 +8,14 @@ class AuthState with _$AuthState {
 
   const factory AuthState.authenticating() = _Authenticating;
 
+  const factory AuthState.emailVerificationSent({
+    required String? email,
+  }) = _EmailVerificationSent;
+
+  const factory AuthState.emailNotVerified({
+    required String? email,
+  }) = _EmailNotVerified;
+
   const factory AuthState.authenticated() = _Authenticated;
 
   const factory AuthState.failedToCheckSkyTradeUser({

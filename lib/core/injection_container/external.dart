@@ -1,3 +1,4 @@
+import 'package:app_links/app_links.dart';
 import 'package:auth0_flutter/auth0_flutter.dart' show Auth0;
 import 'package:firebase_analytics/firebase_analytics.dart'
     show FirebaseAnalytics;
@@ -39,5 +40,8 @@ Future<void> registerExternalServices() async {
           },
         ),
       ),
+    )
+    ..registerLazySingleton<AppLinks>(
+      AppLinks.new,
     );
 }

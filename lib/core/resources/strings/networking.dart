@@ -1,5 +1,14 @@
 // ignore_for_file: lines_longer_than_80_chars
 
+// App links
+const appLinkHttpScheme = 'http';
+const appLinkHttpsScheme = 'https';
+const uAppLinkPathSegment = 'u';
+const emailVerificationAppLinkPathSegment = 'email-verification';
+const uAppLinkPath = '/$uAppLinkPathSegment';
+const emailVerificationAppLinkPath = '/$emailVerificationAppLinkPathSegment';
+const ticketAppLinkQueryParameter = 'ticket';
+
 // OpenWeather
 // Endpoints
 // Paths

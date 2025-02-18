@@ -1,3 +1,4 @@
+import 'package:auth0_flutter/auth0_flutter.dart' show Credentials;
 import 'package:dartz/dartz.dart' show Either, Unit;
 import 'package:sky_trade/core/errors/failures/auth_failure.dart';
 import 'package:sky_trade/features/auth/domain/entities/auth_entity.dart'
@@ -6,6 +7,14 @@ import 'package:sky_trade/features/auth/domain/entities/auth_entity.dart'
 abstract interface class AuthRepository {
   Future<Either<Auth0AuthenticationFailure, Auth0UserEntity>>
       authenticateUserWithAuth0();
+
+  Future<Credentials> renewAuth0UserCredentialsUsing({
+    required String refreshToken,
+  });
+
+  Future<bool> updateAuth0UserWithNew({
+    required Credentials credentials,
+  });
 
   Future<bool> checkAuth0UserSessionExists();
 
@@ -20,6 +29,8 @@ abstract interface class AuthRepository {
     required String? email,
     required String idToken,
   });
+
+  Future<bool> checkSFAUserSessionExists();
 
   Future<Either<CreateSkyTradeUserFailure, SkyTradeUserEntity>>
       createSkyTradeUser();

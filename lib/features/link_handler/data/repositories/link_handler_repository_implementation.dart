@@ -1,3 +1,4 @@
+import 'package:app_links/app_links.dart';
 import 'package:dartz/dartz.dart' show Either;
 import 'package:sky_trade/core/errors/failures/link_handler_failure.dart';
 import 'package:sky_trade/core/utils/clients/data_handler.dart';
@@ -8,6 +9,15 @@ import 'package:url_launcher/url_launcher.dart' show canLaunchUrl, launchUrl;
 final class LinkHandlerRepositoryImplementation
     with DataHandler
     implements LinkHandlerRepository {
+  const LinkHandlerRepositoryImplementation(
+    AppLinks appLinks,
+  ) : _appLinks = appLinks;
+
+  final AppLinks _appLinks;
+
+  @override
+  Stream<Uri> get linkStream => _appLinks.uriLinkStream;
+
   @override
   Future<Either<CheckLinkFailure, LinkEntity>> checkLink({
     required String link,

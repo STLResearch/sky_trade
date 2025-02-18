@@ -77,7 +77,8 @@ android {
             dimension "environment"
             resValue "string", "app_version", "${defaultConfig.versionName}${versionNameSuffix}"
             manifestPlaceholders += [
-                    host       : "dev.sky.trade",
+                    host1      : "dev.sky.trade",
+                    host2      : "dev-auth.sky.trade",
                     auth0Domain: "dev-auth.sky.trade",
                     auth0Scheme: "https"
             ]
@@ -88,7 +89,8 @@ android {
             dimension "environment"
             resValue "string", "app_version", "${defaultConfig.versionName}${versionNameSuffix}"
             manifestPlaceholders += [
-                    host       : "staging.sky.trade",
+                    host1      : "staging.sky.trade",
+                    host2      : "staging-auth.sky.trade",
                     auth0Domain: "staging-auth.sky.trade",
                     auth0Scheme: "https"
             ]
@@ -99,7 +101,8 @@ android {
             dimension "environment"
             resValue "string", "app_version", "${defaultConfig.versionName}${versionNameSuffix}"
             manifestPlaceholders += [
-                    host       : "app.sky.trade",
+                    host1      : "app.sky.trade",
+                    host2      : "auth.sky.trade",
                     auth0Domain: "auth.sky.trade",
                     auth0Scheme: "https"
             ]

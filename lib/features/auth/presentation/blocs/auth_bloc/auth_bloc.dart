@@ -70,6 +70,9 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       return;
     }
 
+    final sFAUserSessionExists =
+        await _authRepository.checkSFAUserSessionExists();
+
     final auth0User = await _authRepository.auth0User;
 
     auth0User.fold(
@@ -79,8 +82,29 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         );
       },
       (auth0UserEntity) {
-        add(
-          const AuthEvent.checkSkyTradeUserExists(),
+        if (auth0UserEntity.emailVerified ?? false) {
+          if (!sFAUserSessionExists) {
+            add(
+              AuthEvent.authenticateUserWithSFA(
+                email: auth0UserEntity.email,
+                idToken: auth0UserEntity.idToken,
+              ),
+            );
+
+            return;
+          }
+
+          add(
+            const AuthEvent.checkSkyTradeUserExists(),
+          );
+
+          return;
+        }
+
+        emit(
+          AuthState.emailNotVerified(
+            email: auth0UserEntity.email,
+          ),
         );
       },
     );
@@ -100,6 +124,16 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         );
       },
       (auth0UserEntity) {
+        if (auth0UserEntity.emailVerified == false) {
+          emit(
+            AuthState.emailVerificationSent(
+              email: auth0UserEntity.email,
+            ),
+          );
+
+          return;
+        }
+
         add(
           AuthEvent.authenticateUserWithSFA(
             email: auth0UserEntity.email,
