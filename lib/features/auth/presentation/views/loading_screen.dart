@@ -45,7 +45,10 @@ import 'package:sky_trade/core/resources/strings/routes.dart'
         getStartedRoutePath,
         homeRoutePath,
         noInternetConnectionRoutePath;
+import 'package:sky_trade/core/utils/enums/ui.dart' show ErrorReason;
 import 'package:sky_trade/core/utils/extensions/build_context_extensions.dart';
+import 'package:sky_trade/features/auth/presentation/blocs/auth_0_credentials_bloc/auth_0_credentials_bloc.dart'
+    show Auth0CredentialsBloc, Auth0CredentialsEvent, Auth0CredentialsState;
 import 'package:sky_trade/features/auth/presentation/blocs/auth_0_user_session_bloc/auth_0_user_session_bloc.dart'
     show Auth0UserSessionBloc, Auth0UserSessionEvent, Auth0UserSessionState;
 import 'package:sky_trade/features/auth/presentation/blocs/check_sky_trade_user_exists_bloc/check_sky_trade_user_exists_bloc.dart'
@@ -60,6 +63,8 @@ import 'package:sky_trade/features/internet_connection_checker/presentation/bloc
         InternetConnectionCheckerBloc,
         InternetConnectionCheckerEvent,
         InternetConnectionCheckerState;
+import 'package:sky_trade/features/link_handler/presentation/blocs/app_link_bloc/app_link_bloc.dart'
+    show AppLinkBloc;
 import 'package:sky_trade/injection_container.dart' show serviceLocator;
 
 class LoadingScreen extends StatelessWidget {
@@ -72,6 +77,9 @@ class LoadingScreen extends StatelessWidget {
             create: (_) => serviceLocator(),
           ),
           BlocProvider<Auth0UserSessionBloc>(
+            create: (_) => serviceLocator(),
+          ),
+          BlocProvider<Auth0CredentialsBloc>(
             create: (_) => serviceLocator(),
           ),
           BlocProvider<InternetConnectionCheckerBloc>(
@@ -106,6 +114,7 @@ class _LoadingViewState extends State<LoadingView> {
 
   void _removeSplashScreenAndNavigateTo({
     required String route,
+    Object? arguments,
   }) {
     FlutterNativeSplash.remove();
 
@@ -113,6 +122,7 @@ class _LoadingViewState extends State<LoadingView> {
       context,
     ).pushReplacementNamed(
       route,
+      arguments: arguments,
     );
   }
 
@@ -130,6 +140,7 @@ class _LoadingViewState extends State<LoadingView> {
                 failedToInitialize: (_) {
                   _removeSplashScreenAndNavigateTo(
                     route: errorRoutePath,
+                    arguments: ErrorReason.sessionInitializationFailure,
                   );
                 },
               );
@@ -139,12 +150,46 @@ class _LoadingViewState extends State<LoadingView> {
             listener: (_, auth0UserSessionState) {
               auth0UserSessionState.whenOrNull(
                 existingUserSession: (auth0UserEntity) {
+                  context.read<AppLinkBloc>().state.whenOrNull(
+                    emailVerificationLink: () {
+                      context.read<Auth0CredentialsBloc>().add(
+                            Auth0CredentialsEvent.renewCredentials(
+                              refreshToken: auth0UserEntity.refreshToken,
+                            ),
+                          );
+                    },
+                    noLink: () {
+                      context.read<InternetConnectionCheckerBloc>().add(
+                            const InternetConnectionCheckerEvent
+                                .checkActiveInternetConnection(),
+                          );
+                    },
+                    unrecognizedLink: () {
+                      context.read<InternetConnectionCheckerBloc>().add(
+                            const InternetConnectionCheckerEvent
+                                .checkActiveInternetConnection(),
+                          );
+                    },
+                  );
+                },
+                nonExistentUserSession: () {
+                  _removeSplashScreenAndNavigateTo(
+                    route: getStartedRoutePath,
+                  );
+                },
+              );
+            },
+          ),
+          BlocListener<Auth0CredentialsBloc, Auth0CredentialsState>(
+            listener: (_, auth0CredentialsState) {
+              auth0CredentialsState.whenOrNull(
+                renewedCredentials: () {
                   context.read<InternetConnectionCheckerBloc>().add(
                         const InternetConnectionCheckerEvent
                             .checkActiveInternetConnection(),
                       );
                 },
-                nonExistentUserSession: () {
+                failedToRenewCredentials: () {
                   _removeSplashScreenAndNavigateTo(
                     route: getStartedRoutePath,
                   );

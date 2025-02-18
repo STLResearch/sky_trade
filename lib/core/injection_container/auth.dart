@@ -4,6 +4,8 @@ import 'package:sky_trade/features/auth/data/repositories/auth_repository_implem
 import 'package:sky_trade/features/auth/domain/repositories/auth_repository.dart';
 import 'package:sky_trade/features/auth/presentation/blocs/auth_0_authentication_bloc/auth_0_authentication_bloc.dart'
     show Auth0AuthenticationBloc;
+import 'package:sky_trade/features/auth/presentation/blocs/auth_0_credentials_bloc/auth_0_credentials_bloc.dart'
+    show Auth0CredentialsBloc;
 import 'package:sky_trade/features/auth/presentation/blocs/auth_0_logout_bloc/auth_0_logout_bloc.dart'
     show Auth0LogoutBloc;
 import 'package:sky_trade/features/auth/presentation/blocs/auth_0_user_session_bloc/auth_0_user_session_bloc.dart'
@@ -12,8 +14,6 @@ import 'package:sky_trade/features/auth/presentation/blocs/auth_bloc/auth_bloc.d
     show AuthBloc;
 import 'package:sky_trade/features/auth/presentation/blocs/check_sky_trade_user_exists_bloc/check_sky_trade_user_exists_bloc.dart'
     show CheckSkyTradeUserExistsBloc;
-import 'package:sky_trade/features/auth/presentation/blocs/s_f_a_authentication_bloc/s_f_a_authentication_bloc.dart'
-    show SFAAuthenticationBloc;
 import 'package:sky_trade/features/auth/presentation/blocs/s_f_a_initialization_bloc/s_f_a_initialization_bloc.dart'
     show SFAInitializationBloc;
 
@@ -24,6 +24,11 @@ Future<void> registerAuthServices() async {
     // BLoCs
     ..registerFactory<Auth0AuthenticationBloc>(
       () => Auth0AuthenticationBloc(
+        _sl(),
+      ),
+    )
+    ..registerFactory<Auth0CredentialsBloc>(
+      () => Auth0CredentialsBloc(
         _sl(),
       ),
     )
@@ -44,11 +49,6 @@ Future<void> registerAuthServices() async {
     )
     ..registerFactory<CheckSkyTradeUserExistsBloc>(
       () => CheckSkyTradeUserExistsBloc(
-        _sl(),
-      ),
-    )
-    ..registerFactory<SFAAuthenticationBloc>(
-      () => SFAAuthenticationBloc(
         _sl(),
       ),
     )

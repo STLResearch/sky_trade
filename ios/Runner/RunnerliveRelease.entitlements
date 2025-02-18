@@ -8,6 +8,7 @@
 	<array>
 		<string>webcredentials:auth.sky.trade</string>
 		<string>applinks:app.sky.trade</string>
+		<string>applinks:auth.sky.trade</string>
 	</array>
 </dict>
 </plist>

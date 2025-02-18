@@ -1,4 +1,4 @@
-import 'package:auth0_flutter/auth0_flutter.dart' show Auth0;
+import 'package:auth0_flutter/auth0_flutter.dart' show Auth0, Credentials;
 import 'package:dartz/dartz.dart' show Either, Unit, unit;
 import 'package:flutter_dotenv/flutter_dotenv.dart' show dotenv;
 import 'package:single_factor_auth_flutter/input.dart'
@@ -54,12 +54,30 @@ final class AuthRepositoryImplementation
 
               return Auth0UserEntity(
                 idToken: credentials.idToken,
+                refreshToken: credentials.refreshToken,
                 email: credentials.user.email,
+                emailVerified: credentials.user.isEmailVerified,
               );
             },
             onSuccess: (auth0UserEntity) => auth0UserEntity,
             onFailure: (_) => Auth0AuthenticationFailure(),
           );
+
+  @override
+  Future<Credentials> renewAuth0UserCredentialsUsing({
+    required String refreshToken,
+  }) =>
+      _auth0.api.renewCredentials(
+        refreshToken: refreshToken,
+      );
+
+  @override
+  Future<bool> updateAuth0UserWithNew({
+    required Credentials credentials,
+  }) =>
+      _auth0.credentialsManager.storeCredentials(
+        credentials,
+      );
 
   @override
   Future<bool> checkAuth0UserSessionExists() =>
@@ -73,7 +91,9 @@ final class AuthRepositoryImplementation
 
           return Auth0UserEntity(
             idToken: credentials.idToken,
+            refreshToken: credentials.refreshToken,
             email: credentials.user.email,
+            emailVerified: credentials.user.isEmailVerified,
           );
         },
         onSuccess: (auth0UserEntity) => auth0UserEntity,
@@ -153,15 +173,17 @@ final class AuthRepositoryImplementation
           );
 
   @override
+  Future<bool> checkSFAUserSessionExists() =>
+      _singleFactorAuthentication.isSessionIdExists();
+
+  @override
   Future<Either<CreateSkyTradeUserFailure, SkyTradeUserEntity>>
       createSkyTradeUser() =>
           handleData<CreateSkyTradeUserFailure, SkyTradeUserEntity>(
             dataSourceOperation: () async {
               final email = await computeUserEmail();
 
-              final ed25519KeyPair = await computeEd25519KeyPair();
-
-              final walletAddress = ed25519KeyPair.address;
+              final walletAddress = await computeUserAddress();
 
               return _authRemoteDataSource.createSkyTradeUserUsing(
                 email: email!,

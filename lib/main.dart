@@ -20,7 +20,7 @@ import 'package:path_provider/path_provider.dart'
 import 'package:sentry_flutter/sentry_flutter.dart' show SentryFlutter;
 import 'package:shared_preferences/shared_preferences.dart'
     show SharedPreferencesWithCache;
-import 'package:sky_trade/app.dart';
+import 'package:sky_trade/app.dart' show App;
 import 'package:sky_trade/app_bloc_observer.dart';
 import 'package:sky_trade/core/resources/numbers/local.dart'
     show one, thirtySix;
@@ -123,7 +123,7 @@ Future<bool> _shouldCollectAnalyticsData() async {
       (analyticsState ?? false);
 }
 
-Widget get _app => switch (_environment == devEnvironment || kDebugMode) {
+Widget get _app => switch (_environment == devEnvironment && kDebugMode) {
       true => const App(),
       false => Clarity(
           app: const App(),
