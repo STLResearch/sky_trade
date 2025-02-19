@@ -4,7 +4,8 @@ import 'package:flutter/material.dart'
     show MaterialPageRoute, Route, RouteSettings;
 import 'package:sky_trade/core/resources/strings/routes.dart';
 import 'package:sky_trade/core/utils/enums/ui.dart' show ErrorReason;
-import 'package:sky_trade/features/auth/presentation/views/error_screen.dart';
+import 'package:sky_trade/features/auth/presentation/views/error_screen.dart'
+    show ErrorScreen;
 import 'package:sky_trade/features/auth/presentation/views/get_started_screen.dart'
     show GetStartedScreen;
 import 'package:sky_trade/features/auth/presentation/views/loading_screen.dart'

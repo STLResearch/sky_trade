@@ -74,12 +74,18 @@ import 'package:sky_trade/core/resources/numbers/ui.dart'
         twoDotNil,
         zero;
 import 'package:sky_trade/core/resources/strings/routes.dart'
-    show getStartedRoutePath;
+    show errorRoutePath, getStartedRoutePath;
 import 'package:sky_trade/core/resources/strings/special_characters.dart'
     show emptyString, whiteSpace;
+import 'package:sky_trade/core/utils/enums/ui.dart' show ErrorReason;
 import 'package:sky_trade/core/utils/extensions/build_context_extensions.dart';
 import 'package:sky_trade/features/auth/presentation/blocs/auth_0_logout_bloc/auth_0_logout_bloc.dart'
     show Auth0LogoutBloc, Auth0LogoutEvent, Auth0LogoutState;
+import 'package:sky_trade/features/auth/presentation/blocs/auth_0_user_session_after_account_deletion_bloc/auth_0_user_session_after_account_deletion_bloc.dart'
+    show
+        Auth0UserSessionAfterAccountDeletionBloc,
+        Auth0UserSessionAfterAccountDeletionEvent,
+        Auth0UserSessionAfterAccountDeletionState;
 import 'package:sky_trade/features/settings/presentation/blocs/delete_account_bloc/delete_account_bloc.dart'
     show DeleteAccountBloc, DeleteAccountEvent, DeleteAccountState;
 import 'package:sky_trade/features/settings/presentation/blocs/otp_resend_timer_bloc/otp_resend_timer_bloc.dart'
@@ -103,6 +109,9 @@ class DeleteAccount extends StatelessWidget {
             create: (_) => serviceLocator(),
           ),
           BlocProvider<DeleteAccountBloc>(
+            create: (_) => serviceLocator(),
+          ),
+          BlocProvider<Auth0UserSessionAfterAccountDeletionBloc>(
             create: (_) => serviceLocator(),
           ),
           BlocProvider<RequestDeleteAccountBloc>(
@@ -153,7 +162,10 @@ class _DeleteAccountViewState extends State<DeleteAccountView> {
     super.dispose();
   }
 
-  void _closeSheetSettingsScreenAndNavigateToGetStartedScreen() {
+  void _closeSheetSettingsScreenAndNavigateTo({
+    required String route,
+    Object? arguments,
+  }) {
     Navigator.of(
       context,
     )
@@ -163,7 +175,8 @@ class _DeleteAccountViewState extends State<DeleteAccountView> {
     Navigator.of(
       context,
     ).pushReplacementNamed(
-      getStartedRoutePath,
+      route,
+      arguments: arguments,
     );
   }
 
@@ -195,10 +208,29 @@ class _DeleteAccountViewState extends State<DeleteAccountView> {
             listener: (context, auth0LogoutState) {
               auth0LogoutState.whenOrNull(
                 loggedOut: () {
-                  _closeSheetSettingsScreenAndNavigateToGetStartedScreen();
+                  _closeSheetSettingsScreenAndNavigateTo(
+                    route: getStartedRoutePath,
+                  );
                 },
                 failedToLogOut: (_) {
-                  _closeSheetSettingsScreenAndNavigateToGetStartedScreen();
+                  context.read<Auth0UserSessionAfterAccountDeletionBloc>().add(
+                        const Auth0UserSessionAfterAccountDeletionEvent
+                            .auth0SessionExisting(),
+                      );
+                },
+              );
+            },
+          ),
+          BlocListener<Auth0UserSessionAfterAccountDeletionBloc,
+              Auth0UserSessionAfterAccountDeletionState>(
+            listener: (context, auth0UserSessionAfterAccountDeletionState) {
+              auth0UserSessionAfterAccountDeletionState.whenOrNull(
+                existingAuth0Session: () {
+                  _closeSheetSettingsScreenAndNavigateTo(
+                    route: errorRoutePath,
+                    arguments:
+                        ErrorReason.deletedSkyTradeUserWithExistingAuth0Session,
+                  );
                 },
               );
             },
