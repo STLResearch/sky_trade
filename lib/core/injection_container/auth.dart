@@ -1,4 +1,5 @@
 import 'package:get_it/get_it.dart' show GetIt;
+import 'package:sky_trade/features/auth/data/data_sources/auth_local_data_source.dart';
 import 'package:sky_trade/features/auth/data/data_sources/auth_remote_data_source.dart';
 import 'package:sky_trade/features/auth/data/repositories/auth_repository_implementation.dart';
 import 'package:sky_trade/features/auth/domain/repositories/auth_repository.dart';
@@ -40,7 +41,9 @@ Future<void> registerAuthServices() async {
       ),
     )
     ..registerFactory<Auth0UserSessionAfterAccountDeletionBloc>(
-      Auth0UserSessionAfterAccountDeletionBloc.new,
+      () => Auth0UserSessionAfterAccountDeletionBloc(
+        _sl(),
+      ),
     )
     ..registerFactory<Auth0UserSessionBloc>(
       () => Auth0UserSessionBloc(
@@ -68,6 +71,7 @@ Future<void> registerAuthServices() async {
       () => AuthRepositoryImplementation(
         auth0: _sl(),
         singleFactorAuthentication: _sl(),
+        authLocalDataSource: _sl(),
         authRemoteDataSource: _sl(),
       ),
     )
@@ -75,6 +79,11 @@ Future<void> registerAuthServices() async {
     // Data sources
     ..registerLazySingleton<AuthRemoteDataSource>(
       () => AuthRemoteDataSourceImplementation(
+        _sl(),
+      ),
+    )
+    ..registerLazySingleton<AuthLocalDataSource>(
+      () => AuthLocalDataSourceImplementation(
         _sl(),
       ),
     );

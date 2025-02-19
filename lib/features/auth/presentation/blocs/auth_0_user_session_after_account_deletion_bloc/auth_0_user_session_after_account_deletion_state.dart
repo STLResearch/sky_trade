@@ -7,6 +7,9 @@ class Auth0UserSessionAfterAccountDeletionState
     with _$Auth0UserSessionAfterAccountDeletionState {
   const factory Auth0UserSessionAfterAccountDeletionState.initial() = _Initial;
 
+  const factory Auth0UserSessionAfterAccountDeletionState.gettingAuth0Session() =
+      _GettingAuth0Session;
+
   const factory Auth0UserSessionAfterAccountDeletionState.existingAuth0Session() =
       _ExistingAuth0Session;
 

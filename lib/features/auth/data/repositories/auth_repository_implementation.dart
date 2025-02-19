@@ -23,6 +23,8 @@ import 'package:sky_trade/core/resources/strings/secret_keys.dart'
     show sFAAggregateVerifier, sFAVerifier, web3AuthClientId;
 import 'package:sky_trade/core/utils/clients/data_handler.dart';
 import 'package:sky_trade/core/utils/clients/signature_handler.dart';
+import 'package:sky_trade/features/auth/data/data_sources/auth_local_data_source.dart'
+    show AuthLocalDataSource;
 import 'package:sky_trade/features/auth/data/data_sources/auth_remote_data_source.dart'
     show AuthRemoteDataSource;
 import 'package:sky_trade/features/auth/domain/entities/auth_entity.dart';
@@ -34,14 +36,18 @@ final class AuthRepositoryImplementation
   const AuthRepositoryImplementation({
     required Auth0 auth0,
     required SingleFactAuthFlutter singleFactorAuthentication,
+    required AuthLocalDataSource authLocalDataSource,
     required AuthRemoteDataSource authRemoteDataSource,
   })  : _auth0 = auth0,
         _singleFactorAuthentication = singleFactorAuthentication,
+        _authLocalDataSource = authLocalDataSource,
         _authRemoteDataSource = authRemoteDataSource;
 
   final Auth0 _auth0;
 
   final SingleFactAuthFlutter _singleFactorAuthentication;
+
+  final AuthLocalDataSource _authLocalDataSource;
 
   final AuthRemoteDataSource _authRemoteDataSource;
 
@@ -98,6 +104,18 @@ final class AuthRepositoryImplementation
         },
         onSuccess: (auth0UserEntity) => auth0UserEntity,
         onFailure: (_) => Auth0UserNotFoundFailure(),
+      );
+
+  @override
+  Future<bool> get auth0SessionForDeletedUserExists =>
+      _authLocalDataSource.auth0SessionForDeletedUserExists;
+
+  @override
+  Future<void> setAuth0SessionForDeletedUserExists({
+    required bool value,
+  }) =>
+      _authLocalDataSource.setAuth0SessionForDeletedUserExists(
+        value: value,
       );
 
   @override

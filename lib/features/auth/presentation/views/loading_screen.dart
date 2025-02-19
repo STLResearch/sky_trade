@@ -50,7 +50,10 @@ import 'package:sky_trade/core/utils/extensions/build_context_extensions.dart';
 import 'package:sky_trade/features/auth/presentation/blocs/auth_0_credentials_bloc/auth_0_credentials_bloc.dart'
     show Auth0CredentialsBloc, Auth0CredentialsEvent, Auth0CredentialsState;
 import 'package:sky_trade/features/auth/presentation/blocs/auth_0_user_session_after_account_deletion_bloc/auth_0_user_session_after_account_deletion_bloc.dart'
-    show Auth0UserSessionAfterAccountDeletionBloc;
+    show
+        Auth0UserSessionAfterAccountDeletionBloc,
+        Auth0UserSessionAfterAccountDeletionEvent,
+        Auth0UserSessionAfterAccountDeletionState;
 import 'package:sky_trade/features/auth/presentation/blocs/auth_0_user_session_bloc/auth_0_user_session_bloc.dart'
     show Auth0UserSessionBloc, Auth0UserSessionEvent, Auth0UserSessionState;
 import 'package:sky_trade/features/auth/presentation/blocs/check_sky_trade_user_exists_bloc/check_sky_trade_user_exists_bloc.dart'
@@ -138,29 +141,35 @@ class _LoadingViewState extends State<LoadingView> {
             listener: (_, sFAInitializationState) {
               sFAInitializationState.whenOrNull(
                 initialized: () {
-                  context
-                      .read<Auth0UserSessionAfterAccountDeletionBloc>()
-                      .state
-                      .whenOrNull(
-                    existingAuth0Session: () {
-                      _removeSplashScreenAndNavigateTo(
-                        route: errorRoutePath,
-                        arguments: ErrorReason
-                            .deletedSkyTradeUserWithExistingAuth0Session,
+                  context.read<Auth0UserSessionAfterAccountDeletionBloc>().add(
+                        const Auth0UserSessionAfterAccountDeletionEvent
+                            .checkAuth0SessionExisting(),
                       );
-                    },
-                    nonExistentAuth0Session: () {
-                      context.read<Auth0UserSessionBloc>().add(
-                            const Auth0UserSessionEvent.checkUserSession(),
-                          );
-                    },
-                  );
                 },
                 failedToInitialize: (_) {
                   _removeSplashScreenAndNavigateTo(
                     route: errorRoutePath,
                     arguments: ErrorReason.sessionInitializationFailure,
                   );
+                },
+              );
+            },
+          ),
+          BlocListener<Auth0UserSessionAfterAccountDeletionBloc,
+              Auth0UserSessionAfterAccountDeletionState>(
+            listener: (_, auth0UserSessionAfterAccountDeletionState) {
+              auth0UserSessionAfterAccountDeletionState.whenOrNull(
+                existingAuth0Session: () {
+                  _removeSplashScreenAndNavigateTo(
+                    route: errorRoutePath,
+                    arguments:
+                        ErrorReason.deletedSkyTradeUserWithExistingAuth0Session,
+                  );
+                },
+                nonExistentAuth0Session: () {
+                  context.read<Auth0UserSessionBloc>().add(
+                        const Auth0UserSessionEvent.checkUserSession(),
+                      );
                 },
               );
             },
