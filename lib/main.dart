@@ -123,7 +123,7 @@ Future<bool> _shouldCollectAnalyticsData() async {
       (analyticsState ?? false);
 }
 
-Widget get _app => switch (_environment == devEnvironment && kDebugMode) {
+Widget get _app => switch (_environment == devEnvironment || kDebugMode) {
       true => const App(),
       false => Clarity(
           app: const App(),

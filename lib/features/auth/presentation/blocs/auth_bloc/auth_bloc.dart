@@ -40,16 +40,8 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       _checkSkyTradeUserExists,
     );
 
-    on<_LogoutFailedSkyTradeUserCheckOperationFromAuth0>(
-      _logoutFailedSkyTradeUserCheckOperationFromAuth0,
-    );
-
     on<_CreateSkyTradeUser>(
       _createSkyTradeUser,
-    );
-
-    on<_LogoutFailedSkyTradeUserCreateOperationFromAuth0>(
-      _logoutFailedSkyTradeUserCreateOperationFromAuth0,
     );
   }
 
@@ -95,7 +87,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         }
 
         emit(
-          AuthState.emailNotVerified(
+          AuthState.unverifiedAuth0UserExists(
             email: auth0UserEntity.email,
           ),
         );
@@ -205,8 +197,8 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
           return;
         }
 
-        add(
-          AuthEvent.logoutFailedSkyTradeUserCheckOperationFromAuth0(
+        emit(
+          AuthState.failedToCheckSkyTradeUser(
             checkSkyTradeUserFailure: checkSkyTradeUserFailure,
           ),
         );
@@ -214,30 +206,6 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       (_) {
         emit(
           const AuthState.authenticated(),
-        );
-      },
-    );
-  }
-
-  Future<void> _logoutFailedSkyTradeUserCheckOperationFromAuth0(
-    _LogoutFailedSkyTradeUserCheckOperationFromAuth0 event,
-    Emitter<AuthState> emit,
-  ) async {
-    final logoutCurrentAuth0User =
-        await _authRepository.logoutCurrentAuth0User();
-
-    logoutCurrentAuth0User.fold(
-      (_) {
-        emit(
-          const AuthState
-              .failedToLogoutFailedSkyTradeUserCheckOperationFromAuth0(),
-        );
-      },
-      (_) {
-        emit(
-          AuthState.failedToCheckSkyTradeUser(
-            checkSkyTradeUserFailure: event.checkSkyTradeUserFailure,
-          ),
         );
       },
     );
@@ -251,8 +219,8 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
 
     createSkyTradeUser.fold(
       (createSkyTradeUserFailure) {
-        add(
-          AuthEvent.logoutFailedSkyTradeUserCreateOperationFromAuth0(
+        emit(
+          AuthState.failedToCreateSkyTradeUser(
             createSkyTradeUserFailure: createSkyTradeUserFailure,
           ),
         );
@@ -260,30 +228,6 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       (_) {
         emit(
           const AuthState.authenticated(),
-        );
-      },
-    );
-  }
-
-  Future<void> _logoutFailedSkyTradeUserCreateOperationFromAuth0(
-    _LogoutFailedSkyTradeUserCreateOperationFromAuth0 event,
-    Emitter<AuthState> emit,
-  ) async {
-    final logoutCurrentAuth0User =
-        await _authRepository.logoutCurrentAuth0User();
-
-    logoutCurrentAuth0User.fold(
-      (_) {
-        emit(
-          const AuthState
-              .failedToLogoutFailedSkyTradeUserCreateOperationFromAuth0(),
-        );
-      },
-      (_) {
-        emit(
-          AuthState.failedToCreateSkyTradeUser(
-            createSkyTradeUserFailure: event.createSkyTradeUserFailure,
-          ),
         );
       },
     );

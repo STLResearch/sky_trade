@@ -21,13 +21,5 @@ class AuthEvent with _$AuthEvent {
 
   const factory AuthEvent.checkSkyTradeUserExists() = _CheckSkyTradeUserExists;
 
-  const factory AuthEvent.logoutFailedSkyTradeUserCheckOperationFromAuth0({
-    required CheckSkyTradeUserFailure checkSkyTradeUserFailure,
-  }) = _LogoutFailedSkyTradeUserCheckOperationFromAuth0;
-
   const factory AuthEvent.createSkyTradeUser() = _CreateSkyTradeUser;
-
-  const factory AuthEvent.logoutFailedSkyTradeUserCreateOperationFromAuth0({
-    required CreateSkyTradeUserFailure createSkyTradeUserFailure,
-  }) = _LogoutFailedSkyTradeUserCreateOperationFromAuth0;
 }
