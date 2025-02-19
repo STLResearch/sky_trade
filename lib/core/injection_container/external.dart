@@ -9,7 +9,7 @@ import 'package:shared_preferences/shared_preferences.dart'
     show SharedPreferencesWithCache, SharedPreferencesWithCacheOptions;
 import 'package:single_factor_auth_flutter/single_factor_auth_flutter.dart';
 import 'package:sky_trade/core/resources/strings/local.dart'
-    show analyticsStateKey;
+    show analyticsStateKey, auth0SessionForDeletedUserExistsKey;
 import 'package:sky_trade/core/resources/strings/secret_keys.dart'
     show auth0ClientId, auth0Domain;
 
@@ -37,6 +37,7 @@ Future<void> registerExternalServices() async {
         cacheOptions: const SharedPreferencesWithCacheOptions(
           allowList: {
             analyticsStateKey,
+            auth0SessionForDeletedUserExistsKey,
           },
         ),
       ),

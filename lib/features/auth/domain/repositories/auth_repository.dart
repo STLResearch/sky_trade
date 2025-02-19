@@ -20,6 +20,12 @@ abstract interface class AuthRepository {
 
   Future<Either<Auth0UserNotFoundFailure, Auth0UserEntity>> get auth0User;
 
+  Future<bool> get auth0SessionForDeletedUserExists;
+
+  Future<void> setAuth0SessionForDeletedUserExists({
+    required bool value,
+  });
+
   Future<Either<Auth0LogoutFailure, Unit>> logoutCurrentAuth0User();
 
   Future<Either<SFAInitializationFailure, Unit>> initializeSFA();

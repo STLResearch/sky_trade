@@ -36,7 +36,7 @@ final class SettingsRemoteDataSourceImplementation
   Future<MessageModel> requestDeleteAccount() => handleResponse<
           RequestDeleteAccountException, Map<String, dynamic>, MessageModel>(
         requestInitiator: _httpClient.request(
-          requestMethod: RequestMethod.get,
+          requestMethod: RequestMethod.post,
           path: privatePath + usersPath + requestDeletePath,
           includeSignature: true,
         ),

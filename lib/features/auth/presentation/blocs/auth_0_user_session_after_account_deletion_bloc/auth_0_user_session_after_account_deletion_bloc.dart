@@ -1,8 +1,7 @@
 import 'package:bloc/bloc.dart' show Bloc, Emitter;
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:hydrated_bloc/hydrated_bloc.dart' show HydratedMixin;
-import 'package:sky_trade/core/resources/strings/local.dart'
-    show auth0SessionForDeletedUserExistsKey;
+import 'package:sky_trade/features/auth/domain/repositories/auth_repository.dart';
 
 part 'auth_0_user_session_after_account_deletion_event.dart';
 
@@ -12,12 +11,16 @@ part 'auth_0_user_session_after_account_deletion_bloc.freezed.dart';
 
 class Auth0UserSessionAfterAccountDeletionBloc extends Bloc<
     Auth0UserSessionAfterAccountDeletionEvent,
-    Auth0UserSessionAfterAccountDeletionState> with HydratedMixin {
-  Auth0UserSessionAfterAccountDeletionBloc()
-      : super(
+    Auth0UserSessionAfterAccountDeletionState> {
+  Auth0UserSessionAfterAccountDeletionBloc(
+    AuthRepository authRepository,
+  )   : _authRepository = authRepository,
+        super(
           const Auth0UserSessionAfterAccountDeletionState.initial(),
         ) {
-    hydrate();
+    on<_CheckAuth0SessionExisting>(
+      _checkAuth0SessionExisting,
+    );
 
     on<_Auth0SessionExisting>(
       _auth0SessionExisting,
@@ -28,47 +31,52 @@ class Auth0UserSessionAfterAccountDeletionBloc extends Bloc<
     );
   }
 
-  @override
-  Auth0UserSessionAfterAccountDeletionState? fromJson(
-    Map<String, dynamic> json,
-  ) =>
-      switch (json.containsKey(
-            auth0SessionForDeletedUserExistsKey,
-          ) &&
-          json[auth0SessionForDeletedUserExistsKey] == true) {
+  final AuthRepository _authRepository;
+
+  Future<void> _checkAuth0SessionExisting(
+    _CheckAuth0SessionExisting _,
+    Emitter<Auth0UserSessionAfterAccountDeletionState> emit,
+  ) async {
+    emit(
+      const Auth0UserSessionAfterAccountDeletionState.gettingAuth0Session(),
+    );
+
+    final sessionExists =
+        await _authRepository.auth0SessionForDeletedUserExists;
+
+    emit(
+      switch (sessionExists) {
         true => const Auth0UserSessionAfterAccountDeletionState
             .existingAuth0Session(),
         false => const Auth0UserSessionAfterAccountDeletionState
             .nonExistentAuth0Session(),
-      };
+      },
+    );
+  }
 
-  @override
-  Map<String, dynamic>? toJson(
-    Auth0UserSessionAfterAccountDeletionState state,
-  ) =>
-      state.maybeWhen(
-        existingAuth0Session: () => {
-          auth0SessionForDeletedUserExistsKey: true,
-        },
-        orElse: () => {
-          auth0SessionForDeletedUserExistsKey: false,
-        },
-      );
-
-  void _auth0SessionExisting(
+  Future<void> _auth0SessionExisting(
     _Auth0SessionExisting _,
     Emitter<Auth0UserSessionAfterAccountDeletionState> emit,
-  ) =>
-      emit(
-        const Auth0UserSessionAfterAccountDeletionState.existingAuth0Session(),
-      );
+  ) async {
+    await _authRepository.setAuth0SessionForDeletedUserExists(
+      value: true,
+    );
 
-  void _auth0SessionNonExistent(
+    emit(
+      const Auth0UserSessionAfterAccountDeletionState.existingAuth0Session(),
+    );
+  }
+
+  Future<void> _auth0SessionNonExistent(
     _Auth0SessionNonExistent _,
     Emitter<Auth0UserSessionAfterAccountDeletionState> emit,
-  ) =>
-      emit(
-        const Auth0UserSessionAfterAccountDeletionState
-            .nonExistentAuth0Session(),
-      );
+  ) async {
+    await _authRepository.setAuth0SessionForDeletedUserExists(
+      value: false,
+    );
+
+    emit(
+      const Auth0UserSessionAfterAccountDeletionState.nonExistentAuth0Session(),
+    );
+  }
 }
