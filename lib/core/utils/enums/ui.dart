@@ -26,6 +26,7 @@ enum Period {
 }
 
 enum ErrorReason {
+  deletedSkyTradeUserWithExistingAuth0Session,
   sessionInitializationFailure,
   unknownNavigationRoute,
 }

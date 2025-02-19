@@ -126,6 +126,43 @@ class GetStartedView extends StatelessWidget {
                     ).pop(),
                   );
                 },
+                verifiedAuth0UserExists: (email, idToken) {
+                  ActionDialog.show(
+                    context,
+                    content: context
+                            .localize.youHaveAnExistingSessionWithTheEmail +
+                        whiteSpace +
+                        email! +
+                        fullStop +
+                        whiteSpace +
+                        context.localize
+                            .doYouWantToProceedWithAuthenticationWithThisEmailOrLogout,
+                    dismissible: false,
+                    actionDismissedText: context.localize.logout,
+                    onActionDismissed: () {
+                      Navigator.of(
+                        context,
+                      ).pop();
+
+                      context.read<Auth0LogoutBloc>().add(
+                            const Auth0LogoutEvent.logout(),
+                          );
+                    },
+                    actionConfirmedText: context.localize.conTinue,
+                    onActionConfirmed: () {
+                      Navigator.of(
+                        context,
+                      ).pop();
+
+                      context.read<AuthBloc>().add(
+                            AuthEvent.authenticateExistingVerifiedAuth0User(
+                              email: email,
+                              idToken: idToken,
+                            ),
+                          );
+                    },
+                  );
+                },
                 emailNotVerified: (email) {
                   ActionDialog.show(
                     context,

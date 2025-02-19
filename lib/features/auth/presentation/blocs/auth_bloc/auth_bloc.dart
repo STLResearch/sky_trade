@@ -28,6 +28,10 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       _authenticateUserWithAuth0,
     );
 
+    on<_AuthenticateExistingVerifiedAuth0User>(
+      _authenticateExistingVerifiedAuth0User,
+    );
+
     on<_AuthenticateUserWithSFA>(
       _authenticateUserWithSFA,
     );
@@ -70,9 +74,6 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       return;
     }
 
-    final sFAUserSessionExists =
-        await _authRepository.checkSFAUserSessionExists();
-
     final auth0User = await _authRepository.auth0User;
 
     auth0User.fold(
@@ -83,19 +84,11 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       },
       (auth0UserEntity) {
         if (auth0UserEntity.emailVerified ?? false) {
-          if (!sFAUserSessionExists) {
-            add(
-              AuthEvent.authenticateUserWithSFA(
-                email: auth0UserEntity.email,
-                idToken: auth0UserEntity.idToken,
-              ),
-            );
-
-            return;
-          }
-
-          add(
-            const AuthEvent.checkSkyTradeUserExists(),
+          emit(
+            AuthState.verifiedAuth0UserExists(
+              email: auth0UserEntity.email,
+              idToken: auth0UserEntity.idToken,
+            ),
           );
 
           return;
@@ -107,6 +100,33 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
           ),
         );
       },
+    );
+  }
+
+  Future<void> _authenticateExistingVerifiedAuth0User(
+    _AuthenticateExistingVerifiedAuth0User event,
+    Emitter<AuthState> emit,
+  ) async {
+    emit(
+      const AuthState.authenticating(),
+    );
+
+    final sFAUserSessionExists =
+        await _authRepository.checkSFAUserSessionExists();
+
+    if (!sFAUserSessionExists) {
+      add(
+        AuthEvent.authenticateUserWithSFA(
+          email: event.email,
+          idToken: event.idToken,
+        ),
+      );
+
+      return;
+    }
+
+    add(
+      const AuthEvent.checkSkyTradeUserExists(),
     );
   }
 

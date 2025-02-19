@@ -9,6 +9,11 @@ class AuthEvent with _$AuthEvent {
   const factory AuthEvent.authenticateUserWithAuth0() =
       _AuthenticateUserWithAuth0;
 
+  const factory AuthEvent.authenticateExistingVerifiedAuth0User({
+    required String? email,
+    required String idToken,
+  }) = _AuthenticateExistingVerifiedAuth0User;
+
   const factory AuthEvent.authenticateUserWithSFA({
     required String? email,
     required String idToken,

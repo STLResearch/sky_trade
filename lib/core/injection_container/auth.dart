@@ -8,6 +8,8 @@ import 'package:sky_trade/features/auth/presentation/blocs/auth_0_credentials_bl
     show Auth0CredentialsBloc;
 import 'package:sky_trade/features/auth/presentation/blocs/auth_0_logout_bloc/auth_0_logout_bloc.dart'
     show Auth0LogoutBloc;
+import 'package:sky_trade/features/auth/presentation/blocs/auth_0_user_session_after_account_deletion_bloc/auth_0_user_session_after_account_deletion_bloc.dart'
+    show Auth0UserSessionAfterAccountDeletionBloc;
 import 'package:sky_trade/features/auth/presentation/blocs/auth_0_user_session_bloc/auth_0_user_session_bloc.dart'
     show Auth0UserSessionBloc;
 import 'package:sky_trade/features/auth/presentation/blocs/auth_bloc/auth_bloc.dart'
@@ -36,6 +38,9 @@ Future<void> registerAuthServices() async {
       () => Auth0LogoutBloc(
         _sl(),
       ),
+    )
+    ..registerFactory<Auth0UserSessionAfterAccountDeletionBloc>(
+      Auth0UserSessionAfterAccountDeletionBloc.new,
     )
     ..registerFactory<Auth0UserSessionBloc>(
       () => Auth0UserSessionBloc(

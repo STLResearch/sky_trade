@@ -184,5 +184,11 @@
   "weCouldNotVerifyYourEmailPleaseEnsureThatYouHaveClickedTheCorrectLink": "We could not verify your email. Please ensure that you have clicked the correct link",
   "ohMyThisIsOnUs": "Oh my! This is on us",
   "weTookYouToAnUnknownRoute": "We took you to an unknown route",
-  "weMustHaveDoneSomethingWrongSomewhereWeAreReallySorryAboutThatRegardlessRefreshingThisPageWillFixThis": "We must have done something wrong somewhere. We are really sorry about that. Regardless, refreshing this page will fix this"
+  "weMustHaveDoneSomethingWrongSomewhereWeAreReallySorryAboutThatRegardlessRefreshingThisPageWillFixThis": "We must have done something wrong somewhere. We are really sorry about that. Regardless, refreshing this page will fix this",
+  "thereWasOneThingYouNeededToDo": "There was one thing you needed to do",
+  "youDidNotPerformARequiredStepNecessaryToCompleteAnAction": "You did not perform a required step necessary to complete an action",
+  "youDeletedAnAccountAtSomePointButDeclinedOurRequestForYouToInvalidateTheSessionInOrderToProceedKindlyAcceptTheNextDialogThatShowsUp": "You deleted an account at some point but declined our request for you to invalidate the session. In order to proceed, kindly accept the next dialog that shows up",
+  "youNeedToAcceptTheDialogInOrderToProceed": "You need to accept the dialog in order to proceed",
+  "doYouWantToProceedWithAuthenticationWithThisEmailOrLogout": "Do you want to proceed with authentication with this email or logout",
+  "conTinue": "Continue"
 }

@@ -12,6 +12,11 @@ class AuthState with _$AuthState {
     required String? email,
   }) = _EmailVerificationSent;
 
+  const factory AuthState.verifiedAuth0UserExists({
+    required String? email,
+    required String idToken,
+  }) = _VerifiedAuth0UserExists;
+
   const factory AuthState.emailNotVerified({
     required String? email,
   }) = _EmailNotVerified;
