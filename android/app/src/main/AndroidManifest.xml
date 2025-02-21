@@ -63,7 +63,6 @@
                 <data android:scheme="https" />
 
                 <data android:host="${host1}" />
-                <data android:host="${host2}" />
             </intent-filter>
 
             <meta-data
