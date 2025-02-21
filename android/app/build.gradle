@@ -55,6 +55,12 @@ android {
     }
 
     signingConfigs {
+        debug {
+            keyAlias keyProperties['debugKeyAlias']
+            keyPassword keyProperties['debugKeyPassword']
+            storeFile file(keyProperties['debugStoreFile'])
+            storePassword keyProperties['debugStorePassword']
+        }
         release {
             keyAlias keyProperties['keyAlias']
             keyPassword keyProperties['keyPassword']
@@ -82,10 +88,9 @@ android {
             dimension "environment"
             resValue "string", "app_version", "${defaultConfig.versionName}${versionNameSuffix}"
             manifestPlaceholders += [
-                    host1      : "dev.sky.trade",
-                    host2      : "dev-auth.sky.trade",
-                    auth0Domain: "dev-auth.sky.trade",
-                    auth0Scheme: "https"
+                    deepLinkHost: "dev.sky.trade",
+                    auth0Domain : "dev-auth.sky.trade",
+                    auth0Scheme : "https"
             ]
             signingConfig signingConfigs.debug
         }
@@ -94,10 +99,9 @@ android {
             dimension "environment"
             resValue "string", "app_version", "${defaultConfig.versionName}${versionNameSuffix}"
             manifestPlaceholders += [
-                    host1      : "staging.sky.trade",
-                    host2      : "staging-auth.sky.trade",
-                    auth0Domain: "staging-auth.sky.trade",
-                    auth0Scheme: "https"
+                    deepLinkHost: "staging.sky.trade",
+                    auth0Domain : "staging-auth.sky.trade",
+                    auth0Scheme : "https"
             ]
             signingConfig signingConfigs.release
         }
@@ -106,10 +110,9 @@ android {
             dimension "environment"
             resValue "string", "app_version", "${defaultConfig.versionName}${versionNameSuffix}"
             manifestPlaceholders += [
-                    host1      : "app.sky.trade",
-                    host2      : "auth.sky.trade",
-                    auth0Domain: "auth.sky.trade",
-                    auth0Scheme: "https"
+                    deepLinkHost: "app.sky.trade",
+                    auth0Domain : "auth.sky.trade",
+                    auth0Scheme : "https"
             ]
             signingConfig signingConfigs.release
         }
