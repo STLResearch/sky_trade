@@ -9,7 +9,7 @@ const web3AuthClientId = 'WEB_3_AUTH_CLIENT_ID';
 
 // SFA
 const sFAVerifier = 'SFA_VERIFIER';
-const sFAAggregateVerifier = 'SFA_AGGREGATE_VERIFIER';
+const sFAVerifierSubIdentifier = 'SFA_VERIFIER_SUB_IDENTIFIER';
 
 // Auth0
 const auth0Domain = 'AUTH_0_DOMAIN';

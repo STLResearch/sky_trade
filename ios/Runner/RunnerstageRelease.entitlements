@@ -8,7 +8,6 @@
 	<array>
 		<string>webcredentials:staging-auth.sky.trade</string>
 		<string>applinks:staging.sky.trade</string>
-		<string>applinks:staging-auth.sky.trade</string>
 	</array>
 </dict>
 </plist>
