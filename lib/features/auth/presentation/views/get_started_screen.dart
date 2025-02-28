@@ -163,7 +163,7 @@ class GetStartedView extends StatelessWidget {
                     },
                   );
                 },
-                emailNotVerified: (email) {
+                unverifiedAuth0UserExists: (email) {
                   ActionDialog.show(
                     context,
                     content: context
@@ -218,24 +218,6 @@ class GetStartedView extends StatelessWidget {
                     },
                   );
                 },
-                failedToLogoutFailedSkyTradeUserCheckOperationFromAuth0: () {
-                  ActionDialog.show(
-                    context,
-                    content: context.localize
-                        .weDetectedAPreviousSessionThatWasNotProperlyInvalidatedWeTriedToAskYouToInvalidateTheSessionButItSeemsYouDeclinedKindlyAcceptTheNextDialogThatShowsUp,
-                    dismissible: false,
-                    actionConfirmedText: context.localize.okay,
-                    onActionConfirmed: () {
-                      Navigator.of(
-                        context,
-                      ).pop();
-
-                      context.read<Auth0LogoutBloc>().add(
-                            const Auth0LogoutEvent.logout(),
-                          );
-                    },
-                  );
-                },
                 failedToCreateSkyTradeUser: (createSkyTradeUserFailure) {
                   AlertSnackBar.show(
                     context,
@@ -251,35 +233,18 @@ class GetStartedView extends StatelessWidget {
                     },
                   );
                 },
-                failedToLogoutFailedSkyTradeUserCreateOperationFromAuth0: () {
-                  ActionDialog.show(
-                    context,
-                    content: context.localize
-                        .weDetectedAPreviousSessionThatWasNotProperlyInvalidatedWeTriedToAskYouToInvalidateTheSessionButItSeemsYouDeclinedKindlyAcceptTheNextDialogThatShowsUp,
-                    dismissible: false,
-                    actionConfirmedText: context.localize.okay,
-                    onActionConfirmed: () {
-                      Navigator.of(
-                        context,
-                      ).pop();
-
-                      context.read<Auth0LogoutBloc>().add(
-                            const Auth0LogoutEvent.logout(),
-                          );
-                    },
-                  );
-                },
                 failedToAuthenticateUserWithAuth0: () {
                   AlertSnackBar.show(
                     context,
-                    message: context.localize.oopsWeCouldNotAuthenticateYou,
+                    message: context
+                        .localize.oopsWeCouldNotAuthenticateYouPleaseTryAgain,
                   );
                 },
                 failedToAuthenticateAuth0UserWithSFA: () {
                   AlertSnackBar.show(
                     context,
                     message: context.localize
-                        .thereIsSomethingWrongWithOurSecondAuthenticationProviderPleaseTryAgainAfterSomeTime,
+                        .thereWasAnErrorTryingAgainWillMostLikelyFixThisIssue,
                   );
                 },
               );

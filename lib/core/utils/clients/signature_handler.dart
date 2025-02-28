@@ -32,7 +32,7 @@ mixin class SignatureHandler {
   Future<String> signMessage(
     String message,
   ) async {
-    final ed25519KeyPair = await computeEd25519KeyPair();
+    final ed25519KeyPair = await _computeEd25519KeyPair();
 
     final signature = await ed25519KeyPair.sign(
       utf8.encode(
@@ -75,13 +75,9 @@ mixin class SignatureHandler {
   }
 
   Future<String> computeUserAddress() async {
-    final ed25519KeyPair = await computeEd25519KeyPair();
+    final ed25519KeyPair = await _computeEd25519KeyPair();
 
-    final ed25519HDPublicKey = ed25519KeyPair.publicKey;
-
-    final base58EncodedEd25519HDPublicKey = ed25519HDPublicKey.toBase58();
-
-    return base58EncodedEd25519HDPublicKey;
+    return ed25519KeyPair.address;
   }
 
   String computeMessageToSignUsing({
@@ -138,7 +134,7 @@ mixin class SignatureHandler {
       whiteSpace +
       issuedAt;
 
-  Future<Ed25519HDKeyPair> computeEd25519KeyPair() async {
+  Future<Ed25519HDKeyPair> _computeEd25519KeyPair() async {
     final sFAPrivateKey = await _computeSFAPrivateKey();
 
     final decodedEd25519PrivateKey = HEX

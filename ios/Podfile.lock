@@ -272,52 +272,52 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/url_launcher_ios/ios"
 
 SPEC CHECKSUMS:
-  app_links: e7a6750a915a9e161c58d91bc610e8cd1d4d0ad0
-  app_tracking_transparency: e169b653478da7bb15a6c61209015378ca73e375
+  app_links: 3da4c36b46cac3bf24eb897f1a6ce80bda109874
+  app_tracking_transparency: 3d84f147f67ca82d3c15355c36b1fa6b66ca7c92
   Auth0: 28cb24cb19ebd51f0b07751f16d83b59f4019532
-  auth0_flutter: f085572268059bc194c7b023d7f432f5ebb72413
+  auth0_flutter: 7b99a56cc3aef5ca4e0a2a6f1f4e6c4e105dcc2d
   BigInt: f668a80089607f521586bbe29513d708491ef2f7
-  connectivity_plus: 4c41c08fc6d7c91f63bc7aec70ffe3730b04f563
+  connectivity_plus: b21496ab28d1324eb59885d888a4d83b98531f01
   curvelib.swift: d0746ae82bee34016c06da3567a97e493b3c979f
-  device_info_plus: c6fb39579d0f423935b0c9ce7ee2f44b71b9fce6
+  device_info_plus: 335f3ce08d2e174b9fdc3db3db0f4e3b1f66bd89
   Firebase: 0312a2352584f782ea56f66d91606891d4607f06
-  firebase_analytics: cc06e24d6a2343c44f845b3112143db72d10ef78
-  firebase_core: a626d00494efa398e7c54f25f1454a64c8abf197
+  firebase_analytics: e7280be84e7ff1c1e5859bd8e48de410b07e0b73
+  firebase_core: 3b49a055ff54114cae400581c13671fe53936c36
   FirebaseAnalytics: ec00fe8b93b41dc6fe4a28784b8e51da0647a248
   FirebaseCore: 7ec4d0484817f12c3373955bc87762d96842d483
   FirebaseCoreInternal: df84dd300b561c27d5571684f389bf60b0a5c934
   FirebaseInstallations: 913cf60d0400ebd5d6b63a28b290372ab44590dd
   Flutter: e0871f40cf51350855a761d2e70bf5af5b9b5de7
-  flutter_blue_plus: 4837da7d00cf5d441fdd6635b3a57f936778ea96
-  flutter_native_splash: edf599c81f74d093a4daf8e17bd7a018854bc778
-  flutter_opendroneid: 92e28add32d6bf2b5705fdad0666657476de2e15
-  flutter_secure_storage: d33dac7ae2ea08509be337e775f6b59f1ff45f12
-  geolocator_apple: 6cbaf322953988e009e5ecb481f07efece75c450
+  flutter_blue_plus: e5808fc4e5ebc58bb911635f8fdaf5e2b4da2754
+  flutter_native_splash: 35ddbc7228eafcb3969dcc5f1fbbe27c1145a4f0
+  flutter_opendroneid: ee1b2725baecf01042167d32fa89b7267d031cd1
+  flutter_secure_storage: 1ed9476fba7e7a782b22888f956cce43e2c62f13
+  geolocator_apple: d981750b9f47dbdb02427e1476d9a04397beb8d9
   GoogleAppMeasurement: 9abf64b682732fed36da827aa2a68f0221fd2356
   GoogleUtilities: ea963c370a38a8069cc5f7ba4ca849a60b6d7d15
   JWTDecode: 3eaab1e06b6f4dcbdd6716aff09ba4c2104ca8b7
   KeychainSwift: 0ce6a4d13f7228054d1a71bb1b500448fb2ab837
-  mapbox_maps_flutter: c4a7d79d553ca71c02b6d1ef8bf7eee34ffd4c7e
+  mapbox_maps_flutter: 280cc1cf8703137837736dcf03af66b641f4affb
   MapboxCommon: 678bfc4b477a804244fd7323c79cc7f2402f844e
   MapboxCoreMaps: c22e65380c0e11551081196f083b20cab662a5fe
   MapboxMaps: dbe3b02f9adcee903d5217c9b251536828bc6304
   nanopb: 438bc412db1928dac798aa6fd75726007be04262
-  package_info_plus: c0502532a26c7662a62a356cebe2692ec5fe4ec4
-  path_provider_foundation: 2b6b4c569c0fb62ec74538f866245ac84301af46
-  permission_handler_apple: 9878588469a2b0d0fc1e048d9f43605f92e6cec2
+  package_info_plus: af8e2ca6888548050f16fa2f1938db7b5a5df499
+  path_provider_foundation: 080d55be775b7414fd5a5ef3ac137b97b097e564
+  permission_handler_apple: 4ed2196e43d0651e8ff7ca3483a069d469701f2d
   PromisesObjC: f5707f49cb48b9636751c5b2e7d227e43fba9f47
   Sentry: f8374b5415bc38dfb5645941b3ae31230fbeae57
-  sentry_flutter: 0eb93e5279eb41e2392212afe1ccd2fecb4f8cbe
-  shared_preferences_foundation: fcdcbc04712aee1108ac7fda236f363274528f78
+  sentry_flutter: 0a211008f52553ba5dd81ceb71f48d78f0f1f6ab
+  shared_preferences_foundation: 9e1978ff2562383bd5676f64ec4e9aa8fa06a6f7
   SimpleKeychain: f8707c8e97b38c6a6e687b17732afc9bcef06439
-  single_factor_auth_flutter: 9617e5ffce9c0251bddb19cbe49293f921c13b79
+  single_factor_auth_flutter: f9e45ff62cc8df03023ecb438d2a60d471ab7580
   SingleFactorAuth: 2bfa8ad0fe8d0023fffdf1a5f0c9634ca3ee66d8
   Torus-fetchNodeDetails: 6c349f47cbca36a4b3f276fe26d03c1b39b20949
   Torus-utils: ced66811dea2e59bc21a2af1dc1f6f7d5230acd9
   TorusSessionManager: 42c21f100d895976fabe3806cb9c575392f6e424
   Turf: c9eb11a65d96af58cac523460fd40fec5061b081
-  url_launcher_ios: 5334b05cef931de560670eeae103fd3e431ac3fe
+  url_launcher_ios: 694010445543906933d732453a59da0a173ae33d
 
 PODFILE CHECKSUM: 9b95580263aa8cdfea9e05a60f0148ef25fe3dea
 
-COCOAPODS: 1.16.1
+COCOAPODS: 1.16.2

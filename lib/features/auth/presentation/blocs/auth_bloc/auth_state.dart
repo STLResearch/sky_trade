@@ -17,9 +17,9 @@ class AuthState with _$AuthState {
     required String idToken,
   }) = _VerifiedAuth0UserExists;
 
-  const factory AuthState.emailNotVerified({
+  const factory AuthState.unverifiedAuth0UserExists({
     required String? email,
-  }) = _EmailNotVerified;
+  }) = _UnverifiedAuth0UserExists;
 
   const factory AuthState.authenticated() = _Authenticated;
 
@@ -27,15 +27,9 @@ class AuthState with _$AuthState {
     required CheckSkyTradeUserFailure checkSkyTradeUserFailure,
   }) = _FailedToCheckSkyTradeUser;
 
-  const factory AuthState.failedToLogoutFailedSkyTradeUserCheckOperationFromAuth0() =
-      _FailedToLogoutFailedSkyTradeUserCheckOperationFromAuth0;
-
   const factory AuthState.failedToCreateSkyTradeUser({
     required CreateSkyTradeUserFailure createSkyTradeUserFailure,
   }) = _FailedToCreateSkyTradeUser;
-
-  const factory AuthState.failedToLogoutFailedSkyTradeUserCreateOperationFromAuth0() =
-      _FailedToLogoutFailedSkyTradeUserCreateOperationFromAuth0;
 
   const factory AuthState.failedToAuthenticateUserWithAuth0() =
       _FailedToAuthenticateUserWithAuth0;
