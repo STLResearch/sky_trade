@@ -1,8 +1,9 @@
 import 'package:auth0_flutter/auth0_flutter.dart' show Auth0, Credentials;
 import 'package:dartz/dartz.dart' show Either, Unit, unit;
 import 'package:flutter_dotenv/flutter_dotenv.dart' show dotenv;
+import 'package:single_factor_auth_flutter/enums.dart';
 import 'package:single_factor_auth_flutter/input.dart'
-    show LoginParams, SFAParams, Web3AuthNetwork;
+    show LoginParams, TorusSubVerifierInfo, Web3AuthOptions;
 import 'package:single_factor_auth_flutter/single_factor_auth_flutter.dart';
 import 'package:sky_trade/core/errors/exceptions/auth_exception.dart'
     show
@@ -20,7 +21,7 @@ import 'package:sky_trade/core/errors/failures/auth_failure.dart';
 import 'package:sky_trade/core/resources/strings/environments.dart'
     show devEnvironment, flavours, stageEnvironment;
 import 'package:sky_trade/core/resources/strings/secret_keys.dart'
-    show sFAAggregateVerifier, sFAVerifier, web3AuthClientId;
+    show sFAVerifier, sFAVerifierSubIdentifier, web3AuthClientId;
 import 'package:sky_trade/core/utils/clients/data_handler.dart';
 import 'package:sky_trade/core/utils/clients/signature_handler.dart';
 import 'package:sky_trade/features/auth/data/data_sources/auth_local_data_source.dart'
@@ -35,7 +36,7 @@ final class AuthRepositoryImplementation
     implements AuthRepository {
   const AuthRepositoryImplementation({
     required Auth0 auth0,
-    required SingleFactAuthFlutter singleFactorAuthentication,
+    required SingleFactorAuthFlutter singleFactorAuthentication,
     required AuthLocalDataSource authLocalDataSource,
     required AuthRemoteDataSource authRemoteDataSource,
   })  : _auth0 = auth0,
@@ -45,7 +46,7 @@ final class AuthRepositoryImplementation
 
   final Auth0 _auth0;
 
-  final SingleFactAuthFlutter _singleFactorAuthentication;
+  final SingleFactorAuthFlutter _singleFactorAuthentication;
 
   final AuthLocalDataSource _authLocalDataSource;
 
@@ -134,13 +135,13 @@ final class AuthRepositoryImplementation
   Future<Either<SFAInitializationFailure, Unit>> initializeSFA() =>
       handleData<SFAInitializationFailure, Unit>(
         dataSourceOperation: () async {
-          final sFAParameters = SFAParams(
+          final web3AuthOptions = Web3AuthOptions(
             network: _computeWeb3AuthNetwork(),
             clientId: dotenv.env[web3AuthClientId]!,
           );
 
           await _singleFactorAuthentication.init(
-            sFAParameters,
+            web3AuthOptions,
           );
 
           return unit;
@@ -174,16 +175,21 @@ final class AuthRepositoryImplementation
                 verifier: dotenv.env[sFAVerifier]!,
                 verifierId: email!,
                 idToken: idToken,
-                aggregateVerifier: dotenv.env[sFAAggregateVerifier],
+                subVerifierInfoArray: [
+                  TorusSubVerifierInfo(
+                    dotenv.env[sFAVerifierSubIdentifier]!,
+                    idToken,
+                  ),
+                ],
               );
 
-              final sFAKey = await _singleFactorAuthentication.connect(
+              final sessionData = await _singleFactorAuthentication.connect(
                 loginParams,
               );
 
               return SFAUserEntity(
-                privateKey: sFAKey.privateKey,
-                publicAddress: sFAKey.publicAddress,
+                privateKey: sessionData.privateKey,
+                publicAddress: sessionData.publicAddress,
               );
             },
             onSuccess: (sFAUserEntity) => sFAUserEntity,
@@ -192,7 +198,19 @@ final class AuthRepositoryImplementation
 
   @override
   Future<bool> checkSFAUserSessionExists() =>
-      _singleFactorAuthentication.isSessionIdExists();
+      _singleFactorAuthentication.connected();
+
+  @override
+  Future<Either<SFALogoutFailure, Unit>> logoutCurrentSFAUser() =>
+      handleData<SFALogoutFailure, Unit>(
+        dataSourceOperation: () async {
+          await _singleFactorAuthentication.logout();
+
+          return unit;
+        },
+        onSuccess: (unit) => unit,
+        onFailure: (_) => SFALogoutFailure(),
+      );
 
   @override
   Future<Either<CreateSkyTradeUserFailure, SkyTradeUserEntity>>

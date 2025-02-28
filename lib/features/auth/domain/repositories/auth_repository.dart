@@ -38,6 +38,8 @@ abstract interface class AuthRepository {
 
   Future<bool> checkSFAUserSessionExists();
 
+  Future<Either<SFALogoutFailure, Unit>> logoutCurrentSFAUser();
+
   Future<Either<CreateSkyTradeUserFailure, SkyTradeUserEntity>>
       createSkyTradeUser();
 

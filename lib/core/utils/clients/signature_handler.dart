@@ -154,9 +154,10 @@ mixin class SignatureHandler {
   }
 
   Future<String> _computeSFAPrivateKey() async {
-    final sFAKey = await serviceLocator<SingleFactAuthFlutter>().initialize();
+    final sessionData =
+        await serviceLocator<SingleFactorAuthFlutter>().getSessionData();
 
-    return sFAKey!.privateKey;
+    return sessionData!.privateKey;
   }
 
   Future<String?> computeUserEmail() async {

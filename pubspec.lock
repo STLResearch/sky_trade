@@ -101,18 +101,18 @@ packages:
     dependency: "direct main"
     description:
       name: auth0_flutter
-      sha256: b7ffcefb62eb12bfc25d11388608b921046dfcc6fd335a2820aef29835c75158
+      sha256: eac7f48b3ac9a1894da7c7e78174918b54d1ca2f2756bfea57dc8e93619f401c
       url: "https://pub.dev"
     source: hosted
-    version: "1.7.2"
+    version: "1.8.0"
   auth0_flutter_platform_interface:
     dependency: transitive
     description:
       name: auth0_flutter_platform_interface
-      sha256: "081c945835f86c26f62f2ed49871f02f3c6c78d6db58d9333325fd18c1c9b977"
+      sha256: "7c733ac23ed0548f62988350e136c20af704722da82fa11a10c3bc8e2150c5d5"
       url: "https://pub.dev"
     source: hosted
-    version: "1.7.0"
+    version: "1.8.0"
   benchmark:
     dependency: transitive
     description:
@@ -1450,10 +1450,10 @@ packages:
     dependency: "direct main"
     description:
       name: single_factor_auth_flutter
-      sha256: "2f8d6b8f2466d400b2a2c41bbce5d21864f286b9916ce35aa8e32b74b083e4cd"
+      sha256: "8815242435f00c703c5576839b3469049a5b710f693446604bb479f4044f22cf"
       url: "https://pub.dev"
     source: hosted
-    version: "5.3.0"
+    version: "6.0.0"
   sky_engine:
     dependency: transitive
     description: flutter

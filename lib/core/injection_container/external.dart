@@ -23,8 +23,8 @@ Future<void> registerExternalServices() async {
         dotenv.env[auth0ClientId]!,
       ),
     )
-    ..registerLazySingleton<SingleFactAuthFlutter>(
-      SingleFactAuthFlutter.new,
+    ..registerLazySingleton<SingleFactorAuthFlutter>(
+      SingleFactorAuthFlutter.new,
     )
     ..registerLazySingleton<FlutterSecureStorage>(
       FlutterSecureStorage.new,
