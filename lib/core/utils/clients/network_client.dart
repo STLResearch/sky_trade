@@ -203,11 +203,11 @@ final class SocketIOClient with SignatureHandler {
   Future<Map<String, dynamic>> _computeHeaders() async {
     final issuedAt = computeIssuedAt();
     final nonce = computeNonce();
-    final userAddress = await computeUserAddress();
+    final walletAddress = await computeWalletAddress();
     final message = computeMessageToSignUsing(
       issuedAt: issuedAt,
       nonce: nonce,
-      userAddress: userAddress,
+      walletAddress: walletAddress,
       includeRadarNamespace: true,
     );
     final sign = await signMessage(
@@ -218,7 +218,7 @@ final class SocketIOClient with SignatureHandler {
       signHeaderKey: sign,
       signIssueAtHeaderKey: issuedAt,
       signNonceHeaderKey: nonce,
-      signAddressHeaderKey: userAddress,
+      signAddressHeaderKey: walletAddress,
     };
   }
 
@@ -404,11 +404,11 @@ final class HttpClient with SignatureHandler {
   }) async {
     final issuedAt = computeIssuedAt();
     final nonce = computeNonce();
-    final userAddress = await computeUserAddress();
+    final walletAddress = await computeWalletAddress();
     final message = computeMessageToSignUsing(
       issuedAt: issuedAt,
       nonce: nonce,
-      userAddress: userAddress,
+      walletAddress: walletAddress,
       path: path,
       queryParameters: queryParameters,
     );
@@ -423,7 +423,7 @@ final class HttpClient with SignatureHandler {
             signHeaderKey: sign,
             signIssueAtHeaderKey: issuedAt,
             signNonceHeaderKey: nonce,
-            signAddressHeaderKey: userAddress,
+            signAddressHeaderKey: walletAddress,
             if (email != null) emailAddressHeaderKey: email,
             if (headers != null) ...headers,
           },

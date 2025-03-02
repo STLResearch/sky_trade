@@ -74,7 +74,7 @@ mixin class SignatureHandler {
     );
   }
 
-  Future<String> computeUserAddress() async {
+  Future<String> computeWalletAddress() async {
     final ed25519KeyPair = await _computeEd25519KeyPair();
 
     return ed25519KeyPair.address;
@@ -83,7 +83,7 @@ mixin class SignatureHandler {
   String computeMessageToSignUsing({
     required String issuedAt,
     required String nonce,
-    required String userAddress,
+    required String walletAddress,
     String? path,
     Map<String, dynamic>? queryParameters,
     bool? includeRadarNamespace,
@@ -92,7 +92,7 @@ mixin class SignatureHandler {
       whiteSpace +
       signatureFirstLine +
       newLine +
-      userAddress +
+      walletAddress +
       newLine +
       newLine +
       signatureThirdLine +
