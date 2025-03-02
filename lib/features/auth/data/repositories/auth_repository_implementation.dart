@@ -219,7 +219,7 @@ final class AuthRepositoryImplementation
             dataSourceOperation: () async {
               final email = await computeUserEmail();
 
-              final walletAddress = await computeUserAddress();
+              final walletAddress = await computeWalletAddress();
 
               return _authRemoteDataSource.createSkyTradeUserUsing(
                 email: email!,
