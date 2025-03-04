@@ -92,7 +92,7 @@ base class SkyTradeUserEntity extends Equatable {
 
   final bool isActive;
 
-  final int? usedReferralCodeId;
+  final String? usedReferralCodeId;
 
   final String ownedReferralCodeId;
 

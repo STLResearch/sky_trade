@@ -119,7 +119,7 @@ final class SkyTradeUserModel extends SkyTradeUserEntity {
   final bool mIsActive;
 
   @JsonKey(name: usedReferralCodeIdKey)
-  final int? mUsedReferralCodeId;
+  final String? mUsedReferralCodeId;
 
   @JsonKey(name: ownedReferralCodeIdKey)
   final String mOwnedReferralCodeId;

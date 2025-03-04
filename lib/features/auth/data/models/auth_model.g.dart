@@ -24,7 +24,7 @@ SkyTradeUserModel _$SkyTradeUserModelFromJson(Map<String, dynamic> json) =>
       mPhoneNumber: json['phoneNumber'] as String,
       mKYCStatusId: (json['KYCStatusId'] as num).toInt(),
       mIsActive: json['isActive'] as bool,
-      mUsedReferralCodeId: (json['usedReferralCodeId'] as num?)?.toInt(),
+      mUsedReferralCodeId: json['usedReferralCodeId'] as String?,
       mOwnedReferralCodeId: json['ownedReferralCodeId'] as String,
       mIsUserRewardClaimed: json['isUserRewardClaimed'] as bool,
       mOwnedReferralCode: OwnedReferralCodeModel.fromJson(
