@@ -36,6 +36,7 @@ const nilDotOneNine = 0.19;
 const nilDotThreeNine = 0.39;
 const nilDotSixFour = 0.64;
 const oneDotNil = 1.0;
+const oneDotFive = 1.5;
 const oneDotSevenTwo = 1.72;
 const twoDotNil = 2.0;
 const twoDotFive = 2.5;

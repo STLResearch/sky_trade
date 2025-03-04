@@ -36,8 +36,9 @@ import 'package:sky_trade/core/resources/strings/secret_keys.dart'
         mapboxMapsDarkStyleUri,
         mapboxMapsPublicKey,
         mapboxMapsSatelliteStyleUri;
+import 'package:sky_trade/core/resources/strings/special_characters.dart' show emptyString;
 import 'package:sky_trade/core/resources/strings/ui.dart'
-    show nridDronesLayer, nridDronesSource;
+    show bridDronesSourceId, nridDronesSourceId;
 import 'package:sky_trade/core/utils/enums/local.dart' show CacheType;
 import 'package:sky_trade/core/utils/enums/ui.dart' show MapStyle;
 import 'package:sky_trade/core/utils/extensions/build_context_extensions.dart';
@@ -165,6 +166,8 @@ class _HomeViewState extends State<HomeView> {
   late final ValueNotifier<RestrictionEntity?> _clickedRestriction;
   late final ValueNotifier<bool> _centerLocationNotifier;
   late final ValueNotifier<MapStyle> _mapStyleNotifier;
+  String previousBridGeoJsonData = emptyString;
+  String previousNridGeoJsonData = emptyString;
 
   @override
   void initState() {
@@ -361,7 +364,7 @@ class _HomeViewState extends State<HomeView> {
               BroadcastRemoteIDReceiverState>(
             listener: (_, broadcastRemoteIDReceiverState) {
               broadcastRemoteIDReceiverState.whenOrNull(
-                gotRemoteIDs: (remoteIDEntities) async {
+                gotRemoteIDs: (bridEntities) async {
                   final latLng =
                       context.read<LocationPositionBloc>().state.whenOrNull(
                             gotLocationPosition: (locationPositionEntity) => (
@@ -372,11 +375,18 @@ class _HomeViewState extends State<HomeView> {
 
                   context.read<RemoteIDTransmitterBloc>().add(
                         RemoteIDTransmitterEvent.transmitRemoteID(
-                          remoteIDEntities: remoteIDEntities,
+                          remoteIDEntities: bridEntities,
                           deviceLatitude: latLng?.latitude,
                           deviceLongitude: latLng?.longitude,
                         ),
                       );
+
+                  if (_mapboxMap != null) {
+                    previousBridGeoJsonData = await _mapboxMap!.addOrUpdateDronesOnMap(
+                      remoteIDEntities: bridEntities,
+                      geoJsonSourceId: bridDronesSourceId,
+                    );
+                  }
                 },
               );
             },
@@ -385,14 +395,13 @@ class _HomeViewState extends State<HomeView> {
               NetworkRemoteIDReceiverState>(
             listener: (_, networkRemoteIDReceiverState) {
               networkRemoteIDReceiverState.whenOrNull(
-                gotRemoteIDs: (remoteIDEntities) async {
-                  await _mapboxMap?.showUASOnMapUsing(
-                    remoteIDEntities: remoteIDEntities,
-                    sourceLayerId: (
-                      sourceId: nridDronesSource,
-                      layerId: nridDronesLayer,
-                    ),
-                  );
+                gotRemoteIDs: (nridEntities) async {
+                  // if (_mapboxMap != null) {
+                  //   previousNridGeoJsonData = await _mapboxMap!.addOrUpdateDronesOnMap(
+                  //     remoteIDEntities: nridEntities,
+                  //     geoJsonSourceId: nridDronesSourceId,
+                  //   );
+                  // }
                 },
               );
             },
@@ -559,7 +568,12 @@ class _HomeViewState extends State<HomeView> {
                     },
                   );
                 },
-                onStyleLoaded: (_) => _mapboxMap?.reapplyClearedSymbolLayers(),
+                onStyleLoaded: (_) async {
+                  await _mapboxMap?.setUpLayersForDrones(
+                    bridGeoJsonData: previousBridGeoJsonData,
+                    nridGeoJsonData: previousNridGeoJsonData,
+                  );
+                },
               ),
               ValueListenableBuilder<bool>(
                 valueListenable: _centerLocationNotifier,
@@ -599,22 +613,22 @@ class _HomeViewState extends State<HomeView> {
                         },
                       );
                     },
-                    onMapLayerIconTap: () {
+                    onMapLayerIconTap: () async {
+                      final String newMapStyleUri;
+
                       switch (mapStyleNotifierValue) {
                         case MapStyle.dark:
-                          _mapboxMap?.style.setStyleURI(
-                            dotenv.env[mapboxMapsSatelliteStyleUri]!,
-                          );
-
+                          newMapStyleUri = mapboxMapsSatelliteStyleUri;
                           _mapStyleNotifier.value = MapStyle.satellite;
 
                         case MapStyle.satellite:
-                          _mapboxMap?.style.setStyleURI(
-                            dotenv.env[mapboxMapsDarkStyleUri]!,
-                          );
-
+                          newMapStyleUri = mapboxMapsDarkStyleUri;
                           _mapStyleNotifier.value = MapStyle.dark;
                       }
+
+                      await _mapboxMap?.style.setStyleURI(
+                        dotenv.env[newMapStyleUri]!,
+                      );
                     },
                     onDroneTap: () {},
                   ),
