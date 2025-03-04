@@ -36,8 +36,9 @@ import 'package:sky_trade/core/resources/strings/secret_keys.dart'
         mapboxMapsDarkStyleUri,
         mapboxMapsPublicKey,
         mapboxMapsSatelliteStyleUri;
+import 'package:sky_trade/core/resources/strings/special_characters.dart' show emptyString;
 import 'package:sky_trade/core/resources/strings/ui.dart'
-    show bridDronesSourceID;
+    show bridDronesSourceId, nridDronesSourceId;
 import 'package:sky_trade/core/utils/enums/local.dart' show CacheType;
 import 'package:sky_trade/core/utils/enums/ui.dart' show MapStyle;
 import 'package:sky_trade/core/utils/extensions/build_context_extensions.dart';
@@ -165,8 +166,8 @@ class _HomeViewState extends State<HomeView> {
   late final ValueNotifier<RestrictionEntity?> _clickedRestriction;
   late final ValueNotifier<bool> _centerLocationNotifier;
   late final ValueNotifier<MapStyle> _mapStyleNotifier;
-  String previousBridGeoJsonData = '';
-  String previousNridGeoJsonData = '';
+  String previousBridGeoJsonData = emptyString;
+  String previousNridGeoJsonData = emptyString;
 
   @override
   void initState() {
@@ -382,8 +383,8 @@ class _HomeViewState extends State<HomeView> {
 
                   if (_mapboxMap != null) {
                     previousBridGeoJsonData = await _mapboxMap!.addOrUpdateDronesOnMap(
-                      newRemoteIDEntities: bridEntities,
-                      geoJsonSourceID: bridDronesSourceID,
+                      remoteIDEntities: bridEntities,
+                      geoJsonSourceId: bridDronesSourceId,
                     );
                   }
                 },
@@ -395,12 +396,12 @@ class _HomeViewState extends State<HomeView> {
             listener: (_, networkRemoteIDReceiverState) {
               networkRemoteIDReceiverState.whenOrNull(
                 gotRemoteIDs: (nridEntities) async {
-                  if (_mapboxMap != null) {
-                    previousNridGeoJsonData = await _mapboxMap!.addOrUpdateDronesOnMap(
-                      newRemoteIDEntities: nridEntities,
-                      geoJsonSourceID: bridDronesSourceID,
-                    );
-                  }
+                  // if (_mapboxMap != null) {
+                  //   previousNridGeoJsonData = await _mapboxMap!.addOrUpdateDronesOnMap(
+                  //     remoteIDEntities: nridEntities,
+                  //     geoJsonSourceId: nridDronesSourceId,
+                  //   );
+                  // }
                 },
               );
             },

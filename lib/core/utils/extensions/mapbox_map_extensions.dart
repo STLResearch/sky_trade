@@ -1,5 +1,5 @@
 import 'dart:convert' show json;
-import 'dart:ui';
+import 'dart:ui' show instantiateImageCodec;
 import 'package:dartz/dartz.dart' show Function1, Function2;
 import 'package:flutter/services.dart' show rootBundle;
 import 'package:geodart/geometries.dart' as geo_dart
@@ -40,16 +40,18 @@ import 'package:sky_trade/core/resources/numbers/ui.dart'
         oneThousand,
         threeDotNil,
         zero;
+import 'package:sky_trade/core/resources/strings/special_characters.dart'
+    show emptyString;
 import 'package:sky_trade/core/resources/strings/ui.dart'
     show
-        bridDronesLayerID,
-        bridDronesSourceID,
+        bridDronesLayerId,
+        bridDronesSourceId,
         coordinatesKey,
         directionKey,
         getKey,
         iconDroneValue,
-        nridDronesLayerID,
-        nridDronesSourceID,
+        nridDronesLayerId,
+        nridDronesSourceId,
         pointValue,
         typeKey;
 import 'package:sky_trade/core/utils/extensions/restriction_entity_extensions.dart';
@@ -242,88 +244,101 @@ extension MapboxMapExtensions on MapboxMap {
     required String bridGeoJsonData,
     required String nridGeoJsonData,
   }) async {
-    final styleImageName = await _addStyleImageUsing(
+    final droneStyleImage = await _addStyleImageUsing(
       styleImageName: iconDroneValue,
       imageAsset: Assets.pngs.iconDrone,
     );
 
     await style.addSource(
       GeoJsonSource(
-        id: bridDronesSourceID,
+        id: bridDronesSourceId,
         data: bridGeoJsonData,
       ),
     );
     await style.addSource(
       GeoJsonSource(
-        id: nridDronesSourceID,
+        id: nridDronesSourceId,
         data: nridGeoJsonData,
       ),
     );
     await style.addLayer(
       SymbolLayer(
-        id: bridDronesLayerID,
-        sourceId: bridDronesSourceID,
-        iconImage: styleImageName,
-        iconRotateExpression: [getKey, directionKey],
+        id: bridDronesLayerId,
+        sourceId: bridDronesSourceId,
+        iconImage: droneStyleImage,
+        iconRotateExpression: [
+          getKey,
+          directionKey,
+        ],
       ),
     );
     await style.addLayer(
       SymbolLayer(
-        id: nridDronesLayerID,
-        sourceId: nridDronesSourceID,
-        iconImage: styleImageName,
-        iconRotateExpression: [getKey, directionKey],
+        id: nridDronesLayerId,
+        sourceId: nridDronesSourceId,
+        iconImage: droneStyleImage,
+        iconRotateExpression: [
+          getKey,
+          directionKey,
+        ],
       ),
     );
   }
 
   Future<String> addOrUpdateDronesOnMap({
-    required List<RemoteIDEntity> newRemoteIDEntities,
-    required String geoJsonSourceID,
+    required List<RemoteIDEntity> remoteIDEntities,
+    required String geoJsonSourceId,
   }) async {
-    final geoJsonData = _getGeoJsonData(newRemoteIDEntities);
+    final geoJsonData = _getGeoJsonData(
+      remoteIDEntities,
+    );
 
     if (geoJsonData == null) {
-      return '';
+      return emptyString;
     }
 
     final geoJsonSource = await style.getSource(
-      geoJsonSourceID,
+      geoJsonSourceId,
     );
     final geoJsonDataString = json.encode(
       geoJsonData.toJson(),
     );
 
-    if (await style.isStyleLoaded() && geoJsonSource is GeoJsonSource) {
+    if (geoJsonSource is GeoJsonSource) {
       await geoJsonSource.updateGeoJSON(
         geoJsonDataString,
       );
       return geoJsonDataString;
     }
-    return '';
+    return emptyString;
   }
 
-  FeatureCollection? _getGeoJsonData(List<RemoteIDEntity> remoteIDEntities) {
+  FeatureCollection? _getGeoJsonData(
+    List<RemoteIDEntity> remoteIDEntities,
+  ) {
     final geoJsonFeatures = remoteIDEntities
-        .map((remoteIDEntity) {
-          if (remoteIDEntity.location != null) {
-            return Feature(
-              id: remoteIDEntity.connection.macAddress,
-              properties: {
-                directionKey: remoteIDEntity.location?.direction ?? 0,
-              },
-              geometry: GeometryObject.deserialize(
-                {
-                  typeKey: pointValue,
-                  coordinatesKey: [
-                    remoteIDEntity.location!.longitude,
-                    remoteIDEntity.location!.latitude,
-                  ],
+        .map(
+          (remoteIDEntity) {
+            if (remoteIDEntity.location != null &&
+                remoteIDEntity.location!.location != null) {
+              return Feature(
+                id: remoteIDEntity.connection.macAddress,
+                properties: {
+                  directionKey: remoteIDEntity.location?.direction ?? zero,
                 },
-              ),
-            );
-          }
-        })
+                geometry: GeometryObject.deserialize(
+                  {
+                    typeKey: pointValue,
+                    coordinatesKey: [
+                      remoteIDEntity.location!.longitude,
+                      remoteIDEntity.location!.latitude,
+                    ],
+                  },
+                ),
+              );
+            }
+          },
+        )
         .whereType<Feature>()
         .toList();
 
@@ -342,7 +357,9 @@ extension MapboxMapExtensions on MapboxMap {
       imageAsset.path,
     );
     final imageBytes = imageByteData.buffer.asUint8List();
-    final codec = await instantiateImageCodec(imageBytes);
+    final codec = await instantiateImageCodec(
+      imageBytes,
+    );
     final frame = await codec.getNextFrame();
     final image = frame.image;
 
