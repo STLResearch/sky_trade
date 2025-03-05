@@ -20,9 +20,9 @@ RemoteTransmissionModel _$RemoteTransmissionModelFromJson(
 Map<String, dynamic> _$RemoteTransmissionModelToJson(
         RemoteTransmissionModel instance) =>
     <String, dynamic>{
-      'remoteData': instance.mRemoteData,
+      'remoteData': instance.mRemoteData.toJson(),
       'isTest': instance.mIsTest,
-      'device': instance.mDevice,
+      'device': instance.mDevice.toJson(),
       'rawData': const Uint8ListConverter().toJson(instance.mRawData),
     };
 

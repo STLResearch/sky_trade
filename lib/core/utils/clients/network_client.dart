@@ -5,6 +5,7 @@ import 'dart:async' show StreamController, StreamSubscription;
 import 'package:dartz/dartz.dart'
     show Either, Function0, Function1, Left, Right;
 import 'package:dio/dio.dart' show BaseOptions, Dio, Options, Response;
+import 'package:flutter/foundation.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart' show dotenv;
 import 'package:sky_trade/core/resources/numbers/networking.dart'
     show
@@ -16,20 +17,25 @@ import 'package:sky_trade/core/resources/strings/networking.dart'
     show
         acceptAllHeaderValue,
         acceptHeaderKey,
+        anErrorOccurredWhileProcessingTheEvent,
         applicationJsonHeaderValue,
         bodyKey,
         contentTypeHeaderKey,
         emailAddressHeaderKey,
+        expectedType,
         radarPath,
         signAddressHeaderKey,
         signHeaderKey,
         signIssueAtHeaderKey,
         signNonceHeaderKey,
+        socketException,
+        unexpectedResponseTypeReceived,
         websocketTransport;
 import 'package:sky_trade/core/resources/strings/secret_keys.dart'
     show skyTradeServerHttpBaseUrl, skyTradeServerSocketIOBaseUrl;
 import 'package:sky_trade/core/resources/strings/special_characters.dart'
-    show emptyString;
+    show emptyString, forwardSlash, fullStop;
+import 'package:sky_trade/core/utils/clients/remote_logger.dart';
 import 'package:sky_trade/core/utils/clients/signature_handler.dart';
 import 'package:sky_trade/core/utils/enums/networking.dart'
     show ConnectionState, RequestMethod;
@@ -68,9 +74,10 @@ final class SocketIOClient with SignatureHandler {
   StreamSubscription<Either<TerminateSocketIO, SocketIOClientMessage>>?
       _clientMessageStreamSubscription;
 
-  Future<void> listenToEvent<R>({
+  Future<void> listenToEvent<E, R>({
     required String eventName,
-    required Function1<R, void> onResponse,
+    required Function1<R, void> onSuccess,
+    Function1<E, void>? onError,
     Function1<ConnectionState, void>? onConnectionChanged,
     Function0<void>? onPing,
     Function0<void>? onPong,
@@ -85,9 +92,35 @@ final class SocketIOClient with SignatureHandler {
       ..connect()
       ..on(
         eventName,
-        (response) {
-          onResponse(
-            response as R,
+        (response) async {
+          if (response is R) {
+            onSuccess(
+              response,
+            );
+            return;
+          }
+          var message = eventName + socketException;
+          if (response is E) {
+            message += anErrorOccurredWhileProcessingTheEvent;
+            if (onError != null) {
+              onError(
+                response,
+              );
+            }
+          } else {
+            message += unexpectedResponseTypeReceived +
+                response.runtimeType.toString() +
+                fullStop +
+                expectedType +
+                E.runtimeType.toString() +
+                forwardSlash +
+                R.runtimeType.toString();
+          }
+
+          if (kDebugMode) print(message);
+
+          await SentryLogger.recordException(
+            message,
           );
         },
       )

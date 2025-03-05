@@ -39,9 +39,9 @@ final class DroneFlightPathRemoteDataSourceImplementation
     required Function1<DroneFlightPathModel, void> onFlightPathReceived,
     required Function1<ConnectionState, void> onConnectionChanged,
   }) =>
-      _socketIOClient.listenToEvent<Map<String, dynamic>>(
+      _socketIOClient.listenToEvent<int,Map<String, dynamic>>(
         eventName: droneFlightPathResponseEvent,
-        onResponse: (response) => onFlightPathReceived(
+        onSuccess: (response) => onFlightPathReceived(
           DroneFlightPathModel.fromJson(
             response,
           ),
