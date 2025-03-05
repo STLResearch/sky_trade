@@ -16,7 +16,7 @@ import 'package:sky_trade/features/remote_i_d_transmitter/domain/entities/remote
 
 part 'remote_transmission_model.g.dart';
 
-@JsonSerializable()
+@JsonSerializable(explicitToJson: true)
 final class RemoteTransmissionModel extends RemoteTransmissionEntity {
   const RemoteTransmissionModel({
     required this.mRemoteData,
@@ -51,7 +51,7 @@ final class RemoteTransmissionModel extends RemoteTransmissionEntity {
   Map<String, dynamic> toJson() => _$RemoteTransmissionModelToJson(this);
 }
 
-@JsonSerializable()
+@JsonSerializable(explicitToJson: true)
 final class DeviceModel extends DeviceEntity {
   const DeviceModel({
     required this.mLatitude,

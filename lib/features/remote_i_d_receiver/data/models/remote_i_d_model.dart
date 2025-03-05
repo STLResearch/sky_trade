@@ -86,7 +86,7 @@ import 'package:sky_trade/features/remote_i_d_receiver/domain/entities/remote_i_
 
 part 'remote_i_d_model.g.dart';
 
-@JsonSerializable()
+@JsonSerializable(explicitToJson: true)
 final class RemoteIDModel extends RemoteIDEntity {
   const RemoteIDModel({
     required this.mConnection,
@@ -133,7 +133,7 @@ final class RemoteIDModel extends RemoteIDEntity {
   Map<String, dynamic> toJson() => _$RemoteIDModelToJson(this);
 }
 
-@JsonSerializable()
+@JsonSerializable(explicitToJson: true)
 final class ConnectionModel extends ConnectionEntity {
   const ConnectionModel({
     required this.mMacAddress,
@@ -169,7 +169,7 @@ final class ConnectionModel extends ConnectionEntity {
   Map<String, dynamic> toJson() => _$ConnectionModelToJson(this);
 }
 
-@JsonSerializable()
+@JsonSerializable(explicitToJson: true)
 final class BasicIDModel extends BasicIDEntity {
   const BasicIDModel({
     required this.mType,
@@ -213,7 +213,7 @@ final class BasicIDModel extends BasicIDEntity {
   Map<String, dynamic> toJson() => _$BasicIDModelToJson(this);
 }
 
-@JsonSerializable()
+@JsonSerializable(explicitToJson: true)
 final class LocationModel extends LocationEntity {
   const LocationModel({
     required this.mOperationalStatus,
@@ -330,7 +330,7 @@ final class LocationModel extends LocationEntity {
   Map<String, dynamic> toJson() => _$LocationModelToJson(this);
 }
 
-@JsonSerializable()
+@JsonSerializable(explicitToJson: true)
 final class SystemModel extends SystemEntity {
   const SystemModel({
     required this.mOperatorLocationType,
@@ -420,7 +420,7 @@ final class SystemModel extends SystemEntity {
   Map<String, dynamic> toJson() => _$SystemModelToJson(this);
 }
 
-@JsonSerializable()
+@JsonSerializable(explicitToJson: true)
 final class CoordinatesModel extends CoordinatesEntity {
   const CoordinatesModel({
     required this.mLatitude,
@@ -442,7 +442,7 @@ final class CoordinatesModel extends CoordinatesEntity {
   Map<String, dynamic> toJson() => _$CoordinatesModelToJson(this);
 }
 
-@JsonSerializable()
+@JsonSerializable(explicitToJson: true)
 final class SelfIDModel extends SelfIDEntity {
   const SelfIDModel({
     required this.mDescriptionType,
@@ -473,7 +473,7 @@ final class SelfIDModel extends SelfIDEntity {
   Map<String, dynamic> toJson() => _$SelfIDModelToJson(this);
 }
 
-@JsonSerializable()
+@JsonSerializable(explicitToJson: true)
 final class OperatorIDModel extends OperatorIDEntity {
   const OperatorIDModel({
     required this.mOperatorIDType,
@@ -506,7 +506,7 @@ final class OperatorIDModel extends OperatorIDEntity {
   Map<String, dynamic> toJson() => _$OperatorIDModelToJson(this);
 }
 
-@JsonSerializable()
+@JsonSerializable(explicitToJson: true)
 final class AuthenticationModel extends AuthenticationEntity {
   const AuthenticationModel({
     required this.mAuthenticationType,
