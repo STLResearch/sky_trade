@@ -5,7 +5,7 @@ import 'dart:async' show StreamController, StreamSubscription;
 import 'package:dartz/dartz.dart'
     show Either, Function0, Function1, Left, Right;
 import 'package:dio/dio.dart' show BaseOptions, Dio, Options, Response;
-import 'package:flutter/foundation.dart';
+import 'package:flutter/foundation.dart' show kDebugMode;
 import 'package:flutter_dotenv/flutter_dotenv.dart' show dotenv;
 import 'package:sky_trade/core/resources/numbers/networking.dart'
     show
@@ -17,24 +17,24 @@ import 'package:sky_trade/core/resources/strings/networking.dart'
     show
         acceptAllHeaderValue,
         acceptHeaderKey,
-        anErrorOccurredWhileProcessingTheEvent,
+        anErrorOccurredWhileProcessingTheEventLogMessage,
         applicationJsonHeaderValue,
         bodyKey,
         contentTypeHeaderKey,
         emailAddressHeaderKey,
-        expectedType,
+        expectedTypeLogMessage,
         radarPath,
         signAddressHeaderKey,
         signHeaderKey,
         signIssueAtHeaderKey,
         signNonceHeaderKey,
-        socketException,
-        unexpectedResponseTypeReceived,
+        socketExceptionLogMessage,
+        unexpectedResponseTypeReceivedLogMessage,
         websocketTransport;
 import 'package:sky_trade/core/resources/strings/secret_keys.dart'
     show skyTradeServerHttpBaseUrl, skyTradeServerSocketIOBaseUrl;
 import 'package:sky_trade/core/resources/strings/special_characters.dart'
-    show emptyString, forwardSlash, fullStop;
+    show colon, emptyString, forwardSlash, fullStop, whiteSpace;
 import 'package:sky_trade/core/utils/clients/remote_logger.dart';
 import 'package:sky_trade/core/utils/clients/signature_handler.dart';
 import 'package:sky_trade/core/utils/enums/networking.dart'
@@ -74,9 +74,9 @@ final class SocketIOClient with SignatureHandler {
   StreamSubscription<Either<TerminateSocketIO, SocketIOClientMessage>>?
       _clientMessageStreamSubscription;
 
-  Future<void> listenToEvent<E, R>({
+  Future<void> listenToEvent<E, S>({
     required String eventName,
-    required Function1<R, void> onSuccess,
+    required Function1<S, void> onSuccess,
     Function1<E, void>? onError,
     Function1<ConnectionState, void>? onConnectionChanged,
     Function0<void>? onPing,
@@ -93,28 +93,38 @@ final class SocketIOClient with SignatureHandler {
       ..on(
         eventName,
         (response) async {
-          if (response is R) {
+          if (response is S) {
             onSuccess(
               response,
             );
+
             return;
           }
-          var message = eventName + socketException;
+
+          var message =
+              eventName + socketExceptionLogMessage + colon + whiteSpace;
+
           if (response is E) {
-            message += anErrorOccurredWhileProcessingTheEvent;
+            message += anErrorOccurredWhileProcessingTheEventLogMessage;
+
             if (onError != null) {
               onError(
                 response,
               );
             }
           } else {
-            message += unexpectedResponseTypeReceived +
+            message += unexpectedResponseTypeReceivedLogMessage +
+                colon +
+                whiteSpace +
                 response.runtimeType.toString() +
                 fullStop +
-                expectedType +
+                whiteSpace +
+                expectedTypeLogMessage +
+                colon +
+                whiteSpace +
                 E.runtimeType.toString() +
                 forwardSlash +
-                R.runtimeType.toString();
+                S.runtimeType.toString();
           }
 
           if (kDebugMode) print(message);

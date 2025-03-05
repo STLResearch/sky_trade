@@ -41,7 +41,7 @@ final class RemoteIDTransmitterRemoteDataSourceImplementation
     required Function0<void> onRemoteIDSent,
     required Function1<ConnectionState, void> onConnectionChanged,
   }) =>
-      _socketIOClient.listenToEvent<int,int>(
+      _socketIOClient.listenToEvent<int, int>(
         eventName: remoteIDTransmissionResponseEvent,
         onSuccess: (response) => onRemoteIDSent(),
         onConnectionChanged: onConnectionChanged,

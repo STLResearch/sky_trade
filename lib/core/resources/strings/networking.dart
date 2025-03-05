@@ -417,8 +417,10 @@ const aWalletAlreadyExistsForThisEmailAddressKindlySignInWithTheSameMethodUsedPr
     'A wallet already exists for this email address. Kindly sign in with the same method used previously.';
 const walletExistCode = 'WALLET_EXIST';
 const invalidDeleteOtpCode = 'INVALID_DELETE_OTP';
-// Socket Exceptions
-const socketException = 'Socket Exception: ';
-const anErrorOccurredWhileProcessingTheEvent = 'An error occurred while processing the event';
-const unexpectedResponseTypeReceived = 'Unexpected response type received: ';
-const expectedType = 'Expected type: ';
+// Socket exception messages added to Sentry logs
+const socketExceptionLogMessage = 'Socket Exception';
+const anErrorOccurredWhileProcessingTheEventLogMessage =
+    'An error occurred while processing the event';
+const unexpectedResponseTypeReceivedLogMessage =
+    'Unexpected response type received';
+const expectedTypeLogMessage = 'Expected type';

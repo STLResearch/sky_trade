@@ -40,7 +40,7 @@ final class RemoteIDReceiverRemoteDataSourceImplementation
     required Function1<List<RemoteIDModel>, void> onNetworkRemoteIDsGotten,
     required Function1<ConnectionState, void> onConnectionChanged,
   }) =>
-      _socketIOClient.listenToEvent<int,Map<String, dynamic>>(
+      _socketIOClient.listenToEvent<int, Map<String, dynamic>>(
         eventName: uasActivityResponseEvent,
         onSuccess: (response) {
           final jsonList = response[dataKey] as List<dynamic>;
