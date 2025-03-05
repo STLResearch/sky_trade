@@ -165,7 +165,9 @@ void main() {
     },
   );
 
-  tearDown(() {
-    uASRestrictionsBloc.close();
-  });
+  tearDown(
+    () {
+      uASRestrictionsBloc.close();
+    },
+  );
 }
