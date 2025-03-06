@@ -5,7 +5,6 @@ import 'dart:async' show StreamController, StreamSubscription;
 import 'package:dartz/dartz.dart'
     show Either, Function0, Function1, Left, Right;
 import 'package:dio/dio.dart' show BaseOptions, Dio, Options, Response;
-import 'package:flutter/foundation.dart' show kDebugMode;
 import 'package:flutter_dotenv/flutter_dotenv.dart' show dotenv;
 import 'package:sky_trade/core/resources/numbers/networking.dart'
     show
@@ -35,8 +34,9 @@ import 'package:sky_trade/core/resources/strings/secret_keys.dart'
     show skyTradeServerHttpBaseUrl, skyTradeServerSocketIOBaseUrl;
 import 'package:sky_trade/core/resources/strings/special_characters.dart'
     show colon, emptyString, forwardSlash, fullStop, whiteSpace;
-import 'package:sky_trade/core/utils/clients/remote_logger.dart';
+import 'package:sky_trade/core/utils/clients/logger.dart';
 import 'package:sky_trade/core/utils/clients/signature_handler.dart';
+import 'package:sky_trade/core/utils/enums/local.dart';
 import 'package:sky_trade/core/utils/enums/networking.dart'
     show ConnectionState, RequestMethod;
 import 'package:sky_trade/core/utils/typedefs/networking.dart'
@@ -127,7 +127,10 @@ final class SocketIOClient with SignatureHandler {
                 S.runtimeType.toString();
           }
 
-          if (kDebugMode) print(message);
+          ConsoleLogger.log(
+            message: message,
+            logType: LogType.error,
+          );
 
           await SentryLogger.recordException(
             message,

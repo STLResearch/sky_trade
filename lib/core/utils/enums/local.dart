@@ -18,3 +18,17 @@ enum CacheType {
 
   final String ending;
 }
+
+enum LogEnvironment {
+  consoleLogger,
+  sentryLogger
+}
+
+enum LogType {
+  trace,
+  debug,
+  warning,
+  info,
+  error,
+  fatalError
+}

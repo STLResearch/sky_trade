@@ -1,23 +1,26 @@
 import 'package:bloc/bloc.dart'
     show Bloc, BlocBase, BlocObserver, Change, Transition;
-import 'package:flutter/foundation.dart' show kDebugMode;
+import 'package:sky_trade/core/utils/clients/logger.dart' show ConsoleLogger;
+import 'package:sky_trade/core/utils/enums/local.dart' show LogType;
 
 final class AppBlocObserver extends BlocObserver {
   const AppBlocObserver();
 
   @override
   void onCreate(BlocBase<dynamic> bloc) {
-    if (kDebugMode) {
-      print('onCreate: This is a ${bloc.runtimeType}');
-    }
+    ConsoleLogger.log(
+      message: 'onCreate: This is a ${bloc.runtimeType}',
+      logType: LogType.trace,
+    );
     super.onCreate(bloc);
   }
 
   @override
   void onClose(BlocBase<dynamic> bloc) {
-    if (kDebugMode) {
-      print('onClose: ${bloc.runtimeType} closed');
-    }
+    ConsoleLogger.log(
+      message: 'onClose: ${bloc.runtimeType} closed',
+      logType: LogType.trace,
+    );
     super.onClose(bloc);
   }
 
@@ -27,9 +30,12 @@ final class AppBlocObserver extends BlocObserver {
     Object error,
     StackTrace stackTrace,
   ) {
-    if (kDebugMode) {
-      print('onError: ${bloc.runtimeType} closed');
-    }
+    ConsoleLogger.log(
+      message: 'onError: ${bloc.runtimeType} closed',
+      error: error,
+      stackTrace: stackTrace,
+      logType: LogType.error,
+    );
     super.onError(bloc, error, stackTrace);
   }
 
@@ -38,12 +44,13 @@ final class AppBlocObserver extends BlocObserver {
     Bloc<dynamic, dynamic> bloc,
     Transition<dynamic, dynamic> transition,
   ) {
-    if (kDebugMode) {
-      print('''
+    ConsoleLogger.log(
+      message: '''
       onTransition: There was a transition from
       ${transition.currentState} to ${transition.nextState}
-          ''');
-    }
+          ''',
+      logType: LogType.trace,
+    );
     super.onTransition(bloc, transition);
   }
 
@@ -52,12 +59,13 @@ final class AppBlocObserver extends BlocObserver {
     BlocBase<dynamic> bloc,
     Change<dynamic> change,
   ) {
-    if (kDebugMode) {
-      print('''
+    ConsoleLogger.log(
+      message: '''
       onChange: ${bloc.runtimeType} changed from
       ${change.currentState} to ${change.nextState}
-          ''');
-    }
+          ''',
+      logType: LogType.trace,
+    );
     super.onChange(bloc, change);
   }
 
@@ -66,9 +74,10 @@ final class AppBlocObserver extends BlocObserver {
     Bloc<dynamic, dynamic> bloc,
     Object? event,
   ) {
-    if (kDebugMode) {
-      print('onEvent: A $event event happened in ${bloc.runtimeType}');
-    }
+    ConsoleLogger.log(
+      message: 'onEvent: A $event event happened in ${bloc.runtimeType}',
+      logType: LogType.trace,
+    );
     super.onEvent(bloc, event);
   }
 }
