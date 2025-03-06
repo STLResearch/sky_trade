@@ -1,5 +1,5 @@
 import 'package:bloc_test/bloc_test.dart' show blocTest;
-import 'package:dartz/dartz.dart' show Either, Left, Right;
+import 'package:dartz/dartz.dart' show Left, Right;
 import 'package:flutter_test/flutter_test.dart' show setUp, tearDown;
 import 'package:mockito/annotations.dart' show GenerateNiceMocks, MockSpec;
 import 'package:mockito/mockito.dart'

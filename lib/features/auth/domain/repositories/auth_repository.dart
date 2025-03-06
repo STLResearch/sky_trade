@@ -28,6 +28,8 @@ abstract interface class AuthRepository {
 
   Future<Either<Auth0LogoutFailure, Unit>> logoutCurrentAuth0User();
 
+  Future<Either<SFAConfigurationFailure, Unit>> configureSFA();
+
   Future<Either<SFAInitializationFailure, Unit>> initializeSFA();
 
   Future<Either<SFAAuthenticationFailure, SFAUserEntity>>

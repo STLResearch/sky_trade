@@ -204,6 +204,34 @@ class MockAuthRepository extends _i1.Mock implements _i4.AuthRepository {
           ) as _i5.Future<_i2.Either<_i6.Auth0LogoutFailure, _i2.Unit>>);
 
   @override
+  _i5.Future<
+      _i2.Either<_i6.SFAConfigurationFailure,
+          _i2.Unit>> configureSFA() => (super.noSuchMethod(
+        Invocation.method(
+          #configureSFA,
+          [],
+        ),
+        returnValue:
+            _i5.Future<_i2.Either<_i6.SFAConfigurationFailure, _i2.Unit>>.value(
+                _FakeEither_0<_i6.SFAConfigurationFailure, _i2.Unit>(
+          this,
+          Invocation.method(
+            #configureSFA,
+            [],
+          ),
+        )),
+        returnValueForMissingStub:
+            _i5.Future<_i2.Either<_i6.SFAConfigurationFailure, _i2.Unit>>.value(
+                _FakeEither_0<_i6.SFAConfigurationFailure, _i2.Unit>(
+          this,
+          Invocation.method(
+            #configureSFA,
+            [],
+          ),
+        )),
+      ) as _i5.Future<_i2.Either<_i6.SFAConfigurationFailure, _i2.Unit>>);
+
+  @override
   _i5.Future<_i2.Either<_i6.SFAInitializationFailure, _i2.Unit>>
       initializeSFA() => (super.noSuchMethod(
             Invocation.method(
