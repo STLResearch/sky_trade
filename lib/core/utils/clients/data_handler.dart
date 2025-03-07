@@ -2,9 +2,8 @@ import 'dart:async' show StreamController, StreamSubscription;
 
 import 'package:dartz/dartz.dart'
     show Either, Function0, Function1, Left, Right;
-import 'package:sky_trade/core/utils/clients/logger.dart'
-    show ConsoleLogger, SentryLogger;
-import 'package:sky_trade/core/utils/enums/local.dart';
+import 'package:sky_trade/core/utils/clients/logger.dart' show AppLogger;
+import 'package:sky_trade/core/utils/enums/local.dart' show LogType;
 
 mixin class DataHandler {
   Future<Either<L, R>> handleData<L, R>({
@@ -21,13 +20,9 @@ mixin class DataHandler {
         ),
       );
     } catch (e) {
-      ConsoleLogger.log(
+      AppLogger.log(
         message: e.toString(),
         logType: LogType.error,
-      );
-
-      await SentryLogger.recordException(
-        e,
       );
 
       return Left(
