@@ -15,6 +15,11 @@ final class Auth0LogoutFailure extends Equatable {
   List<Object?> get props => [];
 }
 
+final class SFAConfigurationFailure extends Equatable {
+  @override
+  List<Object?> get props => [];
+}
+
 final class SFAInitializationFailure extends Equatable {
   @override
   List<Object?> get props => [];

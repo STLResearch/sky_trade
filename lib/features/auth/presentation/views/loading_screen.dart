@@ -61,8 +61,8 @@ import 'package:sky_trade/features/auth/presentation/blocs/check_sky_trade_user_
         CheckSkyTradeUserExistsBloc,
         CheckSkyTradeUserExistsEvent,
         CheckSkyTradeUserExistsState;
-import 'package:sky_trade/features/auth/presentation/blocs/s_f_a_initialization_bloc/s_f_a_initialization_bloc.dart'
-    show SFAInitializationBloc, SFAInitializationEvent, SFAInitializationState;
+import 'package:sky_trade/features/auth/presentation/blocs/s_f_a_configuration_bloc/s_f_a_configuration_bloc.dart'
+    show SFAConfigurationBloc, SFAConfigurationEvent, SFAConfigurationState;
 import 'package:sky_trade/features/internet_connection_checker/presentation/blocs/internet_connection_checker_bloc/internet_connection_checker_bloc.dart'
     show
         InternetConnectionCheckerBloc,
@@ -78,7 +78,7 @@ class LoadingScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) => MultiBlocProvider(
         providers: [
-          BlocProvider<SFAInitializationBloc>(
+          BlocProvider<SFAConfigurationBloc>(
             create: (_) => serviceLocator(),
           ),
           BlocProvider<Auth0UserSessionAfterAccountDeletionBloc>(
@@ -111,13 +111,13 @@ class LoadingView extends StatefulWidget {
 class _LoadingViewState extends State<LoadingView> {
   @override
   void initState() {
-    _initializeSFA();
+    _configureSFA();
 
     super.initState();
   }
 
-  void _initializeSFA() => context.read<SFAInitializationBloc>().add(
-        const SFAInitializationEvent.initialize(),
+  void _configureSFA() => context.read<SFAConfigurationBloc>().add(
+        const SFAConfigurationEvent.configure(),
       );
 
   void _removeSplashScreenAndNavigateTo({
@@ -137,16 +137,16 @@ class _LoadingViewState extends State<LoadingView> {
   @override
   Widget build(BuildContext context) => MultiBlocListener(
         listeners: [
-          BlocListener<SFAInitializationBloc, SFAInitializationState>(
-            listener: (_, sFAInitializationState) {
-              sFAInitializationState.whenOrNull(
-                initialized: () {
+          BlocListener<SFAConfigurationBloc, SFAConfigurationState>(
+            listener: (_, sFAConfigurationState) {
+              sFAConfigurationState.whenOrNull(
+                configured: () {
                   context.read<Auth0UserSessionAfterAccountDeletionBloc>().add(
                         const Auth0UserSessionAfterAccountDeletionEvent
                             .checkAuth0SessionExisting(),
                       );
                 },
-                failedToInitialize: (_) {
+                failedToConfigure: (_) {
                   _removeSplashScreenAndNavigateTo(
                     route: errorRoutePath,
                     arguments: ErrorReason.sessionInitializationFailure,

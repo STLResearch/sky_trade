@@ -18,6 +18,8 @@ import 'package:sky_trade/core/errors/exceptions/auth_exception.dart'
         UserNotFoundException,
         WalletAlreadyExistsException;
 import 'package:sky_trade/core/errors/failures/auth_failure.dart';
+import 'package:sky_trade/core/resources/numbers/networking.dart'
+    show web3AuthSFASessionTimeSeconds;
 import 'package:sky_trade/core/resources/strings/environments.dart'
     show devEnvironment, flavours, stageEnvironment;
 import 'package:sky_trade/core/resources/strings/secret_keys.dart'
@@ -132,12 +134,13 @@ final class AuthRepositoryImplementation
       );
 
   @override
-  Future<Either<SFAInitializationFailure, Unit>> initializeSFA() =>
-      handleData<SFAInitializationFailure, Unit>(
+  Future<Either<SFAConfigurationFailure, Unit>> configureSFA() =>
+      handleData<SFAConfigurationFailure, Unit>(
         dataSourceOperation: () async {
           final web3AuthOptions = Web3AuthOptions(
             network: _computeWeb3AuthNetwork(),
             clientId: dotenv.env[web3AuthClientId]!,
+            sessionTime: web3AuthSFASessionTimeSeconds,
           );
 
           await _singleFactorAuthentication.init(
@@ -147,7 +150,7 @@ final class AuthRepositoryImplementation
           return unit;
         },
         onSuccess: (unit) => unit,
-        onFailure: (_) => SFAInitializationFailure(),
+        onFailure: (_) => SFAConfigurationFailure(),
       );
 
   Web3AuthNetwork _computeWeb3AuthNetwork() {
@@ -162,6 +165,18 @@ final class AuthRepositoryImplementation
 
     return Web3AuthNetwork.cyan;
   }
+
+  @override
+  Future<Either<SFAInitializationFailure, Unit>> initializeSFA() =>
+      handleData<SFAInitializationFailure, Unit>(
+        dataSourceOperation: () async {
+          await _singleFactorAuthentication.initialize();
+
+          return unit;
+        },
+        onSuccess: (unit) => unit,
+        onFailure: (_) => SFAInitializationFailure(),
+      );
 
   @override
   Future<Either<SFAAuthenticationFailure, SFAUserEntity>>

@@ -1450,10 +1450,10 @@ packages:
     dependency: "direct main"
     description:
       name: single_factor_auth_flutter
-      sha256: "8815242435f00c703c5576839b3469049a5b710f693446604bb479f4044f22cf"
+      sha256: bc7702d92711ce4f11977ae074370a75de2bdcde45645a33af282f0a6a7e7369
       url: "https://pub.dev"
     source: hosted
-    version: "6.0.0"
+    version: "6.0.1"
   sky_engine:
     dependency: transitive
     description: flutter
