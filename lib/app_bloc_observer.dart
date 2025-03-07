@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart'
     show Bloc, BlocBase, BlocObserver, Change, Transition;
-import 'package:sky_trade/core/utils/clients/logger.dart' show AppLogger;
-import 'package:sky_trade/core/utils/enums/local.dart' show LogType;
+import 'package:sky_trade/core/utils/clients/app_logger.dart' show AppLogger;
+import 'package:sky_trade/core/utils/enums/local.dart' show LogLevel;
 
 final class AppBlocObserver extends BlocObserver {
   const AppBlocObserver();
@@ -10,7 +10,7 @@ final class AppBlocObserver extends BlocObserver {
   void onCreate(BlocBase<dynamic> bloc) {
     AppLogger.log(
       message: 'onCreate: This is a ${bloc.runtimeType}',
-      logType: LogType.trace,
+      logLevel: LogLevel.trace,
     );
     super.onCreate(bloc);
   }
@@ -19,7 +19,7 @@ final class AppBlocObserver extends BlocObserver {
   void onClose(BlocBase<dynamic> bloc) {
     AppLogger.log(
       message: 'onClose: ${bloc.runtimeType} closed',
-      logType: LogType.trace,
+      logLevel: LogLevel.trace,
     );
     super.onClose(bloc);
   }
@@ -33,7 +33,7 @@ final class AppBlocObserver extends BlocObserver {
     AppLogger.log(
       message: 'onError: ${bloc.runtimeType} closed.',
       stackTrace: stackTrace,
-      logType: LogType.error,
+      logLevel: LogLevel.error,
     );
     super.onError(bloc, error, stackTrace);
   }
@@ -48,7 +48,7 @@ final class AppBlocObserver extends BlocObserver {
       onTransition: There was a transition from
       ${transition.currentState} to ${transition.nextState}
           ''',
-      logType: LogType.trace,
+      logLevel: LogLevel.trace,
     );
     super.onTransition(bloc, transition);
   }
@@ -63,7 +63,7 @@ final class AppBlocObserver extends BlocObserver {
       onChange: ${bloc.runtimeType} changed from
       ${change.currentState} to ${change.nextState}
           ''',
-      logType: LogType.trace,
+      logLevel: LogLevel.trace,
     );
     super.onChange(bloc, change);
   }
@@ -75,7 +75,7 @@ final class AppBlocObserver extends BlocObserver {
   ) {
     AppLogger.log(
       message: 'onEvent: A $event event happened in ${bloc.runtimeType}',
-      logType: LogType.trace,
+      logLevel: LogLevel.trace,
     );
     super.onEvent(bloc, event);
   }

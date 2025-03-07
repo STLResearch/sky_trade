@@ -19,11 +19,11 @@ enum CacheType {
   final String ending;
 }
 
-enum LogType {
+enum LogLevel {
   trace,
   debug,
   warning,
   info,
   error,
-  fatalError
+  fatalError,
 }
