@@ -18,3 +18,12 @@ enum CacheType {
 
   final String ending;
 }
+
+enum LogLevel {
+  trace,
+  debug,
+  warning,
+  info,
+  error,
+  fatalError,
+}
