@@ -163,7 +163,7 @@ final class AuthRepositoryImplementation
       return Web3AuthNetwork.sapphire_devnet;
     }
 
-    return Web3AuthNetwork.cyan;
+    return Web3AuthNetwork.sapphire_mainnet;
   }
 
   @override

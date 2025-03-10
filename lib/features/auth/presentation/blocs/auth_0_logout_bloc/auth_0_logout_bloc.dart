@@ -32,6 +32,8 @@ class Auth0LogoutBloc extends Bloc<Auth0LogoutEvent, Auth0LogoutState> {
       const Auth0LogoutState.loggingOut(),
     );
 
+    await _authRepository.logoutCurrentSFAUser();
+
     final result = await _authRepository.logoutCurrentAuth0User();
 
     result.fold(
