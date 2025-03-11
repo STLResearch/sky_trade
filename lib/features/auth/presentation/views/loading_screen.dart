@@ -63,6 +63,8 @@ import 'package:sky_trade/features/auth/presentation/blocs/check_sky_trade_user_
         CheckSkyTradeUserExistsState;
 import 'package:sky_trade/features/auth/presentation/blocs/s_f_a_configuration_bloc/s_f_a_configuration_bloc.dart'
     show SFAConfigurationBloc, SFAConfigurationEvent, SFAConfigurationState;
+import 'package:sky_trade/features/auth/presentation/blocs/s_f_a_user_session_bloc/s_f_a_user_session_bloc.dart'
+    show SFAUserSessionBloc, SFAUserSessionEvent, SFAUserSessionState;
 import 'package:sky_trade/features/internet_connection_checker/presentation/blocs/internet_connection_checker_bloc/internet_connection_checker_bloc.dart'
     show
         InternetConnectionCheckerBloc,
@@ -91,6 +93,9 @@ class LoadingScreen extends StatelessWidget {
             create: (_) => serviceLocator(),
           ),
           BlocProvider<InternetConnectionCheckerBloc>(
+            create: (_) => serviceLocator(),
+          ),
+          BlocProvider<SFAUserSessionBloc>(
             create: (_) => serviceLocator(),
           ),
           BlocProvider<CheckSkyTradeUserExistsBloc>(
@@ -230,13 +235,29 @@ class _LoadingViewState extends State<LoadingView> {
             listener: (_, internetConnectionCheckerState) {
               internetConnectionCheckerState.whenOrNull(
                 hasActiveInternetConnection: () {
-                  context.read<CheckSkyTradeUserExistsBloc>().add(
-                        const CheckSkyTradeUserExistsEvent.checkUserExists(),
+                  context.read<SFAUserSessionBloc>().add(
+                        const SFAUserSessionEvent.checkSession(),
                       );
                 },
                 noActiveInternetConnection: () {
                   _removeSplashScreenAndNavigateTo(
                     route: noInternetConnectionRoutePath,
+                  );
+                },
+              );
+            },
+          ),
+          BlocListener<SFAUserSessionBloc, SFAUserSessionState>(
+            listener: (_, sFAUserSessionState) {
+              sFAUserSessionState.whenOrNull(
+                sessionExist: () {
+                  context.read<CheckSkyTradeUserExistsBloc>().add(
+                        const CheckSkyTradeUserExistsEvent.checkUserExists(),
+                      );
+                },
+                sessionNotExist: () {
+                  _removeSplashScreenAndNavigateTo(
+                    route: getStartedRoutePath,
                   );
                 },
               );
