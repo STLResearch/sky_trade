@@ -35,7 +35,7 @@ final class InsightsModel extends InsightsEntity {
       _$InsightsModelFromJson(json);
 
   @JsonKey(name: userIdKey)
-  final int mUserId;
+  final String mUserId;
 
   @JsonKey(name: devicesObservedKey)
   final int mDevicesObserved;

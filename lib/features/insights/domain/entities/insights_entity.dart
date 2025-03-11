@@ -9,7 +9,7 @@ base class InsightsEntity extends Equatable {
     required this.devices,
   });
 
-  final int userId;
+  final String userId;
 
   final int devicesObserved;
 
