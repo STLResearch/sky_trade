@@ -260,13 +260,13 @@ class MockAuthRepository extends _i1.Mock implements _i4.AuthRepository {
 
   @override
   _i5.Future<_i2.Either<_i6.SFAAuthenticationFailure, _i7.SFAUserEntity>>
-      authenticateUserWithSFAUsing({
+      authenticateAuth0UserWithSFAUsing({
     required String? email,
     required String? idToken,
   }) =>
           (super.noSuchMethod(
             Invocation.method(
-              #authenticateUserWithSFAUsing,
+              #authenticateAuth0UserWithSFAUsing,
               [],
               {
                 #email: email,
@@ -279,7 +279,7 @@ class MockAuthRepository extends _i1.Mock implements _i4.AuthRepository {
                 _FakeEither_0<_i6.SFAAuthenticationFailure, _i7.SFAUserEntity>(
               this,
               Invocation.method(
-                #authenticateUserWithSFAUsing,
+                #authenticateAuth0UserWithSFAUsing,
                 [],
                 {
                   #email: email,
@@ -293,7 +293,7 @@ class MockAuthRepository extends _i1.Mock implements _i4.AuthRepository {
                 _FakeEither_0<_i6.SFAAuthenticationFailure, _i7.SFAUserEntity>(
               this,
               Invocation.method(
-                #authenticateUserWithSFAUsing,
+                #authenticateAuth0UserWithSFAUsing,
                 [],
                 {
                   #email: email,

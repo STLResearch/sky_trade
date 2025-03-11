@@ -99,7 +99,13 @@ void main() {
       );
 
       when(
-        mockAuthRepository.authenticateUserWithSFAUsing(
+        mockAuthRepository.checkSFAUserSessionExists(),
+      ).thenAnswer(
+        (_) async => false,
+      );
+
+      when(
+        mockAuthRepository.authenticateAuth0UserWithSFAUsing(
           email: testEmail,
           idToken: testIdToken,
         ),
@@ -137,7 +143,8 @@ void main() {
         [
           mockAuthRepository.checkAuth0UserSessionExists(),
           mockAuthRepository.authenticateUserWithAuth0(),
-          mockAuthRepository.authenticateUserWithSFAUsing(
+          mockAuthRepository.checkSFAUserSessionExists(),
+          mockAuthRepository.authenticateAuth0UserWithSFAUsing(
             email: testEmail,
             idToken: testIdToken,
           ),
@@ -149,7 +156,8 @@ void main() {
         ..[1].called(1)
         ..[2].called(1)
         ..[3].called(1)
-        ..[4].called(1);
+        ..[4].called(1)
+        ..[5].called(1);
 
       verifyNoMoreInteractions(
         mockAuthRepository,
@@ -180,7 +188,13 @@ void main() {
       );
 
       when(
-        mockAuthRepository.authenticateUserWithSFAUsing(
+        mockAuthRepository.checkSFAUserSessionExists(),
+      ).thenAnswer(
+        (_) async => false,
+      );
+
+      when(
+        mockAuthRepository.authenticateAuth0UserWithSFAUsing(
           email: testEmail,
           idToken: testIdToken,
         ),
@@ -210,7 +224,8 @@ void main() {
         [
           mockAuthRepository.checkAuth0UserSessionExists(),
           mockAuthRepository.authenticateUserWithAuth0(),
-          mockAuthRepository.authenticateUserWithSFAUsing(
+          mockAuthRepository.checkSFAUserSessionExists(),
+          mockAuthRepository.authenticateAuth0UserWithSFAUsing(
             email: testEmail,
             idToken: testIdToken,
           ),
@@ -220,7 +235,8 @@ void main() {
         ..[0].called(1)
         ..[1].called(1)
         ..[2].called(1)
-        ..[3].called(1);
+        ..[3].called(1)
+        ..[4].called(1);
 
       verifyNoMoreInteractions(
         mockAuthRepository,

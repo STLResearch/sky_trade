@@ -417,6 +417,9 @@ const aWalletAlreadyExistsForThisEmailAddressKindlySignInWithTheSameMethodUsedPr
     'A wallet already exists for this email address. Kindly sign in with the same method used previously.';
 const walletExistCode = 'WALLET_EXIST';
 const invalidDeleteOtpCode = 'INVALID_DELETE_OTP';
+// SFA error
+const invalidResultFromNodesThresholdNumberOfPublicKeyResultsAreNotMatchingPleaseCheckConfiguration =
+    'invalid result from nodes, threshold number of public key results are not matching, please check configuration';
 // Socket exception messages added to Sentry logs
 const socketExceptionLogMessage = 'Socket Exception';
 const anErrorOccurredWhileProcessingTheEventLogMessage =

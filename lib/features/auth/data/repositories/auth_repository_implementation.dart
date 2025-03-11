@@ -1,5 +1,8 @@
+// ignore_for_file: lines_longer_than_80_chars
+
 import 'package:auth0_flutter/auth0_flutter.dart' show Auth0, Credentials;
 import 'package:dartz/dartz.dart' show Either, Unit, unit;
+import 'package:flutter/services.dart' show PlatformException;
 import 'package:flutter_dotenv/flutter_dotenv.dart' show dotenv;
 import 'package:single_factor_auth_flutter/enums.dart';
 import 'package:single_factor_auth_flutter/input.dart'
@@ -22,6 +25,9 @@ import 'package:sky_trade/core/resources/numbers/networking.dart'
     show web3AuthSFASessionTimeSeconds;
 import 'package:sky_trade/core/resources/strings/environments.dart'
     show devEnvironment, flavours, stageEnvironment;
+import 'package:sky_trade/core/resources/strings/networking.dart'
+    show
+        invalidResultFromNodesThresholdNumberOfPublicKeyResultsAreNotMatchingPleaseCheckConfiguration;
 import 'package:sky_trade/core/resources/strings/secret_keys.dart'
     show sFAVerifier, sFAVerifierSubIdentifier, web3AuthClientId;
 import 'package:sky_trade/core/utils/clients/data_handler.dart';
@@ -180,7 +186,7 @@ final class AuthRepositoryImplementation
 
   @override
   Future<Either<SFAAuthenticationFailure, SFAUserEntity>>
-      authenticateUserWithSFAUsing({
+      authenticateAuth0UserWithSFAUsing({
     required String? email,
     required String idToken,
   }) =>
@@ -208,7 +214,15 @@ final class AuthRepositoryImplementation
               );
             },
             onSuccess: (sFAUserEntity) => sFAUserEntity,
-            onFailure: (_) => SFAAuthenticationFailure(),
+            onFailure: (e) => switch (e) {
+              PlatformException(
+                :final details,
+              )
+                  when details ==
+                      invalidResultFromNodesThresholdNumberOfPublicKeyResultsAreNotMatchingPleaseCheckConfiguration =>
+                SFAUserShouldLogoutFailure(),
+              _ => SFAAuthenticationUnknownFailure(),
+            },
           );
 
   @override

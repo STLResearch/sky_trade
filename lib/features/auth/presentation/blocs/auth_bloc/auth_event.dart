@@ -9,15 +9,10 @@ class AuthEvent with _$AuthEvent {
   const factory AuthEvent.authenticateUserWithAuth0() =
       _AuthenticateUserWithAuth0;
 
-  const factory AuthEvent.authenticateExistingVerifiedAuth0User({
+  const factory AuthEvent.authenticateAuth0UserWithSFA({
     required String? email,
     required String idToken,
-  }) = _AuthenticateExistingVerifiedAuth0User;
-
-  const factory AuthEvent.authenticateUserWithSFA({
-    required String? email,
-    required String idToken,
-  }) = _AuthenticateUserWithSFA;
+  }) = _AuthenticateAuth0UserWithSFA;
 
   const factory AuthEvent.checkSkyTradeUserExists() = _CheckSkyTradeUserExists;
 

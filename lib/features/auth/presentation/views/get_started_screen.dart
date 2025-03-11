@@ -60,7 +60,7 @@ import 'package:sky_trade/core/utils/extensions/build_context_extensions.dart';
 import 'package:sky_trade/features/auth/presentation/blocs/auth_0_credentials_bloc/auth_0_credentials_bloc.dart'
     show Auth0CredentialsBloc, Auth0CredentialsEvent, Auth0CredentialsState;
 import 'package:sky_trade/features/auth/presentation/blocs/auth_0_logout_bloc/auth_0_logout_bloc.dart'
-    show Auth0LogoutBloc, Auth0LogoutEvent;
+    show Auth0LogoutBloc, Auth0LogoutEvent, Auth0LogoutState;
 import 'package:sky_trade/features/auth/presentation/blocs/auth_0_user_session_bloc/auth_0_user_session_bloc.dart'
     show Auth0UserSessionBloc, Auth0UserSessionEvent, Auth0UserSessionState;
 import 'package:sky_trade/features/auth/presentation/blocs/auth_bloc/auth_bloc.dart'
@@ -126,39 +126,26 @@ class GetStartedView extends StatelessWidget {
                     ).pop(),
                   );
                 },
-                verifiedAuth0UserExists: (email, idToken) {
+                sFAUserShouldLogout: (email) {
                   ActionDialog.show(
                     context,
-                    content: context
-                            .localize.youHaveAnExistingSessionWithTheEmail +
+                    content: context.localize
+                            .anActionRequiresYourInputWeNeedToFinishLoggingYouOutOf +
                         whiteSpace +
                         email! +
                         fullStop +
                         whiteSpace +
                         context.localize
-                            .doYouWantToProceedWithAuthenticationWithThisEmailOrLogout,
+                            .thereIsNoOtherWayToProceedUnlessYouCompleteTheLogoutProcessYouWillBeAbleToLogBackInAfterwards,
                     dismissible: false,
-                    actionDismissedText: context.localize.logout,
-                    onActionDismissed: () {
+                    actionConfirmedText: context.localize.logout,
+                    onActionConfirmed: () {
                       Navigator.of(
                         context,
                       ).pop();
 
                       context.read<Auth0LogoutBloc>().add(
                             const Auth0LogoutEvent.logout(),
-                          );
-                    },
-                    actionConfirmedText: context.localize.conTinue,
-                    onActionConfirmed: () {
-                      Navigator.of(
-                        context,
-                      ).pop();
-
-                      context.read<AuthBloc>().add(
-                            AuthEvent.authenticateExistingVerifiedAuth0User(
-                              email: email,
-                              idToken: idToken,
-                            ),
                           );
                     },
                   );
@@ -292,6 +279,18 @@ class GetStartedView extends StatelessWidget {
               );
             },
           ),
+          BlocListener<Auth0LogoutBloc, Auth0LogoutState>(
+            listener: (context, auth0LogoutState) {
+              auth0LogoutState.whenOrNull(
+                failedToLogOut: (_) {
+                  AlertSnackBar.show(
+                    context,
+                    message: context.localize.weCouldNotLogYouOut,
+                  );
+                },
+              );
+            },
+          ),
         ],
         child: Scaffold(
           body: SafeArea(
@@ -336,33 +335,50 @@ class GetStartedView extends StatelessWidget {
                       height: fifteenDotNil,
                     ),
                     BlocBuilder<AuthBloc, AuthState>(
-                      builder: (_, authState) => ElevatedButton(
-                        onPressed: authState.maybeWhen(
-                          authenticating: () => null,
-                          orElse: () => () => context.read<AuthBloc>().add(
-                                const AuthEvent.authenticate(),
-                              ),
-                        ),
-                        child: Center(
-                          child: authState.maybeWhen(
-                            authenticating: () => const SizedBox(
-                              width: sixteenDotNil,
-                              height: sixteenDotNil,
-                              child: CircularProgressIndicator(
-                                color: hexFFFFFF,
-                                strokeWidth: twoDotNil,
-                              ),
-                            ),
-                            orElse: () => Text(
-                              context.localize.getStarted,
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .bodyMedium
-                                  ?.copyWith(
-                                    fontSize: fifteenDotNil,
-                                    height: twentyTwoDotFive / fifteenDotNil,
-                                    color: hexFFFFFF,
+                      builder: (_, authState) =>
+                          BlocBuilder<Auth0LogoutBloc, Auth0LogoutState>(
+                        builder: (_, auth0LogoutState) => ElevatedButton(
+                          onPressed: authState.maybeWhen(
+                            authenticating: () => null,
+                            orElse: () => auth0LogoutState.maybeWhen(
+                              loggingOut: () => null,
+                              orElse: () => () => context.read<AuthBloc>().add(
+                                    const AuthEvent.authenticate(),
                                   ),
+                            ),
+                          ),
+                          child: Center(
+                            child: authState.maybeWhen(
+                              authenticating: () => const SizedBox(
+                                width: sixteenDotNil,
+                                height: sixteenDotNil,
+                                child: CircularProgressIndicator(
+                                  color: hexFFFFFF,
+                                  strokeWidth: twoDotNil,
+                                ),
+                              ),
+                              orElse: () => auth0LogoutState.maybeWhen(
+                                loggingOut: () => const SizedBox(
+                                  width: sixteenDotNil,
+                                  height: sixteenDotNil,
+                                  child: CircularProgressIndicator(
+                                    color: hexFFFFFF,
+                                    strokeWidth: twoDotNil,
+                                  ),
+                                ),
+                                orElse: () => Text(
+                                  context.localize.getStarted,
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .bodyMedium
+                                      ?.copyWith(
+                                        fontSize: fifteenDotNil,
+                                        height:
+                                            twentyTwoDotFive / fifteenDotNil,
+                                        color: hexFFFFFF,
+                                      ),
+                                ),
+                              ),
                             ),
                           ),
                         ),
