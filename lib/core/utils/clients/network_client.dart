@@ -93,7 +93,7 @@ final class SocketIOClient with SignatureHandler {
       ..on(
         eventName,
         (response) async {
-          if (response is S) {
+          if (response is S && response != 0) {
             onSuccess(
               response,
             );
@@ -104,7 +104,7 @@ final class SocketIOClient with SignatureHandler {
           var message =
               eventName + socketExceptionLogMessage + colon + whiteSpace;
 
-          if (response is E) {
+          if (response is E && response == 0) {
             message += anErrorOccurredWhileProcessingTheEventLogMessage;
 
             if (onError != null) {
