@@ -12,11 +12,6 @@ class AuthState with _$AuthState {
     required String? email,
   }) = _EmailVerificationSent;
 
-  const factory AuthState.verifiedAuth0UserExists({
-    required String? email,
-    required String idToken,
-  }) = _VerifiedAuth0UserExists;
-
   const factory AuthState.unverifiedAuth0UserExists({
     required String? email,
   }) = _UnverifiedAuth0UserExists;
@@ -33,6 +28,10 @@ class AuthState with _$AuthState {
 
   const factory AuthState.failedToAuthenticateUserWithAuth0() =
       _FailedToAuthenticateUserWithAuth0;
+
+  const factory AuthState.sFAUserShouldLogout({
+    required String? email,
+  }) = _SFAUserShouldLogout;
 
   const factory AuthState.failedToAuthenticateAuth0UserWithSFA() =
       _FailedToAuthenticateAuth0UserWithSFA;

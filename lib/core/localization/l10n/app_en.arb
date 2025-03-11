@@ -11,7 +11,7 @@
   "whitespacesAreNotAllowedPleaseRemoveAnyLeadingAndOrTrailingWhitespaces": "Whitespaces are not allowed. Please remove any leading and/or trailing whitespaces",
   "getStarted": "Get started",
   "welcomeToSkyTrade": "Welcome to SkyTrade",
-  "byCreatingAnAccountIAgreeWith": "By creating an account I agree with",
+  "byContinuingWithSkyTradeIAgreeWithThe": "By continuing with SkyTrade I agree with the",
   "termsAndConditions": "Terms and Conditions",
   "and": "and",
   "privacyPolicy": "Privacy Policy",
@@ -188,6 +188,6 @@
   "youDidNotPerformARequiredStepNecessaryToCompleteAnAction": "You did not perform a required step necessary to complete an action",
   "youDeletedAnAccountAtSomePointButDeclinedOurRequestForYouToInvalidateTheSessionInOrderToProceedKindlyAcceptTheNextDialogThatShowsUp": "You deleted an account at some point but declined our request for you to invalidate the session. In order to proceed, kindly accept the next dialog that shows up",
   "youNeedToAcceptTheDialogInOrderToProceed": "You need to accept the dialog in order to proceed",
-  "doYouWantToProceedWithAuthenticationWithThisEmailOrLogout": "Do you want to proceed with authentication with this email or logout",
-  "conTinue": "Continue"
+  "anActionRequiresYourInputWeNeedToFinishLoggingYouOutOf": "An action requires your input. We need to finish logging you out of",
+  "thereIsNoOtherWayToProceedUnlessYouCompleteTheLogoutProcessYouWillBeAbleToLogBackInAfterwards": "There is no other way to proceed unless you complete the logout process. You will be able to log back in afterwards"
 }

@@ -30,7 +30,8 @@ final class AgreementSection extends StatelessWidget {
           children: [
             SpannableText.buildWith(
               context,
-              text: context.localize.byCreatingAnAccountIAgreeWith + whiteSpace,
+              text: context.localize.byContinuingWithSkyTradeIAgreeWithThe +
+                  whiteSpace,
             ),
             SpannableText.buildWith(
               context,

@@ -33,7 +33,7 @@ abstract interface class AuthRepository {
   Future<Either<SFAInitializationFailure, Unit>> initializeSFA();
 
   Future<Either<SFAAuthenticationFailure, SFAUserEntity>>
-      authenticateUserWithSFAUsing({
+      authenticateAuth0UserWithSFAUsing({
     required String? email,
     required String idToken,
   });
