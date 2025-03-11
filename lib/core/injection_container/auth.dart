@@ -19,6 +19,8 @@ import 'package:sky_trade/features/auth/presentation/blocs/check_sky_trade_user_
     show CheckSkyTradeUserExistsBloc;
 import 'package:sky_trade/features/auth/presentation/blocs/s_f_a_configuration_bloc/s_f_a_configuration_bloc.dart'
     show SFAConfigurationBloc;
+import 'package:sky_trade/features/auth/presentation/blocs/s_f_a_user_session_bloc/s_f_a_user_session_bloc.dart'
+    show SFAUserSessionBloc;
 
 final _sl = GetIt.I;
 
@@ -62,6 +64,11 @@ Future<void> registerAuthServices() async {
     )
     ..registerFactory<SFAConfigurationBloc>(
       () => SFAConfigurationBloc(
+        _sl(),
+      ),
+    )
+    ..registerFactory<SFAUserSessionBloc>(
+      () => SFAUserSessionBloc(
         _sl(),
       ),
     )
