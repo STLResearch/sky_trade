@@ -35,7 +35,7 @@ final class InsightsModel extends InsightsEntity {
       _$InsightsModelFromJson(json);
 
   @JsonKey(name: userIdKey)
-  final String mUserId;
+  final dynamic mUserId;
 
   @JsonKey(name: devicesObservedKey)
   final int mDevicesObserved;
@@ -70,7 +70,7 @@ final class DeviceModel extends DeviceEntity {
       _$DeviceModelFromJson(json);
 
   @JsonKey(name: idKey)
-  final String mId;
+  final dynamic mId;
 
   @JsonKey(name: ipAddressKey)
   final String mIpAddress;

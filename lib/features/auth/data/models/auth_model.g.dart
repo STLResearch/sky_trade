@@ -8,7 +8,7 @@ part of 'auth_model.dart';
 
 SkyTradeUserModel _$SkyTradeUserModelFromJson(Map<String, dynamic> json) =>
     SkyTradeUserModel(
-      mId: json['id'] as String,
+      mId: json['id'],
       mCreatedAt:
           const StringDateTimeConverter().fromJson(json['createdAt'] as String),
       mUpdateAt:
@@ -24,8 +24,8 @@ SkyTradeUserModel _$SkyTradeUserModelFromJson(Map<String, dynamic> json) =>
       mPhoneNumber: json['phoneNumber'] as String,
       mKYCStatusId: (json['KYCStatusId'] as num).toInt(),
       mIsActive: json['isActive'] as bool,
-      mUsedReferralCodeId: json['usedReferralCodeId'] as String?,
-      mOwnedReferralCodeId: json['ownedReferralCodeId'] as String,
+      mUsedReferralCodeId: json['usedReferralCodeId'],
+      mOwnedReferralCodeId: json['ownedReferralCodeId'],
       mIsUserRewardClaimed: json['isUserRewardClaimed'] as bool,
       mOwnedReferralCode: OwnedReferralCodeModel.fromJson(
           json['ownedReferralCode'] as Map<String, dynamic>),
@@ -56,7 +56,7 @@ Map<String, dynamic> _$SkyTradeUserModelToJson(SkyTradeUserModel instance) =>
 OwnedReferralCodeModel _$OwnedReferralCodeModelFromJson(
         Map<String, dynamic> json) =>
     OwnedReferralCodeModel(
-      mId: json['id'] as String,
+      mId: json['id'],
       mCode: json['code'] as String,
       mCodeChanged: json['codeChanged'] as bool,
       mUsedByBonusEarned: json['usedByBonusEarned'] as bool,
