@@ -9,7 +9,7 @@ base class InsightsEntity extends Equatable {
     required this.devices,
   });
 
-  final String userId;
+  final dynamic userId;
 
   final int devicesObserved;
 
@@ -34,7 +34,7 @@ base class DeviceEntity extends Equatable {
     required this.user,
   });
 
-  final String id;
+  final dynamic id;
 
   final String ipAddress;
 

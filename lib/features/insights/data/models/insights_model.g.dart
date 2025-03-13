@@ -8,7 +8,7 @@ part of 'insights_model.dart';
 
 InsightsModel _$InsightsModelFromJson(Map<String, dynamic> json) =>
     InsightsModel(
-      mUserId: json['userId'] as String,
+      mUserId: json['userId'],
       mDevicesObserved: (json['devicesObserved'] as num).toInt(),
       mDevices: (json['devices'] as List<dynamic>)
           .map((e) => DeviceModel.fromJson(e as Map<String, dynamic>))
@@ -23,7 +23,7 @@ Map<String, dynamic> _$InsightsModelToJson(InsightsModel instance) =>
     };
 
 DeviceModel _$DeviceModelFromJson(Map<String, dynamic> json) => DeviceModel(
-      mId: json['id'] as String,
+      mId: json['id'],
       mIpAddress: json['ipAddress'] as String,
       mIsTest: json['isTest'] as bool,
       mRemoteData:

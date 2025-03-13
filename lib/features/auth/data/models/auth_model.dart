@@ -75,7 +75,7 @@ final class SkyTradeUserModel extends SkyTradeUserEntity {
       _$SkyTradeUserModelFromJson(json);
 
   @JsonKey(name: idKey)
-  final String mId;
+  final dynamic mId;
 
   @JsonKey(name: createdAtKey)
   @StringDateTimeConverter()
@@ -119,10 +119,10 @@ final class SkyTradeUserModel extends SkyTradeUserEntity {
   final bool mIsActive;
 
   @JsonKey(name: usedReferralCodeIdKey)
-  final String? mUsedReferralCodeId;
+  final dynamic mUsedReferralCodeId;
 
   @JsonKey(name: ownedReferralCodeIdKey)
-  final String mOwnedReferralCodeId;
+  final dynamic mOwnedReferralCodeId;
 
   @JsonKey(name: isUserRewardClaimedKey)
   final bool mIsUserRewardClaimed;
@@ -153,7 +153,7 @@ final class OwnedReferralCodeModel extends OwnedReferralCodeEntity {
       _$OwnedReferralCodeModelFromJson(json);
 
   @JsonKey(name: idKey)
-  final String mId;
+  final dynamic mId;
 
   @JsonKey(name: codeKey)
   final String mCode;

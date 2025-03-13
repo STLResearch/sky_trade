@@ -64,7 +64,7 @@ base class SkyTradeUserEntity extends Equatable {
     required this.ownedReferralCode,
   });
 
-  final String id;
+  final dynamic id;
 
   final DateTime createdAt;
 
@@ -92,9 +92,9 @@ base class SkyTradeUserEntity extends Equatable {
 
   final bool isActive;
 
-  final String? usedReferralCodeId;
+  final dynamic usedReferralCodeId;
 
-  final String ownedReferralCodeId;
+  final dynamic ownedReferralCodeId;
 
   final bool isUserRewardClaimed;
 
@@ -132,7 +132,7 @@ base class OwnedReferralCodeEntity extends Equatable {
     required this.ownedByBonusEarned,
   });
 
-  final String id;
+  final dynamic id;
 
   final String code;
 
