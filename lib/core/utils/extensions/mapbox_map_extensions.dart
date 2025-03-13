@@ -200,7 +200,7 @@ extension MapboxMapExtensions on MapboxMap {
     required double latitude,
     required double longitude,
   }) async {
-    await easeTo(
+    await flyTo(
       CameraOptions(
         center: Point(
           coordinates: Position(
@@ -239,6 +239,25 @@ extension MapboxMapExtensions on MapboxMap {
       ),
     );
   }
+
+  Future<void> animateTo({
+    required double latitude,
+    required double longitude,
+  }) =>
+      flyTo(
+        CameraOptions(
+          center: Point(
+            coordinates: Position(
+              longitude,
+              latitude,
+            ),
+          ),
+          zoom: fourteenDotNil,
+        ),
+        MapAnimationOptions(
+          duration: oneThousand,
+        ),
+      );
 
   Future<void> setUpLayersForDrones({
     required String bridGeoJsonData,

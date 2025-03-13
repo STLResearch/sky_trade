@@ -36,7 +36,8 @@ import 'package:sky_trade/core/resources/strings/secret_keys.dart'
         mapboxMapsDarkStyleUri,
         mapboxMapsPublicKey,
         mapboxMapsSatelliteStyleUri;
-import 'package:sky_trade/core/resources/strings/special_characters.dart' show emptyString;
+import 'package:sky_trade/core/resources/strings/special_characters.dart'
+    show emptyString;
 import 'package:sky_trade/core/resources/strings/ui.dart'
     show bridDronesSourceId, nridDronesSourceId;
 import 'package:sky_trade/core/utils/enums/local.dart' show CacheType;
@@ -83,6 +84,8 @@ import 'package:sky_trade/features/remote_i_d_receiver/presentation/blocs/networ
         NetworkRemoteIDReceiverState;
 import 'package:sky_trade/features/remote_i_d_transmitter/presentation/blocs/remote_i_d_transmitter_bloc/remote_i_d_transmitter_bloc.dart'
     show RemoteIDTransmitterBloc, RemoteIDTransmitterEvent;
+import 'package:sky_trade/features/search_autocomplete/presentation/blocs/retrieve_geometric_coordinates_bloc/retrieve_geometric_coordinates_bloc.dart'
+    show RetrieveGeometricCoordinatesBloc, RetrieveGeometricCoordinatesState;
 import 'package:sky_trade/features/u_a_s_restrictions/domain/entities/restriction_entity.dart'
     show RestrictionEntity;
 import 'package:sky_trade/features/u_a_s_restrictions/presentation/blocs/u_a_s_restrictions_bloc/u_a_s_restrictions_bloc.dart'
@@ -146,6 +149,9 @@ class HomeScreen extends StatelessWidget {
             create: (_) => serviceLocator(),
           ),
           BlocProvider<WifiPermissionBloc>(
+            create: (_) => serviceLocator(),
+          ),
+          BlocProvider<RetrieveGeometricCoordinatesBloc>(
             create: (_) => serviceLocator(),
           ),
         ],
@@ -382,7 +388,8 @@ class _HomeViewState extends State<HomeView> {
                       );
 
                   if (_mapboxMap != null) {
-                    previousBridGeoJsonData = await _mapboxMap!.addOrUpdateDronesOnMap(
+                    previousBridGeoJsonData =
+                        await _mapboxMap!.addOrUpdateDronesOnMap(
                       remoteIDEntities: bridEntities,
                       geoJsonSourceId: bridDronesSourceId,
                     );
@@ -518,8 +525,24 @@ class _HomeViewState extends State<HomeView> {
               );
             },
           ),
+          BlocListener<RetrieveGeometricCoordinatesBloc,
+              RetrieveGeometricCoordinatesState>(
+            listener: (_, retrieveGeometricCoordinatesState) {
+              retrieveGeometricCoordinatesState.whenOrNull(
+                retrievedCoordinates: (latitude, longitude) {
+                  _centerLocationNotifier.value = false;
+
+                  _mapboxMap?.animateTo(
+                    latitude: latitude,
+                    longitude: longitude,
+                  );
+                },
+              );
+            },
+          ),
         ],
         child: Scaffold(
+          resizeToAvoidBottomInset: false,
           body: Stack(
             alignment: AlignmentDirectional.center,
             children: [

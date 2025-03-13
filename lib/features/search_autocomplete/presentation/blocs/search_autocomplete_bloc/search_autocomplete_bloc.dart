@@ -2,7 +2,8 @@ import 'dart:async' show Timer;
 
 import 'package:bloc/bloc.dart' show Bloc, Emitter;
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:sky_trade/core/errors/failures/search_autocomplete_failure.dart';
+import 'package:sky_trade/core/errors/failures/search_autocomplete_failure.dart'
+    show SearchAutocompleteFailure;
 import 'package:sky_trade/core/resources/numbers/ui.dart'
     show oneThousandFiveHundred;
 import 'package:sky_trade/features/search_autocomplete/domain/entities/search_result_entity.dart'

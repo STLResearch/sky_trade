@@ -4,3 +4,8 @@ final class SearchAutocompleteFailure extends Equatable {
   @override
   List<Object?> get props => [];
 }
+
+final class RetrieveGeometricCoordinatesFailure extends Equatable {
+  @override
+  List<Object?> get props => [];
+}

@@ -1,15 +1,21 @@
 import 'dart:io' show Platform;
 
+import 'package:dartz/dartz.dart' show Function0;
 import 'package:flutter/material.dart'
     show
+        AlwaysStoppedAnimation,
         BorderRadiusDirectional,
         BorderSide,
+        BoxConstraints,
         BoxDecoration,
         BuildContext,
+        CircularProgressIndicator,
+        Color,
         Colors,
         Container,
         EdgeInsetsDirectional,
         Expanded,
+        GestureDetector,
         InputDecoration,
         OutlineInputBorder,
         Row,
@@ -20,23 +26,28 @@ import 'package:flutter/material.dart'
         TextEditingController,
         TextFormField,
         Theme,
+        ValueListenableBuilder,
         Widget;
 import 'package:flutter_bloc/flutter_bloc.dart'
     show BlocBuilder, BlocProvider, MultiBlocProvider, ReadContext;
 import 'package:sky_trade/core/assets/generated/assets.gen.dart' show Assets;
-import 'package:sky_trade/core/resources/colors.dart' show hex333333, hexB8B8B8;
+import 'package:sky_trade/core/resources/colors.dart'
+    show hex333333, hex595959, hexB8B8B8;
 import 'package:sky_trade/core/resources/numbers/ui.dart'
     show
         eightDotNil,
         eighteenDotNil,
         fifteenDotNil,
         fourteenDotNil,
+        sixteenDotNil,
         sixtyOneDotNil,
         tenDotNil,
         thirtyTwoDotNil,
+        twentyDotNil,
         twentyFiveDotNil,
         twentyFourDotNil,
-        twentyOneDotNil;
+        twentyOneDotNil,
+        twoDotNil;
 import 'package:sky_trade/core/utils/enums/networking.dart'
     show BluetoothAdapterState, WifiAdapterState;
 import 'package:sky_trade/core/utils/extensions/build_context_extensions.dart';
@@ -45,7 +56,9 @@ import 'package:sky_trade/features/bluetooth/presentation/blocs/bluetooth_adapte
         BluetoothAdapterStateBloc,
         BluetoothAdapterStateEvent,
         BluetoothAdapterStateState;
-import 'package:sky_trade/features/search_autocomplete/presentation/blocs/search_autocomplete_bloc.dart'
+import 'package:sky_trade/features/search_autocomplete/presentation/blocs/retrieve_geometric_coordinates_bloc/retrieve_geometric_coordinates_bloc.dart'
+    show RetrieveGeometricCoordinatesBloc, RetrieveGeometricCoordinatesState;
+import 'package:sky_trade/features/search_autocomplete/presentation/blocs/search_autocomplete_bloc/search_autocomplete_bloc.dart'
     show SearchAutocompleteBloc, SearchAutocompleteEvent;
 import 'package:sky_trade/features/u_a_s_restrictions/presentation/widgets/menu.dart';
 import 'package:sky_trade/features/wifi/presentation/blocs/wifi_adapter_state_bloc/wifi_adapter_state_bloc.dart'
@@ -53,7 +66,15 @@ import 'package:sky_trade/features/wifi/presentation/blocs/wifi_adapter_state_bl
 import 'package:sky_trade/injection_container.dart' show serviceLocator;
 
 class SearchCard extends StatelessWidget {
-  const SearchCard({super.key});
+  const SearchCard({
+    required this.onSearchFieldTap,
+    required this.tappedSearchResultPlaceName,
+    super.key,
+  });
+
+  final Function0<void> onSearchFieldTap;
+
+  final String? tappedSearchResultPlaceName;
 
   @override
   Widget build(BuildContext context) => MultiBlocProvider(
@@ -65,12 +86,23 @@ class SearchCard extends StatelessWidget {
             create: (_) => serviceLocator(),
           ),
         ],
-        child: const SearchCardView(),
+        child: SearchCardView(
+          onSearchFieldTap: onSearchFieldTap,
+          tappedSearchResultPlaceName: tappedSearchResultPlaceName,
+        ),
       );
 }
 
 class SearchCardView extends StatefulWidget {
-  const SearchCardView({super.key});
+  const SearchCardView({
+    required this.onSearchFieldTap,
+    required this.tappedSearchResultPlaceName,
+    super.key,
+  });
+
+  final Function0<void> onSearchFieldTap;
+
+  final String? tappedSearchResultPlaceName;
 
   @override
   State<SearchCardView> createState() => _SearchCardViewState();
@@ -113,7 +145,9 @@ class _SearchCardViewState extends State<SearchCardView> {
   Widget build(BuildContext context) => Container(
         height: sixtyOneDotNil,
         decoration: BoxDecoration(
-          color: Theme.of(context).scaffoldBackgroundColor,
+          color: Theme.of(
+            context,
+          ).scaffoldBackgroundColor,
           borderRadius: BorderRadiusDirectional.circular(
             eightDotNil,
           ),
@@ -129,9 +163,13 @@ class _SearchCardViewState extends State<SearchCardView> {
             ),
             Expanded(
               child: TextFormField(
-                controller: _searchController,
+                controller: _searchController
+                  ..text = (widget.tappedSearchResultPlaceName ??
+                      _searchController.text),
                 cursorColor: hex333333,
-                style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                style: Theme.of(
+                  context,
+                ).textTheme.bodySmall?.copyWith(
                       fontSize: fourteenDotNil,
                       height: twentyOneDotNil / fourteenDotNil,
                       color: hex333333,
@@ -139,7 +177,9 @@ class _SearchCardViewState extends State<SearchCardView> {
                 decoration: InputDecoration(
                   contentPadding: EdgeInsetsDirectional.zero,
                   hintText: context.localize.searchLocation,
-                  hintStyle: Theme.of(context).textTheme.bodySmall?.copyWith(
+                  hintStyle: Theme.of(
+                    context,
+                  ).textTheme.bodySmall?.copyWith(
                         color: hexB8B8B8,
                       ),
                   enabledBorder: const OutlineInputBorder(
@@ -152,14 +192,57 @@ class _SearchCardViewState extends State<SearchCardView> {
                       color: Colors.transparent,
                     ),
                   ),
-                ),
-                onChanged: (value) {
-                  context.read<SearchAutocompleteBloc>().add(
-                        SearchAutocompleteEvent.autocompleteSearch(
-                          query: value,
+                  suffixIconConstraints: const BoxConstraints(
+                    minHeight: twentyDotNil,
+                    minWidth: twentyDotNil,
+                  ),
+                  suffixIcon: ValueListenableBuilder(
+                    valueListenable: _searchController,
+                    builder: (_, searchControllerValue, __) =>
+                        switch (searchControllerValue.text.isEmpty) {
+                      true => const SizedBox.shrink(),
+                      false => BlocBuilder<RetrieveGeometricCoordinatesBloc,
+                            RetrieveGeometricCoordinatesState>(
+                          builder: (_, retrieveGeometricCoordinatesState) =>
+                              retrieveGeometricCoordinatesState.maybeWhen(
+                            retrievingCoordinates: () => SizedBox(
+                              width: sixteenDotNil,
+                              height: sixteenDotNil,
+                              child: CircularProgressIndicator(
+                                strokeWidth: twoDotNil,
+                                valueColor: const AlwaysStoppedAnimation<Color>(
+                                  hex595959,
+                                ),
+                                backgroundColor: Theme.of(
+                                  context,
+                                ).scaffoldBackgroundColor,
+                              ),
+                            ),
+                            orElse: () => GestureDetector(
+                              onTap: () {
+                                _searchController.clear();
+
+                                context.read<SearchAutocompleteBloc>().add(
+                                      SearchAutocompleteEvent
+                                          .autocompleteSearch(
+                                        query: _searchController.text,
+                                      ),
+                                    );
+                              },
+                              child: Assets.svgs.clear.svg(),
+                            ),
+                          ),
                         ),
-                      );
-                },
+                    },
+                  ),
+                ),
+                onChanged: (value) =>
+                    context.read<SearchAutocompleteBloc>().add(
+                          SearchAutocompleteEvent.autocompleteSearch(
+                            query: value,
+                          ),
+                        ),
+                onTap: widget.onSearchFieldTap,
               ),
             ),
             const SizedBox(

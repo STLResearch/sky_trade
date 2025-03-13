@@ -2,8 +2,10 @@ import 'package:flutter/material.dart'
     show
         Align,
         AlignmentDirectional,
+        AlwaysStoppedAnimation,
         BuildContext,
         CircularProgressIndicator,
+        Color,
         EdgeInsetsDirectional,
         Image,
         Padding,
@@ -15,7 +17,7 @@ import 'package:flutter/material.dart'
         Widget;
 import 'package:flutter_bloc/flutter_bloc.dart' show BlocBuilder;
 import 'package:sky_trade/core/resources/colors.dart'
-    show hex222222, hexE6FFFFFF;
+    show hex222222, hex595959, hexE6FFFFFF;
 import 'package:sky_trade/core/resources/numbers/ui.dart'
     show
         elevenDotNil,
@@ -62,16 +64,17 @@ class WeatherCard extends StatelessWidget {
                       ),
                     ),
                   ),
-                  gettingWeather: () => Align(
+                  gettingWeather: () => const Align(
                     alignment: AlignmentDirectional.center,
                     child: SizedBox(
                       width: twentyFourDotNil,
                       height: twentyFourDotNil,
                       child: CircularProgressIndicator(
                         strokeWidth: threeDotNil,
-                        color: Theme.of(
-                          context,
-                        ).scaffoldBackgroundColor,
+                        valueColor: AlwaysStoppedAnimation<Color>(
+                          hex595959,
+                        ),
+                        backgroundColor: hexE6FFFFFF,
                       ),
                     ),
                   ),
