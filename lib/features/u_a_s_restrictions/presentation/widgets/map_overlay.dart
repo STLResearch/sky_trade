@@ -13,7 +13,6 @@ import 'package:flutter/material.dart'
         MainAxisAlignment,
         MainAxisSize,
         Padding,
-        Positioned,
         SafeArea,
         SizedBox,
         Stack,
@@ -23,7 +22,7 @@ import 'package:flutter/material.dart'
         ValueListenableBuilder,
         ValueNotifier,
         Widget;
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_bloc/flutter_bloc.dart' show BlocProvider;
 import 'package:sky_trade/core/assets/generated/assets.gen.dart' show Assets;
 import 'package:sky_trade/core/resources/colors.dart' show hexE6FFFFFF;
 import 'package:sky_trade/core/resources/numbers/ui.dart'
@@ -31,12 +30,13 @@ import 'package:sky_trade/core/resources/numbers/ui.dart'
         fiftyFourDotNil,
         sevenDotNil,
         seventyEightDotNil,
+        sixDotNil,
         sixtyOneDotNil,
         tenDotNil,
         twelveDotNil,
         twentyOneDotNil;
 import 'package:sky_trade/core/utils/enums/ui.dart' show MapStyle;
-import 'package:sky_trade/features/search_autocomplete/presentation/blocs/search_autocomplete_bloc.dart'
+import 'package:sky_trade/features/search_autocomplete/presentation/blocs/search_autocomplete_bloc/search_autocomplete_bloc.dart'
     show SearchAutocompleteBloc;
 import 'package:sky_trade/features/u_a_s_restrictions/presentation/widgets/options_card.dart';
 import 'package:sky_trade/features/u_a_s_restrictions/presentation/widgets/search_card.dart'
@@ -100,34 +100,50 @@ class MapOverlayView extends StatefulWidget {
 }
 
 class _MapOverlayViewState extends State<MapOverlayView> {
-  final ValueNotifier<String?> _queryTextNotifier =
-      ValueNotifier<String?>(null);
-
-  final ValueNotifier<bool> _showSearchResultCardNotifier =
-      ValueNotifier<bool>(false);
+  late final ValueNotifier<String?> _tappedSearchResultPlaceNameNotifier;
+  late final ValueNotifier<bool> _showSearchResultCardNotifier;
 
   @override
-  Widget build(BuildContext context) {
-    _queryTextNotifier.value = null;
-    return SafeArea(
-      child: Align(
-        alignment: AlignmentDirectional.topCenter,
-        child: Padding(
-          padding: const EdgeInsetsDirectional.symmetric(
-            horizontal: twentyOneDotNil,
-          ),
-          child: SizedBox(
-            height: double.infinity,
+  void initState() {
+    _tappedSearchResultPlaceNameNotifier = ValueNotifier<String?>(
+      null,
+    );
+    _showSearchResultCardNotifier = ValueNotifier<bool>(
+      false,
+    );
+
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    _tappedSearchResultPlaceNameNotifier.dispose();
+    _showSearchResultCardNotifier.dispose();
+
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) => SafeArea(
+        child: Align(
+          alignment: AlignmentDirectional.topCenter,
+          child: Padding(
+            padding: const EdgeInsetsDirectional.symmetric(
+              horizontal: twentyOneDotNil,
+            ),
             child: Stack(
               children: [
                 Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     ValueListenableBuilder(
-                      valueListenable: _queryTextNotifier,
-                      builder: (_, queryTextValue, __) => SearchCard(
-                        queryText: queryTextValue,
-                        onSearchCardTap: () =>
+                      valueListenable: _tappedSearchResultPlaceNameNotifier,
+                      builder:
+                          (_, tappedSearchResultPlaceNameNotifierValue, __) =>
+                              SearchCard(
+                        tappedSearchResultPlaceName:
+                            tappedSearchResultPlaceNameNotifierValue,
+                        onSearchFieldTap: () =>
                             _showSearchResultCardNotifier.value = true,
                       ),
                     ),
@@ -174,10 +190,14 @@ class _MapOverlayViewState extends State<MapOverlayView> {
                 ),
                 ValueListenableBuilder(
                   valueListenable: _showSearchResultCardNotifier,
-                  builder: (_, value, __) => switch (value) {
-                    true => Positioned.fill(
-                        child: Padding(
-                          padding: const EdgeInsets.only(top: sixtyOneDotNil),
+                  builder: (_, showSearchResultCardNotifierValue, __) =>
+                      switch (showSearchResultCardNotifierValue) {
+                    true => Padding(
+                        padding: const EdgeInsets.only(
+                          top: sixtyOneDotNil + sixDotNil,
+                        ),
+                        child: SizedBox(
+                          height: double.infinity,
                           child: GestureDetector(
                             onTap: () {
                               _showSearchResultCardNotifier.value = false;
@@ -191,10 +211,12 @@ class _MapOverlayViewState extends State<MapOverlayView> {
                 ),
                 ValueListenableBuilder(
                   valueListenable: _showSearchResultCardNotifier,
-                  builder: (_, showResultCard, __) => switch (showResultCard) {
+                  builder: (_, showSearchResultCardNotifierValue, __) =>
+                      switch (showSearchResultCardNotifierValue) {
                     true => SearchResultCard(
-                        onSearchCardTap: (suggestionPlaceName) {
-                          _queryTextNotifier.value = suggestionPlaceName;
+                        onSearchResultItemTap: (placeName) {
+                          _tappedSearchResultPlaceNameNotifier.value =
+                              placeName;
                           _showSearchResultCardNotifier.value = false;
                           FocusManager.instance.primaryFocus?.unfocus();
                         },
@@ -206,7 +228,5 @@ class _MapOverlayViewState extends State<MapOverlayView> {
             ),
           ),
         ),
-      ),
-    );
-  }
+      );
 }

@@ -13,8 +13,4 @@ class SearchAutocompleteEvent with _$SearchAutocompleteEvent {
   const factory SearchAutocompleteEvent.searchAutocompleteNotGotten({
     required SearchAutocompleteFailure searchAutocompleteFailure,
   }) = _SearchAutocompleteNotGotten;
-
-  const factory SearchAutocompleteEvent.retrieveGeometricCoordinates({
-    required String mapboxID,
-  }) = _RetrieveGeometricCoordinates;
 }

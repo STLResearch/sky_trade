@@ -26,18 +26,9 @@ import 'package:flutter_bloc/flutter_bloc.dart'
         ReadContext;
 import 'package:flutter_dotenv/flutter_dotenv.dart' show dotenv;
 import 'package:mapbox_maps_flutter/mapbox_maps_flutter.dart'
-    show
-        CameraOptions,
-        CompassSettings,
-        MapAnimationOptions,
-        MapboxMap,
-        MapboxOptions,
-        Point,
-        Position,
-        ScaleBarSettings;
+    show CompassSettings, MapboxMap, MapboxOptions, ScaleBarSettings;
 import 'package:sky_trade/core/resources/colors.dart' show hexB3FFFFFF;
-import 'package:sky_trade/core/resources/numbers/ui.dart'
-    show oneThousand, twelveDotFive;
+import 'package:sky_trade/core/resources/numbers/ui.dart' show twelveDotFive;
 import 'package:sky_trade/core/resources/strings/routes.dart'
     show getStartedRoutePath;
 import 'package:sky_trade/core/resources/strings/secret_keys.dart'
@@ -93,11 +84,8 @@ import 'package:sky_trade/features/remote_i_d_receiver/presentation/blocs/networ
         NetworkRemoteIDReceiverState;
 import 'package:sky_trade/features/remote_i_d_transmitter/presentation/blocs/remote_i_d_transmitter_bloc/remote_i_d_transmitter_bloc.dart'
     show RemoteIDTransmitterBloc, RemoteIDTransmitterEvent;
-import 'package:sky_trade/features/search_autocomplete/presentation/blocs/search_autocomplete_bloc.dart'
-    show
-        SearchAutocompleteBloc,
-        SearchAutocompleteEvent,
-        SearchAutocompleteState;
+import 'package:sky_trade/features/search_autocomplete/presentation/blocs/retrieve_geometric_coordinates_bloc/retrieve_geometric_coordinates_bloc.dart'
+    show RetrieveGeometricCoordinatesBloc, RetrieveGeometricCoordinatesState;
 import 'package:sky_trade/features/u_a_s_restrictions/domain/entities/restriction_entity.dart'
     show RestrictionEntity;
 import 'package:sky_trade/features/u_a_s_restrictions/presentation/blocs/u_a_s_restrictions_bloc/u_a_s_restrictions_bloc.dart'
@@ -161,6 +149,9 @@ class HomeScreen extends StatelessWidget {
             create: (_) => serviceLocator(),
           ),
           BlocProvider<WifiPermissionBloc>(
+            create: (_) => serviceLocator(),
+          ),
+          BlocProvider<RetrieveGeometricCoordinatesBloc>(
             create: (_) => serviceLocator(),
           ),
         ],
@@ -534,24 +525,16 @@ class _HomeViewState extends State<HomeView> {
               );
             },
           ),
-          BlocListener<SearchAutocompleteBloc, SearchAutocompleteState>(
-            listener: (context, searchAutocompleteState) {
-              searchAutocompleteState.whenOrNull(
-                retrievedGeometricCoordinates: (latLng) {
+          BlocListener<RetrieveGeometricCoordinatesBloc,
+              RetrieveGeometricCoordinatesState>(
+            listener: (_, retrieveGeometricCoordinatesState) {
+              retrieveGeometricCoordinatesState.whenOrNull(
+                retrievedCoordinates: (latitude, longitude) {
                   _centerLocationNotifier.value = false;
-                  _mapboxMap?.flyTo(
-                    CameraOptions(
-                      center: Point(
-                        coordinates: Position(
-                          latLng.coordinates.longitude,
-                          latLng.coordinates.latitude,
-                        ),
-                      ),
-                      zoom: twelveDotFive,
-                    ),
-                    MapAnimationOptions(
-                      duration: oneThousand,
-                    ),
+
+                  _mapboxMap?.animateTo(
+                    latitude: latitude,
+                    longitude: longitude,
                   );
                 },
               );

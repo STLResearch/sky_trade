@@ -240,6 +240,25 @@ extension MapboxMapExtensions on MapboxMap {
     );
   }
 
+  Future<void> animateTo({
+    required double latitude,
+    required double longitude,
+  }) =>
+      flyTo(
+        CameraOptions(
+          center: Point(
+            coordinates: Position(
+              longitude,
+              latitude,
+            ),
+          ),
+          zoom: fourteenDotNil,
+        ),
+        MapAnimationOptions(
+          duration: oneThousand,
+        ),
+      );
+
   Future<void> setUpLayersForDrones({
     required String bridGeoJsonData,
     required String nridGeoJsonData,

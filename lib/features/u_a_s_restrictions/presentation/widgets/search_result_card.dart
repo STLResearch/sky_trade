@@ -25,7 +25,7 @@ import 'package:flutter/material.dart'
         Theme,
         Widget;
 import 'package:flutter_bloc/flutter_bloc.dart' show BlocBuilder, ReadContext;
-import 'package:sky_trade/core/resources/colors.dart' show hex333333;
+import 'package:sky_trade/core/resources/colors.dart' show hex333333, hex595959;
 import 'package:sky_trade/core/resources/numbers/ui.dart'
     show
         eightDotNil,
@@ -40,16 +40,18 @@ import 'package:sky_trade/core/resources/numbers/ui.dart'
 import 'package:sky_trade/core/resources/strings/special_characters.dart'
     show emptyString;
 import 'package:sky_trade/core/utils/extensions/build_context_extensions.dart';
-import 'package:sky_trade/features/search_autocomplete/presentation/blocs/search_autocomplete_bloc.dart'
-    show
-        SearchAutocompleteBloc,
-        SearchAutocompleteEvent,
-        SearchAutocompleteState;
+import 'package:sky_trade/features/search_autocomplete/presentation/blocs/retrieve_geometric_coordinates_bloc/retrieve_geometric_coordinates_bloc.dart'
+    show RetrieveGeometricCoordinatesBloc, RetrieveGeometricCoordinatesEvent;
+import 'package:sky_trade/features/search_autocomplete/presentation/blocs/search_autocomplete_bloc/search_autocomplete_bloc.dart'
+    show SearchAutocompleteBloc, SearchAutocompleteState;
 
 class SearchResultCard extends StatelessWidget {
-  const SearchResultCard({required this.onSearchCardTap, super.key});
+  const SearchResultCard({
+    required this.onSearchResultItemTap,
+    super.key,
+  });
 
-  final Function1<String, void> onSearchCardTap;
+  final Function1<String, void> onSearchResultItemTap;
 
   @override
   Widget build(BuildContext context) => Column(
@@ -63,9 +65,12 @@ class SearchResultCard extends StatelessWidget {
                 context,
                 child: Center(
                   child: CircularProgressIndicator(
-                    valueColor: AlwaysStoppedAnimation<Color>(
-                      Theme.of(context).scaffoldBackgroundColor,
+                    valueColor: const AlwaysStoppedAnimation<Color>(
+                      hex595959,
                     ),
+                    backgroundColor: Theme.of(
+                      context,
+                    ).scaffoldBackgroundColor,
                   ),
                 ),
               ),
@@ -79,13 +84,14 @@ class SearchResultCard extends StatelessWidget {
                       itemCount: searchResultEntity.suggestions.length,
                       itemBuilder: (_, index) => InkWell(
                         onTap: () {
-                          onSearchCardTap
-                              .call(searchResultEntity.suggestions[index].name);
-                          context.read<SearchAutocompleteBloc>().add(
-                                SearchAutocompleteEvent
-                                    .retrieveGeometricCoordinates(
-                                  mapboxID:
-                                      searchResultEntity.suggestions[index].id,
+                          onSearchResultItemTap(
+                            searchResultEntity.suggestions[index].name,
+                          );
+
+                          context.read<RetrieveGeometricCoordinatesBloc>().add(
+                                RetrieveGeometricCoordinatesEvent
+                                    .retrieveCoordinates(
+                                  id: searchResultEntity.suggestions[index].id,
                                 ),
                               );
                         },
@@ -169,11 +175,15 @@ class SearchResultCard extends StatelessWidget {
     required Widget child,
   }) =>
       Padding(
-        padding: const EdgeInsets.only(top: sixtyOneDotNil + sixDotNil),
+        padding: const EdgeInsets.only(
+          top: sixtyOneDotNil + sixDotNil,
+        ),
         child: Container(
           height: oneSeventyNineDotNil,
           decoration: BoxDecoration(
-            color: Theme.of(context).scaffoldBackgroundColor,
+            color: Theme.of(
+              context,
+            ).scaffoldBackgroundColor,
             borderRadius: BorderRadiusDirectional.circular(
               eightDotNil,
             ),

@@ -1,3 +1,5 @@
+// ignore_for_file: lines_longer_than_80_chars
+
 part of 'search_autocomplete_bloc.dart';
 
 @freezed
@@ -5,7 +7,7 @@ class SearchAutocompleteState with _$SearchAutocompleteState {
   const factory SearchAutocompleteState.initial() = _Initial;
 
   const factory SearchAutocompleteState.gettingSearchAutocomplete() =
-  _GettingSearchAutocomplete;
+      _GettingSearchAutocomplete;
 
   const factory SearchAutocompleteState.gotSearchAutocomplete({
     required SearchResultEntity searchResultEntity,
@@ -14,12 +16,4 @@ class SearchAutocompleteState with _$SearchAutocompleteState {
   const factory SearchAutocompleteState.failedToGetSearchAutocomplete({
     required SearchAutocompleteFailure searchAutocompleteFailure,
   }) = _FailedToGetSearchAutocomplete;
-
-  const factory SearchAutocompleteState.retrievedGeometricCoordinates({
-    required RetrieveResultEntity retrieveResultEntity,
-  }) = _RetrievedGeometricCoordinates;
-
-  const factory SearchAutocompleteState.failedToRetrieveGeometricCoordinates({
-    required SearchAutocompleteFailure searchAutocompleteFailure,
-  }) = _FailedToRetrievedGeometricCoordinates;
 }

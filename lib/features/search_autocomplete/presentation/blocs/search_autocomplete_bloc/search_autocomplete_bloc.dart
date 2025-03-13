@@ -2,10 +2,10 @@ import 'dart:async' show Timer;
 
 import 'package:bloc/bloc.dart' show Bloc, Emitter;
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:sky_trade/core/errors/failures/search_autocomplete_failure.dart';
+import 'package:sky_trade/core/errors/failures/search_autocomplete_failure.dart'
+    show SearchAutocompleteFailure;
 import 'package:sky_trade/core/resources/numbers/ui.dart'
     show oneThousandFiveHundred;
-import 'package:sky_trade/features/search_autocomplete/domain/entities/retrieve_result_entity.dart';
 import 'package:sky_trade/features/search_autocomplete/domain/entities/search_result_entity.dart'
     show SearchResultEntity;
 import 'package:sky_trade/features/search_autocomplete/domain/repositories/search_autocomplete_repository.dart';
@@ -34,10 +34,6 @@ class SearchAutocompleteBloc
 
     on<_SearchAutocompleteNotGotten>(
       _searchAutocompleteNotGotten,
-    );
-
-    on<_RetrieveGeometricCoordinates>(
-      _retrieveGeometricCoordinates,
     );
   }
 
@@ -117,28 +113,6 @@ class SearchAutocompleteBloc
           searchResultEntity: event.searchResultEntity,
         ),
       );
-
-  Future<void> _retrieveGeometricCoordinates(
-      _RetrieveGeometricCoordinates event,
-      Emitter<SearchAutocompleteState> emit,
-      ) async {
-    final result =
-    await _searchAutocompleteRepository.retrieveGeometricCoordinatesFor(
-      mapboxID: event.mapboxID,
-    );
-
-    result.fold(
-          (searchAutoCompleteFailure) => emit(
-        SearchAutocompleteState.failedToRetrieveGeometricCoordinates(
-          searchAutocompleteFailure: searchAutoCompleteFailure,
-        ),
-      ),
-          (retrieveResultEntity) => emit(
-        SearchAutocompleteState.retrievedGeometricCoordinates(
-          retrieveResultEntity: retrieveResultEntity,
-        ),
-      ),
-    );
 
   void _cleanupDebounceTimer() {
     _debounceTimer?.cancel();

@@ -35,6 +35,52 @@ base class SuggestionEntity extends Equatable {
 
   @override
   List<Object?> get props => [
+        id,
+        name,
         placeFormatted,
+        namePreferred,
+      ];
+}
+
+base class RetrieveResultEntity extends Equatable {
+  const RetrieveResultEntity({
+    required this.features,
+    required this.attribution,
+  });
+
+  final List<FeatureEntity> features;
+
+  final String attribution;
+
+  @override
+  List<Object?> get props => [
+        features,
+        attribution,
+      ];
+}
+
+base class FeatureEntity extends Equatable {
+  const FeatureEntity({
+    required this.geometry,
+  });
+
+  final GeometryEntity geometry;
+
+  @override
+  List<Object?> get props => [
+        geometry,
+      ];
+}
+
+base class GeometryEntity extends Equatable {
+  const GeometryEntity({
+    required this.coordinates,
+  });
+
+  final List<double> coordinates;
+
+  @override
+  List<Object?> get props => [
+        coordinates,
       ];
 }
