@@ -27,12 +27,11 @@ import 'package:sky_trade/core/assets/generated/assets.gen.dart' show Assets;
 import 'package:sky_trade/core/resources/colors.dart' show hexE6FFFFFF;
 import 'package:sky_trade/core/resources/numbers/ui.dart'
     show
+        fiftyDotNil,
         fiftyFourDotNil,
         sevenDotNil,
-        seventyEightDotNil,
         sixDotNil,
         sixtyOneDotNil,
-        tenDotNil,
         twelveDotNil,
         twentyOneDotNil;
 import 'package:sky_trade/core/utils/enums/ui.dart' show MapStyle;
@@ -154,7 +153,7 @@ class _MapOverlayViewState extends State<MapOverlayView> {
                       alignment: AlignmentDirectional.topEnd,
                       child: OptionsCard(
                         width: fiftyFourDotNil,
-                        height: seventyEightDotNil,
+                        height: fiftyDotNil,
                         backgroundColor: hexE6FFFFFF,
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
@@ -165,17 +164,6 @@ class _MapOverlayViewState extends State<MapOverlayView> {
                                 true => Assets.svgs.myLocationFollowed.svg(),
                                 false =>
                                   Assets.svgs.myLocationNotFollowed.svg(),
-                              },
-                            ),
-                            const SizedBox(
-                              height: tenDotNil,
-                            ),
-                            InkWell(
-                              onTap: widget.onMapLayerIconTap,
-                              child: switch (widget.mapStyle) {
-                                MapStyle.dark => Assets.svgs.mapLayerDark.svg(),
-                                MapStyle.satellite =>
-                                  Assets.svgs.mapLayerSatellite.svg(),
                               },
                             ),
                           ],
