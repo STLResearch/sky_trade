@@ -1,4 +1,4 @@
-.PHONY: f-np, c-p, br-b, br-w, t, gcr-t, ocr-t
+.PHONY: f-np, c-p, br-b, br-w, t, gcr-t, ocr-t, t-got, d-d-r, d-s-r, d-l-r-o, d-l-r-p, loc, u-d-s-l
 
 f-np: ## Creates a feature with no presentation layer
 	@echo "Creating new example feature"
@@ -67,5 +67,10 @@ d-l-r-o: ## Deploys live release app bundle to Playstore open testing track
 d-l-r-p: ## Deploys live release app bundle to Playstore production track
 	cd Android && fastlane deploy_production && cd ..
 
-loc:
+loc: ## Prints the lines of code of each file in lib and the total lines thereafter
 	find lib -type f -name "*.dart" ! -name "*.g.dart" ! -name "*.freezed.dart" ! -name "*.gen.dart" ! -name "firebase_options.dart" ! -path "*/firebase/*" -print0 | xargs -0 wc -l
+
+u-d-s-l: # Uploads debug symbols for live app for Android and iOS
+	flutter build apk --flavor live
+	flutter build ios --flavor live
+	dart run sentry_dart_plugin
