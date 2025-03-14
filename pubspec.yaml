@@ -72,11 +72,6 @@ dev_dependencies:
   test: ^1.25.2
   very_good_analysis: ^6.0.0
 
-sentry:
-  upload_debug_symbols: true
-  upload_source_maps: true
-  upload_sources: true
-
 flutter_gen:
   output: lib/core/assets/generated
   line_length: 80
