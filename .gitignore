@@ -54,3 +54,6 @@ firebase.json
 
 # Code coverage
 coverage/
+
+# Sentry
+sentry.properties
