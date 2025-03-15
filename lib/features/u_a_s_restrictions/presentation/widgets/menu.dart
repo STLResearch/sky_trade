@@ -8,6 +8,7 @@ import 'package:flutter/material.dart'
         Container,
         EdgeInsetsDirectional,
         GestureDetector,
+        InkWell,
         MenuAnchor,
         MenuItemButton,
         Navigator,
@@ -33,7 +34,7 @@ class Menu extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => MenuAnchor(
-        builder: (_, menuController, __) => GestureDetector(
+        builder: (_, menuController, __) => InkWell(
           onTap: () => switch (menuController.isOpen) {
             true => menuController.close(),
             false => menuController.open(),
