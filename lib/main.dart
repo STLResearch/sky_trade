@@ -5,8 +5,15 @@ import 'package:app_tracking_transparency/app_tracking_transparency.dart';
 import 'package:firebase_analytics/firebase_analytics.dart'
     show FirebaseAnalytics;
 import 'package:firebase_core/firebase_core.dart' show Firebase;
+import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/foundation.dart'
-    show VoidCallback, kDebugMode, kIsWeb, kProfileMode;
+    show
+        FlutterError,
+        PlatformDispatcher,
+        VoidCallback,
+        kDebugMode,
+        kIsWeb,
+        kProfileMode;
 import 'package:flutter/material.dart'
     show Widget, WidgetsFlutterBinding, runApp;
 import 'package:flutter_clarity/clarity.dart'
@@ -97,10 +104,25 @@ Future<void> _initializeImportantResources() async {
 
   await registerServices();
 
-  await FirebaseAnalytics.instance.setAnalyticsCollectionEnabled(
+  await serviceLocator<FirebaseAnalytics>().setAnalyticsCollectionEnabled(
     !_isUnsuitableEnvironmentForDataCollection ||
         await _shouldCollectAnalyticsData(),
   );
+
+  if (!_isUnsuitableEnvironmentForDataCollection) {
+    final firebaseCrashlytics = serviceLocator<FirebaseCrashlytics>();
+
+    FlutterError.onError = firebaseCrashlytics.recordFlutterFatalError;
+
+    PlatformDispatcher.instance.onError = (error, stackTrace) {
+      firebaseCrashlytics.recordError(
+        error,
+        stackTrace,
+        fatal: true,
+      );
+      return true;
+    };
+  }
 
   Bloc.observer = const AppBlocObserver();
 }

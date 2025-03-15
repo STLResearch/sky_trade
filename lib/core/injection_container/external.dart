@@ -2,6 +2,7 @@ import 'package:app_links/app_links.dart';
 import 'package:auth0_flutter/auth0_flutter.dart' show Auth0;
 import 'package:firebase_analytics/firebase_analytics.dart'
     show FirebaseAnalytics;
+import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart' show dotenv;
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get_it/get_it.dart' show GetIt;
@@ -31,6 +32,9 @@ Future<void> registerExternalServices() async {
     )
     ..registerLazySingleton<FirebaseAnalytics>(
       () => FirebaseAnalytics.instance,
+    )
+    ..registerLazySingleton<FirebaseCrashlytics>(
+      () => FirebaseCrashlytics.instance,
     )
     ..registerLazySingleton<Future<SharedPreferencesWithCache>>(
       () => SharedPreferencesWithCache.create(
