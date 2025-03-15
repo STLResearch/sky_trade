@@ -1,3 +1,4 @@
+import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/foundation.dart' show kDebugMode, kProfileMode;
 import 'package:logger/logger.dart' show Logger;
 import 'package:logger/web.dart' show Level, PrettyPrinter;
@@ -7,6 +8,7 @@ import 'package:sky_trade/core/resources/numbers/local.dart'
 import 'package:sky_trade/core/resources/strings/environments.dart'
     show devEnvironment, flavours;
 import 'package:sky_trade/core/utils/enums/local.dart' show LogLevel;
+import 'package:sky_trade/injection_container.dart' show serviceLocator;
 
 final class AppLogger {
   static void log({
@@ -25,6 +27,11 @@ final class AppLogger {
 
       if (logLevel == LogLevel.error || logLevel == LogLevel.fatalError) {
         _logExceptionToSentry(
+          message: message,
+          stackTrace: stackTrace,
+        );
+
+        _recordErrorToFirebaseCrashlytics(
           message: message,
           stackTrace: stackTrace,
         );
@@ -62,6 +69,15 @@ final class AppLogger {
       Sentry.captureException(
         message,
         stackTrace: stackTrace,
+      );
+
+  static Future<void> _recordErrorToFirebaseCrashlytics({
+    required String message,
+    required StackTrace? stackTrace,
+  }) =>
+      serviceLocator<FirebaseCrashlytics>().recordError(
+        message,
+        stackTrace,
       );
 
   static void _logWithAppropriateLevelUsing({
