@@ -28,12 +28,12 @@ f-np: ## Creates a feature with no presentation layer
 	@echo "Creating domain layer repositories"
 	cd lib/features/example/domain/repositories && touch repository.dart
 
-c-p: ## Cleans project
-	rm -f pubspec.lock
-	rm -f ios/Podfile.lock
+c-p: ## Cleans project and updates Podfile.lock for iOS
 	flutter clean
 	flutter pub get
-	cd ios && pod repo update && pod install && cd ..
+	rm -f ios/Podfile.lock
+	sudo rm -r ios/Pods
+	cd ios && pod install && cd ..
 
 br-b: ## Runs build_runner build
 	dart run build_runner build
@@ -70,7 +70,7 @@ d-l-r-p: ## Deploys live release app bundle to Playstore production track
 loc: ## Prints the lines of code of each file in lib and the total lines thereafter
 	find lib -type f -name "*.dart" ! -name "*.g.dart" ! -name "*.freezed.dart" ! -name "*.gen.dart" ! -name "firebase_options.dart" ! -path "*/firebase/*" -print0 | xargs -0 wc -l
 
-u-d-s-l: # Uploads debug symbols for live app for Android and iOS
+u-d-s-l: # Uploads Android and iOS live app debug symbols to Sentry
 	flutter build apk --flavor live
 	flutter build ios --flavor live
 	dart run sentry_dart_plugin

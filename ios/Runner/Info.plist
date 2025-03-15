@@ -2,6 +2,8 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>ITSAppUsesNonExemptEncryption</key>
+	<false/>
 	<key>CADisableMinimumFrameDurationOnPhone</key>
 	<true/>
 	<key>CFBundleDevelopmentRegion</key>
@@ -40,11 +42,11 @@
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>SkyTrade Radar uses your location to provide accurate drone flight restrictions information around you</string>
 	<key>NSUserTrackingUsageDescription</key>
-    <string>SkyTrade Radar uses tracking to analyze app performance. This helps us understand how our app is used and performs and ensures we provide the best possible service</string>
+	<string>SkyTrade Radar uses tracking to analyze app performance. This helps us understand how our app is used and performs and ensures we provide the best possible service</string>
 	<key>FIREBASE_ANALYTICS_COLLECTION_ENABLED</key>
 	<false/>
 	<key>FlutterDeepLinkingEnabled</key>
-    <false/>
+	<false/>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
 	<key>UILaunchStoryboardName</key>
