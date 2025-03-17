@@ -15,13 +15,6 @@ typedef PointAnnotationManagerPointAnnotationTuple = ({
   PointAnnotation pointAnnotation,
 });
 
-typedef Bounds = ({
-  double northEastLatitude,
-  double northEastLongitude,
-  double southWestLatitude,
-  double southWestLongitude,
-});
-
 typedef LatLng = ({
   double latitude,
   double longitude,

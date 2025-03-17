@@ -40,10 +40,8 @@ import 'package:sky_trade/core/resources/strings/special_characters.dart'
     show emptyString;
 import 'package:sky_trade/core/resources/strings/ui.dart'
     show bridDronesSourceId, nridDronesSourceId;
-import 'package:sky_trade/core/utils/enums/local.dart' show CacheType;
 import 'package:sky_trade/core/utils/enums/ui.dart' show MapStyle;
 import 'package:sky_trade/core/utils/extensions/build_context_extensions.dart';
-import 'package:sky_trade/core/utils/extensions/cache_entity_extensions.dart';
 import 'package:sky_trade/core/utils/extensions/mapbox_map_extensions.dart';
 import 'package:sky_trade/core/utils/typedefs/ui.dart'
     show PointAnnotationManagerPointAnnotationTuple;
@@ -54,10 +52,6 @@ import 'package:sky_trade/features/bluetooth/presentation/blocs/bluetooth_permis
         BluetoothPermissionsBloc,
         BluetoothPermissionsEvent,
         BluetoothPermissionsState;
-import 'package:sky_trade/features/cache_manager/presentation/blocs/cache_data_bloc/cache_data_bloc.dart'
-    show CacheDataBloc, CacheDataEvent, CacheDataState;
-import 'package:sky_trade/features/cache_manager/presentation/blocs/cached_data_bloc/cached_data_bloc.dart'
-    show CachedDataBloc, CachedDataEvent, CachedDataState;
 import 'package:sky_trade/features/geo_hash/presentation/blocs/geo_hash_bloc/geo_hash_bloc.dart'
     show GeoHashBloc, GeoHashEvent, GeoHashState;
 import 'package:sky_trade/features/location/presentation/blocs/location_permission_bloc/location_permission_bloc.dart'
@@ -113,12 +107,6 @@ class HomeScreen extends StatelessWidget {
             create: (_) => serviceLocator(),
           ),
           BlocProvider<BluetoothPermissionsBloc>(
-            create: (_) => serviceLocator(),
-          ),
-          BlocProvider<CacheDataBloc>(
-            create: (_) => serviceLocator(),
-          ),
-          BlocProvider<CachedDataBloc>(
             create: (_) => serviceLocator(),
           ),
           BlocProvider<GeoHashBloc>(
@@ -417,67 +405,8 @@ class _HomeViewState extends State<HomeView> {
             listener: (_, uASRestrictionsState) {
               uASRestrictionsState.whenOrNull(
                 gotRestrictions: (restrictionEntities) async {
-                  context.read<GeoHashBloc>().state.whenOrNull(
-                    computedGeoHash: (geoHash) {
-                      context.read<CacheDataBloc>().add(
-                            CacheDataEvent.cacheData(
-                              name: geoHash,
-                              content: restrictionEntities,
-                              type: CacheType.jsonListFile,
-                            ),
-                          );
-                    },
-                  );
-                },
-              );
-            },
-          ),
-          BlocListener<CacheDataBloc, CacheDataState>(
-            listener: (_, cacheDataState) {
-              cacheDataState.whenOrNull(
-                cached: (name, type) {
-                  context.read<CachedDataBloc>().add(
-                        CachedDataEvent.getCachedData(
-                          name: name,
-                          type: type,
-                        ),
-                      );
-                },
-              );
-            },
-          ),
-          BlocListener<GeoHashBloc, GeoHashState>(
-            listener: (_, geoHashState) {
-              geoHashState.whenOrNull(
-                computedGeoHash: (geoHash) {
-                  context.read<NetworkRemoteIDReceiverBloc>().add(
-                        NetworkRemoteIDReceiverEvent.requestRemoteIDsAround(
-                          geoHash: geoHash,
-                        ),
-                      );
-
-                  context.read<CachedDataBloc>().add(
-                        CachedDataEvent.getCachedData(
-                          name: geoHash,
-                          type: CacheType.jsonListFile,
-                        ),
-                      );
-
-                  context.read<WeatherBloc>().add(
-                        WeatherEvent.getWeather(
-                          geoHash: geoHash,
-                        ),
-                      );
-                },
-              );
-            },
-          ),
-          BlocListener<CachedDataBloc, CachedDataState>(
-            listener: (_, cachedDataState) {
-              cachedDataState.whenOrNull(
-                cacheExists: (cacheEntity) async {
                   await _mapboxMap?.drawRestrictionsPolygonsConsidering(
-                    restrictionEntities: cacheEntity.asRestrictionEntities,
+                    restrictionEntities: restrictionEntities,
                     onPolygonClick: (
                       polygonAnnotation,
                       clickedRestrictionEntity,
@@ -511,16 +440,31 @@ class _HomeViewState extends State<HomeView> {
                     },
                   );
                 },
-                cacheNotExist: () {
-                  context.read<GeoHashBloc>().state.whenOrNull(
-                    computedGeoHash: (geoHash) {
-                      context.read<UASRestrictionsBloc>().add(
-                            UASRestrictionsEvent.getRestrictions(
-                              geoHash: geoHash,
-                            ),
-                          );
-                    },
-                  );
+              );
+            },
+          ),
+          BlocListener<GeoHashBloc, GeoHashState>(
+            listener: (_, geoHashState) {
+              geoHashState.whenOrNull(
+                computedGeoHashOfPrecision3: (geoHashOfPrecision3) {
+                  context.read<NetworkRemoteIDReceiverBloc>().add(
+                        NetworkRemoteIDReceiverEvent.requestRemoteIDsAround(
+                          geoHash: geoHashOfPrecision3,
+                        ),
+                      );
+
+                  context.read<WeatherBloc>().add(
+                        WeatherEvent.getWeather(
+                          geoHash: geoHashOfPrecision3,
+                        ),
+                      );
+                },
+                computedGeoHashOfPrecision4: (geoHashOfPrecision4) {
+                  context.read<UASRestrictionsBloc>().add(
+                        UASRestrictionsEvent.getRestrictions(
+                          geoHash: geoHashOfPrecision4,
+                        ),
+                      );
                 },
               );
             },
