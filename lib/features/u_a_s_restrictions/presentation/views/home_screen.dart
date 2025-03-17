@@ -446,23 +446,23 @@ class _HomeViewState extends State<HomeView> {
           BlocListener<GeoHashBloc, GeoHashState>(
             listener: (_, geoHashState) {
               geoHashState.whenOrNull(
-                computedGeoHashP4: (geoHashP4) {
-                  context.read<UASRestrictionsBloc>().add(
-                        UASRestrictionsEvent.getRestrictions(
-                          geoHash: geoHashP4,
-                        ),
-                      );
-                },
-                computedGeoHashP6: (geoHashP6) {
+                computedGeoHashOfPrecision3: (geoHashOfPrecision3) {
                   context.read<NetworkRemoteIDReceiverBloc>().add(
                         NetworkRemoteIDReceiverEvent.requestRemoteIDsAround(
-                          geoHash: geoHashP6,
+                          geoHash: geoHashOfPrecision3,
                         ),
                       );
 
                   context.read<WeatherBloc>().add(
                         WeatherEvent.getWeather(
-                          geoHash: geoHashP6,
+                          geoHash: geoHashOfPrecision3,
+                        ),
+                      );
+                },
+                computedGeoHashOfPrecision4: (geoHashOfPrecision4) {
+                  context.read<UASRestrictionsBloc>().add(
+                        UASRestrictionsEvent.getRestrictions(
+                          geoHash: geoHashOfPrecision4,
                         ),
                       );
                 },

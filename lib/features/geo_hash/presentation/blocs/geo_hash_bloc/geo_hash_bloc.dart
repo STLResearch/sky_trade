@@ -1,7 +1,8 @@
 import 'package:bloc/bloc.dart' show Bloc, Emitter, EventTransformer;
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:rxdart/rxdart.dart' show DebounceExtensions;
-import 'package:sky_trade/core/resources/numbers/ui.dart' show three;
+import 'package:sky_trade/core/resources/numbers/ui.dart'
+    show four, three, zero;
 import 'package:sky_trade/core/utils/typedefs/ui.dart' show LatLng;
 import 'package:sky_trade/features/geo_hash/domain/repositories/geo_hash_repository.dart';
 
@@ -25,36 +26,46 @@ class GeoHashBloc extends Bloc<GeoHashEvent, GeoHashState> {
   }
 
   final GeoHashRepository _geoHashRepository;
-  String? _currentGeoHashP4;
-  String? _currentGeoHashP6;
+  String? _currentGeoHashOfPrecision3;
+  String? _currentGeoHashOfPrecision4;
 
   Future<void> _computeGeoHash(
     _ComputeGeoHash event,
     Emitter<GeoHashState> emit,
   ) async {
-
-    final geoHashP9 = _geoHashRepository.geoHashForCoordinates(
+    final geoHashOfPrecision9 = _geoHashRepository.geoHashForCoordinates(
       coordinates: event.coordinates,
     );
 
-    if(_currentGeoHashP4 != geoHashP9.substring(0,4)) {
-      _currentGeoHashP4 = geoHashP9.substring(0,4);
+    final geoHashOfPrecision3 = geoHashOfPrecision9.substring(
+      zero,
+      three,
+    );
+
+    final geoHashOfPrecision4 = geoHashOfPrecision9.substring(
+      zero,
+      four,
+    );
+
+    if (_currentGeoHashOfPrecision3 != geoHashOfPrecision3) {
+      _currentGeoHashOfPrecision3 = geoHashOfPrecision3;
+
       emit(
-        GeoHashState.computedGeoHashP4(
-          geoHashP4: _currentGeoHashP4!,
+        GeoHashState.computedGeoHashOfPrecision3(
+          geoHashOfPrecision3: geoHashOfPrecision3,
         ),
       );
     }
 
-    if(_currentGeoHashP6 != geoHashP9.substring(0,6)){
-      _currentGeoHashP6 = geoHashP9.substring(0,6);
+    if (_currentGeoHashOfPrecision4 != geoHashOfPrecision4) {
+      _currentGeoHashOfPrecision4 = geoHashOfPrecision4;
+
       emit(
-        GeoHashState.computedGeoHashP6(
-          geoHashP6: _currentGeoHashP6!,
+        GeoHashState.computedGeoHashOfPrecision4(
+          geoHashOfPrecision4: geoHashOfPrecision4,
         ),
       );
     }
-
   }
 
   EventTransformer<_ComputeGeoHash> get _debounceTransformer =>

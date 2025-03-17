@@ -4,11 +4,11 @@ part of 'geo_hash_bloc.dart';
 class GeoHashState with _$GeoHashState {
   const factory GeoHashState.initial() = _Initial;
 
-  const factory GeoHashState.computedGeoHashP4({
-    required String geoHashP4,
-  }) = _ComputedGeoHashP4;
+  const factory GeoHashState.computedGeoHashOfPrecision3({
+    required String geoHashOfPrecision3,
+  }) = _ComputedGeoHashOfPrecision3;
 
-  const factory GeoHashState.computedGeoHashP6({
-    required String geoHashP6,
-  }) = _ComputedGeoHashP6;
+  const factory GeoHashState.computedGeoHashOfPrecision4({
+    required String geoHashOfPrecision4,
+  }) = _ComputedGeoHashOfPrecision4;
 }
