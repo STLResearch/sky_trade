@@ -161,6 +161,7 @@
   "weCouldNotDeleteYourAccountPleaseTryAgainLater": "We could not delete your account. Please try again later",
   "thisEmailCannotBeUsedToCreateANewAccountPleaseUseADifferentEmail": "This email cannot be used to create a new account. Please use a different email",
   "accountDoesNotExistIfItPreviouslyDidItMayHaveBeenDeleted": "Account does not exist. If it previously did, it may have been deleted",
+  "accountDoesNotExistIfItPreviouslyDidItMayHaveBeenDeletedHoweverWeNeedYourInputToFinishOff": "Account does not exist. If it previously did, it may have been deleted. However, we need your input to finish off",
   "otp": "OTP",
   "otpFieldCannotBeEmpty": "OTP field cannot be empty",
   "pleaseSpecifyAValidOtp": "Please specify a valid OTP",

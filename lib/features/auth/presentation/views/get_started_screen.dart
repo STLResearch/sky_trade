@@ -187,23 +187,42 @@ class GetStartedView extends StatelessWidget {
                   );
                 },
                 failedToCheckSkyTradeUser: (checkSkyTradeUserFailure) {
-                  AlertSnackBar.show(
-                    context,
-                    message: switch (checkSkyTradeUserFailure) {
-                      UserNotFoundFailure() => context
-                          .localize.accountDoesNotExistPleaseRegisterInstead,
-                      UnauthorizedFailure() =>
-                        context.localize.oopsSomethingWentWrongPleaseTryAgain,
-                      InvalidSignatureFailure() =>
-                        context.localize.oopsSomethingWentWrongPleaseTryAgain,
-                      UserMismatchFailure() => context.localize
-                          .loginMethodMismatchKindlySignInWithTheSameMethodYouUsedToRegister,
-                      UserDeletedFailure() => context.localize
-                          .accountDoesNotExistIfItPreviouslyDidItMayHaveBeenDeleted,
-                      CheckSkyTradeUserUnknownFailure() =>
-                        context.localize.anUnknownErrorOccurredPleaseTryAgain,
-                    },
-                  );
+                  if (checkSkyTradeUserFailure is UserDeletedFailure) {
+                    ActionDialog.show(
+                      context,
+                      content: context.localize
+                          .accountDoesNotExistIfItPreviouslyDidItMayHaveBeenDeletedHoweverWeNeedYourInputToFinishOff,
+                      dismissible: false,
+                      actionConfirmedText: context.localize.proceed,
+                      onActionConfirmed: () {
+                        Navigator.of(
+                          context,
+                        ).pop();
+
+                        context.read<Auth0LogoutBloc>().add(
+                              const Auth0LogoutEvent.logout(),
+                            );
+                      },
+                    );
+                  } else {
+                    AlertSnackBar.show(
+                      context,
+                      message: switch (checkSkyTradeUserFailure) {
+                        UserNotFoundFailure() => context
+                            .localize.accountDoesNotExistPleaseRegisterInstead,
+                        UnauthorizedFailure() =>
+                          context.localize.oopsSomethingWentWrongPleaseTryAgain,
+                        InvalidSignatureFailure() =>
+                          context.localize.oopsSomethingWentWrongPleaseTryAgain,
+                        UserMismatchFailure() => context.localize
+                            .loginMethodMismatchKindlySignInWithTheSameMethodYouUsedToRegister,
+                        UserDeletedFailure() => context.localize
+                            .accountDoesNotExistIfItPreviouslyDidItMayHaveBeenDeleted,
+                        CheckSkyTradeUserUnknownFailure() =>
+                          context.localize.anUnknownErrorOccurredPleaseTryAgain,
+                      },
+                    );
+                  }
                 },
                 failedToCreateSkyTradeUser: (createSkyTradeUserFailure) {
                   AlertSnackBar.show(
