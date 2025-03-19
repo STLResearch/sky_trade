@@ -11,7 +11,8 @@ import 'package:sky_trade/core/resources/numbers/networking.dart'
         requestConnectTimeoutMilliSeconds,
         requestConnectTimeoutSeconds,
         requestReceiveTimeoutSeconds,
-        requestSendTimeoutSeconds;
+        requestSendTimeoutSeconds,
+        zero;
 import 'package:sky_trade/core/resources/strings/networking.dart'
     show
         acceptAllHeaderValue,
@@ -93,7 +94,7 @@ final class SocketIOClient with SignatureHandler {
       ..on(
         eventName,
         (response) async {
-          if (response is S && response != 0) {
+          if (response is S && response != zero) {
             onSuccess(
               response,
             );
@@ -104,7 +105,7 @@ final class SocketIOClient with SignatureHandler {
           var message =
               eventName + socketExceptionLogMessage + colon + whiteSpace;
 
-          if (response is E && response == 0) {
+          if (response is E && response == zero) {
             message += anErrorOccurredWhileProcessingTheEventLogMessage;
 
             if (onError != null) {
