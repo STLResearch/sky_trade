@@ -113,9 +113,17 @@ final class UASRestrictionsLocalDataSourceImplementation
 
     final data = await file.readAsString();
 
-    return jsonDecode(
+    final jsonList = jsonDecode(
       data,
-    ) as List<RestrictionModel>;
+    ) as List<dynamic>;
+
+    return jsonList
+        .map(
+          (json) => RestrictionModel.fromJson(
+            json as Map<String, dynamic>,
+          ),
+        )
+        .toList();
   }
 
   Future<File> _getOrCreateFileWith({
