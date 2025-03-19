@@ -1,5 +1,4 @@
 const jsonFileEnding = '.json';
-const txtFileEnding = '.txt';
 const pngFileEnding = '.png';
 
 const nonceCharacterSet =
