@@ -1,4 +1,5 @@
 import 'package:get_it/get_it.dart' show GetIt;
+import 'package:sky_trade/features/u_a_s_restrictions/data/data_sources/u_a_s_restrictions_local_data_source.dart';
 import 'package:sky_trade/features/u_a_s_restrictions/data/data_sources/u_a_s_restrictions_remote_data_source.dart';
 import 'package:sky_trade/features/u_a_s_restrictions/data/repositories/u_a_s_restrictions_repository_implementation.dart';
 import 'package:sky_trade/features/u_a_s_restrictions/domain/repositories/u_a_s_restrictions_repository.dart';
@@ -19,11 +20,15 @@ Future<void> registerUASRestrictionsServices() async {
     // Repositories
     ..registerLazySingleton<UASRestrictionsRepository>(
       () => UASRestrictionsRepositoryImplementation(
-        _sl(),
+        uASRestrictionsLocalDataSource: _sl(),
+        uASRestrictionsRemoteDataSource: _sl(),
       ),
     )
 
     // Data sources
+    ..registerLazySingleton<UASRestrictionsLocalDataSource>(
+      UASRestrictionsLocalDataSourceImplementation.new,
+    )
     ..registerLazySingleton<UASRestrictionsRemoteDataSource>(
       () => UASRestrictionsRemoteDataSourceImplementation(
         _sl(),
