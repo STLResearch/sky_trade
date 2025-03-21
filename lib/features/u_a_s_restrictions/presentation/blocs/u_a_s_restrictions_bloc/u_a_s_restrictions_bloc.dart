@@ -25,11 +25,19 @@ class UASRestrictionsBloc
   }
 
   final UASRestrictionsRepository _uASRestrictionsRepository;
+  final Set<String> previousGeoHashRequest = {};
 
   Future<void> _getRestrictions(
     _GetRestrictions event,
     Emitter<UASRestrictionsState> emit,
   ) async {
+    if(previousGeoHashRequest.contains(event.geoHash)){
+      emit(
+        const UASRestrictionsState.gettingOrAlreadyGotRestrictions(),
+      );
+      return;
+    }
+
     emit(
       const UASRestrictionsState.gettingRestrictions(),
     );
@@ -37,18 +45,25 @@ class UASRestrictionsBloc
     final result = await _uASRestrictionsRepository.getRestrictionsUsing(
       geoHash: event.geoHash,
     );
+    previousGeoHashRequest.add(event.geoHash);
 
     result.fold(
-      (uASRestrictionsFailure) => emit(
-        UASRestrictionsState.failedToGetRestrictions(
-          uasRestrictionsFailure: uASRestrictionsFailure,
-        ),
-      ),
-      (restrictionEntities) => emit(
-        UASRestrictionsState.gotRestrictions(
-          restrictionEntities: restrictionEntities,
-        ),
-      ),
+      (uASRestrictionsFailure) {
+        emit(
+          UASRestrictionsState.failedToGetRestrictions(
+            uasRestrictionsFailure: uASRestrictionsFailure,
+          ),
+        );
+        previousGeoHashRequest.remove(event.geoHash);
+      },
+      (restrictionEntities) {
+        emit(
+          UASRestrictionsState.gotRestrictions(
+            geoHash: event.geoHash,
+            restrictionEntities: restrictionEntities,
+          ),
+        );
+      },
     );
   }
 }

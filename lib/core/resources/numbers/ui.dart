@@ -30,6 +30,7 @@ const minusEightDotNil = -8.0;
 const minusSevenDotNil = -7.0;
 const minusFourDotNil = -4.0;
 const nilDotNil = 0.0;
+const nilDotThree = 0.3;
 const nilDotNilOne = 0.01;
 const nilDotOneFive = 0.15;
 const nilDotOneNine = 0.19;

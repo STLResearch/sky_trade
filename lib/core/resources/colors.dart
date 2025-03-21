@@ -38,12 +38,9 @@ const hexE9E9EA = Color(0xFFE9E9EA);
 const hex65C466 = Color(0xFF65C466);
 
 const rawHexB3F68351 = 0xB3F68351;
-const rawHex33F68351 = 0x33F68351;
 const rawHexF68351 = 0xFFF68351;
 const rawHexB3E04F64 = 0xB3E04F64;
-const rawHex33E04F64 = 0x33E04F64;
 const rawHexA9143A = 0xFFA9143A;
 const rawHexB3BBBD48 = 0xB3BBBD48;
-const rawHex33BBBD48 = 0x33BBBD48;
 const rawHexBBBD48 = 0xFFBBBD48;
 const rawHex2A60C4 = 0xFF2A60C4;

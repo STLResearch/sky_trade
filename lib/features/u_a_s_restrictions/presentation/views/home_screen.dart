@@ -28,7 +28,7 @@ import 'package:flutter_dotenv/flutter_dotenv.dart' show dotenv;
 import 'package:mapbox_maps_flutter/mapbox_maps_flutter.dart'
     show CompassSettings, MapboxMap, MapboxOptions, ScaleBarSettings;
 import 'package:sky_trade/core/resources/colors.dart' show hexB3FFFFFF;
-import 'package:sky_trade/core/resources/numbers/ui.dart' show twelveDotFive;
+import 'package:sky_trade/core/resources/numbers/ui.dart' show seven;
 import 'package:sky_trade/core/resources/strings/routes.dart'
     show getStartedRoutePath;
 import 'package:sky_trade/core/resources/strings/secret_keys.dart'
@@ -43,8 +43,6 @@ import 'package:sky_trade/core/resources/strings/ui.dart'
 import 'package:sky_trade/core/utils/enums/ui.dart' show MapStyle;
 import 'package:sky_trade/core/utils/extensions/build_context_extensions.dart';
 import 'package:sky_trade/core/utils/extensions/mapbox_map_extensions.dart';
-import 'package:sky_trade/core/utils/typedefs/ui.dart'
-    show PointAnnotationManagerPointAnnotationTuple;
 import 'package:sky_trade/features/auth/presentation/blocs/auth_0_logout_bloc/auth_0_logout_bloc.dart'
     show Auth0LogoutBloc, Auth0LogoutState;
 import 'package:sky_trade/features/bluetooth/presentation/blocs/bluetooth_permissions_bloc/bluetooth_permissions_bloc.dart'
@@ -156,12 +154,11 @@ class HomeView extends StatefulWidget {
 
 class _HomeViewState extends State<HomeView> {
   MapboxMap? _mapboxMap;
-  PointAnnotationManagerPointAnnotationTuple? _marker;
   late final ValueNotifier<RestrictionEntity?> _clickedRestriction;
   late final ValueNotifier<bool> _centerLocationNotifier;
   late final ValueNotifier<MapStyle> _mapStyleNotifier;
-  String previousBridGeoJsonData = emptyString;
-  String previousNridGeoJsonData = emptyString;
+  String _previousBridGeoJsonData = emptyString;
+  String _previousNridGeoJsonData = emptyString;
 
   @override
   void initState() {
@@ -376,7 +373,7 @@ class _HomeViewState extends State<HomeView> {
                       );
 
                   if (_mapboxMap != null) {
-                    previousBridGeoJsonData =
+                    _previousBridGeoJsonData =
                         await _mapboxMap!.addOrUpdateDronesOnMap(
                       remoteIDEntities: bridEntities,
                       geoJsonSourceId: bridDronesSourceId,
@@ -404,40 +401,13 @@ class _HomeViewState extends State<HomeView> {
           BlocListener<UASRestrictionsBloc, UASRestrictionsState>(
             listener: (_, uASRestrictionsState) {
               uASRestrictionsState.whenOrNull(
-                gotRestrictions: (restrictionEntities) async {
-                  await _mapboxMap?.drawRestrictionsPolygonsConsidering(
+                gotRestrictions: (
+                  geoHash,
+                  restrictionEntities,
+                ) async {
+                  await _mapboxMap?.addRestrictionsOnMap(
+                    geoHash: geoHash,
                     restrictionEntities: restrictionEntities,
-                    onPolygonClick: (
-                      polygonAnnotation,
-                      clickedRestrictionEntity,
-                    ) async {
-                      _clickedRestriction.value = clickedRestrictionEntity;
-
-                      // final a = clickedRestrictionEntity;
-                      // final b = iosMultiplePolygonClickIssueWorkAround;
-                      //
-                      // final c = a == b;
-                      //
-                      // if (clickedRestrictionEntity ==
-                      //     iosMultiplePolygonClickIssueWorkAround) {
-                      //   return;
-                      // }
-
-                      // iosMultiplePolygonClickIssueWorkAround =
-                      //     clickedRestrictionEntity;
-                      await _mapboxMap?.removePreviousMarker(
-                        _marker,
-                      );
-
-                      await _mapboxMap
-                          ?.addMarkerWithTextOnTopRestrictionPolygonUsing(
-                            polygonAnnotation: polygonAnnotation,
-                            clickedRestrictionEntity: clickedRestrictionEntity,
-                          )
-                          .then(
-                            (marker) => _marker = marker,
-                          );
-                    },
                   );
                 },
               );
@@ -446,23 +416,22 @@ class _HomeViewState extends State<HomeView> {
           BlocListener<GeoHashBloc, GeoHashState>(
             listener: (_, geoHashState) {
               geoHashState.whenOrNull(
-                computedGeoHashOfPrecision3: (geoHashOfPrecision3) {
+                computedGeoHashOfPrecision3: (geoHash) {
                   context.read<NetworkRemoteIDReceiverBloc>().add(
                         NetworkRemoteIDReceiverEvent.requestRemoteIDsAround(
-                          geoHash: geoHashOfPrecision3,
+                          geoHash: geoHash,
                         ),
                       );
 
                   context.read<WeatherBloc>().add(
                         WeatherEvent.getWeather(
-                          geoHash: geoHashOfPrecision3,
+                          geoHash: geoHash,
                         ),
                       );
-                },
-                computedGeoHashOfPrecision4: (geoHashOfPrecision4) {
+
                   context.read<UASRestrictionsBloc>().add(
                         UASRestrictionsEvent.getRestrictions(
-                          geoHash: geoHashOfPrecision4,
+                          geoHash: geoHash,
                         ),
                       );
                 },
@@ -515,7 +484,7 @@ class _HomeViewState extends State<HomeView> {
                       if (locationPermissionEntity.granted) {
                         _mapboxMap?.getCameraState().then(
                           (cameraState) {
-                            if (cameraState.zoom >= twelveDotFive) {
+                            if (cameraState.zoom >= seven) {
                               context.read<GeoHashBloc>().add(
                                     GeoHashEvent.computeGeoHash(
                                       coordinates: (
@@ -537,8 +506,8 @@ class _HomeViewState extends State<HomeView> {
                 },
                 onStyleLoaded: (_) async {
                   await _mapboxMap?.setUpLayersForDrones(
-                    bridGeoJsonData: previousBridGeoJsonData,
-                    nridGeoJsonData: previousNridGeoJsonData,
+                    bridGeoJsonData: _previousBridGeoJsonData,
+                    nridGeoJsonData: _previousNridGeoJsonData,
                   );
                 },
               ),

@@ -36,6 +36,7 @@ final class UASRestrictionsRemoteDataSourceImplementation
           queryParameters: {
             geoHashKey: geoHash,
           },
+          overrideReceiveTimeout: const Duration(seconds: 20),
         ),
         onSuccess: (jsonList) => jsonList
             .map(
@@ -43,6 +44,7 @@ final class UASRestrictionsRemoteDataSourceImplementation
                 json as Map<String, dynamic>,
               ),
             )
+            .toSet()
             .toList(),
         onError: (_) => UASRestrictionsException(),
       );

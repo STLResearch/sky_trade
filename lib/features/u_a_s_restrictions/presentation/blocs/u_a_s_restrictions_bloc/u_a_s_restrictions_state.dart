@@ -8,8 +8,12 @@ class UASRestrictionsState with _$UASRestrictionsState {
       _GettingRestrictions;
 
   const factory UASRestrictionsState.gotRestrictions({
+    required String geoHash,
     required List<RestrictionEntity> restrictionEntities,
   }) = _GotRestrictions;
+
+  const factory UASRestrictionsState.gettingOrAlreadyGotRestrictions() =
+      _GettingOrAlreadyGotRestrictions;
 
   const factory UASRestrictionsState.failedToGetRestrictions({
     required UASRestrictionsFailure uasRestrictionsFailure,

@@ -74,9 +74,7 @@ class RestrictionIndicator extends StatelessWidget {
                             eightDotNil,
                           ),
                           border: Border.all(
-                            color: Color(
-                              clickedRestrictionValue.polygonFillOutlineColor,
-                            ),
+                            color: clickedRestrictionValue.polygonColor,
                           ),
                         ),
                         child: clickedRestrictionValue
@@ -88,9 +86,7 @@ class RestrictionIndicator extends StatelessWidget {
                       ),
                     ),
                     RestrictionBubble(
-                      bubbleColor: Color(
-                        clickedRestrictionValue.polygonFillOutlineColor,
-                      ),
+                      bubbleColor: clickedRestrictionValue.polygonColor,
                     ),
                   ],
                 ),

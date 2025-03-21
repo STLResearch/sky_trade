@@ -1,3 +1,5 @@
+import 'dart:convert' show utf8;
+import 'package:crypto/crypto.dart' show Digest, md5;
 import 'package:json_annotation/json_annotation.dart';
 import 'package:sky_trade/core/resources/strings/networking.dart'
     show
@@ -19,7 +21,7 @@ part 'restriction_model.g.dart';
 
 @JsonSerializable()
 final class RestrictionModel extends RestrictionEntity {
-  const RestrictionModel({
+  RestrictionModel({
     required this.mAdditionLinks,
     required this.mCountry,
     required this.mLowerLimit,
@@ -28,6 +30,10 @@ final class RestrictionModel extends RestrictionEntity {
     required this.mType,
     required this.mUpperLimit,
   }) : super(
+          id: _getUniqueID(
+            restrictionType: mType,
+            coordinates: mRegion.coordinates,
+          ),
           additionLinks: mAdditionLinks,
           country: mCountry,
           lowerLimit: mLowerLimit,
@@ -62,6 +68,31 @@ final class RestrictionModel extends RestrictionEntity {
   final String mUpperLimit;
 
   Map<String, dynamic> toJson() => _$RestrictionModelToJson(this);
+
+  static String _getUniqueID({
+    required RestrictionType restrictionType,
+    required List<List<List<double>>> coordinates,
+  }) {
+    final hashes = coordinates
+        .map(
+          (vertex) => vertex
+              .map(
+                (positions) => md5.convert(
+                  utf8.encode(
+                    '${positions[0]},${positions[1]}',
+                  ),
+                ),
+              )
+              .toList(),
+        )
+        .toList()[0];
+    final hashAsList = hashes.map((digest) => digest.bytes).reduce(
+          (a, b) => List.generate(16, (i) => a[i] ^ b[i]),
+        ); // xor hash list
+    final hash = Digest(hashAsList);
+
+    return restrictionType.name + hash.toString();
+  }
 }
 
 @JsonSerializable()

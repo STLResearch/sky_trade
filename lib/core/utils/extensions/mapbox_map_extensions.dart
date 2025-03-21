@@ -1,14 +1,12 @@
 import 'dart:convert' show json;
 import 'dart:ui' show instantiateImageCodec;
-import 'package:dartz/dartz.dart' show Function1, Function2;
-import 'package:flutter/services.dart' show rootBundle;
-import 'package:geodart/geometries.dart' as geo_dart
-    show Coordinate, LinearRing, Polygon;
+import 'package:flutter/services.dart' show Color, rootBundle;
 import 'package:mapbox_maps_flutter/mapbox_maps_flutter.dart'
     show
         CameraOptions,
         Feature,
         FeatureCollection,
+        FillLayer,
         GeoJsonSource,
         GeometryObject,
         LocationComponentSettings,
@@ -17,13 +15,7 @@ import 'package:mapbox_maps_flutter/mapbox_maps_flutter.dart'
         MapAnimationOptions,
         MapboxMap,
         MbxImage,
-        OnPolygonAnnotationClickListener,
         Point,
-        PointAnnotationOptions,
-        Polygon,
-        PolygonAnnotation,
-        PolygonAnnotationManager,
-        PolygonAnnotationOptions,
         Position,
         StyleLayer,
         StyleSource,
@@ -34,11 +26,12 @@ import 'package:sky_trade/core/resources/colors.dart' show rawHex2A60C4;
 import 'package:sky_trade/core/resources/numbers/ui.dart'
     show
         fiftyDotNil,
+        fourDotNil,
         fourteenDotNil,
-        one,
+        nilDotThree,
         oneDotFive,
+        oneDotNil,
         oneThousand,
-        threeDotNil,
         zero;
 import 'package:sky_trade/core/resources/strings/special_characters.dart'
     show emptyString;
@@ -50,151 +43,65 @@ import 'package:sky_trade/core/resources/strings/ui.dart'
         directionKey,
         getKey,
         iconDroneValue,
+        layerId,
+        multiPolygonValue,
         nridDronesLayerId,
         nridDronesSourceId,
         pointValue,
+        restrictionColorKey,
+        restrictionOutlineColorKey,
+        sourceId,
         typeKey;
 import 'package:sky_trade/core/utils/extensions/restriction_entity_extensions.dart';
-import 'package:sky_trade/core/utils/typedefs/ui.dart'
-    show
-        PointAnnotationManagerPointAnnotationTuple,
-        PolygonAnnotationManagerPolygonAnnotationTuple;
 import 'package:sky_trade/features/remote_i_d_receiver/domain/entities/remote_i_d_entity.dart'
     show RemoteIDEntity;
 import 'package:sky_trade/features/u_a_s_restrictions/domain/entities/restriction_entity.dart'
     show RestrictionEntity;
 
 extension MapboxMapExtensions on MapboxMap {
-  Future<void> removeAllPolygons(
-    List<PolygonAnnotationManagerPolygonAnnotationTuple>? polygons,
-  ) async {
-    if (polygons == null || polygons.isEmpty) return;
-
-    await Future.forEach(
-      polygons,
-      (polygon) => polygon.polygonAnnotationManager.deleteAll(),
-    );
-  }
-
-  Future<List<PolygonAnnotationManagerPolygonAnnotationTuple>>
-      drawRestrictionsPolygonsConsidering({
-    required List<RestrictionEntity> restrictionEntities,
-    required Function2<PolygonAnnotation, RestrictionEntity, void>
-        onPolygonClick,
-  }) async {
-    final polygons = List<PolygonAnnotationManagerPolygonAnnotationTuple>.empty(
-      growable: true,
-    );
-
-    await Future.forEach(
-      restrictionEntities,
-      (restrictionEntity) async {
-        final polygonAnnotationManager =
-            await annotations.createPolygonAnnotationManager();
-
-        final polygonAnnotation = await polygonAnnotationManager.create(
-          PolygonAnnotationOptions(
-            geometry: Polygon(
-              coordinates: restrictionEntity.region.coordinates
-                  .map(
-                    (vertex) => vertex
-                        .map(
-                          (positions) => Position(
-                            positions[zero],
-                            positions[one],
-                          ),
-                        )
-                        .toList(),
-                  )
-                  .toList(),
-            ),
-            fillColor: restrictionEntity.polygonFillColor,
-            fillOutlineColor: restrictionEntity.polygonFillOutlineColor,
-          ),
-        );
-
-        _setPolygonClickListener(
-          polygonAnnotationManager: polygonAnnotationManager,
-          onClick: (polygonAnnotation) => onPolygonClick(
-            polygonAnnotation,
-            restrictionEntity,
-          ),
-        );
-
-        polygons.add(
-          (
-            polygonAnnotationManager: polygonAnnotationManager,
-            polygonAnnotation: polygonAnnotation,
-          ),
-        );
-      },
-    );
-
-    return polygons;
-  }
-
-  void _setPolygonClickListener({
-    required PolygonAnnotationManager polygonAnnotationManager,
-    required Function1<PolygonAnnotation, void> onClick,
-  }) {
-    polygonAnnotationManager.addOnPolygonAnnotationClickListener(
-      _AnnotationClickListener(
-        onClick,
-      ),
-    );
-  }
-
-  Future<PointAnnotationManagerPointAnnotationTuple>
-      addMarkerWithTextOnTopRestrictionPolygonUsing({
-    required PolygonAnnotation polygonAnnotation,
-    required RestrictionEntity clickedRestrictionEntity,
-  }) async {
-    final pointAnnotationManager =
-        await annotations.createPointAnnotationManager();
-
-    final geoDartPolygon = geo_dart.Polygon(
-      polygonAnnotation.geometry.coordinates
-          .map(
-            (vertex) => geo_dart.LinearRing(
-              vertex
-                  .map(
-                    (position) => geo_dart.Coordinate(
-                      position.lat.toDouble(),
-                      position.lng.toDouble(),
-                    ),
-                  )
-                  .toList(),
-            ),
-          )
-          .toList(),
-    );
-
-    final pointAnnotation = await pointAnnotationManager.create(
-      PointAnnotationOptions(
-        geometry: Point(
-          coordinates: Position(
-            geoDartPolygon.center.lng,
-            geoDartPolygon.center.lat,
-          ),
-        ),
-        image: await clickedRestrictionEntity.polygonMarkerImage,
-        iconSize: threeDotNil,
-      ),
-    );
-
-    return (
-      pointAnnotationManager: pointAnnotationManager,
-      pointAnnotation: pointAnnotation,
-    );
-  }
-
-  Future<void> removePreviousMarker(
-    PointAnnotationManagerPointAnnotationTuple? marker,
-  ) async {
-    if (marker == null) return;
-
-    await marker.pointAnnotationManager.deleteAll();
-  }
+  // Future<PointAnnotationManagerPointAnnotationTuple>
+  //     addMarkerWithTextOnTopRestrictionPolygonUsing({
+  //   required PolygonAnnotation polygonAnnotation,
+  //   required RestrictionEntity clickedRestrictionEntity,
+  // }) async {
+  //   final pointAnnotationManager =
+  //       await annotations.createPointAnnotationManager();
+  //
+  //   final geoDartPolygon = geo_dart.Polygon(
+  //     polygonAnnotation.geometry.coordinates
+  //         .map(
+  //           (vertex) => geo_dart.LinearRing(
+  //             vertex
+  //                 .map(
+  //                   (position) => geo_dart.Coordinate(
+  //                     position.lat.toDouble(),
+  //                     position.lng.toDouble(),
+  //                   ),
+  //                 )
+  //                 .toList(),
+  //           ),
+  //         )
+  //         .toList(),
+  //   );
+  //
+  //   final pointAnnotation = await pointAnnotationManager.create(
+  //     PointAnnotationOptions(
+  //       geometry: Point(
+  //         coordinates: Position(
+  //           geoDartPolygon.center.lng,
+  //           geoDartPolygon.center.lat,
+  //         ),
+  //       ),
+  //       image: await clickedRestrictionEntity.polygonMarkerImage,
+  //       iconSize: threeDotNil,
+  //     ),
+  //   );
+  //
+  //   return (
+  //     pointAnnotationManager: pointAnnotationManager,
+  //     pointAnnotation: pointAnnotation,
+  //   );
+  // }
 
   Future<void> followUser({
     required double latitude,
@@ -259,6 +166,45 @@ extension MapboxMapExtensions on MapboxMap {
         ),
       );
 
+  Future<void> addRestrictionsOnMap({
+    required String geoHash,
+    required List<RestrictionEntity> restrictionEntities,
+  }) async {
+    final geoJsonData = _getGeoJsonData<RestrictionEntity>(
+      entities: restrictionEntities,
+    );
+
+    if (geoJsonData == null) {
+      return;
+    }
+
+    final geoJsonDataString = json.encode(
+      geoJsonData.toJson(),
+    );
+
+    await style.addSource(
+      GeoJsonSource(
+        id: geoHash + sourceId,
+        data: geoJsonDataString,
+      ),
+    );
+    await style.addLayer(
+      FillLayer(
+        id: geoHash + layerId,
+        sourceId: geoHash + sourceId,
+        fillColorExpression: [
+          getKey,
+          restrictionColorKey,
+        ],
+        fillOutlineColorExpression: [
+          getKey,
+          restrictionOutlineColorKey,
+        ],
+        minZoom: fourDotNil,
+      ),
+    );
+  }
+
   Future<void> setUpLayersForDrones({
     required String bridGeoJsonData,
     required String nridGeoJsonData,
@@ -308,8 +254,8 @@ extension MapboxMapExtensions on MapboxMap {
     required List<RemoteIDEntity> remoteIDEntities,
     required String geoJsonSourceId,
   }) async {
-    final geoJsonData = _getGeoJsonData(
-      remoteIDEntities,
+    final geoJsonData = _getGeoJsonData<RemoteIDEntity>(
+      entities: remoteIDEntities,
     );
 
     if (geoJsonData == null) {
@@ -332,29 +278,65 @@ extension MapboxMapExtensions on MapboxMap {
     return emptyString;
   }
 
-  FeatureCollection? _getGeoJsonData(
-    List<RemoteIDEntity> remoteIDEntities,
-  ) {
-    final geoJsonFeatures = remoteIDEntities
+  FeatureCollection? _getGeoJsonData<T>({
+    required List<T> entities,
+  }) {
+    final geoJsonFeatures = entities
         .map(
-          (remoteIDEntity) {
-            if (remoteIDEntity.location != null &&
-                remoteIDEntity.location!.location != null) {
-              return Feature(
-                id: remoteIDEntity.connection.macAddress,
-                properties: {
-                  directionKey: remoteIDEntity.location?.direction ?? zero,
-                },
-                geometry: GeometryObject.deserialize(
-                  {
-                    typeKey: pointValue,
-                    coordinatesKey: [
-                      remoteIDEntity.location!.longitude,
-                      remoteIDEntity.location!.latitude,
-                    ],
+          (entity) {
+            switch (T) {
+              case RemoteIDEntity:
+                final remoteIDEntity = entity as RemoteIDEntity;
+                if (remoteIDEntity.location != null &&
+                    remoteIDEntity.location!.location != null) {
+                  return Feature(
+                    id: remoteIDEntity.connection.macAddress,
+                    properties: {
+                      directionKey: remoteIDEntity.location?.direction ?? zero,
+                    },
+                    geometry: GeometryObject.deserialize(
+                      {
+                        typeKey: pointValue,
+                        coordinatesKey: [
+                          remoteIDEntity.location!.longitude,
+                          remoteIDEntity.location!.latitude,
+                        ],
+                      },
+                    ),
+                  );
+                }
+
+              case RestrictionEntity:
+                final restrictionEntity = entity as RestrictionEntity;
+                final restrictionColor = _getRGBAColorString(
+                  color: restrictionEntity.polygonColor,
+                  alpha: nilDotThree,
+                );
+                final restrictionOutlineColor = _getRGBAColorString(
+                  color: restrictionEntity.polygonColor,
+                  alpha: oneDotNil,
+                );
+                return Feature(
+                  id: restrictionEntity.id,
+                  properties: {
+                    restrictionColorKey: restrictionColor,
+                    restrictionOutlineColorKey: restrictionOutlineColor,
                   },
-                ),
-              );
+                  geometry: GeometryObject.deserialize(
+                    {
+                      typeKey: multiPolygonValue,
+                      coordinatesKey: [
+                        [
+                          restrictionEntity.region.coordinates[0]
+                              .map(
+                                (ele) => List.generate(2, (i) => ele[i]),
+                              )
+                              .toList(),
+                        ],
+                      ],
+                    },
+                  ),
+                );
             }
           },
         )
@@ -367,6 +349,12 @@ extension MapboxMapExtensions on MapboxMap {
       features: geoJsonFeatures,
     );
   }
+
+  String _getRGBAColorString({
+    required Color color,
+    required double alpha,
+  }) =>
+      'rgba(${color.red},${color.green},${color.blue},$alpha)';
 
   Future<String> _addStyleImageUsing({
     required String styleImageName,
@@ -398,18 +386,4 @@ extension MapboxMapExtensions on MapboxMap {
 
     return styleImageName;
   }
-}
-
-final class _AnnotationClickListener extends OnPolygonAnnotationClickListener {
-  _AnnotationClickListener(
-    Function1<PolygonAnnotation, void> onAnnotationClick,
-  ) : _onAnnotationClick = onAnnotationClick;
-
-  final Function1<PolygonAnnotation, void> _onAnnotationClick;
-
-  @override
-  void onPolygonAnnotationClick(PolygonAnnotation annotation) =>
-      _onAnnotationClick(
-        annotation,
-      );
 }

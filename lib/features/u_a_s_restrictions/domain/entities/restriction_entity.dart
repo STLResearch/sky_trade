@@ -4,6 +4,7 @@ import 'package:sky_trade/core/utils/enums/networking.dart'
 
 base class RestrictionEntity extends Equatable {
   const RestrictionEntity({
+    required this.id,
     required this.additionLinks,
     required this.country,
     required this.lowerLimit,
@@ -13,6 +14,7 @@ base class RestrictionEntity extends Equatable {
     required this.upperLimit,
   });
 
+  final String id;
   final List<AdditionalLinkEntity> additionLinks;
   final String country;
   final String lowerLimit;
@@ -22,15 +24,7 @@ base class RestrictionEntity extends Equatable {
   final String upperLimit;
 
   @override
-  List<Object?> get props => [
-        additionLinks,
-        country,
-        lowerLimit,
-        message,
-        region,
-        type,
-        upperLimit,
-      ];
+  List<Object?> get props => [id];
 }
 
 base class AdditionalLinkEntity extends Equatable {

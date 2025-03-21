@@ -6,30 +6,22 @@ import 'package:sky_trade/core/assets/generated/assets.gen.dart'
     show Assets, SvgGenImage;
 import 'package:sky_trade/core/resources/colors.dart'
     show
-        rawHex33BBBD48,
-        rawHex33E04F64,
-        rawHex33F68351,
         rawHexA9143A,
         rawHexB3BBBD48,
         rawHexB3E04F64,
         rawHexB3F68351,
         rawHexBBBD48,
         rawHexF68351;
-import 'package:sky_trade/core/utils/enums/networking.dart' show RestrictionType;
+import 'package:sky_trade/core/utils/enums/networking.dart'
+    show RestrictionType;
 import 'package:sky_trade/core/utils/extensions/build_context_extensions.dart';
 import 'package:sky_trade/features/u_a_s_restrictions/domain/entities/restriction_entity.dart';
 
 extension RestrictionEntityExtensions on RestrictionEntity {
-  int get polygonFillColor => switch (type) {
-        RestrictionType.danger => rawHex33BBBD48,
-        RestrictionType.prohibited => rawHex33E04F64,
-        RestrictionType.restricted => rawHex33F68351,
-      };
-
-  int get polygonFillOutlineColor => switch (type) {
-        RestrictionType.danger => rawHexBBBD48,
-        RestrictionType.prohibited => rawHexA9143A,
-        RestrictionType.restricted => rawHexF68351,
+  Color get polygonColor => switch (type) {
+        RestrictionType.danger => const Color(rawHexBBBD48),
+        RestrictionType.prohibited => const Color(rawHexA9143A),
+        RestrictionType.restricted => const Color(rawHexF68351),
       };
 
   Color get indicatorFillColor => Color(
