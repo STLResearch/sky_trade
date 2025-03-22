@@ -1,4 +1,6 @@
-arb-dir: lib/core/localization/l10n
+synthetic-package: false
+arb-dir: lib/core/localization/l10n/translations
+output-dir: lib/core/localization/l10n/generated
 template-arb-file: app_en.arb
 output-localization-file: app_localizations.dart
 nullable-getter: false
