@@ -8,7 +8,7 @@ import 'package:flutter/material.dart'
         ThemeMode,
         Widget;
 import 'package:flutter_bloc/flutter_bloc.dart' show BlocProvider, ReadContext;
-import 'package:flutter_gen/gen_l10n/app_localizations.dart'
+import 'package:sky_trade/core/localization/l10n/generated/app_localizations.dart'
     show AppLocalizations;
 import 'package:sky_trade/core/navigation/route_configuration.dart';
 import 'package:sky_trade/core/resources/theme.dart' show darkTheme, lightTheme;
