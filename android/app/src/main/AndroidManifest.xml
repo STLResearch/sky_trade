@@ -61,6 +61,7 @@
 
                 <data
                     android:host="${deepLinkHost}"
+                    android:path="${emailVerificationLinkPath}"
                     android:scheme="https" />
 
             </intent-filter>
