@@ -88,9 +88,10 @@ android {
             dimension "environment"
             resValue "string", "app_version", "${defaultConfig.versionName}${versionNameSuffix}"
             manifestPlaceholders += [
-                    deepLinkHost: "dev.sky.trade",
-                    auth0Domain : "dev-auth.sky.trade",
-                    auth0Scheme : "https"
+                    deepLinkHost             : "dev.sky.trade",
+                    emailVerificationLinkPath: "/u/email-verification",
+                    auth0Domain              : "dev-auth.sky.trade",
+                    auth0Scheme              : "https"
             ]
             signingConfig signingConfigs.debug
         }
@@ -99,9 +100,10 @@ android {
             dimension "environment"
             resValue "string", "app_version", "${defaultConfig.versionName}${versionNameSuffix}"
             manifestPlaceholders += [
-                    deepLinkHost: "staging.sky.trade",
-                    auth0Domain : "staging-auth.sky.trade",
-                    auth0Scheme : "https"
+                    deepLinkHost             : "staging.sky.trade",
+                    emailVerificationLinkPath: "/u/email-verification",
+                    auth0Domain              : "staging-auth.sky.trade",
+                    auth0Scheme              : "https"
             ]
             signingConfig signingConfigs.release
         }
@@ -110,9 +112,10 @@ android {
             dimension "environment"
             resValue "string", "app_version", "${defaultConfig.versionName}${versionNameSuffix}"
             manifestPlaceholders += [
-                    deepLinkHost: "app.sky.trade",
-                    auth0Domain : "auth.sky.trade",
-                    auth0Scheme : "https"
+                    deepLinkHost             : "app.sky.trade",
+                    emailVerificationLinkPath: "/u/email-verification",
+                    auth0Domain              : "auth.sky.trade",
+                    auth0Scheme              : "https"
             ]
             signingConfig signingConfigs.release
         }
