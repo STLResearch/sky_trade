@@ -3,7 +3,7 @@ description: "The SkyTrade Air Management app"
 
 publish_to: 'none'
 
-version: 0.0.5+5
+version: 0.0.6+6
 
 environment:
   sdk: '>=3.3.4 <4.0.0'
