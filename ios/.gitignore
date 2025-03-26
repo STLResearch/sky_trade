@@ -35,3 +35,7 @@ Runner/GeneratedPluginRegistrant.*
 
 # Firebase
 Runner/GoogleService-Info.plist
+
+# build
+build/XCBuildData
+build/.last_build_id
