@@ -67,6 +67,9 @@ class _$LocationPermissionEventCopyWithImpl<$Res,
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  /// Create a copy of LocationPermissionEvent
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -83,6 +86,9 @@ class __$$RequestPermissionImplCopyWithImpl<$Res>
   __$$RequestPermissionImplCopyWithImpl(_$RequestPermissionImpl _value,
       $Res Function(_$RequestPermissionImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of LocationPermissionEvent
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -245,6 +251,9 @@ class _$LocationPermissionStateCopyWithImpl<$Res,
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  /// Create a copy of LocationPermissionState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -261,6 +270,9 @@ class __$$InitialImplCopyWithImpl<$Res>
   __$$InitialImplCopyWithImpl(
       _$InitialImpl _value, $Res Function(_$InitialImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of LocationPermissionState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -385,6 +397,9 @@ class __$$RequestingPermissionImplCopyWithImpl<$Res>
   __$$RequestingPermissionImplCopyWithImpl(_$RequestingPermissionImpl _value,
       $Res Function(_$RequestingPermissionImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of LocationPermissionState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -515,6 +530,8 @@ class __$$MaybeGrantedPermissionImplCopyWithImpl<$Res>
       $Res Function(_$MaybeGrantedPermissionImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of LocationPermissionState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -555,7 +572,9 @@ class _$MaybeGrantedPermissionImpl implements _MaybeGrantedPermission {
   @override
   int get hashCode => Object.hash(runtimeType, locationPermissionEntity);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of LocationPermissionState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$MaybeGrantedPermissionImplCopyWith<_$MaybeGrantedPermissionImpl>
@@ -652,7 +671,10 @@ abstract class _MaybeGrantedPermission implements LocationPermissionState {
       _$MaybeGrantedPermissionImpl;
 
   LocationPermissionEntity get locationPermissionEntity;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of LocationPermissionState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$MaybeGrantedPermissionImplCopyWith<_$MaybeGrantedPermissionImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -677,6 +699,8 @@ class __$$CannotRequestPermissionImplCopyWithImpl<$Res>
       $Res Function(_$CannotRequestPermissionImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of LocationPermissionState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -718,7 +742,9 @@ class _$CannotRequestPermissionImpl implements _CannotRequestPermission {
   @override
   int get hashCode => Object.hash(runtimeType, locationPermissionFailure);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of LocationPermissionState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$CannotRequestPermissionImplCopyWith<_$CannotRequestPermissionImpl>
@@ -815,7 +841,10 @@ abstract class _CannotRequestPermission implements LocationPermissionState {
           locationPermissionFailure}) = _$CannotRequestPermissionImpl;
 
   LocationPermissionFailure get locationPermissionFailure;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of LocationPermissionState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$CannotRequestPermissionImplCopyWith<_$CannotRequestPermissionImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

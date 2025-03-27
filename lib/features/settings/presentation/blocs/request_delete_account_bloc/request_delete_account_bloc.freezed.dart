@@ -67,6 +67,9 @@ class _$RequestDeleteAccountEventCopyWithImpl<$Res,
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  /// Create a copy of RequestDeleteAccountEvent
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -83,6 +86,9 @@ class __$$SendOtpImplCopyWithImpl<$Res>
   __$$SendOtpImplCopyWithImpl(
       _$SendOtpImpl _value, $Res Function(_$SendOtpImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of RequestDeleteAccountEvent
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -240,6 +246,9 @@ class _$RequestDeleteAccountStateCopyWithImpl<$Res,
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  /// Create a copy of RequestDeleteAccountState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -256,6 +265,9 @@ class __$$InitialImplCopyWithImpl<$Res>
   __$$InitialImplCopyWithImpl(
       _$InitialImpl _value, $Res Function(_$InitialImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of RequestDeleteAccountState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -374,6 +386,9 @@ class __$$SendingOtpImplCopyWithImpl<$Res>
   __$$SendingOtpImplCopyWithImpl(
       _$SendingOtpImpl _value, $Res Function(_$SendingOtpImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of RequestDeleteAccountState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -495,6 +510,8 @@ class __$$SentOtpImplCopyWithImpl<$Res>
       _$SentOtpImpl _value, $Res Function(_$SentOtpImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of RequestDeleteAccountState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -534,7 +551,9 @@ class _$SentOtpImpl implements _SentOtp {
   @override
   int get hashCode => Object.hash(runtimeType, messageEntity);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of RequestDeleteAccountState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$SentOtpImplCopyWith<_$SentOtpImpl> get copyWith =>
@@ -624,7 +643,10 @@ abstract class _SentOtp implements RequestDeleteAccountState {
       _$SentOtpImpl;
 
   MessageEntity get messageEntity;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of RequestDeleteAccountState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$SentOtpImplCopyWith<_$SentOtpImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -646,6 +668,8 @@ class __$$FailedToSendOtpImplCopyWithImpl<$Res>
       _$FailedToSendOtpImpl _value, $Res Function(_$FailedToSendOtpImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of RequestDeleteAccountState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -687,7 +711,9 @@ class _$FailedToSendOtpImpl implements _FailedToSendOtp {
   @override
   int get hashCode => Object.hash(runtimeType, requestDeleteAccountFailure);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of RequestDeleteAccountState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$FailedToSendOtpImplCopyWith<_$FailedToSendOtpImpl> get copyWith =>
@@ -779,7 +805,10 @@ abstract class _FailedToSendOtp implements RequestDeleteAccountState {
           requestDeleteAccountFailure}) = _$FailedToSendOtpImpl;
 
   RequestDeleteAccountFailure get requestDeleteAccountFailure;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of RequestDeleteAccountState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$FailedToSendOtpImplCopyWith<_$FailedToSendOtpImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

@@ -72,6 +72,9 @@ class _$AppLinkEventCopyWithImpl<$Res, $Val extends AppLinkEvent>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  /// Create a copy of AppLinkEvent
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -88,6 +91,9 @@ class __$$ListenLinkImplCopyWithImpl<$Res>
   __$$ListenLinkImplCopyWithImpl(
       _$ListenLinkImpl _value, $Res Function(_$ListenLinkImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of AppLinkEvent
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -193,6 +199,8 @@ class __$$LinkGottenImplCopyWithImpl<$Res>
       _$LinkGottenImpl _value, $Res Function(_$LinkGottenImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of AppLinkEvent
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -231,7 +239,9 @@ class _$LinkGottenImpl implements _LinkGotten {
   @override
   int get hashCode => Object.hash(runtimeType, uri);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of AppLinkEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$LinkGottenImplCopyWith<_$LinkGottenImpl> get copyWith =>
@@ -304,7 +314,10 @@ abstract class _LinkGotten implements AppLinkEvent {
   const factory _LinkGotten({required final Uri uri}) = _$LinkGottenImpl;
 
   Uri get uri;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of AppLinkEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$LinkGottenImplCopyWith<_$LinkGottenImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -392,6 +405,9 @@ class _$AppLinkStateCopyWithImpl<$Res, $Val extends AppLinkState>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  /// Create a copy of AppLinkState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -408,6 +424,9 @@ class __$$InitialImplCopyWithImpl<$Res>
   __$$InitialImplCopyWithImpl(
       _$InitialImpl _value, $Res Function(_$InitialImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of AppLinkState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -535,6 +554,9 @@ class __$$GettingLinkImplCopyWithImpl<$Res>
   __$$GettingLinkImplCopyWithImpl(
       _$GettingLinkImpl _value, $Res Function(_$GettingLinkImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of AppLinkState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -662,6 +684,9 @@ class __$$NoLinkImplCopyWithImpl<$Res>
   __$$NoLinkImplCopyWithImpl(
       _$NoLinkImpl _value, $Res Function(_$NoLinkImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of AppLinkState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -789,6 +814,9 @@ class __$$GotLinkImplCopyWithImpl<$Res>
   __$$GotLinkImplCopyWithImpl(
       _$GotLinkImpl _value, $Res Function(_$GotLinkImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of AppLinkState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -917,6 +945,9 @@ class __$$EmailVerificationLinkImplCopyWithImpl<$Res>
   __$$EmailVerificationLinkImplCopyWithImpl(_$EmailVerificationLinkImpl _value,
       $Res Function(_$EmailVerificationLinkImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of AppLinkState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -1045,6 +1076,9 @@ class __$$UnrecognizedLinkImplCopyWithImpl<$Res>
   __$$UnrecognizedLinkImplCopyWithImpl(_$UnrecognizedLinkImpl _value,
       $Res Function(_$UnrecognizedLinkImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of AppLinkState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc

@@ -69,6 +69,9 @@ class _$CheckSkyTradeUserExistsEventCopyWithImpl<$Res,
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  /// Create a copy of CheckSkyTradeUserExistsEvent
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -85,6 +88,9 @@ class __$$CheckUserExistsImplCopyWithImpl<$Res>
   __$$CheckUserExistsImplCopyWithImpl(
       _$CheckUserExistsImpl _value, $Res Function(_$CheckUserExistsImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of CheckSkyTradeUserExistsEvent
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -243,6 +249,9 @@ class _$CheckSkyTradeUserExistsStateCopyWithImpl<$Res,
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  /// Create a copy of CheckSkyTradeUserExistsState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -259,6 +268,9 @@ class __$$InitialImplCopyWithImpl<$Res>
   __$$InitialImplCopyWithImpl(
       _$InitialImpl _value, $Res Function(_$InitialImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of CheckSkyTradeUserExistsState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -376,6 +388,9 @@ class __$$CheckingUserImplCopyWithImpl<$Res>
   __$$CheckingUserImplCopyWithImpl(
       _$CheckingUserImpl _value, $Res Function(_$CheckingUserImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of CheckSkyTradeUserExistsState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -496,6 +511,8 @@ class __$$UserExistsImplCopyWithImpl<$Res>
       _$UserExistsImpl _value, $Res Function(_$UserExistsImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of CheckSkyTradeUserExistsState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -535,7 +552,9 @@ class _$UserExistsImpl implements _UserExists {
   @override
   int get hashCode => Object.hash(runtimeType, skyTradeUserEntity);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of CheckSkyTradeUserExistsState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$UserExistsImplCopyWith<_$UserExistsImpl> get copyWith =>
@@ -625,7 +644,10 @@ abstract class _UserExists implements CheckSkyTradeUserExistsState {
       _$UserExistsImpl;
 
   SkyTradeUserEntity get skyTradeUserEntity;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of CheckSkyTradeUserExistsState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$UserExistsImplCopyWith<_$UserExistsImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -648,6 +670,8 @@ class __$$FailedToCheckUserImplCopyWithImpl<$Res>
       $Res Function(_$FailedToCheckUserImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of CheckSkyTradeUserExistsState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -688,7 +712,9 @@ class _$FailedToCheckUserImpl implements _FailedToCheckUser {
   @override
   int get hashCode => Object.hash(runtimeType, checkSkyTradeUserFailure);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of CheckSkyTradeUserExistsState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$FailedToCheckUserImplCopyWith<_$FailedToCheckUserImpl> get copyWith =>
@@ -779,7 +805,10 @@ abstract class _FailedToCheckUser implements CheckSkyTradeUserExistsState {
       _$FailedToCheckUserImpl;
 
   CheckSkyTradeUserFailure get checkSkyTradeUserFailure;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of CheckSkyTradeUserExistsState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$FailedToCheckUserImplCopyWith<_$FailedToCheckUserImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

@@ -98,6 +98,9 @@ class _$NetworkRemoteIDReceiverEventCopyWithImpl<$Res,
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  /// Create a copy of NetworkRemoteIDReceiverEvent
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -114,6 +117,9 @@ class __$$ListenRemoteIDsImplCopyWithImpl<$Res>
   __$$ListenRemoteIDsImplCopyWithImpl(
       _$ListenRemoteIDsImpl _value, $Res Function(_$ListenRemoteIDsImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of NetworkRemoteIDReceiverEvent
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -240,6 +246,9 @@ class __$$RemoteIDsGettingImplCopyWithImpl<$Res>
   __$$RemoteIDsGettingImplCopyWithImpl(_$RemoteIDsGettingImpl _value,
       $Res Function(_$RemoteIDsGettingImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of NetworkRemoteIDReceiverEvent
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -368,6 +377,8 @@ class __$$RemoteIDsGottenImplCopyWithImpl<$Res>
       _$RemoteIDsGottenImpl _value, $Res Function(_$RemoteIDsGottenImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of NetworkRemoteIDReceiverEvent
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -416,7 +427,9 @@ class _$RemoteIDsGottenImpl implements _RemoteIDsGotten {
   int get hashCode => Object.hash(
       runtimeType, const DeepCollectionEquality().hash(_remoteIDEntities));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of NetworkRemoteIDReceiverEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$RemoteIDsGottenImplCopyWith<_$RemoteIDsGottenImpl> get copyWith =>
@@ -515,7 +528,10 @@ abstract class _RemoteIDsGotten implements NetworkRemoteIDReceiverEvent {
       _$RemoteIDsGottenImpl;
 
   List<RemoteIDEntity> get remoteIDEntities;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of NetworkRemoteIDReceiverEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$RemoteIDsGottenImplCopyWith<_$RemoteIDsGottenImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -537,6 +553,9 @@ class __$$RemoteIDsListeningStartedImplCopyWithImpl<$Res>
       _$RemoteIDsListeningStartedImpl _value,
       $Res Function(_$RemoteIDsListeningStartedImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of NetworkRemoteIDReceiverEvent
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -670,6 +689,8 @@ class __$$RequestRemoteIDsAroundImplCopyWithImpl<$Res>
       $Res Function(_$RequestRemoteIDsAroundImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of NetworkRemoteIDReceiverEvent
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -708,7 +729,9 @@ class _$RequestRemoteIDsAroundImpl implements _RequestRemoteIDsAround {
   @override
   int get hashCode => Object.hash(runtimeType, geoHash);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of NetworkRemoteIDReceiverEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$RequestRemoteIDsAroundImplCopyWith<_$RequestRemoteIDsAroundImpl>
@@ -806,7 +829,10 @@ abstract class _RequestRemoteIDsAround implements NetworkRemoteIDReceiverEvent {
       _$RequestRemoteIDsAroundImpl;
 
   String get geoHash;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of NetworkRemoteIDReceiverEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$RequestRemoteIDsAroundImplCopyWith<_$RequestRemoteIDsAroundImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -897,6 +923,9 @@ class _$NetworkRemoteIDReceiverStateCopyWithImpl<$Res,
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  /// Create a copy of NetworkRemoteIDReceiverState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -913,6 +942,9 @@ class __$$InitialImplCopyWithImpl<$Res>
   __$$InitialImplCopyWithImpl(
       _$InitialImpl _value, $Res Function(_$InitialImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of NetworkRemoteIDReceiverState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -1043,6 +1075,9 @@ class __$$EstablishingListeningRemoteIDsImplCopyWithImpl<$Res>
       _$EstablishingListeningRemoteIDsImpl _value,
       $Res Function(_$EstablishingListeningRemoteIDsImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of NetworkRemoteIDReceiverState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -1177,6 +1212,9 @@ class __$$StartedListeningRemoteIDsImplCopyWithImpl<$Res>
       _$StartedListeningRemoteIDsImpl _value,
       $Res Function(_$StartedListeningRemoteIDsImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of NetworkRemoteIDReceiverState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -1307,6 +1345,9 @@ class __$$GettingRemoteIDsImplCopyWithImpl<$Res>
   __$$GettingRemoteIDsImplCopyWithImpl(_$GettingRemoteIDsImpl _value,
       $Res Function(_$GettingRemoteIDsImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of NetworkRemoteIDReceiverState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -1437,6 +1478,8 @@ class __$$GotRemoteIDsImplCopyWithImpl<$Res>
       _$GotRemoteIDsImpl _value, $Res Function(_$GotRemoteIDsImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of NetworkRemoteIDReceiverState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1485,7 +1528,9 @@ class _$GotRemoteIDsImpl implements _GotRemoteIDs {
   int get hashCode => Object.hash(
       runtimeType, const DeepCollectionEquality().hash(_remoteIDEntities));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of NetworkRemoteIDReceiverState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$GotRemoteIDsImplCopyWith<_$GotRemoteIDsImpl> get copyWith =>
@@ -1585,7 +1630,10 @@ abstract class _GotRemoteIDs implements NetworkRemoteIDReceiverState {
       _$GotRemoteIDsImpl;
 
   List<RemoteIDEntity> get remoteIDEntities;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of NetworkRemoteIDReceiverState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$GotRemoteIDsImplCopyWith<_$GotRemoteIDsImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

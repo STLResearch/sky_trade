@@ -66,7 +66,7 @@ dev_dependencies:
   flutter_launcher_icons: ^0.14.3
   flutter_test:
     sdk: flutter
-  freezed: ^3.0.0-0.0.dev
+  freezed: ^2.5.8
   json_serializable: ^6.9.4
   mockito: ^5.4.5
   package_rename_plus: ^1.0.2

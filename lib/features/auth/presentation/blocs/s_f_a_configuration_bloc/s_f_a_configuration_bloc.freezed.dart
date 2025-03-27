@@ -67,6 +67,9 @@ class _$SFAConfigurationEventCopyWithImpl<$Res,
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  /// Create a copy of SFAConfigurationEvent
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -83,6 +86,9 @@ class __$$ConfigureImplCopyWithImpl<$Res>
   __$$ConfigureImplCopyWithImpl(
       _$ConfigureImpl _value, $Res Function(_$ConfigureImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of SFAConfigurationEvent
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -239,6 +245,9 @@ class _$SFAConfigurationStateCopyWithImpl<$Res,
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  /// Create a copy of SFAConfigurationState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -255,6 +264,9 @@ class __$$InitialImplCopyWithImpl<$Res>
   __$$InitialImplCopyWithImpl(
       _$InitialImpl _value, $Res Function(_$InitialImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of SFAConfigurationState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -372,6 +384,9 @@ class __$$ConfiguringImplCopyWithImpl<$Res>
   __$$ConfiguringImplCopyWithImpl(
       _$ConfiguringImpl _value, $Res Function(_$ConfiguringImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of SFAConfigurationState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -489,6 +504,9 @@ class __$$ConfiguredImplCopyWithImpl<$Res>
   __$$ConfiguredImplCopyWithImpl(
       _$ConfiguredImpl _value, $Res Function(_$ConfiguredImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of SFAConfigurationState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -609,6 +627,8 @@ class __$$FailedToConfigureImplCopyWithImpl<$Res>
       $Res Function(_$FailedToConfigureImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of SFAConfigurationState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -649,7 +669,9 @@ class _$FailedToConfigureImpl implements _FailedToConfigure {
   @override
   int get hashCode => Object.hash(runtimeType, sFAConfigurationFailure);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of SFAConfigurationState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$FailedToConfigureImplCopyWith<_$FailedToConfigureImpl> get copyWith =>
@@ -740,7 +762,10 @@ abstract class _FailedToConfigure implements SFAConfigurationState {
       _$FailedToConfigureImpl;
 
   SFAConfigurationFailure get sFAConfigurationFailure;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of SFAConfigurationState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$FailedToConfigureImplCopyWith<_$FailedToConfigureImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

@@ -12,7 +12,13 @@ class AuthEvent with _$AuthEvent {
   const factory AuthEvent.authenticateAuth0UserWithSFA({
     required String? email,
     required String idToken,
+    required bool isFreshSFAAuthentication,
   }) = _AuthenticateAuth0UserWithSFA;
+
+  const factory AuthEvent.reAuthenticateFailedSFAUserAuthenticationWithAuth0({
+    required String? email,
+    required String idToken,
+  }) = _ReAuthenticateFailedSFAUserAuthenticationWithAuth0;
 
   const factory AuthEvent.checkSkyTradeUserExists() = _CheckSkyTradeUserExists;
 

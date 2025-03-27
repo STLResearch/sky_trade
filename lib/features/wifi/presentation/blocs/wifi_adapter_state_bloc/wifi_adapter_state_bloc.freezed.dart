@@ -90,6 +90,9 @@ class _$WifiAdapterStateEventCopyWithImpl<$Res,
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  /// Create a copy of WifiAdapterStateEvent
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -109,6 +112,9 @@ class __$$ListenWifiAdapterStateImplCopyWithImpl<$Res>
       _$ListenWifiAdapterStateImpl _value,
       $Res Function(_$ListenWifiAdapterStateImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of WifiAdapterStateEvent
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -235,6 +241,8 @@ class __$$WifiAdapterStateGottenImplCopyWithImpl<$Res>
       $Res Function(_$WifiAdapterStateGottenImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of WifiAdapterStateEvent
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -274,7 +282,9 @@ class _$WifiAdapterStateGottenImpl implements _WifiAdapterStateGotten {
   @override
   int get hashCode => Object.hash(runtimeType, wifiAdapterStateEntity);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of WifiAdapterStateEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$WifiAdapterStateGottenImplCopyWith<_$WifiAdapterStateGottenImpl>
@@ -367,7 +377,10 @@ abstract class _WifiAdapterStateGotten implements WifiAdapterStateEvent {
       _$WifiAdapterStateGottenImpl;
 
   WifiAdapterStateEntity get wifiAdapterStateEntity;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of WifiAdapterStateEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$WifiAdapterStateGottenImplCopyWith<_$WifiAdapterStateGottenImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -392,6 +405,8 @@ class __$$WifiAdapterStateNotGottenImplCopyWithImpl<$Res>
       $Res Function(_$WifiAdapterStateNotGottenImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of WifiAdapterStateEvent
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -433,7 +448,9 @@ class _$WifiAdapterStateNotGottenImpl implements _WifiAdapterStateNotGotten {
   @override
   int get hashCode => Object.hash(runtimeType, wifiAdapterStateFailure);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of WifiAdapterStateEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$WifiAdapterStateNotGottenImplCopyWith<_$WifiAdapterStateNotGottenImpl>
@@ -526,7 +543,10 @@ abstract class _WifiAdapterStateNotGotten implements WifiAdapterStateEvent {
       _$WifiAdapterStateNotGottenImpl;
 
   WifiAdapterStateFailure get wifiAdapterStateFailure;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of WifiAdapterStateEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$WifiAdapterStateNotGottenImplCopyWith<_$WifiAdapterStateNotGottenImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -612,6 +632,9 @@ class _$WifiAdapterStateStateCopyWithImpl<$Res,
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  /// Create a copy of WifiAdapterStateState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -628,6 +651,9 @@ class __$$InitialImplCopyWithImpl<$Res>
   __$$InitialImplCopyWithImpl(
       _$InitialImpl _value, $Res Function(_$InitialImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of WifiAdapterStateState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -755,6 +781,9 @@ class __$$GettingWifiAdapterStateImplCopyWithImpl<$Res>
       _$GettingWifiAdapterStateImpl _value,
       $Res Function(_$GettingWifiAdapterStateImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of WifiAdapterStateState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -883,6 +912,8 @@ class __$$GotWifiAdapterStateImplCopyWithImpl<$Res>
       $Res Function(_$GotWifiAdapterStateImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of WifiAdapterStateState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -922,7 +953,9 @@ class _$GotWifiAdapterStateImpl implements _GotWifiAdapterState {
   @override
   int get hashCode => Object.hash(runtimeType, wifiAdapterStateEntity);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of WifiAdapterStateState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$GotWifiAdapterStateImplCopyWith<_$GotWifiAdapterStateImpl> get copyWith =>
@@ -1020,7 +1053,10 @@ abstract class _GotWifiAdapterState implements WifiAdapterStateState {
       _$GotWifiAdapterStateImpl;
 
   WifiAdapterStateEntity get wifiAdapterStateEntity;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of WifiAdapterStateState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$GotWifiAdapterStateImplCopyWith<_$GotWifiAdapterStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -1045,6 +1081,8 @@ class __$$FailedToGetWifiAdapterStateImplCopyWithImpl<$Res>
       $Res Function(_$FailedToGetWifiAdapterStateImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of WifiAdapterStateState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1087,7 +1125,9 @@ class _$FailedToGetWifiAdapterStateImpl
   @override
   int get hashCode => Object.hash(runtimeType, wifiAdapterStateFailure);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of WifiAdapterStateState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$FailedToGetWifiAdapterStateImplCopyWith<_$FailedToGetWifiAdapterStateImpl>
@@ -1185,7 +1225,10 @@ abstract class _FailedToGetWifiAdapterState implements WifiAdapterStateState {
       _$FailedToGetWifiAdapterStateImpl;
 
   WifiAdapterStateFailure get wifiAdapterStateFailure;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of WifiAdapterStateState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$FailedToGetWifiAdapterStateImplCopyWith<_$FailedToGetWifiAdapterStateImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

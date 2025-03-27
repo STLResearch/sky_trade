@@ -78,6 +78,9 @@ class _$OtpResendTimerEventCopyWithImpl<$Res, $Val extends OtpResendTimerEvent>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  /// Create a copy of OtpResendTimerEvent
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -94,6 +97,9 @@ class __$$CountdownImplCopyWithImpl<$Res>
   __$$CountdownImplCopyWithImpl(
       _$CountdownImpl _value, $Res Function(_$CountdownImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of OtpResendTimerEvent
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -204,6 +210,8 @@ class __$$TickImplCopyWithImpl<$Res>
   __$$TickImplCopyWithImpl(_$TickImpl _value, $Res Function(_$TickImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of OtpResendTimerEvent
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -252,7 +260,9 @@ class _$TickImpl implements _Tick {
   @override
   int get hashCode => Object.hash(runtimeType, minutesLeft, secondsLeft);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of OtpResendTimerEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$TickImplCopyWith<_$TickImpl> get copyWith =>
@@ -334,7 +344,10 @@ abstract class _Tick implements OtpResendTimerEvent {
 
   int get minutesLeft;
   int get secondsLeft;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of OtpResendTimerEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$TickImplCopyWith<_$TickImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -353,6 +366,9 @@ class __$$ElapseImplCopyWithImpl<$Res>
   __$$ElapseImplCopyWithImpl(
       _$ElapseImpl _value, $Res Function(_$ElapseImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of OtpResendTimerEvent
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -511,6 +527,9 @@ class _$OtpResendTimerStateCopyWithImpl<$Res, $Val extends OtpResendTimerState>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  /// Create a copy of OtpResendTimerState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -527,6 +546,9 @@ class __$$InitialImplCopyWithImpl<$Res>
   __$$InitialImplCopyWithImpl(
       _$InitialImpl _value, $Res Function(_$InitialImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of OtpResendTimerState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -638,6 +660,8 @@ class __$$TickedImplCopyWithImpl<$Res>
       _$TickedImpl _value, $Res Function(_$TickedImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of OtpResendTimerState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -686,7 +710,9 @@ class _$TickedImpl implements _Ticked {
   @override
   int get hashCode => Object.hash(runtimeType, minutesLeft, secondsLeft);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of OtpResendTimerState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$TickedImplCopyWith<_$TickedImpl> get copyWith =>
@@ -768,7 +794,10 @@ abstract class _Ticked implements OtpResendTimerState {
 
   int get minutesLeft;
   int get secondsLeft;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of OtpResendTimerState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$TickedImplCopyWith<_$TickedImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -787,6 +816,9 @@ class __$$ElapsedImplCopyWithImpl<$Res>
   __$$ElapsedImplCopyWithImpl(
       _$ElapsedImpl _value, $Res Function(_$ElapsedImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of OtpResendTimerState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc

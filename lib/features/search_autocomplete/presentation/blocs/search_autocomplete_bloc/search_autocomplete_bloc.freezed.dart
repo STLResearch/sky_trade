@@ -91,6 +91,9 @@ class _$SearchAutocompleteEventCopyWithImpl<$Res,
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  /// Create a copy of SearchAutocompleteEvent
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -111,6 +114,8 @@ class __$$AutocompleteSearchImplCopyWithImpl<$Res>
       $Res Function(_$AutocompleteSearchImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of SearchAutocompleteEvent
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -149,7 +154,9 @@ class _$AutocompleteSearchImpl implements _AutocompleteSearch {
   @override
   int get hashCode => Object.hash(runtimeType, query);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of SearchAutocompleteEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$AutocompleteSearchImplCopyWith<_$AutocompleteSearchImpl> get copyWith =>
@@ -242,7 +249,10 @@ abstract class _AutocompleteSearch implements SearchAutocompleteEvent {
       _$AutocompleteSearchImpl;
 
   String get query;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of SearchAutocompleteEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$AutocompleteSearchImplCopyWith<_$AutocompleteSearchImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -267,6 +277,8 @@ class __$$SearchAutocompleteGottenImplCopyWithImpl<$Res>
       $Res Function(_$SearchAutocompleteGottenImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of SearchAutocompleteEvent
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -306,7 +318,9 @@ class _$SearchAutocompleteGottenImpl implements _SearchAutocompleteGotten {
   @override
   int get hashCode => Object.hash(runtimeType, searchResultEntity);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of SearchAutocompleteEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$SearchAutocompleteGottenImplCopyWith<_$SearchAutocompleteGottenImpl>
@@ -400,7 +414,10 @@ abstract class _SearchAutocompleteGotten implements SearchAutocompleteEvent {
       _$SearchAutocompleteGottenImpl;
 
   SearchResultEntity get searchResultEntity;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of SearchAutocompleteEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$SearchAutocompleteGottenImplCopyWith<_$SearchAutocompleteGottenImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -425,6 +442,8 @@ class __$$SearchAutocompleteNotGottenImplCopyWithImpl<$Res>
       $Res Function(_$SearchAutocompleteNotGottenImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of SearchAutocompleteEvent
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -467,7 +486,9 @@ class _$SearchAutocompleteNotGottenImpl
   @override
   int get hashCode => Object.hash(runtimeType, searchAutocompleteFailure);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of SearchAutocompleteEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$SearchAutocompleteNotGottenImplCopyWith<_$SearchAutocompleteNotGottenImpl>
@@ -561,7 +582,10 @@ abstract class _SearchAutocompleteNotGotten implements SearchAutocompleteEvent {
           searchAutocompleteFailure}) = _$SearchAutocompleteNotGottenImpl;
 
   SearchAutocompleteFailure get searchAutocompleteFailure;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of SearchAutocompleteEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$SearchAutocompleteNotGottenImplCopyWith<_$SearchAutocompleteNotGottenImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -651,6 +675,9 @@ class _$SearchAutocompleteStateCopyWithImpl<$Res,
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  /// Create a copy of SearchAutocompleteState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -667,6 +694,9 @@ class __$$InitialImplCopyWithImpl<$Res>
   __$$InitialImplCopyWithImpl(
       _$InitialImpl _value, $Res Function(_$InitialImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of SearchAutocompleteState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -798,6 +828,9 @@ class __$$GettingSearchAutocompleteImplCopyWithImpl<$Res>
       _$GettingSearchAutocompleteImpl _value,
       $Res Function(_$GettingSearchAutocompleteImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of SearchAutocompleteState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -932,6 +965,8 @@ class __$$GotSearchAutocompleteImplCopyWithImpl<$Res>
       $Res Function(_$GotSearchAutocompleteImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of SearchAutocompleteState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -971,7 +1006,9 @@ class _$GotSearchAutocompleteImpl implements _GotSearchAutocomplete {
   @override
   int get hashCode => Object.hash(runtimeType, searchResultEntity);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of SearchAutocompleteState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$GotSearchAutocompleteImplCopyWith<_$GotSearchAutocompleteImpl>
@@ -1073,7 +1110,10 @@ abstract class _GotSearchAutocomplete implements SearchAutocompleteState {
       _$GotSearchAutocompleteImpl;
 
   SearchResultEntity get searchResultEntity;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of SearchAutocompleteState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$GotSearchAutocompleteImplCopyWith<_$GotSearchAutocompleteImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -1098,6 +1138,8 @@ class __$$FailedToGetSearchAutocompleteImplCopyWithImpl<$Res>
       $Res Function(_$FailedToGetSearchAutocompleteImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of SearchAutocompleteState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1140,7 +1182,9 @@ class _$FailedToGetSearchAutocompleteImpl
   @override
   int get hashCode => Object.hash(runtimeType, searchAutocompleteFailure);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of SearchAutocompleteState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$FailedToGetSearchAutocompleteImplCopyWith<
@@ -1244,7 +1288,10 @@ abstract class _FailedToGetSearchAutocomplete
           searchAutocompleteFailure}) = _$FailedToGetSearchAutocompleteImpl;
 
   SearchAutocompleteFailure get searchAutocompleteFailure;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of SearchAutocompleteState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$FailedToGetSearchAutocompleteImplCopyWith<
           _$FailedToGetSearchAutocompleteImpl>
       get copyWith => throw _privateConstructorUsedError;

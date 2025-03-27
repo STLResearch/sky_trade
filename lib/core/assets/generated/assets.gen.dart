@@ -15,8 +15,13 @@ import 'package:vector_graphics/vector_graphics.dart' as _vg;
 class $AssetsPngsGen {
   const $AssetsPngsGen();
 
-  /// File path: assets/pngs/app_icon.png
-  AssetGenImage get appIcon => const AssetGenImage('assets/pngs/app_icon.png');
+  /// File path: assets/pngs/app_icon_android.png
+  AssetGenImage get appIconAndroid =>
+      const AssetGenImage('assets/pngs/app_icon_android.png');
+
+  /// File path: assets/pngs/app_icon_ios.png
+  AssetGenImage get appIconIos =>
+      const AssetGenImage('assets/pngs/app_icon_ios.png');
 
   /// File path: assets/pngs/icon_drone.png
   AssetGenImage get iconDrone =>
@@ -51,16 +56,17 @@ class $AssetsPngsGen {
 
   /// List of all assets
   List<AssetGenImage> get values => [
-        appIcon,
-        iconDrone,
-        locationPuck,
-        locationPuckShadow,
-        markerDanger,
-        markerProhibited,
-        markerRestricted,
-        splash,
-        splashAndroid12
-      ];
+    appIconAndroid,
+    appIconIos,
+    iconDrone,
+    locationPuck,
+    locationPuckShadow,
+    markerDanger,
+    markerProhibited,
+    markerRestricted,
+    splash,
+    splashAndroid12,
+  ];
 }
 
 class $AssetsSvgsGen {
@@ -230,69 +236,65 @@ class $AssetsSvgsGen {
 
   /// List of all assets
   List<SvgGenImage> get values => [
-        account,
-        apple,
-        arrow,
-        arrowRight,
-        bluetoothOff,
-        bluetoothOn,
-        chevronDown,
-        chevronLeft,
-        chevronUp,
-        clear,
-        cloud,
-        cloudAlt,
-        community,
-        flight,
-        gift,
-        google,
-        help,
-        iconDroneAbout,
-        iconDroneBlack,
-        iconDroneBlue,
-        indicator,
-        info,
-        infoDanger,
-        infoProhibited,
-        infoRestricted,
-        insights,
-        locationDangerRestricted,
-        locationProhibited,
-        logout,
-        logoutCircle,
-        map,
-        mapLayerDark,
-        mapLayerSatellite,
-        meatballsMenu,
-        myLocationFollowed,
-        myLocationNotFollowed,
-        prohibited,
-        rain,
-        search,
-        settings,
-        skyTradeLogo,
-        skyTradeRadarLogo,
-        storm,
-        sun,
-        weather,
-        wifiOff,
-        wifiOn
-      ];
+    account,
+    apple,
+    arrow,
+    arrowRight,
+    bluetoothOff,
+    bluetoothOn,
+    chevronDown,
+    chevronLeft,
+    chevronUp,
+    clear,
+    cloud,
+    cloudAlt,
+    community,
+    flight,
+    gift,
+    google,
+    help,
+    iconDroneAbout,
+    iconDroneBlack,
+    iconDroneBlue,
+    indicator,
+    info,
+    infoDanger,
+    infoProhibited,
+    infoRestricted,
+    insights,
+    locationDangerRestricted,
+    locationProhibited,
+    logout,
+    logoutCircle,
+    map,
+    mapLayerDark,
+    mapLayerSatellite,
+    meatballsMenu,
+    myLocationFollowed,
+    myLocationNotFollowed,
+    prohibited,
+    rain,
+    search,
+    settings,
+    skyTradeLogo,
+    skyTradeRadarLogo,
+    storm,
+    sun,
+    weather,
+    wifiOff,
+    wifiOn,
+  ];
 }
 
 class Assets {
-  Assets._();
+  const Assets._();
 
   static const $AssetsPngsGen pngs = $AssetsPngsGen();
   static const $AssetsSvgsGen svgs = $AssetsSvgsGen();
 }
 
 class AssetGenImage {
-  const AssetGenImage(
-    this._assetName, {
-    this.size,
-    this.flavors = const {},
-  });
+  const AssetGenImage(this._assetName, {this.size, this.flavors = const {}});
 
   final String _assetName;
 
@@ -320,7 +322,7 @@ class AssetGenImage {
     bool gaplessPlayback = true,
     bool isAntiAlias = false,
     String? package,
-    FilterQuality filterQuality = FilterQuality.low,
+    FilterQuality filterQuality = FilterQuality.medium,
     int? cacheWidth,
     int? cacheHeight,
   }) {
@@ -352,15 +354,8 @@ class AssetGenImage {
     );
   }
 
-  ImageProvider provider({
-    AssetBundle? bundle,
-    String? package,
-  }) {
-    return AssetImage(
-      _assetName,
-      bundle: bundle,
-      package: package,
-    );
+  ImageProvider provider({AssetBundle? bundle, String? package}) {
+    return AssetImage(_assetName, bundle: bundle, package: package);
   }
 
   String get path => _assetName;
@@ -369,17 +364,11 @@ class AssetGenImage {
 }
 
 class SvgGenImage {
-  const SvgGenImage(
-    this._assetName, {
-    this.size,
-    this.flavors = const {},
-  }) : _isVecFormat = false;
+  const SvgGenImage(this._assetName, {this.size, this.flavors = const {}})
+    : _isVecFormat = false;
 
-  const SvgGenImage.vec(
-    this._assetName, {
-    this.size,
-    this.flavors = const {},
-  }) : _isVecFormat = true;
+  const SvgGenImage.vec(this._assetName, {this.size, this.flavors = const {}})
+    : _isVecFormat = true;
 
   final String _assetName;
   final Size? size;
@@ -433,7 +422,8 @@ class SvgGenImage {
       placeholderBuilder: placeholderBuilder,
       semanticsLabel: semanticsLabel,
       excludeFromSemantics: excludeFromSemantics,
-      colorFilter: colorFilter ??
+      colorFilter:
+          colorFilter ??
           (color == null ? null : ColorFilter.mode(color, colorBlendMode)),
       clipBehavior: clipBehavior,
       cacheColorFilter: cacheColorFilter,

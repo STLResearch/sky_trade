@@ -82,6 +82,9 @@ class _$DroneFlightPathEventCopyWithImpl<$Res,
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  /// Create a copy of DroneFlightPathEvent
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -101,6 +104,8 @@ class __$$RequestFlightPathForImplCopyWithImpl<$Res>
       $Res Function(_$RequestFlightPathForImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of DroneFlightPathEvent
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -140,7 +145,9 @@ class _$RequestFlightPathForImpl implements _RequestFlightPathFor {
   @override
   int get hashCode => Object.hash(runtimeType, macAddress);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of DroneFlightPathEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$RequestFlightPathForImplCopyWith<_$RequestFlightPathForImpl>
@@ -225,7 +232,10 @@ abstract class _RequestFlightPathFor implements DroneFlightPathEvent {
       _$RequestFlightPathForImpl;
 
   String get macAddress;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of DroneFlightPathEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$RequestFlightPathForImplCopyWith<_$RequestFlightPathForImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -244,6 +254,9 @@ class __$$FlightPathGettingImplCopyWithImpl<$Res>
   __$$FlightPathGettingImplCopyWithImpl(_$FlightPathGettingImpl _value,
       $Res Function(_$FlightPathGettingImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of DroneFlightPathEvent
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -358,6 +371,8 @@ class __$$FlightPathGottenImplCopyWithImpl<$Res>
       $Res Function(_$FlightPathGottenImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of DroneFlightPathEvent
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -397,7 +412,9 @@ class _$FlightPathGottenImpl implements _FlightPathGotten {
   @override
   int get hashCode => Object.hash(runtimeType, droneFlightPathEntity);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of DroneFlightPathEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$FlightPathGottenImplCopyWith<_$FlightPathGottenImpl> get copyWith =>
@@ -482,7 +499,10 @@ abstract class _FlightPathGotten implements DroneFlightPathEvent {
       _$FlightPathGottenImpl;
 
   DroneFlightPathEntity get droneFlightPathEntity;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of DroneFlightPathEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$FlightPathGottenImplCopyWith<_$FlightPathGottenImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -555,6 +575,9 @@ class _$DroneFlightPathStateCopyWithImpl<$Res,
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  /// Create a copy of DroneFlightPathState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -571,6 +594,9 @@ class __$$InitialImplCopyWithImpl<$Res>
   __$$InitialImplCopyWithImpl(
       _$InitialImpl _value, $Res Function(_$InitialImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of DroneFlightPathState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -682,6 +708,9 @@ class __$$GettingFlightPathImplCopyWithImpl<$Res>
   __$$GettingFlightPathImplCopyWithImpl(_$GettingFlightPathImpl _value,
       $Res Function(_$GettingFlightPathImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of DroneFlightPathState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -796,6 +825,8 @@ class __$$GotFlightPathImplCopyWithImpl<$Res>
       _$GotFlightPathImpl _value, $Res Function(_$GotFlightPathImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of DroneFlightPathState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -835,7 +866,9 @@ class _$GotFlightPathImpl implements _GotFlightPath {
   @override
   int get hashCode => Object.hash(runtimeType, droneFlightPathEntity);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of DroneFlightPathState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$GotFlightPathImplCopyWith<_$GotFlightPathImpl> get copyWith =>
@@ -919,7 +952,10 @@ abstract class _GotFlightPath implements DroneFlightPathState {
       _$GotFlightPathImpl;
 
   DroneFlightPathEntity get droneFlightPathEntity;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of DroneFlightPathState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$GotFlightPathImplCopyWith<_$GotFlightPathImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

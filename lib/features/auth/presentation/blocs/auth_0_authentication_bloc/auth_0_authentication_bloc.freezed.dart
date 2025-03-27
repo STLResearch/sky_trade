@@ -67,6 +67,9 @@ class _$Auth0AuthenticationEventCopyWithImpl<$Res,
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  /// Create a copy of Auth0AuthenticationEvent
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -83,6 +86,9 @@ class __$$AuthenticateImplCopyWithImpl<$Res>
   __$$AuthenticateImplCopyWithImpl(
       _$AuthenticateImpl _value, $Res Function(_$AuthenticateImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of Auth0AuthenticationEvent
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -240,6 +246,9 @@ class _$Auth0AuthenticationStateCopyWithImpl<$Res,
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  /// Create a copy of Auth0AuthenticationState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -256,6 +265,9 @@ class __$$InitialImplCopyWithImpl<$Res>
   __$$InitialImplCopyWithImpl(
       _$InitialImpl _value, $Res Function(_$InitialImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of Auth0AuthenticationState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -374,6 +386,9 @@ class __$$AuthenticatingImplCopyWithImpl<$Res>
   __$$AuthenticatingImplCopyWithImpl(
       _$AuthenticatingImpl _value, $Res Function(_$AuthenticatingImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of Auth0AuthenticationState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -495,6 +510,8 @@ class __$$AuthenticatedImplCopyWithImpl<$Res>
       _$AuthenticatedImpl _value, $Res Function(_$AuthenticatedImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of Auth0AuthenticationState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -534,7 +551,9 @@ class _$AuthenticatedImpl implements _Authenticated {
   @override
   int get hashCode => Object.hash(runtimeType, auth0UserEntity);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of Auth0AuthenticationState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$AuthenticatedImplCopyWith<_$AuthenticatedImpl> get copyWith =>
@@ -624,7 +643,10 @@ abstract class _Authenticated implements Auth0AuthenticationState {
       {required final Auth0UserEntity auth0UserEntity}) = _$AuthenticatedImpl;
 
   Auth0UserEntity get auth0UserEntity;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of Auth0AuthenticationState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$AuthenticatedImplCopyWith<_$AuthenticatedImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -647,6 +669,8 @@ class __$$FailedToAuthenticateImplCopyWithImpl<$Res>
       $Res Function(_$FailedToAuthenticateImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of Auth0AuthenticationState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -688,7 +712,9 @@ class _$FailedToAuthenticateImpl implements _FailedToAuthenticate {
   @override
   int get hashCode => Object.hash(runtimeType, auth0AuthenticationFailure);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of Auth0AuthenticationState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$FailedToAuthenticateImplCopyWith<_$FailedToAuthenticateImpl>
@@ -781,7 +807,10 @@ abstract class _FailedToAuthenticate implements Auth0AuthenticationState {
           auth0AuthenticationFailure}) = _$FailedToAuthenticateImpl;
 
   Auth0AuthenticationFailure get auth0AuthenticationFailure;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of Auth0AuthenticationState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$FailedToAuthenticateImplCopyWith<_$FailedToAuthenticateImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

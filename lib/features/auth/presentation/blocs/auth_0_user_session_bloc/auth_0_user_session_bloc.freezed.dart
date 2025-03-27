@@ -67,6 +67,9 @@ class _$Auth0UserSessionEventCopyWithImpl<$Res,
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  /// Create a copy of Auth0UserSessionEvent
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -83,6 +86,9 @@ class __$$CheckUserSessionImplCopyWithImpl<$Res>
   __$$CheckUserSessionImplCopyWithImpl(_$CheckUserSessionImpl _value,
       $Res Function(_$CheckUserSessionImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of Auth0UserSessionEvent
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -238,6 +244,9 @@ class _$Auth0UserSessionStateCopyWithImpl<$Res,
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  /// Create a copy of Auth0UserSessionState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -254,6 +263,9 @@ class __$$InitialImplCopyWithImpl<$Res>
   __$$InitialImplCopyWithImpl(
       _$InitialImpl _value, $Res Function(_$InitialImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of Auth0UserSessionState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -370,6 +382,9 @@ class __$$CheckingUserSessionImplCopyWithImpl<$Res>
   __$$CheckingUserSessionImplCopyWithImpl(_$CheckingUserSessionImpl _value,
       $Res Function(_$CheckingUserSessionImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of Auth0UserSessionState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -490,6 +505,8 @@ class __$$ExistingUserSessionImplCopyWithImpl<$Res>
       $Res Function(_$ExistingUserSessionImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of Auth0UserSessionState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -529,7 +546,9 @@ class _$ExistingUserSessionImpl implements _ExistingUserSession {
   @override
   int get hashCode => Object.hash(runtimeType, auth0UserEntity);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of Auth0UserSessionState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ExistingUserSessionImplCopyWith<_$ExistingUserSessionImpl> get copyWith =>
@@ -619,7 +638,10 @@ abstract class _ExistingUserSession implements Auth0UserSessionState {
       _$ExistingUserSessionImpl;
 
   Auth0UserEntity get auth0UserEntity;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of Auth0UserSessionState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ExistingUserSessionImplCopyWith<_$ExistingUserSessionImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -641,6 +663,9 @@ class __$$NonExistentUserSessionImplCopyWithImpl<$Res>
       _$NonExistentUserSessionImpl _value,
       $Res Function(_$NonExistentUserSessionImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of Auth0UserSessionState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc

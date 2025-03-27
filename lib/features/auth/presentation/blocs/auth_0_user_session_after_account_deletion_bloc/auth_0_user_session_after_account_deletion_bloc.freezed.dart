@@ -86,6 +86,9 @@ class _$Auth0UserSessionAfterAccountDeletionEventCopyWithImpl<$Res,
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  /// Create a copy of Auth0UserSessionAfterAccountDeletionEvent
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -105,6 +108,9 @@ class __$$CheckAuth0SessionExistingImplCopyWithImpl<$Res>
       _$CheckAuth0SessionExistingImpl _value,
       $Res Function(_$CheckAuth0SessionExistingImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of Auth0UserSessionAfterAccountDeletionEvent
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -220,6 +226,9 @@ class __$$Auth0SessionExistingImplCopyWithImpl<$Res>
   __$$Auth0SessionExistingImplCopyWithImpl(_$Auth0SessionExistingImpl _value,
       $Res Function(_$Auth0SessionExistingImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of Auth0UserSessionAfterAccountDeletionEvent
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -337,6 +346,9 @@ class __$$Auth0SessionNonExistentImplCopyWithImpl<$Res>
       _$Auth0SessionNonExistentImpl _value,
       $Res Function(_$Auth0SessionNonExistentImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of Auth0UserSessionAfterAccountDeletionEvent
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -512,6 +524,9 @@ class _$Auth0UserSessionAfterAccountDeletionStateCopyWithImpl<$Res,
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  /// Create a copy of Auth0UserSessionAfterAccountDeletionState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -528,6 +543,9 @@ class __$$InitialImplCopyWithImpl<$Res>
   __$$InitialImplCopyWithImpl(
       _$InitialImpl _value, $Res Function(_$InitialImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of Auth0UserSessionAfterAccountDeletionState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -644,6 +662,9 @@ class __$$GettingAuth0SessionImplCopyWithImpl<$Res>
   __$$GettingAuth0SessionImplCopyWithImpl(_$GettingAuth0SessionImpl _value,
       $Res Function(_$GettingAuth0SessionImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of Auth0UserSessionAfterAccountDeletionState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -762,6 +783,9 @@ class __$$ExistingAuth0SessionImplCopyWithImpl<$Res>
   __$$ExistingAuth0SessionImplCopyWithImpl(_$ExistingAuth0SessionImpl _value,
       $Res Function(_$ExistingAuth0SessionImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of Auth0UserSessionAfterAccountDeletionState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -882,6 +906,9 @@ class __$$NonExistentAuth0SessionImplCopyWithImpl<$Res>
       _$NonExistentAuth0SessionImpl _value,
       $Res Function(_$NonExistentAuth0SessionImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of Auth0UserSessionAfterAccountDeletionState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc

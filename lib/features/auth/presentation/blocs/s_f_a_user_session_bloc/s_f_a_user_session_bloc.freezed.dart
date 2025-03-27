@@ -66,6 +66,9 @@ class _$SFAUserSessionEventCopyWithImpl<$Res, $Val extends SFAUserSessionEvent>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  /// Create a copy of SFAUserSessionEvent
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -82,6 +85,9 @@ class __$$CheckSessionImplCopyWithImpl<$Res>
   __$$CheckSessionImplCopyWithImpl(
       _$CheckSessionImpl _value, $Res Function(_$CheckSessionImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of SFAUserSessionEvent
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -234,6 +240,9 @@ class _$SFAUserSessionStateCopyWithImpl<$Res, $Val extends SFAUserSessionState>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  /// Create a copy of SFAUserSessionState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -250,6 +259,9 @@ class __$$InitialImplCopyWithImpl<$Res>
   __$$InitialImplCopyWithImpl(
       _$InitialImpl _value, $Res Function(_$InitialImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of SFAUserSessionState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -364,6 +376,9 @@ class __$$CheckingSessionImplCopyWithImpl<$Res>
   __$$CheckingSessionImplCopyWithImpl(
       _$CheckingSessionImpl _value, $Res Function(_$CheckingSessionImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of SFAUserSessionState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -478,6 +493,9 @@ class __$$SessionExistImplCopyWithImpl<$Res>
   __$$SessionExistImplCopyWithImpl(
       _$SessionExistImpl _value, $Res Function(_$SessionExistImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of SFAUserSessionState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -592,6 +610,9 @@ class __$$SessionNotExistImplCopyWithImpl<$Res>
   __$$SessionNotExistImplCopyWithImpl(
       _$SessionNotExistImpl _value, $Res Function(_$SessionNotExistImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of SFAUserSessionState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc

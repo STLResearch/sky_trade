@@ -97,6 +97,9 @@ class _$RemoteIDTransmitterEventCopyWithImpl<$Res,
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  /// Create a copy of RemoteIDTransmitterEvent
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -113,6 +116,9 @@ class __$$StartTransmitterImplCopyWithImpl<$Res>
   __$$StartTransmitterImplCopyWithImpl(_$StartTransmitterImpl _value,
       $Res Function(_$StartTransmitterImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of RemoteIDTransmitterEvent
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -240,6 +246,9 @@ class __$$RemoteIDTransmittingImplCopyWithImpl<$Res>
   __$$RemoteIDTransmittingImplCopyWithImpl(_$RemoteIDTransmittingImpl _value,
       $Res Function(_$RemoteIDTransmittingImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of RemoteIDTransmitterEvent
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -368,6 +377,9 @@ class __$$RemoteIDTransmittedImplCopyWithImpl<$Res>
   __$$RemoteIDTransmittedImplCopyWithImpl(_$RemoteIDTransmittedImpl _value,
       $Res Function(_$RemoteIDTransmittedImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of RemoteIDTransmitterEvent
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -496,6 +508,9 @@ class __$$TransmitterStartedImplCopyWithImpl<$Res>
   __$$TransmitterStartedImplCopyWithImpl(_$TransmitterStartedImpl _value,
       $Res Function(_$TransmitterStartedImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of RemoteIDTransmitterEvent
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -628,6 +643,8 @@ class __$$TransmitRemoteIDImplCopyWithImpl<$Res>
       $Res Function(_$TransmitRemoteIDImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of RemoteIDTransmitterEvent
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -700,7 +717,9 @@ class _$TransmitRemoteIDImpl implements _TransmitRemoteID {
       deviceLatitude,
       deviceLongitude);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of RemoteIDTransmitterEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$TransmitRemoteIDImplCopyWith<_$TransmitRemoteIDImpl> get copyWith =>
@@ -805,7 +824,10 @@ abstract class _TransmitRemoteID implements RemoteIDTransmitterEvent {
   List<RemoteIDEntity> get remoteIDEntities;
   double? get deviceLatitude;
   double? get deviceLongitude;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of RemoteIDTransmitterEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$TransmitRemoteIDImplCopyWith<_$TransmitRemoteIDImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -887,6 +909,9 @@ class _$RemoteIDTransmitterStateCopyWithImpl<$Res,
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  /// Create a copy of RemoteIDTransmitterState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -903,6 +928,9 @@ class __$$InitialImplCopyWithImpl<$Res>
   __$$InitialImplCopyWithImpl(
       _$InitialImpl _value, $Res Function(_$InitialImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of RemoteIDTransmitterState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -1024,6 +1052,9 @@ class __$$StartingTransmitterImplCopyWithImpl<$Res>
   __$$StartingTransmitterImplCopyWithImpl(_$StartingTransmitterImpl _value,
       $Res Function(_$StartingTransmitterImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of RemoteIDTransmitterState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -1146,6 +1177,9 @@ class __$$StartedTransmitterImplCopyWithImpl<$Res>
   __$$StartedTransmitterImplCopyWithImpl(_$StartedTransmitterImpl _value,
       $Res Function(_$StartedTransmitterImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of RemoteIDTransmitterState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -1267,6 +1301,9 @@ class __$$TransmittingRemoteIDImplCopyWithImpl<$Res>
   __$$TransmittingRemoteIDImplCopyWithImpl(_$TransmittingRemoteIDImpl _value,
       $Res Function(_$TransmittingRemoteIDImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of RemoteIDTransmitterState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -1389,6 +1426,9 @@ class __$$TransmittedRemoteIDImplCopyWithImpl<$Res>
   __$$TransmittedRemoteIDImplCopyWithImpl(_$TransmittedRemoteIDImpl _value,
       $Res Function(_$TransmittedRemoteIDImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of RemoteIDTransmitterState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc

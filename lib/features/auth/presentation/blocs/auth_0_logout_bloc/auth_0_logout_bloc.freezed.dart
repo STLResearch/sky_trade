@@ -19,32 +19,38 @@ mixin _$Auth0LogoutEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() logout,
+    required TResult Function() logoutSFAUser,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? logout,
+    TResult? Function()? logoutSFAUser,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? logout,
+    TResult Function()? logoutSFAUser,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Logout value) logout,
+    required TResult Function(_LogoutSFAUser value) logoutSFAUser,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Logout value)? logout,
+    TResult? Function(_LogoutSFAUser value)? logoutSFAUser,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Logout value)? logout,
+    TResult Function(_LogoutSFAUser value)? logoutSFAUser,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -66,6 +72,9 @@ class _$Auth0LogoutEventCopyWithImpl<$Res, $Val extends Auth0LogoutEvent>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  /// Create a copy of Auth0LogoutEvent
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -82,6 +91,9 @@ class __$$LogoutImplCopyWithImpl<$Res>
   __$$LogoutImplCopyWithImpl(
       _$LogoutImpl _value, $Res Function(_$LogoutImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of Auth0LogoutEvent
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -107,6 +119,7 @@ class _$LogoutImpl implements _Logout {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() logout,
+    required TResult Function() logoutSFAUser,
   }) {
     return logout();
   }
@@ -115,6 +128,7 @@ class _$LogoutImpl implements _Logout {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? logout,
+    TResult? Function()? logoutSFAUser,
   }) {
     return logout?.call();
   }
@@ -123,6 +137,7 @@ class _$LogoutImpl implements _Logout {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? logout,
+    TResult Function()? logoutSFAUser,
     required TResult orElse(),
   }) {
     if (logout != null) {
@@ -135,6 +150,7 @@ class _$LogoutImpl implements _Logout {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Logout value) logout,
+    required TResult Function(_LogoutSFAUser value) logoutSFAUser,
   }) {
     return logout(this);
   }
@@ -143,6 +159,7 @@ class _$LogoutImpl implements _Logout {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Logout value)? logout,
+    TResult? Function(_LogoutSFAUser value)? logoutSFAUser,
   }) {
     return logout?.call(this);
   }
@@ -151,6 +168,7 @@ class _$LogoutImpl implements _Logout {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Logout value)? logout,
+    TResult Function(_LogoutSFAUser value)? logoutSFAUser,
     required TResult orElse(),
   }) {
     if (logout != null) {
@@ -162,6 +180,111 @@ class _$LogoutImpl implements _Logout {
 
 abstract class _Logout implements Auth0LogoutEvent {
   const factory _Logout() = _$LogoutImpl;
+}
+
+/// @nodoc
+abstract class _$$LogoutSFAUserImplCopyWith<$Res> {
+  factory _$$LogoutSFAUserImplCopyWith(
+          _$LogoutSFAUserImpl value, $Res Function(_$LogoutSFAUserImpl) then) =
+      __$$LogoutSFAUserImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$LogoutSFAUserImplCopyWithImpl<$Res>
+    extends _$Auth0LogoutEventCopyWithImpl<$Res, _$LogoutSFAUserImpl>
+    implements _$$LogoutSFAUserImplCopyWith<$Res> {
+  __$$LogoutSFAUserImplCopyWithImpl(
+      _$LogoutSFAUserImpl _value, $Res Function(_$LogoutSFAUserImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of Auth0LogoutEvent
+  /// with the given fields replaced by the non-null parameter values.
+}
+
+/// @nodoc
+
+class _$LogoutSFAUserImpl implements _LogoutSFAUser {
+  const _$LogoutSFAUserImpl();
+
+  @override
+  String toString() {
+    return 'Auth0LogoutEvent.logoutSFAUser()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$LogoutSFAUserImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() logout,
+    required TResult Function() logoutSFAUser,
+  }) {
+    return logoutSFAUser();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? logout,
+    TResult? Function()? logoutSFAUser,
+  }) {
+    return logoutSFAUser?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? logout,
+    TResult Function()? logoutSFAUser,
+    required TResult orElse(),
+  }) {
+    if (logoutSFAUser != null) {
+      return logoutSFAUser();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Logout value) logout,
+    required TResult Function(_LogoutSFAUser value) logoutSFAUser,
+  }) {
+    return logoutSFAUser(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Logout value)? logout,
+    TResult? Function(_LogoutSFAUser value)? logoutSFAUser,
+  }) {
+    return logoutSFAUser?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Logout value)? logout,
+    TResult Function(_LogoutSFAUser value)? logoutSFAUser,
+    required TResult orElse(),
+  }) {
+    if (logoutSFAUser != null) {
+      return logoutSFAUser(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _LogoutSFAUser implements Auth0LogoutEvent {
+  const factory _LogoutSFAUser() = _$LogoutSFAUserImpl;
 }
 
 /// @nodoc
@@ -235,6 +358,9 @@ class _$Auth0LogoutStateCopyWithImpl<$Res, $Val extends Auth0LogoutState>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  /// Create a copy of Auth0LogoutState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -251,6 +377,9 @@ class __$$InitialImplCopyWithImpl<$Res>
   __$$InitialImplCopyWithImpl(
       _$InitialImpl _value, $Res Function(_$InitialImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of Auth0LogoutState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -366,6 +495,9 @@ class __$$LoggingOutImplCopyWithImpl<$Res>
   __$$LoggingOutImplCopyWithImpl(
       _$LoggingOutImpl _value, $Res Function(_$LoggingOutImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of Auth0LogoutState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -481,6 +613,9 @@ class __$$LoggedOutImplCopyWithImpl<$Res>
   __$$LoggedOutImplCopyWithImpl(
       _$LoggedOutImpl _value, $Res Function(_$LoggedOutImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of Auth0LogoutState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -599,6 +734,8 @@ class __$$FailedToLogOutImplCopyWithImpl<$Res>
       _$FailedToLogOutImpl _value, $Res Function(_$FailedToLogOutImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of Auth0LogoutState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -638,7 +775,9 @@ class _$FailedToLogOutImpl implements _FailedToLogOut {
   @override
   int get hashCode => Object.hash(runtimeType, auth0LogoutFailure);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of Auth0LogoutState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$FailedToLogOutImplCopyWith<_$FailedToLogOutImpl> get copyWith =>
@@ -727,7 +866,10 @@ abstract class _FailedToLogOut implements Auth0LogoutState {
       _$FailedToLogOutImpl;
 
   Auth0LogoutFailure get auth0LogoutFailure;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of Auth0LogoutState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$FailedToLogOutImplCopyWith<_$FailedToLogOutImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
