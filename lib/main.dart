@@ -4,7 +4,8 @@ import 'dart:math' show Random;
 import 'package:app_tracking_transparency/app_tracking_transparency.dart';
 import 'package:firebase_analytics/firebase_analytics.dart'
     show FirebaseAnalytics;
-import 'package:firebase_core/firebase_core.dart' show Firebase;
+import 'package:firebase_core/firebase_core.dart'
+    show Firebase, FirebaseOptions;
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/foundation.dart'
     show
@@ -37,6 +38,7 @@ import 'package:sky_trade/core/resources/strings/environments.dart'
         devEnvironment,
         environmentVariablesFileName,
         flavours,
+        liveEnvironment,
         stageEnvironment;
 import 'package:sky_trade/core/resources/strings/local.dart'
     show analyticsStateKey, base36UpperBound;
@@ -44,7 +46,10 @@ import 'package:sky_trade/core/resources/strings/secret_keys.dart'
     show clarityProjectId, sentryDsn;
 import 'package:sky_trade/core/resources/strings/special_characters.dart'
     show fullStop;
-import 'package:sky_trade/firebase_options.dart';
+import 'package:sky_trade/firebase_options_dev.dart' as firebase_options_dev;
+import 'package:sky_trade/firebase_options_live.dart' as firebase_options_live;
+import 'package:sky_trade/firebase_options_stage.dart'
+    as firebase_options_stage;
 import 'package:sky_trade/injection_container.dart';
 
 void main() => _loadEnv().then(
@@ -90,7 +95,8 @@ Future<void> _initializeImportantResources() async {
   );
 
   await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
+    name: _firebaseOptions.projectId,
+    options: _firebaseOptions,
   );
 
   HydratedBloc.storage = await HydratedStorage.build(
@@ -105,27 +111,32 @@ Future<void> _initializeImportantResources() async {
   await registerServices();
 
   await serviceLocator<FirebaseAnalytics>().setAnalyticsCollectionEnabled(
-    !_isUnsuitableEnvironmentForDataCollection ||
-        await _shouldCollectAnalyticsData(),
+    await _shouldCollectAnalyticsData(),
   );
 
-  if (!_isUnsuitableEnvironmentForDataCollection) {
-    final firebaseCrashlytics = serviceLocator<FirebaseCrashlytics>();
+  final firebaseCrashlytics = serviceLocator<FirebaseCrashlytics>();
 
-    FlutterError.onError = firebaseCrashlytics.recordFlutterFatalError;
+  FlutterError.onError = firebaseCrashlytics.recordFlutterFatalError;
 
-    PlatformDispatcher.instance.onError = (error, stackTrace) {
-      firebaseCrashlytics.recordError(
-        error,
-        stackTrace,
-        fatal: true,
-      );
-      return true;
-    };
-  }
+  PlatformDispatcher.instance.onError = (error, stackTrace) {
+    firebaseCrashlytics.recordError(
+      error,
+      stackTrace,
+      fatal: true,
+    );
+    return true;
+  };
 
   Bloc.observer = const AppBlocObserver();
 }
+
+FirebaseOptions get _firebaseOptions => switch (_environment) {
+      stageEnvironment =>
+        firebase_options_stage.DefaultFirebaseOptions.currentPlatform,
+      liveEnvironment =>
+        firebase_options_live.DefaultFirebaseOptions.currentPlatform,
+      _ => firebase_options_dev.DefaultFirebaseOptions.currentPlatform,
+    };
 
 bool get _isUnsuitableEnvironmentForDataCollection =>
     kDebugMode || kProfileMode || _environment == devEnvironment;

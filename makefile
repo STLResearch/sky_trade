@@ -1,4 +1,4 @@
-.PHONY: f-np, c-p, br-b, br-w, t, gcr-t, ocr-t, t-got, d-d-r, d-s-r, d-l-r-o, d-l-r-p, loc, u-d-s-l
+.PHONY: f-np, c-p, br-b, br-w, t, gcr-t, ocr-t, t-got, d-d-r, d-s-r, d-l-r-o, d-l-r-p, loc, u-d-s-l, c-f-d, c-f-s, c-f-l, o-i
 
 f-np: ## Creates a feature with no presentation layer
 	@echo "Creating new example feature"
@@ -33,7 +33,7 @@ c-p: ## Cleans project and updates Podfile.lock for iOS
 	flutter pub get
 	rm -f ios/Podfile.lock
 	sudo rm -r ios/Pods
-	cd ios && pod install && cd ..
+	cd ios && pod repo update && pod install && cd ..
 
 br-b: ## Runs build_runner build
 	dart run build_runner build
@@ -70,7 +70,37 @@ d-l-r-p: ## Deploys live release app bundle to Playstore production track
 loc: ## Prints the lines of code of each file in lib and the total lines thereafter
 	find lib -type f -name "*.dart" ! -name "*.g.dart" ! -name "*.freezed.dart" ! -name "*.gen.dart" ! -name "firebase_options.dart" ! -path "*/firebase/*" -print0 | xargs -0 wc -l
 
-u-d-s-l: # Uploads Android and iOS live app debug symbols to Sentry
+u-d-s-l: ## Uploads Android and iOS live app debug symbols to Sentry
 	flutter build apk --flavor live
 	flutter build ios --flavor live
 	dart run sentry_dart_plugin
+
+c-f-d: ## Configures Firebase for dev environment
+	flutterfire config \
+      --project=skytrade-radar-dev \
+      --out=lib/firebase_options_dev.dart \
+      --ios-bundle-id=mobile.trade.sky.dev \
+      --ios-out=ios/Runner/Firebase/dev/GoogleService-Info.plist \
+      --android-package-name=mobile.trade.sky.dev \
+      --android-out=android/app/src/dev/google-services.json
+
+c-f-s: ## Configures Firebase for stage environment
+	flutterfire config \
+      --project=skytrade-radar-stage \
+      --out=lib/firebase_options_stage.dart \
+      --ios-bundle-id=mobile.trade.sky.stage \
+      --ios-out=ios/Runner/Firebase/stage/GoogleService-Info.plist \
+      --android-package-name=mobile.trade.sky.stage \
+      --android-out=android/app/src/stage/google-services.json
+
+c-f-l: ## Configures Firebase for live environment
+	flutterfire config \
+      --project=quick-doodad-428221-a1 \
+      --out=lib/firebase_options_live.dart \
+      --ios-bundle-id=mobile.trade.sky \
+      --ios-out=ios/Runner/Firebase/live/GoogleService-Info.plist \
+      --android-package-name=mobile.trade.sky \
+      --android-out=android/app/src/live/google-services.json
+
+o-i: ## Opens iOS module with information about the pods in XCode for build related purposes
+	open ios/Runner.xcworkspace/

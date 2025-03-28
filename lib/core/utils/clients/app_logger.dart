@@ -16,28 +16,30 @@ final class AppLogger {
     required LogLevel logLevel,
     StackTrace? stackTrace,
   }) {
-    if (!_isSuitableEnvironmentToLogToConsole) {
-      if (logLevel == LogLevel.info) {
-        _logMessageToSentry(
-          message: message,
-        );
+    if (logLevel == LogLevel.info && !_isSuitableEnvironmentToLogToConsole) {
+      _logMessageToSentry(
+        message: message,
+      );
 
-        return;
-      }
+      return;
+    }
 
-      if (logLevel == LogLevel.error || logLevel == LogLevel.fatalError) {
+    if (logLevel == LogLevel.error || logLevel == LogLevel.fatalError) {
+      if (!_isSuitableEnvironmentToLogToConsole) {
         _logExceptionToSentry(
           message: message,
           stackTrace: stackTrace,
         );
 
-        _recordErrorToFirebaseCrashlytics(
-          message: message,
-          stackTrace: stackTrace,
-        );
-
         return;
       }
+
+      _recordErrorToFirebaseCrashlytics(
+        message: message,
+        stackTrace: stackTrace,
+      );
+
+      return;
     }
 
     _logWithAppropriateLevelUsing(

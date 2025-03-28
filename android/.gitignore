@@ -21,7 +21,7 @@ key.properties
 **/*output-metadata.json
 
 # Firebase
-app/google-services.json
+**/google-services.json
 
 # Environment variable
 *.env
