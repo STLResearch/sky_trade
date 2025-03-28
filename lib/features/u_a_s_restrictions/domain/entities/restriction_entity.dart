@@ -5,29 +5,39 @@ import 'package:sky_trade/core/utils/enums/networking.dart'
 base class RestrictionEntity extends Equatable {
   const RestrictionEntity({
     required this.id,
-    required this.additionLinks,
-    required this.country,
-    required this.lowerLimit,
-    required this.message,
-    required this.region,
-    required this.type,
-    required this.upperLimit,
+    required this.properties,
+    required this.geometry,
   });
 
   final String id;
-  final List<AdditionalLinkEntity> additionLinks;
-  final String country;
-  final String lowerLimit;
-  final String message;
-  final RegionEntity region;
-  final RestrictionType type;
-  final String upperLimit;
+
+  final RestrictionPropertiesEntity properties;
+
+  final RestrictionGeometryEntity geometry;
 
   @override
   List<Object?> get props => [id];
 }
 
-base class AdditionalLinkEntity extends Equatable {
+base class RestrictionPropertiesEntity {
+  const RestrictionPropertiesEntity({
+    required this.restrictionType,
+    required this.country,
+    required this.upperLimit,
+    required this.lowerLimit,
+    required this.message,
+    required this.additionLinks,
+  });
+
+  final RestrictionType restrictionType;
+  final String country;
+  final String upperLimit;
+  final String lowerLimit;
+  final String message;
+  final List<AdditionalLinkEntity> additionLinks;
+}
+
+base class AdditionalLinkEntity {
   const AdditionalLinkEntity({
     required this.link,
     required this.name,
@@ -35,26 +45,14 @@ base class AdditionalLinkEntity extends Equatable {
 
   final String link;
   final String name;
-
-  @override
-  List<Object?> get props => [
-        link,
-        name,
-      ];
 }
 
-base class RegionEntity extends Equatable {
-  const RegionEntity({
-    required this.type,
+base class RestrictionGeometryEntity {
+  const RestrictionGeometryEntity({
+    required this.geometryType,
     required this.coordinates,
   });
 
-  final GeometryType type;
+  final GeometryType geometryType;
   final List<List<List<double>>> coordinates;
-
-  @override
-  List<Object?> get props => [
-        type,
-        coordinates,
-      ];
 }

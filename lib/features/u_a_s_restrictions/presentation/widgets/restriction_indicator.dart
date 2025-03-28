@@ -7,7 +7,6 @@ import 'package:flutter/material.dart'
         BoxDecoration,
         BuildContext,
         Clip,
-        Color,
         Container,
         EdgeInsetsDirectional,
         InkWell,
@@ -19,6 +18,7 @@ import 'package:flutter/material.dart'
         ValueNotifier,
         Widget,
         showModalBottomSheet;
+import 'package:sky_trade/core/assets/generated/assets.gen.dart';
 import 'package:sky_trade/core/resources/numbers/ui.dart'
     show
         eightDotNil,
@@ -29,7 +29,6 @@ import 'package:sky_trade/core/resources/numbers/ui.dart'
 import 'package:sky_trade/core/utils/extensions/restriction_entity_extensions.dart';
 import 'package:sky_trade/features/u_a_s_restrictions/domain/entities/restriction_entity.dart'
     show RestrictionEntity;
-import 'package:sky_trade/features/u_a_s_restrictions/presentation/widgets/restriction_bubble.dart';
 import 'package:sky_trade/features/u_a_s_restrictions/presentation/widgets/restriction_info.dart'
     show RestrictionInfo;
 
@@ -77,16 +76,11 @@ class RestrictionIndicator extends StatelessWidget {
                             color: clickedRestrictionValue.polygonColor,
                           ),
                         ),
-                        child: clickedRestrictionValue
-                            .restrictionIndicatorInfoAsset
-                            .svg(
+                        child: Assets.svgs.info.svg(
                           width: eighteenDotNil,
                           height: eighteenDotNil,
                         ),
                       ),
-                    ),
-                    RestrictionBubble(
-                      bubbleColor: clickedRestrictionValue.polygonColor,
                     ),
                   ],
                 ),

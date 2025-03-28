@@ -28,7 +28,7 @@ import 'package:flutter_dotenv/flutter_dotenv.dart' show dotenv;
 import 'package:mapbox_maps_flutter/mapbox_maps_flutter.dart'
     show CompassSettings, MapboxMap, MapboxOptions, ScaleBarSettings;
 import 'package:sky_trade/core/resources/colors.dart' show hexB3FFFFFF;
-import 'package:sky_trade/core/resources/numbers/ui.dart' show seven;
+import 'package:sky_trade/core/resources/numbers/ui.dart' show six;
 import 'package:sky_trade/core/resources/strings/routes.dart'
     show getStartedRoutePath;
 import 'package:sky_trade/core/resources/strings/secret_keys.dart'
@@ -39,7 +39,7 @@ import 'package:sky_trade/core/resources/strings/secret_keys.dart'
 import 'package:sky_trade/core/resources/strings/special_characters.dart'
     show emptyString;
 import 'package:sky_trade/core/resources/strings/ui.dart'
-    show bridDronesSourceId, nridDronesSourceId;
+    show bridDronesSourceId, layerId, nridDronesSourceId;
 import 'package:sky_trade/core/utils/enums/ui.dart' show MapStyle;
 import 'package:sky_trade/core/utils/extensions/build_context_extensions.dart';
 import 'package:sky_trade/core/utils/extensions/mapbox_map_extensions.dart';
@@ -157,8 +157,11 @@ class _HomeViewState extends State<HomeView> {
   late final ValueNotifier<RestrictionEntity?> _clickedRestriction;
   late final ValueNotifier<bool> _centerLocationNotifier;
   late final ValueNotifier<MapStyle> _mapStyleNotifier;
+  final List<String> _restrictionLayerIds = [];
   String _previousBridGeoJsonData = emptyString;
   String _previousNridGeoJsonData = emptyString;
+  String? _currentlySelectedRestrictionFeatureId;
+  String? _currentlySelectedRestrictionSourceId;
 
   @override
   void initState() {
@@ -401,15 +404,18 @@ class _HomeViewState extends State<HomeView> {
           BlocListener<UASRestrictionsBloc, UASRestrictionsState>(
             listener: (_, uASRestrictionsState) {
               uASRestrictionsState.whenOrNull(
-                gotRestrictions: (
-                  geoHash,
-                  restrictionEntities,
-                ) async {
+                gotRestrictions: (geoHash, restrictionEntities) async {
+                  if (restrictionEntities.isEmpty) {
+                    return;
+                  }
                   await _mapboxMap?.addRestrictionsOnMap(
                     geoHash: geoHash,
                     restrictionEntities: restrictionEntities,
                   );
+                  _restrictionLayerIds.add(geoHash + layerId);
                 },
+                selectedRestriction: (restrictionEntity) =>
+                    _clickedRestriction.value = restrictionEntity,
               );
             },
           ),
@@ -461,7 +467,34 @@ class _HomeViewState extends State<HomeView> {
             children: [
               MapView(
                 mapStyleUri: dotenv.env[mapboxMapsDarkStyleUri]!,
-                onTap: (_) => _clickedRestriction.value = null,
+                onTap: (mapContentGestureContext) async {
+                  if (_restrictionLayerIds.isEmpty || _mapboxMap == null) {
+                    return;
+                  }
+
+                  final featureAndSourceId =
+                      await _mapboxMap!.handleRestrictionSelection(
+                    touchPosition: mapContentGestureContext.touchPosition,
+                    restrictionLayerIds: _restrictionLayerIds,
+                    previousRestrictionFeatureId:
+                        _currentlySelectedRestrictionFeatureId,
+                    previousRestrictionSourceId:
+                        _currentlySelectedRestrictionSourceId,
+                  );
+
+                  if (context.mounted) {
+                    context.read<UASRestrictionsBloc>().add(
+                          UASRestrictionsEvent.selectRestriction(
+                            restrictionId: featureAndSourceId.featureId,
+                          ),
+                        );
+                  }
+
+                  _currentlySelectedRestrictionFeatureId =
+                      featureAndSourceId.featureId;
+                  _currentlySelectedRestrictionSourceId =
+                      featureAndSourceId.sourceId;
+                },
                 onScroll: (_) => _centerLocationNotifier.value = false,
                 onCreated: (mapboxMap) {
                   mapboxMap
@@ -478,28 +511,24 @@ class _HomeViewState extends State<HomeView> {
 
                   _mapboxMap = mapboxMap;
                 },
-                onCameraChanged: (_) {
+                onCameraChanged: (cameraEventData) {
                   context.read<LocationPermissionBloc>().state.whenOrNull(
-                    maybeGrantedPermission: (locationPermissionEntity) {
+                    maybeGrantedPermission: (locationPermissionEntity) async {
                       if (locationPermissionEntity.granted) {
-                        _mapboxMap?.getCameraState().then(
-                          (cameraState) {
-                            if (cameraState.zoom >= seven) {
-                              context.read<GeoHashBloc>().add(
-                                    GeoHashEvent.computeGeoHash(
-                                      coordinates: (
-                                        latitude: cameraState
-                                            .center.coordinates.lat
-                                            .toDouble(),
-                                        longitude: cameraState
-                                            .center.coordinates.lng
-                                            .toDouble(),
-                                      ),
-                                    ),
-                                  );
-                            }
-                          },
-                        );
+                        final cameraState = cameraEventData.cameraState;
+                        if (cameraState.zoom < six) {
+                          return;
+                        }
+                        context.read<GeoHashBloc>().add(
+                              GeoHashEvent.computeGeoHash(
+                                coordinates: (
+                                  latitude: cameraState.center.coordinates.lat
+                                      .toDouble(),
+                                  longitude: cameraState.center.coordinates.lng
+                                      .toDouble(),
+                                ),
+                              ),
+                            );
                       }
                     },
                   );

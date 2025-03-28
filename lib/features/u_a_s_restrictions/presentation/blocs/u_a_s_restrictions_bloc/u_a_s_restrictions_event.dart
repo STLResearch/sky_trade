@@ -5,4 +5,8 @@ class UASRestrictionsEvent with _$UASRestrictionsEvent {
   const factory UASRestrictionsEvent.getRestrictions({
     required String geoHash,
   }) = _GetRestrictions;
+
+  const factory UASRestrictionsEvent.selectRestriction({
+    required String? restrictionId,
+  }) = _SelectRestriction;
 }

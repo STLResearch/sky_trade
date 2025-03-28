@@ -1,8 +1,7 @@
 import 'package:bloc/bloc.dart' show Bloc, Emitter, EventTransformer;
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:rxdart/rxdart.dart' show DebounceExtensions;
-import 'package:sky_trade/core/resources/numbers/ui.dart'
-    show three;
+import 'package:sky_trade/core/resources/numbers/ui.dart' show three;
 import 'package:sky_trade/core/utils/typedefs/ui.dart' show LatLng;
 import 'package:sky_trade/features/geo_hash/domain/repositories/geo_hash_repository.dart';
 
@@ -37,15 +36,17 @@ class GeoHashBloc extends Bloc<GeoHashEvent, GeoHashState> {
       precision: three,
     );
 
-    if (_currentGeoHashOfPrecision3 != geoHashOfPrecision3) {
-      _currentGeoHashOfPrecision3 = geoHashOfPrecision3;
-
-      emit(
-        GeoHashState.computedGeoHashOfPrecision3(
-          geoHashOfPrecision3: geoHashOfPrecision3,
-        ),
-      );
+    if (_currentGeoHashOfPrecision3 == geoHashOfPrecision3) {
+      return;
     }
+
+    _currentGeoHashOfPrecision3 = geoHashOfPrecision3;
+
+    emit(
+      GeoHashState.computedGeoHashOfPrecision3(
+        geoHashOfPrecision3: geoHashOfPrecision3,
+      ),
+    );
   }
 
   EventTransformer<_ComputeGeoHash> get _debounceTransformer =>

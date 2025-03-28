@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart' show Color;
 
+const rgba = 'rgba';
+
 const hex0653EA = Color(0xFF0653EA);
 const hex4285F4 = Color(0xFF4285F4);
 const hex5D7285 = Color(0xFF5D7285);

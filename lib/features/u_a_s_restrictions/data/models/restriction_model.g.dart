@@ -8,26 +8,42 @@ part of 'restriction_model.dart';
 
 RestrictionModel _$RestrictionModelFromJson(Map<String, dynamic> json) =>
     RestrictionModel(
-      mAdditionLinks: (json['additional_links'] as List<dynamic>)
-          .map((e) => AdditionalLinkModel.fromJson(e as Map<String, dynamic>))
-          .toList(),
-      mCountry: json['country'] as String,
-      mLowerLimit: json['lower_limit'] as String,
-      mMessage: json['message'] as String,
-      mRegion: RegionModel.fromJson(json['region'] as Map<String, dynamic>),
-      mType: $enumDecode(_$RestrictionTypeEnumMap, json['type']),
-      mUpperLimit: json['upper_limit'] as String,
+      mId: json['id'] as String,
+      mProperties: RestrictionPropertiesModel.fromJson(
+          json['properties'] as Map<String, dynamic>),
+      mGeometry: RestrictionGeometryModel.fromJson(
+          json['geometry'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$RestrictionModelToJson(RestrictionModel instance) =>
     <String, dynamic>{
-      'additional_links': instance.mAdditionLinks,
+      'id': instance.mId,
+      'properties': instance.mProperties,
+      'geometry': instance.mGeometry,
+    };
+
+RestrictionPropertiesModel _$RestrictionPropertiesModelFromJson(
+        Map<String, dynamic> json) =>
+    RestrictionPropertiesModel(
+      mRestrictionType: $enumDecode(_$RestrictionTypeEnumMap, json['type']),
+      mCountry: json['country'] as String,
+      mUpperLimit: json['upper_limit'] as String,
+      mLowerLimit: json['lower_limit'] as String,
+      mMessage: json['message'] as String,
+      mAdditionLinks: (json['additional_links'] as List<dynamic>)
+          .map((e) => AdditionalLinkModel.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+
+Map<String, dynamic> _$RestrictionPropertiesModelToJson(
+        RestrictionPropertiesModel instance) =>
+    <String, dynamic>{
+      'type': _$RestrictionTypeEnumMap[instance.mRestrictionType]!,
       'country': instance.mCountry,
+      'upper_limit': instance.mUpperLimit,
       'lower_limit': instance.mLowerLimit,
       'message': instance.mMessage,
-      'region': instance.mRegion,
-      'type': _$RestrictionTypeEnumMap[instance.mType]!,
-      'upper_limit': instance.mUpperLimit,
+      'additional_links': instance.mAdditionLinks,
     };
 
 const _$RestrictionTypeEnumMap = {
@@ -49,7 +65,9 @@ Map<String, dynamic> _$AdditionalLinkModelToJson(
       'name': instance.mName,
     };
 
-RegionModel _$RegionModelFromJson(Map<String, dynamic> json) => RegionModel(
+RestrictionGeometryModel _$RestrictionGeometryModelFromJson(
+        Map<String, dynamic> json) =>
+    RestrictionGeometryModel(
       mType: $enumDecode(_$GeometryTypeEnumMap, json['type']),
       mCoordinates: (json['coordinates'] as List<dynamic>)
           .map((e) => (e as List<dynamic>)
@@ -60,7 +78,8 @@ RegionModel _$RegionModelFromJson(Map<String, dynamic> json) => RegionModel(
           .toList(),
     );
 
-Map<String, dynamic> _$RegionModelToJson(RegionModel instance) =>
+Map<String, dynamic> _$RestrictionGeometryModelToJson(
+        RestrictionGeometryModel instance) =>
     <String, dynamic>{
       'type': _$GeometryTypeEnumMap[instance.mType]!,
       'coordinates': instance.mCoordinates,

@@ -48,7 +48,7 @@ void main() {
           lowerLimit: 'testRestrictionEntityLowerLimit$index',
           message: 'testRestrictionEntityMessage$index',
           region: RegionEntity(
-            type: GeometryType.polygon,
+            restrictionType: GeometryType.polygon,
             coordinates: [
               [
                 [
@@ -70,7 +70,7 @@ void main() {
               ],
             ],
           ),
-          type: RestrictionType.prohibited,
+          restrictionType: RestrictionType.prohibited,
           upperLimit: 'testRestrictionEntityUpperLimit$index',
         ),
       );

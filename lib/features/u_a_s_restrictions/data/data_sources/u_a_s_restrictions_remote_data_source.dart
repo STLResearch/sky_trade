@@ -27,7 +27,7 @@ final class UASRestrictionsRemoteDataSourceImplementation
   Future<List<RestrictionModel>> getRestrictionsUsing({
     required String geoHash,
   }) =>
-      handleResponse<UASRestrictionsException, List<dynamic>,
+      handleResponse<UASRestrictionsException, Map<String, dynamic>,
           List<RestrictionModel>>(
         requestInitiator: _httpClient.request(
           requestMethod: RequestMethod.get,
@@ -38,14 +38,17 @@ final class UASRestrictionsRemoteDataSourceImplementation
           },
           overrideReceiveTimeout: const Duration(seconds: 20),
         ),
-        onSuccess: (jsonList) => jsonList
-            .map(
-              (json) => RestrictionModel.fromJson(
-                json as Map<String, dynamic>,
-              ),
-            )
-            .toSet()
-            .toList(),
+        onSuccess: (jsonResponse) {
+          final geoJsonFeatures = jsonResponse['features'] as List<dynamic>;
+          return geoJsonFeatures
+              .map(
+                (geoJsonFeature) => RestrictionModel.fromJson(
+                  geoJsonFeature as Map<String, dynamic>,
+                ),
+              )
+              .toSet()
+              .toList();
+        },
         onError: (_) => UASRestrictionsException(),
       );
 }
