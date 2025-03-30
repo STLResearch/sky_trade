@@ -10,7 +10,7 @@ import 'package:sky_trade/core/resources/strings/environments.dart'
 import 'package:sky_trade/core/utils/enums/local.dart' show LogLevel;
 import 'package:sky_trade/injection_container.dart' show serviceLocator;
 
-final class AppLogger {
+abstract final class AppLogger {
   static void log({
     required String message,
     required LogLevel logLevel,
