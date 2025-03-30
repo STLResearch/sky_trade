@@ -60,7 +60,9 @@ mixin _$ExecuteMintRentalTokenEvent {
   }) =>
       throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ExecuteMintRentalTokenEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $ExecuteMintRentalTokenEventCopyWith<ExecuteMintRentalTokenEvent>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -91,6 +93,8 @@ class _$ExecuteMintRentalTokenEventCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of ExecuteMintRentalTokenEvent
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -146,6 +150,8 @@ class __$$ExecuteMintRentalTokenImplCopyWithImpl<$Res>
       $Res Function(_$ExecuteMintRentalTokenImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of ExecuteMintRentalTokenEvent
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -223,7 +229,9 @@ class _$ExecuteMintRentalTokenImpl implements _ExecuteMintRentalToken {
   int get hashCode => Object.hash(runtimeType, transaction,
       const DeepCollectionEquality().hash(_landAssetIds), startTime, endTime);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ExecuteMintRentalTokenEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ExecuteMintRentalTokenImplCopyWith<_$ExecuteMintRentalTokenImpl>
@@ -312,8 +320,11 @@ abstract class _ExecuteMintRentalToken implements ExecuteMintRentalTokenEvent {
   DateTime get startTime;
   @override
   DateTime get endTime;
+
+  /// Create a copy of ExecuteMintRentalTokenEvent
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ExecuteMintRentalTokenImplCopyWith<_$ExecuteMintRentalTokenImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -406,6 +417,9 @@ class _$ExecuteMintRentalTokenStateCopyWithImpl<$Res,
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  /// Create a copy of ExecuteMintRentalTokenState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -422,6 +436,9 @@ class __$$InitialImplCopyWithImpl<$Res>
   __$$InitialImplCopyWithImpl(
       _$InitialImpl _value, $Res Function(_$InitialImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of ExecuteMintRentalTokenState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -554,6 +571,9 @@ class __$$ExecutingMintRentalTokenImplCopyWithImpl<$Res>
       _$ExecutingMintRentalTokenImpl _value,
       $Res Function(_$ExecutingMintRentalTokenImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of ExecuteMintRentalTokenState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -691,6 +711,8 @@ class __$$ExecutedMintRentalTokenImplCopyWithImpl<$Res>
       $Res Function(_$ExecutedMintRentalTokenImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of ExecuteMintRentalTokenState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -730,7 +752,9 @@ class _$ExecutedMintRentalTokenImpl implements _ExecutedMintRentalToken {
   @override
   int get hashCode => Object.hash(runtimeType, rentalTokenEntity);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ExecuteMintRentalTokenState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ExecutedMintRentalTokenImplCopyWith<_$ExecutedMintRentalTokenImpl>
@@ -833,7 +857,10 @@ abstract class _ExecutedMintRentalToken implements ExecuteMintRentalTokenState {
       _$ExecutedMintRentalTokenImpl;
 
   RentalTokenEntity get rentalTokenEntity;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of ExecuteMintRentalTokenState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ExecutedMintRentalTokenImplCopyWith<_$ExecutedMintRentalTokenImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -858,6 +885,8 @@ class __$$FailedToExecuteMintRentalTokenImplCopyWithImpl<$Res>
       $Res Function(_$FailedToExecuteMintRentalTokenImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of ExecuteMintRentalTokenState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -901,7 +930,9 @@ class _$FailedToExecuteMintRentalTokenImpl
   @override
   int get hashCode => Object.hash(runtimeType, executeMintRentalTokenFailure);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ExecuteMintRentalTokenState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$FailedToExecuteMintRentalTokenImplCopyWith<
@@ -1007,7 +1038,10 @@ abstract class _FailedToExecuteMintRentalToken
       _$FailedToExecuteMintRentalTokenImpl;
 
   ExecuteMintRentalTokenFailure get executeMintRentalTokenFailure;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of ExecuteMintRentalTokenState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$FailedToExecuteMintRentalTokenImplCopyWith<
           _$FailedToExecuteMintRentalTokenImpl>
       get copyWith => throw _privateConstructorUsedError;

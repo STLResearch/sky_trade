@@ -50,7 +50,9 @@ mixin _$HandleLinkEvent {
   }) =>
       throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of HandleLinkEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $HandleLinkEventCopyWith<HandleLinkEvent> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -74,6 +76,8 @@ class _$HandleLinkEventCopyWithImpl<$Res, $Val extends HandleLinkEvent>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of HandleLinkEvent
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -107,6 +111,8 @@ class __$$HandleImplCopyWithImpl<$Res>
       _$HandleImpl _value, $Res Function(_$HandleImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of HandleLinkEvent
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -145,7 +151,9 @@ class _$HandleImpl implements _Handle {
   @override
   int get hashCode => Object.hash(runtimeType, link);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of HandleLinkEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$HandleImplCopyWith<_$HandleImpl> get copyWith =>
@@ -213,8 +221,11 @@ abstract class _Handle implements HandleLinkEvent {
 
   @override
   String get link;
+
+  /// Create a copy of HandleLinkEvent
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$HandleImplCopyWith<_$HandleImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -290,6 +301,9 @@ class _$HandleLinkStateCopyWithImpl<$Res, $Val extends HandleLinkState>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  /// Create a copy of HandleLinkState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -306,6 +320,9 @@ class __$$InitialImplCopyWithImpl<$Res>
   __$$InitialImplCopyWithImpl(
       _$InitialImpl _value, $Res Function(_$InitialImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of HandleLinkState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -421,6 +438,9 @@ class __$$HandlingImplCopyWithImpl<$Res>
   __$$HandlingImplCopyWithImpl(
       _$HandlingImpl _value, $Res Function(_$HandlingImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of HandleLinkState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -539,6 +559,8 @@ class __$$HandledImplCopyWithImpl<$Res>
       _$HandledImpl _value, $Res Function(_$HandledImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of HandleLinkState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -578,7 +600,9 @@ class _$HandledImpl implements _Handled {
   @override
   int get hashCode => Object.hash(runtimeType, linkEntity);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of HandleLinkState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$HandledImplCopyWith<_$HandledImpl> get copyWith =>
@@ -665,7 +689,10 @@ abstract class _Handled implements HandleLinkState {
       _$HandledImpl;
 
   LinkEntity get linkEntity;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of HandleLinkState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$HandledImplCopyWith<_$HandledImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -687,6 +714,8 @@ class __$$FailedToHandleImplCopyWithImpl<$Res>
       _$FailedToHandleImpl _value, $Res Function(_$FailedToHandleImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of HandleLinkState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -726,7 +755,9 @@ class _$FailedToHandleImpl implements _FailedToHandle {
   @override
   int get hashCode => Object.hash(runtimeType, handleLinkFailure);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of HandleLinkState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$FailedToHandleImplCopyWith<_$FailedToHandleImpl> get copyWith =>
@@ -815,7 +846,10 @@ abstract class _FailedToHandle implements HandleLinkState {
       _$FailedToHandleImpl;
 
   HandleLinkFailure get handleLinkFailure;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of HandleLinkState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$FailedToHandleImplCopyWith<_$FailedToHandleImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

@@ -72,6 +72,9 @@ class _$AnalyticsEventCopyWithImpl<$Res, $Val extends AnalyticsEvent>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  /// Create a copy of AnalyticsEvent
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -91,6 +94,8 @@ class __$$ToggleImplCopyWithImpl<$Res>
       _$ToggleImpl _value, $Res Function(_$ToggleImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of AnalyticsEvent
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -129,7 +134,9 @@ class _$ToggleImpl implements _Toggle {
   @override
   int get hashCode => Object.hash(runtimeType, value);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of AnalyticsEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ToggleImplCopyWith<_$ToggleImpl> get copyWith =>
@@ -202,7 +209,10 @@ abstract class _Toggle implements AnalyticsEvent {
   const factory _Toggle({required final bool value}) = _$ToggleImpl;
 
   bool get value;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of AnalyticsEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ToggleImplCopyWith<_$ToggleImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -221,6 +231,9 @@ class __$$IsEnabledImplCopyWithImpl<$Res>
   __$$IsEnabledImplCopyWithImpl(
       _$IsEnabledImpl _value, $Res Function(_$IsEnabledImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of AnalyticsEvent
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -373,6 +386,9 @@ class _$AnalyticsStateCopyWithImpl<$Res, $Val extends AnalyticsState>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  /// Create a copy of AnalyticsState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -389,6 +405,9 @@ class __$$InitialImplCopyWithImpl<$Res>
   __$$InitialImplCopyWithImpl(
       _$InitialImpl _value, $Res Function(_$InitialImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of AnalyticsState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -497,6 +516,9 @@ class __$$ProcessingImplCopyWithImpl<$Res>
   __$$ProcessingImplCopyWithImpl(
       _$ProcessingImpl _value, $Res Function(_$ProcessingImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of AnalyticsState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -608,6 +630,8 @@ class __$$MaybeEnabledImplCopyWithImpl<$Res>
       _$MaybeEnabledImpl _value, $Res Function(_$MaybeEnabledImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of AnalyticsState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -646,7 +670,9 @@ class _$MaybeEnabledImpl implements _MaybeEnabled {
   @override
   int get hashCode => Object.hash(runtimeType, enabled);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of AnalyticsState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$MaybeEnabledImplCopyWith<_$MaybeEnabledImpl> get copyWith =>
@@ -726,7 +752,10 @@ abstract class _MaybeEnabled implements AnalyticsState {
       _$MaybeEnabledImpl;
 
   bool get enabled;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of AnalyticsState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$MaybeEnabledImplCopyWith<_$MaybeEnabledImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

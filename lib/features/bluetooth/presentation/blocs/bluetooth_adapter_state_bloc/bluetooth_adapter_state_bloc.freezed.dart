@@ -98,6 +98,9 @@ class _$BluetoothAdapterStateEventCopyWithImpl<$Res,
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  /// Create a copy of BluetoothAdapterStateEvent
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -117,6 +120,9 @@ class __$$ListenBluetoothAdapterStateImplCopyWithImpl<$Res>
       _$ListenBluetoothAdapterStateImpl _value,
       $Res Function(_$ListenBluetoothAdapterStateImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of BluetoothAdapterStateEvent
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -253,6 +259,8 @@ class __$$BluetoothAdapterStateGottenImplCopyWithImpl<$Res>
       $Res Function(_$BluetoothAdapterStateGottenImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of BluetoothAdapterStateEvent
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -296,7 +304,9 @@ class _$BluetoothAdapterStateGottenImpl
   @override
   int get hashCode => Object.hash(runtimeType, bluetoothAdapterStateEntity);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of BluetoothAdapterStateEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$BluetoothAdapterStateGottenImplCopyWith<_$BluetoothAdapterStateGottenImpl>
@@ -397,7 +407,10 @@ abstract class _BluetoothAdapterStateGotten
           bluetoothAdapterStateEntity}) = _$BluetoothAdapterStateGottenImpl;
 
   BluetoothAdapterStateEntity get bluetoothAdapterStateEntity;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of BluetoothAdapterStateEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$BluetoothAdapterStateGottenImplCopyWith<_$BluetoothAdapterStateGottenImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -422,6 +435,8 @@ class __$$BluetoothAdapterStateNotGottenImplCopyWithImpl<$Res>
       $Res Function(_$BluetoothAdapterStateNotGottenImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of BluetoothAdapterStateEvent
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -465,7 +480,9 @@ class _$BluetoothAdapterStateNotGottenImpl
   @override
   int get hashCode => Object.hash(runtimeType, bluetoothAdapterStateFailure);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of BluetoothAdapterStateEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$BluetoothAdapterStateNotGottenImplCopyWith<
@@ -567,7 +584,10 @@ abstract class _BluetoothAdapterStateNotGotten
           bluetoothAdapterStateFailure}) = _$BluetoothAdapterStateNotGottenImpl;
 
   BluetoothAdapterStateFailure get bluetoothAdapterStateFailure;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of BluetoothAdapterStateEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$BluetoothAdapterStateNotGottenImplCopyWith<
           _$BluetoothAdapterStateNotGottenImpl>
       get copyWith => throw _privateConstructorUsedError;
@@ -662,6 +682,9 @@ class _$BluetoothAdapterStateStateCopyWithImpl<$Res,
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  /// Create a copy of BluetoothAdapterStateState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -678,6 +701,9 @@ class __$$InitialImplCopyWithImpl<$Res>
   __$$InitialImplCopyWithImpl(
       _$InitialImpl _value, $Res Function(_$InitialImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of BluetoothAdapterStateState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -812,6 +838,9 @@ class __$$GettingBluetoothAdapterStateImplCopyWithImpl<$Res>
       _$GettingBluetoothAdapterStateImpl _value,
       $Res Function(_$GettingBluetoothAdapterStateImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of BluetoothAdapterStateState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -953,6 +982,8 @@ class __$$GotBluetoothAdapterStateImplCopyWithImpl<$Res>
       $Res Function(_$GotBluetoothAdapterStateImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of BluetoothAdapterStateState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -995,7 +1026,9 @@ class _$GotBluetoothAdapterStateImpl implements _GotBluetoothAdapterState {
   @override
   int get hashCode => Object.hash(runtimeType, bluetoothAdapterStateEntity);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of BluetoothAdapterStateState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$GotBluetoothAdapterStateImplCopyWith<_$GotBluetoothAdapterStateImpl>
@@ -1100,7 +1133,10 @@ abstract class _GotBluetoothAdapterState implements BluetoothAdapterStateState {
           bluetoothAdapterStateEntity}) = _$GotBluetoothAdapterStateImpl;
 
   BluetoothAdapterStateEntity get bluetoothAdapterStateEntity;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of BluetoothAdapterStateState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$GotBluetoothAdapterStateImplCopyWith<_$GotBluetoothAdapterStateImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -1125,6 +1161,8 @@ class __$$FailedToGetBluetoothAdapterStateImplCopyWithImpl<$Res>
       $Res Function(_$FailedToGetBluetoothAdapterStateImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of BluetoothAdapterStateState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1168,7 +1206,9 @@ class _$FailedToGetBluetoothAdapterStateImpl
   @override
   int get hashCode => Object.hash(runtimeType, bluetoothAdapterStateFailure);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of BluetoothAdapterStateState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$FailedToGetBluetoothAdapterStateImplCopyWith<
@@ -1276,7 +1316,10 @@ abstract class _FailedToGetBluetoothAdapterState
       _$FailedToGetBluetoothAdapterStateImpl;
 
   BluetoothAdapterStateFailure get bluetoothAdapterStateFailure;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of BluetoothAdapterStateState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$FailedToGetBluetoothAdapterStateImplCopyWith<
           _$FailedToGetBluetoothAdapterStateImpl>
       get copyWith => throw _privateConstructorUsedError;

@@ -34,6 +34,10 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       _authenticateAuth0UserWithSFA,
     );
 
+    on<_ReAuthenticateFailedSFAUserAuthenticationWithAuth0>(
+      _reAuthenticateFailedSFAUserAuthenticationWithAuth0,
+    );
+
     on<_CheckSkyTradeUserExists>(
       _checkSkyTradeUserExists,
     );
@@ -78,6 +82,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
             AuthEvent.authenticateAuth0UserWithSFA(
               email: auth0UserEntity.email,
               idToken: auth0UserEntity.idToken,
+              isFreshSFAAuthentication: true,
             ),
           );
 
@@ -121,6 +126,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
           AuthEvent.authenticateAuth0UserWithSFA(
             email: auth0UserEntity.email,
             idToken: auth0UserEntity.idToken,
+            isFreshSFAAuthentication: true,
           ),
         );
       },
@@ -131,15 +137,17 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     _AuthenticateAuth0UserWithSFA event,
     Emitter<AuthState> emit,
   ) async {
-    final sFAUserSessionExists =
-        await _authRepository.checkSFAUserSessionExists();
+    if (event.isFreshSFAAuthentication) {
+      final sFAUserSessionExists =
+          await _authRepository.checkSFAUserSessionExists();
 
-    if (sFAUserSessionExists) {
-      add(
-        const AuthEvent.checkSkyTradeUserExists(),
-      );
+      if (sFAUserSessionExists) {
+        add(
+          const AuthEvent.checkSkyTradeUserExists(),
+        );
 
-      return;
+        return;
+      }
     }
 
     final authenticateAuth0UserWithSFA =
@@ -150,6 +158,17 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
 
     authenticateAuth0UserWithSFA.fold(
       (sFAAuthenticationFailure) {
+        if (event.isFreshSFAAuthentication) {
+          add(
+            AuthEvent.reAuthenticateFailedSFAUserAuthenticationWithAuth0(
+              email: event.email,
+              idToken: event.idToken,
+            ),
+          );
+
+          return;
+        }
+
         emit(
           switch (sFAAuthenticationFailure) {
             SFAUserShouldLogoutFailure() => AuthState.sFAUserShouldLogout(
@@ -163,6 +182,31 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       (_) {
         add(
           const AuthEvent.checkSkyTradeUserExists(),
+        );
+      },
+    );
+  }
+
+  Future<void> _reAuthenticateFailedSFAUserAuthenticationWithAuth0(
+    _ReAuthenticateFailedSFAUserAuthenticationWithAuth0 event,
+    Emitter<AuthState> emit,
+  ) async {
+    final authenticateUserWithAuth0 =
+        await _authRepository.authenticateUserWithAuth0();
+
+    authenticateUserWithAuth0.fold(
+      (_) {
+        emit(
+          const AuthState.failedToAuthenticateUserWithAuth0(),
+        );
+      },
+      (auth0UserEntity) {
+        add(
+          AuthEvent.authenticateAuth0UserWithSFA(
+            email: auth0UserEntity.email,
+            idToken: auth0UserEntity.idToken,
+            isFreshSFAAuthentication: false,
+          ),
         );
       },
     );

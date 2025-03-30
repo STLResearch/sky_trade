@@ -72,6 +72,9 @@ class _$InternetConnectionCheckerEventCopyWithImpl<$Res,
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  /// Create a copy of InternetConnectionCheckerEvent
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -91,6 +94,9 @@ class __$$CheckActiveInternetConnectionImplCopyWithImpl<$Res>
       _$CheckActiveInternetConnectionImpl _value,
       $Res Function(_$CheckActiveInternetConnectionImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of InternetConnectionCheckerEvent
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -262,6 +268,9 @@ class _$InternetConnectionCheckerStateCopyWithImpl<$Res,
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  /// Create a copy of InternetConnectionCheckerState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -278,6 +287,9 @@ class __$$InitialImplCopyWithImpl<$Res>
   __$$InitialImplCopyWithImpl(
       _$InitialImpl _value, $Res Function(_$InitialImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of InternetConnectionCheckerState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -404,6 +416,9 @@ class __$$CheckingActiveInternetConnectionImplCopyWithImpl<$Res>
       _$CheckingActiveInternetConnectionImpl _value,
       $Res Function(_$CheckingActiveInternetConnectionImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of InternetConnectionCheckerState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -534,6 +549,9 @@ class __$$HasActiveInternetConnectionImplCopyWithImpl<$Res>
       _$HasActiveInternetConnectionImpl _value,
       $Res Function(_$HasActiveInternetConnectionImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of InternetConnectionCheckerState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -664,6 +682,9 @@ class __$$NoActiveInternetConnectionImplCopyWithImpl<$Res>
       _$NoActiveInternetConnectionImpl _value,
       $Res Function(_$NoActiveInternetConnectionImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of InternetConnectionCheckerState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc

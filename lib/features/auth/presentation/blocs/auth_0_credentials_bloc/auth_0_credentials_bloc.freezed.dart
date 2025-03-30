@@ -50,7 +50,9 @@ mixin _$Auth0CredentialsEvent {
   }) =>
       throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of Auth0CredentialsEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $Auth0CredentialsEventCopyWith<Auth0CredentialsEvent> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -75,6 +77,8 @@ class _$Auth0CredentialsEventCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of Auth0CredentialsEvent
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -108,6 +112,8 @@ class __$$RenewCredentialsImplCopyWithImpl<$Res>
       $Res Function(_$RenewCredentialsImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of Auth0CredentialsEvent
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -147,7 +153,9 @@ class _$RenewCredentialsImpl implements _RenewCredentials {
   @override
   int get hashCode => Object.hash(runtimeType, refreshToken);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of Auth0CredentialsEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$RenewCredentialsImplCopyWith<_$RenewCredentialsImpl> get copyWith =>
@@ -217,8 +225,11 @@ abstract class _RenewCredentials implements Auth0CredentialsEvent {
 
   @override
   String? get refreshToken;
+
+  /// Create a copy of Auth0CredentialsEvent
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$RenewCredentialsImplCopyWith<_$RenewCredentialsImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -296,6 +307,9 @@ class _$Auth0CredentialsStateCopyWithImpl<$Res,
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  /// Create a copy of Auth0CredentialsState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -312,6 +326,9 @@ class __$$InitialImplCopyWithImpl<$Res>
   __$$InitialImplCopyWithImpl(
       _$InitialImpl _value, $Res Function(_$InitialImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of Auth0CredentialsState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -428,6 +445,9 @@ class __$$RenewingCredentialsImplCopyWithImpl<$Res>
   __$$RenewingCredentialsImplCopyWithImpl(_$RenewingCredentialsImpl _value,
       $Res Function(_$RenewingCredentialsImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of Auth0CredentialsState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -545,6 +565,9 @@ class __$$RenewedCredentialsImplCopyWithImpl<$Res>
   __$$RenewedCredentialsImplCopyWithImpl(_$RenewedCredentialsImpl _value,
       $Res Function(_$RenewedCredentialsImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of Auth0CredentialsState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -664,6 +687,9 @@ class __$$FailedToRenewCredentialsImplCopyWithImpl<$Res>
       _$FailedToRenewCredentialsImpl _value,
       $Res Function(_$FailedToRenewCredentialsImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of Auth0CredentialsState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc

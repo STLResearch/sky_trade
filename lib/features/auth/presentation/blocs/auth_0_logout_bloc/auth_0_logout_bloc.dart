@@ -20,6 +20,10 @@ class Auth0LogoutBloc extends Bloc<Auth0LogoutEvent, Auth0LogoutState> {
     on<_Logout>(
       _logout,
     );
+
+    on<_LogoutSFAUser>(
+      _logoutSFAUser,
+    );
   }
 
   final AuthRepository _authRepository;
@@ -32,8 +36,6 @@ class Auth0LogoutBloc extends Bloc<Auth0LogoutEvent, Auth0LogoutState> {
       const Auth0LogoutState.loggingOut(),
     );
 
-    await _authRepository.logoutCurrentSFAUser();
-
     final result = await _authRepository.logoutCurrentAuth0User();
 
     result.fold(
@@ -42,9 +44,20 @@ class Auth0LogoutBloc extends Bloc<Auth0LogoutEvent, Auth0LogoutState> {
           auth0LogoutFailure: auth0LogoutFailure,
         ),
       ),
-      (_) => emit(
-        const Auth0LogoutState.loggedOut(),
+      (_) => add(
+        const Auth0LogoutEvent.logoutSFAUser(),
       ),
+    );
+  }
+
+  Future<void> _logoutSFAUser(
+    _LogoutSFAUser _,
+    Emitter<Auth0LogoutState> emit,
+  ) async {
+    await _authRepository.logoutCurrentSFAUser();
+
+    emit(
+      const Auth0LogoutState.loggedOut(),
     );
   }
 }

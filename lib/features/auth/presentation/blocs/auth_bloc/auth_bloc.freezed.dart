@@ -20,8 +20,11 @@ mixin _$AuthEvent {
   TResult when<TResult extends Object?>({
     required TResult Function() authenticate,
     required TResult Function() authenticateUserWithAuth0,
-    required TResult Function(String? email, String idToken)
+    required TResult Function(
+            String? email, String idToken, bool isFreshSFAAuthentication)
         authenticateAuth0UserWithSFA,
+    required TResult Function(String? email, String idToken)
+        reAuthenticateFailedSFAUserAuthenticationWithAuth0,
     required TResult Function() checkSkyTradeUserExists,
     required TResult Function() createSkyTradeUser,
   }) =>
@@ -30,8 +33,11 @@ mixin _$AuthEvent {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? authenticate,
     TResult? Function()? authenticateUserWithAuth0,
-    TResult? Function(String? email, String idToken)?
+    TResult? Function(
+            String? email, String idToken, bool isFreshSFAAuthentication)?
         authenticateAuth0UserWithSFA,
+    TResult? Function(String? email, String idToken)?
+        reAuthenticateFailedSFAUserAuthenticationWithAuth0,
     TResult? Function()? checkSkyTradeUserExists,
     TResult? Function()? createSkyTradeUser,
   }) =>
@@ -40,8 +46,11 @@ mixin _$AuthEvent {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? authenticate,
     TResult Function()? authenticateUserWithAuth0,
-    TResult Function(String? email, String idToken)?
+    TResult Function(
+            String? email, String idToken, bool isFreshSFAAuthentication)?
         authenticateAuth0UserWithSFA,
+    TResult Function(String? email, String idToken)?
+        reAuthenticateFailedSFAUserAuthenticationWithAuth0,
     TResult Function()? checkSkyTradeUserExists,
     TResult Function()? createSkyTradeUser,
     required TResult orElse(),
@@ -54,6 +63,9 @@ mixin _$AuthEvent {
         authenticateUserWithAuth0,
     required TResult Function(_AuthenticateAuth0UserWithSFA value)
         authenticateAuth0UserWithSFA,
+    required TResult Function(
+            _ReAuthenticateFailedSFAUserAuthenticationWithAuth0 value)
+        reAuthenticateFailedSFAUserAuthenticationWithAuth0,
     required TResult Function(_CheckSkyTradeUserExists value)
         checkSkyTradeUserExists,
     required TResult Function(_CreateSkyTradeUser value) createSkyTradeUser,
@@ -66,6 +78,9 @@ mixin _$AuthEvent {
         authenticateUserWithAuth0,
     TResult? Function(_AuthenticateAuth0UserWithSFA value)?
         authenticateAuth0UserWithSFA,
+    TResult? Function(
+            _ReAuthenticateFailedSFAUserAuthenticationWithAuth0 value)?
+        reAuthenticateFailedSFAUserAuthenticationWithAuth0,
     TResult? Function(_CheckSkyTradeUserExists value)? checkSkyTradeUserExists,
     TResult? Function(_CreateSkyTradeUser value)? createSkyTradeUser,
   }) =>
@@ -77,6 +92,8 @@ mixin _$AuthEvent {
         authenticateUserWithAuth0,
     TResult Function(_AuthenticateAuth0UserWithSFA value)?
         authenticateAuth0UserWithSFA,
+    TResult Function(_ReAuthenticateFailedSFAUserAuthenticationWithAuth0 value)?
+        reAuthenticateFailedSFAUserAuthenticationWithAuth0,
     TResult Function(_CheckSkyTradeUserExists value)? checkSkyTradeUserExists,
     TResult Function(_CreateSkyTradeUser value)? createSkyTradeUser,
     required TResult orElse(),
@@ -99,6 +116,9 @@ class _$AuthEventCopyWithImpl<$Res, $Val extends AuthEvent>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  /// Create a copy of AuthEvent
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -115,6 +135,9 @@ class __$$AuthenticateImplCopyWithImpl<$Res>
   __$$AuthenticateImplCopyWithImpl(
       _$AuthenticateImpl _value, $Res Function(_$AuthenticateImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of AuthEvent
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -141,8 +164,11 @@ class _$AuthenticateImpl implements _Authenticate {
   TResult when<TResult extends Object?>({
     required TResult Function() authenticate,
     required TResult Function() authenticateUserWithAuth0,
-    required TResult Function(String? email, String idToken)
+    required TResult Function(
+            String? email, String idToken, bool isFreshSFAAuthentication)
         authenticateAuth0UserWithSFA,
+    required TResult Function(String? email, String idToken)
+        reAuthenticateFailedSFAUserAuthenticationWithAuth0,
     required TResult Function() checkSkyTradeUserExists,
     required TResult Function() createSkyTradeUser,
   }) {
@@ -154,8 +180,11 @@ class _$AuthenticateImpl implements _Authenticate {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? authenticate,
     TResult? Function()? authenticateUserWithAuth0,
-    TResult? Function(String? email, String idToken)?
+    TResult? Function(
+            String? email, String idToken, bool isFreshSFAAuthentication)?
         authenticateAuth0UserWithSFA,
+    TResult? Function(String? email, String idToken)?
+        reAuthenticateFailedSFAUserAuthenticationWithAuth0,
     TResult? Function()? checkSkyTradeUserExists,
     TResult? Function()? createSkyTradeUser,
   }) {
@@ -167,8 +196,11 @@ class _$AuthenticateImpl implements _Authenticate {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? authenticate,
     TResult Function()? authenticateUserWithAuth0,
-    TResult Function(String? email, String idToken)?
+    TResult Function(
+            String? email, String idToken, bool isFreshSFAAuthentication)?
         authenticateAuth0UserWithSFA,
+    TResult Function(String? email, String idToken)?
+        reAuthenticateFailedSFAUserAuthenticationWithAuth0,
     TResult Function()? checkSkyTradeUserExists,
     TResult Function()? createSkyTradeUser,
     required TResult orElse(),
@@ -187,6 +219,9 @@ class _$AuthenticateImpl implements _Authenticate {
         authenticateUserWithAuth0,
     required TResult Function(_AuthenticateAuth0UserWithSFA value)
         authenticateAuth0UserWithSFA,
+    required TResult Function(
+            _ReAuthenticateFailedSFAUserAuthenticationWithAuth0 value)
+        reAuthenticateFailedSFAUserAuthenticationWithAuth0,
     required TResult Function(_CheckSkyTradeUserExists value)
         checkSkyTradeUserExists,
     required TResult Function(_CreateSkyTradeUser value) createSkyTradeUser,
@@ -202,6 +237,9 @@ class _$AuthenticateImpl implements _Authenticate {
         authenticateUserWithAuth0,
     TResult? Function(_AuthenticateAuth0UserWithSFA value)?
         authenticateAuth0UserWithSFA,
+    TResult? Function(
+            _ReAuthenticateFailedSFAUserAuthenticationWithAuth0 value)?
+        reAuthenticateFailedSFAUserAuthenticationWithAuth0,
     TResult? Function(_CheckSkyTradeUserExists value)? checkSkyTradeUserExists,
     TResult? Function(_CreateSkyTradeUser value)? createSkyTradeUser,
   }) {
@@ -216,6 +254,8 @@ class _$AuthenticateImpl implements _Authenticate {
         authenticateUserWithAuth0,
     TResult Function(_AuthenticateAuth0UserWithSFA value)?
         authenticateAuth0UserWithSFA,
+    TResult Function(_ReAuthenticateFailedSFAUserAuthenticationWithAuth0 value)?
+        reAuthenticateFailedSFAUserAuthenticationWithAuth0,
     TResult Function(_CheckSkyTradeUserExists value)? checkSkyTradeUserExists,
     TResult Function(_CreateSkyTradeUser value)? createSkyTradeUser,
     required TResult orElse(),
@@ -247,6 +287,9 @@ class __$$AuthenticateUserWithAuth0ImplCopyWithImpl<$Res>
       _$AuthenticateUserWithAuth0Impl _value,
       $Res Function(_$AuthenticateUserWithAuth0Impl) _then)
       : super(_value, _then);
+
+  /// Create a copy of AuthEvent
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -274,8 +317,11 @@ class _$AuthenticateUserWithAuth0Impl implements _AuthenticateUserWithAuth0 {
   TResult when<TResult extends Object?>({
     required TResult Function() authenticate,
     required TResult Function() authenticateUserWithAuth0,
-    required TResult Function(String? email, String idToken)
+    required TResult Function(
+            String? email, String idToken, bool isFreshSFAAuthentication)
         authenticateAuth0UserWithSFA,
+    required TResult Function(String? email, String idToken)
+        reAuthenticateFailedSFAUserAuthenticationWithAuth0,
     required TResult Function() checkSkyTradeUserExists,
     required TResult Function() createSkyTradeUser,
   }) {
@@ -287,8 +333,11 @@ class _$AuthenticateUserWithAuth0Impl implements _AuthenticateUserWithAuth0 {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? authenticate,
     TResult? Function()? authenticateUserWithAuth0,
-    TResult? Function(String? email, String idToken)?
+    TResult? Function(
+            String? email, String idToken, bool isFreshSFAAuthentication)?
         authenticateAuth0UserWithSFA,
+    TResult? Function(String? email, String idToken)?
+        reAuthenticateFailedSFAUserAuthenticationWithAuth0,
     TResult? Function()? checkSkyTradeUserExists,
     TResult? Function()? createSkyTradeUser,
   }) {
@@ -300,8 +349,11 @@ class _$AuthenticateUserWithAuth0Impl implements _AuthenticateUserWithAuth0 {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? authenticate,
     TResult Function()? authenticateUserWithAuth0,
-    TResult Function(String? email, String idToken)?
+    TResult Function(
+            String? email, String idToken, bool isFreshSFAAuthentication)?
         authenticateAuth0UserWithSFA,
+    TResult Function(String? email, String idToken)?
+        reAuthenticateFailedSFAUserAuthenticationWithAuth0,
     TResult Function()? checkSkyTradeUserExists,
     TResult Function()? createSkyTradeUser,
     required TResult orElse(),
@@ -320,6 +372,9 @@ class _$AuthenticateUserWithAuth0Impl implements _AuthenticateUserWithAuth0 {
         authenticateUserWithAuth0,
     required TResult Function(_AuthenticateAuth0UserWithSFA value)
         authenticateAuth0UserWithSFA,
+    required TResult Function(
+            _ReAuthenticateFailedSFAUserAuthenticationWithAuth0 value)
+        reAuthenticateFailedSFAUserAuthenticationWithAuth0,
     required TResult Function(_CheckSkyTradeUserExists value)
         checkSkyTradeUserExists,
     required TResult Function(_CreateSkyTradeUser value) createSkyTradeUser,
@@ -335,6 +390,9 @@ class _$AuthenticateUserWithAuth0Impl implements _AuthenticateUserWithAuth0 {
         authenticateUserWithAuth0,
     TResult? Function(_AuthenticateAuth0UserWithSFA value)?
         authenticateAuth0UserWithSFA,
+    TResult? Function(
+            _ReAuthenticateFailedSFAUserAuthenticationWithAuth0 value)?
+        reAuthenticateFailedSFAUserAuthenticationWithAuth0,
     TResult? Function(_CheckSkyTradeUserExists value)? checkSkyTradeUserExists,
     TResult? Function(_CreateSkyTradeUser value)? createSkyTradeUser,
   }) {
@@ -349,6 +407,8 @@ class _$AuthenticateUserWithAuth0Impl implements _AuthenticateUserWithAuth0 {
         authenticateUserWithAuth0,
     TResult Function(_AuthenticateAuth0UserWithSFA value)?
         authenticateAuth0UserWithSFA,
+    TResult Function(_ReAuthenticateFailedSFAUserAuthenticationWithAuth0 value)?
+        reAuthenticateFailedSFAUserAuthenticationWithAuth0,
     TResult Function(_CheckSkyTradeUserExists value)? checkSkyTradeUserExists,
     TResult Function(_CreateSkyTradeUser value)? createSkyTradeUser,
     required TResult orElse(),
@@ -371,7 +431,7 @@ abstract class _$$AuthenticateAuth0UserWithSFAImplCopyWith<$Res> {
           $Res Function(_$AuthenticateAuth0UserWithSFAImpl) then) =
       __$$AuthenticateAuth0UserWithSFAImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({String? email, String idToken});
+  $Res call({String? email, String idToken, bool isFreshSFAAuthentication});
 }
 
 /// @nodoc
@@ -383,11 +443,14 @@ class __$$AuthenticateAuth0UserWithSFAImplCopyWithImpl<$Res>
       $Res Function(_$AuthenticateAuth0UserWithSFAImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of AuthEvent
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? email = freezed,
     Object? idToken = null,
+    Object? isFreshSFAAuthentication = null,
   }) {
     return _then(_$AuthenticateAuth0UserWithSFAImpl(
       email: freezed == email
@@ -398,6 +461,10 @@ class __$$AuthenticateAuth0UserWithSFAImplCopyWithImpl<$Res>
           ? _value.idToken
           : idToken // ignore: cast_nullable_to_non_nullable
               as String,
+      isFreshSFAAuthentication: null == isFreshSFAAuthentication
+          ? _value.isFreshSFAAuthentication
+          : isFreshSFAAuthentication // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -407,16 +474,20 @@ class __$$AuthenticateAuth0UserWithSFAImplCopyWithImpl<$Res>
 class _$AuthenticateAuth0UserWithSFAImpl
     implements _AuthenticateAuth0UserWithSFA {
   const _$AuthenticateAuth0UserWithSFAImpl(
-      {required this.email, required this.idToken});
+      {required this.email,
+      required this.idToken,
+      required this.isFreshSFAAuthentication});
 
   @override
   final String? email;
   @override
   final String idToken;
+  @override
+  final bool isFreshSFAAuthentication;
 
   @override
   String toString() {
-    return 'AuthEvent.authenticateAuth0UserWithSFA(email: $email, idToken: $idToken)';
+    return 'AuthEvent.authenticateAuth0UserWithSFA(email: $email, idToken: $idToken, isFreshSFAAuthentication: $isFreshSFAAuthentication)';
   }
 
   @override
@@ -425,13 +496,19 @@ class _$AuthenticateAuth0UserWithSFAImpl
         (other.runtimeType == runtimeType &&
             other is _$AuthenticateAuth0UserWithSFAImpl &&
             (identical(other.email, email) || other.email == email) &&
-            (identical(other.idToken, idToken) || other.idToken == idToken));
+            (identical(other.idToken, idToken) || other.idToken == idToken) &&
+            (identical(
+                    other.isFreshSFAAuthentication, isFreshSFAAuthentication) ||
+                other.isFreshSFAAuthentication == isFreshSFAAuthentication));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, email, idToken);
+  int get hashCode =>
+      Object.hash(runtimeType, email, idToken, isFreshSFAAuthentication);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of AuthEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$AuthenticateAuth0UserWithSFAImplCopyWith<
@@ -444,12 +521,16 @@ class _$AuthenticateAuth0UserWithSFAImpl
   TResult when<TResult extends Object?>({
     required TResult Function() authenticate,
     required TResult Function() authenticateUserWithAuth0,
-    required TResult Function(String? email, String idToken)
+    required TResult Function(
+            String? email, String idToken, bool isFreshSFAAuthentication)
         authenticateAuth0UserWithSFA,
+    required TResult Function(String? email, String idToken)
+        reAuthenticateFailedSFAUserAuthenticationWithAuth0,
     required TResult Function() checkSkyTradeUserExists,
     required TResult Function() createSkyTradeUser,
   }) {
-    return authenticateAuth0UserWithSFA(email, idToken);
+    return authenticateAuth0UserWithSFA(
+        email, idToken, isFreshSFAAuthentication);
   }
 
   @override
@@ -457,12 +538,16 @@ class _$AuthenticateAuth0UserWithSFAImpl
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? authenticate,
     TResult? Function()? authenticateUserWithAuth0,
-    TResult? Function(String? email, String idToken)?
+    TResult? Function(
+            String? email, String idToken, bool isFreshSFAAuthentication)?
         authenticateAuth0UserWithSFA,
+    TResult? Function(String? email, String idToken)?
+        reAuthenticateFailedSFAUserAuthenticationWithAuth0,
     TResult? Function()? checkSkyTradeUserExists,
     TResult? Function()? createSkyTradeUser,
   }) {
-    return authenticateAuth0UserWithSFA?.call(email, idToken);
+    return authenticateAuth0UserWithSFA?.call(
+        email, idToken, isFreshSFAAuthentication);
   }
 
   @override
@@ -470,14 +555,18 @@ class _$AuthenticateAuth0UserWithSFAImpl
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? authenticate,
     TResult Function()? authenticateUserWithAuth0,
-    TResult Function(String? email, String idToken)?
+    TResult Function(
+            String? email, String idToken, bool isFreshSFAAuthentication)?
         authenticateAuth0UserWithSFA,
+    TResult Function(String? email, String idToken)?
+        reAuthenticateFailedSFAUserAuthenticationWithAuth0,
     TResult Function()? checkSkyTradeUserExists,
     TResult Function()? createSkyTradeUser,
     required TResult orElse(),
   }) {
     if (authenticateAuth0UserWithSFA != null) {
-      return authenticateAuth0UserWithSFA(email, idToken);
+      return authenticateAuth0UserWithSFA(
+          email, idToken, isFreshSFAAuthentication);
     }
     return orElse();
   }
@@ -490,6 +579,9 @@ class _$AuthenticateAuth0UserWithSFAImpl
         authenticateUserWithAuth0,
     required TResult Function(_AuthenticateAuth0UserWithSFA value)
         authenticateAuth0UserWithSFA,
+    required TResult Function(
+            _ReAuthenticateFailedSFAUserAuthenticationWithAuth0 value)
+        reAuthenticateFailedSFAUserAuthenticationWithAuth0,
     required TResult Function(_CheckSkyTradeUserExists value)
         checkSkyTradeUserExists,
     required TResult Function(_CreateSkyTradeUser value) createSkyTradeUser,
@@ -505,6 +597,9 @@ class _$AuthenticateAuth0UserWithSFAImpl
         authenticateUserWithAuth0,
     TResult? Function(_AuthenticateAuth0UserWithSFA value)?
         authenticateAuth0UserWithSFA,
+    TResult? Function(
+            _ReAuthenticateFailedSFAUserAuthenticationWithAuth0 value)?
+        reAuthenticateFailedSFAUserAuthenticationWithAuth0,
     TResult? Function(_CheckSkyTradeUserExists value)? checkSkyTradeUserExists,
     TResult? Function(_CreateSkyTradeUser value)? createSkyTradeUser,
   }) {
@@ -519,6 +614,8 @@ class _$AuthenticateAuth0UserWithSFAImpl
         authenticateUserWithAuth0,
     TResult Function(_AuthenticateAuth0UserWithSFA value)?
         authenticateAuth0UserWithSFA,
+    TResult Function(_ReAuthenticateFailedSFAUserAuthenticationWithAuth0 value)?
+        reAuthenticateFailedSFAUserAuthenticationWithAuth0,
     TResult Function(_CheckSkyTradeUserExists value)? checkSkyTradeUserExists,
     TResult Function(_CreateSkyTradeUser value)? createSkyTradeUser,
     required TResult orElse(),
@@ -532,14 +629,236 @@ class _$AuthenticateAuth0UserWithSFAImpl
 
 abstract class _AuthenticateAuth0UserWithSFA implements AuthEvent {
   const factory _AuthenticateAuth0UserWithSFA(
-      {required final String? email,
-      required final String idToken}) = _$AuthenticateAuth0UserWithSFAImpl;
+          {required final String? email,
+          required final String idToken,
+          required final bool isFreshSFAAuthentication}) =
+      _$AuthenticateAuth0UserWithSFAImpl;
 
   String? get email;
   String get idToken;
-  @JsonKey(ignore: true)
+  bool get isFreshSFAAuthentication;
+
+  /// Create a copy of AuthEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$AuthenticateAuth0UserWithSFAImplCopyWith<
           _$AuthenticateAuth0UserWithSFAImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$ReAuthenticateFailedSFAUserAuthenticationWithAuth0ImplCopyWith<
+    $Res> {
+  factory _$$ReAuthenticateFailedSFAUserAuthenticationWithAuth0ImplCopyWith(
+          _$ReAuthenticateFailedSFAUserAuthenticationWithAuth0Impl value,
+          $Res Function(
+                  _$ReAuthenticateFailedSFAUserAuthenticationWithAuth0Impl)
+              then) =
+      __$$ReAuthenticateFailedSFAUserAuthenticationWithAuth0ImplCopyWithImpl<
+          $Res>;
+  @useResult
+  $Res call({String? email, String idToken});
+}
+
+/// @nodoc
+class __$$ReAuthenticateFailedSFAUserAuthenticationWithAuth0ImplCopyWithImpl<
+        $Res>
+    extends _$AuthEventCopyWithImpl<$Res,
+        _$ReAuthenticateFailedSFAUserAuthenticationWithAuth0Impl>
+    implements
+        _$$ReAuthenticateFailedSFAUserAuthenticationWithAuth0ImplCopyWith<
+            $Res> {
+  __$$ReAuthenticateFailedSFAUserAuthenticationWithAuth0ImplCopyWithImpl(
+      _$ReAuthenticateFailedSFAUserAuthenticationWithAuth0Impl _value,
+      $Res Function(_$ReAuthenticateFailedSFAUserAuthenticationWithAuth0Impl)
+          _then)
+      : super(_value, _then);
+
+  /// Create a copy of AuthEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? email = freezed,
+    Object? idToken = null,
+  }) {
+    return _then(_$ReAuthenticateFailedSFAUserAuthenticationWithAuth0Impl(
+      email: freezed == email
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
+              as String?,
+      idToken: null == idToken
+          ? _value.idToken
+          : idToken // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$ReAuthenticateFailedSFAUserAuthenticationWithAuth0Impl
+    implements _ReAuthenticateFailedSFAUserAuthenticationWithAuth0 {
+  const _$ReAuthenticateFailedSFAUserAuthenticationWithAuth0Impl(
+      {required this.email, required this.idToken});
+
+  @override
+  final String? email;
+  @override
+  final String idToken;
+
+  @override
+  String toString() {
+    return 'AuthEvent.reAuthenticateFailedSFAUserAuthenticationWithAuth0(email: $email, idToken: $idToken)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ReAuthenticateFailedSFAUserAuthenticationWithAuth0Impl &&
+            (identical(other.email, email) || other.email == email) &&
+            (identical(other.idToken, idToken) || other.idToken == idToken));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, email, idToken);
+
+  /// Create a copy of AuthEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ReAuthenticateFailedSFAUserAuthenticationWithAuth0ImplCopyWith<
+          _$ReAuthenticateFailedSFAUserAuthenticationWithAuth0Impl>
+      get copyWith =>
+          __$$ReAuthenticateFailedSFAUserAuthenticationWithAuth0ImplCopyWithImpl<
+                  _$ReAuthenticateFailedSFAUserAuthenticationWithAuth0Impl>(
+              this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() authenticate,
+    required TResult Function() authenticateUserWithAuth0,
+    required TResult Function(
+            String? email, String idToken, bool isFreshSFAAuthentication)
+        authenticateAuth0UserWithSFA,
+    required TResult Function(String? email, String idToken)
+        reAuthenticateFailedSFAUserAuthenticationWithAuth0,
+    required TResult Function() checkSkyTradeUserExists,
+    required TResult Function() createSkyTradeUser,
+  }) {
+    return reAuthenticateFailedSFAUserAuthenticationWithAuth0(email, idToken);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? authenticate,
+    TResult? Function()? authenticateUserWithAuth0,
+    TResult? Function(
+            String? email, String idToken, bool isFreshSFAAuthentication)?
+        authenticateAuth0UserWithSFA,
+    TResult? Function(String? email, String idToken)?
+        reAuthenticateFailedSFAUserAuthenticationWithAuth0,
+    TResult? Function()? checkSkyTradeUserExists,
+    TResult? Function()? createSkyTradeUser,
+  }) {
+    return reAuthenticateFailedSFAUserAuthenticationWithAuth0?.call(
+        email, idToken);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? authenticate,
+    TResult Function()? authenticateUserWithAuth0,
+    TResult Function(
+            String? email, String idToken, bool isFreshSFAAuthentication)?
+        authenticateAuth0UserWithSFA,
+    TResult Function(String? email, String idToken)?
+        reAuthenticateFailedSFAUserAuthenticationWithAuth0,
+    TResult Function()? checkSkyTradeUserExists,
+    TResult Function()? createSkyTradeUser,
+    required TResult orElse(),
+  }) {
+    if (reAuthenticateFailedSFAUserAuthenticationWithAuth0 != null) {
+      return reAuthenticateFailedSFAUserAuthenticationWithAuth0(email, idToken);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Authenticate value) authenticate,
+    required TResult Function(_AuthenticateUserWithAuth0 value)
+        authenticateUserWithAuth0,
+    required TResult Function(_AuthenticateAuth0UserWithSFA value)
+        authenticateAuth0UserWithSFA,
+    required TResult Function(
+            _ReAuthenticateFailedSFAUserAuthenticationWithAuth0 value)
+        reAuthenticateFailedSFAUserAuthenticationWithAuth0,
+    required TResult Function(_CheckSkyTradeUserExists value)
+        checkSkyTradeUserExists,
+    required TResult Function(_CreateSkyTradeUser value) createSkyTradeUser,
+  }) {
+    return reAuthenticateFailedSFAUserAuthenticationWithAuth0(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Authenticate value)? authenticate,
+    TResult? Function(_AuthenticateUserWithAuth0 value)?
+        authenticateUserWithAuth0,
+    TResult? Function(_AuthenticateAuth0UserWithSFA value)?
+        authenticateAuth0UserWithSFA,
+    TResult? Function(
+            _ReAuthenticateFailedSFAUserAuthenticationWithAuth0 value)?
+        reAuthenticateFailedSFAUserAuthenticationWithAuth0,
+    TResult? Function(_CheckSkyTradeUserExists value)? checkSkyTradeUserExists,
+    TResult? Function(_CreateSkyTradeUser value)? createSkyTradeUser,
+  }) {
+    return reAuthenticateFailedSFAUserAuthenticationWithAuth0?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Authenticate value)? authenticate,
+    TResult Function(_AuthenticateUserWithAuth0 value)?
+        authenticateUserWithAuth0,
+    TResult Function(_AuthenticateAuth0UserWithSFA value)?
+        authenticateAuth0UserWithSFA,
+    TResult Function(_ReAuthenticateFailedSFAUserAuthenticationWithAuth0 value)?
+        reAuthenticateFailedSFAUserAuthenticationWithAuth0,
+    TResult Function(_CheckSkyTradeUserExists value)? checkSkyTradeUserExists,
+    TResult Function(_CreateSkyTradeUser value)? createSkyTradeUser,
+    required TResult orElse(),
+  }) {
+    if (reAuthenticateFailedSFAUserAuthenticationWithAuth0 != null) {
+      return reAuthenticateFailedSFAUserAuthenticationWithAuth0(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _ReAuthenticateFailedSFAUserAuthenticationWithAuth0
+    implements AuthEvent {
+  const factory _ReAuthenticateFailedSFAUserAuthenticationWithAuth0(
+          {required final String? email, required final String idToken}) =
+      _$ReAuthenticateFailedSFAUserAuthenticationWithAuth0Impl;
+
+  String? get email;
+  String get idToken;
+
+  /// Create a copy of AuthEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$ReAuthenticateFailedSFAUserAuthenticationWithAuth0ImplCopyWith<
+          _$ReAuthenticateFailedSFAUserAuthenticationWithAuth0Impl>
       get copyWith => throw _privateConstructorUsedError;
 }
 
@@ -559,6 +878,9 @@ class __$$CheckSkyTradeUserExistsImplCopyWithImpl<$Res>
       _$CheckSkyTradeUserExistsImpl _value,
       $Res Function(_$CheckSkyTradeUserExistsImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of AuthEvent
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -586,8 +908,11 @@ class _$CheckSkyTradeUserExistsImpl implements _CheckSkyTradeUserExists {
   TResult when<TResult extends Object?>({
     required TResult Function() authenticate,
     required TResult Function() authenticateUserWithAuth0,
-    required TResult Function(String? email, String idToken)
+    required TResult Function(
+            String? email, String idToken, bool isFreshSFAAuthentication)
         authenticateAuth0UserWithSFA,
+    required TResult Function(String? email, String idToken)
+        reAuthenticateFailedSFAUserAuthenticationWithAuth0,
     required TResult Function() checkSkyTradeUserExists,
     required TResult Function() createSkyTradeUser,
   }) {
@@ -599,8 +924,11 @@ class _$CheckSkyTradeUserExistsImpl implements _CheckSkyTradeUserExists {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? authenticate,
     TResult? Function()? authenticateUserWithAuth0,
-    TResult? Function(String? email, String idToken)?
+    TResult? Function(
+            String? email, String idToken, bool isFreshSFAAuthentication)?
         authenticateAuth0UserWithSFA,
+    TResult? Function(String? email, String idToken)?
+        reAuthenticateFailedSFAUserAuthenticationWithAuth0,
     TResult? Function()? checkSkyTradeUserExists,
     TResult? Function()? createSkyTradeUser,
   }) {
@@ -612,8 +940,11 @@ class _$CheckSkyTradeUserExistsImpl implements _CheckSkyTradeUserExists {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? authenticate,
     TResult Function()? authenticateUserWithAuth0,
-    TResult Function(String? email, String idToken)?
+    TResult Function(
+            String? email, String idToken, bool isFreshSFAAuthentication)?
         authenticateAuth0UserWithSFA,
+    TResult Function(String? email, String idToken)?
+        reAuthenticateFailedSFAUserAuthenticationWithAuth0,
     TResult Function()? checkSkyTradeUserExists,
     TResult Function()? createSkyTradeUser,
     required TResult orElse(),
@@ -632,6 +963,9 @@ class _$CheckSkyTradeUserExistsImpl implements _CheckSkyTradeUserExists {
         authenticateUserWithAuth0,
     required TResult Function(_AuthenticateAuth0UserWithSFA value)
         authenticateAuth0UserWithSFA,
+    required TResult Function(
+            _ReAuthenticateFailedSFAUserAuthenticationWithAuth0 value)
+        reAuthenticateFailedSFAUserAuthenticationWithAuth0,
     required TResult Function(_CheckSkyTradeUserExists value)
         checkSkyTradeUserExists,
     required TResult Function(_CreateSkyTradeUser value) createSkyTradeUser,
@@ -647,6 +981,9 @@ class _$CheckSkyTradeUserExistsImpl implements _CheckSkyTradeUserExists {
         authenticateUserWithAuth0,
     TResult? Function(_AuthenticateAuth0UserWithSFA value)?
         authenticateAuth0UserWithSFA,
+    TResult? Function(
+            _ReAuthenticateFailedSFAUserAuthenticationWithAuth0 value)?
+        reAuthenticateFailedSFAUserAuthenticationWithAuth0,
     TResult? Function(_CheckSkyTradeUserExists value)? checkSkyTradeUserExists,
     TResult? Function(_CreateSkyTradeUser value)? createSkyTradeUser,
   }) {
@@ -661,6 +998,8 @@ class _$CheckSkyTradeUserExistsImpl implements _CheckSkyTradeUserExists {
         authenticateUserWithAuth0,
     TResult Function(_AuthenticateAuth0UserWithSFA value)?
         authenticateAuth0UserWithSFA,
+    TResult Function(_ReAuthenticateFailedSFAUserAuthenticationWithAuth0 value)?
+        reAuthenticateFailedSFAUserAuthenticationWithAuth0,
     TResult Function(_CheckSkyTradeUserExists value)? checkSkyTradeUserExists,
     TResult Function(_CreateSkyTradeUser value)? createSkyTradeUser,
     required TResult orElse(),
@@ -690,6 +1029,9 @@ class __$$CreateSkyTradeUserImplCopyWithImpl<$Res>
   __$$CreateSkyTradeUserImplCopyWithImpl(_$CreateSkyTradeUserImpl _value,
       $Res Function(_$CreateSkyTradeUserImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of AuthEvent
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -716,8 +1058,11 @@ class _$CreateSkyTradeUserImpl implements _CreateSkyTradeUser {
   TResult when<TResult extends Object?>({
     required TResult Function() authenticate,
     required TResult Function() authenticateUserWithAuth0,
-    required TResult Function(String? email, String idToken)
+    required TResult Function(
+            String? email, String idToken, bool isFreshSFAAuthentication)
         authenticateAuth0UserWithSFA,
+    required TResult Function(String? email, String idToken)
+        reAuthenticateFailedSFAUserAuthenticationWithAuth0,
     required TResult Function() checkSkyTradeUserExists,
     required TResult Function() createSkyTradeUser,
   }) {
@@ -729,8 +1074,11 @@ class _$CreateSkyTradeUserImpl implements _CreateSkyTradeUser {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? authenticate,
     TResult? Function()? authenticateUserWithAuth0,
-    TResult? Function(String? email, String idToken)?
+    TResult? Function(
+            String? email, String idToken, bool isFreshSFAAuthentication)?
         authenticateAuth0UserWithSFA,
+    TResult? Function(String? email, String idToken)?
+        reAuthenticateFailedSFAUserAuthenticationWithAuth0,
     TResult? Function()? checkSkyTradeUserExists,
     TResult? Function()? createSkyTradeUser,
   }) {
@@ -742,8 +1090,11 @@ class _$CreateSkyTradeUserImpl implements _CreateSkyTradeUser {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? authenticate,
     TResult Function()? authenticateUserWithAuth0,
-    TResult Function(String? email, String idToken)?
+    TResult Function(
+            String? email, String idToken, bool isFreshSFAAuthentication)?
         authenticateAuth0UserWithSFA,
+    TResult Function(String? email, String idToken)?
+        reAuthenticateFailedSFAUserAuthenticationWithAuth0,
     TResult Function()? checkSkyTradeUserExists,
     TResult Function()? createSkyTradeUser,
     required TResult orElse(),
@@ -762,6 +1113,9 @@ class _$CreateSkyTradeUserImpl implements _CreateSkyTradeUser {
         authenticateUserWithAuth0,
     required TResult Function(_AuthenticateAuth0UserWithSFA value)
         authenticateAuth0UserWithSFA,
+    required TResult Function(
+            _ReAuthenticateFailedSFAUserAuthenticationWithAuth0 value)
+        reAuthenticateFailedSFAUserAuthenticationWithAuth0,
     required TResult Function(_CheckSkyTradeUserExists value)
         checkSkyTradeUserExists,
     required TResult Function(_CreateSkyTradeUser value) createSkyTradeUser,
@@ -777,6 +1131,9 @@ class _$CreateSkyTradeUserImpl implements _CreateSkyTradeUser {
         authenticateUserWithAuth0,
     TResult? Function(_AuthenticateAuth0UserWithSFA value)?
         authenticateAuth0UserWithSFA,
+    TResult? Function(
+            _ReAuthenticateFailedSFAUserAuthenticationWithAuth0 value)?
+        reAuthenticateFailedSFAUserAuthenticationWithAuth0,
     TResult? Function(_CheckSkyTradeUserExists value)? checkSkyTradeUserExists,
     TResult? Function(_CreateSkyTradeUser value)? createSkyTradeUser,
   }) {
@@ -791,6 +1148,8 @@ class _$CreateSkyTradeUserImpl implements _CreateSkyTradeUser {
         authenticateUserWithAuth0,
     TResult Function(_AuthenticateAuth0UserWithSFA value)?
         authenticateAuth0UserWithSFA,
+    TResult Function(_ReAuthenticateFailedSFAUserAuthenticationWithAuth0 value)?
+        reAuthenticateFailedSFAUserAuthenticationWithAuth0,
     TResult Function(_CheckSkyTradeUserExists value)? checkSkyTradeUserExists,
     TResult Function(_CreateSkyTradeUser value)? createSkyTradeUser,
     required TResult orElse(),
@@ -934,6 +1293,9 @@ class _$AuthStateCopyWithImpl<$Res, $Val extends AuthState>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  /// Create a copy of AuthState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -950,6 +1312,9 @@ class __$$InitialImplCopyWithImpl<$Res>
   __$$InitialImplCopyWithImpl(
       _$InitialImpl _value, $Res Function(_$InitialImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of AuthState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -1123,6 +1488,9 @@ class __$$AuthenticatingImplCopyWithImpl<$Res>
   __$$AuthenticatingImplCopyWithImpl(
       _$AuthenticatingImpl _value, $Res Function(_$AuthenticatingImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of AuthState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -1300,6 +1668,8 @@ class __$$EmailVerificationSentImplCopyWithImpl<$Res>
       $Res Function(_$EmailVerificationSentImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of AuthState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1338,7 +1708,9 @@ class _$EmailVerificationSentImpl implements _EmailVerificationSent {
   @override
   int get hashCode => Object.hash(runtimeType, email);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of AuthState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$EmailVerificationSentImplCopyWith<_$EmailVerificationSentImpl>
@@ -1484,7 +1856,10 @@ abstract class _EmailVerificationSent implements AuthState {
       _$EmailVerificationSentImpl;
 
   String? get email;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of AuthState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$EmailVerificationSentImplCopyWith<_$EmailVerificationSentImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -1508,6 +1883,8 @@ class __$$UnverifiedAuth0UserExistsImplCopyWithImpl<$Res>
       $Res Function(_$UnverifiedAuth0UserExistsImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of AuthState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1546,7 +1923,9 @@ class _$UnverifiedAuth0UserExistsImpl implements _UnverifiedAuth0UserExists {
   @override
   int get hashCode => Object.hash(runtimeType, email);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of AuthState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$UnverifiedAuth0UserExistsImplCopyWith<_$UnverifiedAuth0UserExistsImpl>
@@ -1692,7 +2071,10 @@ abstract class _UnverifiedAuth0UserExists implements AuthState {
       _$UnverifiedAuth0UserExistsImpl;
 
   String? get email;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of AuthState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$UnverifiedAuth0UserExistsImplCopyWith<_$UnverifiedAuth0UserExistsImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -1711,6 +2093,9 @@ class __$$AuthenticatedImplCopyWithImpl<$Res>
   __$$AuthenticatedImplCopyWithImpl(
       _$AuthenticatedImpl _value, $Res Function(_$AuthenticatedImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of AuthState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -1889,6 +2274,8 @@ class __$$FailedToCheckSkyTradeUserImplCopyWithImpl<$Res>
       $Res Function(_$FailedToCheckSkyTradeUserImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of AuthState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1930,7 +2317,9 @@ class _$FailedToCheckSkyTradeUserImpl implements _FailedToCheckSkyTradeUser {
   @override
   int get hashCode => Object.hash(runtimeType, checkSkyTradeUserFailure);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of AuthState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$FailedToCheckSkyTradeUserImplCopyWith<_$FailedToCheckSkyTradeUserImpl>
@@ -2077,7 +2466,10 @@ abstract class _FailedToCheckSkyTradeUser implements AuthState {
       _$FailedToCheckSkyTradeUserImpl;
 
   CheckSkyTradeUserFailure get checkSkyTradeUserFailure;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of AuthState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$FailedToCheckSkyTradeUserImplCopyWith<_$FailedToCheckSkyTradeUserImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -2101,6 +2493,8 @@ class __$$FailedToCreateSkyTradeUserImplCopyWithImpl<$Res>
       $Res Function(_$FailedToCreateSkyTradeUserImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of AuthState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -2142,7 +2536,9 @@ class _$FailedToCreateSkyTradeUserImpl implements _FailedToCreateSkyTradeUser {
   @override
   int get hashCode => Object.hash(runtimeType, createSkyTradeUserFailure);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of AuthState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$FailedToCreateSkyTradeUserImplCopyWith<_$FailedToCreateSkyTradeUserImpl>
@@ -2289,7 +2685,10 @@ abstract class _FailedToCreateSkyTradeUser implements AuthState {
           createSkyTradeUserFailure}) = _$FailedToCreateSkyTradeUserImpl;
 
   CreateSkyTradeUserFailure get createSkyTradeUserFailure;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of AuthState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$FailedToCreateSkyTradeUserImplCopyWith<_$FailedToCreateSkyTradeUserImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -2311,6 +2710,9 @@ class __$$FailedToAuthenticateUserWithAuth0ImplCopyWithImpl<$Res>
       _$FailedToAuthenticateUserWithAuth0Impl _value,
       $Res Function(_$FailedToAuthenticateUserWithAuth0Impl) _then)
       : super(_value, _then);
+
+  /// Create a copy of AuthState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -2490,6 +2892,8 @@ class __$$SFAUserShouldLogoutImplCopyWithImpl<$Res>
       $Res Function(_$SFAUserShouldLogoutImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of AuthState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -2528,7 +2932,9 @@ class _$SFAUserShouldLogoutImpl implements _SFAUserShouldLogout {
   @override
   int get hashCode => Object.hash(runtimeType, email);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of AuthState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$SFAUserShouldLogoutImplCopyWith<_$SFAUserShouldLogoutImpl> get copyWith =>
@@ -2674,7 +3080,10 @@ abstract class _SFAUserShouldLogout implements AuthState {
       _$SFAUserShouldLogoutImpl;
 
   String? get email;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of AuthState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$SFAUserShouldLogoutImplCopyWith<_$SFAUserShouldLogoutImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -2696,6 +3105,9 @@ class __$$FailedToAuthenticateAuth0UserWithSFAImplCopyWithImpl<$Res>
       _$FailedToAuthenticateAuth0UserWithSFAImpl _value,
       $Res Function(_$FailedToAuthenticateAuth0UserWithSFAImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of AuthState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc

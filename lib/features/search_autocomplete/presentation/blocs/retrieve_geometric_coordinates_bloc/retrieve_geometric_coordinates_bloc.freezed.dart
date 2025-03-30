@@ -101,6 +101,9 @@ class _$RetrieveGeometricCoordinatesEventCopyWithImpl<$Res,
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  /// Create a copy of RetrieveGeometricCoordinatesEvent
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -121,6 +124,8 @@ class __$$RetrieveCoordinatesImplCopyWithImpl<$Res>
       $Res Function(_$RetrieveCoordinatesImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of RetrieveGeometricCoordinatesEvent
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -159,7 +164,9 @@ class _$RetrieveCoordinatesImpl implements _RetrieveCoordinates {
   @override
   int get hashCode => Object.hash(runtimeType, id);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of RetrieveGeometricCoordinatesEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$RetrieveCoordinatesImplCopyWith<_$RetrieveCoordinatesImpl> get copyWith =>
@@ -261,7 +268,10 @@ abstract class _RetrieveCoordinates
       _$RetrieveCoordinatesImpl;
 
   String get id;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of RetrieveGeometricCoordinatesEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$RetrieveCoordinatesImplCopyWith<_$RetrieveCoordinatesImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -284,6 +294,8 @@ class __$$CoordinatesRetrievedImplCopyWithImpl<$Res>
       $Res Function(_$CoordinatesRetrievedImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of RetrieveGeometricCoordinatesEvent
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -323,7 +335,9 @@ class _$CoordinatesRetrievedImpl implements _CoordinatesRetrieved {
   @override
   int get hashCode => Object.hash(runtimeType, geometryEntity);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of RetrieveGeometricCoordinatesEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$CoordinatesRetrievedImplCopyWith<_$CoordinatesRetrievedImpl>
@@ -427,7 +441,10 @@ abstract class _CoordinatesRetrieved
       _$CoordinatesRetrievedImpl;
 
   GeometryEntity get geometryEntity;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of RetrieveGeometricCoordinatesEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$CoordinatesRetrievedImplCopyWith<_$CoordinatesRetrievedImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -449,6 +466,9 @@ class __$$EmptyCoordinatesRetrievedImplCopyWithImpl<$Res>
       _$EmptyCoordinatesRetrievedImpl _value,
       $Res Function(_$EmptyCoordinatesRetrievedImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of RetrieveGeometricCoordinatesEvent
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -587,6 +607,8 @@ class __$$CoordinatesNotRetrievedImplCopyWithImpl<$Res>
       $Res Function(_$CoordinatesNotRetrievedImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of RetrieveGeometricCoordinatesEvent
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -631,7 +653,9 @@ class _$CoordinatesNotRetrievedImpl implements _CoordinatesNotRetrieved {
   int get hashCode =>
       Object.hash(runtimeType, retrieveGeometricCoordinatesFailure);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of RetrieveGeometricCoordinatesEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$CoordinatesNotRetrievedImplCopyWith<_$CoordinatesNotRetrievedImpl>
@@ -734,7 +758,10 @@ abstract class _CoordinatesNotRetrieved
           retrieveGeometricCoordinatesFailure}) = _$CoordinatesNotRetrievedImpl;
 
   RetrieveGeometricCoordinatesFailure get retrieveGeometricCoordinatesFailure;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of RetrieveGeometricCoordinatesEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$CoordinatesNotRetrievedImplCopyWith<_$CoordinatesNotRetrievedImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -835,6 +862,9 @@ class _$RetrieveGeometricCoordinatesStateCopyWithImpl<$Res,
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  /// Create a copy of RetrieveGeometricCoordinatesState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -851,6 +881,9 @@ class __$$InitialImplCopyWithImpl<$Res>
   __$$InitialImplCopyWithImpl(
       _$InitialImpl _value, $Res Function(_$InitialImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of RetrieveGeometricCoordinatesState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -990,6 +1023,9 @@ class __$$RetrievingCoordinatesImplCopyWithImpl<$Res>
   __$$RetrievingCoordinatesImplCopyWithImpl(_$RetrievingCoordinatesImpl _value,
       $Res Function(_$RetrievingCoordinatesImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of RetrieveGeometricCoordinatesState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -1133,6 +1169,8 @@ class __$$RetrievedCoordinatesImplCopyWithImpl<$Res>
       $Res Function(_$RetrievedCoordinatesImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of RetrieveGeometricCoordinatesState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1182,7 +1220,9 @@ class _$RetrievedCoordinatesImpl implements _RetrievedCoordinates {
   @override
   int get hashCode => Object.hash(runtimeType, latitude, longitude);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of RetrieveGeometricCoordinatesState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$RetrievedCoordinatesImplCopyWith<_$RetrievedCoordinatesImpl>
@@ -1296,7 +1336,10 @@ abstract class _RetrievedCoordinates
 
   double get latitude;
   double get longitude;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of RetrieveGeometricCoordinatesState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$RetrievedCoordinatesImplCopyWith<_$RetrievedCoordinatesImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -1318,6 +1361,9 @@ class __$$RetrievedEmptyCoordinatesImplCopyWithImpl<$Res>
       _$RetrievedEmptyCoordinatesImpl _value,
       $Res Function(_$RetrievedEmptyCoordinatesImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of RetrieveGeometricCoordinatesState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -1465,6 +1511,8 @@ class __$$FailedToRetrieveCoordinatesImplCopyWithImpl<$Res>
       $Res Function(_$FailedToRetrieveCoordinatesImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of RetrieveGeometricCoordinatesState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1510,7 +1558,9 @@ class _$FailedToRetrieveCoordinatesImpl
   int get hashCode =>
       Object.hash(runtimeType, retrieveGeometricCoordinatesFailure);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of RetrieveGeometricCoordinatesState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$FailedToRetrieveCoordinatesImplCopyWith<_$FailedToRetrieveCoordinatesImpl>
@@ -1624,7 +1674,10 @@ abstract class _FailedToRetrieveCoordinates
       _$FailedToRetrieveCoordinatesImpl;
 
   RetrieveGeometricCoordinatesFailure get retrieveGeometricCoordinatesFailure;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of RetrieveGeometricCoordinatesState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$FailedToRetrieveCoordinatesImplCopyWith<_$FailedToRetrieveCoordinatesImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

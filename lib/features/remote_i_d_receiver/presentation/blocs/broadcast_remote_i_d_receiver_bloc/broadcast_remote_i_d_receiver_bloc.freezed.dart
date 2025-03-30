@@ -91,6 +91,9 @@ class _$BroadcastRemoteIDReceiverEventCopyWithImpl<$Res,
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  /// Create a copy of BroadcastRemoteIDReceiverEvent
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -107,6 +110,9 @@ class __$$ListenRemoteIDsImplCopyWithImpl<$Res>
   __$$ListenRemoteIDsImplCopyWithImpl(
       _$ListenRemoteIDsImpl _value, $Res Function(_$ListenRemoteIDsImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of BroadcastRemoteIDReceiverEvent
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -226,6 +232,9 @@ class __$$RemoteIDsGettingImplCopyWithImpl<$Res>
   __$$RemoteIDsGettingImplCopyWithImpl(_$RemoteIDsGettingImpl _value,
       $Res Function(_$RemoteIDsGettingImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of BroadcastRemoteIDReceiverEvent
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -347,6 +356,8 @@ class __$$RemoteIDsGottenImplCopyWithImpl<$Res>
       _$RemoteIDsGottenImpl _value, $Res Function(_$RemoteIDsGottenImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of BroadcastRemoteIDReceiverEvent
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -395,7 +406,9 @@ class _$RemoteIDsGottenImpl implements _RemoteIDsGotten {
   int get hashCode => Object.hash(
       runtimeType, const DeepCollectionEquality().hash(_remoteIDEntities));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of BroadcastRemoteIDReceiverEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$RemoteIDsGottenImplCopyWith<_$RemoteIDsGottenImpl> get copyWith =>
@@ -487,7 +500,10 @@ abstract class _RemoteIDsGotten implements BroadcastRemoteIDReceiverEvent {
       _$RemoteIDsGottenImpl;
 
   List<RemoteIDEntity> get remoteIDEntities;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of BroadcastRemoteIDReceiverEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$RemoteIDsGottenImplCopyWith<_$RemoteIDsGottenImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -510,6 +526,8 @@ class __$$RemoteIDsNotGottenImplCopyWithImpl<$Res>
       $Res Function(_$RemoteIDsNotGottenImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of BroadcastRemoteIDReceiverEvent
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -550,7 +568,9 @@ class _$RemoteIDsNotGottenImpl implements _RemoteIDsNotGotten {
   @override
   int get hashCode => Object.hash(runtimeType, remoteIDReceiverFailure);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of BroadcastRemoteIDReceiverEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$RemoteIDsNotGottenImplCopyWith<_$RemoteIDsNotGottenImpl> get copyWith =>
@@ -642,7 +662,10 @@ abstract class _RemoteIDsNotGotten implements BroadcastRemoteIDReceiverEvent {
       _$RemoteIDsNotGottenImpl;
 
   RemoteIDReceiverFailure get remoteIDReceiverFailure;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of BroadcastRemoteIDReceiverEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$RemoteIDsNotGottenImplCopyWith<_$RemoteIDsNotGottenImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -724,6 +747,9 @@ class _$BroadcastRemoteIDReceiverStateCopyWithImpl<$Res,
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  /// Create a copy of BroadcastRemoteIDReceiverState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -740,6 +766,9 @@ class __$$InitialImplCopyWithImpl<$Res>
   __$$InitialImplCopyWithImpl(
       _$InitialImpl _value, $Res Function(_$InitialImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of BroadcastRemoteIDReceiverState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -859,6 +888,9 @@ class __$$GettingRemoteIDsImplCopyWithImpl<$Res>
   __$$GettingRemoteIDsImplCopyWithImpl(_$GettingRemoteIDsImpl _value,
       $Res Function(_$GettingRemoteIDsImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of BroadcastRemoteIDReceiverState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -980,6 +1012,8 @@ class __$$GotRemoteIDsImplCopyWithImpl<$Res>
       _$GotRemoteIDsImpl _value, $Res Function(_$GotRemoteIDsImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of BroadcastRemoteIDReceiverState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1028,7 +1062,9 @@ class _$GotRemoteIDsImpl implements _GotRemoteIDs {
   int get hashCode => Object.hash(
       runtimeType, const DeepCollectionEquality().hash(_remoteIDEntities));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of BroadcastRemoteIDReceiverState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$GotRemoteIDsImplCopyWith<_$GotRemoteIDsImpl> get copyWith =>
@@ -1119,7 +1155,10 @@ abstract class _GotRemoteIDs implements BroadcastRemoteIDReceiverState {
       _$GotRemoteIDsImpl;
 
   List<RemoteIDEntity> get remoteIDEntities;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of BroadcastRemoteIDReceiverState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$GotRemoteIDsImplCopyWith<_$GotRemoteIDsImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -1142,6 +1181,8 @@ class __$$FailedToGetRemoteIDsImplCopyWithImpl<$Res>
       $Res Function(_$FailedToGetRemoteIDsImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of BroadcastRemoteIDReceiverState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1182,7 +1223,9 @@ class _$FailedToGetRemoteIDsImpl implements _FailedToGetRemoteIDs {
   @override
   int get hashCode => Object.hash(runtimeType, remoteIDReceiverFailure);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of BroadcastRemoteIDReceiverState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$FailedToGetRemoteIDsImplCopyWith<_$FailedToGetRemoteIDsImpl>
@@ -1275,7 +1318,10 @@ abstract class _FailedToGetRemoteIDs implements BroadcastRemoteIDReceiverState {
       _$FailedToGetRemoteIDsImpl;
 
   RemoteIDReceiverFailure get remoteIDReceiverFailure;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of BroadcastRemoteIDReceiverState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$FailedToGetRemoteIDsImplCopyWith<_$FailedToGetRemoteIDsImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

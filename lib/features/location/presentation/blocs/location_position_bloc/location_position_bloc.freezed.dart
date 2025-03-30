@@ -105,6 +105,9 @@ class _$LocationPositionEventCopyWithImpl<$Res,
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  /// Create a copy of LocationPositionEvent
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -121,6 +124,9 @@ class __$$GetLocationPositionImplCopyWithImpl<$Res>
   __$$GetLocationPositionImplCopyWithImpl(_$GetLocationPositionImpl _value,
       $Res Function(_$GetLocationPositionImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of LocationPositionEvent
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -259,6 +265,9 @@ class __$$ListenLocationPositionImplCopyWithImpl<$Res>
       _$ListenLocationPositionImpl _value,
       $Res Function(_$ListenLocationPositionImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of LocationPositionEvent
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -400,6 +409,8 @@ class __$$LocationPositionGottenImplCopyWithImpl<$Res>
       $Res Function(_$LocationPositionGottenImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of LocationPositionEvent
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -439,7 +450,9 @@ class _$LocationPositionGottenImpl implements _LocationPositionGotten {
   @override
   int get hashCode => Object.hash(runtimeType, locationPositionEntity);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of LocationPositionEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$LocationPositionGottenImplCopyWith<_$LocationPositionGottenImpl>
@@ -547,7 +560,10 @@ abstract class _LocationPositionGotten implements LocationPositionEvent {
       _$LocationPositionGottenImpl;
 
   LocationPositionEntity get locationPositionEntity;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of LocationPositionEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$LocationPositionGottenImplCopyWith<_$LocationPositionGottenImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -572,6 +588,8 @@ class __$$LocationPositionNotGottenImplCopyWithImpl<$Res>
       $Res Function(_$LocationPositionNotGottenImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of LocationPositionEvent
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -613,7 +631,9 @@ class _$LocationPositionNotGottenImpl implements _LocationPositionNotGotten {
   @override
   int get hashCode => Object.hash(runtimeType, locationPositionFailure);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of LocationPositionEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$LocationPositionNotGottenImplCopyWith<_$LocationPositionNotGottenImpl>
@@ -721,7 +741,10 @@ abstract class _LocationPositionNotGotten implements LocationPositionEvent {
       _$LocationPositionNotGottenImpl;
 
   LocationPositionFailure get locationPositionFailure;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of LocationPositionEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$LocationPositionNotGottenImplCopyWith<_$LocationPositionNotGottenImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -743,6 +766,9 @@ class __$$StopListeningLocationPositionImplCopyWithImpl<$Res>
       _$StopListeningLocationPositionImpl _value,
       $Res Function(_$StopListeningLocationPositionImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of LocationPositionEvent
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -947,6 +973,9 @@ class _$LocationPositionStateCopyWithImpl<$Res,
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  /// Create a copy of LocationPositionState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -963,6 +992,9 @@ class __$$InitialImplCopyWithImpl<$Res>
   __$$InitialImplCopyWithImpl(
       _$InitialImpl _value, $Res Function(_$InitialImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of LocationPositionState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -1090,6 +1122,9 @@ class __$$GettingLocationPositionImplCopyWithImpl<$Res>
       _$GettingLocationPositionImpl _value,
       $Res Function(_$GettingLocationPositionImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of LocationPositionState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -1218,6 +1253,8 @@ class __$$GotLocationPositionImplCopyWithImpl<$Res>
       $Res Function(_$GotLocationPositionImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of LocationPositionState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1257,7 +1294,9 @@ class _$GotLocationPositionImpl implements _GotLocationPosition {
   @override
   int get hashCode => Object.hash(runtimeType, locationPositionEntity);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of LocationPositionState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$GotLocationPositionImplCopyWith<_$GotLocationPositionImpl> get copyWith =>
@@ -1355,7 +1394,10 @@ abstract class _GotLocationPosition implements LocationPositionState {
       _$GotLocationPositionImpl;
 
   LocationPositionEntity get locationPositionEntity;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of LocationPositionState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$GotLocationPositionImplCopyWith<_$GotLocationPositionImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -1380,6 +1422,8 @@ class __$$FailedToGetLocationPositionImplCopyWithImpl<$Res>
       $Res Function(_$FailedToGetLocationPositionImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of LocationPositionState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1422,7 +1466,9 @@ class _$FailedToGetLocationPositionImpl
   @override
   int get hashCode => Object.hash(runtimeType, locationPositionFailure);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of LocationPositionState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$FailedToGetLocationPositionImplCopyWith<_$FailedToGetLocationPositionImpl>
@@ -1520,7 +1566,10 @@ abstract class _FailedToGetLocationPosition implements LocationPositionState {
       _$FailedToGetLocationPositionImpl;
 
   LocationPositionFailure get locationPositionFailure;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of LocationPositionState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$FailedToGetLocationPositionImplCopyWith<_$FailedToGetLocationPositionImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

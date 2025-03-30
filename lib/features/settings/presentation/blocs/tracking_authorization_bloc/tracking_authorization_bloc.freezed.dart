@@ -74,6 +74,9 @@ class _$TrackingAuthorizationEventCopyWithImpl<$Res,
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  /// Create a copy of TrackingAuthorizationEvent
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -91,6 +94,9 @@ class __$$CheckTrackingStatusImplCopyWithImpl<$Res>
   __$$CheckTrackingStatusImplCopyWithImpl(_$CheckTrackingStatusImpl _value,
       $Res Function(_$CheckTrackingStatusImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of TrackingAuthorizationEvent
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -194,6 +200,9 @@ class __$$RequestTrackingImplCopyWithImpl<$Res>
   __$$RequestTrackingImplCopyWithImpl(
       _$RequestTrackingImpl _value, $Res Function(_$RequestTrackingImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of TrackingAuthorizationEvent
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -362,6 +371,9 @@ class _$TrackingAuthorizationStateCopyWithImpl<$Res,
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  /// Create a copy of TrackingAuthorizationState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -378,6 +390,9 @@ class __$$InitialImplCopyWithImpl<$Res>
   __$$InitialImplCopyWithImpl(
       _$InitialImpl _value, $Res Function(_$InitialImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of TrackingAuthorizationState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -500,6 +515,9 @@ class __$$ProcessingImplCopyWithImpl<$Res>
   __$$ProcessingImplCopyWithImpl(
       _$ProcessingImpl _value, $Res Function(_$ProcessingImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of TrackingAuthorizationState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -628,6 +646,8 @@ class __$$MaybeAuthorizedTrackingImplCopyWithImpl<$Res>
       $Res Function(_$MaybeAuthorizedTrackingImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of TrackingAuthorizationState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -667,7 +687,9 @@ class _$MaybeAuthorizedTrackingImpl implements _MaybeAuthorizedTracking {
   @override
   int get hashCode => Object.hash(runtimeType, trackingStatusEntity);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of TrackingAuthorizationState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$MaybeAuthorizedTrackingImplCopyWith<_$MaybeAuthorizedTrackingImpl>
@@ -763,7 +785,10 @@ abstract class _MaybeAuthorizedTracking implements TrackingAuthorizationState {
       _$MaybeAuthorizedTrackingImpl;
 
   TrackingStatusEntity get trackingStatusEntity;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of TrackingAuthorizationState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$MaybeAuthorizedTrackingImplCopyWith<_$MaybeAuthorizedTrackingImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -788,6 +813,8 @@ class __$$CannotAuthorizeTrackingImplCopyWithImpl<$Res>
       $Res Function(_$CannotAuthorizeTrackingImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of TrackingAuthorizationState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -827,7 +854,9 @@ class _$CannotAuthorizeTrackingImpl implements _CannotAuthorizeTracking {
   @override
   int get hashCode => Object.hash(runtimeType, trackingStatusFailure);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of TrackingAuthorizationState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$CannotAuthorizeTrackingImplCopyWith<_$CannotAuthorizeTrackingImpl>
@@ -923,7 +952,10 @@ abstract class _CannotAuthorizeTracking implements TrackingAuthorizationState {
       _$CannotAuthorizeTrackingImpl;
 
   TrackingStatusFailure get trackingStatusFailure;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of TrackingAuthorizationState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$CannotAuthorizeTrackingImplCopyWith<_$CannotAuthorizeTrackingImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

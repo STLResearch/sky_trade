@@ -66,6 +66,9 @@ class _$InsightsEventCopyWithImpl<$Res, $Val extends InsightsEvent>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  /// Create a copy of InsightsEvent
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -82,6 +85,9 @@ class __$$GetInsightsImplCopyWithImpl<$Res>
   __$$GetInsightsImplCopyWithImpl(
       _$GetInsightsImpl _value, $Res Function(_$GetInsightsImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of InsightsEvent
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -235,6 +241,9 @@ class _$InsightsStateCopyWithImpl<$Res, $Val extends InsightsState>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  /// Create a copy of InsightsState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -251,6 +260,9 @@ class __$$InitialImplCopyWithImpl<$Res>
   __$$InitialImplCopyWithImpl(
       _$InitialImpl _value, $Res Function(_$InitialImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of InsightsState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -366,6 +378,9 @@ class __$$GettingInsightsImplCopyWithImpl<$Res>
   __$$GettingInsightsImplCopyWithImpl(
       _$GettingInsightsImpl _value, $Res Function(_$GettingInsightsImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of InsightsState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -484,6 +499,8 @@ class __$$GotInsightsImplCopyWithImpl<$Res>
       _$GotInsightsImpl _value, $Res Function(_$GotInsightsImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of InsightsState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -523,7 +540,9 @@ class _$GotInsightsImpl implements _GotInsights {
   @override
   int get hashCode => Object.hash(runtimeType, insightsEntity);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of InsightsState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$GotInsightsImplCopyWith<_$GotInsightsImpl> get copyWith =>
@@ -610,7 +629,10 @@ abstract class _GotInsights implements InsightsState {
       _$GotInsightsImpl;
 
   InsightsEntity get insightsEntity;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of InsightsState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$GotInsightsImplCopyWith<_$GotInsightsImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -632,6 +654,8 @@ class __$$FailedToGetInsightsImplCopyWithImpl<$Res>
       $Res Function(_$FailedToGetInsightsImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of InsightsState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -671,7 +695,9 @@ class _$FailedToGetInsightsImpl implements _FailedToGetInsights {
   @override
   int get hashCode => Object.hash(runtimeType, insightsFailure);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of InsightsState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$FailedToGetInsightsImplCopyWith<_$FailedToGetInsightsImpl> get copyWith =>
@@ -760,7 +786,10 @@ abstract class _FailedToGetInsights implements InsightsState {
       _$FailedToGetInsightsImpl;
 
   InsightsFailure get insightsFailure;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of InsightsState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$FailedToGetInsightsImplCopyWith<_$FailedToGetInsightsImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

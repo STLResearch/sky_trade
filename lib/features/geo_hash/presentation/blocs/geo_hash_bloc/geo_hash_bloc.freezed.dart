@@ -54,7 +54,9 @@ mixin _$GeoHashEvent {
   }) =>
       throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of GeoHashEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $GeoHashEventCopyWith<GeoHashEvent> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -78,6 +80,8 @@ class _$GeoHashEventCopyWithImpl<$Res, $Val extends GeoHashEvent>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of GeoHashEvent
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -111,6 +115,8 @@ class __$$ComputeGeoHashImplCopyWithImpl<$Res>
       _$ComputeGeoHashImpl _value, $Res Function(_$ComputeGeoHashImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of GeoHashEvent
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -150,7 +156,9 @@ class _$ComputeGeoHashImpl implements _ComputeGeoHash {
   @override
   int get hashCode => Object.hash(runtimeType, coordinates);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of GeoHashEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ComputeGeoHashImplCopyWith<_$ComputeGeoHashImpl> get copyWith =>
@@ -224,8 +232,11 @@ abstract class _ComputeGeoHash implements GeoHashEvent {
 
   @override
   ({double latitude, double longitude}) get coordinates;
+
+  /// Create a copy of GeoHashEvent
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ComputeGeoHashImplCopyWith<_$ComputeGeoHashImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -302,6 +313,9 @@ class _$GeoHashStateCopyWithImpl<$Res, $Val extends GeoHashState>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  /// Create a copy of GeoHashState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -318,6 +332,9 @@ class __$$InitialImplCopyWithImpl<$Res>
   __$$InitialImplCopyWithImpl(
       _$InitialImpl _value, $Res Function(_$InitialImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of GeoHashState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -439,6 +456,8 @@ class __$$ComputedGeoHashOfPrecision3ImplCopyWithImpl<$Res>
       $Res Function(_$ComputedGeoHashOfPrecision3Impl) _then)
       : super(_value, _then);
 
+  /// Create a copy of GeoHashState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -479,7 +498,9 @@ class _$ComputedGeoHashOfPrecision3Impl
   @override
   int get hashCode => Object.hash(runtimeType, geoHashOfPrecision3);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of GeoHashState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ComputedGeoHashOfPrecision3ImplCopyWith<_$ComputedGeoHashOfPrecision3Impl>
@@ -569,7 +590,10 @@ abstract class _ComputedGeoHashOfPrecision3 implements GeoHashState {
       _$ComputedGeoHashOfPrecision3Impl;
 
   String get geoHashOfPrecision3;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of GeoHashState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ComputedGeoHashOfPrecision3ImplCopyWith<_$ComputedGeoHashOfPrecision3Impl>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -593,6 +617,8 @@ class __$$ComputedGeoHashOfPrecision4ImplCopyWithImpl<$Res>
       $Res Function(_$ComputedGeoHashOfPrecision4Impl) _then)
       : super(_value, _then);
 
+  /// Create a copy of GeoHashState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -633,7 +659,9 @@ class _$ComputedGeoHashOfPrecision4Impl
   @override
   int get hashCode => Object.hash(runtimeType, geoHashOfPrecision4);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of GeoHashState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ComputedGeoHashOfPrecision4ImplCopyWith<_$ComputedGeoHashOfPrecision4Impl>
@@ -723,7 +751,10 @@ abstract class _ComputedGeoHashOfPrecision4 implements GeoHashState {
       _$ComputedGeoHashOfPrecision4Impl;
 
   String get geoHashOfPrecision4;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of GeoHashState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ComputedGeoHashOfPrecision4ImplCopyWith<_$ComputedGeoHashOfPrecision4Impl>
       get copyWith => throw _privateConstructorUsedError;
 }

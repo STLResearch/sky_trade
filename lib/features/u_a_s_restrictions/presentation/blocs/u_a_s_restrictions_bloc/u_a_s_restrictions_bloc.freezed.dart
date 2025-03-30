@@ -50,7 +50,9 @@ mixin _$UASRestrictionsEvent {
   }) =>
       throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of UASRestrictionsEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $UASRestrictionsEventCopyWith<UASRestrictionsEvent> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -75,6 +77,8 @@ class _$UASRestrictionsEventCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of UASRestrictionsEvent
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -108,6 +112,8 @@ class __$$GetRestrictionsImplCopyWithImpl<$Res>
       _$GetRestrictionsImpl _value, $Res Function(_$GetRestrictionsImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of UASRestrictionsEvent
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -146,7 +152,9 @@ class _$GetRestrictionsImpl implements _GetRestrictions {
   @override
   int get hashCode => Object.hash(runtimeType, geoHash);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of UASRestrictionsEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$GetRestrictionsImplCopyWith<_$GetRestrictionsImpl> get copyWith =>
@@ -216,8 +224,11 @@ abstract class _GetRestrictions implements UASRestrictionsEvent {
 
   @override
   String get geoHash;
+
+  /// Create a copy of UASRestrictionsEvent
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$GetRestrictionsImplCopyWith<_$GetRestrictionsImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -300,6 +311,9 @@ class _$UASRestrictionsStateCopyWithImpl<$Res,
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  /// Create a copy of UASRestrictionsState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -316,6 +330,9 @@ class __$$InitialImplCopyWithImpl<$Res>
   __$$InitialImplCopyWithImpl(
       _$InitialImpl _value, $Res Function(_$InitialImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of UASRestrictionsState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -437,6 +454,9 @@ class __$$GettingRestrictionsImplCopyWithImpl<$Res>
   __$$GettingRestrictionsImplCopyWithImpl(_$GettingRestrictionsImpl _value,
       $Res Function(_$GettingRestrictionsImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of UASRestrictionsState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -562,6 +582,8 @@ class __$$GotRestrictionsImplCopyWithImpl<$Res>
       _$GotRestrictionsImpl _value, $Res Function(_$GotRestrictionsImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of UASRestrictionsState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -610,7 +632,9 @@ class _$GotRestrictionsImpl implements _GotRestrictions {
   int get hashCode => Object.hash(
       runtimeType, const DeepCollectionEquality().hash(_restrictionEntities));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of UASRestrictionsState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$GotRestrictionsImplCopyWith<_$GotRestrictionsImpl> get copyWith =>
@@ -705,7 +729,10 @@ abstract class _GotRestrictions implements UASRestrictionsState {
       _$GotRestrictionsImpl;
 
   List<RestrictionEntity> get restrictionEntities;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of UASRestrictionsState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$GotRestrictionsImplCopyWith<_$GotRestrictionsImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -730,6 +757,8 @@ class __$$FailedToGetRestrictionsImplCopyWithImpl<$Res>
       $Res Function(_$FailedToGetRestrictionsImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of UASRestrictionsState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -769,7 +798,9 @@ class _$FailedToGetRestrictionsImpl implements _FailedToGetRestrictions {
   @override
   int get hashCode => Object.hash(runtimeType, uasRestrictionsFailure);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of UASRestrictionsState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$FailedToGetRestrictionsImplCopyWith<_$FailedToGetRestrictionsImpl>
@@ -864,7 +895,10 @@ abstract class _FailedToGetRestrictions implements UASRestrictionsState {
       _$FailedToGetRestrictionsImpl;
 
   UASRestrictionsFailure get uasRestrictionsFailure;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of UASRestrictionsState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$FailedToGetRestrictionsImplCopyWith<_$FailedToGetRestrictionsImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

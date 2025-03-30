@@ -59,7 +59,9 @@ mixin _$GetPropertiesEvent {
   }) =>
       throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of GetPropertiesEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $GetPropertiesEventCopyWith<GetPropertiesEvent> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -87,6 +89,8 @@ class _$GetPropertiesEventCopyWithImpl<$Res, $Val extends GetPropertiesEvent>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of GetPropertiesEvent
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -139,6 +143,8 @@ class __$$GetPropertiesWithinImplCopyWithImpl<$Res>
       $Res Function(_$GetPropertiesWithinImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of GetPropertiesEvent
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -210,7 +216,9 @@ class _$GetPropertiesWithinImpl implements _GetPropertiesWithin {
   int get hashCode => Object.hash(
       runtimeType, minLongitude, minLatitude, maxLongitude, maxLatitude);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of GetPropertiesEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$GetPropertiesWithinImplCopyWith<_$GetPropertiesWithinImpl> get copyWith =>
@@ -298,8 +306,11 @@ abstract class _GetPropertiesWithin implements GetPropertiesEvent {
   double get maxLongitude;
   @override
   double get maxLatitude;
+
+  /// Create a copy of GetPropertiesEvent
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$GetPropertiesWithinImplCopyWith<_$GetPropertiesWithinImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -379,6 +390,9 @@ class _$GetPropertiesStateCopyWithImpl<$Res, $Val extends GetPropertiesState>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  /// Create a copy of GetPropertiesState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -395,6 +409,9 @@ class __$$InitialImplCopyWithImpl<$Res>
   __$$InitialImplCopyWithImpl(
       _$InitialImpl _value, $Res Function(_$InitialImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of GetPropertiesState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -514,6 +531,9 @@ class __$$GettingPropertiesImplCopyWithImpl<$Res>
   __$$GettingPropertiesImplCopyWithImpl(_$GettingPropertiesImpl _value,
       $Res Function(_$GettingPropertiesImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of GetPropertiesState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -636,6 +656,8 @@ class __$$GotPropertiesImplCopyWithImpl<$Res>
       _$GotPropertiesImpl _value, $Res Function(_$GotPropertiesImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of GetPropertiesState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -684,7 +706,9 @@ class _$GotPropertiesImpl implements _GotProperties {
   int get hashCode => Object.hash(
       runtimeType, const DeepCollectionEquality().hash(_propertyEntities));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of GetPropertiesState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$GotPropertiesImplCopyWith<_$GotPropertiesImpl> get copyWith =>
@@ -776,7 +800,10 @@ abstract class _GotProperties implements GetPropertiesState {
       _$GotPropertiesImpl;
 
   List<PropertyEntity> get propertyEntities;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of GetPropertiesState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$GotPropertiesImplCopyWith<_$GotPropertiesImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -799,6 +826,8 @@ class __$$FailedToGetPropertiesImplCopyWithImpl<$Res>
       $Res Function(_$FailedToGetPropertiesImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of GetPropertiesState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -838,7 +867,9 @@ class _$FailedToGetPropertiesImpl implements _FailedToGetProperties {
   @override
   int get hashCode => Object.hash(runtimeType, getPropertiesFailure);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of GetPropertiesState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$FailedToGetPropertiesImplCopyWith<_$FailedToGetPropertiesImpl>
@@ -931,7 +962,10 @@ abstract class _FailedToGetProperties implements GetPropertiesState {
       _$FailedToGetPropertiesImpl;
 
   GetPropertiesFailure get getPropertiesFailure;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of GetPropertiesState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$FailedToGetPropertiesImplCopyWith<_$FailedToGetPropertiesImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
