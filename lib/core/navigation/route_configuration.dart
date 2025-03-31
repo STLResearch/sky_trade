@@ -10,9 +10,9 @@ import 'package:sky_trade/features/auth/presentation/views/get_started_screen.da
     show GetStartedScreen;
 import 'package:sky_trade/features/auth/presentation/views/loading_screen.dart'
     show LoadingScreen;
-import 'package:sky_trade/features/help/presentation/views/help_screen.dart';
-import 'package:sky_trade/features/insights/presentation/views/insights_screen.dart'
+import 'package:sky_trade/features/drone_insights/presentation/views/insights_screen.dart'
     show InsightsScreen;
+import 'package:sky_trade/features/help/presentation/views/help_screen.dart';
 import 'package:sky_trade/features/internet_connection_checker/presentation/screens/no_internet_connection_screen.dart';
 import 'package:sky_trade/features/settings/presentation/views/settings_screen.dart'
     show SettingsScreen;

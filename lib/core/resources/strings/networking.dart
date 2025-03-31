@@ -415,6 +415,10 @@ const fromKey = 'from';
 const toKey = 'to';
 const valueKey = 'value';
 const rangeKey = 'range';
+const oneDKey = '1D';
+const oneWKey = '1W';
+const oneMKey = '1M';
+const oneYKey = '1Y';
 // Error response data message
 const unauthorizedCode = 'UNAUTHORIZED';
 const invalidSignatureCode = 'INVALID_SIGNATURE';
