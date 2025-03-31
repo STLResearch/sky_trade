@@ -144,6 +144,8 @@ class _MapOverlayViewState extends State<MapOverlayView> {
                             tappedSearchResultPlaceNameNotifierValue,
                         onSearchFieldTap: () =>
                             _showSearchResultCardNotifier.value = true,
+                        onSearchFieldCleared: () =>
+                            _tappedSearchResultPlaceNameNotifier.value = null,
                       ),
                     ),
                     const SizedBox(
