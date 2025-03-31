@@ -170,7 +170,6 @@
   "theCodeYouEnteredDoesNotMatchWhatWeSentYou": "The code you entered does not match what we sent you",
   "tracked": "tracked",
   "trackedByOthersInThisArea": "tracked by others in this area",
-  "thereWasAnErrorTryingAgainWillMostLikelyFixThisIssue": "There was an error. Trying again will most likely fix this issue",
   "oopsWeCouldNotAuthenticateYouPleaseTryAgain": "Oops! We could not authenticate you. Please try again",
   "aVerificationLinkWasSentTo": "A verification link was sent to",
   "clickOnTheLinkToProceedWithTheAuthenticationProcess": "Click on the link to proceed with the authentication process",

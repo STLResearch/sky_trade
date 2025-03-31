@@ -1119,12 +1119,6 @@ abstract class AppLocalizations {
   /// **'tracked by others in this area'**
   String get trackedByOthersInThisArea;
 
-  /// No description provided for @thereWasAnErrorTryingAgainWillMostLikelyFixThisIssue.
-  ///
-  /// In en, this message translates to:
-  /// **'There was an error. Trying again will most likely fix this issue'**
-  String get thereWasAnErrorTryingAgainWillMostLikelyFixThisIssue;
-
   /// No description provided for @oopsWeCouldNotAuthenticateYouPleaseTryAgain.
   ///
   /// In en, this message translates to:

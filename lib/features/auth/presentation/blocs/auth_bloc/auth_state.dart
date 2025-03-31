@@ -32,7 +32,4 @@ class AuthState with _$AuthState {
   const factory AuthState.sFAUserShouldLogout({
     required String? email,
   }) = _SFAUserShouldLogout;
-
-  const factory AuthState.failedToAuthenticateAuth0UserWithSFA() =
-      _FailedToAuthenticateAuth0UserWithSFA;
 }

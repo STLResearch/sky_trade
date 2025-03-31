@@ -522,9 +522,6 @@ class AppLocalizationsEn extends AppLocalizations {
   String get trackedByOthersInThisArea => 'tracked by others in this area';
 
   @override
-  String get thereWasAnErrorTryingAgainWillMostLikelyFixThisIssue => 'There was an error. Trying again will most likely fix this issue';
-
-  @override
   String get oopsWeCouldNotAuthenticateYouPleaseTryAgain => 'Oops! We could not authenticate you. Please try again';
 
   @override
