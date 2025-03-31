@@ -987,35 +987,11 @@ abstract class AppLocalizations {
   /// **'Analytics'**
   String get analytics;
 
-  /// No description provided for @enablingAnalyticsAllowsUsToCollectUsageDataToImproveAppPerformanceEnhanceFeaturesAndProvideABetterOverallExperienceYourDataHelpsUsUnderstandHowTheAppIsUsedSoWeCanMakeImprovementsTailoredToYourNeeds.
-  ///
-  /// In en, this message translates to:
-  /// **'Enabling analytics allows us to collect usage data to improve app performance, enhance features, and provide a better overall experience. Your data helps us understand how the app is used so we can make improvements tailored to your needs'**
-  String get enablingAnalyticsAllowsUsToCollectUsageDataToImproveAppPerformanceEnhanceFeaturesAndProvideABetterOverallExperienceYourDataHelpsUsUnderstandHowTheAppIsUsedSoWeCanMakeImprovementsTailoredToYourNeeds;
-
   /// No description provided for @beforeWeCanEnableAnalyticsForYouWeNeedYouToGrantUsTrackingAuthorization.
   ///
   /// In en, this message translates to:
   /// **'Before we can enable analytics for you we need you to grant us tracking authorization'**
   String get beforeWeCanEnableAnalyticsForYouWeNeedYouToGrantUsTrackingAuthorization;
-
-  /// No description provided for @helpUsImproveYourExperience.
-  ///
-  /// In en, this message translates to:
-  /// **'Help Us Improve Your Experience'**
-  String get helpUsImproveYourExperience;
-
-  /// No description provided for @weWouldLikeYourPermissionToCollectDataAboutHowYouUseTheAppThisHelpsUsProvidePersonalizedFeaturesImprovePerformanceAndDevelopBetterExperiencesYouCanChooseWhetherToAllowThisInTheNextStep.
-  ///
-  /// In en, this message translates to:
-  /// **'We would like your permission to collect data about how you use the app. This helps us provide personalized features, improve performance, and develop better experiences. You can choose whether to allow this in the next step'**
-  String get weWouldLikeYourPermissionToCollectDataAboutHowYouUseTheAppThisHelpsUsProvidePersonalizedFeaturesImprovePerformanceAndDevelopBetterExperiencesYouCanChooseWhetherToAllowThisInTheNextStep;
-
-  /// No description provided for @youHaveForbiddenUsFromRequestingTrackingAuthorizationWithoutYourConsentWeWillNotKnowHowYouUseTheAppAndWeWillNotBeAbleToMakeImprovementsTailoredToYourNeedsToGrantUsTrackingAuthorizationYouWillHaveToEnableItManuallyInSettings.
-  ///
-  /// In en, this message translates to:
-  /// **'You have forbidden us from requesting tracking authorization. Without your consent we will not know how you use the app and we will not be able to make improvements tailored to your needs. To grant us tracking authorization, you will have to enable it manually in Settings'**
-  String get youHaveForbiddenUsFromRequestingTrackingAuthorizationWithoutYourConsentWeWillNotKnowHowYouUseTheAppAndWeWillNotBeAbleToMakeImprovementsTailoredToYourNeedsToGrantUsTrackingAuthorizationYouWillHaveToEnableItManuallyInSettings;
 
   /// No description provided for @deleteAccount.
   ///

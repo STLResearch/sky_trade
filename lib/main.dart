@@ -151,6 +151,19 @@ Future<bool> _shouldCollectAnalyticsData() async {
 
   if (!Platform.isIOS) return analyticsState ?? false;
 
+  if ((await AppTrackingTransparency.trackingAuthorizationStatus ==
+              TrackingStatus.restricted ||
+          await AppTrackingTransparency.trackingAuthorizationStatus ==
+              TrackingStatus.denied ||
+          await AppTrackingTransparency.trackingAuthorizationStatus ==
+              TrackingStatus.notSupported) &&
+      (analyticsState ?? false)) {
+    await preferences.setBool(
+      analyticsStateKey,
+      false,
+    );
+  }
+
   return await AppTrackingTransparency.trackingAuthorizationStatus ==
           TrackingStatus.authorized &&
       (analyticsState ?? false);

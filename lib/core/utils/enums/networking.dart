@@ -427,7 +427,6 @@ enum UnmannedAircraftAuthenticationType {
 enum TrackingTransparencyRequestStatus {
   notYetAsked,
   authorized,
-  notAuthorized,
 }
 
 enum PropertyStatusType {
