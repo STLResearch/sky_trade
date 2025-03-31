@@ -456,19 +456,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get analytics => 'Analytics';
 
   @override
-  String get enablingAnalyticsAllowsUsToCollectUsageDataToImproveAppPerformanceEnhanceFeaturesAndProvideABetterOverallExperienceYourDataHelpsUsUnderstandHowTheAppIsUsedSoWeCanMakeImprovementsTailoredToYourNeeds => 'Enabling analytics allows us to collect usage data to improve app performance, enhance features, and provide a better overall experience. Your data helps us understand how the app is used so we can make improvements tailored to your needs';
-
-  @override
   String get beforeWeCanEnableAnalyticsForYouWeNeedYouToGrantUsTrackingAuthorization => 'Before we can enable analytics for you we need you to grant us tracking authorization';
-
-  @override
-  String get helpUsImproveYourExperience => 'Help Us Improve Your Experience';
-
-  @override
-  String get weWouldLikeYourPermissionToCollectDataAboutHowYouUseTheAppThisHelpsUsProvidePersonalizedFeaturesImprovePerformanceAndDevelopBetterExperiencesYouCanChooseWhetherToAllowThisInTheNextStep => 'We would like your permission to collect data about how you use the app. This helps us provide personalized features, improve performance, and develop better experiences. You can choose whether to allow this in the next step';
-
-  @override
-  String get youHaveForbiddenUsFromRequestingTrackingAuthorizationWithoutYourConsentWeWillNotKnowHowYouUseTheAppAndWeWillNotBeAbleToMakeImprovementsTailoredToYourNeedsToGrantUsTrackingAuthorizationYouWillHaveToEnableItManuallyInSettings => 'You have forbidden us from requesting tracking authorization. Without your consent we will not know how you use the app and we will not be able to make improvements tailored to your needs. To grant us tracking authorization, you will have to enable it manually in Settings';
 
   @override
   String get deleteAccount => 'Delete Account';

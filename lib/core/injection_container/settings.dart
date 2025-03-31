@@ -10,8 +10,10 @@ import 'package:sky_trade/features/settings/presentation/blocs/delete_account_bl
 import 'package:sky_trade/features/settings/presentation/blocs/otp_resend_timer_bloc/otp_resend_timer_bloc.dart';
 import 'package:sky_trade/features/settings/presentation/blocs/request_delete_account_bloc/request_delete_account_bloc.dart'
     show RequestDeleteAccountBloc;
-import 'package:sky_trade/features/settings/presentation/blocs/tracking_authorization_bloc/tracking_authorization_bloc.dart'
-    show TrackingAuthorizationBloc;
+import 'package:sky_trade/features/settings/presentation/blocs/request_tracking_authorization_bloc/request_tracking_authorization_bloc.dart'
+    show RequestTrackingAuthorizationBloc;
+import 'package:sky_trade/features/settings/presentation/blocs/tracking_authorization_status_bloc/tracking_authorization_status_bloc.dart'
+    show TrackingAuthorizationStatusBloc;
 
 final _sl = GetIt.I;
 
@@ -36,8 +38,13 @@ Future<void> registerSettingsServices() async {
         _sl(),
       ),
     )
-    ..registerFactory<TrackingAuthorizationBloc>(
-      () => TrackingAuthorizationBloc(
+    ..registerFactory<RequestTrackingAuthorizationBloc>(
+      () => RequestTrackingAuthorizationBloc(
+        _sl(),
+      ),
+    )
+    ..registerFactory<TrackingAuthorizationStatusBloc>(
+      () => TrackingAuthorizationStatusBloc(
         _sl(),
       ),
     )

@@ -13,7 +13,6 @@ import 'package:flutter/material.dart'
         EdgeInsetsDirectional,
         ElevatedButton,
         Expanded,
-        FontStyle,
         IconButton,
         Navigator,
         Padding,
@@ -51,13 +50,11 @@ import 'package:sky_trade/core/resources/numbers/ui.dart'
         eighteenDotNil,
         fourteenDotNil,
         nilDotNil,
-        nineDotNil,
         oneDotNil,
         seventyThreeDotNil,
         sixteenDotNil,
         sixteenDotOne,
         tenDotNil,
-        thirteenDotFive,
         twentyOneDotNil;
 import 'package:sky_trade/core/utils/enums/networking.dart'
     show TrackingTransparencyRequestStatus;
@@ -66,11 +63,16 @@ import 'package:sky_trade/features/settings/presentation/blocs/analytics_bloc/an
     show AnalyticsBloc, AnalyticsEvent, AnalyticsState;
 import 'package:sky_trade/features/settings/presentation/blocs/request_delete_account_bloc/request_delete_account_bloc.dart'
     show RequestDeleteAccountBloc, RequestDeleteAccountEvent;
-import 'package:sky_trade/features/settings/presentation/blocs/tracking_authorization_bloc/tracking_authorization_bloc.dart'
+import 'package:sky_trade/features/settings/presentation/blocs/request_tracking_authorization_bloc/request_tracking_authorization_bloc.dart'
     show
-        TrackingAuthorizationBloc,
-        TrackingAuthorizationEvent,
-        TrackingAuthorizationState;
+        RequestTrackingAuthorizationBloc,
+        RequestTrackingAuthorizationEvent,
+        RequestTrackingAuthorizationState;
+import 'package:sky_trade/features/settings/presentation/blocs/tracking_authorization_status_bloc/tracking_authorization_status_bloc.dart'
+    show
+        TrackingAuthorizationStatusBloc,
+        TrackingAuthorizationStatusEvent,
+        TrackingAuthorizationStatusState;
 import 'package:sky_trade/features/settings/presentation/widgets/action_dialog.dart';
 import 'package:sky_trade/features/settings/presentation/widgets/delete_account.dart';
 import 'package:sky_trade/injection_container.dart' show serviceLocator;
@@ -87,7 +89,10 @@ class SettingsScreen extends StatelessWidget {
           BlocProvider<RequestDeleteAccountBloc>(
             create: (_) => serviceLocator(),
           ),
-          BlocProvider<TrackingAuthorizationBloc>(
+          BlocProvider<RequestTrackingAuthorizationBloc>(
+            create: (_) => serviceLocator(),
+          ),
+          BlocProvider<TrackingAuthorizationStatusBloc>(
             create: (_) => serviceLocator(),
           ),
         ],
@@ -111,12 +116,19 @@ class _SettingsViewState extends State<SettingsView> {
 
     _checkAnalyticsEnabled();
 
+    _checkTrackingAuthorizationStatus();
+
     super.initState();
   }
 
   void _checkAnalyticsEnabled() => context.read<AnalyticsBloc>().add(
         const AnalyticsEvent.isEnabled(),
       );
+
+  void _checkTrackingAuthorizationStatus() =>
+      context.read<TrackingAuthorizationStatusBloc>().add(
+            const TrackingAuthorizationStatusEvent.check(),
+          );
 
   void _toggleAnalyticsCollection() => context.read<AnalyticsBloc>().add(
         AnalyticsEvent.toggle(
@@ -127,42 +139,17 @@ class _SettingsViewState extends State<SettingsView> {
   @override
   Widget build(BuildContext context) => MultiBlocListener(
         listeners: [
-          BlocListener<TrackingAuthorizationBloc, TrackingAuthorizationState>(
-            listener: (_, trackingAuthorizationState) {
-              trackingAuthorizationState.whenOrNull(
-                maybeAuthorizedTracking: (trackingStatusEntity) {
+          BlocListener<RequestTrackingAuthorizationBloc,
+              RequestTrackingAuthorizationState>(
+            listener: (_, requestTrackingAuthorizationState) {
+              requestTrackingAuthorizationState.whenOrNull(
+                maybeAuthorized: (trackingStatusEntity) {
                   if (trackingStatusEntity.status ==
-                          TrackingTransparencyRequestStatus.notYetAsked ||
-                      trackingStatusEntity.status ==
-                          TrackingTransparencyRequestStatus.notAuthorized) {
-                    ActionDialog.show(
-                      context,
-                      title: context.localize.helpUsImproveYourExperience,
-                      content: context.localize
-                          .weWouldLikeYourPermissionToCollectDataAboutHowYouUseTheAppThisHelpsUsProvidePersonalizedFeaturesImprovePerformanceAndDevelopBetterExperiencesYouCanChooseWhetherToAllowThisInTheNextStep,
-                      onActionDismissed: () => Navigator.of(
-                        context,
-                      ).pop(),
-                      onActionConfirmed: () {
-                        Navigator.of(
-                          context,
-                        ).pop();
-
-                        WidgetsFlutterBinding.ensureInitialized()
-                            .addPostFrameCallback(
-                          (_) => context.read<TrackingAuthorizationBloc>().add(
-                                const TrackingAuthorizationEvent
-                                    .requestTracking(),
-                              ),
-                        );
-                      },
-                    );
-                  } else if (trackingStatusEntity.status ==
                       TrackingTransparencyRequestStatus.authorized) {
                     _toggleAnalyticsCollection();
                   }
                 },
-                cannotAuthorizeTracking: (trackingStatusFailure) {
+                cannotAuthorize: (trackingStatusFailure) {
                   if (trackingStatusFailure
                       is TrackingRequestNotRequiredFailure) {
                     _toggleAnalyticsCollection();
@@ -229,79 +216,32 @@ class _SettingsViewState extends State<SettingsView> {
                       Row(
                         children: [
                           Expanded(
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  context.localize.analytics,
-                                  style: Theme.of(
-                                    context,
-                                  ).textTheme.bodySmall?.copyWith(
-                                        color: hex838187,
-                                      ),
-                                ),
-                                BlocBuilder<TrackingAuthorizationBloc,
-                                    TrackingAuthorizationState>(
-                                  builder:
-                                      (context, trackingAuthorizationState) =>
-                                          Text(
-                                    trackingAuthorizationState.maybeWhen(
-                                      cannotAuthorizeTracking:
-                                          (trackingStatusFailure) =>
-                                              switch (trackingStatusFailure) {
-                                        TrackingRequestFailure() => context
-                                            .localize
-                                            .youHaveForbiddenUsFromRequestingTrackingAuthorizationWithoutYourConsentWeWillNotKnowHowYouUseTheAppAndWeWillNotBeAbleToMakeImprovementsTailoredToYourNeedsToGrantUsTrackingAuthorizationYouWillHaveToEnableItManuallyInSettings,
-                                        TrackingRequestNotRequiredFailure() =>
-                                          context.localize
-                                              .enablingAnalyticsAllowsUsToCollectUsageDataToImproveAppPerformanceEnhanceFeaturesAndProvideABetterOverallExperienceYourDataHelpsUsUnderstandHowTheAppIsUsedSoWeCanMakeImprovementsTailoredToYourNeeds,
-                                      },
-                                      orElse: () => context.localize
-                                          .enablingAnalyticsAllowsUsToCollectUsageDataToImproveAppPerformanceEnhanceFeaturesAndProvideABetterOverallExperienceYourDataHelpsUsUnderstandHowTheAppIsUsedSoWeCanMakeImprovementsTailoredToYourNeeds,
-                                    ),
-                                    style: Theme.of(
-                                      context,
-                                    ).textTheme.bodySmall?.copyWith(
-                                          fontStyle: FontStyle.italic,
-                                          fontSize: nineDotNil,
-                                          height: thirteenDotFive / nineDotNil,
-                                          color: trackingAuthorizationState
-                                              .maybeWhen(
-                                            cannotAuthorizeTracking:
-                                                (trackingStatusFailure) =>
-                                                    switch (
-                                                        trackingStatusFailure) {
-                                              TrackingRequestFailure() =>
-                                                hexE04F64,
-                                              TrackingRequestNotRequiredFailure() =>
-                                                hex838187,
-                                            },
-                                            orElse: () => hex838187,
-                                          ),
-                                        ),
+                            child: Text(
+                              context.localize.analytics,
+                              style: Theme.of(
+                                context,
+                              ).textTheme.bodySmall?.copyWith(
+                                    color: hex838187,
                                   ),
-                                ),
-                              ],
                             ),
                           ),
                           const SizedBox(
                             width: seventyThreeDotNil,
                           ),
-                          BlocBuilder<TrackingAuthorizationBloc,
-                              TrackingAuthorizationState>(
-                            builder: (context, trackingAuthorizationState) =>
+                          BlocBuilder<TrackingAuthorizationStatusBloc,
+                              TrackingAuthorizationStatusState>(
+                            builder: (_, trackingAuthorizationStatusState) =>
                                 BlocBuilder<AnalyticsBloc, AnalyticsState>(
-                              builder: (context, analyticsState) => Switch(
+                              builder: (__, analyticsState) => Switch(
                                 activeTrackColor: hex65C466,
                                 value: analyticsState.maybeWhen(
                                   maybeEnabled: (enabled) => enabled,
                                   orElse: () => false,
                                 ),
                                 onChanged: (_) =>
-                                    trackingAuthorizationState.maybeWhen(
-                                  cannotAuthorizeTracking:
-                                      (trackingStatusFailure) =>
-                                          switch (trackingStatusFailure) {
+                                    trackingAuthorizationStatusState.maybeWhen(
+                                  cannotAuthorize: (trackingStatusFailure) =>
+                                      switch (trackingStatusFailure) {
                                     TrackingRequestFailure() => null,
                                     TrackingRequestNotRequiredFailure() =>
                                       analyticsState.maybeWhen(
@@ -309,17 +249,18 @@ class _SettingsViewState extends State<SettingsView> {
                                         orElse: _toggleAnalyticsCollection,
                                       ),
                                   },
-                                  processing: () => null,
+                                  checking: () => null,
                                   orElse: () => analyticsState.maybeWhen(
                                     processing: () => null,
                                     orElse: () => WidgetsFlutterBinding
                                             .ensureInitialized()
                                         .addPostFrameCallback(
                                       (_) => context
-                                          .read<TrackingAuthorizationBloc>()
+                                          .read<
+                                              RequestTrackingAuthorizationBloc>()
                                           .add(
-                                            const TrackingAuthorizationEvent
-                                                .checkTrackingStatus(),
+                                            const RequestTrackingAuthorizationEvent
+                                                .request(),
                                           ),
                                     ),
                                   ),
