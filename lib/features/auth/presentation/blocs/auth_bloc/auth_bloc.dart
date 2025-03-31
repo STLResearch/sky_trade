@@ -174,8 +174,9 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
             SFAUserShouldLogoutFailure() => AuthState.sFAUserShouldLogout(
                 email: event.email,
               ),
-            SFAAuthenticationUnknownFailure() =>
-              const AuthState.failedToAuthenticateAuth0UserWithSFA(),
+            SFAAuthenticationUnknownFailure() => AuthState.sFAUserShouldLogout(
+                email: event.email,
+              ),
           },
         );
       },

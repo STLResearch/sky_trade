@@ -246,13 +246,6 @@ class GetStartedView extends StatelessWidget {
                         .localize.oopsWeCouldNotAuthenticateYouPleaseTryAgain,
                   );
                 },
-                failedToAuthenticateAuth0UserWithSFA: () {
-                  AlertSnackBar.show(
-                    context,
-                    message: context.localize
-                        .thereWasAnErrorTryingAgainWillMostLikelyFixThisIssue,
-                  );
-                },
               );
             },
           ),

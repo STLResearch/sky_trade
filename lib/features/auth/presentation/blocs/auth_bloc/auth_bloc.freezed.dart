@@ -1181,7 +1181,6 @@ mixin _$AuthState {
         failedToCreateSkyTradeUser,
     required TResult Function() failedToAuthenticateUserWithAuth0,
     required TResult Function(String? email) sFAUserShouldLogout,
-    required TResult Function() failedToAuthenticateAuth0UserWithSFA,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -1197,7 +1196,6 @@ mixin _$AuthState {
         failedToCreateSkyTradeUser,
     TResult? Function()? failedToAuthenticateUserWithAuth0,
     TResult? Function(String? email)? sFAUserShouldLogout,
-    TResult? Function()? failedToAuthenticateAuth0UserWithSFA,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -1213,7 +1211,6 @@ mixin _$AuthState {
         failedToCreateSkyTradeUser,
     TResult Function()? failedToAuthenticateUserWithAuth0,
     TResult Function(String? email)? sFAUserShouldLogout,
-    TResult Function()? failedToAuthenticateAuth0UserWithSFA,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -1233,8 +1230,6 @@ mixin _$AuthState {
     required TResult Function(_FailedToAuthenticateUserWithAuth0 value)
         failedToAuthenticateUserWithAuth0,
     required TResult Function(_SFAUserShouldLogout value) sFAUserShouldLogout,
-    required TResult Function(_FailedToAuthenticateAuth0UserWithSFA value)
-        failedToAuthenticateAuth0UserWithSFA,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -1252,8 +1247,6 @@ mixin _$AuthState {
     TResult? Function(_FailedToAuthenticateUserWithAuth0 value)?
         failedToAuthenticateUserWithAuth0,
     TResult? Function(_SFAUserShouldLogout value)? sFAUserShouldLogout,
-    TResult? Function(_FailedToAuthenticateAuth0UserWithSFA value)?
-        failedToAuthenticateAuth0UserWithSFA,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -1271,8 +1264,6 @@ mixin _$AuthState {
     TResult Function(_FailedToAuthenticateUserWithAuth0 value)?
         failedToAuthenticateUserWithAuth0,
     TResult Function(_SFAUserShouldLogout value)? sFAUserShouldLogout,
-    TResult Function(_FailedToAuthenticateAuth0UserWithSFA value)?
-        failedToAuthenticateAuth0UserWithSFA,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -1351,7 +1342,6 @@ class _$InitialImpl implements _Initial {
         failedToCreateSkyTradeUser,
     required TResult Function() failedToAuthenticateUserWithAuth0,
     required TResult Function(String? email) sFAUserShouldLogout,
-    required TResult Function() failedToAuthenticateAuth0UserWithSFA,
   }) {
     return initial();
   }
@@ -1370,7 +1360,6 @@ class _$InitialImpl implements _Initial {
         failedToCreateSkyTradeUser,
     TResult? Function()? failedToAuthenticateUserWithAuth0,
     TResult? Function(String? email)? sFAUserShouldLogout,
-    TResult? Function()? failedToAuthenticateAuth0UserWithSFA,
   }) {
     return initial?.call();
   }
@@ -1389,7 +1378,6 @@ class _$InitialImpl implements _Initial {
         failedToCreateSkyTradeUser,
     TResult Function()? failedToAuthenticateUserWithAuth0,
     TResult Function(String? email)? sFAUserShouldLogout,
-    TResult Function()? failedToAuthenticateAuth0UserWithSFA,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -1415,8 +1403,6 @@ class _$InitialImpl implements _Initial {
     required TResult Function(_FailedToAuthenticateUserWithAuth0 value)
         failedToAuthenticateUserWithAuth0,
     required TResult Function(_SFAUserShouldLogout value) sFAUserShouldLogout,
-    required TResult Function(_FailedToAuthenticateAuth0UserWithSFA value)
-        failedToAuthenticateAuth0UserWithSFA,
   }) {
     return initial(this);
   }
@@ -1437,8 +1423,6 @@ class _$InitialImpl implements _Initial {
     TResult? Function(_FailedToAuthenticateUserWithAuth0 value)?
         failedToAuthenticateUserWithAuth0,
     TResult? Function(_SFAUserShouldLogout value)? sFAUserShouldLogout,
-    TResult? Function(_FailedToAuthenticateAuth0UserWithSFA value)?
-        failedToAuthenticateAuth0UserWithSFA,
   }) {
     return initial?.call(this);
   }
@@ -1459,8 +1443,6 @@ class _$InitialImpl implements _Initial {
     TResult Function(_FailedToAuthenticateUserWithAuth0 value)?
         failedToAuthenticateUserWithAuth0,
     TResult Function(_SFAUserShouldLogout value)? sFAUserShouldLogout,
-    TResult Function(_FailedToAuthenticateAuth0UserWithSFA value)?
-        failedToAuthenticateAuth0UserWithSFA,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -1527,7 +1509,6 @@ class _$AuthenticatingImpl implements _Authenticating {
         failedToCreateSkyTradeUser,
     required TResult Function() failedToAuthenticateUserWithAuth0,
     required TResult Function(String? email) sFAUserShouldLogout,
-    required TResult Function() failedToAuthenticateAuth0UserWithSFA,
   }) {
     return authenticating();
   }
@@ -1546,7 +1527,6 @@ class _$AuthenticatingImpl implements _Authenticating {
         failedToCreateSkyTradeUser,
     TResult? Function()? failedToAuthenticateUserWithAuth0,
     TResult? Function(String? email)? sFAUserShouldLogout,
-    TResult? Function()? failedToAuthenticateAuth0UserWithSFA,
   }) {
     return authenticating?.call();
   }
@@ -1565,7 +1545,6 @@ class _$AuthenticatingImpl implements _Authenticating {
         failedToCreateSkyTradeUser,
     TResult Function()? failedToAuthenticateUserWithAuth0,
     TResult Function(String? email)? sFAUserShouldLogout,
-    TResult Function()? failedToAuthenticateAuth0UserWithSFA,
     required TResult orElse(),
   }) {
     if (authenticating != null) {
@@ -1591,8 +1570,6 @@ class _$AuthenticatingImpl implements _Authenticating {
     required TResult Function(_FailedToAuthenticateUserWithAuth0 value)
         failedToAuthenticateUserWithAuth0,
     required TResult Function(_SFAUserShouldLogout value) sFAUserShouldLogout,
-    required TResult Function(_FailedToAuthenticateAuth0UserWithSFA value)
-        failedToAuthenticateAuth0UserWithSFA,
   }) {
     return authenticating(this);
   }
@@ -1613,8 +1590,6 @@ class _$AuthenticatingImpl implements _Authenticating {
     TResult? Function(_FailedToAuthenticateUserWithAuth0 value)?
         failedToAuthenticateUserWithAuth0,
     TResult? Function(_SFAUserShouldLogout value)? sFAUserShouldLogout,
-    TResult? Function(_FailedToAuthenticateAuth0UserWithSFA value)?
-        failedToAuthenticateAuth0UserWithSFA,
   }) {
     return authenticating?.call(this);
   }
@@ -1635,8 +1610,6 @@ class _$AuthenticatingImpl implements _Authenticating {
     TResult Function(_FailedToAuthenticateUserWithAuth0 value)?
         failedToAuthenticateUserWithAuth0,
     TResult Function(_SFAUserShouldLogout value)? sFAUserShouldLogout,
-    TResult Function(_FailedToAuthenticateAuth0UserWithSFA value)?
-        failedToAuthenticateAuth0UserWithSFA,
     required TResult orElse(),
   }) {
     if (authenticating != null) {
@@ -1732,7 +1705,6 @@ class _$EmailVerificationSentImpl implements _EmailVerificationSent {
         failedToCreateSkyTradeUser,
     required TResult Function() failedToAuthenticateUserWithAuth0,
     required TResult Function(String? email) sFAUserShouldLogout,
-    required TResult Function() failedToAuthenticateAuth0UserWithSFA,
   }) {
     return emailVerificationSent(email);
   }
@@ -1751,7 +1723,6 @@ class _$EmailVerificationSentImpl implements _EmailVerificationSent {
         failedToCreateSkyTradeUser,
     TResult? Function()? failedToAuthenticateUserWithAuth0,
     TResult? Function(String? email)? sFAUserShouldLogout,
-    TResult? Function()? failedToAuthenticateAuth0UserWithSFA,
   }) {
     return emailVerificationSent?.call(email);
   }
@@ -1770,7 +1741,6 @@ class _$EmailVerificationSentImpl implements _EmailVerificationSent {
         failedToCreateSkyTradeUser,
     TResult Function()? failedToAuthenticateUserWithAuth0,
     TResult Function(String? email)? sFAUserShouldLogout,
-    TResult Function()? failedToAuthenticateAuth0UserWithSFA,
     required TResult orElse(),
   }) {
     if (emailVerificationSent != null) {
@@ -1796,8 +1766,6 @@ class _$EmailVerificationSentImpl implements _EmailVerificationSent {
     required TResult Function(_FailedToAuthenticateUserWithAuth0 value)
         failedToAuthenticateUserWithAuth0,
     required TResult Function(_SFAUserShouldLogout value) sFAUserShouldLogout,
-    required TResult Function(_FailedToAuthenticateAuth0UserWithSFA value)
-        failedToAuthenticateAuth0UserWithSFA,
   }) {
     return emailVerificationSent(this);
   }
@@ -1818,8 +1786,6 @@ class _$EmailVerificationSentImpl implements _EmailVerificationSent {
     TResult? Function(_FailedToAuthenticateUserWithAuth0 value)?
         failedToAuthenticateUserWithAuth0,
     TResult? Function(_SFAUserShouldLogout value)? sFAUserShouldLogout,
-    TResult? Function(_FailedToAuthenticateAuth0UserWithSFA value)?
-        failedToAuthenticateAuth0UserWithSFA,
   }) {
     return emailVerificationSent?.call(this);
   }
@@ -1840,8 +1806,6 @@ class _$EmailVerificationSentImpl implements _EmailVerificationSent {
     TResult Function(_FailedToAuthenticateUserWithAuth0 value)?
         failedToAuthenticateUserWithAuth0,
     TResult Function(_SFAUserShouldLogout value)? sFAUserShouldLogout,
-    TResult Function(_FailedToAuthenticateAuth0UserWithSFA value)?
-        failedToAuthenticateAuth0UserWithSFA,
     required TResult orElse(),
   }) {
     if (emailVerificationSent != null) {
@@ -1947,7 +1911,6 @@ class _$UnverifiedAuth0UserExistsImpl implements _UnverifiedAuth0UserExists {
         failedToCreateSkyTradeUser,
     required TResult Function() failedToAuthenticateUserWithAuth0,
     required TResult Function(String? email) sFAUserShouldLogout,
-    required TResult Function() failedToAuthenticateAuth0UserWithSFA,
   }) {
     return unverifiedAuth0UserExists(email);
   }
@@ -1966,7 +1929,6 @@ class _$UnverifiedAuth0UserExistsImpl implements _UnverifiedAuth0UserExists {
         failedToCreateSkyTradeUser,
     TResult? Function()? failedToAuthenticateUserWithAuth0,
     TResult? Function(String? email)? sFAUserShouldLogout,
-    TResult? Function()? failedToAuthenticateAuth0UserWithSFA,
   }) {
     return unverifiedAuth0UserExists?.call(email);
   }
@@ -1985,7 +1947,6 @@ class _$UnverifiedAuth0UserExistsImpl implements _UnverifiedAuth0UserExists {
         failedToCreateSkyTradeUser,
     TResult Function()? failedToAuthenticateUserWithAuth0,
     TResult Function(String? email)? sFAUserShouldLogout,
-    TResult Function()? failedToAuthenticateAuth0UserWithSFA,
     required TResult orElse(),
   }) {
     if (unverifiedAuth0UserExists != null) {
@@ -2011,8 +1972,6 @@ class _$UnverifiedAuth0UserExistsImpl implements _UnverifiedAuth0UserExists {
     required TResult Function(_FailedToAuthenticateUserWithAuth0 value)
         failedToAuthenticateUserWithAuth0,
     required TResult Function(_SFAUserShouldLogout value) sFAUserShouldLogout,
-    required TResult Function(_FailedToAuthenticateAuth0UserWithSFA value)
-        failedToAuthenticateAuth0UserWithSFA,
   }) {
     return unverifiedAuth0UserExists(this);
   }
@@ -2033,8 +1992,6 @@ class _$UnverifiedAuth0UserExistsImpl implements _UnverifiedAuth0UserExists {
     TResult? Function(_FailedToAuthenticateUserWithAuth0 value)?
         failedToAuthenticateUserWithAuth0,
     TResult? Function(_SFAUserShouldLogout value)? sFAUserShouldLogout,
-    TResult? Function(_FailedToAuthenticateAuth0UserWithSFA value)?
-        failedToAuthenticateAuth0UserWithSFA,
   }) {
     return unverifiedAuth0UserExists?.call(this);
   }
@@ -2055,8 +2012,6 @@ class _$UnverifiedAuth0UserExistsImpl implements _UnverifiedAuth0UserExists {
     TResult Function(_FailedToAuthenticateUserWithAuth0 value)?
         failedToAuthenticateUserWithAuth0,
     TResult Function(_SFAUserShouldLogout value)? sFAUserShouldLogout,
-    TResult Function(_FailedToAuthenticateAuth0UserWithSFA value)?
-        failedToAuthenticateAuth0UserWithSFA,
     required TResult orElse(),
   }) {
     if (unverifiedAuth0UserExists != null) {
@@ -2132,7 +2087,6 @@ class _$AuthenticatedImpl implements _Authenticated {
         failedToCreateSkyTradeUser,
     required TResult Function() failedToAuthenticateUserWithAuth0,
     required TResult Function(String? email) sFAUserShouldLogout,
-    required TResult Function() failedToAuthenticateAuth0UserWithSFA,
   }) {
     return authenticated();
   }
@@ -2151,7 +2105,6 @@ class _$AuthenticatedImpl implements _Authenticated {
         failedToCreateSkyTradeUser,
     TResult? Function()? failedToAuthenticateUserWithAuth0,
     TResult? Function(String? email)? sFAUserShouldLogout,
-    TResult? Function()? failedToAuthenticateAuth0UserWithSFA,
   }) {
     return authenticated?.call();
   }
@@ -2170,7 +2123,6 @@ class _$AuthenticatedImpl implements _Authenticated {
         failedToCreateSkyTradeUser,
     TResult Function()? failedToAuthenticateUserWithAuth0,
     TResult Function(String? email)? sFAUserShouldLogout,
-    TResult Function()? failedToAuthenticateAuth0UserWithSFA,
     required TResult orElse(),
   }) {
     if (authenticated != null) {
@@ -2196,8 +2148,6 @@ class _$AuthenticatedImpl implements _Authenticated {
     required TResult Function(_FailedToAuthenticateUserWithAuth0 value)
         failedToAuthenticateUserWithAuth0,
     required TResult Function(_SFAUserShouldLogout value) sFAUserShouldLogout,
-    required TResult Function(_FailedToAuthenticateAuth0UserWithSFA value)
-        failedToAuthenticateAuth0UserWithSFA,
   }) {
     return authenticated(this);
   }
@@ -2218,8 +2168,6 @@ class _$AuthenticatedImpl implements _Authenticated {
     TResult? Function(_FailedToAuthenticateUserWithAuth0 value)?
         failedToAuthenticateUserWithAuth0,
     TResult? Function(_SFAUserShouldLogout value)? sFAUserShouldLogout,
-    TResult? Function(_FailedToAuthenticateAuth0UserWithSFA value)?
-        failedToAuthenticateAuth0UserWithSFA,
   }) {
     return authenticated?.call(this);
   }
@@ -2240,8 +2188,6 @@ class _$AuthenticatedImpl implements _Authenticated {
     TResult Function(_FailedToAuthenticateUserWithAuth0 value)?
         failedToAuthenticateUserWithAuth0,
     TResult Function(_SFAUserShouldLogout value)? sFAUserShouldLogout,
-    TResult Function(_FailedToAuthenticateAuth0UserWithSFA value)?
-        failedToAuthenticateAuth0UserWithSFA,
     required TResult orElse(),
   }) {
     if (authenticated != null) {
@@ -2341,7 +2287,6 @@ class _$FailedToCheckSkyTradeUserImpl implements _FailedToCheckSkyTradeUser {
         failedToCreateSkyTradeUser,
     required TResult Function() failedToAuthenticateUserWithAuth0,
     required TResult Function(String? email) sFAUserShouldLogout,
-    required TResult Function() failedToAuthenticateAuth0UserWithSFA,
   }) {
     return failedToCheckSkyTradeUser(checkSkyTradeUserFailure);
   }
@@ -2360,7 +2305,6 @@ class _$FailedToCheckSkyTradeUserImpl implements _FailedToCheckSkyTradeUser {
         failedToCreateSkyTradeUser,
     TResult? Function()? failedToAuthenticateUserWithAuth0,
     TResult? Function(String? email)? sFAUserShouldLogout,
-    TResult? Function()? failedToAuthenticateAuth0UserWithSFA,
   }) {
     return failedToCheckSkyTradeUser?.call(checkSkyTradeUserFailure);
   }
@@ -2379,7 +2323,6 @@ class _$FailedToCheckSkyTradeUserImpl implements _FailedToCheckSkyTradeUser {
         failedToCreateSkyTradeUser,
     TResult Function()? failedToAuthenticateUserWithAuth0,
     TResult Function(String? email)? sFAUserShouldLogout,
-    TResult Function()? failedToAuthenticateAuth0UserWithSFA,
     required TResult orElse(),
   }) {
     if (failedToCheckSkyTradeUser != null) {
@@ -2405,8 +2348,6 @@ class _$FailedToCheckSkyTradeUserImpl implements _FailedToCheckSkyTradeUser {
     required TResult Function(_FailedToAuthenticateUserWithAuth0 value)
         failedToAuthenticateUserWithAuth0,
     required TResult Function(_SFAUserShouldLogout value) sFAUserShouldLogout,
-    required TResult Function(_FailedToAuthenticateAuth0UserWithSFA value)
-        failedToAuthenticateAuth0UserWithSFA,
   }) {
     return failedToCheckSkyTradeUser(this);
   }
@@ -2427,8 +2368,6 @@ class _$FailedToCheckSkyTradeUserImpl implements _FailedToCheckSkyTradeUser {
     TResult? Function(_FailedToAuthenticateUserWithAuth0 value)?
         failedToAuthenticateUserWithAuth0,
     TResult? Function(_SFAUserShouldLogout value)? sFAUserShouldLogout,
-    TResult? Function(_FailedToAuthenticateAuth0UserWithSFA value)?
-        failedToAuthenticateAuth0UserWithSFA,
   }) {
     return failedToCheckSkyTradeUser?.call(this);
   }
@@ -2449,8 +2388,6 @@ class _$FailedToCheckSkyTradeUserImpl implements _FailedToCheckSkyTradeUser {
     TResult Function(_FailedToAuthenticateUserWithAuth0 value)?
         failedToAuthenticateUserWithAuth0,
     TResult Function(_SFAUserShouldLogout value)? sFAUserShouldLogout,
-    TResult Function(_FailedToAuthenticateAuth0UserWithSFA value)?
-        failedToAuthenticateAuth0UserWithSFA,
     required TResult orElse(),
   }) {
     if (failedToCheckSkyTradeUser != null) {
@@ -2560,7 +2497,6 @@ class _$FailedToCreateSkyTradeUserImpl implements _FailedToCreateSkyTradeUser {
         failedToCreateSkyTradeUser,
     required TResult Function() failedToAuthenticateUserWithAuth0,
     required TResult Function(String? email) sFAUserShouldLogout,
-    required TResult Function() failedToAuthenticateAuth0UserWithSFA,
   }) {
     return failedToCreateSkyTradeUser(createSkyTradeUserFailure);
   }
@@ -2579,7 +2515,6 @@ class _$FailedToCreateSkyTradeUserImpl implements _FailedToCreateSkyTradeUser {
         failedToCreateSkyTradeUser,
     TResult? Function()? failedToAuthenticateUserWithAuth0,
     TResult? Function(String? email)? sFAUserShouldLogout,
-    TResult? Function()? failedToAuthenticateAuth0UserWithSFA,
   }) {
     return failedToCreateSkyTradeUser?.call(createSkyTradeUserFailure);
   }
@@ -2598,7 +2533,6 @@ class _$FailedToCreateSkyTradeUserImpl implements _FailedToCreateSkyTradeUser {
         failedToCreateSkyTradeUser,
     TResult Function()? failedToAuthenticateUserWithAuth0,
     TResult Function(String? email)? sFAUserShouldLogout,
-    TResult Function()? failedToAuthenticateAuth0UserWithSFA,
     required TResult orElse(),
   }) {
     if (failedToCreateSkyTradeUser != null) {
@@ -2624,8 +2558,6 @@ class _$FailedToCreateSkyTradeUserImpl implements _FailedToCreateSkyTradeUser {
     required TResult Function(_FailedToAuthenticateUserWithAuth0 value)
         failedToAuthenticateUserWithAuth0,
     required TResult Function(_SFAUserShouldLogout value) sFAUserShouldLogout,
-    required TResult Function(_FailedToAuthenticateAuth0UserWithSFA value)
-        failedToAuthenticateAuth0UserWithSFA,
   }) {
     return failedToCreateSkyTradeUser(this);
   }
@@ -2646,8 +2578,6 @@ class _$FailedToCreateSkyTradeUserImpl implements _FailedToCreateSkyTradeUser {
     TResult? Function(_FailedToAuthenticateUserWithAuth0 value)?
         failedToAuthenticateUserWithAuth0,
     TResult? Function(_SFAUserShouldLogout value)? sFAUserShouldLogout,
-    TResult? Function(_FailedToAuthenticateAuth0UserWithSFA value)?
-        failedToAuthenticateAuth0UserWithSFA,
   }) {
     return failedToCreateSkyTradeUser?.call(this);
   }
@@ -2668,8 +2598,6 @@ class _$FailedToCreateSkyTradeUserImpl implements _FailedToCreateSkyTradeUser {
     TResult Function(_FailedToAuthenticateUserWithAuth0 value)?
         failedToAuthenticateUserWithAuth0,
     TResult Function(_SFAUserShouldLogout value)? sFAUserShouldLogout,
-    TResult Function(_FailedToAuthenticateAuth0UserWithSFA value)?
-        failedToAuthenticateAuth0UserWithSFA,
     required TResult orElse(),
   }) {
     if (failedToCreateSkyTradeUser != null) {
@@ -2751,7 +2679,6 @@ class _$FailedToAuthenticateUserWithAuth0Impl
         failedToCreateSkyTradeUser,
     required TResult Function() failedToAuthenticateUserWithAuth0,
     required TResult Function(String? email) sFAUserShouldLogout,
-    required TResult Function() failedToAuthenticateAuth0UserWithSFA,
   }) {
     return failedToAuthenticateUserWithAuth0();
   }
@@ -2770,7 +2697,6 @@ class _$FailedToAuthenticateUserWithAuth0Impl
         failedToCreateSkyTradeUser,
     TResult? Function()? failedToAuthenticateUserWithAuth0,
     TResult? Function(String? email)? sFAUserShouldLogout,
-    TResult? Function()? failedToAuthenticateAuth0UserWithSFA,
   }) {
     return failedToAuthenticateUserWithAuth0?.call();
   }
@@ -2789,7 +2715,6 @@ class _$FailedToAuthenticateUserWithAuth0Impl
         failedToCreateSkyTradeUser,
     TResult Function()? failedToAuthenticateUserWithAuth0,
     TResult Function(String? email)? sFAUserShouldLogout,
-    TResult Function()? failedToAuthenticateAuth0UserWithSFA,
     required TResult orElse(),
   }) {
     if (failedToAuthenticateUserWithAuth0 != null) {
@@ -2815,8 +2740,6 @@ class _$FailedToAuthenticateUserWithAuth0Impl
     required TResult Function(_FailedToAuthenticateUserWithAuth0 value)
         failedToAuthenticateUserWithAuth0,
     required TResult Function(_SFAUserShouldLogout value) sFAUserShouldLogout,
-    required TResult Function(_FailedToAuthenticateAuth0UserWithSFA value)
-        failedToAuthenticateAuth0UserWithSFA,
   }) {
     return failedToAuthenticateUserWithAuth0(this);
   }
@@ -2837,8 +2760,6 @@ class _$FailedToAuthenticateUserWithAuth0Impl
     TResult? Function(_FailedToAuthenticateUserWithAuth0 value)?
         failedToAuthenticateUserWithAuth0,
     TResult? Function(_SFAUserShouldLogout value)? sFAUserShouldLogout,
-    TResult? Function(_FailedToAuthenticateAuth0UserWithSFA value)?
-        failedToAuthenticateAuth0UserWithSFA,
   }) {
     return failedToAuthenticateUserWithAuth0?.call(this);
   }
@@ -2859,8 +2780,6 @@ class _$FailedToAuthenticateUserWithAuth0Impl
     TResult Function(_FailedToAuthenticateUserWithAuth0 value)?
         failedToAuthenticateUserWithAuth0,
     TResult Function(_SFAUserShouldLogout value)? sFAUserShouldLogout,
-    TResult Function(_FailedToAuthenticateAuth0UserWithSFA value)?
-        failedToAuthenticateAuth0UserWithSFA,
     required TResult orElse(),
   }) {
     if (failedToAuthenticateUserWithAuth0 != null) {
@@ -2956,7 +2875,6 @@ class _$SFAUserShouldLogoutImpl implements _SFAUserShouldLogout {
         failedToCreateSkyTradeUser,
     required TResult Function() failedToAuthenticateUserWithAuth0,
     required TResult Function(String? email) sFAUserShouldLogout,
-    required TResult Function() failedToAuthenticateAuth0UserWithSFA,
   }) {
     return sFAUserShouldLogout(email);
   }
@@ -2975,7 +2893,6 @@ class _$SFAUserShouldLogoutImpl implements _SFAUserShouldLogout {
         failedToCreateSkyTradeUser,
     TResult? Function()? failedToAuthenticateUserWithAuth0,
     TResult? Function(String? email)? sFAUserShouldLogout,
-    TResult? Function()? failedToAuthenticateAuth0UserWithSFA,
   }) {
     return sFAUserShouldLogout?.call(email);
   }
@@ -2994,7 +2911,6 @@ class _$SFAUserShouldLogoutImpl implements _SFAUserShouldLogout {
         failedToCreateSkyTradeUser,
     TResult Function()? failedToAuthenticateUserWithAuth0,
     TResult Function(String? email)? sFAUserShouldLogout,
-    TResult Function()? failedToAuthenticateAuth0UserWithSFA,
     required TResult orElse(),
   }) {
     if (sFAUserShouldLogout != null) {
@@ -3020,8 +2936,6 @@ class _$SFAUserShouldLogoutImpl implements _SFAUserShouldLogout {
     required TResult Function(_FailedToAuthenticateUserWithAuth0 value)
         failedToAuthenticateUserWithAuth0,
     required TResult Function(_SFAUserShouldLogout value) sFAUserShouldLogout,
-    required TResult Function(_FailedToAuthenticateAuth0UserWithSFA value)
-        failedToAuthenticateAuth0UserWithSFA,
   }) {
     return sFAUserShouldLogout(this);
   }
@@ -3042,8 +2956,6 @@ class _$SFAUserShouldLogoutImpl implements _SFAUserShouldLogout {
     TResult? Function(_FailedToAuthenticateUserWithAuth0 value)?
         failedToAuthenticateUserWithAuth0,
     TResult? Function(_SFAUserShouldLogout value)? sFAUserShouldLogout,
-    TResult? Function(_FailedToAuthenticateAuth0UserWithSFA value)?
-        failedToAuthenticateAuth0UserWithSFA,
   }) {
     return sFAUserShouldLogout?.call(this);
   }
@@ -3064,8 +2976,6 @@ class _$SFAUserShouldLogoutImpl implements _SFAUserShouldLogout {
     TResult Function(_FailedToAuthenticateUserWithAuth0 value)?
         failedToAuthenticateUserWithAuth0,
     TResult Function(_SFAUserShouldLogout value)? sFAUserShouldLogout,
-    TResult Function(_FailedToAuthenticateAuth0UserWithSFA value)?
-        failedToAuthenticateAuth0UserWithSFA,
     required TResult orElse(),
   }) {
     if (sFAUserShouldLogout != null) {
@@ -3086,186 +2996,4 @@ abstract class _SFAUserShouldLogout implements AuthState {
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$SFAUserShouldLogoutImplCopyWith<_$SFAUserShouldLogoutImpl> get copyWith =>
       throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$$FailedToAuthenticateAuth0UserWithSFAImplCopyWith<$Res> {
-  factory _$$FailedToAuthenticateAuth0UserWithSFAImplCopyWith(
-          _$FailedToAuthenticateAuth0UserWithSFAImpl value,
-          $Res Function(_$FailedToAuthenticateAuth0UserWithSFAImpl) then) =
-      __$$FailedToAuthenticateAuth0UserWithSFAImplCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$FailedToAuthenticateAuth0UserWithSFAImplCopyWithImpl<$Res>
-    extends _$AuthStateCopyWithImpl<$Res,
-        _$FailedToAuthenticateAuth0UserWithSFAImpl>
-    implements _$$FailedToAuthenticateAuth0UserWithSFAImplCopyWith<$Res> {
-  __$$FailedToAuthenticateAuth0UserWithSFAImplCopyWithImpl(
-      _$FailedToAuthenticateAuth0UserWithSFAImpl _value,
-      $Res Function(_$FailedToAuthenticateAuth0UserWithSFAImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of AuthState
-  /// with the given fields replaced by the non-null parameter values.
-}
-
-/// @nodoc
-
-class _$FailedToAuthenticateAuth0UserWithSFAImpl
-    implements _FailedToAuthenticateAuth0UserWithSFA {
-  const _$FailedToAuthenticateAuth0UserWithSFAImpl();
-
-  @override
-  String toString() {
-    return 'AuthState.failedToAuthenticateAuth0UserWithSFA()';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$FailedToAuthenticateAuth0UserWithSFAImpl);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function() authenticating,
-    required TResult Function(String? email) emailVerificationSent,
-    required TResult Function(String? email) unverifiedAuth0UserExists,
-    required TResult Function() authenticated,
-    required TResult Function(CheckSkyTradeUserFailure checkSkyTradeUserFailure)
-        failedToCheckSkyTradeUser,
-    required TResult Function(
-            CreateSkyTradeUserFailure createSkyTradeUserFailure)
-        failedToCreateSkyTradeUser,
-    required TResult Function() failedToAuthenticateUserWithAuth0,
-    required TResult Function(String? email) sFAUserShouldLogout,
-    required TResult Function() failedToAuthenticateAuth0UserWithSFA,
-  }) {
-    return failedToAuthenticateAuth0UserWithSFA();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
-    TResult? Function()? authenticating,
-    TResult? Function(String? email)? emailVerificationSent,
-    TResult? Function(String? email)? unverifiedAuth0UserExists,
-    TResult? Function()? authenticated,
-    TResult? Function(CheckSkyTradeUserFailure checkSkyTradeUserFailure)?
-        failedToCheckSkyTradeUser,
-    TResult? Function(CreateSkyTradeUserFailure createSkyTradeUserFailure)?
-        failedToCreateSkyTradeUser,
-    TResult? Function()? failedToAuthenticateUserWithAuth0,
-    TResult? Function(String? email)? sFAUserShouldLogout,
-    TResult? Function()? failedToAuthenticateAuth0UserWithSFA,
-  }) {
-    return failedToAuthenticateAuth0UserWithSFA?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? authenticating,
-    TResult Function(String? email)? emailVerificationSent,
-    TResult Function(String? email)? unverifiedAuth0UserExists,
-    TResult Function()? authenticated,
-    TResult Function(CheckSkyTradeUserFailure checkSkyTradeUserFailure)?
-        failedToCheckSkyTradeUser,
-    TResult Function(CreateSkyTradeUserFailure createSkyTradeUserFailure)?
-        failedToCreateSkyTradeUser,
-    TResult Function()? failedToAuthenticateUserWithAuth0,
-    TResult Function(String? email)? sFAUserShouldLogout,
-    TResult Function()? failedToAuthenticateAuth0UserWithSFA,
-    required TResult orElse(),
-  }) {
-    if (failedToAuthenticateAuth0UserWithSFA != null) {
-      return failedToAuthenticateAuth0UserWithSFA();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_Authenticating value) authenticating,
-    required TResult Function(_EmailVerificationSent value)
-        emailVerificationSent,
-    required TResult Function(_UnverifiedAuth0UserExists value)
-        unverifiedAuth0UserExists,
-    required TResult Function(_Authenticated value) authenticated,
-    required TResult Function(_FailedToCheckSkyTradeUser value)
-        failedToCheckSkyTradeUser,
-    required TResult Function(_FailedToCreateSkyTradeUser value)
-        failedToCreateSkyTradeUser,
-    required TResult Function(_FailedToAuthenticateUserWithAuth0 value)
-        failedToAuthenticateUserWithAuth0,
-    required TResult Function(_SFAUserShouldLogout value) sFAUserShouldLogout,
-    required TResult Function(_FailedToAuthenticateAuth0UserWithSFA value)
-        failedToAuthenticateAuth0UserWithSFA,
-  }) {
-    return failedToAuthenticateAuth0UserWithSFA(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(_Authenticating value)? authenticating,
-    TResult? Function(_EmailVerificationSent value)? emailVerificationSent,
-    TResult? Function(_UnverifiedAuth0UserExists value)?
-        unverifiedAuth0UserExists,
-    TResult? Function(_Authenticated value)? authenticated,
-    TResult? Function(_FailedToCheckSkyTradeUser value)?
-        failedToCheckSkyTradeUser,
-    TResult? Function(_FailedToCreateSkyTradeUser value)?
-        failedToCreateSkyTradeUser,
-    TResult? Function(_FailedToAuthenticateUserWithAuth0 value)?
-        failedToAuthenticateUserWithAuth0,
-    TResult? Function(_SFAUserShouldLogout value)? sFAUserShouldLogout,
-    TResult? Function(_FailedToAuthenticateAuth0UserWithSFA value)?
-        failedToAuthenticateAuth0UserWithSFA,
-  }) {
-    return failedToAuthenticateAuth0UserWithSFA?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_Authenticating value)? authenticating,
-    TResult Function(_EmailVerificationSent value)? emailVerificationSent,
-    TResult Function(_UnverifiedAuth0UserExists value)?
-        unverifiedAuth0UserExists,
-    TResult Function(_Authenticated value)? authenticated,
-    TResult Function(_FailedToCheckSkyTradeUser value)?
-        failedToCheckSkyTradeUser,
-    TResult Function(_FailedToCreateSkyTradeUser value)?
-        failedToCreateSkyTradeUser,
-    TResult Function(_FailedToAuthenticateUserWithAuth0 value)?
-        failedToAuthenticateUserWithAuth0,
-    TResult Function(_SFAUserShouldLogout value)? sFAUserShouldLogout,
-    TResult Function(_FailedToAuthenticateAuth0UserWithSFA value)?
-        failedToAuthenticateAuth0UserWithSFA,
-    required TResult orElse(),
-  }) {
-    if (failedToAuthenticateAuth0UserWithSFA != null) {
-      return failedToAuthenticateAuth0UserWithSFA(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _FailedToAuthenticateAuth0UserWithSFA implements AuthState {
-  const factory _FailedToAuthenticateAuth0UserWithSFA() =
-      _$FailedToAuthenticateAuth0UserWithSFAImpl;
 }
