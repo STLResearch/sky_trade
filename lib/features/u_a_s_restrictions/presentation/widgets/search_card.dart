@@ -68,11 +68,14 @@ import 'package:sky_trade/injection_container.dart' show serviceLocator;
 class SearchCard extends StatelessWidget {
   const SearchCard({
     required this.onSearchFieldTap,
+    required this.onSearchFieldCleared,
     required this.tappedSearchResultPlaceName,
     super.key,
   });
 
   final Function0<void> onSearchFieldTap;
+
+  final Function0<void> onSearchFieldCleared;
 
   final String? tappedSearchResultPlaceName;
 
@@ -88,6 +91,7 @@ class SearchCard extends StatelessWidget {
         ],
         child: SearchCardView(
           onSearchFieldTap: onSearchFieldTap,
+          onSearchFieldCleared: onSearchFieldCleared,
           tappedSearchResultPlaceName: tappedSearchResultPlaceName,
         ),
       );
@@ -96,11 +100,14 @@ class SearchCard extends StatelessWidget {
 class SearchCardView extends StatefulWidget {
   const SearchCardView({
     required this.onSearchFieldTap,
+    required this.onSearchFieldCleared,
     required this.tappedSearchResultPlaceName,
     super.key,
   });
 
   final Function0<void> onSearchFieldTap;
+
+  final Function0<void> onSearchFieldCleared;
 
   final String? tappedSearchResultPlaceName;
 
@@ -221,6 +228,7 @@ class _SearchCardViewState extends State<SearchCardView> {
                             orElse: () => GestureDetector(
                               onTap: () {
                                 _searchController.clear();
+                                widget.onSearchFieldCleared();
 
                                 context.read<SearchAutocompleteBloc>().add(
                                       SearchAutocompleteEvent
