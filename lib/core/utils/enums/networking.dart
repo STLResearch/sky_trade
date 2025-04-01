@@ -71,6 +71,10 @@ import 'package:sky_trade/core/resources/strings/networking.dart'
         networkRemoteIdKey,
         noneKey,
         notVerifiedKey,
+        oneDKey,
+        oneMKey,
+        oneWKey,
+        oneYKey,
         operatorIDKey,
         operatorIdSignatureKey,
         ornithopterKey,
@@ -445,4 +449,25 @@ enum GeoJsonType {
   featureCollection,
   @JsonValue(geometryCollectionKey)
   geometryCollection,
+}
+
+enum RangeFilter {
+  oneDay(
+    oneDKey,
+  ),
+  oneWeek(
+    oneWKey,
+  ),
+  oneMonth(
+    oneMKey,
+  ),
+  oneYear(
+    oneYKey,
+  );
+
+  const RangeFilter(
+    this.value,
+  );
+
+  final String value;
 }

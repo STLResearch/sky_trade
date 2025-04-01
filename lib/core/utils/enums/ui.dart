@@ -18,13 +18,6 @@ enum MenuItem {
   logout,
 }
 
-enum Period {
-  oneDay,
-  oneWeek,
-  oneMonth,
-  oneYear,
-}
-
 enum ErrorReason {
   deletedSkyTradeUserWithExistingAuth0Session,
   sessionInitializationFailure,
