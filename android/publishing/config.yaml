@@ -19,7 +19,7 @@ app:
     - purpose: icon
       uri: ../fastlane/metadata/android/en-GB/images/icon.png
 release:
-  address: H4rV9HBmy6aSoSC4Jk6Z8zwva62y8x9VMdVZirx2QBk8
+  address: 252EWVh8C2K8eeHgTBWTGZPSmqKqf1CR9736zKR7573q
   media:
     - purpose: icon
       uri: ../fastlane/metadata/android/en-GB/images/icon.png
@@ -43,10 +43,10 @@ release:
       saga_features: ''
 solana_mobile_dapp_publisher_portal:
   google_store_package: mobile.trade.sky
-  testing_instructions: The app uses Web3Auth for authentication. Kindly register with an email. A code will be sent to the email. Go to the email sent and click on Approve login request then go back to the app. You will either see a prompt and click Continue or you will just be signed in automatically after you click Approve login request. If you register an account with email passwordless, make sure to also login with the same method you used to register the account else login will fail with an error
+  testing_instructions: We refined our authentication flow. The new flow simplifies authentication for users making it easy for both new and existing users to sign up or sign in. We created a test account for the Solana dApp store review team to test this new flow easily. On the new authentication screen, click Get started -> Use password -> then enter the following credentials we specially created for the Solana dApp store review team to test with. Email is testrestrictionsapp+solanadappstorereview@gmail.com and password is Shivam##%27
 lastSubmittedVersionOnChain:
-  address: H4rV9HBmy6aSoSC4Jk6Z8zwva62y8x9VMdVZirx2QBk8
-  version_code: 3
-  apk_hash: pW/mcKmwGHjAqCvlrfnf6bMwa4xmy0J5dP7OD+JoJaQ=
+  address: 252EWVh8C2K8eeHgTBWTGZPSmqKqf1CR9736zKR7573q
+  version_code: 7
+  apk_hash: Yt0dosmPoZKTDb+dJMy+3ocng5lEpH3zhtn9hb1UPJU=
 lastUpdatedVersionOnStore:
-  address: H4rV9HBmy6aSoSC4Jk6Z8zwva62y8x9VMdVZirx2QBk8
+  address: 252EWVh8C2K8eeHgTBWTGZPSmqKqf1CR9736zKR7573q
