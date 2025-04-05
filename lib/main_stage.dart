@@ -34,22 +34,14 @@ import 'package:sky_trade/core/resources/numbers/local.dart'
     show one, thirtySix;
 import 'package:sky_trade/core/resources/numbers/ui.dart' show oneDotNil;
 import 'package:sky_trade/core/resources/strings/environments.dart'
-    show
-        devEnvironment,
-        environmentVariablesFileName,
-        flavours,
-        liveEnvironment,
-        stageEnvironment;
+    show environmentVariablesFileName, stageEnvironment;
 import 'package:sky_trade/core/resources/strings/local.dart'
     show analyticsStateKey, base36UpperBound;
 import 'package:sky_trade/core/resources/strings/secret_keys.dart'
     show clarityProjectId, sentryDsn;
 import 'package:sky_trade/core/resources/strings/special_characters.dart'
     show fullStop;
-import 'package:sky_trade/firebase_options_dev.dart' as firebase_options_dev;
-import 'package:sky_trade/firebase_options_live.dart' as firebase_options_live;
-import 'package:sky_trade/firebase_options_stage.dart'
-    as firebase_options_stage;
+import 'package:sky_trade/firebase_options_stage.dart';
 import 'package:sky_trade/injection_container.dart';
 
 void main() => _loadEnv().then(
@@ -63,13 +55,13 @@ void main() => _loadEnv().then(
     );
 
 Future<void> _loadEnv() => dotenv.load(
-      fileName: environmentVariablesFileName + fullStop + _environment,
+      fileName: environmentVariablesFileName + fullStop + stageEnvironment,
     );
 
 Future<void> _maybeInitializeSentryReporting({
   required VoidCallback then,
 }) async {
-  if (_isUnsuitableEnvironmentForDataCollection) {
+  if (kDebugMode || kProfileMode) {
     then();
 
     return;
@@ -78,7 +70,7 @@ Future<void> _maybeInitializeSentryReporting({
   await SentryFlutter.init(
     (options) {
       options
-        ..environment = _environment
+        ..environment = stageEnvironment
         ..dsn = dotenv.env[sentryDsn]
         ..tracesSampleRate = oneDotNil
         ..profilesSampleRate = oneDotNil;
@@ -130,16 +122,7 @@ Future<void> _initializeImportantResources() async {
   Bloc.observer = const AppBlocObserver();
 }
 
-FirebaseOptions get _firebaseOptions => switch (_environment) {
-      stageEnvironment =>
-        firebase_options_stage.DefaultFirebaseOptions.currentPlatform,
-      liveEnvironment =>
-        firebase_options_live.DefaultFirebaseOptions.currentPlatform,
-      _ => firebase_options_dev.DefaultFirebaseOptions.currentPlatform,
-    };
-
-bool get _isUnsuitableEnvironmentForDataCollection =>
-    kDebugMode || kProfileMode || _environment == devEnvironment;
+FirebaseOptions get _firebaseOptions => DefaultFirebaseOptions.currentPlatform;
 
 Future<bool> _shouldCollectAnalyticsData() async {
   final preferences =
@@ -169,7 +152,7 @@ Future<bool> _shouldCollectAnalyticsData() async {
       (analyticsState ?? false);
 }
 
-Widget get _app => switch (_environment == devEnvironment || kDebugMode) {
+Widget get _app => switch (kDebugMode || kProfileMode) {
       true => const App(),
       false => Clarity(
           app: const App(),
@@ -180,7 +163,7 @@ Widget get _app => switch (_environment == devEnvironment || kDebugMode) {
 ClarityConfig get _clarityConfig => ClarityConfig(
       projectId: dotenv.env[clarityProjectId]!,
       userId: _clarityBase36UserId,
-      logLevel: _clarityLogLevel,
+      logLevel: LogLevel.Verbose,
     );
 
 String get _clarityBase36UserId {
@@ -200,16 +183,3 @@ String get _clarityBase36UserId {
 
   return base36Value;
 }
-
-LogLevel get _clarityLogLevel {
-  if (_environment == devEnvironment || _environment == stageEnvironment) {
-    return LogLevel.Verbose;
-  }
-
-  return LogLevel.Error;
-}
-
-String get _environment => const String.fromEnvironment(
-      flavours,
-      defaultValue: devEnvironment,
-    );
