@@ -145,20 +145,25 @@ base class RemoteIDEntity extends Equatable {
           ...?basicIDs,
         }.toList(),
         location: location?.merge(
-          newRemoteIDEntity.location,
-        ),
+              newRemoteIDEntity.location,
+            ) ??
+            newRemoteIDEntity.location,
         system: system?.merge(
-          newRemoteIDEntity.system,
-        ),
+              newRemoteIDEntity.system,
+            ) ??
+            newRemoteIDEntity.system,
         selfID: selfID?.merge(
-          newRemoteIDEntity.selfID,
-        ),
+              newRemoteIDEntity.selfID,
+            ) ??
+            newRemoteIDEntity.selfID,
         operatorID: operatorID?.merge(
-          newRemoteIDEntity.operatorID,
-        ),
+              newRemoteIDEntity.operatorID,
+            ) ??
+            newRemoteIDEntity.operatorID,
         authentication: authentication?.merge(
-          newRemoteIDEntity.authentication,
-        ),
+              newRemoteIDEntity.authentication,
+            ) ??
+            newRemoteIDEntity.authentication,
       );
 
   @override

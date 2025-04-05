@@ -2,6 +2,8 @@ import 'package:dartz/dartz.dart' show Either;
 import 'package:sky_trade/core/errors/failures/u_a_s_restrictions_failure.dart'
     show UASRestrictionsFailure;
 import 'package:sky_trade/core/utils/clients/data_handler.dart';
+import 'package:sky_trade/features/u_a_s_restrictions/data/data_sources/u_a_s_restrictions_local_data_source.dart'
+    show UASRestrictionsLocalDataSource;
 import 'package:sky_trade/features/u_a_s_restrictions/data/data_sources/u_a_s_restrictions_remote_data_source.dart'
     show UASRestrictionsRemoteDataSource;
 import 'package:sky_trade/features/u_a_s_restrictions/domain/entities/restriction_entity.dart'
@@ -11,9 +13,13 @@ import 'package:sky_trade/features/u_a_s_restrictions/domain/repositories/u_a_s_
 final class UASRestrictionsRepositoryImplementation
     with DataHandler
     implements UASRestrictionsRepository {
-  const UASRestrictionsRepositoryImplementation(
-    UASRestrictionsRemoteDataSource uASRestrictionsRemoteDataSource,
-  ) : _uASRestrictionsRemoteDataSource = uASRestrictionsRemoteDataSource;
+  const UASRestrictionsRepositoryImplementation({
+    required UASRestrictionsLocalDataSource uASRestrictionsLocalDataSource,
+    required UASRestrictionsRemoteDataSource uASRestrictionsRemoteDataSource,
+  })  : _uASRestrictionsLocalDataSource = uASRestrictionsLocalDataSource,
+        _uASRestrictionsRemoteDataSource = uASRestrictionsRemoteDataSource;
+
+  final UASRestrictionsLocalDataSource _uASRestrictionsLocalDataSource;
 
   final UASRestrictionsRemoteDataSource _uASRestrictionsRemoteDataSource;
 
@@ -23,10 +29,42 @@ final class UASRestrictionsRepositoryImplementation
     required String geoHash,
   }) =>
           handleData<UASRestrictionsFailure, List<RestrictionEntity>>(
-            dataSourceOperation: () =>
-                _uASRestrictionsRemoteDataSource.getRestrictionsUsing(
-              geoHash: geoHash,
-            ),
+            dataSourceOperation: () async {
+              final localDataExists = await _uASRestrictionsLocalDataSource
+                  .checkForCachedRestrictionsUsing(
+                geoHash: geoHash,
+              );
+
+              if (localDataExists) {
+                final localDataIsStale = await _uASRestrictionsLocalDataSource
+                    .checkCachedRestrictionsIsStaleUsing(
+                  geoHash: geoHash,
+                );
+
+                if (localDataIsStale) {
+                  final remoteData = await _uASRestrictionsRemoteDataSource
+                      .getRestrictionsUsing(
+                    geoHash: geoHash,
+                  );
+
+                  await _uASRestrictionsLocalDataSource.cacheRestrictionsUsing(
+                    geoHash: geoHash,
+                    data: remoteData,
+                  );
+
+                  return remoteData;
+                }
+
+                return _uASRestrictionsLocalDataSource
+                    .getCachedRestrictionsUsing(
+                  geoHash: geoHash,
+                );
+              }
+
+              return _uASRestrictionsRemoteDataSource.getRestrictionsUsing(
+                geoHash: geoHash,
+              );
+            },
             onSuccess: (restrictionEntities) => restrictionEntities,
             onFailure: (_) => UASRestrictionsFailure(),
           );

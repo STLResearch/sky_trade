@@ -1,3 +1,4 @@
+import 'package:dartz/dartz.dart' show Function1;
 import 'package:flutter/material.dart'
     show
         AlwaysStoppedAnimation,
@@ -11,6 +12,7 @@ import 'package:flutter/material.dart'
         Container,
         CrossAxisAlignment,
         Divider,
+        EdgeInsets,
         EdgeInsetsDirectional,
         InkWell,
         ListView,
@@ -22,8 +24,8 @@ import 'package:flutter/material.dart'
         Text,
         Theme,
         Widget;
-import 'package:flutter_bloc/flutter_bloc.dart' show BlocBuilder;
-import 'package:sky_trade/core/resources/colors.dart' show hex333333;
+import 'package:flutter_bloc/flutter_bloc.dart' show BlocBuilder, ReadContext;
+import 'package:sky_trade/core/resources/colors.dart' show hex333333, hex595959;
 import 'package:sky_trade/core/resources/numbers/ui.dart'
     show
         eightDotNil,
@@ -38,11 +40,18 @@ import 'package:sky_trade/core/resources/numbers/ui.dart'
 import 'package:sky_trade/core/resources/strings/special_characters.dart'
     show emptyString;
 import 'package:sky_trade/core/utils/extensions/build_context_extensions.dart';
-import 'package:sky_trade/features/search_autocomplete/presentation/blocs/search_autocomplete_bloc.dart'
+import 'package:sky_trade/features/search_autocomplete/presentation/blocs/retrieve_geometric_coordinates_bloc/retrieve_geometric_coordinates_bloc.dart'
+    show RetrieveGeometricCoordinatesBloc, RetrieveGeometricCoordinatesEvent;
+import 'package:sky_trade/features/search_autocomplete/presentation/blocs/search_autocomplete_bloc/search_autocomplete_bloc.dart'
     show SearchAutocompleteBloc, SearchAutocompleteState;
 
 class SearchResultCard extends StatelessWidget {
-  const SearchResultCard({super.key});
+  const SearchResultCard({
+    required this.onSearchResultItemTap,
+    super.key,
+  });
+
+  final Function1<String, void> onSearchResultItemTap;
 
   @override
   Widget build(BuildContext context) => Column(
@@ -52,25 +61,16 @@ class SearchResultCard extends StatelessWidget {
           BlocBuilder<SearchAutocompleteBloc, SearchAutocompleteState>(
             builder: (_, searchAutocompleteState) =>
                 searchAutocompleteState.maybeWhen(
-              gettingSearchAutocomplete: () => const SizedBox(
-                height: sixtyOneDotNil + sixDotNil,
-              ),
-              gotSearchAutocomplete: (_) => const SizedBox(
-                height: sixtyOneDotNil + sixDotNil,
-              ),
-              orElse: () => const SizedBox.shrink(),
-            ),
-          ),
-          BlocBuilder<SearchAutocompleteBloc, SearchAutocompleteState>(
-            builder: (_, searchAutocompleteState) =>
-                searchAutocompleteState.maybeWhen(
               gettingSearchAutocomplete: () => _buildResultsCardWith(
                 context,
                 child: Center(
                   child: CircularProgressIndicator(
-                    valueColor: AlwaysStoppedAnimation<Color>(
-                      Theme.of(context).scaffoldBackgroundColor,
+                    valueColor: const AlwaysStoppedAnimation<Color>(
+                      hex595959,
                     ),
+                    backgroundColor: Theme.of(
+                      context,
+                    ).scaffoldBackgroundColor,
                   ),
                 ),
               ),
@@ -83,7 +83,18 @@ class SearchResultCard extends StatelessWidget {
                   true => ListView.separated(
                       itemCount: searchResultEntity.suggestions.length,
                       itemBuilder: (_, index) => InkWell(
-                        onTap: () {},
+                        onTap: () {
+                          onSearchResultItemTap(
+                            searchResultEntity.suggestions[index].name,
+                          );
+
+                          context.read<RetrieveGeometricCoordinatesBloc>().add(
+                                RetrieveGeometricCoordinatesEvent
+                                    .retrieveCoordinates(
+                                  id: searchResultEntity.suggestions[index].id,
+                                ),
+                              );
+                        },
                         child: Padding(
                           padding: const EdgeInsetsDirectional.symmetric(
                             vertical: twelveDotNil,
@@ -163,14 +174,21 @@ class SearchResultCard extends StatelessWidget {
     BuildContext context, {
     required Widget child,
   }) =>
-      Container(
-        height: oneSeventyNineDotNil,
-        decoration: BoxDecoration(
-          color: Theme.of(context).scaffoldBackgroundColor,
-          borderRadius: BorderRadiusDirectional.circular(
-            eightDotNil,
-          ),
+      Padding(
+        padding: const EdgeInsets.only(
+          top: sixtyOneDotNil + sixDotNil,
         ),
-        child: child,
+        child: Container(
+          height: oneSeventyNineDotNil,
+          decoration: BoxDecoration(
+            color: Theme.of(
+              context,
+            ).scaffoldBackgroundColor,
+            borderRadius: BorderRadiusDirectional.circular(
+              eightDotNil,
+            ),
+          ),
+          child: child,
+        ),
       );
 }

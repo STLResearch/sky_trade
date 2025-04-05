@@ -1,5 +1,5 @@
-import 'dart:math' show pi;
-
+import 'dart:convert' show json;
+import 'dart:ui' show instantiateImageCodec;
 import 'package:dartz/dartz.dart' show Function1, Function2;
 import 'package:flutter/services.dart' show rootBundle;
 import 'package:geodart/geometries.dart' as geo_dart
@@ -7,11 +7,16 @@ import 'package:geodart/geometries.dart' as geo_dart
 import 'package:mapbox_maps_flutter/mapbox_maps_flutter.dart'
     show
         CameraOptions,
+        Feature,
+        FeatureCollection,
+        GeoJsonSource,
+        GeometryObject,
         LocationComponentSettings,
         LocationPuck,
         LocationPuck2D,
         MapAnimationOptions,
         MapboxMap,
+        MbxImage,
         OnPolygonAnnotationClickListener,
         Point,
         PointAnnotationOptions,
@@ -19,19 +24,36 @@ import 'package:mapbox_maps_flutter/mapbox_maps_flutter.dart'
         PolygonAnnotation,
         PolygonAnnotationManager,
         PolygonAnnotationOptions,
-        Position;
-import 'package:sky_trade/core/assets/generated/assets.gen.dart' show Assets;
+        Position,
+        StyleLayer,
+        StyleSource,
+        SymbolLayer;
+import 'package:sky_trade/core/assets/generated/assets.gen.dart'
+    show AssetGenImage, Assets;
 import 'package:sky_trade/core/resources/colors.dart' show rawHex2A60C4;
 import 'package:sky_trade/core/resources/numbers/ui.dart'
     show
         fiftyDotNil,
         fourteenDotNil,
-        nilDotNil,
         one,
-        oneEighty,
+        oneDotFive,
         oneThousand,
         threeDotNil,
         zero;
+import 'package:sky_trade/core/resources/strings/special_characters.dart'
+    show emptyString;
+import 'package:sky_trade/core/resources/strings/ui.dart'
+    show
+        bridDronesLayerId,
+        bridDronesSourceId,
+        coordinatesKey,
+        directionKey,
+        getKey,
+        iconDroneValue,
+        nridDronesLayerId,
+        nridDronesSourceId,
+        pointValue,
+        typeKey;
 import 'package:sky_trade/core/utils/extensions/restriction_entity_extensions.dart';
 import 'package:sky_trade/core/utils/typedefs/ui.dart'
     show
@@ -39,8 +61,6 @@ import 'package:sky_trade/core/utils/typedefs/ui.dart'
         PolygonAnnotationManagerPolygonAnnotationTuple;
 import 'package:sky_trade/features/remote_i_d_receiver/domain/entities/remote_i_d_entity.dart'
     show RemoteIDEntity;
-import 'package:sky_trade/features/u_a_s_activity/domain/entities/u_a_s_entity.dart'
-    show UASEntity;
 import 'package:sky_trade/features/u_a_s_restrictions/domain/entities/restriction_entity.dart'
     show RestrictionEntity;
 
@@ -48,13 +68,12 @@ extension MapboxMapExtensions on MapboxMap {
   Future<void> removeAllPolygons(
     List<PolygonAnnotationManagerPolygonAnnotationTuple>? polygons,
   ) async {
-    if (polygons == null) return;
+    if (polygons == null || polygons.isEmpty) return;
 
-    for (final polygonAnnotationManagerPolygonAnnotationTuple in polygons) {
-      await polygonAnnotationManagerPolygonAnnotationTuple
-          .polygonAnnotationManager
-          .deleteAll();
-    }
+    await Future.forEach(
+      polygons,
+      (polygon) => polygon.polygonAnnotationManager.deleteAll(),
+    );
   }
 
   Future<List<PolygonAnnotationManagerPolygonAnnotationTuple>>
@@ -67,46 +86,49 @@ extension MapboxMapExtensions on MapboxMap {
       growable: true,
     );
 
-    for (final restrictionEntity in restrictionEntities) {
-      final polygonAnnotationManager =
-          await annotations.createPolygonAnnotationManager();
+    await Future.forEach(
+      restrictionEntities,
+      (restrictionEntity) async {
+        final polygonAnnotationManager =
+            await annotations.createPolygonAnnotationManager();
 
-      final polygonAnnotation = await polygonAnnotationManager.create(
-        PolygonAnnotationOptions(
-          geometry: Polygon(
-            coordinates: restrictionEntity.region.coordinates
-                .map(
-                  (vertex) => vertex
-                      .map(
-                        (positions) => Position(
-                          positions[zero],
-                          positions[one],
-                        ),
-                      )
-                      .toList(),
-                )
-                .toList(),
+        final polygonAnnotation = await polygonAnnotationManager.create(
+          PolygonAnnotationOptions(
+            geometry: Polygon(
+              coordinates: restrictionEntity.region.coordinates
+                  .map(
+                    (vertex) => vertex
+                        .map(
+                          (positions) => Position(
+                            positions[zero],
+                            positions[one],
+                          ),
+                        )
+                        .toList(),
+                  )
+                  .toList(),
+            ),
+            fillColor: restrictionEntity.polygonFillColor,
+            fillOutlineColor: restrictionEntity.polygonFillOutlineColor,
           ),
-          fillColor: restrictionEntity.polygonFillColor,
-          fillOutlineColor: restrictionEntity.polygonFillOutlineColor,
-        ),
-      );
+        );
 
-      _setPolygonClickListener(
-        polygonAnnotationManager: polygonAnnotationManager,
-        onClick: (polygonAnnotation) => onPolygonClick(
-          polygonAnnotation,
-          restrictionEntity,
-        ),
-      );
-
-      polygons.add(
-        (
+        _setPolygonClickListener(
           polygonAnnotationManager: polygonAnnotationManager,
-          polygonAnnotation: polygonAnnotation,
-        ),
-      );
-    }
+          onClick: (polygonAnnotation) => onPolygonClick(
+            polygonAnnotation,
+            restrictionEntity,
+          ),
+        );
+
+        polygons.add(
+          (
+            polygonAnnotationManager: polygonAnnotationManager,
+            polygonAnnotation: polygonAnnotation,
+          ),
+        );
+      },
+    );
 
     return polygons;
   }
@@ -174,21 +196,11 @@ extension MapboxMapExtensions on MapboxMap {
     await marker.pointAnnotationManager.deleteAll();
   }
 
-  Future<void> removePreviousMarkers(
-    List<PointAnnotationManagerPointAnnotationTuple>? markers,
-  ) async {
-    if (markers == null || markers.isEmpty) return;
-
-    for (final marker in markers) {
-      await marker.pointAnnotationManager.deleteAll();
-    }
-  }
-
   Future<void> followUser({
     required double latitude,
     required double longitude,
   }) async {
-    await easeTo(
+    await flyTo(
       CameraOptions(
         center: Point(
           coordinates: Position(
@@ -228,95 +240,163 @@ extension MapboxMapExtensions on MapboxMap {
     );
   }
 
-  Future<List<PointAnnotationManagerPointAnnotationTuple>>
-      showUASActivitiesOnMapUsing({
-    List<UASEntity>? uASEntities,
-    Set<RemoteIDEntity>? remoteIDEntities,
-  }) async {
-    final pointAnnotationManagerPointAnnotationTuples =
-        List<PointAnnotationManagerPointAnnotationTuple>.empty(
-      growable: true,
-    );
-
-    if (uASEntities == null && remoteIDEntities == null) {
-      return pointAnnotationManagerPointAnnotationTuples;
-    }
-
-    for (var index = zero;
-        index < (uASEntities?.length ?? remoteIDEntities?.length ?? zero);
-        index++) {
-      final pointAnnotationManager =
-          await annotations.createPointAnnotationManager();
-
-      final pointAnnotation = await pointAnnotationManager.create(
-        PointAnnotationOptions(
-          geometry: Point(
+  Future<void> animateTo({
+    required double latitude,
+    required double longitude,
+  }) =>
+      flyTo(
+        CameraOptions(
+          center: Point(
             coordinates: Position(
-              uASEntities?[index].remoteData.location?.location?.longitude ??
-                  uASEntities?[index].remoteData.location?.longitude ??
-                  remoteIDEntities
-                      ?.elementAt(
-                        index,
-                      )
-                      .location
-                      ?.location
-                      ?.longitude ??
-                  remoteIDEntities
-                      ?.elementAt(
-                        index,
-                      )
-                      .location
-                      ?.longitude ??
-                  nilDotNil,
-              uASEntities?[index].remoteData.location?.location?.latitude ??
-                  uASEntities?[index].remoteData.location?.latitude ??
-                  remoteIDEntities
-                      ?.elementAt(
-                        index,
-                      )
-                      .location
-                      ?.location
-                      ?.latitude ??
-                  remoteIDEntities
-                      ?.elementAt(
-                        index,
-                      )
-                      .location
-                      ?.latitude ??
-                  nilDotNil,
+              longitude,
+              latitude,
             ),
           ),
-          image: await rootBundle
-              .load(
-                Assets.pngs.iconDrone.path,
-              )
-              .then(
-                (
-                  byteData,
-                ) =>
-                    byteData.buffer.asUint8List(),
-              ),
-          iconRotate: (uASEntities?[index].remoteData.location?.direction ??
-                  remoteIDEntities
-                      ?.elementAt(
-                        index,
-                      )
-                      .location
-                      ?.direction ??
-                  nilDotNil) *
-              (pi / oneEighty),
+          zoom: fourteenDotNil,
+        ),
+        MapAnimationOptions(
+          duration: oneThousand,
         ),
       );
 
-      pointAnnotationManagerPointAnnotationTuples.add(
-        (
-          pointAnnotationManager: pointAnnotationManager,
-          pointAnnotation: pointAnnotation,
-        ),
-      );
+  Future<void> setUpLayersForDrones({
+    required String bridGeoJsonData,
+    required String nridGeoJsonData,
+  }) async {
+    final droneStyleImage = await _addStyleImageUsing(
+      styleImageName: iconDroneValue,
+      imageAsset: Assets.pngs.iconDrone,
+    );
+
+    await style.addSource(
+      GeoJsonSource(
+        id: bridDronesSourceId,
+        data: bridGeoJsonData,
+      ),
+    );
+    await style.addSource(
+      GeoJsonSource(
+        id: nridDronesSourceId,
+        data: nridGeoJsonData,
+      ),
+    );
+    await style.addLayer(
+      SymbolLayer(
+        id: bridDronesLayerId,
+        sourceId: bridDronesSourceId,
+        iconImage: droneStyleImage,
+        iconRotateExpression: [
+          getKey,
+          directionKey,
+        ],
+      ),
+    );
+    await style.addLayer(
+      SymbolLayer(
+        id: nridDronesLayerId,
+        sourceId: nridDronesSourceId,
+        iconImage: droneStyleImage,
+        iconRotateExpression: [
+          getKey,
+          directionKey,
+        ],
+      ),
+    );
+  }
+
+  Future<String> addOrUpdateDronesOnMap({
+    required List<RemoteIDEntity> remoteIDEntities,
+    required String geoJsonSourceId,
+  }) async {
+    final geoJsonData = _getGeoJsonData(
+      remoteIDEntities,
+    );
+
+    if (geoJsonData == null) {
+      return emptyString;
     }
 
-    return pointAnnotationManagerPointAnnotationTuples;
+    final geoJsonSource = await style.getSource(
+      geoJsonSourceId,
+    );
+    final geoJsonDataString = json.encode(
+      geoJsonData.toJson(),
+    );
+
+    if (geoJsonSource is GeoJsonSource) {
+      await geoJsonSource.updateGeoJSON(
+        geoJsonDataString,
+      );
+      return geoJsonDataString;
+    }
+    return emptyString;
+  }
+
+  FeatureCollection? _getGeoJsonData(
+    List<RemoteIDEntity> remoteIDEntities,
+  ) {
+    final geoJsonFeatures = remoteIDEntities
+        .map(
+          (remoteIDEntity) {
+            if (remoteIDEntity.location != null &&
+                remoteIDEntity.location!.location != null) {
+              return Feature(
+                id: remoteIDEntity.connection.macAddress,
+                properties: {
+                  directionKey: remoteIDEntity.location?.direction ?? zero,
+                },
+                geometry: GeometryObject.deserialize(
+                  {
+                    typeKey: pointValue,
+                    coordinatesKey: [
+                      remoteIDEntity.location!.longitude,
+                      remoteIDEntity.location!.latitude,
+                    ],
+                  },
+                ),
+              );
+            }
+          },
+        )
+        .whereType<Feature>()
+        .toList();
+
+    if (geoJsonFeatures.isEmpty) return null;
+
+    return FeatureCollection(
+      features: geoJsonFeatures,
+    );
+  }
+
+  Future<String> _addStyleImageUsing({
+    required String styleImageName,
+    required AssetGenImage imageAsset,
+  }) async {
+    final imageByteData = await rootBundle.load(
+      imageAsset.path,
+    );
+    final imageBytes = imageByteData.buffer.asUint8List();
+    final codec = await instantiateImageCodec(
+      imageBytes,
+    );
+    final frame = await codec.getNextFrame();
+    final image = frame.image;
+
+    await style.addStyleImage(
+      styleImageName,
+      oneDotFive,
+      MbxImage(
+        width: image.width,
+        height: image.height,
+        data: imageBytes,
+      ),
+      false,
+      [],
+      [],
+      null,
+    );
+
+    return styleImageName;
   }
 }
 

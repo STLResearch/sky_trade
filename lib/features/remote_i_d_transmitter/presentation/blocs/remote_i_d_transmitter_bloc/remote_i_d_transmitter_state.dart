@@ -8,14 +8,11 @@ class RemoteIDTransmitterState with _$RemoteIDTransmitterState {
       _StartingTransmitter;
 
   const factory RemoteIDTransmitterState.startedTransmitter() =
-  _StartedTransmitter;
+      _StartedTransmitter;
+
+  const factory RemoteIDTransmitterState.transmittingRemoteID() =
+      _TransmittingRemoteID;
 
   const factory RemoteIDTransmitterState.transmittedRemoteID() =
       _TransmittedRemoteID;
-
-  const factory RemoteIDTransmitterState.failedToTransmitRemoteID() =
-      _FailedToTransmitRemoteID;
-
-  const factory RemoteIDTransmitterState.stoppedTransmitter() =
-      _StoppedTransmitter;
 }

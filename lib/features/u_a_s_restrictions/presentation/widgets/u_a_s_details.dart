@@ -16,25 +16,22 @@ import 'package:flutter/material.dart'
         Flexible,
         LayoutBuilder,
         MainAxisSize,
-        PlaceholderAlignment,
+        Padding,
         Radius,
-        RichText,
         SingleChildScrollView,
         SizedBox,
         StatefulBuilder,
         StatelessWidget,
         Text,
-        TextSpan,
+        TextAlign,
         Theme,
         Widget,
-        WidgetSpan,
         WidgetsBinding;
-import 'package:flutter_bloc/flutter_bloc.dart' show BlocBuilder;
-import 'package:sky_trade/core/assets/generated/assets.gen.dart';
+import 'package:flutter_bloc/flutter_bloc.dart' show BlocBuilder, BlocProvider;
+import 'package:sky_trade/core/assets/generated/assets.gen.dart' show Assets;
 import 'package:sky_trade/core/resources/numbers/ui.dart'
     show
         fifteenDotNil,
-        fiveDotNil,
         nineDotNil,
         one,
         seventyDotNil,
@@ -48,12 +45,32 @@ import 'package:sky_trade/core/resources/strings/special_characters.dart'
     show emptyString, whiteSpace;
 import 'package:sky_trade/core/utils/extensions/build_context_extensions.dart';
 import 'package:sky_trade/core/utils/extensions/remote_i_d_entity_extensions.dart';
-import 'package:sky_trade/features/remote_i_d_receiver/presentation/blocs/remote_i_d_receiver_bloc/remote_i_d_receiver_bloc.dart'
-    show RemoteIDReceiverBloc, RemoteIDReceiverState;
+import 'package:sky_trade/features/remote_i_d_receiver/presentation/blocs/broadcast_remote_i_d_receiver_bloc/broadcast_remote_i_d_receiver_bloc.dart'
+    show BroadcastRemoteIDReceiverBloc, BroadcastRemoteIDReceiverState;
 import 'package:sky_trade/features/u_a_s_restrictions/presentation/widgets/u_a_s_detail_section.dart';
 
 class UASDetails extends StatelessWidget {
-  const UASDetails({
+  const UASDetails(
+    this.broadcastRemoteIDReceiverBloc, {
+    required this.index,
+    super.key,
+  });
+
+  final BroadcastRemoteIDReceiverBloc broadcastRemoteIDReceiverBloc;
+  final int index;
+
+  @override
+  Widget build(BuildContext context) =>
+      BlocProvider<BroadcastRemoteIDReceiverBloc>.value(
+        value: broadcastRemoteIDReceiverBloc,
+        child: UASDetailsView(
+          index: index,
+        ),
+      );
+}
+
+class UASDetailsView extends StatelessWidget {
+  const UASDetailsView({
     required this.index,
     super.key,
   });
@@ -101,57 +118,46 @@ class UASDetails extends StatelessWidget {
                 const SizedBox(
                   height: twentyOneDotNil,
                 ),
-                RichText(
-                  text: TextSpan(
-                    children: [
-                      WidgetSpan(
-                        child: Assets.svgs.iconDroneBlack.svg(),
-                        alignment: PlaceholderAlignment.middle,
-                      ),
-                      const WidgetSpan(
-                        child: SizedBox(
-                          width: fiveDotNil,
-                        ),
-                      ),
-                      WidgetSpan(
-                        child: BlocBuilder<RemoteIDReceiverBloc,
-                            RemoteIDReceiverState>(
-                          builder: (_, remoteIDReceiverState) {
-                            WidgetsBinding.instance.addPostFrameCallback((_) {
-                              setState(() {});
-                            });
-
-                            return remoteIDReceiverState.maybeWhen(
-                              gotRemoteIDs: (remoteIDEntities) => Text(
-                                remoteIDEntities
-                                    .elementAt(
-                                      index,
-                                    )
-                                    .connection
-                                    .macAddress,
-                                style: Theme.of(context).textTheme.bodyLarge,
-                              ),
-                              orElse: () => Text(
-                                emptyString,
-                                style: Theme.of(context).textTheme.bodyLarge,
-                              ),
-                            );
-                          },
-                        ),
-                        alignment: PlaceholderAlignment.middle,
-                      ),
-                    ],
+                Assets.svgs.iconDroneBlack.svg(),
+                Padding(
+                  padding: const EdgeInsetsDirectional.symmetric(
+                    horizontal: twentyNineDotNil,
                   ),
-                ),
-                Flexible(
-                  child:
-                      BlocBuilder<RemoteIDReceiverBloc, RemoteIDReceiverState>(
-                    builder: (_, remoteIDReceiverState) {
+                  child: BlocBuilder<BroadcastRemoteIDReceiverBloc,
+                      BroadcastRemoteIDReceiverState>(
+                    builder: (_, broadcastRemoteIDReceiverState) {
                       WidgetsBinding.instance.addPostFrameCallback((_) {
                         setState(() {});
                       });
 
-                      return remoteIDReceiverState.maybeWhen(
+                      return broadcastRemoteIDReceiverState.maybeWhen(
+                        gotRemoteIDs: (remoteIDEntities) => Text(
+                          remoteIDEntities
+                              .elementAt(
+                                index,
+                              )
+                              .connection
+                              .macAddress,
+                          textAlign: TextAlign.center,
+                          style: Theme.of(context).textTheme.bodyLarge,
+                        ),
+                        orElse: () => Text(
+                          emptyString,
+                          style: Theme.of(context).textTheme.bodyLarge,
+                        ),
+                      );
+                    },
+                  ),
+                ),
+                Flexible(
+                  child: BlocBuilder<BroadcastRemoteIDReceiverBloc,
+                      BroadcastRemoteIDReceiverState>(
+                    builder: (_, broadcastRemoteIDReceiverState) {
+                      WidgetsBinding.instance.addPostFrameCallback((_) {
+                        setState(() {});
+                      });
+
+                      return broadcastRemoteIDReceiverState.maybeWhen(
                         gotRemoteIDs: (remoteIDEntities) =>
                             SingleChildScrollView(
                           padding: const EdgeInsetsDirectional.symmetric(

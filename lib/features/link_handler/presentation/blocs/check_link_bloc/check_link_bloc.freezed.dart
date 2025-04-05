@@ -50,7 +50,9 @@ mixin _$CheckLinkEvent {
   }) =>
       throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of CheckLinkEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $CheckLinkEventCopyWith<CheckLinkEvent> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -74,6 +76,8 @@ class _$CheckLinkEventCopyWithImpl<$Res, $Val extends CheckLinkEvent>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of CheckLinkEvent
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -107,6 +111,8 @@ class __$$CheckImplCopyWithImpl<$Res>
       _$CheckImpl _value, $Res Function(_$CheckImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of CheckLinkEvent
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -145,7 +151,9 @@ class _$CheckImpl implements _Check {
   @override
   int get hashCode => Object.hash(runtimeType, link);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of CheckLinkEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$CheckImplCopyWith<_$CheckImpl> get copyWith =>
@@ -213,8 +221,11 @@ abstract class _Check implements CheckLinkEvent {
 
   @override
   String get link;
+
+  /// Create a copy of CheckLinkEvent
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$CheckImplCopyWith<_$CheckImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -289,6 +300,9 @@ class _$CheckLinkStateCopyWithImpl<$Res, $Val extends CheckLinkState>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  /// Create a copy of CheckLinkState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -305,6 +319,9 @@ class __$$InitialImplCopyWithImpl<$Res>
   __$$InitialImplCopyWithImpl(
       _$InitialImpl _value, $Res Function(_$InitialImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of CheckLinkState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -419,6 +436,9 @@ class __$$CheckingImplCopyWithImpl<$Res>
   __$$CheckingImplCopyWithImpl(
       _$CheckingImpl _value, $Res Function(_$CheckingImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of CheckLinkState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -536,6 +556,8 @@ class __$$CheckedImplCopyWithImpl<$Res>
       _$CheckedImpl _value, $Res Function(_$CheckedImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of CheckLinkState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -575,7 +597,9 @@ class _$CheckedImpl implements _Checked {
   @override
   int get hashCode => Object.hash(runtimeType, linkEntity);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of CheckLinkState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$CheckedImplCopyWith<_$CheckedImpl> get copyWith =>
@@ -661,7 +685,10 @@ abstract class _Checked implements CheckLinkState {
       _$CheckedImpl;
 
   LinkEntity get linkEntity;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of CheckLinkState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$CheckedImplCopyWith<_$CheckedImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -683,6 +710,8 @@ class __$$FailedToCheckImplCopyWithImpl<$Res>
       _$FailedToCheckImpl _value, $Res Function(_$FailedToCheckImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of CheckLinkState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -722,7 +751,9 @@ class _$FailedToCheckImpl implements _FailedToCheck {
   @override
   int get hashCode => Object.hash(runtimeType, checkLinkFailure);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of CheckLinkState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$FailedToCheckImplCopyWith<_$FailedToCheckImpl> get copyWith =>
@@ -808,7 +839,10 @@ abstract class _FailedToCheck implements CheckLinkState {
       {required final CheckLinkFailure checkLinkFailure}) = _$FailedToCheckImpl;
 
   CheckLinkFailure get checkLinkFailure;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of CheckLinkState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$FailedToCheckImplCopyWith<_$FailedToCheckImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

@@ -1,10 +1,52 @@
 import 'package:equatable/equatable.dart' show Equatable;
 
+final class Auth0UserEntity extends Equatable {
+  const Auth0UserEntity({
+    required this.idToken,
+    required this.refreshToken,
+    required this.email,
+    required this.emailVerified,
+  });
+
+  final String idToken;
+
+  final String? refreshToken;
+
+  final String? email;
+
+  final bool? emailVerified;
+
+  @override
+  List<Object?> get props => [
+        idToken,
+        refreshToken,
+        email,
+        emailVerified,
+      ];
+}
+
+final class SFAUserEntity extends Equatable {
+  const SFAUserEntity({
+    required this.privateKey,
+    required this.publicAddress,
+  });
+
+  final String privateKey;
+
+  final String publicAddress;
+
+  @override
+  List<Object?> get props => [
+        privateKey,
+        publicAddress,
+      ];
+}
+
 base class SkyTradeUserEntity extends Equatable {
   const SkyTradeUserEntity({
     required this.id,
     required this.createdAt,
-    required this.updatedAt,
+    required this.updateAt,
     required this.username,
     required this.password,
     required this.name,
@@ -22,11 +64,11 @@ base class SkyTradeUserEntity extends Equatable {
     required this.ownedReferralCode,
   });
 
-  final int id;
+  final dynamic id;
 
-  final String createdAt;
+  final DateTime createdAt;
 
-  final String updatedAt;
+  final DateTime updateAt;
 
   final String? username;
 
@@ -50,9 +92,9 @@ base class SkyTradeUserEntity extends Equatable {
 
   final bool isActive;
 
-  final int? usedReferralCodeId;
+  final dynamic usedReferralCodeId;
 
-  final int ownedReferralCodeId;
+  final dynamic ownedReferralCodeId;
 
   final bool isUserRewardClaimed;
 
@@ -62,7 +104,7 @@ base class SkyTradeUserEntity extends Equatable {
   List<Object?> get props => [
         id,
         createdAt,
-        updatedAt,
+        updateAt,
         username,
         password,
         name,
@@ -90,7 +132,7 @@ base class OwnedReferralCodeEntity extends Equatable {
     required this.ownedByBonusEarned,
   });
 
-  final int id;
+  final dynamic id;
 
   final String code;
 
@@ -107,86 +149,5 @@ base class OwnedReferralCodeEntity extends Equatable {
         codeChanged,
         usedByBonusEarned,
         ownedByBonusEarned,
-      ];
-}
-
-final class Web3AuthUserEntity extends Equatable {
-  const Web3AuthUserEntity({
-    this.name,
-    this.email,
-    this.profileImage,
-    this.verifier,
-    this.verifierId,
-    this.typeOfLogin,
-    this.aggregateVerifier,
-    this.dappShare,
-    this.idToken,
-    this.sessionId,
-    this.oAuthIdToken,
-    this.oAuthAccessToken,
-    this.isMfaEnabled,
-    this.secp256k1PrivateKey,
-    this.ed25519PrivateKey,
-    this.secp256k1CoreKitKey,
-    this.ed25519CoreKitKey,
-    this.error,
-  });
-
-  final String? name;
-
-  final String? email;
-
-  final String? profileImage;
-
-  final String? verifier;
-
-  final String? verifierId;
-
-  final String? typeOfLogin;
-
-  final String? aggregateVerifier;
-
-  final String? dappShare;
-
-  final String? idToken;
-
-  final String? sessionId;
-
-  final String? oAuthIdToken;
-
-  final String? oAuthAccessToken;
-
-  final bool? isMfaEnabled;
-
-  final String? secp256k1PrivateKey;
-
-  final String? ed25519PrivateKey;
-
-  final String? secp256k1CoreKitKey;
-
-  final String? ed25519CoreKitKey;
-
-  final String? error;
-
-  @override
-  List<Object?> get props => [
-        name,
-        email,
-        profileImage,
-        verifier,
-        verifierId,
-        typeOfLogin,
-        aggregateVerifier,
-        dappShare,
-        idToken,
-        sessionId,
-        oAuthIdToken,
-        oAuthAccessToken,
-        isMfaEnabled,
-        secp256k1PrivateKey,
-        ed25519PrivateKey,
-        secp256k1CoreKitKey,
-        ed25519CoreKitKey,
-        error,
       ];
 }

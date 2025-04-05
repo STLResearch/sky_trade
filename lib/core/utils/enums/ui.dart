@@ -1,6 +1,7 @@
 enum AuthButtonType {
   getStarted,
-  connectWithGoogle,
+  continueWithApple,
+  continueWithGoogle,
   moreOptions,
 }
 
@@ -12,13 +13,13 @@ enum MapStyle {
 enum MenuItem {
   insights,
   about,
+  settings,
   help,
   logout,
 }
 
-enum Period {
-  oneDay,
-  oneWeek,
-  oneMonth,
-  oneYear,
+enum ErrorReason {
+  deletedSkyTradeUserWithExistingAuth0Session,
+  sessionInitializationFailure,
+  unknownNavigationRoute,
 }

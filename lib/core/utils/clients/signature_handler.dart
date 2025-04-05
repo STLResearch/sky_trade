@@ -3,34 +3,36 @@
 import 'dart:convert' show utf8;
 import 'dart:math' show Random;
 
+import 'package:auth0_flutter/auth0_flutter.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart' show dotenv;
 import 'package:hex/hex.dart' show HEX;
+import 'package:single_factor_auth_flutter/single_factor_auth_flutter.dart';
 import 'package:sky_trade/core/resources/numbers/local.dart'
     show sixteen, thirtyTwo;
 import 'package:sky_trade/core/resources/strings/local.dart'
     show nonceCharacterSet;
 import 'package:sky_trade/core/resources/strings/networking.dart'
     show
+        radarPath,
         signatureEightLine,
         signatureFifthLine,
         signatureFirstLine,
         signatureFourthLine,
         signatureSeventhLine,
         signatureSixthLine,
-        signatureThirdLine,
-        skyTradeServerHttpBaseUrl,
-        skyTradeServerHttpSignUrl,
-        skyTradeServerSignUrl;
+        signatureThirdLine;
+import 'package:sky_trade/core/resources/strings/secret_keys.dart'
+    show skyTradeServerHttpSignUrl, skyTradeServerSignUrl;
 import 'package:sky_trade/core/resources/strings/special_characters.dart'
-    show emptyString, newLine, whiteSpace;
+    show ampersand, emptyString, equals, newLine, question, whiteSpace;
+import 'package:sky_trade/injection_container.dart' show serviceLocator;
 import 'package:solana/solana.dart' show Ed25519HDKeyPair, SignatureExt;
-import 'package:web3auth_flutter/web3auth_flutter.dart';
 
 mixin class SignatureHandler {
   Future<String> signMessage(
     String message,
   ) async {
-    final ed25519KeyPair = await computeEd25519KeyPair();
+    final ed25519KeyPair = await _computeEd25519KeyPair();
 
     final signature = await ed25519KeyPair.sign(
       utf8.encode(
@@ -72,28 +74,25 @@ mixin class SignatureHandler {
     );
   }
 
-  Future<String> computeUserAddress() async {
-    final ed25519KeyPair = await computeEd25519KeyPair();
+  Future<String> computeWalletAddress() async {
+    final ed25519KeyPair = await _computeEd25519KeyPair();
 
-    final ed25519HDPublicKey = ed25519KeyPair.publicKey;
-
-    final base58EncodedEd25519HDPublicKey = ed25519HDPublicKey.toBase58();
-
-    return base58EncodedEd25519HDPublicKey;
+    return ed25519KeyPair.address;
   }
 
   String computeMessageToSignUsing({
     required String issuedAt,
     required String nonce,
-    required String userAddress,
+    required String walletAddress,
     String? path,
-    bool? useOldUri,
+    Map<String, dynamic>? queryParameters,
+    bool? includeRadarNamespace,
   }) =>
       dotenv.env[skyTradeServerSignUrl]! +
       whiteSpace +
       signatureFirstLine +
       newLine +
-      userAddress +
+      walletAddress +
       newLine +
       newLine +
       signatureThirdLine +
@@ -101,11 +100,27 @@ mixin class SignatureHandler {
       newLine +
       signatureFourthLine +
       whiteSpace +
-      switch (useOldUri ?? false) {
-        true => dotenv.env[skyTradeServerHttpSignUrl]!,
-        false => dotenv.env[skyTradeServerHttpBaseUrl]!
-      } +
+      dotenv.env[skyTradeServerHttpSignUrl]! +
       (path ?? emptyString) +
+      switch (queryParameters?.isNotEmpty ?? false) {
+        true => question,
+        false => emptyString,
+      } +
+      switch (queryParameters?.isNotEmpty ?? false) {
+        true => queryParameters!.entries
+            .map(
+              (queryParameter) =>
+                  queryParameter.key + equals + queryParameter.value.toString(),
+            )
+            .join(
+              ampersand,
+            ),
+        false => emptyString,
+      } +
+      switch (includeRadarNamespace ?? false) {
+        true => radarPath,
+        false => emptyString,
+      } +
       newLine +
       signatureFifthLine +
       newLine +
@@ -119,12 +134,12 @@ mixin class SignatureHandler {
       whiteSpace +
       issuedAt;
 
-  Future<Ed25519HDKeyPair> computeEd25519KeyPair() async {
-    final ed25519PrivateKey = await computeEd25519PrivateKey();
+  Future<Ed25519HDKeyPair> _computeEd25519KeyPair() async {
+    final sFAPrivateKey = await _computeSFAPrivateKey();
 
     final decodedEd25519PrivateKey = HEX
         .decode(
-          ed25519PrivateKey,
+          sFAPrivateKey,
         )
         .take(
           thirtyTwo,
@@ -138,10 +153,17 @@ mixin class SignatureHandler {
     return ed25519HDKeyPair;
   }
 
-  Future<String> computeEd25519PrivateKey() =>
-      Web3AuthFlutter.getEd25519PrivKey();
+  Future<String> _computeSFAPrivateKey() async {
+    final sessionData =
+        await serviceLocator<SingleFactorAuthFlutter>().getSessionData();
 
-  Future<String?> computeUserEmail() => Web3AuthFlutter.getUserInfo().then(
-        (userInfo) => userInfo.email,
-      );
+    return sessionData!.privateKey;
+  }
+
+  Future<String?> computeUserEmail() async {
+    final credentials =
+        await serviceLocator<Auth0>().credentialsManager.credentials();
+
+    return credentials.user.email;
+  }
 }

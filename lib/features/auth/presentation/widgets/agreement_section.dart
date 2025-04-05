@@ -21,8 +21,8 @@ final class AgreementSection extends StatelessWidget {
     super.key,
   });
 
-  final VoidCallback onTermsAndConditionsTap;
-  final VoidCallback onPrivacyPolicyTap;
+  final VoidCallback? onTermsAndConditionsTap;
+  final VoidCallback? onPrivacyPolicyTap;
 
   @override
   Widget build(BuildContext context) => RichText(
@@ -30,7 +30,8 @@ final class AgreementSection extends StatelessWidget {
           children: [
             SpannableText.buildWith(
               context,
-              text: context.localize.byCreatingAnAccountIAgreeWith + whiteSpace,
+              text: context.localize.byContinuingWithSkyTradeIAgreeWithThe +
+                  whiteSpace,
             ),
             SpannableText.buildWith(
               context,

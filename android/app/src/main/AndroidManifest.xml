@@ -31,7 +31,7 @@
     <application
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher"
-        android:label="SkyTrade">
+        android:label="@string/app_name">
         <activity
             android:name=".MainActivity"
             android:configChanges="orientation|keyboardHidden|keyboard|screenSize|smallestScreenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode"
@@ -53,17 +53,22 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
 
-            <intent-filter>
+            <intent-filter android:autoVerify="true">
                 <action android:name="android.intent.action.VIEW" />
 
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
 
                 <data
-                    android:host="mobile.trade.sky"
-                    android:path="/auth"
-                    android:scheme="w3a" />
+                    android:host="${deepLinkHost}"
+                    android:path="${emailVerificationLinkPath}"
+                    android:scheme="https" />
+
             </intent-filter>
+
+            <meta-data
+                android:name="flutter_deeplinking_enabled"
+                android:value="false" />
 
         </activity>
         <!-- Don't delete the meta-data below.

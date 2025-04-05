@@ -1,208 +1,269 @@
-import 'dart:io' show Platform;
+// ignore_for_file: lines_longer_than_80_chars
 
+import 'package:auth0_flutter/auth0_flutter.dart' show Auth0, Credentials;
 import 'package:dartz/dartz.dart' show Either, Unit, unit;
+import 'package:flutter/services.dart' show PlatformException;
 import 'package:flutter_dotenv/flutter_dotenv.dart' show dotenv;
+import 'package:single_factor_auth_flutter/enums.dart';
+import 'package:single_factor_auth_flutter/input.dart'
+    show LoginParams, TorusSubVerifierInfo, Web3AuthOptions;
+import 'package:single_factor_auth_flutter/single_factor_auth_flutter.dart';
 import 'package:sky_trade/core/errors/exceptions/auth_exception.dart'
     show
+        CheckSkyTradeUserException,
+        CreateSkyTradeUserException,
+        EmailReuseNotAllowedException,
         InvalidEmailException,
         InvalidSignatureException,
         UnauthorizedException,
-        UserAlreadyExistsException,
-        UserDoesNotExistException;
+        UserDeletedException,
+        UserMismatchException,
+        UserNotFoundException,
+        WalletAlreadyExistsException;
 import 'package:sky_trade/core/errors/failures/auth_failure.dart';
+import 'package:sky_trade/core/resources/numbers/networking.dart'
+    show web3AuthSFASessionTimeSeconds;
 import 'package:sky_trade/core/resources/strings/environments.dart'
     show devEnvironment, flavours, stageEnvironment;
 import 'package:sky_trade/core/resources/strings/networking.dart'
     show
-        flowTypeKey,
-        linkValue,
-        web3AuthWhitelistOriginAndroid,
-        web3AuthWhitelistOriginIos;
+        invalidResultFromNodesThresholdNumberOfPublicKeyResultsAreNotMatchingPleaseCheckConfiguration;
 import 'package:sky_trade/core/resources/strings/secret_keys.dart'
-    show web3AuthClientId;
+    show sFAVerifier, sFAVerifierSubIdentifier, web3AuthClientId;
 import 'package:sky_trade/core/utils/clients/data_handler.dart';
 import 'package:sky_trade/core/utils/clients/signature_handler.dart';
-import 'package:sky_trade/core/utils/enums/networking.dart' show AuthProvider;
+import 'package:sky_trade/features/auth/data/data_sources/auth_local_data_source.dart'
+    show AuthLocalDataSource;
 import 'package:sky_trade/features/auth/data/data_sources/auth_remote_data_source.dart'
     show AuthRemoteDataSource;
 import 'package:sky_trade/features/auth/domain/entities/auth_entity.dart';
 import 'package:sky_trade/features/auth/domain/repositories/auth_repository.dart';
-import 'package:web3auth_flutter/enums.dart' show Network, Provider;
-import 'package:web3auth_flutter/input.dart'
-    show ExtraLoginOptions, LoginParams, Web3AuthOptions;
-import 'package:web3auth_flutter/output.dart' show Web3AuthResponse;
-import 'package:web3auth_flutter/web3auth_flutter.dart';
 
 final class AuthRepositoryImplementation
     with DataHandler, SignatureHandler
     implements AuthRepository {
-  const AuthRepositoryImplementation(
-    AuthRemoteDataSource authRemoteDataSource,
-  ) : _authRemoteDataSource = authRemoteDataSource;
+  const AuthRepositoryImplementation({
+    required Auth0 auth0,
+    required SingleFactorAuthFlutter singleFactorAuthentication,
+    required AuthLocalDataSource authLocalDataSource,
+    required AuthRemoteDataSource authRemoteDataSource,
+  })  : _auth0 = auth0,
+        _singleFactorAuthentication = singleFactorAuthentication,
+        _authLocalDataSource = authLocalDataSource,
+        _authRemoteDataSource = authRemoteDataSource;
+
+  final Auth0 _auth0;
+
+  final SingleFactorAuthFlutter _singleFactorAuthentication;
+
+  final AuthLocalDataSource _authLocalDataSource;
 
   final AuthRemoteDataSource _authRemoteDataSource;
 
   @override
-  Future<Either<Web3AuthInitializationFailure, Unit>> initializeWeb3Auth() =>
-      handleData<Web3AuthInitializationFailure, Unit>(
+  Future<Either<Auth0AuthenticationFailure, Auth0UserEntity>>
+      authenticateUserWithAuth0() =>
+          handleData<Auth0AuthenticationFailure, Auth0UserEntity>(
+            dataSourceOperation: () async {
+              final credentials = await _auth0.webAuthentication().login();
+
+              return Auth0UserEntity(
+                idToken: credentials.idToken,
+                refreshToken: credentials.refreshToken,
+                email: credentials.user.email,
+                emailVerified: credentials.user.isEmailVerified,
+              );
+            },
+            onSuccess: (auth0UserEntity) => auth0UserEntity,
+            onFailure: (_) => Auth0AuthenticationFailure(),
+          );
+
+  @override
+  Future<Credentials> renewAuth0UserCredentialsUsing({
+    required String refreshToken,
+  }) =>
+      _auth0.api.renewCredentials(
+        refreshToken: refreshToken,
+      );
+
+  @override
+  Future<bool> updateAuth0UserWithNew({
+    required Credentials credentials,
+  }) =>
+      _auth0.credentialsManager.storeCredentials(
+        credentials,
+      );
+
+  @override
+  Future<bool> checkAuth0UserSessionExists() =>
+      _auth0.credentialsManager.hasValidCredentials();
+
+  @override
+  Future<Either<Auth0UserNotFoundFailure, Auth0UserEntity>> get auth0User =>
+      handleData<Auth0UserNotFoundFailure, Auth0UserEntity>(
         dataSourceOperation: () async {
-          final web3AuthOptions = Web3AuthOptions(
-            clientId: dotenv.env[web3AuthClientId]!,
-            network: _computeNetwork(),
-            redirectUrl: _computeRedirectUrl(),
-          );
+          final credentials = await _auth0.credentialsManager.credentials();
 
-          await Web3AuthFlutter.init(
-            web3AuthOptions,
+          return Auth0UserEntity(
+            idToken: credentials.idToken,
+            refreshToken: credentials.refreshToken,
+            email: credentials.user.email,
+            emailVerified: credentials.user.isEmailVerified,
           );
+        },
+        onSuccess: (auth0UserEntity) => auth0UserEntity,
+        onFailure: (_) => Auth0UserNotFoundFailure(),
+      );
 
-          await Web3AuthFlutter.initialize();
+  @override
+  Future<bool> get auth0SessionForDeletedUserExists =>
+      _authLocalDataSource.auth0SessionForDeletedUserExists;
+
+  @override
+  Future<void> setAuth0SessionForDeletedUserExists({
+    required bool value,
+  }) =>
+      _authLocalDataSource.setAuth0SessionForDeletedUserExists(
+        value: value,
+      );
+
+  @override
+  Future<Either<Auth0LogoutFailure, Unit>> logoutCurrentAuth0User() =>
+      handleData<Auth0LogoutFailure, Unit>(
+        dataSourceOperation: () async {
+          await _auth0.webAuthentication().logout();
 
           return unit;
         },
         onSuccess: (unit) => unit,
-        onFailure: (_) => Web3AuthInitializationFailure(),
+        onFailure: (_) => Auth0LogoutFailure(),
       );
 
-  Network _computeNetwork() {
+  @override
+  Future<Either<SFAConfigurationFailure, Unit>> configureSFA() =>
+      handleData<SFAConfigurationFailure, Unit>(
+        dataSourceOperation: () async {
+          final web3AuthOptions = Web3AuthOptions(
+            network: _computeWeb3AuthNetwork(),
+            clientId: dotenv.env[web3AuthClientId]!,
+            sessionTime: web3AuthSFASessionTimeSeconds,
+          );
+
+          await _singleFactorAuthentication.init(
+            web3AuthOptions,
+          );
+
+          return unit;
+        },
+        onSuccess: (unit) => unit,
+        onFailure: (_) => SFAConfigurationFailure(),
+      );
+
+  Web3AuthNetwork _computeWeb3AuthNetwork() {
     const environment = String.fromEnvironment(
       flavours,
       defaultValue: devEnvironment,
     );
 
     if (environment == devEnvironment || environment == stageEnvironment) {
-      return Network.sapphire_devnet;
+      return Web3AuthNetwork.sapphire_devnet;
     }
 
-    return Network.cyan;
-  }
-
-  Uri _computeRedirectUrl() {
-    final iosRedirect = dotenv.env[web3AuthWhitelistOriginIos]!;
-    final androidRedirect = dotenv.env[web3AuthWhitelistOriginAndroid]!;
-
-    final redirectUrl = Uri.parse(
-      switch (Platform.isIOS) {
-        true => iosRedirect,
-        false => androidRedirect,
-      },
-    );
-
-    return redirectUrl;
+    return Web3AuthNetwork.sapphire_mainnet;
   }
 
   @override
-  Future<Either<Web3AuthAuthenticationFailure, Web3AuthUserEntity>>
-      authenticateWeb3AuthUserUsing({
-    required AuthProvider authProvider,
-    String? credential,
+  Future<Either<SFAInitializationFailure, Unit>> initializeSFA() =>
+      handleData<SFAInitializationFailure, Unit>(
+        dataSourceOperation: () async {
+          await _singleFactorAuthentication.initialize();
+
+          return unit;
+        },
+        onSuccess: (unit) => unit,
+        onFailure: (_) => SFAInitializationFailure(),
+      );
+
+  @override
+  Future<Either<SFAAuthenticationFailure, SFAUserEntity>>
+      authenticateAuth0UserWithSFAUsing({
+    required String? email,
+    required String idToken,
   }) =>
-          handleData<Web3AuthAuthenticationFailure, Web3AuthUserEntity>(
+          handleData<SFAAuthenticationFailure, SFAUserEntity>(
             dataSourceOperation: () async {
-              final loginParameters = LoginParams(
-                loginProvider: _computeLoginProviderFrom(
-                  authProvider,
-                ),
-                extraLoginOptions: _computeExtraLoginOptionsFrom(
-                  authProvider: authProvider,
-                  credential: credential,
-                ),
+              final loginParams = LoginParams(
+                verifier: dotenv.env[sFAVerifier]!,
+                verifierId: email!,
+                idToken: idToken,
+                subVerifierInfoArray: [
+                  TorusSubVerifierInfo(
+                    dotenv.env[sFAVerifierSubIdentifier]!,
+                    idToken,
+                  ),
+                ],
               );
 
-              final web3AuthResponse = await Web3AuthFlutter.login(
-                loginParameters,
+              final sessionData = await _singleFactorAuthentication.connect(
+                loginParams,
               );
 
-              final web3AuthUserEntity = _computeWeb3AuthUserEntityFrom(
-                web3AuthResponse,
+              return SFAUserEntity(
+                privateKey: sessionData.privateKey,
+                publicAddress: sessionData.publicAddress,
               );
-
-              return web3AuthUserEntity;
             },
-            onSuccess: (web3AuthUserEntity) => web3AuthUserEntity,
-            onFailure: (_) => Web3AuthAuthenticationFailure(),
+            onSuccess: (sFAUserEntity) => sFAUserEntity,
+            onFailure: (e) => switch (e) {
+              PlatformException(
+                :final details,
+              )
+                  when details ==
+                      invalidResultFromNodesThresholdNumberOfPublicKeyResultsAreNotMatchingPleaseCheckConfiguration =>
+                SFAUserShouldLogoutFailure(),
+              _ => SFAAuthenticationUnknownFailure(),
+            },
           );
 
-  Provider _computeLoginProviderFrom(
-    AuthProvider authProvider,
-  ) {
-    final loginProvider = switch (authProvider) {
-      AuthProvider.google => Provider.google,
-      AuthProvider.emailPasswordless => Provider.email_passwordless,
-    };
+  @override
+  Future<bool> checkSFAUserSessionExists() =>
+      _singleFactorAuthentication.connected();
 
-    return loginProvider;
-  }
+  @override
+  Future<Either<SFALogoutFailure, Unit>> logoutCurrentSFAUser() =>
+      handleData<SFALogoutFailure, Unit>(
+        dataSourceOperation: () async {
+          await _singleFactorAuthentication.logout();
 
-  ExtraLoginOptions? _computeExtraLoginOptionsFrom({
-    required AuthProvider authProvider,
-    String? credential,
-  }) {
-    final extraLoginOptions = switch (authProvider) {
-      AuthProvider.emailPasswordless => ExtraLoginOptions(
-          login_hint: credential,
-          additionalParams: {
-            flowTypeKey: linkValue,
-          },
-        ),
-      _ => null,
-    };
-
-    return extraLoginOptions;
-  }
-
-  Web3AuthUserEntity _computeWeb3AuthUserEntityFrom(
-    Web3AuthResponse web3AuthResponse,
-  ) =>
-      Web3AuthUserEntity(
-        name: web3AuthResponse.userInfo?.name,
-        email: web3AuthResponse.userInfo?.email,
-        profileImage: web3AuthResponse.userInfo?.profileImage,
-        verifier: web3AuthResponse.userInfo?.verifier,
-        verifierId: web3AuthResponse.userInfo?.verifierId,
-        typeOfLogin: web3AuthResponse.userInfo?.typeOfLogin,
-        aggregateVerifier: web3AuthResponse.userInfo?.aggregateVerifier,
-        dappShare: web3AuthResponse.userInfo?.dappShare,
-        idToken: web3AuthResponse.userInfo?.idToken,
-        sessionId: web3AuthResponse.sessionId,
-        oAuthIdToken: web3AuthResponse.userInfo?.oAuthIdToken,
-        oAuthAccessToken: web3AuthResponse.userInfo?.oAuthAccessToken,
-        isMfaEnabled: web3AuthResponse.userInfo?.isMfaEnabled,
-        secp256k1PrivateKey: web3AuthResponse.privKey,
-        ed25519PrivateKey: web3AuthResponse.ed25519PrivKey,
-        secp256k1CoreKitKey: web3AuthResponse.coreKitKey,
-        ed25519CoreKitKey: web3AuthResponse.coreKitEd25519PrivKey,
-        error: web3AuthResponse.error,
+          return unit;
+        },
+        onSuccess: (unit) => unit,
+        onFailure: (_) => SFALogoutFailure(),
       );
 
   @override
   Future<Either<CreateSkyTradeUserFailure, SkyTradeUserEntity>>
-      createSkyTradeUserAnd({
-    required bool subscribeToNewsletter,
-  }) =>
+      createSkyTradeUser() =>
           handleData<CreateSkyTradeUserFailure, SkyTradeUserEntity>(
             dataSourceOperation: () async {
               final email = await computeUserEmail();
 
-              final ed25519KeyPair = await computeEd25519KeyPair();
-
-              final walletAddress = ed25519KeyPair.address;
+              final walletAddress = await computeWalletAddress();
 
               return _authRemoteDataSource.createSkyTradeUserUsing(
                 email: email!,
                 blockchainAddress: walletAddress,
-                subscribeToNewsletter: subscribeToNewsletter,
+                subscribeToNewsletter: true,
               );
             },
             onSuccess: (skyTradeUserEntity) => skyTradeUserEntity,
-            onFailure: (e) {
-              if (e is InvalidEmailException) {
-                return InvalidEmailFailure();
-              } else if (e is UserAlreadyExistsException) {
-                return UserAlreadyExistsFailure();
-              } else {
-                return CreateSkyTradeUserUnknownFailure();
-              }
+            onFailure: (e) => switch (e is CreateSkyTradeUserException) {
+              true when e is InvalidEmailException => InvalidEmailFailure(),
+              true when e is WalletAlreadyExistsException =>
+                WalletAlreadyExistsFailure(),
+              true when e is EmailReuseNotAllowedException =>
+                EmailReuseNotAllowedFailure(),
+              _ => CreateSkyTradeUserUnknownFailure(),
             },
           );
 
@@ -212,38 +273,14 @@ final class AuthRepositoryImplementation
           handleData<CheckSkyTradeUserFailure, SkyTradeUserEntity>(
             dataSourceOperation: _authRemoteDataSource.checkSkyTradeUserExists,
             onSuccess: (skyTradeUserEntity) => skyTradeUserEntity,
-            onFailure: (e) {
-              if (e is UnauthorizedException) {
-                return UnauthorizedFailure();
-              } else if (e is InvalidSignatureException) {
-                return InvalidSignatureFailure();
-              } else if (e is UserDoesNotExistException) {
-                return UserDoesNotExistFailure();
-              } else {
-                return CheckSkyTradeUserUnknownFailure();
-              }
+            onFailure: (e) => switch (e is CheckSkyTradeUserException) {
+              true when e is UnauthorizedException => UnauthorizedFailure(),
+              true when e is InvalidSignatureException =>
+                InvalidSignatureFailure(),
+              true when e is UserNotFoundException => UserNotFoundFailure(),
+              true when e is UserMismatchException => UserMismatchFailure(),
+              true when e is UserDeletedException => UserDeletedFailure(),
+              _ => CheckSkyTradeUserUnknownFailure(),
             },
           );
-
-  @override
-  Future<bool> checkWeb3AuthSessionExists() async {
-    final ed25519PrivateKey = await computeEd25519PrivateKey();
-
-    return ed25519PrivateKey.isNotEmpty;
-  }
-
-  @override
-  Future<void> captureWhenWeb3AuthCustomTabsClosed() =>
-      Web3AuthFlutter.setCustomTabsClosed();
-
-  @override
-  Future<Either<Web3AuthLogoutFailure, Unit>> logoutCurrentWeb3AuthUser() =>
-      handleData<Web3AuthLogoutFailure, Unit>(
-        dataSourceOperation: () async {
-          await Web3AuthFlutter.logout();
-          return unit;
-        },
-        onSuccess: (unit) => unit,
-        onFailure: (_) => Web3AuthLogoutFailure(),
-      );
 }

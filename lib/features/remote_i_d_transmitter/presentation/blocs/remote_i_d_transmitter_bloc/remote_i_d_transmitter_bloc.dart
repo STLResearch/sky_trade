@@ -33,6 +33,10 @@ class RemoteIDTransmitterBloc
       _startTransmitter,
     );
 
+    on<_RemoteIDTransmitting>(
+      _remoteIDTransmitting,
+    );
+
     on<_RemoteIDTransmitted>(
       _remoteIDTransmitted,
     );
@@ -41,17 +45,18 @@ class RemoteIDTransmitterBloc
       _transmitterStarted,
     );
 
-    on<_TransmitterStopped>(
-      _transmitterStopped,
-    );
-
     on<_TransmitRemoteID>(
       _transmitRemoteID,
     );
+  }
 
-    on<_StopTransmitter>(
-      _stopTransmitter,
+  @override
+  Future<void> close() async {
+    await _cleanupTransmitter(
+      andStopListening: true,
     );
+
+    return super.close();
   }
 
   final RemoteIDTransmitterRepository _remoteIDTransmitterRepository;
@@ -77,10 +82,32 @@ class RemoteIDTransmitterBloc
 
     _startingTransmitter = true;
 
+    _remoteIDStreamController ??=
+        StreamController<RemoteIDSetDeviceCoordinatesTuple>();
+    _remoteIDStreamSubscription ??= _remoteIDStreamController?.stream.listen(
+      (remoteIDSetDeviceCoordinatesTuple) {
+        _remoteIDTransmitterRepository.transmit(
+          remoteIDEntities: remoteIDSetDeviceCoordinatesTuple.remoteIDEntities,
+          deviceEntity: remoteIDSetDeviceCoordinatesTuple.deviceEntity,
+          rawData: Uint8List.fromList(
+            [],
+          ),
+        );
+      },
+    );
+
+    _remoteIDStreamSubscription?.pause();
+
     await _remoteIDTransmitterRepository.startTransmitter(
-      onRemoteIDSent: () => add(
-        const RemoteIDTransmitterEvent.remoteIDTransmitted(),
-      ),
+      onRemoteIDSent: () {
+        add(
+          const RemoteIDTransmitterEvent.remoteIDTransmitting(),
+        );
+
+        add(
+          const RemoteIDTransmitterEvent.remoteIDTransmitted(),
+        );
+      },
       onConnectionChanged: (connectionState) async {
         if (connectionState == ConnectionState.connected) {
           if (!_startedTransmitter) {
@@ -92,31 +119,25 @@ class RemoteIDTransmitterBloc
             _startingTransmitter = false;
           }
 
-          _remoteIDStreamController ??=
-              StreamController<RemoteIDSetDeviceCoordinatesTuple>();
-          _remoteIDStreamSubscription ??=
-              _remoteIDStreamController?.stream.listen(
-            (remoteIDSetDeviceCoordinatesTuple) {
-              _remoteIDTransmitterRepository.transmit(
-                remoteIDEntities:
-                    remoteIDSetDeviceCoordinatesTuple.remoteIDEntities,
-                deviceEntity: remoteIDSetDeviceCoordinatesTuple.deviceEntity,
-                rawData: Uint8List.fromList(
-                  [],
-                ),
-              );
-            },
-          );
+          if (_remoteIDStreamSubscription?.isPaused ?? false) {
+            _remoteIDStreamSubscription?.resume();
+          }
         } else if (connectionState == ConnectionState.destroyed) {
-          await _cancelListeningRemoteID();
-
-          add(
-            const RemoteIDTransmitterEvent.transmitterStopped(),
+          await _cleanupTransmitter(
+            andStopListening: false,
           );
         }
       },
     );
   }
+
+  void _remoteIDTransmitting(
+    _RemoteIDTransmitting event,
+    Emitter<RemoteIDTransmitterState> emit,
+  ) =>
+      emit(
+        const RemoteIDTransmitterState.transmittingRemoteID(),
+      );
 
   void _remoteIDTransmitted(
     _RemoteIDTransmitted event,
@@ -134,14 +155,6 @@ class RemoteIDTransmitterBloc
         const RemoteIDTransmitterState.startedTransmitter(),
       );
 
-  void _transmitterStopped(
-    _TransmitterStopped event,
-    Emitter<RemoteIDTransmitterState> emit,
-  ) =>
-      emit(
-        const RemoteIDTransmitterState.stoppedTransmitter(),
-      );
-
   void _transmitRemoteID(
     _TransmitRemoteID event,
     Emitter<RemoteIDTransmitterState> emit,
@@ -156,20 +169,9 @@ class RemoteIDTransmitterBloc
         ),
       );
 
-  Future<void> _stopTransmitter(
-    _StopTransmitter event,
-    Emitter<RemoteIDTransmitterState> emit,
-  ) async {
-    await _cancelListeningRemoteID();
-
-    _remoteIDTransmitterRepository.stopTransmitter();
-
-    emit(
-      const RemoteIDTransmitterState.initial(),
-    );
-  }
-
-  Future<void> _cancelListeningRemoteID() async {
+  Future<void> _cleanupTransmitter({
+    required bool andStopListening,
+  }) async {
     await Future.wait<dynamic>([
       _remoteIDStreamController?.close() ?? Future.value(),
       _remoteIDStreamSubscription?.cancel() ?? Future.value(),
@@ -180,5 +182,9 @@ class RemoteIDTransmitterBloc
 
     _startingTransmitter = false;
     _startedTransmitter = false;
+
+    if (!andStopListening) return;
+
+    _remoteIDTransmitterRepository.stopTransmitter();
   }
 }

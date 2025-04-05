@@ -31,6 +31,7 @@ import 'package:flutter/material.dart'
         Size,
         SnackBarBehavior,
         SnackBarThemeData,
+        SwitchThemeData,
         TextButtonThemeData,
         TextStyle,
         TextTheme,
@@ -50,6 +51,7 @@ import 'package:sky_trade/core/resources/colors.dart'
         hexCCCCCC,
         hexD9D9D9,
         hexE04F64,
+        hexE9E9EA,
         hexEBEBEB,
         hexFFFFFF;
 import 'package:sky_trade/core/resources/numbers/ui.dart'
@@ -346,6 +348,20 @@ ThemeData get lightTheme => ThemeData(
         actionsIconTheme: IconThemeData(
           color: hexFFFFFF,
           size: twentyFourDotNil,
+        ),
+      ),
+      switchTheme: const SwitchThemeData(
+        thumbColor: WidgetStatePropertyAll<Color>(
+          hexFFFFFF,
+        ),
+        trackColor: WidgetStatePropertyAll<Color>(
+          hexE9E9EA,
+        ),
+        trackOutlineColor: WidgetStatePropertyAll<Color>(
+          Colors.transparent,
+        ),
+        trackOutlineWidth: WidgetStatePropertyAll<double>(
+          nilDotNil,
         ),
       ),
     );

@@ -31,9 +31,11 @@ import 'package:sky_trade/core/resources/strings/networking.dart'
         euOpenKey,
         euSpecificKey,
         extendedStatusKey,
+        featureCollectionKey,
         fixedKey,
         freeBalloonKey,
         freeFallParachuteKey,
+        geometryCollectionKey,
         gliderKey,
         groundKey,
         groundObstacleKey,
@@ -68,10 +70,16 @@ import 'package:sky_trade/core/resources/strings/networking.dart'
         multiPolygonValue,
         networkRemoteIdKey,
         noneKey,
+        notVerifiedKey,
+        oneDKey,
+        oneMKey,
+        oneWKey,
+        oneYKey,
         operatorIDKey,
         operatorIdSignatureKey,
         ornithopterKey,
         otherKey,
+        partiallyVerifiedKey,
         pointValue,
         polygonValue,
         privateKey,
@@ -82,10 +90,12 @@ import 'package:sky_trade/core/resources/strings/networking.dart'
         privateUse0xEKey,
         privateUse0xFKey,
         prohibitedValue,
+        rejectedKey,
         remoteIDSystemFailureKey,
         restrictedValue,
         rocketKey,
-        serialNumberIDTypeKey,
+        serialNumberAltKey,
+        skyTradeBackendKey,
         specificAuthenticationKey,
         specificSessionIDKey,
         takeOffKey,
@@ -97,14 +107,9 @@ import 'package:sky_trade/core/resources/strings/networking.dart'
         undeclaredKey,
         undefinedKey,
         unknownKey,
+        verifiedKey,
         wifiBeaconKey,
         wifiNanKey;
-
-// Web3Auth
-enum AuthProvider {
-  google,
-  emailPasswordless,
-}
 
 // Network request method
 enum RequestMethod {
@@ -124,7 +129,7 @@ enum RestrictionType {
   restricted,
 }
 
-enum RegionType {
+enum GeometryType {
   @JsonValue(pointValue)
   point,
   @JsonValue(lineStringValue)
@@ -185,6 +190,8 @@ enum WifiAdapterState {
 }
 
 enum RemoteIDMessageSource {
+  @JsonValue(skyTradeBackendKey)
+  skyTradeBackend,
   @JsonValue(bluetoothLegacyKey)
   bluetoothLegacy,
   @JsonValue(bluetoothLongRangeKey)
@@ -235,7 +242,7 @@ enum UnmannedAircraftType {
 enum UnmannedAircraftIDType {
   @JsonValue(noneKey)
   none,
-  @JsonValue(serialNumberIDTypeKey)
+  @JsonValue(serialNumberAltKey)
   serialNumber,
   @JsonValue(cAARegistrationIDKey)
   cAARegistrationID,
@@ -419,4 +426,48 @@ enum UnmannedAircraftAuthenticationType {
   privateUse0xE,
   @JsonValue(privateUse0xFKey)
   privateUse0xF,
+}
+
+enum TrackingTransparencyRequestStatus {
+  notYetAsked,
+  authorized,
+}
+
+enum PropertyStatusType {
+  @JsonValue(verifiedKey)
+  verified,
+  @JsonValue(partiallyVerifiedKey)
+  partiallyVerified,
+  @JsonValue(notVerifiedKey)
+  notVerified,
+  @JsonValue(rejectedKey)
+  rejected,
+}
+
+enum GeoJsonType {
+  @JsonValue(featureCollectionKey)
+  featureCollection,
+  @JsonValue(geometryCollectionKey)
+  geometryCollection,
+}
+
+enum RangeFilter {
+  oneDay(
+    oneDKey,
+  ),
+  oneWeek(
+    oneWKey,
+  ),
+  oneMonth(
+    oneMKey,
+  ),
+  oneYear(
+    oneYKey,
+  );
+
+  const RangeFilter(
+    this.value,
+  );
+
+  final String value;
 }

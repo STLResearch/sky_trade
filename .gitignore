@@ -5,9 +5,11 @@
 *.swp
 .DS_Store
 .atom/
+.build/
 .buildlog/
 .history
 .svn/
+.swiftpm/
 migrate_working_dir/
 
 # IntelliJ related
@@ -49,8 +51,13 @@ app.*.map.json
 *.env.*
 
 # Firebase
-lib/firebase_options.dart
+lib/firebase_options_dev.dart
+lib/firebase_options_stage.dart
+lib/firebase_options_live.dart
 firebase.json
 
 # Code coverage
 coverage/
+
+# Sentry
+sentry.properties

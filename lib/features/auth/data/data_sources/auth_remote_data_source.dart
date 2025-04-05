@@ -1,29 +1,34 @@
+// ignore_for_file: lines_longer_than_80_chars
+
 import 'package:sky_trade/core/errors/exceptions/auth_exception.dart';
 import 'package:sky_trade/core/resources/numbers/networking.dart' show zero;
 import 'package:sky_trade/core/resources/strings/networking.dart'
     show
+        aWalletAlreadyExistsForThisEmailAddressKindlySignInWithTheSameMethodUsedPreviouslyCode,
         blockchainAddressKey,
         categoryIdKey,
         createPath,
         emailKey,
-        invalidEmail,
-        invalidSignature,
+        invalidEmailCode,
+        invalidSignatureCode,
         nameKey,
         newsletterKey,
         phoneNumberKey,
         pirateValue,
         privatePath,
-        publicPath,
         sessionPath,
-        unauthorized,
-        userExist,
-        userNotExist,
-        usersPath;
+        unauthorizedCode,
+        userDeletedCode,
+        userMismatchCode,
+        userNotFoundCode,
+        usersPath,
+        walletExistCode;
 import 'package:sky_trade/core/utils/clients/network_client.dart'
     show HttpClient;
 import 'package:sky_trade/core/utils/clients/response_handler.dart';
 import 'package:sky_trade/core/utils/enums/networking.dart' show RequestMethod;
-import 'package:sky_trade/features/auth/data/models/auth_model.dart';
+import 'package:sky_trade/features/auth/data/models/auth_model.dart'
+    show SkyTradeUserModel;
 
 abstract interface class AuthRemoteDataSource {
   Future<SkyTradeUserModel> createSkyTradeUserUsing({
@@ -54,7 +59,8 @@ final class AuthRemoteDataSourceImplementation
           SkyTradeUserModel>(
         requestInitiator: _httpClient.request(
           requestMethod: RequestMethod.post,
-          path: publicPath + usersPath + createPath,
+          path: privatePath + usersPath + createPath,
+          includeSignature: true,
           data: {
             nameKey: pirateValue,
             emailKey: email,
@@ -66,8 +72,13 @@ final class AuthRemoteDataSourceImplementation
         ),
         onSuccess: SkyTradeUserModel.fromJson,
         onError: (e) => switch (e is String) {
-          true when e == invalidEmail => InvalidEmailException(),
-          true when e == userExist => UserAlreadyExistsException(),
+          true when e == invalidEmailCode => InvalidEmailException(),
+          true
+              when e ==
+                      aWalletAlreadyExistsForThisEmailAddressKindlySignInWithTheSameMethodUsedPreviouslyCode ||
+                  e == walletExistCode =>
+            WalletAlreadyExistsException(),
+          true when e == userDeletedCode => EmailReuseNotAllowedException(),
           _ => CreateSkyTradeUserUnknownException(),
         },
       );
@@ -82,9 +93,11 @@ final class AuthRemoteDataSourceImplementation
         ),
         onSuccess: SkyTradeUserModel.fromJson,
         onError: (e) => switch (e is String) {
-          true when e == unauthorized => UnauthorizedException(),
-          true when e == invalidSignature => InvalidSignatureException(),
-          true when e == userNotExist => UserDoesNotExistException(),
+          true when e == unauthorizedCode => UnauthorizedException(),
+          true when e == invalidSignatureCode => InvalidSignatureException(),
+          true when e == userNotFoundCode => UserNotFoundException(),
+          true when e == userMismatchCode => UserMismatchException(),
+          true when e == userDeletedCode => UserDeletedException(),
           _ => CheckSkyTradeUserUnknownException(),
         },
       );

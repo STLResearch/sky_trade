@@ -30,7 +30,8 @@ import 'package:sky_trade/core/utils/extensions/restriction_entity_extensions.da
 import 'package:sky_trade/features/u_a_s_restrictions/domain/entities/restriction_entity.dart'
     show RestrictionEntity;
 import 'package:sky_trade/features/u_a_s_restrictions/presentation/widgets/restriction_bubble.dart';
-import 'package:sky_trade/features/u_a_s_restrictions/presentation/widgets/restriction_info.dart';
+import 'package:sky_trade/features/u_a_s_restrictions/presentation/widgets/restriction_info.dart'
+    show RestrictionInfo;
 
 class RestrictionIndicator extends StatelessWidget {
   const RestrictionIndicator({

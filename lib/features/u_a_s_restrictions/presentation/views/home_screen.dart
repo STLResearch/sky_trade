@@ -1,3 +1,7 @@
+// ignore_for_file: lines_longer_than_80_chars
+
+import 'dart:io' show Platform;
+
 import 'package:flutter/material.dart'
     show
         AlignmentDirectional,
@@ -9,41 +13,45 @@ import 'package:flutter/material.dart'
         Stack,
         State,
         StatefulWidget,
+        StatelessWidget,
         ValueListenableBuilder,
         ValueNotifier,
         Widget;
 import 'package:flutter_bloc/flutter_bloc.dart'
-    show BlocListener, MultiBlocListener, ReadContext;
+    show
+        BlocListener,
+        BlocProvider,
+        MultiBlocListener,
+        MultiBlocProvider,
+        ReadContext;
 import 'package:flutter_dotenv/flutter_dotenv.dart' show dotenv;
 import 'package:mapbox_maps_flutter/mapbox_maps_flutter.dart'
     show CompassSettings, MapboxMap, MapboxOptions, ScaleBarSettings;
 import 'package:sky_trade/core/resources/colors.dart' show hexB3FFFFFF;
 import 'package:sky_trade/core/resources/numbers/ui.dart' show twelveDotFive;
 import 'package:sky_trade/core/resources/strings/routes.dart'
-    show loginRoutePath;
+    show getStartedRoutePath;
 import 'package:sky_trade/core/resources/strings/secret_keys.dart'
     show
         mapboxMapsDarkStyleUri,
         mapboxMapsPublicKey,
         mapboxMapsSatelliteStyleUri;
-import 'package:sky_trade/core/utils/enums/local.dart' show CacheType;
+import 'package:sky_trade/core/resources/strings/special_characters.dart'
+    show emptyString;
+import 'package:sky_trade/core/resources/strings/ui.dart'
+    show bridDronesSourceId, nridDronesSourceId;
 import 'package:sky_trade/core/utils/enums/ui.dart' show MapStyle;
 import 'package:sky_trade/core/utils/extensions/build_context_extensions.dart';
-import 'package:sky_trade/core/utils/extensions/cache_entity_extensions.dart';
 import 'package:sky_trade/core/utils/extensions/mapbox_map_extensions.dart';
 import 'package:sky_trade/core/utils/typedefs/ui.dart'
     show PointAnnotationManagerPointAnnotationTuple;
-import 'package:sky_trade/features/auth/presentation/blocs/web_3_auth_logout_bloc/web_3_auth_logout_bloc.dart'
-    show Web3AuthLogoutBloc, Web3AuthLogoutState;
+import 'package:sky_trade/features/auth/presentation/blocs/auth_0_logout_bloc/auth_0_logout_bloc.dart'
+    show Auth0LogoutBloc, Auth0LogoutState;
 import 'package:sky_trade/features/bluetooth/presentation/blocs/bluetooth_permissions_bloc/bluetooth_permissions_bloc.dart'
     show
         BluetoothPermissionsBloc,
         BluetoothPermissionsEvent,
         BluetoothPermissionsState;
-import 'package:sky_trade/features/cache_manager/presentation/blocs/cache_data_bloc/cache_data_bloc.dart'
-    show CacheDataBloc, CacheDataEvent, CacheDataState;
-import 'package:sky_trade/features/cache_manager/presentation/blocs/cached_data_bloc/cached_data_bloc.dart'
-    show CachedDataBloc, CachedDataEvent, CachedDataState;
 import 'package:sky_trade/features/geo_hash/presentation/blocs/geo_hash_bloc/geo_hash_bloc.dart'
     show GeoHashBloc, GeoHashEvent, GeoHashState;
 import 'package:sky_trade/features/location/presentation/blocs/location_permission_bloc/location_permission_bloc.dart'
@@ -58,18 +66,27 @@ import 'package:sky_trade/features/location/presentation/blocs/location_service_
         LocationServiceStatusBloc,
         LocationServiceStatusEvent,
         LocationServiceStatusState;
-import 'package:sky_trade/features/remote_i_d_receiver/presentation/blocs/remote_i_d_receiver_bloc/remote_i_d_receiver_bloc.dart'
-    show RemoteIDReceiverBloc, RemoteIDReceiverEvent, RemoteIDReceiverState;
+import 'package:sky_trade/features/remote_i_d_receiver/presentation/blocs/broadcast_remote_i_d_receiver_bloc/broadcast_remote_i_d_receiver_bloc.dart'
+    show
+        BroadcastRemoteIDReceiverBloc,
+        BroadcastRemoteIDReceiverEvent,
+        BroadcastRemoteIDReceiverState;
+import 'package:sky_trade/features/remote_i_d_receiver/presentation/blocs/network_remote_i_d_receiver_bloc/network_remote_i_d_receiver_bloc.dart'
+    show
+        NetworkRemoteIDReceiverBloc,
+        NetworkRemoteIDReceiverEvent,
+        NetworkRemoteIDReceiverState;
 import 'package:sky_trade/features/remote_i_d_transmitter/presentation/blocs/remote_i_d_transmitter_bloc/remote_i_d_transmitter_bloc.dart'
     show RemoteIDTransmitterBloc, RemoteIDTransmitterEvent;
-import 'package:sky_trade/features/u_a_s_activity/presentation/blocs/u_a_s_activity_bloc/u_a_s_activity_bloc.dart'
-    show UASActivityBloc, UASActivityEvent, UASActivityState;
+import 'package:sky_trade/features/search_autocomplete/presentation/blocs/retrieve_geometric_coordinates_bloc/retrieve_geometric_coordinates_bloc.dart'
+    show RetrieveGeometricCoordinatesBloc, RetrieveGeometricCoordinatesState;
 import 'package:sky_trade/features/u_a_s_restrictions/domain/entities/restriction_entity.dart'
     show RestrictionEntity;
 import 'package:sky_trade/features/u_a_s_restrictions/presentation/blocs/u_a_s_restrictions_bloc/u_a_s_restrictions_bloc.dart'
     show UASRestrictionsBloc, UASRestrictionsEvent, UASRestrictionsState;
 import 'package:sky_trade/features/u_a_s_restrictions/presentation/widgets/alert_snack_bar.dart';
-import 'package:sky_trade/features/u_a_s_restrictions/presentation/widgets/map_overlay.dart';
+import 'package:sky_trade/features/u_a_s_restrictions/presentation/widgets/map_overlay.dart'
+    show MapOverlay;
 import 'package:sky_trade/features/u_a_s_restrictions/presentation/widgets/map_view.dart';
 import 'package:sky_trade/features/u_a_s_restrictions/presentation/widgets/progress_dialog.dart';
 import 'package:sky_trade/features/u_a_s_restrictions/presentation/widgets/restriction_indicator.dart';
@@ -78,21 +95,73 @@ import 'package:sky_trade/features/weather/presentation/weather_bloc/weather_blo
     show WeatherBloc, WeatherEvent;
 import 'package:sky_trade/features/wifi/presentation/blocs/wifi_permission_bloc/wifi_permission_bloc.dart'
     show WifiPermissionBloc, WifiPermissionEvent, WifiPermissionState;
+import 'package:sky_trade/injection_container.dart' show serviceLocator;
 
-class HomeScreen extends StatefulWidget {
+class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
   @override
-  State<HomeScreen> createState() => _HomeScreenState();
+  Widget build(BuildContext context) => MultiBlocProvider(
+        providers: [
+          BlocProvider<Auth0LogoutBloc>(
+            create: (_) => serviceLocator(),
+          ),
+          BlocProvider<BluetoothPermissionsBloc>(
+            create: (_) => serviceLocator(),
+          ),
+          BlocProvider<GeoHashBloc>(
+            create: (_) => serviceLocator(),
+          ),
+          BlocProvider<LocationPermissionBloc>(
+            create: (_) => serviceLocator(),
+          ),
+          BlocProvider<LocationPositionBloc>(
+            create: (_) => serviceLocator(),
+          ),
+          BlocProvider<LocationServiceStatusBloc>(
+            create: (_) => serviceLocator(),
+          ),
+          BlocProvider<BroadcastRemoteIDReceiverBloc>(
+            create: (_) => serviceLocator(),
+          ),
+          BlocProvider<NetworkRemoteIDReceiverBloc>(
+            create: (_) => serviceLocator(),
+          ),
+          BlocProvider<RemoteIDTransmitterBloc>(
+            create: (_) => serviceLocator(),
+          ),
+          BlocProvider<UASRestrictionsBloc>(
+            create: (_) => serviceLocator(),
+          ),
+          BlocProvider<WeatherBloc>(
+            create: (_) => serviceLocator(),
+          ),
+          BlocProvider<WifiPermissionBloc>(
+            create: (_) => serviceLocator(),
+          ),
+          BlocProvider<RetrieveGeometricCoordinatesBloc>(
+            create: (_) => serviceLocator(),
+          ),
+        ],
+        child: const HomeView(),
+      );
 }
 
-class _HomeScreenState extends State<HomeScreen> {
+class HomeView extends StatefulWidget {
+  const HomeView({super.key});
+
+  @override
+  State<HomeView> createState() => _HomeViewState();
+}
+
+class _HomeViewState extends State<HomeView> {
   MapboxMap? _mapboxMap;
   PointAnnotationManagerPointAnnotationTuple? _marker;
-  List<PointAnnotationManagerPointAnnotationTuple>? _markers;
   late final ValueNotifier<RestrictionEntity?> _clickedRestriction;
   late final ValueNotifier<bool> _centerLocationNotifier;
   late final ValueNotifier<MapStyle> _mapStyleNotifier;
+  String previousBridGeoJsonData = emptyString;
+  String previousNridGeoJsonData = emptyString;
 
   @override
   void initState() {
@@ -114,7 +183,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
     _startTransmitter();
 
-    _listenUASActivities();
+    _listenNetworkRemoteIDs();
 
     _requestLocationPermission();
 
@@ -125,33 +194,20 @@ class _HomeScreenState extends State<HomeScreen> {
         const RemoteIDTransmitterEvent.startTransmitter(),
       );
 
-  void _listenUASActivities() => context.read<UASActivityBloc>().add(
-        const UASActivityEvent.listenUASActivities(),
-      );
+  void _listenNetworkRemoteIDs() =>
+      context.read<NetworkRemoteIDReceiverBloc>().add(
+            const NetworkRemoteIDReceiverEvent.listenRemoteIDs(),
+          );
 
   void _requestLocationPermission() =>
       context.read<LocationPermissionBloc>().add(
             const LocationPermissionEvent.requestPermission(),
           );
 
-  @override
-  void deactivate() {
-    _stopTransmitter();
-    _stopListeningUASActivities();
-    _stopListeningLocationPosition();
-    _stopListeningLocationServiceStatus();
-    _stopListeningRemoteIDs();
-
-    super.deactivate();
-  }
-
-  void _stopTransmitter() => context.read<RemoteIDTransmitterBloc>().add(
-        const RemoteIDTransmitterEvent.stopTransmitter(),
-      );
-
-  void _stopListeningUASActivities() => context.read<UASActivityBloc>().add(
-        const UASActivityEvent.stopListeningUASActivities(),
-      );
+  void _requestBluetoothPermissions() =>
+      context.read<BluetoothPermissionsBloc>().add(
+            const BluetoothPermissionsEvent.requestPermissions(),
+          );
 
   void _stopListeningLocationPosition() =>
       context.read<LocationPositionBloc>().add(
@@ -162,10 +218,6 @@ class _HomeScreenState extends State<HomeScreen> {
       .read<LocationServiceStatusBloc>()
       .add(
         const LocationServiceStatusEvent.stopListeningLocationServiceStatus(),
-      );
-
-  void _stopListeningRemoteIDs() => context.read<RemoteIDReceiverBloc>().add(
-        const RemoteIDReceiverEvent.listenRemoteIDs(),
       );
 
   @override
@@ -180,9 +232,9 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) => MultiBlocListener(
         listeners: [
-          BlocListener<Web3AuthLogoutBloc, Web3AuthLogoutState>(
-            listener: (_, web3AuthLogoutState) {
-              web3AuthLogoutState.whenOrNull(
+          BlocListener<Auth0LogoutBloc, Auth0LogoutState>(
+            listener: (context, auth0LogoutState) {
+              auth0LogoutState.whenOrNull(
                 loggingOut: () {
                   ProgressDialog.show(
                     context,
@@ -197,10 +249,10 @@ class _HomeScreenState extends State<HomeScreen> {
                   Navigator.of(
                     context,
                   ).pushReplacementNamed(
-                    loginRoutePath,
+                    getStartedRoutePath,
                   );
                 },
-                failedToLogOut: (failure) {
+                failedToLogOut: (_) {
                   Navigator.of(
                     context,
                   ).pop();
@@ -226,9 +278,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     _stopListeningLocationServiceStatus();
                   }
                 },
-                orElse: () {
-                  _stopListeningLocationServiceStatus();
-                },
+                orElse: _stopListeningLocationServiceStatus,
               );
             },
           ),
@@ -279,9 +329,12 @@ class _HomeScreenState extends State<HomeScreen> {
               wifiPermissionState.whenOrNull(
                 maybeGrantedPermission: (wifiPermissionEntity) {
                   if (wifiPermissionEntity.granted) {
-                    context.read<BluetoothPermissionsBloc>().add(
-                          const BluetoothPermissionsEvent.requestPermissions(),
-                        );
+                    _requestBluetoothPermissions();
+                  }
+                },
+                cannotRequestPermission: (_) {
+                  if (Platform.isIOS) {
+                    _requestBluetoothPermissions();
                   }
                 },
               );
@@ -292,30 +345,20 @@ class _HomeScreenState extends State<HomeScreen> {
               bluetoothPermissionsState.whenOrNull(
                 maybeGrantedPermissions: (bluetoothPermissionsEntity) {
                   if (bluetoothPermissionsEntity.granted) {
-                    context.read<RemoteIDReceiverBloc>().add(
-                          const RemoteIDReceiverEvent.listenRemoteIDs(),
+                    context.read<BroadcastRemoteIDReceiverBloc>().add(
+                          const BroadcastRemoteIDReceiverEvent
+                              .listenRemoteIDs(),
                         );
                   }
                 },
               );
             },
           ),
-          BlocListener<RemoteIDReceiverBloc, RemoteIDReceiverState>(
-            listener: (_, remoteIDReceiverState) {
-              remoteIDReceiverState.whenOrNull(
-                gotRemoteIDs: (remoteIDEntities) {
-                  // await _mapboxMap?.removePreviousMarkers(
-                  //   _markers,
-                  // );
-
-                  _mapboxMap
-                      ?.showUASActivitiesOnMapUsing(
-                        remoteIDEntities: remoteIDEntities,
-                      )
-                      .then(
-                        (markers) => _markers = markers,
-                      );
-
+          BlocListener<BroadcastRemoteIDReceiverBloc,
+              BroadcastRemoteIDReceiverState>(
+            listener: (_, broadcastRemoteIDReceiverState) {
+              broadcastRemoteIDReceiverState.whenOrNull(
+                gotRemoteIDs: (bridEntities) async {
                   final latLng =
                       context.read<LocationPositionBloc>().state.whenOrNull(
                             gotLocationPosition: (locationPositionEntity) => (
@@ -326,11 +369,34 @@ class _HomeScreenState extends State<HomeScreen> {
 
                   context.read<RemoteIDTransmitterBloc>().add(
                         RemoteIDTransmitterEvent.transmitRemoteID(
-                          remoteIDEntities: remoteIDEntities,
+                          remoteIDEntities: bridEntities,
                           deviceLatitude: latLng?.latitude,
                           deviceLongitude: latLng?.longitude,
                         ),
                       );
+
+                  if (_mapboxMap != null) {
+                    previousBridGeoJsonData =
+                        await _mapboxMap!.addOrUpdateDronesOnMap(
+                      remoteIDEntities: bridEntities,
+                      geoJsonSourceId: bridDronesSourceId,
+                    );
+                  }
+                },
+              );
+            },
+          ),
+          BlocListener<NetworkRemoteIDReceiverBloc,
+              NetworkRemoteIDReceiverState>(
+            listener: (_, networkRemoteIDReceiverState) {
+              networkRemoteIDReceiverState.whenOrNull(
+                gotRemoteIDs: (nridEntities) async {
+                  // if (_mapboxMap != null) {
+                  //   previousNridGeoJsonData = await _mapboxMap!.addOrUpdateDronesOnMap(
+                  //     remoteIDEntities: nridEntities,
+                  //     geoJsonSourceId: nridDronesSourceId,
+                  //   );
+                  // }
                 },
               );
             },
@@ -339,67 +405,8 @@ class _HomeScreenState extends State<HomeScreen> {
             listener: (_, uASRestrictionsState) {
               uASRestrictionsState.whenOrNull(
                 gotRestrictions: (restrictionEntities) async {
-                  context.read<GeoHashBloc>().state.whenOrNull(
-                    computedGeoHash: (geoHash) {
-                      context.read<CacheDataBloc>().add(
-                            CacheDataEvent.cacheData(
-                              name: geoHash,
-                              content: restrictionEntities,
-                              type: CacheType.jsonListFile,
-                            ),
-                          );
-                    },
-                  );
-                },
-              );
-            },
-          ),
-          BlocListener<CacheDataBloc, CacheDataState>(
-            listener: (_, cacheDataState) {
-              cacheDataState.whenOrNull(
-                cached: (name, type) {
-                  context.read<CachedDataBloc>().add(
-                        CachedDataEvent.getCachedData(
-                          name: name,
-                          type: type,
-                        ),
-                      );
-                },
-              );
-            },
-          ),
-          BlocListener<GeoHashBloc, GeoHashState>(
-            listener: (_, geoHashState) {
-              geoHashState.whenOrNull(
-                computedGeoHash: (geoHash) {
-                  context.read<UASActivityBloc>().add(
-                        UASActivityEvent.requestNewUASActivitiesAround(
-                          geoHash: geoHash,
-                        ),
-                      );
-
-                  context.read<CachedDataBloc>().add(
-                        CachedDataEvent.getCachedData(
-                          name: geoHash,
-                          type: CacheType.jsonListFile,
-                        ),
-                      );
-
-                  context.read<WeatherBloc>().add(
-                        WeatherEvent.getWeather(
-                          geoHash: geoHash,
-                        ),
-                      );
-                },
-              );
-            },
-          ),
-          BlocListener<CachedDataBloc, CachedDataState>(
-            listener: (_, cachedDataState) {
-              cachedDataState.whenOrNull(
-                cacheExists: (cacheEntity) async {
                   await _mapboxMap?.drawRestrictionsPolygonsConsidering(
-                    restrictionEntities: cacheEntity.asRestrictionEntities,
+                    restrictionEntities: restrictionEntities,
                     onPolygonClick: (
                       polygonAnnotation,
                       clickedRestrictionEntity,
@@ -433,30 +440,45 @@ class _HomeScreenState extends State<HomeScreen> {
                     },
                   );
                 },
-                cacheNotExist: () {
-                  context.read<GeoHashBloc>().state.whenOrNull(
-                    computedGeoHash: (geoHash) {
-                      context.read<UASRestrictionsBloc>().add(
-                            UASRestrictionsEvent.getRestrictions(
-                              geoHash: geoHash,
-                            ),
-                          );
-                    },
-                  );
+              );
+            },
+          ),
+          BlocListener<GeoHashBloc, GeoHashState>(
+            listener: (_, geoHashState) {
+              geoHashState.whenOrNull(
+                computedGeoHashOfPrecision3: (geoHashOfPrecision3) {
+                  context.read<NetworkRemoteIDReceiverBloc>().add(
+                        NetworkRemoteIDReceiverEvent.requestRemoteIDsAround(
+                          geoHash: geoHashOfPrecision3,
+                        ),
+                      );
+
+                  context.read<WeatherBloc>().add(
+                        WeatherEvent.getWeather(
+                          geoHash: geoHashOfPrecision3,
+                        ),
+                      );
+                },
+                computedGeoHashOfPrecision4: (geoHashOfPrecision4) {
+                  context.read<UASRestrictionsBloc>().add(
+                        UASRestrictionsEvent.getRestrictions(
+                          geoHash: geoHashOfPrecision4,
+                        ),
+                      );
                 },
               );
             },
           ),
-          BlocListener<UASActivityBloc, UASActivityState>(
-            listener: (context, uASActivityState) {
-              uASActivityState.whenOrNull(
-                gotUASActivities: (uASEntities) async {
-                  // await _mapboxMap?.removePreviousMarkers(
-                  //   _markers,
-                  // );
+          BlocListener<RetrieveGeometricCoordinatesBloc,
+              RetrieveGeometricCoordinatesState>(
+            listener: (_, retrieveGeometricCoordinatesState) {
+              retrieveGeometricCoordinatesState.whenOrNull(
+                retrievedCoordinates: (latitude, longitude) {
+                  _centerLocationNotifier.value = false;
 
-                  _markers = await _mapboxMap?.showUASActivitiesOnMapUsing(
-                    uASEntities: uASEntities,
+                  _mapboxMap?.animateTo(
+                    latitude: latitude,
+                    longitude: longitude,
                   );
                 },
               );
@@ -464,6 +486,7 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ],
         child: Scaffold(
+          resizeToAvoidBottomInset: false,
           body: Stack(
             alignment: AlignmentDirectional.center,
             children: [
@@ -472,17 +495,17 @@ class _HomeScreenState extends State<HomeScreen> {
                 onTap: (_) => _clickedRestriction.value = null,
                 onScroll: (_) => _centerLocationNotifier.value = false,
                 onCreated: (mapboxMap) {
-                  mapboxMap.compass.updateSettings(
-                    CompassSettings(
-                      enabled: false,
-                    ),
-                  );
-
-                  mapboxMap.scaleBar.updateSettings(
-                    ScaleBarSettings(
-                      enabled: false,
-                    ),
-                  );
+                  mapboxMap
+                    ..compass.updateSettings(
+                      CompassSettings(
+                        enabled: false,
+                      ),
+                    )
+                    ..scaleBar.updateSettings(
+                      ScaleBarSettings(
+                        enabled: false,
+                      ),
+                    );
 
                   _mapboxMap = mapboxMap;
                 },
@@ -510,6 +533,12 @@ class _HomeScreenState extends State<HomeScreen> {
                         );
                       }
                     },
+                  );
+                },
+                onStyleLoaded: (_) async {
+                  await _mapboxMap?.setUpLayersForDrones(
+                    bridGeoJsonData: previousBridGeoJsonData,
+                    nridGeoJsonData: previousNridGeoJsonData,
                   );
                 },
               ),
@@ -551,22 +580,22 @@ class _HomeScreenState extends State<HomeScreen> {
                         },
                       );
                     },
-                    onMapLayerIconTap: () {
+                    onMapLayerIconTap: () async {
+                      final String newMapStyleUri;
+
                       switch (mapStyleNotifierValue) {
                         case MapStyle.dark:
-                          _mapboxMap?.style.setStyleURI(
-                            dotenv.env[mapboxMapsSatelliteStyleUri]!,
-                          );
-
+                          newMapStyleUri = mapboxMapsSatelliteStyleUri;
                           _mapStyleNotifier.value = MapStyle.satellite;
 
                         case MapStyle.satellite:
-                          _mapboxMap?.style.setStyleURI(
-                            dotenv.env[mapboxMapsDarkStyleUri]!,
-                          );
-
+                          newMapStyleUri = mapboxMapsDarkStyleUri;
                           _mapStyleNotifier.value = MapStyle.dark;
                       }
+
+                      await _mapboxMap?.style.setStyleURI(
+                        dotenv.env[newMapStyleUri]!,
+                      );
                     },
                     onDroneTap: () {},
                   ),

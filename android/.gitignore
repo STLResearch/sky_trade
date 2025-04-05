@@ -21,7 +21,7 @@ key.properties
 **/*output-metadata.json
 
 # Firebase
-app/google-services.json
+**/google-services.json
 
 # Environment variable
 *.env
@@ -33,3 +33,6 @@ fastlane-service-account-google-developer-console.json
 publishing/node_modules
 publishing/solana-keypair.json
 publishing/.asset-manifest.json
+
+# CXX
+*.cxx

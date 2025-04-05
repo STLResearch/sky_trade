@@ -23,7 +23,6 @@ mixin _$WifiAdapterStateEvent {
         wifiAdapterStateGotten,
     required TResult Function(WifiAdapterStateFailure wifiAdapterStateFailure)
         wifiAdapterStateNotGotten,
-    required TResult Function() stopListeningWifiAdapterState,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -33,7 +32,6 @@ mixin _$WifiAdapterStateEvent {
         wifiAdapterStateGotten,
     TResult? Function(WifiAdapterStateFailure wifiAdapterStateFailure)?
         wifiAdapterStateNotGotten,
-    TResult? Function()? stopListeningWifiAdapterState,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -43,7 +41,6 @@ mixin _$WifiAdapterStateEvent {
         wifiAdapterStateGotten,
     TResult Function(WifiAdapterStateFailure wifiAdapterStateFailure)?
         wifiAdapterStateNotGotten,
-    TResult Function()? stopListeningWifiAdapterState,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -55,8 +52,6 @@ mixin _$WifiAdapterStateEvent {
         wifiAdapterStateGotten,
     required TResult Function(_WifiAdapterStateNotGotten value)
         wifiAdapterStateNotGotten,
-    required TResult Function(_StopListeningWifiAdapterState value)
-        stopListeningWifiAdapterState,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -65,8 +60,6 @@ mixin _$WifiAdapterStateEvent {
     TResult? Function(_WifiAdapterStateGotten value)? wifiAdapterStateGotten,
     TResult? Function(_WifiAdapterStateNotGotten value)?
         wifiAdapterStateNotGotten,
-    TResult? Function(_StopListeningWifiAdapterState value)?
-        stopListeningWifiAdapterState,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -75,8 +68,6 @@ mixin _$WifiAdapterStateEvent {
     TResult Function(_WifiAdapterStateGotten value)? wifiAdapterStateGotten,
     TResult Function(_WifiAdapterStateNotGotten value)?
         wifiAdapterStateNotGotten,
-    TResult Function(_StopListeningWifiAdapterState value)?
-        stopListeningWifiAdapterState,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -99,6 +90,9 @@ class _$WifiAdapterStateEventCopyWithImpl<$Res,
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  /// Create a copy of WifiAdapterStateEvent
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -118,6 +112,9 @@ class __$$ListenWifiAdapterStateImplCopyWithImpl<$Res>
       _$ListenWifiAdapterStateImpl _value,
       $Res Function(_$ListenWifiAdapterStateImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of WifiAdapterStateEvent
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -148,7 +145,6 @@ class _$ListenWifiAdapterStateImpl implements _ListenWifiAdapterState {
         wifiAdapterStateGotten,
     required TResult Function(WifiAdapterStateFailure wifiAdapterStateFailure)
         wifiAdapterStateNotGotten,
-    required TResult Function() stopListeningWifiAdapterState,
   }) {
     return listenWifiAdapterState();
   }
@@ -161,7 +157,6 @@ class _$ListenWifiAdapterStateImpl implements _ListenWifiAdapterState {
         wifiAdapterStateGotten,
     TResult? Function(WifiAdapterStateFailure wifiAdapterStateFailure)?
         wifiAdapterStateNotGotten,
-    TResult? Function()? stopListeningWifiAdapterState,
   }) {
     return listenWifiAdapterState?.call();
   }
@@ -174,7 +169,6 @@ class _$ListenWifiAdapterStateImpl implements _ListenWifiAdapterState {
         wifiAdapterStateGotten,
     TResult Function(WifiAdapterStateFailure wifiAdapterStateFailure)?
         wifiAdapterStateNotGotten,
-    TResult Function()? stopListeningWifiAdapterState,
     required TResult orElse(),
   }) {
     if (listenWifiAdapterState != null) {
@@ -192,8 +186,6 @@ class _$ListenWifiAdapterStateImpl implements _ListenWifiAdapterState {
         wifiAdapterStateGotten,
     required TResult Function(_WifiAdapterStateNotGotten value)
         wifiAdapterStateNotGotten,
-    required TResult Function(_StopListeningWifiAdapterState value)
-        stopListeningWifiAdapterState,
   }) {
     return listenWifiAdapterState(this);
   }
@@ -205,8 +197,6 @@ class _$ListenWifiAdapterStateImpl implements _ListenWifiAdapterState {
     TResult? Function(_WifiAdapterStateGotten value)? wifiAdapterStateGotten,
     TResult? Function(_WifiAdapterStateNotGotten value)?
         wifiAdapterStateNotGotten,
-    TResult? Function(_StopListeningWifiAdapterState value)?
-        stopListeningWifiAdapterState,
   }) {
     return listenWifiAdapterState?.call(this);
   }
@@ -218,8 +208,6 @@ class _$ListenWifiAdapterStateImpl implements _ListenWifiAdapterState {
     TResult Function(_WifiAdapterStateGotten value)? wifiAdapterStateGotten,
     TResult Function(_WifiAdapterStateNotGotten value)?
         wifiAdapterStateNotGotten,
-    TResult Function(_StopListeningWifiAdapterState value)?
-        stopListeningWifiAdapterState,
     required TResult orElse(),
   }) {
     if (listenWifiAdapterState != null) {
@@ -253,6 +241,8 @@ class __$$WifiAdapterStateGottenImplCopyWithImpl<$Res>
       $Res Function(_$WifiAdapterStateGottenImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of WifiAdapterStateEvent
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -292,7 +282,9 @@ class _$WifiAdapterStateGottenImpl implements _WifiAdapterStateGotten {
   @override
   int get hashCode => Object.hash(runtimeType, wifiAdapterStateEntity);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of WifiAdapterStateEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$WifiAdapterStateGottenImplCopyWith<_$WifiAdapterStateGottenImpl>
@@ -307,7 +299,6 @@ class _$WifiAdapterStateGottenImpl implements _WifiAdapterStateGotten {
         wifiAdapterStateGotten,
     required TResult Function(WifiAdapterStateFailure wifiAdapterStateFailure)
         wifiAdapterStateNotGotten,
-    required TResult Function() stopListeningWifiAdapterState,
   }) {
     return wifiAdapterStateGotten(wifiAdapterStateEntity);
   }
@@ -320,7 +311,6 @@ class _$WifiAdapterStateGottenImpl implements _WifiAdapterStateGotten {
         wifiAdapterStateGotten,
     TResult? Function(WifiAdapterStateFailure wifiAdapterStateFailure)?
         wifiAdapterStateNotGotten,
-    TResult? Function()? stopListeningWifiAdapterState,
   }) {
     return wifiAdapterStateGotten?.call(wifiAdapterStateEntity);
   }
@@ -333,7 +323,6 @@ class _$WifiAdapterStateGottenImpl implements _WifiAdapterStateGotten {
         wifiAdapterStateGotten,
     TResult Function(WifiAdapterStateFailure wifiAdapterStateFailure)?
         wifiAdapterStateNotGotten,
-    TResult Function()? stopListeningWifiAdapterState,
     required TResult orElse(),
   }) {
     if (wifiAdapterStateGotten != null) {
@@ -351,8 +340,6 @@ class _$WifiAdapterStateGottenImpl implements _WifiAdapterStateGotten {
         wifiAdapterStateGotten,
     required TResult Function(_WifiAdapterStateNotGotten value)
         wifiAdapterStateNotGotten,
-    required TResult Function(_StopListeningWifiAdapterState value)
-        stopListeningWifiAdapterState,
   }) {
     return wifiAdapterStateGotten(this);
   }
@@ -364,8 +351,6 @@ class _$WifiAdapterStateGottenImpl implements _WifiAdapterStateGotten {
     TResult? Function(_WifiAdapterStateGotten value)? wifiAdapterStateGotten,
     TResult? Function(_WifiAdapterStateNotGotten value)?
         wifiAdapterStateNotGotten,
-    TResult? Function(_StopListeningWifiAdapterState value)?
-        stopListeningWifiAdapterState,
   }) {
     return wifiAdapterStateGotten?.call(this);
   }
@@ -377,8 +362,6 @@ class _$WifiAdapterStateGottenImpl implements _WifiAdapterStateGotten {
     TResult Function(_WifiAdapterStateGotten value)? wifiAdapterStateGotten,
     TResult Function(_WifiAdapterStateNotGotten value)?
         wifiAdapterStateNotGotten,
-    TResult Function(_StopListeningWifiAdapterState value)?
-        stopListeningWifiAdapterState,
     required TResult orElse(),
   }) {
     if (wifiAdapterStateGotten != null) {
@@ -394,7 +377,10 @@ abstract class _WifiAdapterStateGotten implements WifiAdapterStateEvent {
       _$WifiAdapterStateGottenImpl;
 
   WifiAdapterStateEntity get wifiAdapterStateEntity;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of WifiAdapterStateEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$WifiAdapterStateGottenImplCopyWith<_$WifiAdapterStateGottenImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -419,6 +405,8 @@ class __$$WifiAdapterStateNotGottenImplCopyWithImpl<$Res>
       $Res Function(_$WifiAdapterStateNotGottenImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of WifiAdapterStateEvent
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -460,7 +448,9 @@ class _$WifiAdapterStateNotGottenImpl implements _WifiAdapterStateNotGotten {
   @override
   int get hashCode => Object.hash(runtimeType, wifiAdapterStateFailure);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of WifiAdapterStateEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$WifiAdapterStateNotGottenImplCopyWith<_$WifiAdapterStateNotGottenImpl>
@@ -475,7 +465,6 @@ class _$WifiAdapterStateNotGottenImpl implements _WifiAdapterStateNotGotten {
         wifiAdapterStateGotten,
     required TResult Function(WifiAdapterStateFailure wifiAdapterStateFailure)
         wifiAdapterStateNotGotten,
-    required TResult Function() stopListeningWifiAdapterState,
   }) {
     return wifiAdapterStateNotGotten(wifiAdapterStateFailure);
   }
@@ -488,7 +477,6 @@ class _$WifiAdapterStateNotGottenImpl implements _WifiAdapterStateNotGotten {
         wifiAdapterStateGotten,
     TResult? Function(WifiAdapterStateFailure wifiAdapterStateFailure)?
         wifiAdapterStateNotGotten,
-    TResult? Function()? stopListeningWifiAdapterState,
   }) {
     return wifiAdapterStateNotGotten?.call(wifiAdapterStateFailure);
   }
@@ -501,7 +489,6 @@ class _$WifiAdapterStateNotGottenImpl implements _WifiAdapterStateNotGotten {
         wifiAdapterStateGotten,
     TResult Function(WifiAdapterStateFailure wifiAdapterStateFailure)?
         wifiAdapterStateNotGotten,
-    TResult Function()? stopListeningWifiAdapterState,
     required TResult orElse(),
   }) {
     if (wifiAdapterStateNotGotten != null) {
@@ -519,8 +506,6 @@ class _$WifiAdapterStateNotGottenImpl implements _WifiAdapterStateNotGotten {
         wifiAdapterStateGotten,
     required TResult Function(_WifiAdapterStateNotGotten value)
         wifiAdapterStateNotGotten,
-    required TResult Function(_StopListeningWifiAdapterState value)
-        stopListeningWifiAdapterState,
   }) {
     return wifiAdapterStateNotGotten(this);
   }
@@ -532,8 +517,6 @@ class _$WifiAdapterStateNotGottenImpl implements _WifiAdapterStateNotGotten {
     TResult? Function(_WifiAdapterStateGotten value)? wifiAdapterStateGotten,
     TResult? Function(_WifiAdapterStateNotGotten value)?
         wifiAdapterStateNotGotten,
-    TResult? Function(_StopListeningWifiAdapterState value)?
-        stopListeningWifiAdapterState,
   }) {
     return wifiAdapterStateNotGotten?.call(this);
   }
@@ -545,8 +528,6 @@ class _$WifiAdapterStateNotGottenImpl implements _WifiAdapterStateNotGotten {
     TResult Function(_WifiAdapterStateGotten value)? wifiAdapterStateGotten,
     TResult Function(_WifiAdapterStateNotGotten value)?
         wifiAdapterStateNotGotten,
-    TResult Function(_StopListeningWifiAdapterState value)?
-        stopListeningWifiAdapterState,
     required TResult orElse(),
   }) {
     if (wifiAdapterStateNotGotten != null) {
@@ -562,143 +543,12 @@ abstract class _WifiAdapterStateNotGotten implements WifiAdapterStateEvent {
       _$WifiAdapterStateNotGottenImpl;
 
   WifiAdapterStateFailure get wifiAdapterStateFailure;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of WifiAdapterStateEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$WifiAdapterStateNotGottenImplCopyWith<_$WifiAdapterStateNotGottenImpl>
       get copyWith => throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$$StopListeningWifiAdapterStateImplCopyWith<$Res> {
-  factory _$$StopListeningWifiAdapterStateImplCopyWith(
-          _$StopListeningWifiAdapterStateImpl value,
-          $Res Function(_$StopListeningWifiAdapterStateImpl) then) =
-      __$$StopListeningWifiAdapterStateImplCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$StopListeningWifiAdapterStateImplCopyWithImpl<$Res>
-    extends _$WifiAdapterStateEventCopyWithImpl<$Res,
-        _$StopListeningWifiAdapterStateImpl>
-    implements _$$StopListeningWifiAdapterStateImplCopyWith<$Res> {
-  __$$StopListeningWifiAdapterStateImplCopyWithImpl(
-      _$StopListeningWifiAdapterStateImpl _value,
-      $Res Function(_$StopListeningWifiAdapterStateImpl) _then)
-      : super(_value, _then);
-}
-
-/// @nodoc
-
-class _$StopListeningWifiAdapterStateImpl
-    implements _StopListeningWifiAdapterState {
-  const _$StopListeningWifiAdapterStateImpl();
-
-  @override
-  String toString() {
-    return 'WifiAdapterStateEvent.stopListeningWifiAdapterState()';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$StopListeningWifiAdapterStateImpl);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() listenWifiAdapterState,
-    required TResult Function(WifiAdapterStateEntity wifiAdapterStateEntity)
-        wifiAdapterStateGotten,
-    required TResult Function(WifiAdapterStateFailure wifiAdapterStateFailure)
-        wifiAdapterStateNotGotten,
-    required TResult Function() stopListeningWifiAdapterState,
-  }) {
-    return stopListeningWifiAdapterState();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? listenWifiAdapterState,
-    TResult? Function(WifiAdapterStateEntity wifiAdapterStateEntity)?
-        wifiAdapterStateGotten,
-    TResult? Function(WifiAdapterStateFailure wifiAdapterStateFailure)?
-        wifiAdapterStateNotGotten,
-    TResult? Function()? stopListeningWifiAdapterState,
-  }) {
-    return stopListeningWifiAdapterState?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? listenWifiAdapterState,
-    TResult Function(WifiAdapterStateEntity wifiAdapterStateEntity)?
-        wifiAdapterStateGotten,
-    TResult Function(WifiAdapterStateFailure wifiAdapterStateFailure)?
-        wifiAdapterStateNotGotten,
-    TResult Function()? stopListeningWifiAdapterState,
-    required TResult orElse(),
-  }) {
-    if (stopListeningWifiAdapterState != null) {
-      return stopListeningWifiAdapterState();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_ListenWifiAdapterState value)
-        listenWifiAdapterState,
-    required TResult Function(_WifiAdapterStateGotten value)
-        wifiAdapterStateGotten,
-    required TResult Function(_WifiAdapterStateNotGotten value)
-        wifiAdapterStateNotGotten,
-    required TResult Function(_StopListeningWifiAdapterState value)
-        stopListeningWifiAdapterState,
-  }) {
-    return stopListeningWifiAdapterState(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_ListenWifiAdapterState value)? listenWifiAdapterState,
-    TResult? Function(_WifiAdapterStateGotten value)? wifiAdapterStateGotten,
-    TResult? Function(_WifiAdapterStateNotGotten value)?
-        wifiAdapterStateNotGotten,
-    TResult? Function(_StopListeningWifiAdapterState value)?
-        stopListeningWifiAdapterState,
-  }) {
-    return stopListeningWifiAdapterState?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_ListenWifiAdapterState value)? listenWifiAdapterState,
-    TResult Function(_WifiAdapterStateGotten value)? wifiAdapterStateGotten,
-    TResult Function(_WifiAdapterStateNotGotten value)?
-        wifiAdapterStateNotGotten,
-    TResult Function(_StopListeningWifiAdapterState value)?
-        stopListeningWifiAdapterState,
-    required TResult orElse(),
-  }) {
-    if (stopListeningWifiAdapterState != null) {
-      return stopListeningWifiAdapterState(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _StopListeningWifiAdapterState implements WifiAdapterStateEvent {
-  const factory _StopListeningWifiAdapterState() =
-      _$StopListeningWifiAdapterStateImpl;
 }
 
 /// @nodoc
@@ -782,6 +632,9 @@ class _$WifiAdapterStateStateCopyWithImpl<$Res,
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  /// Create a copy of WifiAdapterStateState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -798,6 +651,9 @@ class __$$InitialImplCopyWithImpl<$Res>
   __$$InitialImplCopyWithImpl(
       _$InitialImpl _value, $Res Function(_$InitialImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of WifiAdapterStateState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -925,6 +781,9 @@ class __$$GettingWifiAdapterStateImplCopyWithImpl<$Res>
       _$GettingWifiAdapterStateImpl _value,
       $Res Function(_$GettingWifiAdapterStateImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of WifiAdapterStateState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -1053,6 +912,8 @@ class __$$GotWifiAdapterStateImplCopyWithImpl<$Res>
       $Res Function(_$GotWifiAdapterStateImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of WifiAdapterStateState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1092,7 +953,9 @@ class _$GotWifiAdapterStateImpl implements _GotWifiAdapterState {
   @override
   int get hashCode => Object.hash(runtimeType, wifiAdapterStateEntity);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of WifiAdapterStateState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$GotWifiAdapterStateImplCopyWith<_$GotWifiAdapterStateImpl> get copyWith =>
@@ -1190,7 +1053,10 @@ abstract class _GotWifiAdapterState implements WifiAdapterStateState {
       _$GotWifiAdapterStateImpl;
 
   WifiAdapterStateEntity get wifiAdapterStateEntity;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of WifiAdapterStateState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$GotWifiAdapterStateImplCopyWith<_$GotWifiAdapterStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -1215,6 +1081,8 @@ class __$$FailedToGetWifiAdapterStateImplCopyWithImpl<$Res>
       $Res Function(_$FailedToGetWifiAdapterStateImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of WifiAdapterStateState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1257,7 +1125,9 @@ class _$FailedToGetWifiAdapterStateImpl
   @override
   int get hashCode => Object.hash(runtimeType, wifiAdapterStateFailure);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of WifiAdapterStateState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$FailedToGetWifiAdapterStateImplCopyWith<_$FailedToGetWifiAdapterStateImpl>
@@ -1355,7 +1225,10 @@ abstract class _FailedToGetWifiAdapterState implements WifiAdapterStateState {
       _$FailedToGetWifiAdapterStateImpl;
 
   WifiAdapterStateFailure get wifiAdapterStateFailure;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of WifiAdapterStateState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$FailedToGetWifiAdapterStateImplCopyWith<_$FailedToGetWifiAdapterStateImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

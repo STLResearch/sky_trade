@@ -20,7 +20,9 @@ class BluetoothAdapterStateBloc
   BluetoothAdapterStateBloc(
     BluetoothRepository bluetoothRepository,
   )   : _bluetoothRepository = bluetoothRepository,
-        super(const BluetoothAdapterStateState.initial()) {
+        super(
+          const BluetoothAdapterStateState.initial(),
+        ) {
     on<_ListenBluetoothAdapterState>(
       _listenBluetoothAdapterState,
     );
@@ -32,10 +34,13 @@ class BluetoothAdapterStateBloc
     on<_BluetoothAdapterStateNotGotten>(
       _bluetoothAdapterStateNotGotten,
     );
+  }
 
-    on<_StopListeningBluetoothAdapterState>(
-      _stopListeningBluetoothAdapterState,
-    );
+  @override
+  Future<void> close() async {
+    await _cleanupStreamSubscription();
+
+    return super.close();
   }
 
   final BluetoothRepository _bluetoothRepository;
@@ -48,9 +53,7 @@ class BluetoothAdapterStateBloc
     _ListenBluetoothAdapterState _,
     Emitter<BluetoothAdapterStateState> emit,
   ) async {
-    await _cancelListeningBluetoothAdapterState(
-      emit: emit,
-    );
+    await _cleanupStreamSubscription();
 
     emit(
       const BluetoothAdapterStateState.gettingBluetoothAdapterState(),
@@ -115,25 +118,8 @@ class BluetoothAdapterStateBloc
         ),
       );
 
-  Future<void> _stopListeningBluetoothAdapterState(
-    _StopListeningBluetoothAdapterState _,
-    Emitter<BluetoothAdapterStateState> emit,
-  ) =>
-      _cancelListeningBluetoothAdapterState(
-        emit: emit,
-      );
-
-  Future<void> _cancelListeningBluetoothAdapterState({
-    required Emitter<BluetoothAdapterStateState> emit,
-  }) async {
+  Future<void> _cleanupStreamSubscription() async {
     await _bluetoothAdapterStateStreamSubscription?.cancel();
-
-    if (_bluetoothAdapterStateStreamSubscription != null) {
-      _bluetoothAdapterStateStreamSubscription = null;
-    }
-
-    emit(
-      const BluetoothAdapterStateState.initial(),
-    );
+    _bluetoothAdapterStateStreamSubscription = null;
   }
 }

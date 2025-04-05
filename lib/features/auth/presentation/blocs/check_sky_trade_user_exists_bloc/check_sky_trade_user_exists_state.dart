@@ -10,15 +10,6 @@ class CheckSkyTradeUserExistsState with _$CheckSkyTradeUserExistsState {
     required SkyTradeUserEntity skyTradeUserEntity,
   }) = _UserExists;
 
-  const factory CheckSkyTradeUserExistsState.userUnauthorized() =
-      _UserUnauthorized;
-
-  const factory CheckSkyTradeUserExistsState.userSignatureInvalid() =
-      _UserSignatureInvalid;
-
-  const factory CheckSkyTradeUserExistsState.userDoesNotExist() =
-      _UserDoesNotExist;
-
   const factory CheckSkyTradeUserExistsState.failedToCheckUser({
     required CheckSkyTradeUserFailure checkSkyTradeUserFailure,
   }) = _FailedToCheckUser;

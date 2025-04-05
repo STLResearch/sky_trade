@@ -26,14 +26,10 @@ final class WeatherRepositoryImplementation
         dataSourceOperation: () =>
             _weatherRemoteDataSource.getWeatherConditionOf(
           coordinates: (
-            latitude: GeoHash(
-              geoHash,
-            ).latitude(
+            longitude: GeoHash(geoHash).longitude(
               decimalAccuracy: eight,
             ),
-            longitude: GeoHash(
-              geoHash,
-            ).longitude(
+            latitude: GeoHash(geoHash).latitude(
               decimalAccuracy: eight,
             ),
           ),

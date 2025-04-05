@@ -25,7 +25,6 @@ mixin _$BluetoothAdapterStateEvent {
     required TResult Function(
             BluetoothAdapterStateFailure bluetoothAdapterStateFailure)
         bluetoothAdapterStateNotGotten,
-    required TResult Function() stopListeningBluetoothAdapterState,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -36,7 +35,6 @@ mixin _$BluetoothAdapterStateEvent {
     TResult? Function(
             BluetoothAdapterStateFailure bluetoothAdapterStateFailure)?
         bluetoothAdapterStateNotGotten,
-    TResult? Function()? stopListeningBluetoothAdapterState,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -46,7 +44,6 @@ mixin _$BluetoothAdapterStateEvent {
         bluetoothAdapterStateGotten,
     TResult Function(BluetoothAdapterStateFailure bluetoothAdapterStateFailure)?
         bluetoothAdapterStateNotGotten,
-    TResult Function()? stopListeningBluetoothAdapterState,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -58,8 +55,6 @@ mixin _$BluetoothAdapterStateEvent {
         bluetoothAdapterStateGotten,
     required TResult Function(_BluetoothAdapterStateNotGotten value)
         bluetoothAdapterStateNotGotten,
-    required TResult Function(_StopListeningBluetoothAdapterState value)
-        stopListeningBluetoothAdapterState,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -70,8 +65,6 @@ mixin _$BluetoothAdapterStateEvent {
         bluetoothAdapterStateGotten,
     TResult? Function(_BluetoothAdapterStateNotGotten value)?
         bluetoothAdapterStateNotGotten,
-    TResult? Function(_StopListeningBluetoothAdapterState value)?
-        stopListeningBluetoothAdapterState,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -82,8 +75,6 @@ mixin _$BluetoothAdapterStateEvent {
         bluetoothAdapterStateGotten,
     TResult Function(_BluetoothAdapterStateNotGotten value)?
         bluetoothAdapterStateNotGotten,
-    TResult Function(_StopListeningBluetoothAdapterState value)?
-        stopListeningBluetoothAdapterState,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -107,6 +98,9 @@ class _$BluetoothAdapterStateEventCopyWithImpl<$Res,
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  /// Create a copy of BluetoothAdapterStateEvent
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -126,6 +120,9 @@ class __$$ListenBluetoothAdapterStateImplCopyWithImpl<$Res>
       _$ListenBluetoothAdapterStateImpl _value,
       $Res Function(_$ListenBluetoothAdapterStateImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of BluetoothAdapterStateEvent
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -159,7 +156,6 @@ class _$ListenBluetoothAdapterStateImpl
     required TResult Function(
             BluetoothAdapterStateFailure bluetoothAdapterStateFailure)
         bluetoothAdapterStateNotGotten,
-    required TResult Function() stopListeningBluetoothAdapterState,
   }) {
     return listenBluetoothAdapterState();
   }
@@ -173,7 +169,6 @@ class _$ListenBluetoothAdapterStateImpl
     TResult? Function(
             BluetoothAdapterStateFailure bluetoothAdapterStateFailure)?
         bluetoothAdapterStateNotGotten,
-    TResult? Function()? stopListeningBluetoothAdapterState,
   }) {
     return listenBluetoothAdapterState?.call();
   }
@@ -186,7 +181,6 @@ class _$ListenBluetoothAdapterStateImpl
         bluetoothAdapterStateGotten,
     TResult Function(BluetoothAdapterStateFailure bluetoothAdapterStateFailure)?
         bluetoothAdapterStateNotGotten,
-    TResult Function()? stopListeningBluetoothAdapterState,
     required TResult orElse(),
   }) {
     if (listenBluetoothAdapterState != null) {
@@ -204,8 +198,6 @@ class _$ListenBluetoothAdapterStateImpl
         bluetoothAdapterStateGotten,
     required TResult Function(_BluetoothAdapterStateNotGotten value)
         bluetoothAdapterStateNotGotten,
-    required TResult Function(_StopListeningBluetoothAdapterState value)
-        stopListeningBluetoothAdapterState,
   }) {
     return listenBluetoothAdapterState(this);
   }
@@ -219,8 +211,6 @@ class _$ListenBluetoothAdapterStateImpl
         bluetoothAdapterStateGotten,
     TResult? Function(_BluetoothAdapterStateNotGotten value)?
         bluetoothAdapterStateNotGotten,
-    TResult? Function(_StopListeningBluetoothAdapterState value)?
-        stopListeningBluetoothAdapterState,
   }) {
     return listenBluetoothAdapterState?.call(this);
   }
@@ -234,8 +224,6 @@ class _$ListenBluetoothAdapterStateImpl
         bluetoothAdapterStateGotten,
     TResult Function(_BluetoothAdapterStateNotGotten value)?
         bluetoothAdapterStateNotGotten,
-    TResult Function(_StopListeningBluetoothAdapterState value)?
-        stopListeningBluetoothAdapterState,
     required TResult orElse(),
   }) {
     if (listenBluetoothAdapterState != null) {
@@ -271,6 +259,8 @@ class __$$BluetoothAdapterStateGottenImplCopyWithImpl<$Res>
       $Res Function(_$BluetoothAdapterStateGottenImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of BluetoothAdapterStateEvent
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -314,7 +304,9 @@ class _$BluetoothAdapterStateGottenImpl
   @override
   int get hashCode => Object.hash(runtimeType, bluetoothAdapterStateEntity);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of BluetoothAdapterStateEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$BluetoothAdapterStateGottenImplCopyWith<_$BluetoothAdapterStateGottenImpl>
@@ -331,7 +323,6 @@ class _$BluetoothAdapterStateGottenImpl
     required TResult Function(
             BluetoothAdapterStateFailure bluetoothAdapterStateFailure)
         bluetoothAdapterStateNotGotten,
-    required TResult Function() stopListeningBluetoothAdapterState,
   }) {
     return bluetoothAdapterStateGotten(bluetoothAdapterStateEntity);
   }
@@ -345,7 +336,6 @@ class _$BluetoothAdapterStateGottenImpl
     TResult? Function(
             BluetoothAdapterStateFailure bluetoothAdapterStateFailure)?
         bluetoothAdapterStateNotGotten,
-    TResult? Function()? stopListeningBluetoothAdapterState,
   }) {
     return bluetoothAdapterStateGotten?.call(bluetoothAdapterStateEntity);
   }
@@ -358,7 +348,6 @@ class _$BluetoothAdapterStateGottenImpl
         bluetoothAdapterStateGotten,
     TResult Function(BluetoothAdapterStateFailure bluetoothAdapterStateFailure)?
         bluetoothAdapterStateNotGotten,
-    TResult Function()? stopListeningBluetoothAdapterState,
     required TResult orElse(),
   }) {
     if (bluetoothAdapterStateGotten != null) {
@@ -376,8 +365,6 @@ class _$BluetoothAdapterStateGottenImpl
         bluetoothAdapterStateGotten,
     required TResult Function(_BluetoothAdapterStateNotGotten value)
         bluetoothAdapterStateNotGotten,
-    required TResult Function(_StopListeningBluetoothAdapterState value)
-        stopListeningBluetoothAdapterState,
   }) {
     return bluetoothAdapterStateGotten(this);
   }
@@ -391,8 +378,6 @@ class _$BluetoothAdapterStateGottenImpl
         bluetoothAdapterStateGotten,
     TResult? Function(_BluetoothAdapterStateNotGotten value)?
         bluetoothAdapterStateNotGotten,
-    TResult? Function(_StopListeningBluetoothAdapterState value)?
-        stopListeningBluetoothAdapterState,
   }) {
     return bluetoothAdapterStateGotten?.call(this);
   }
@@ -406,8 +391,6 @@ class _$BluetoothAdapterStateGottenImpl
         bluetoothAdapterStateGotten,
     TResult Function(_BluetoothAdapterStateNotGotten value)?
         bluetoothAdapterStateNotGotten,
-    TResult Function(_StopListeningBluetoothAdapterState value)?
-        stopListeningBluetoothAdapterState,
     required TResult orElse(),
   }) {
     if (bluetoothAdapterStateGotten != null) {
@@ -424,7 +407,10 @@ abstract class _BluetoothAdapterStateGotten
           bluetoothAdapterStateEntity}) = _$BluetoothAdapterStateGottenImpl;
 
   BluetoothAdapterStateEntity get bluetoothAdapterStateEntity;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of BluetoothAdapterStateEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$BluetoothAdapterStateGottenImplCopyWith<_$BluetoothAdapterStateGottenImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -449,6 +435,8 @@ class __$$BluetoothAdapterStateNotGottenImplCopyWithImpl<$Res>
       $Res Function(_$BluetoothAdapterStateNotGottenImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of BluetoothAdapterStateEvent
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -492,7 +480,9 @@ class _$BluetoothAdapterStateNotGottenImpl
   @override
   int get hashCode => Object.hash(runtimeType, bluetoothAdapterStateFailure);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of BluetoothAdapterStateEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$BluetoothAdapterStateNotGottenImplCopyWith<
@@ -510,7 +500,6 @@ class _$BluetoothAdapterStateNotGottenImpl
     required TResult Function(
             BluetoothAdapterStateFailure bluetoothAdapterStateFailure)
         bluetoothAdapterStateNotGotten,
-    required TResult Function() stopListeningBluetoothAdapterState,
   }) {
     return bluetoothAdapterStateNotGotten(bluetoothAdapterStateFailure);
   }
@@ -524,7 +513,6 @@ class _$BluetoothAdapterStateNotGottenImpl
     TResult? Function(
             BluetoothAdapterStateFailure bluetoothAdapterStateFailure)?
         bluetoothAdapterStateNotGotten,
-    TResult? Function()? stopListeningBluetoothAdapterState,
   }) {
     return bluetoothAdapterStateNotGotten?.call(bluetoothAdapterStateFailure);
   }
@@ -537,7 +525,6 @@ class _$BluetoothAdapterStateNotGottenImpl
         bluetoothAdapterStateGotten,
     TResult Function(BluetoothAdapterStateFailure bluetoothAdapterStateFailure)?
         bluetoothAdapterStateNotGotten,
-    TResult Function()? stopListeningBluetoothAdapterState,
     required TResult orElse(),
   }) {
     if (bluetoothAdapterStateNotGotten != null) {
@@ -555,8 +542,6 @@ class _$BluetoothAdapterStateNotGottenImpl
         bluetoothAdapterStateGotten,
     required TResult Function(_BluetoothAdapterStateNotGotten value)
         bluetoothAdapterStateNotGotten,
-    required TResult Function(_StopListeningBluetoothAdapterState value)
-        stopListeningBluetoothAdapterState,
   }) {
     return bluetoothAdapterStateNotGotten(this);
   }
@@ -570,8 +555,6 @@ class _$BluetoothAdapterStateNotGottenImpl
         bluetoothAdapterStateGotten,
     TResult? Function(_BluetoothAdapterStateNotGotten value)?
         bluetoothAdapterStateNotGotten,
-    TResult? Function(_StopListeningBluetoothAdapterState value)?
-        stopListeningBluetoothAdapterState,
   }) {
     return bluetoothAdapterStateNotGotten?.call(this);
   }
@@ -585,8 +568,6 @@ class _$BluetoothAdapterStateNotGottenImpl
         bluetoothAdapterStateGotten,
     TResult Function(_BluetoothAdapterStateNotGotten value)?
         bluetoothAdapterStateNotGotten,
-    TResult Function(_StopListeningBluetoothAdapterState value)?
-        stopListeningBluetoothAdapterState,
     required TResult orElse(),
   }) {
     if (bluetoothAdapterStateNotGotten != null) {
@@ -603,152 +584,13 @@ abstract class _BluetoothAdapterStateNotGotten
           bluetoothAdapterStateFailure}) = _$BluetoothAdapterStateNotGottenImpl;
 
   BluetoothAdapterStateFailure get bluetoothAdapterStateFailure;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of BluetoothAdapterStateEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$BluetoothAdapterStateNotGottenImplCopyWith<
           _$BluetoothAdapterStateNotGottenImpl>
       get copyWith => throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$$StopListeningBluetoothAdapterStateImplCopyWith<$Res> {
-  factory _$$StopListeningBluetoothAdapterStateImplCopyWith(
-          _$StopListeningBluetoothAdapterStateImpl value,
-          $Res Function(_$StopListeningBluetoothAdapterStateImpl) then) =
-      __$$StopListeningBluetoothAdapterStateImplCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$StopListeningBluetoothAdapterStateImplCopyWithImpl<$Res>
-    extends _$BluetoothAdapterStateEventCopyWithImpl<$Res,
-        _$StopListeningBluetoothAdapterStateImpl>
-    implements _$$StopListeningBluetoothAdapterStateImplCopyWith<$Res> {
-  __$$StopListeningBluetoothAdapterStateImplCopyWithImpl(
-      _$StopListeningBluetoothAdapterStateImpl _value,
-      $Res Function(_$StopListeningBluetoothAdapterStateImpl) _then)
-      : super(_value, _then);
-}
-
-/// @nodoc
-
-class _$StopListeningBluetoothAdapterStateImpl
-    implements _StopListeningBluetoothAdapterState {
-  const _$StopListeningBluetoothAdapterStateImpl();
-
-  @override
-  String toString() {
-    return 'BluetoothAdapterStateEvent.stopListeningBluetoothAdapterState()';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$StopListeningBluetoothAdapterStateImpl);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() listenBluetoothAdapterState,
-    required TResult Function(
-            BluetoothAdapterStateEntity bluetoothAdapterStateEntity)
-        bluetoothAdapterStateGotten,
-    required TResult Function(
-            BluetoothAdapterStateFailure bluetoothAdapterStateFailure)
-        bluetoothAdapterStateNotGotten,
-    required TResult Function() stopListeningBluetoothAdapterState,
-  }) {
-    return stopListeningBluetoothAdapterState();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? listenBluetoothAdapterState,
-    TResult? Function(BluetoothAdapterStateEntity bluetoothAdapterStateEntity)?
-        bluetoothAdapterStateGotten,
-    TResult? Function(
-            BluetoothAdapterStateFailure bluetoothAdapterStateFailure)?
-        bluetoothAdapterStateNotGotten,
-    TResult? Function()? stopListeningBluetoothAdapterState,
-  }) {
-    return stopListeningBluetoothAdapterState?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? listenBluetoothAdapterState,
-    TResult Function(BluetoothAdapterStateEntity bluetoothAdapterStateEntity)?
-        bluetoothAdapterStateGotten,
-    TResult Function(BluetoothAdapterStateFailure bluetoothAdapterStateFailure)?
-        bluetoothAdapterStateNotGotten,
-    TResult Function()? stopListeningBluetoothAdapterState,
-    required TResult orElse(),
-  }) {
-    if (stopListeningBluetoothAdapterState != null) {
-      return stopListeningBluetoothAdapterState();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_ListenBluetoothAdapterState value)
-        listenBluetoothAdapterState,
-    required TResult Function(_BluetoothAdapterStateGotten value)
-        bluetoothAdapterStateGotten,
-    required TResult Function(_BluetoothAdapterStateNotGotten value)
-        bluetoothAdapterStateNotGotten,
-    required TResult Function(_StopListeningBluetoothAdapterState value)
-        stopListeningBluetoothAdapterState,
-  }) {
-    return stopListeningBluetoothAdapterState(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_ListenBluetoothAdapterState value)?
-        listenBluetoothAdapterState,
-    TResult? Function(_BluetoothAdapterStateGotten value)?
-        bluetoothAdapterStateGotten,
-    TResult? Function(_BluetoothAdapterStateNotGotten value)?
-        bluetoothAdapterStateNotGotten,
-    TResult? Function(_StopListeningBluetoothAdapterState value)?
-        stopListeningBluetoothAdapterState,
-  }) {
-    return stopListeningBluetoothAdapterState?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_ListenBluetoothAdapterState value)?
-        listenBluetoothAdapterState,
-    TResult Function(_BluetoothAdapterStateGotten value)?
-        bluetoothAdapterStateGotten,
-    TResult Function(_BluetoothAdapterStateNotGotten value)?
-        bluetoothAdapterStateNotGotten,
-    TResult Function(_StopListeningBluetoothAdapterState value)?
-        stopListeningBluetoothAdapterState,
-    required TResult orElse(),
-  }) {
-    if (stopListeningBluetoothAdapterState != null) {
-      return stopListeningBluetoothAdapterState(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _StopListeningBluetoothAdapterState
-    implements BluetoothAdapterStateEvent {
-  const factory _StopListeningBluetoothAdapterState() =
-      _$StopListeningBluetoothAdapterStateImpl;
 }
 
 /// @nodoc
@@ -840,6 +682,9 @@ class _$BluetoothAdapterStateStateCopyWithImpl<$Res,
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  /// Create a copy of BluetoothAdapterStateState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -856,6 +701,9 @@ class __$$InitialImplCopyWithImpl<$Res>
   __$$InitialImplCopyWithImpl(
       _$InitialImpl _value, $Res Function(_$InitialImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of BluetoothAdapterStateState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -990,6 +838,9 @@ class __$$GettingBluetoothAdapterStateImplCopyWithImpl<$Res>
       _$GettingBluetoothAdapterStateImpl _value,
       $Res Function(_$GettingBluetoothAdapterStateImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of BluetoothAdapterStateState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -1131,6 +982,8 @@ class __$$GotBluetoothAdapterStateImplCopyWithImpl<$Res>
       $Res Function(_$GotBluetoothAdapterStateImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of BluetoothAdapterStateState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1173,7 +1026,9 @@ class _$GotBluetoothAdapterStateImpl implements _GotBluetoothAdapterState {
   @override
   int get hashCode => Object.hash(runtimeType, bluetoothAdapterStateEntity);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of BluetoothAdapterStateState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$GotBluetoothAdapterStateImplCopyWith<_$GotBluetoothAdapterStateImpl>
@@ -1278,7 +1133,10 @@ abstract class _GotBluetoothAdapterState implements BluetoothAdapterStateState {
           bluetoothAdapterStateEntity}) = _$GotBluetoothAdapterStateImpl;
 
   BluetoothAdapterStateEntity get bluetoothAdapterStateEntity;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of BluetoothAdapterStateState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$GotBluetoothAdapterStateImplCopyWith<_$GotBluetoothAdapterStateImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -1303,6 +1161,8 @@ class __$$FailedToGetBluetoothAdapterStateImplCopyWithImpl<$Res>
       $Res Function(_$FailedToGetBluetoothAdapterStateImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of BluetoothAdapterStateState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1346,7 +1206,9 @@ class _$FailedToGetBluetoothAdapterStateImpl
   @override
   int get hashCode => Object.hash(runtimeType, bluetoothAdapterStateFailure);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of BluetoothAdapterStateState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$FailedToGetBluetoothAdapterStateImplCopyWith<
@@ -1454,7 +1316,10 @@ abstract class _FailedToGetBluetoothAdapterState
       _$FailedToGetBluetoothAdapterStateImpl;
 
   BluetoothAdapterStateFailure get bluetoothAdapterStateFailure;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of BluetoothAdapterStateState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$FailedToGetBluetoothAdapterStateImplCopyWith<
           _$FailedToGetBluetoothAdapterStateImpl>
       get copyWith => throw _privateConstructorUsedError;

@@ -34,4 +34,8 @@ Runner/GeneratedPluginRegistrant.*
 !default.perspectivev3
 
 # Firebase
-Runner/GoogleService-Info.plist
+**/GoogleService-Info.plist
+
+# build
+build/XCBuildData
+build/.last_build_id

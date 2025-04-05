@@ -1,50 +1,59 @@
-// Web3Auth
-const web3AuthRpcUrl = 'WEB_3_AUTH_RPC_URL';
-// Whitelist origins
-const web3AuthWhitelistOriginIos = 'WEB_3_AUTH_WHITELIST_ORIGIN_IOS';
-const web3AuthWhitelistOriginAndroid = 'WEB_3_AUTH_WHITELIST_ORIGIN_ANDROID';
-// Paths
-// Param keys and values for extra login options
-const flowTypeKey = 'flow_type';
-const linkValue = 'link';
+// ignore_for_file: lines_longer_than_80_chars
 
-// Mapbox maps
-const mapboxMapsPublicKey = 'MAPBOX_MAPS_PUBLIC_KEY';
-const mapboxMapsSearchBoxBaseUrl = 'MAPBOX_MAPS_SEARCH_BOX_BASE_URL';
+// App links
+const appLinkHttpScheme = 'http';
+const appLinkHttpsScheme = 'https';
+const uAppLinkPathSegment = 'u';
+const emailVerificationAppLinkPathSegment = 'email-verification';
+const uAppLinkPath = '/$uAppLinkPathSegment';
+const emailVerificationAppLinkPath = '/$emailVerificationAppLinkPathSegment';
+const ticketAppLinkQueryParameter = 'ticket';
 
-//OpenWeather
-const openWeatherMapApiKey = 'OPEN_WEATHER_MAP_API_KEY';
+// OpenWeather
 // Endpoints
-// Base URL
-const openWeatherMapApiBaseUrl = 'OPEN_WEATHER_MAP_API_BASE_URL';
-const openWeatherMapIconBaseUrl = 'OPEN_WEATHER_MAP_ICON_BASE_URL';
 // Paths
 const dataPath = '/data';
 const twoDotFivePath = '/2.5';
 const weatherPath = '/weather';
 const imgPath = '/img';
 const wnPath = '/wn';
+
 // SkyTrade
 // Privacy policy
 const skyTradePrivacyPolicyUrl = 'https://docs.sky.trade/privacy.htm';
 // Terms of service
 const skyTradeTermsOfServiceUrl = 'https://docs.sky.trade/terms.htm';
-// Endpoints
-// Base URL
-const skyTradeServerHttpBaseUrl = 'SKYTRADE_SERVER_HTTP_BASE_URL';
-const skyTradeServerSignUrl = 'SKYTRADE_SERVER_SIGN_URL';
-const skyTradeServerHttpSignUrl = 'SKYTRADE_SERVER_HTTP_SIGN_URL';
-const skyTradeServerSocketIOBaseUrl = 'SKYTRADE_SERVER_SOCKET_IO_BASE_URL';
+
 // Paths
+const radarPath = '/radar';
 const restrictionsPath = '/restrictions';
 const suggestPath = '/suggest';
+const retrievePath = '/retrieve';
 const privatePath = '/private';
 const publicPath = '/public';
+const auctionHousePath = '/auction-house';
 const usersPath = '/users';
 const sessionPath = '/session';
 const createPath = '/create';
-const remoteIdentifierPath = '/remoteIdentifier';
+const remoteIdentifierPath = '/remote-identifier';
 const getDroneInsightsPath = '/get-drone-insights';
+const filterDroneInsightsPath = '/filter-drone-insights';
+const propertiesPath = '/properties';
+const airspaceRentalPath = '/airspace-rental';
+const createMintRentalTokenIxPath = '/create-mint-rental-token-ix';
+const executeMintRentalTokenIxPath = '/execute-mint-rental-token-ix';
+const requestDeletePath = '/request-delete';
+const deleteUserPath = '/delete-user';
+const getAirspaceDetailsPath = '/get-airspace-details';
+const getAirspaceHistoryPath = '/get-airspace-history';
+const getAuctionBidHistoryPath = '/get-auction-bid-history';
+const generatePlaceBidTxPath = '/generate-place-bid-tx';
+const getAllAuctionsPath = '/get-all-auctions';
+const getAuctionWithBidsPath = '/get-auction-with-bids';
+const getAuctionableAirspacesPath = '/get-auctionable-airspaces';
+const sendTxPath = '/send-tx';
+const generateCreateAuctionTxPath = '/generate-create-auction-tx';
+const getOfferForUnclaimedPropertyPath = '/get-offer-for-unclaimed-property';
 // Signature
 const signatureFirstLine = 'wants you to sign in with your Solana account:';
 const signatureThirdLine = 'Sign in to SkyTrade app.';
@@ -57,11 +66,14 @@ const signatureEightLine = 'Issued At:';
 // Socket IO
 const websocketTransport = 'websocket';
 
-const uasActivityEvent = 'get-sql-drone-data-response';
-const uasActivityRoom = 'get-sql-drone-data';
+const uasActivityResponseEvent = 'get-sql-drone-data-response';
+const uasActivityEvent = 'get-sql-drone-data';
 
-const remoteIDTransmissionEvent = 'store-drone-data-response';
-const remoteIDTransmissionRoom = 'store-drone-data';
+const remoteIDTransmissionResponseEvent = 'store-drone-data-response';
+const remoteIDTransmissionEvent = 'store-drone-data';
+
+const droneFlightPathResponseEvent = 'retrieve-drone-data-response';
+const droneFlightPathEvent = 'retrieve-drone-data';
 
 // Request and response header and body keys and values
 // Headers
@@ -83,7 +95,10 @@ const messageKey = 'message';
 const regionKey = 'region';
 const typeKey = 'type';
 const linkKey = 'link';
+const mapboxIdKey = 'mapbox_id';
 const nameKey = 'name';
+const featuresKey = 'features';
+const geometryKey = 'geometry';
 const coordinatesKey = 'coordinates';
 const dangerValue = 'Danger';
 const prohibitedValue = 'Prohibited';
@@ -183,6 +198,7 @@ const basicIdsKey = 'basicIds';
 const authenticationKey = 'authentication';
 const serialNumberKey = 'serialNumber';
 const registrationIdKey = 'registrationId';
+const skyTradeBackendKey = 'SkyTrade_Backend';
 const bluetoothLegacyKey = 'Bluetooth_Legacy';
 const bluetoothLongRangeKey = 'Bluetooth_Long_Range';
 const wifiNanKey = 'WiFi_NAN';
@@ -204,7 +220,7 @@ const rocketKey = 'Rocket';
 const tetheredPoweredAircraftKey = 'Tethered_powered_aircraft';
 const groundObstacleKey = 'Ground_obstacle';
 const otherKey = 'Other';
-const serialNumberIDTypeKey = 'Serial_Number';
+const serialNumberAltKey = 'Serial_Number';
 const cAARegistrationIDKey = 'CAA_Registration_ID';
 const uTMAssignedIDKey = 'UTM_Assigned_ID';
 const specificSessionIDKey = 'Specific_Session_ID';
@@ -292,9 +308,135 @@ const devicesKey = 'devices';
 const userKey = 'user';
 const ipAddressKey = 'ipAddress';
 const updatedAtKey = 'updatedAt';
+const enabledKey = 'enabled';
+const otpKey = 'otp';
+const titleKey = 'title';
+const transitFeeKey = 'transitFee';
+const addressKey = 'address';
+const timezoneKey = 'timezone';
+const fullTimezoneKey = 'fullTimezone';
+const hasLandingDeckKey = 'hasLandingDeck';
+const hasChargingStationKey = 'hasChargingStation';
+const hasStorageHubKey = 'hasStorageHub';
+const isFixedTransitFeeKey = 'isFixedTransitFee';
+const isRentableAirspaceKey = 'isRentableAirspace';
+const ownerIdKey = 'ownerId';
+const noFlyZoneKey = 'noFlyZone';
+const isBoostedAreaKey = 'isBoostedArea';
+const propertyStatusIdKey = 'propertyStatusId';
+const isPropertyRewardClaimedKey = 'isPropertyRewardClaimed';
+const isSoftDeleteKey = 'isSoftDelete';
+const hasZoningPermissionKey = 'hasZoningPermission';
+const orderPhotoForGeneratedMapKey = 'orderPhotoforGeneratedMap';
+const assessorParcelNumberKey = 'assessorParcelNumber';
+const externalBlockchainAddressKey = 'externalBlockchainAddress';
+const areaPolygonKey = 'areaPolygon';
+const tokenValueKey = 'tokenValue';
+const layersKey = 'layers';
+const propertyStatusKey = 'propertyStatus';
+const vertexesKey = 'vertexes';
+const weekDayRangesKey = 'weekDayRanges';
+const imagesKey = 'images';
+const priceKey = 'price';
+const tokenIdKey = 'tokenId';
+const propertyIdKey = 'propertyId';
+const isCurrentlyInAuctionKey = 'isCurrentlyInAuction';
+const fromTimeKey = 'fromTime';
+const toTimeKey = 'toTime';
+const isAvailableKey = 'isAvailable';
+const weekDayIdKey = 'weekDayId';
+const minLongitudeKey = 'minLongitude';
+const minLatitudeKey = 'minLatitude';
+const maxLongitudeKey = 'maxLongitude';
+const maxLatitudeKey = 'maxLatitude';
+const callerAddressKey = 'callerAddress';
+const landAssetIdsKey = 'landAssetIds';
+const startTimeKey = 'startTime';
+const endTimeKey = 'endTime';
+const transactionKey = 'transaction';
+const ansKey = 'ans';
+const geoJsonKey = 'geojson';
+const rentPriceKey = 'rent_price';
+const propertyIdAltKey = 'property_id';
+const auctionKey = 'auction';
+const amountKey = 'amount';
+const accountKey = 'account';
+const propertyKey = 'property';
+const verifiedKey = 'Verified';
+const partiallyVerifiedKey = 'PartiallyVerified';
+const notVerifiedKey = 'NotVerified';
+const rejectedKey = 'Rejected';
+const auctionDetailsKey = 'auction_details';
+const highestBidKey = 'highest_bid';
+const auctionDeadlineKey = 'auction_deadline';
+const lifetimeTotalIncomeKey = 'lifetime_total_income';
+const totalIncomeMtdKey = 'total_income_mtd';
+const totalIncomeWtdKey = 'total_income_wtd';
+const airspaceHistoryKey = 'airspace_history';
+const dateKey = 'date';
+const bidsHistoryKey = 'bids_history';
+const featureCollectionKey = 'FeatureCollection';
+const geometryCollectionKey = 'GeometryCollection';
+const pageKey = 'page';
+const limitKey = 'limit';
+const minPriceKey = 'min_price';
+const maxPriceKey = 'max_price';
+const filterKey = 'filter';
+const auctionIdKey = 'auction_id';
+const serializedTxKey = 'serializedTx';
+const assetIdKey = 'assetId';
+const sellerKey = 'seller';
+const initialPriceKey = 'initialPrice';
+const secsDurationKey = 'secsDuration';
+const signedTransactionKey = 'signedTransaction';
+const landAddressKey = 'landAddress';
+const offerAmountKey = 'offerAmount';
+const pdaAddressKey = 'pdaAddress';
+const endDateKey = 'endDate';
+const currentPriceKey = 'currentPrice';
+const currentBidderKey = 'currentBidder';
+const paymentTokenKey = 'paymentToken';
+const transactionsKey = 'transactions';
+const isCancelledKey = 'isCancelled';
+const isExecutedKey = 'isExecuted';
+const isVerifiedKey = 'isVerified';
+const isFilledKey = 'isFilled';
+const filledAmountKey = 'filledAmount';
+const auctionBidKey = 'AuctionBid';
+const layerKey = 'layer';
+const bidderKey = 'bidder';
+const auctionIdAltKey = 'auctionId';
+const txKey = 'tx';
+const txSignatureKey = 'txSignature';
+const errorKey = 'error';
+const filterRangeKey = 'filterRange';
+const intervalsKey = 'intervals';
+const fromKey = 'from';
+const toKey = 'to';
+const valueKey = 'value';
+const rangeKey = 'range';
+const oneDKey = '1D';
+const oneWKey = '1W';
+const oneMKey = '1M';
+const oneYKey = '1Y';
 // Error response data message
-const unauthorized = 'UNAUTHORIZED';
-const invalidSignature = 'INVALID_SIGNATURE';
-const userNotExist = 'USER_NOT_EXIST';
-const invalidEmail = 'INVALID_EMAIL';
-const userExist = 'USER_EXIST';
+const unauthorizedCode = 'UNAUTHORIZED';
+const invalidSignatureCode = 'INVALID_SIGNATURE';
+const userNotFoundCode = 'USER_NOT_FOUND'; // user does not exist
+const invalidEmailCode = 'INVALID_EMAIL';
+const userMismatchCode = 'USER_MISMATCH';
+const userDeletedCode = 'USER_DELETED';
+const aWalletAlreadyExistsForThisEmailAddressKindlySignInWithTheSameMethodUsedPreviouslyCode =
+    'A wallet already exists for this email address. Kindly sign in with the same method used previously.';
+const walletExistCode = 'WALLET_EXIST';
+const invalidDeleteOtpCode = 'INVALID_DELETE_OTP';
+// SFA error
+const invalidResultFromNodesThresholdNumberOfPublicKeyResultsAreNotMatchingPleaseCheckConfiguration =
+    'invalid result from nodes, threshold number of public key results are not matching, please check configuration';
+// Socket exception messages added to Sentry logs
+const socketExceptionLogMessage = 'Socket Exception';
+const anErrorOccurredWhileProcessingTheEventLogMessage =
+    'An error occurred while processing the event';
+const unexpectedResponseTypeReceivedLogMessage =
+    'Unexpected response type received';
+const expectedTypeLogMessage = 'Expected type';

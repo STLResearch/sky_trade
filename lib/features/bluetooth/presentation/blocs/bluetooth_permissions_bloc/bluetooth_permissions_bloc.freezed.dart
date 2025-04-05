@@ -67,6 +67,9 @@ class _$BluetoothPermissionsEventCopyWithImpl<$Res,
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  /// Create a copy of BluetoothPermissionsEvent
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -84,6 +87,9 @@ class __$$RequestPermissionsImplCopyWithImpl<$Res>
   __$$RequestPermissionsImplCopyWithImpl(_$RequestPermissionsImpl _value,
       $Res Function(_$RequestPermissionsImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of BluetoothPermissionsEvent
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -249,6 +255,9 @@ class _$BluetoothPermissionsStateCopyWithImpl<$Res,
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  /// Create a copy of BluetoothPermissionsState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -265,6 +274,9 @@ class __$$InitialImplCopyWithImpl<$Res>
   __$$InitialImplCopyWithImpl(
       _$InitialImpl _value, $Res Function(_$InitialImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of BluetoothPermissionsState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -393,6 +405,9 @@ class __$$RequestingPermissionsImplCopyWithImpl<$Res>
   __$$RequestingPermissionsImplCopyWithImpl(_$RequestingPermissionsImpl _value,
       $Res Function(_$RequestingPermissionsImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of BluetoothPermissionsState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -526,6 +541,8 @@ class __$$MaybeGrantedPermissionsImplCopyWithImpl<$Res>
       $Res Function(_$MaybeGrantedPermissionsImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of BluetoothPermissionsState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -568,7 +585,9 @@ class _$MaybeGrantedPermissionsImpl implements _MaybeGrantedPermissions {
   @override
   int get hashCode => Object.hash(runtimeType, bluetoothPermissionsEntity);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of BluetoothPermissionsState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$MaybeGrantedPermissionsImplCopyWith<_$MaybeGrantedPermissionsImpl>
@@ -668,7 +687,10 @@ abstract class _MaybeGrantedPermissions implements BluetoothPermissionsState {
           bluetoothPermissionsEntity}) = _$MaybeGrantedPermissionsImpl;
 
   BluetoothPermissionsEntity get bluetoothPermissionsEntity;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of BluetoothPermissionsState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$MaybeGrantedPermissionsImplCopyWith<_$MaybeGrantedPermissionsImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -693,6 +715,8 @@ class __$$CannotRequestPermissionsImplCopyWithImpl<$Res>
       $Res Function(_$CannotRequestPermissionsImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of BluetoothPermissionsState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -735,7 +759,9 @@ class _$CannotRequestPermissionsImpl implements _CannotRequestPermissions {
   @override
   int get hashCode => Object.hash(runtimeType, bluetoothPermissionsFailure);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of BluetoothPermissionsState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$CannotRequestPermissionsImplCopyWith<_$CannotRequestPermissionsImpl>
@@ -835,7 +861,10 @@ abstract class _CannotRequestPermissions implements BluetoothPermissionsState {
           bluetoothPermissionsFailure}) = _$CannotRequestPermissionsImpl;
 
   BluetoothPermissionsFailure get bluetoothPermissionsFailure;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of BluetoothPermissionsState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$CannotRequestPermissionsImplCopyWith<_$CannotRequestPermissionsImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

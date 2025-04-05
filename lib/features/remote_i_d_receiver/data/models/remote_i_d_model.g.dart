@@ -34,13 +34,13 @@ RemoteIDModel _$RemoteIDModelFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$RemoteIDModelToJson(RemoteIDModel instance) =>
     <String, dynamic>{
-      'connection': instance.mConnection,
-      'basicIds': instance.mBasicIDs,
-      'location': instance.mLocation,
-      'system': instance.mSystem,
-      'selfId': instance.mSelfID,
-      'operatorId': instance.mOperatorID,
-      'authentication': instance.mAuthentication,
+      'connection': instance.mConnection.toJson(),
+      'basicIds': instance.mBasicIDs?.map((e) => e.toJson()).toList(),
+      'location': instance.mLocation?.toJson(),
+      'system': instance.mSystem?.toJson(),
+      'selfId': instance.mSelfID?.toJson(),
+      'operatorId': instance.mOperatorID?.toJson(),
+      'authentication': instance.mAuthentication?.toJson(),
     };
 
 ConnectionModel _$ConnectionModelFromJson(Map<String, dynamic> json) =>
@@ -63,6 +63,7 @@ Map<String, dynamic> _$ConnectionModelToJson(ConnectionModel instance) =>
     };
 
 const _$RemoteIDMessageSourceEnumMap = {
+  RemoteIDMessageSource.skyTradeBackend: 'SkyTrade_Backend',
   RemoteIDMessageSource.bluetoothLegacy: 'Bluetooth_Legacy',
   RemoteIDMessageSource.bluetoothLongRange: 'Bluetooth_Long_Range',
   RemoteIDMessageSource.wifiNan: 'WiFi_NAN',
@@ -177,7 +178,7 @@ Map<String, dynamic> _$LocationModelToJson(LocationModel instance) =>
       'speedVertical': instance.mVerticalSpeed,
       'latitude': instance.mLatitude,
       'longitude': instance.mLongitude,
-      'location': instance.mLocation,
+      'location': instance.mLocation?.toJson(),
       'altitudePressure': instance.mAltitudePressure,
       'altitudeGeodetic': instance.mAltitudeGeodetic,
       'height': instance.mHeight,
@@ -278,7 +279,7 @@ Map<String, dynamic> _$SystemModelToJson(SystemModel instance) =>
       'systemTimestamp': const DateTimeConverter().toJson(instance.mTimestamp),
       'operatorLatitude': instance.mOperatorLatitude,
       'operatorLongitude': instance.mOperatorLongitude,
-      'operatorCoordinates': instance.mOperatorLocation,
+      'operatorCoordinates': instance.mOperatorLocation?.toJson(),
       'operatorAltitudeGeo': instance.mOperatorAltitude,
       'areaCeiling': instance.mAreaCeiling,
       'areaFloor': instance.mAreaFloor,

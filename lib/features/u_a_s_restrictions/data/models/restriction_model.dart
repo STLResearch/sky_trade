@@ -12,7 +12,7 @@ import 'package:sky_trade/core/resources/strings/networking.dart'
         typeKey,
         upperLimitKey;
 import 'package:sky_trade/core/utils/enums/networking.dart'
-    show RegionType, RestrictionType;
+    show GeometryType, RestrictionType;
 import 'package:sky_trade/features/u_a_s_restrictions/domain/entities/restriction_entity.dart';
 
 part 'restriction_model.g.dart';
@@ -100,7 +100,7 @@ final class RegionModel extends RegionEntity {
       _$RegionModelFromJson(json);
 
   @JsonKey(name: typeKey)
-  final RegionType mType;
+  final GeometryType mType;
 
   @JsonKey(name: coordinatesKey)
   final List<List<List<double>>> mCoordinates;
