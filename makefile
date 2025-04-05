@@ -1,4 +1,6 @@
-.PHONY: f-np, c-p, br-b, br-w, t, gcr-t, ocr-t, t-got, d-d-r, d-s-r, d-l-r-o, d-l-r-p, loc, u-d-s-l, c-f-d, c-f-s, c-f-l, o-i
+.PHONY: f-np, c-p, br-b, br-w, t, gcr-t, ocr-t, t-got, d-d-r, d-s-r, d-l-r-o, d-l-r-p, loc, u-d-s-l, c-f-d, c-f-s, c-f-l, o-i, p-sds
+
+include .env.makefile
 
 f-np: ## Creates a feature with no presentation layer
 	@echo "Creating new example feature"
@@ -104,3 +106,7 @@ c-f-l: ## Configures Firebase for live environment
 
 o-i: ## Opens iOS module with information about the pods in XCode for build related purposes
 	open ios/Runner.xcworkspace/
+
+p-sds: ## Builds new live release apk, mints a new release NFT and publishes app to the Solana dApp store. Does not upgrade version code, version name and new_in_version field of config.yaml in android/publishing. Those need to be done manually first. Please make sure to fund the public address of the keypair with some SOL before this process starts to avoid errors
+	flutter build apk --flavor live
+	cd android/publishing && npx dapp-store validate -k ${SOLANA_KEYPAIR_PATH} && npx dapp-store create release -k ${SOLANA_KEYPAIR_PATH} -u "%d", ${MAINNET_BETA_RPC_URL} && npx dapp-store publish update -k ${SOLANA_KEYPAIR_PATH} --requestor-is-authorized --complies-with-solana-dapp-store-policies
