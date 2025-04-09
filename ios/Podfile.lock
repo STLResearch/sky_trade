@@ -79,7 +79,7 @@ PODS:
     - GoogleUtilities/Environment (~> 8.0)
     - GoogleUtilities/UserDefaults (~> 8.0)
     - PromisesObjC (~> 2.4)
-  - FirebaseRemoteConfigInterop (11.10.0)
+  - FirebaseRemoteConfigInterop (11.11.0)
   - FirebaseSessions (11.8.0):
     - FirebaseCore (~> 11.8.0)
     - FirebaseCoreExtension (~> 11.8.0)
@@ -191,17 +191,17 @@ PODS:
   - SimpleKeychain (1.2.0)
   - single_factor_auth_flutter (0.0.1):
     - Flutter
-    - SingleFactorAuth (= 9.0.4)
-  - SingleFactorAuth (9.0.4):
+    - SingleFactorAuth (= 9.1.0)
+  - SingleFactorAuth (9.1.0):
     - JWTDecode (~> 3.2)
-    - Torus-utils (~> 10.0.0)
-    - TorusSessionManager (~> 6.0.2)
+    - Torus-utils (~> 10.0.1)
+    - TorusSessionManager (~> 6.1.0)
   - Torus-fetchNodeDetails (8.0.1):
     - BigInt (~> 5.2.0)
   - Torus-utils (10.0.1):
     - curvelib.swift (~> 2.0.0)
     - Torus-fetchNodeDetails (~> 8.0.1)
-  - TorusSessionManager (6.0.2):
+  - TorusSessionManager (6.1.0):
     - curvelib.swift (~> 2.0.0)
     - KeychainSwift (~> 20.0.0)
   - Turf (4.0.0)
@@ -330,7 +330,7 @@ SPEC CHECKSUMS:
   FirebaseCoreInternal: df24ce5af28864660ecbd13596fc8dd3a8c34629
   FirebaseCrashlytics: a1102c035f18d5dd94a5969ee439c526d0c9e313
   FirebaseInstallations: 6c963bd2a86aca0481eef4f48f5a4df783ae5917
-  FirebaseRemoteConfigInterop: 7c9a9c65eff32cbb0f7bf8d18140612ad57dfcc6
+  FirebaseRemoteConfigInterop: 85bdce8babed7814816496bb6f082bc05b0a45e1
   FirebaseSessions: c4d40a97f88f9eaff2834d61b4fea0a522d62123
   Flutter: e0871f40cf51350855a761d2e70bf5af5b9b5de7
   flutter_blue_plus_darwin: 09444a26fb6bdef523e55b68fc1c59af5a877ea6
@@ -357,11 +357,11 @@ SPEC CHECKSUMS:
   sentry_flutter: 44fca75bb5ef672c9aa43e0415ed89579c040795
   shared_preferences_foundation: 9e1978ff2562383bd5676f64ec4e9aa8fa06a6f7
   SimpleKeychain: 768cf43ae778b1c21816e94dddf01bb8ee96a075
-  single_factor_auth_flutter: 4d043c03e2fc6ab844a2e56a0a1d1acc2d0f5ab1
-  SingleFactorAuth: 6a2639e2d25d4cec901753193b97f8503734734d
+  single_factor_auth_flutter: 48ebc6c128b88f01604a45ae2216388b2877a5e3
+  SingleFactorAuth: ddb65765484f6e98813797b007e094996c2bc4b9
   Torus-fetchNodeDetails: 0ae97719263ee98f5bf5549a86464eea38a828f3
   Torus-utils: 7c53a9c71663c2f458bfdcf1a380d7a5b88f9632
-  TorusSessionManager: 3c47c2a4c4d6173a10006eb0af4b86317ee45ff8
+  TorusSessionManager: cd2de693425cefb976c7bca42a45964297d8c2cc
   Turf: c9eb11a65d96af58cac523460fd40fec5061b081
   url_launcher_ios: 694010445543906933d732453a59da0a173ae33d
 
