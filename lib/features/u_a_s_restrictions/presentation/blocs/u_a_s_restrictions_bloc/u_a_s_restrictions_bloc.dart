@@ -36,12 +36,19 @@ class UASRestrictionsBloc
     _GetRestrictions event,
     Emitter<UASRestrictionsState> emit,
   ) async {
-    if (previousGeoHashRequest.contains(event.geoHash)) {
+    if (previousGeoHashRequest.contains(
+      event.geoHash,
+    )) {
       emit(
-        const UASRestrictionsState.gettingOrAlreadyGotRestrictions(),
+        const UASRestrictionsState.previouslyGotRestrictions(),
       );
+
       return;
     }
+
+    previousGeoHashRequest.add(
+      event.geoHash,
+    );
 
     emit(
       const UASRestrictionsState.gettingRestrictions(),
@@ -50,7 +57,6 @@ class UASRestrictionsBloc
     final result = await _uASRestrictionsRepository.getRestrictionsUsing(
       geoHash: event.geoHash,
     );
-    previousGeoHashRequest.add(event.geoHash);
 
     result.fold(
       (uASRestrictionsFailure) {
@@ -59,19 +65,26 @@ class UASRestrictionsBloc
             uasRestrictionsFailure: uASRestrictionsFailure,
           ),
         );
-        previousGeoHashRequest.remove(event.geoHash);
+
+        previousGeoHashRequest.remove(
+          event.geoHash,
+        );
       },
       (restrictionEntities) {
         restrictionEntities.removeWhere(
           _restrictionEntities.contains,
         );
+
         emit(
           UASRestrictionsState.gotRestrictions(
             geoHash: event.geoHash,
             restrictionEntities: restrictionEntities,
           ),
         );
-        _restrictionEntities.addAll(restrictionEntities);
+
+        _restrictionEntities.addAll(
+          restrictionEntities,
+        );
       },
     );
   }
@@ -82,11 +95,12 @@ class UASRestrictionsBloc
   ) {
     emit(
       UASRestrictionsState.selectedRestriction(
-        selectedRestriction: (event.restrictionId == null)
-            ? null
-            : _restrictionEntities.firstWhere(
-                (entity) => entity.id == event.restrictionId,
-              ),
+        selectedRestriction: switch (event.restrictionId == null) {
+          true => null,
+          false => _restrictionEntities.firstWhere(
+              (entity) => entity.id == event.restrictionId,
+            ),
+        },
       ),
     );
   }

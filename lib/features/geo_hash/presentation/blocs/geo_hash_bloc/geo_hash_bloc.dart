@@ -44,7 +44,7 @@ class GeoHashBloc extends Bloc<GeoHashEvent, GeoHashState> {
 
     emit(
       GeoHashState.computedGeoHashOfPrecision3(
-        geoHashOfPrecision3: geoHashOfPrecision3,
+        geoHash: geoHashOfPrecision3,
       ),
     );
   }

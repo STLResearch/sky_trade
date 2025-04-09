@@ -38,23 +38,25 @@ final class RestrictionModel extends RestrictionEntity {
   final String mId;
 
   @JsonKey(name: propertiesKey)
-  final RestrictionPropertiesModel mProperties;
+  final PropertiesModel mProperties;
 
   @JsonKey(name: geometryKey)
-  final RestrictionGeometryModel mGeometry;
+  final GeometryModel mGeometry;
+
+  Map<String, dynamic> toJson() => _$RestrictionModelToJson(this);
 }
 
 @JsonSerializable()
-final class RestrictionPropertiesModel extends RestrictionPropertiesEntity {
-  const RestrictionPropertiesModel({
-    required this.mRestrictionType,
+final class PropertiesModel extends PropertiesEntity {
+  const PropertiesModel({
+    required this.mType,
     required this.mCountry,
     required this.mUpperLimit,
     required this.mLowerLimit,
     required this.mMessage,
     required this.mAdditionLinks,
   }) : super(
-          restrictionType: mRestrictionType,
+          type: mType,
           country: mCountry,
           upperLimit: mUpperLimit,
           lowerLimit: mLowerLimit,
@@ -62,11 +64,11 @@ final class RestrictionPropertiesModel extends RestrictionPropertiesEntity {
           additionLinks: mAdditionLinks,
         );
 
-  factory RestrictionPropertiesModel.fromJson(Map<String, dynamic> json) =>
-      _$RestrictionPropertiesModelFromJson(json);
+  factory PropertiesModel.fromJson(Map<String, dynamic> json) =>
+      _$PropertiesModelFromJson(json);
 
   @JsonKey(name: typeKey)
-  final RestrictionType mRestrictionType;
+  final RestrictionType mType;
 
   @JsonKey(name: countryKey)
   final String mCountry;
@@ -82,6 +84,8 @@ final class RestrictionPropertiesModel extends RestrictionPropertiesEntity {
 
   @JsonKey(name: additionalLinksKey)
   final List<AdditionalLinkModel> mAdditionLinks;
+
+  Map<String, dynamic> toJson() => _$PropertiesModelToJson(this);
 }
 
 @JsonSerializable()
@@ -102,24 +106,28 @@ final class AdditionalLinkModel extends AdditionalLinkEntity {
 
   @JsonKey(name: nameKey)
   final String mName;
+
+  Map<String, dynamic> toJson() => _$AdditionalLinkModelToJson(this);
 }
 
 @JsonSerializable()
-final class RestrictionGeometryModel extends RestrictionGeometryEntity {
-  const RestrictionGeometryModel({
+final class GeometryModel extends GeometryEntity {
+  const GeometryModel({
     required this.mType,
     required this.mCoordinates,
   }) : super(
-          geometryType: mType,
+          type: mType,
           coordinates: mCoordinates,
         );
 
-  factory RestrictionGeometryModel.fromJson(Map<String, dynamic> json) =>
-      _$RestrictionGeometryModelFromJson(json);
+  factory GeometryModel.fromJson(Map<String, dynamic> json) =>
+      _$GeometryModelFromJson(json);
 
   @JsonKey(name: typeKey)
   final GeometryType mType;
 
   @JsonKey(name: coordinatesKey)
   final List<List<List<double>>> mCoordinates;
+
+  Map<String, dynamic> toJson() => _$GeometryModelToJson(this);
 }

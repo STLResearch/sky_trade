@@ -1,6 +1,8 @@
 import 'dart:convert' show json;
 import 'dart:ui' show instantiateImageCodec;
-import 'package:flutter/services.dart' show Color, rootBundle;
+
+import 'package:flutter/material.dart' show Color;
+import 'package:flutter/services.dart' show rootBundle;
 import 'package:mapbox_maps_flutter/mapbox_maps_flutter.dart'
     show
         CameraOptions,
@@ -30,7 +32,7 @@ import 'package:mapbox_maps_flutter/mapbox_maps_flutter.dart'
         SymbolLayer;
 import 'package:sky_trade/core/assets/generated/assets.gen.dart'
     show AssetGenImage, Assets;
-import 'package:sky_trade/core/resources/colors.dart' show rawHex2A60C4, rgba;
+import 'package:sky_trade/core/resources/colors.dart' show rawHex2A60C4;
 import 'package:sky_trade/core/resources/numbers/ui.dart'
     show
         fiftyDotNil,
@@ -74,11 +76,13 @@ import 'package:sky_trade/core/resources/strings/ui.dart'
         pointGeometry,
         polygonGeometry,
         propertiesKey,
+        rgba,
         sourceId,
         southWestKey,
         typeKey;
 import 'package:sky_trade/core/utils/extensions/restriction_entity_extensions.dart';
-import 'package:sky_trade/core/utils/typedefs/networking.dart';
+import 'package:sky_trade/core/utils/typedefs/ui.dart'
+    show Bounds, FeatureIdSourceIdTuple;
 import 'package:sky_trade/features/remote_i_d_receiver/domain/entities/remote_i_d_entity.dart'
     show RemoteIDEntity;
 import 'package:sky_trade/features/u_a_s_restrictions/domain/entities/restriction_entity.dart'
@@ -166,11 +170,16 @@ extension MapboxMapExtensions on MapboxMap {
       featureGeometryType: lineStringGeometry,
     );
 
+    if (geoJsonDataForBoundaries == null) {
+      return;
+    }
+
     final geoJsonDataStringForRestrictions = json.encode(
       geoJsonDataForRestrictions.toJson(),
     );
+
     final geoJsonDataStringForBoundaries = json.encode(
-      geoJsonDataForBoundaries!.toJson(),
+      geoJsonDataForBoundaries.toJson(),
     );
 
     await style.addSource(
@@ -179,12 +188,14 @@ extension MapboxMapExtensions on MapboxMap {
         data: geoJsonDataStringForRestrictions,
       ),
     );
+
     await style.addSource(
       GeoJsonSource(
         id: geoHash + boundaryId + sourceId,
         data: geoJsonDataStringForBoundaries,
       ),
     );
+
     await style.addLayer(
       FillLayer(
         id: geoHash + layerId,
@@ -195,11 +206,15 @@ extension MapboxMapExtensions on MapboxMap {
         ],
       ),
     );
+
     await style.addLayer(
       LineLayer(
         id: geoHash + boundaryId + layerId,
         sourceId: geoHash + boundaryId + sourceId,
-        lineDasharray: [nilDotThree, twoDotNil],
+        lineDasharray: [
+          nilDotThree,
+          twoDotNil,
+        ],
         lineWidth: oneDotThree,
         lineCap: LineCap.ROUND,
         lineColorExpression: [
@@ -210,7 +225,10 @@ extension MapboxMapExtensions on MapboxMap {
           caseExpression,
           [
             booleanExpression,
-            [featureStateExpression, isSelectedKey],
+            [
+              featureStateExpression,
+              isSelectedKey,
+            ],
             false,
           ],
           one,
@@ -218,6 +236,7 @@ extension MapboxMapExtensions on MapboxMap {
         ],
       ),
     );
+
     await style.setStyleLayerProperty(
       geoHash + layerId,
       fillOpacityTransitionProperty,
@@ -243,12 +262,14 @@ extension MapboxMapExtensions on MapboxMap {
         data: bridGeoJsonData,
       ),
     );
+
     await style.addSource(
       GeoJsonSource(
         id: nridDronesSourceId,
         data: nridGeoJsonData,
       ),
     );
+
     await style.addLayer(
       SymbolLayer(
         id: bridDronesLayerId,
@@ -260,6 +281,7 @@ extension MapboxMapExtensions on MapboxMap {
         ],
       ),
     );
+
     await style.addLayer(
       SymbolLayer(
         id: nridDronesLayerId,
@@ -289,6 +311,7 @@ extension MapboxMapExtensions on MapboxMap {
     final geoJsonSource = await style.getSource(
       geoJsonSourceId,
     );
+
     final geoJsonDataString = json.encode(
       geoJsonData.toJson(),
     );
@@ -310,7 +333,7 @@ extension MapboxMapExtensions on MapboxMap {
         .map(
           (entity) {
             switch (T) {
-              case RemoteIDEntity:
+              case const (RemoteIDEntity):
                 final remoteIDEntity = entity as RemoteIDEntity;
                 if (remoteIDEntity.location != null &&
                     remoteIDEntity.location!.location != null) {
@@ -323,27 +346,30 @@ extension MapboxMapExtensions on MapboxMap {
                       {
                         typeKey: featureGeometryType,
                         coordinatesKey: [
-                          remoteIDEntity.location!.longitude,
-                          remoteIDEntity.location!.latitude,
+                          remoteIDEntity.location?.longitude ??
+                              remoteIDEntity.location?.location?.longitude,
+                          remoteIDEntity.location?.latitude ??
+                              remoteIDEntity.location?.location?.latitude,
                         ],
                       },
                     ),
                   );
                 }
 
-              case RestrictionEntity:
+              case const (RestrictionEntity):
                 final restrictionEntity = entity as RestrictionEntity;
-                final alpha = (featureGeometryType == polygonGeometry)
-                    ? nilDotThree
-                    : oneDotNil;
+                final alpha = switch (featureGeometryType == polygonGeometry) {
+                  true => nilDotThree,
+                  false => oneDotNil,
+                };
                 final geometryCoordinates =
                     restrictionEntity.geometry.coordinates;
                 final bounds = _getBoundsFromCoordinates(
-                  geometryCoordinates[0],
+                  geometryCoordinates[zero],
                 );
                 final properties = <String, dynamic>{
                   colorKey: _getRGBAColorString(
-                    color: restrictionEntity.polygonColor,
+                    color: restrictionEntity.polygonFillColor,
                     alpha: alpha,
                   ),
                 };
@@ -365,9 +391,11 @@ extension MapboxMapExtensions on MapboxMap {
                   geometry: GeometryObject.deserialize(
                     {
                       typeKey: featureGeometryType,
-                      coordinatesKey: (featureGeometryType == polygonGeometry)
-                          ? geometryCoordinates
-                          : geometryCoordinates[0],
+                      coordinatesKey: switch (
+                          featureGeometryType == polygonGeometry) {
+                        true => geometryCoordinates,
+                        false => geometryCoordinates[zero],
+                      },
                     },
                   ),
                 );
@@ -430,7 +458,7 @@ extension MapboxMapExtensions on MapboxMap {
     return styleImageName;
   }
 
-  Future<({String? featureId, String? sourceId})> handleRestrictionSelection({
+  Future<FeatureIdSourceIdTuple> handleRestrictionSelection({
     required ScreenCoordinate touchPosition,
     required List<String> restrictionLayerIds,
     required String? previousRestrictionFeatureId,
@@ -442,21 +470,24 @@ extension MapboxMapExtensions on MapboxMap {
     );
 
     String? featureId;
+
     String? sourceId;
+
     Map<dynamic, dynamic>? featurePropertiesMap;
 
-    if (queriedFeatures.length == 1) {
-      featureId = queriedFeatures.first.feature[idKey]!.toString();
+    if (queriedFeatures.length == one) {
+      featureId = queriedFeatures.first.feature[idKey]?.toString();
       sourceId = queriedFeatures.firstOrNull?.source;
       featurePropertiesMap =
-          queriedFeatures.first.feature[propertiesKey]! as Map;
-    } else if (queriedFeatures.length > 1) {
+          queriedFeatures.first.feature[propertiesKey] as Map?;
+    } else if (queriedFeatures.length > one) {
       final feature = _getAppropriateFeatureFrom(
         queriedFeatures: queriedFeatures,
       );
-      featureId = feature.feature[idKey]!.toString();
+
+      featureId = feature.feature[idKey]?.toString();
       sourceId = feature.source;
-      featurePropertiesMap = feature.feature[propertiesKey]! as Map;
+      featurePropertiesMap = feature.feature[propertiesKey] as Map?;
     }
 
     await _selectAndUnselectRestrictions(
@@ -468,24 +499,26 @@ extension MapboxMapExtensions on MapboxMap {
 
     if (featurePropertiesMap != null) {
       final northEast =
-          (featurePropertiesMap[northEastKey]! as List).cast<double>();
+          (featurePropertiesMap[northEastKey]! as List).cast<num>();
       final southWest =
-          (featurePropertiesMap[southWestKey]! as List).cast<double>();
+          (featurePropertiesMap[southWestKey]! as List).cast<num>();
+
       final coordinateBounds = CoordinateBounds(
         southwest: Point(
           coordinates: Position(
-            southWest[0],
-            southWest[1],
+            southWest[zero],
+            southWest[one],
           ),
         ),
         northeast: Point(
           coordinates: Position(
-            northEast[0],
-            northEast[1],
+            northEast[zero],
+            northEast[one],
           ),
         ),
         infiniteBounds: false,
       );
+
       final cameraOptions = await cameraForCoordinateBounds(
         coordinateBounds,
         MbxEdgeInsets(
@@ -499,11 +532,13 @@ extension MapboxMapExtensions on MapboxMap {
         null,
         null,
       );
+
       if (cameraOptions.zoom! < sixDotNil) {
         cameraOptions.zoom = sixDotNil;
       } else {
         cameraOptions.zoom = cameraOptions.zoom! - oneDotNil;
       }
+
       await easeTo(
         cameraOptions,
         MapAnimationOptions(
@@ -511,6 +546,7 @@ extension MapboxMapExtensions on MapboxMap {
         ),
       );
     }
+
     return (
       featureId: featureId,
       sourceId: sourceId,
@@ -521,21 +557,24 @@ extension MapboxMapExtensions on MapboxMap {
     required ScreenCoordinate screenCoordinate,
     required List<String> layerIds,
   }) async {
-    return queryRenderedFeatures(
+    final renderedFeatures = await queryRenderedFeatures(
       RenderedQueryGeometry.fromScreenCoordinate(
         screenCoordinate,
       ),
       RenderedQueryOptions(
         layerIds: layerIds,
       ),
-    ).then(
-      (queryRenderedFeatureList) => queryRenderedFeatureList
-          .map(
-            (queryRenderedFeature) => queryRenderedFeature?.queriedFeature,
-          )
-          .whereType<QueriedFeature>()
-          .toList(),
     );
+
+    return renderedFeatures
+        .map(
+          (
+            queryRenderedFeature,
+          ) =>
+              queryRenderedFeature?.queriedFeature,
+        )
+        .whereType<QueriedFeature>()
+        .toList();
   }
 
   Future<void> _selectAndUnselectRestrictions({
@@ -547,11 +586,13 @@ extension MapboxMapExtensions on MapboxMap {
     if (selectedRestrictionFeatureId == previousRestrictionFeatureId) {
       return;
     }
+
     await _updateRestrictionFeatureState(
       restrictionFeatureId: selectedRestrictionFeatureId,
       restrictionSourceId: selectedRestrictionSourceId,
       isSelectedKeyValue: true,
     );
+
     await _updateRestrictionFeatureState(
       restrictionFeatureId: previousRestrictionFeatureId,
       restrictionSourceId: previousRestrictionSourceId,
@@ -566,7 +607,12 @@ extension MapboxMapExtensions on MapboxMap {
   }) async {
     if (restrictionFeatureId == null || restrictionSourceId == null) return;
 
-    final geoHash = restrictionSourceId.split(hyphen).first;
+    final geoHash = restrictionSourceId
+        .split(
+          hyphen,
+        )
+        .first;
+
     final boundarySourceId = geoHash + boundaryId + sourceId;
 
     await setFeatureState(
@@ -579,6 +625,7 @@ extension MapboxMapExtensions on MapboxMap {
         },
       ),
     );
+
     await setFeatureState(
       restrictionSourceId,
       null,
@@ -609,29 +656,33 @@ extension MapboxMapExtensions on MapboxMap {
       return queriedFeatures.first;
     }
 
-    final index = queriedFeatures.indexOf(selectedFeature);
-    final nextIndex = (index + 1) % queriedFeatures.length;
+    final index = queriedFeatures.indexOf(
+      selectedFeature,
+    );
+
+    final nextIndex = (index + one) % queriedFeatures.length;
 
     return queriedFeatures[nextIndex];
   }
 
-  ({LngLat northEast, LngLat southWest}) _getBoundsFromCoordinates(
+  Bounds _getBoundsFromCoordinates(
     List<List<double>> coordinates,
   ) {
-    var minLng = coordinates[0][0];
-    var maxLng = coordinates[0][0];
-    var minLat = coordinates[0][1];
-    var maxLat = coordinates[0][1];
+    var minLng = coordinates[zero][zero];
+    var maxLng = coordinates[zero][zero];
+    var minLat = coordinates[zero][one];
+    var maxLat = coordinates[zero][one];
 
     for (final point in coordinates) {
-      final lng = point[0];
-      final lat = point[1];
+      final lng = point[zero];
+      final lat = point[one];
 
       if (lat < minLat) minLat = lat;
       if (lat > maxLat) maxLat = lat;
       if (lng < minLng) minLng = lng;
       if (lng > maxLng) maxLng = lng;
     }
+
     return (
       northEast: (
         longitude: maxLng,

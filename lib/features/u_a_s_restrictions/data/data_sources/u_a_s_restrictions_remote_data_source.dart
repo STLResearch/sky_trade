@@ -1,6 +1,7 @@
 import 'package:sky_trade/core/errors/exceptions/u_a_s_restrictions_exception.dart';
+import 'package:sky_trade/core/resources/numbers/networking.dart' show twenty;
 import 'package:sky_trade/core/resources/strings/networking.dart'
-    show geoHashKey, restrictionsPath;
+    show featuresKey, geoHashKey, restrictionsPath;
 import 'package:sky_trade/core/utils/clients/network_client.dart'
     show HttpClient;
 import 'package:sky_trade/core/utils/clients/response_handler.dart';
@@ -36,19 +37,18 @@ final class UASRestrictionsRemoteDataSourceImplementation
           queryParameters: {
             geoHashKey: geoHash,
           },
-          overrideReceiveTimeout: const Duration(seconds: 20),
+          overrideReceiveTimeout: const Duration(
+            seconds: twenty,
+          ),
         ),
-        onSuccess: (jsonResponse) {
-          final geoJsonFeatures = jsonResponse['features'] as List<dynamic>;
-          return geoJsonFeatures
-              .map(
-                (geoJsonFeature) => RestrictionModel.fromJson(
-                  geoJsonFeature as Map<String, dynamic>,
-                ),
-              )
-              .toSet()
-              .toList();
-        },
+        onSuccess: (json) => (json[featuresKey] as List<dynamic>)
+            .map(
+              (feature) => RestrictionModel.fromJson(
+                feature as Map<String, dynamic>,
+              ),
+            )
+            .toSet()
+            .toList(),
         onError: (_) => UASRestrictionsException(),
       );
 }

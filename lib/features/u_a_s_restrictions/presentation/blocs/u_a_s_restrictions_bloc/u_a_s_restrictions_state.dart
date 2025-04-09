@@ -12,8 +12,8 @@ class UASRestrictionsState with _$UASRestrictionsState {
     required List<RestrictionEntity> restrictionEntities,
   }) = _GotRestrictions;
 
-  const factory UASRestrictionsState.gettingOrAlreadyGotRestrictions(
-  ) = _GettingOrAlreadyGotRestrictions;
+  const factory UASRestrictionsState.previouslyGotRestrictions() =
+      _PreviouslyGotRestrictions;
 
   const factory UASRestrictionsState.failedToGetRestrictions({
     required UASRestrictionsFailure uasRestrictionsFailure,

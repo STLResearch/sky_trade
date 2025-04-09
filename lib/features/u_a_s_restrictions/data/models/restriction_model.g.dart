@@ -9,10 +9,10 @@ part of 'restriction_model.dart';
 RestrictionModel _$RestrictionModelFromJson(Map<String, dynamic> json) =>
     RestrictionModel(
       mId: json['id'] as String,
-      mProperties: RestrictionPropertiesModel.fromJson(
-          json['properties'] as Map<String, dynamic>),
-      mGeometry: RestrictionGeometryModel.fromJson(
-          json['geometry'] as Map<String, dynamic>),
+      mProperties:
+          PropertiesModel.fromJson(json['properties'] as Map<String, dynamic>),
+      mGeometry:
+          GeometryModel.fromJson(json['geometry'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$RestrictionModelToJson(RestrictionModel instance) =>
@@ -22,10 +22,9 @@ Map<String, dynamic> _$RestrictionModelToJson(RestrictionModel instance) =>
       'geometry': instance.mGeometry,
     };
 
-RestrictionPropertiesModel _$RestrictionPropertiesModelFromJson(
-        Map<String, dynamic> json) =>
-    RestrictionPropertiesModel(
-      mRestrictionType: $enumDecode(_$RestrictionTypeEnumMap, json['type']),
+PropertiesModel _$PropertiesModelFromJson(Map<String, dynamic> json) =>
+    PropertiesModel(
+      mType: $enumDecode(_$RestrictionTypeEnumMap, json['type']),
       mCountry: json['country'] as String,
       mUpperLimit: json['upper_limit'] as String,
       mLowerLimit: json['lower_limit'] as String,
@@ -35,10 +34,9 @@ RestrictionPropertiesModel _$RestrictionPropertiesModelFromJson(
           .toList(),
     );
 
-Map<String, dynamic> _$RestrictionPropertiesModelToJson(
-        RestrictionPropertiesModel instance) =>
+Map<String, dynamic> _$PropertiesModelToJson(PropertiesModel instance) =>
     <String, dynamic>{
-      'type': _$RestrictionTypeEnumMap[instance.mRestrictionType]!,
+      'type': _$RestrictionTypeEnumMap[instance.mType]!,
       'country': instance.mCountry,
       'upper_limit': instance.mUpperLimit,
       'lower_limit': instance.mLowerLimit,
@@ -65,9 +63,8 @@ Map<String, dynamic> _$AdditionalLinkModelToJson(
       'name': instance.mName,
     };
 
-RestrictionGeometryModel _$RestrictionGeometryModelFromJson(
-        Map<String, dynamic> json) =>
-    RestrictionGeometryModel(
+GeometryModel _$GeometryModelFromJson(Map<String, dynamic> json) =>
+    GeometryModel(
       mType: $enumDecode(_$GeometryTypeEnumMap, json['type']),
       mCoordinates: (json['coordinates'] as List<dynamic>)
           .map((e) => (e as List<dynamic>)
@@ -78,8 +75,7 @@ RestrictionGeometryModel _$RestrictionGeometryModelFromJson(
           .toList(),
     );
 
-Map<String, dynamic> _$RestrictionGeometryModelToJson(
-        RestrictionGeometryModel instance) =>
+Map<String, dynamic> _$GeometryModelToJson(GeometryModel instance) =>
     <String, dynamic>{
       'type': _$GeometryTypeEnumMap[instance.mType]!,
       'coordinates': instance.mCoordinates,

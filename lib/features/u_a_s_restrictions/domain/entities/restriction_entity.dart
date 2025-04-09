@@ -11,17 +11,21 @@ base class RestrictionEntity extends Equatable {
 
   final String id;
 
-  final RestrictionPropertiesEntity properties;
+  final PropertiesEntity properties;
 
-  final RestrictionGeometryEntity geometry;
+  final GeometryEntity geometry;
 
   @override
-  List<Object?> get props => [id];
+  List<Object?> get props => [
+        id,
+        properties,
+        geometry,
+      ];
 }
 
-base class RestrictionPropertiesEntity {
-  const RestrictionPropertiesEntity({
-    required this.restrictionType,
+base class PropertiesEntity extends Equatable {
+  const PropertiesEntity({
+    required this.type,
     required this.country,
     required this.upperLimit,
     required this.lowerLimit,
@@ -29,30 +33,59 @@ base class RestrictionPropertiesEntity {
     required this.additionLinks,
   });
 
-  final RestrictionType restrictionType;
+  final RestrictionType type;
+
   final String country;
+
   final String upperLimit;
+
   final String lowerLimit;
+
   final String message;
+
   final List<AdditionalLinkEntity> additionLinks;
+
+  @override
+  List<Object?> get props => [
+        type,
+        country,
+        upperLimit,
+        lowerLimit,
+        message,
+        additionLinks,
+      ];
 }
 
-base class AdditionalLinkEntity {
+base class AdditionalLinkEntity extends Equatable {
   const AdditionalLinkEntity({
     required this.link,
     required this.name,
   });
 
   final String link;
+
   final String name;
+
+  @override
+  List<Object?> get props => [
+        link,
+        name,
+      ];
 }
 
-base class RestrictionGeometryEntity {
-  const RestrictionGeometryEntity({
-    required this.geometryType,
+base class GeometryEntity extends Equatable {
+  const GeometryEntity({
+    required this.type,
     required this.coordinates,
   });
 
-  final GeometryType geometryType;
+  final GeometryType type;
+
   final List<List<List<double>>> coordinates;
+
+  @override
+  List<Object?> get props => [
+        type,
+        coordinates,
+      ];
 }

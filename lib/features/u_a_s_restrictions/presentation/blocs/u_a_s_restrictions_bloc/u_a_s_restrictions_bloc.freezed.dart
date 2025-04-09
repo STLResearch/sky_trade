@@ -16,44 +16,43 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$UASRestrictionsEvent {
-  String get geoHash => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String geoHash) getRestrictions,
+    required TResult Function(String? restrictionId) selectRestriction,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String geoHash)? getRestrictions,
+    TResult? Function(String? restrictionId)? selectRestriction,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String geoHash)? getRestrictions,
+    TResult Function(String? restrictionId)? selectRestriction,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_GetRestrictions value) getRestrictions,
+    required TResult Function(_SelectRestriction value) selectRestriction,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_GetRestrictions value)? getRestrictions,
+    TResult? Function(_SelectRestriction value)? selectRestriction,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_GetRestrictions value)? getRestrictions,
+    TResult Function(_SelectRestriction value)? selectRestriction,
     required TResult orElse(),
   }) =>
-      throw _privateConstructorUsedError;
-
-  /// Create a copy of UASRestrictionsEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  $UASRestrictionsEventCopyWith<UASRestrictionsEvent> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -62,8 +61,6 @@ abstract class $UASRestrictionsEventCopyWith<$Res> {
   factory $UASRestrictionsEventCopyWith(UASRestrictionsEvent value,
           $Res Function(UASRestrictionsEvent) then) =
       _$UASRestrictionsEventCopyWithImpl<$Res, UASRestrictionsEvent>;
-  @useResult
-  $Res call({String geoHash});
 }
 
 /// @nodoc
@@ -79,27 +76,13 @@ class _$UASRestrictionsEventCopyWithImpl<$Res,
 
   /// Create a copy of UASRestrictionsEvent
   /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? geoHash = null,
-  }) {
-    return _then(_value.copyWith(
-      geoHash: null == geoHash
-          ? _value.geoHash
-          : geoHash // ignore: cast_nullable_to_non_nullable
-              as String,
-    ) as $Val);
-  }
 }
 
 /// @nodoc
-abstract class _$$GetRestrictionsImplCopyWith<$Res>
-    implements $UASRestrictionsEventCopyWith<$Res> {
+abstract class _$$GetRestrictionsImplCopyWith<$Res> {
   factory _$$GetRestrictionsImplCopyWith(_$GetRestrictionsImpl value,
           $Res Function(_$GetRestrictionsImpl) then) =
       __$$GetRestrictionsImplCopyWithImpl<$Res>;
-  @override
   @useResult
   $Res call({String geoHash});
 }
@@ -165,6 +148,7 @@ class _$GetRestrictionsImpl implements _GetRestrictions {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String geoHash) getRestrictions,
+    required TResult Function(String? restrictionId) selectRestriction,
   }) {
     return getRestrictions(geoHash);
   }
@@ -173,6 +157,7 @@ class _$GetRestrictionsImpl implements _GetRestrictions {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String geoHash)? getRestrictions,
+    TResult? Function(String? restrictionId)? selectRestriction,
   }) {
     return getRestrictions?.call(geoHash);
   }
@@ -181,6 +166,7 @@ class _$GetRestrictionsImpl implements _GetRestrictions {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String geoHash)? getRestrictions,
+    TResult Function(String? restrictionId)? selectRestriction,
     required TResult orElse(),
   }) {
     if (getRestrictions != null) {
@@ -193,6 +179,7 @@ class _$GetRestrictionsImpl implements _GetRestrictions {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_GetRestrictions value) getRestrictions,
+    required TResult Function(_SelectRestriction value) selectRestriction,
   }) {
     return getRestrictions(this);
   }
@@ -201,6 +188,7 @@ class _$GetRestrictionsImpl implements _GetRestrictions {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_GetRestrictions value)? getRestrictions,
+    TResult? Function(_SelectRestriction value)? selectRestriction,
   }) {
     return getRestrictions?.call(this);
   }
@@ -209,6 +197,7 @@ class _$GetRestrictionsImpl implements _GetRestrictions {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_GetRestrictions value)? getRestrictions,
+    TResult Function(_SelectRestriction value)? selectRestriction,
     required TResult orElse(),
   }) {
     if (getRestrictions != null) {
@@ -222,14 +211,155 @@ abstract class _GetRestrictions implements UASRestrictionsEvent {
   const factory _GetRestrictions({required final String geoHash}) =
       _$GetRestrictionsImpl;
 
-  @override
   String get geoHash;
 
   /// Create a copy of UASRestrictionsEvent
   /// with the given fields replaced by the non-null parameter values.
-  @override
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$GetRestrictionsImplCopyWith<_$GetRestrictionsImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$SelectRestrictionImplCopyWith<$Res> {
+  factory _$$SelectRestrictionImplCopyWith(_$SelectRestrictionImpl value,
+          $Res Function(_$SelectRestrictionImpl) then) =
+      __$$SelectRestrictionImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String? restrictionId});
+}
+
+/// @nodoc
+class __$$SelectRestrictionImplCopyWithImpl<$Res>
+    extends _$UASRestrictionsEventCopyWithImpl<$Res, _$SelectRestrictionImpl>
+    implements _$$SelectRestrictionImplCopyWith<$Res> {
+  __$$SelectRestrictionImplCopyWithImpl(_$SelectRestrictionImpl _value,
+      $Res Function(_$SelectRestrictionImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of UASRestrictionsEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? restrictionId = freezed,
+  }) {
+    return _then(_$SelectRestrictionImpl(
+      restrictionId: freezed == restrictionId
+          ? _value.restrictionId
+          : restrictionId // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$SelectRestrictionImpl implements _SelectRestriction {
+  const _$SelectRestrictionImpl({required this.restrictionId});
+
+  @override
+  final String? restrictionId;
+
+  @override
+  String toString() {
+    return 'UASRestrictionsEvent.selectRestriction(restrictionId: $restrictionId)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$SelectRestrictionImpl &&
+            (identical(other.restrictionId, restrictionId) ||
+                other.restrictionId == restrictionId));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, restrictionId);
+
+  /// Create a copy of UASRestrictionsEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$SelectRestrictionImplCopyWith<_$SelectRestrictionImpl> get copyWith =>
+      __$$SelectRestrictionImplCopyWithImpl<_$SelectRestrictionImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String geoHash) getRestrictions,
+    required TResult Function(String? restrictionId) selectRestriction,
+  }) {
+    return selectRestriction(restrictionId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String geoHash)? getRestrictions,
+    TResult? Function(String? restrictionId)? selectRestriction,
+  }) {
+    return selectRestriction?.call(restrictionId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String geoHash)? getRestrictions,
+    TResult Function(String? restrictionId)? selectRestriction,
+    required TResult orElse(),
+  }) {
+    if (selectRestriction != null) {
+      return selectRestriction(restrictionId);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_GetRestrictions value) getRestrictions,
+    required TResult Function(_SelectRestriction value) selectRestriction,
+  }) {
+    return selectRestriction(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_GetRestrictions value)? getRestrictions,
+    TResult? Function(_SelectRestriction value)? selectRestriction,
+  }) {
+    return selectRestriction?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_GetRestrictions value)? getRestrictions,
+    TResult Function(_SelectRestriction value)? selectRestriction,
+    required TResult orElse(),
+  }) {
+    if (selectRestriction != null) {
+      return selectRestriction(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _SelectRestriction implements UASRestrictionsEvent {
+  const factory _SelectRestriction({required final String? restrictionId}) =
+      _$SelectRestrictionImpl;
+
+  String? get restrictionId;
+
+  /// Create a copy of UASRestrictionsEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$SelectRestrictionImplCopyWith<_$SelectRestrictionImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -242,9 +372,11 @@ mixin _$UASRestrictionsState {
     required TResult Function(
             String geoHash, List<RestrictionEntity> restrictionEntities)
         gotRestrictions,
-    required TResult Function() gettingOrAlreadyGotRestrictions,
+    required TResult Function() previouslyGotRestrictions,
     required TResult Function(UASRestrictionsFailure uasRestrictionsFailure)
         failedToGetRestrictions,
+    required TResult Function(RestrictionEntity? selectedRestriction)
+        selectedRestriction,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -254,9 +386,11 @@ mixin _$UASRestrictionsState {
     TResult? Function(
             String geoHash, List<RestrictionEntity> restrictionEntities)?
         gotRestrictions,
-    TResult? Function()? gettingOrAlreadyGotRestrictions,
+    TResult? Function()? previouslyGotRestrictions,
     TResult? Function(UASRestrictionsFailure uasRestrictionsFailure)?
         failedToGetRestrictions,
+    TResult? Function(RestrictionEntity? selectedRestriction)?
+        selectedRestriction,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -266,9 +400,11 @@ mixin _$UASRestrictionsState {
     TResult Function(
             String geoHash, List<RestrictionEntity> restrictionEntities)?
         gotRestrictions,
-    TResult Function()? gettingOrAlreadyGotRestrictions,
+    TResult Function()? previouslyGotRestrictions,
     TResult Function(UASRestrictionsFailure uasRestrictionsFailure)?
         failedToGetRestrictions,
+    TResult Function(RestrictionEntity? selectedRestriction)?
+        selectedRestriction,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -277,10 +413,11 @@ mixin _$UASRestrictionsState {
     required TResult Function(_Initial value) initial,
     required TResult Function(_GettingRestrictions value) gettingRestrictions,
     required TResult Function(_GotRestrictions value) gotRestrictions,
-    required TResult Function(_GettingOrAlreadyGotRestrictions value)
-        gettingOrAlreadyGotRestrictions,
+    required TResult Function(_PreviouslyGotRestrictions value)
+        previouslyGotRestrictions,
     required TResult Function(_FailedToGetRestrictions value)
         failedToGetRestrictions,
+    required TResult Function(_SelectedRestriction value) selectedRestriction,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -288,9 +425,10 @@ mixin _$UASRestrictionsState {
     TResult? Function(_Initial value)? initial,
     TResult? Function(_GettingRestrictions value)? gettingRestrictions,
     TResult? Function(_GotRestrictions value)? gotRestrictions,
-    TResult? Function(_GettingOrAlreadyGotRestrictions value)?
-        gettingOrAlreadyGotRestrictions,
+    TResult? Function(_PreviouslyGotRestrictions value)?
+        previouslyGotRestrictions,
     TResult? Function(_FailedToGetRestrictions value)? failedToGetRestrictions,
+    TResult? Function(_SelectedRestriction value)? selectedRestriction,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -298,9 +436,10 @@ mixin _$UASRestrictionsState {
     TResult Function(_Initial value)? initial,
     TResult Function(_GettingRestrictions value)? gettingRestrictions,
     TResult Function(_GotRestrictions value)? gotRestrictions,
-    TResult Function(_GettingOrAlreadyGotRestrictions value)?
-        gettingOrAlreadyGotRestrictions,
+    TResult Function(_PreviouslyGotRestrictions value)?
+        previouslyGotRestrictions,
     TResult Function(_FailedToGetRestrictions value)? failedToGetRestrictions,
+    TResult Function(_SelectedRestriction value)? selectedRestriction,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -374,9 +513,11 @@ class _$InitialImpl implements _Initial {
     required TResult Function(
             String geoHash, List<RestrictionEntity> restrictionEntities)
         gotRestrictions,
-    required TResult Function() gettingOrAlreadyGotRestrictions,
+    required TResult Function() previouslyGotRestrictions,
     required TResult Function(UASRestrictionsFailure uasRestrictionsFailure)
         failedToGetRestrictions,
+    required TResult Function(RestrictionEntity? selectedRestriction)
+        selectedRestriction,
   }) {
     return initial();
   }
@@ -389,9 +530,11 @@ class _$InitialImpl implements _Initial {
     TResult? Function(
             String geoHash, List<RestrictionEntity> restrictionEntities)?
         gotRestrictions,
-    TResult? Function()? gettingOrAlreadyGotRestrictions,
+    TResult? Function()? previouslyGotRestrictions,
     TResult? Function(UASRestrictionsFailure uasRestrictionsFailure)?
         failedToGetRestrictions,
+    TResult? Function(RestrictionEntity? selectedRestriction)?
+        selectedRestriction,
   }) {
     return initial?.call();
   }
@@ -404,9 +547,11 @@ class _$InitialImpl implements _Initial {
     TResult Function(
             String geoHash, List<RestrictionEntity> restrictionEntities)?
         gotRestrictions,
-    TResult Function()? gettingOrAlreadyGotRestrictions,
+    TResult Function()? previouslyGotRestrictions,
     TResult Function(UASRestrictionsFailure uasRestrictionsFailure)?
         failedToGetRestrictions,
+    TResult Function(RestrictionEntity? selectedRestriction)?
+        selectedRestriction,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -421,10 +566,11 @@ class _$InitialImpl implements _Initial {
     required TResult Function(_Initial value) initial,
     required TResult Function(_GettingRestrictions value) gettingRestrictions,
     required TResult Function(_GotRestrictions value) gotRestrictions,
-    required TResult Function(_GettingOrAlreadyGotRestrictions value)
-        gettingOrAlreadyGotRestrictions,
+    required TResult Function(_PreviouslyGotRestrictions value)
+        previouslyGotRestrictions,
     required TResult Function(_FailedToGetRestrictions value)
         failedToGetRestrictions,
+    required TResult Function(_SelectedRestriction value) selectedRestriction,
   }) {
     return initial(this);
   }
@@ -435,9 +581,10 @@ class _$InitialImpl implements _Initial {
     TResult? Function(_Initial value)? initial,
     TResult? Function(_GettingRestrictions value)? gettingRestrictions,
     TResult? Function(_GotRestrictions value)? gotRestrictions,
-    TResult? Function(_GettingOrAlreadyGotRestrictions value)?
-        gettingOrAlreadyGotRestrictions,
+    TResult? Function(_PreviouslyGotRestrictions value)?
+        previouslyGotRestrictions,
     TResult? Function(_FailedToGetRestrictions value)? failedToGetRestrictions,
+    TResult? Function(_SelectedRestriction value)? selectedRestriction,
   }) {
     return initial?.call(this);
   }
@@ -448,9 +595,10 @@ class _$InitialImpl implements _Initial {
     TResult Function(_Initial value)? initial,
     TResult Function(_GettingRestrictions value)? gettingRestrictions,
     TResult Function(_GotRestrictions value)? gotRestrictions,
-    TResult Function(_GettingOrAlreadyGotRestrictions value)?
-        gettingOrAlreadyGotRestrictions,
+    TResult Function(_PreviouslyGotRestrictions value)?
+        previouslyGotRestrictions,
     TResult Function(_FailedToGetRestrictions value)? failedToGetRestrictions,
+    TResult Function(_SelectedRestriction value)? selectedRestriction,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -511,9 +659,11 @@ class _$GettingRestrictionsImpl implements _GettingRestrictions {
     required TResult Function(
             String geoHash, List<RestrictionEntity> restrictionEntities)
         gotRestrictions,
-    required TResult Function() gettingOrAlreadyGotRestrictions,
+    required TResult Function() previouslyGotRestrictions,
     required TResult Function(UASRestrictionsFailure uasRestrictionsFailure)
         failedToGetRestrictions,
+    required TResult Function(RestrictionEntity? selectedRestriction)
+        selectedRestriction,
   }) {
     return gettingRestrictions();
   }
@@ -526,9 +676,11 @@ class _$GettingRestrictionsImpl implements _GettingRestrictions {
     TResult? Function(
             String geoHash, List<RestrictionEntity> restrictionEntities)?
         gotRestrictions,
-    TResult? Function()? gettingOrAlreadyGotRestrictions,
+    TResult? Function()? previouslyGotRestrictions,
     TResult? Function(UASRestrictionsFailure uasRestrictionsFailure)?
         failedToGetRestrictions,
+    TResult? Function(RestrictionEntity? selectedRestriction)?
+        selectedRestriction,
   }) {
     return gettingRestrictions?.call();
   }
@@ -541,9 +693,11 @@ class _$GettingRestrictionsImpl implements _GettingRestrictions {
     TResult Function(
             String geoHash, List<RestrictionEntity> restrictionEntities)?
         gotRestrictions,
-    TResult Function()? gettingOrAlreadyGotRestrictions,
+    TResult Function()? previouslyGotRestrictions,
     TResult Function(UASRestrictionsFailure uasRestrictionsFailure)?
         failedToGetRestrictions,
+    TResult Function(RestrictionEntity? selectedRestriction)?
+        selectedRestriction,
     required TResult orElse(),
   }) {
     if (gettingRestrictions != null) {
@@ -558,10 +712,11 @@ class _$GettingRestrictionsImpl implements _GettingRestrictions {
     required TResult Function(_Initial value) initial,
     required TResult Function(_GettingRestrictions value) gettingRestrictions,
     required TResult Function(_GotRestrictions value) gotRestrictions,
-    required TResult Function(_GettingOrAlreadyGotRestrictions value)
-        gettingOrAlreadyGotRestrictions,
+    required TResult Function(_PreviouslyGotRestrictions value)
+        previouslyGotRestrictions,
     required TResult Function(_FailedToGetRestrictions value)
         failedToGetRestrictions,
+    required TResult Function(_SelectedRestriction value) selectedRestriction,
   }) {
     return gettingRestrictions(this);
   }
@@ -572,9 +727,10 @@ class _$GettingRestrictionsImpl implements _GettingRestrictions {
     TResult? Function(_Initial value)? initial,
     TResult? Function(_GettingRestrictions value)? gettingRestrictions,
     TResult? Function(_GotRestrictions value)? gotRestrictions,
-    TResult? Function(_GettingOrAlreadyGotRestrictions value)?
-        gettingOrAlreadyGotRestrictions,
+    TResult? Function(_PreviouslyGotRestrictions value)?
+        previouslyGotRestrictions,
     TResult? Function(_FailedToGetRestrictions value)? failedToGetRestrictions,
+    TResult? Function(_SelectedRestriction value)? selectedRestriction,
   }) {
     return gettingRestrictions?.call(this);
   }
@@ -585,9 +741,10 @@ class _$GettingRestrictionsImpl implements _GettingRestrictions {
     TResult Function(_Initial value)? initial,
     TResult Function(_GettingRestrictions value)? gettingRestrictions,
     TResult Function(_GotRestrictions value)? gotRestrictions,
-    TResult Function(_GettingOrAlreadyGotRestrictions value)?
-        gettingOrAlreadyGotRestrictions,
+    TResult Function(_PreviouslyGotRestrictions value)?
+        previouslyGotRestrictions,
     TResult Function(_FailedToGetRestrictions value)? failedToGetRestrictions,
+    TResult Function(_SelectedRestriction value)? selectedRestriction,
     required TResult orElse(),
   }) {
     if (gettingRestrictions != null) {
@@ -694,9 +851,11 @@ class _$GotRestrictionsImpl implements _GotRestrictions {
     required TResult Function(
             String geoHash, List<RestrictionEntity> restrictionEntities)
         gotRestrictions,
-    required TResult Function() gettingOrAlreadyGotRestrictions,
+    required TResult Function() previouslyGotRestrictions,
     required TResult Function(UASRestrictionsFailure uasRestrictionsFailure)
         failedToGetRestrictions,
+    required TResult Function(RestrictionEntity? selectedRestriction)
+        selectedRestriction,
   }) {
     return gotRestrictions(geoHash, restrictionEntities);
   }
@@ -709,9 +868,11 @@ class _$GotRestrictionsImpl implements _GotRestrictions {
     TResult? Function(
             String geoHash, List<RestrictionEntity> restrictionEntities)?
         gotRestrictions,
-    TResult? Function()? gettingOrAlreadyGotRestrictions,
+    TResult? Function()? previouslyGotRestrictions,
     TResult? Function(UASRestrictionsFailure uasRestrictionsFailure)?
         failedToGetRestrictions,
+    TResult? Function(RestrictionEntity? selectedRestriction)?
+        selectedRestriction,
   }) {
     return gotRestrictions?.call(geoHash, restrictionEntities);
   }
@@ -724,9 +885,11 @@ class _$GotRestrictionsImpl implements _GotRestrictions {
     TResult Function(
             String geoHash, List<RestrictionEntity> restrictionEntities)?
         gotRestrictions,
-    TResult Function()? gettingOrAlreadyGotRestrictions,
+    TResult Function()? previouslyGotRestrictions,
     TResult Function(UASRestrictionsFailure uasRestrictionsFailure)?
         failedToGetRestrictions,
+    TResult Function(RestrictionEntity? selectedRestriction)?
+        selectedRestriction,
     required TResult orElse(),
   }) {
     if (gotRestrictions != null) {
@@ -741,10 +904,11 @@ class _$GotRestrictionsImpl implements _GotRestrictions {
     required TResult Function(_Initial value) initial,
     required TResult Function(_GettingRestrictions value) gettingRestrictions,
     required TResult Function(_GotRestrictions value) gotRestrictions,
-    required TResult Function(_GettingOrAlreadyGotRestrictions value)
-        gettingOrAlreadyGotRestrictions,
+    required TResult Function(_PreviouslyGotRestrictions value)
+        previouslyGotRestrictions,
     required TResult Function(_FailedToGetRestrictions value)
         failedToGetRestrictions,
+    required TResult Function(_SelectedRestriction value) selectedRestriction,
   }) {
     return gotRestrictions(this);
   }
@@ -755,9 +919,10 @@ class _$GotRestrictionsImpl implements _GotRestrictions {
     TResult? Function(_Initial value)? initial,
     TResult? Function(_GettingRestrictions value)? gettingRestrictions,
     TResult? Function(_GotRestrictions value)? gotRestrictions,
-    TResult? Function(_GettingOrAlreadyGotRestrictions value)?
-        gettingOrAlreadyGotRestrictions,
+    TResult? Function(_PreviouslyGotRestrictions value)?
+        previouslyGotRestrictions,
     TResult? Function(_FailedToGetRestrictions value)? failedToGetRestrictions,
+    TResult? Function(_SelectedRestriction value)? selectedRestriction,
   }) {
     return gotRestrictions?.call(this);
   }
@@ -768,9 +933,10 @@ class _$GotRestrictionsImpl implements _GotRestrictions {
     TResult Function(_Initial value)? initial,
     TResult Function(_GettingRestrictions value)? gettingRestrictions,
     TResult Function(_GotRestrictions value)? gotRestrictions,
-    TResult Function(_GettingOrAlreadyGotRestrictions value)?
-        gettingOrAlreadyGotRestrictions,
+    TResult Function(_PreviouslyGotRestrictions value)?
+        previouslyGotRestrictions,
     TResult Function(_FailedToGetRestrictions value)? failedToGetRestrictions,
+    TResult Function(_SelectedRestriction value)? selectedRestriction,
     required TResult orElse(),
   }) {
     if (gotRestrictions != null) {
@@ -797,40 +963,42 @@ abstract class _GotRestrictions implements UASRestrictionsState {
 }
 
 /// @nodoc
-abstract class _$$GettingOrAlreadyGotRestrictionsImplCopyWith<$Res> {
-  factory _$$GettingOrAlreadyGotRestrictionsImplCopyWith(
-          _$GettingOrAlreadyGotRestrictionsImpl value,
-          $Res Function(_$GettingOrAlreadyGotRestrictionsImpl) then) =
-      __$$GettingOrAlreadyGotRestrictionsImplCopyWithImpl<$Res>;
+abstract class _$$PreviouslyGotRestrictionsImplCopyWith<$Res> {
+  factory _$$PreviouslyGotRestrictionsImplCopyWith(
+          _$PreviouslyGotRestrictionsImpl value,
+          $Res Function(_$PreviouslyGotRestrictionsImpl) then) =
+      __$$PreviouslyGotRestrictionsImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$GettingOrAlreadyGotRestrictionsImplCopyWithImpl<$Res>
+class __$$PreviouslyGotRestrictionsImplCopyWithImpl<$Res>
     extends _$UASRestrictionsStateCopyWithImpl<$Res,
-        _$GettingOrAlreadyGotRestrictionsImpl>
-    implements _$$GettingOrAlreadyGotRestrictionsImplCopyWith<$Res> {
-  __$$GettingOrAlreadyGotRestrictionsImplCopyWithImpl(
-      _$GettingOrAlreadyGotRestrictionsImpl _value,
-      $Res Function(_$GettingOrAlreadyGotRestrictionsImpl) _then)
+        _$PreviouslyGotRestrictionsImpl>
+    implements _$$PreviouslyGotRestrictionsImplCopyWith<$Res> {
+  __$$PreviouslyGotRestrictionsImplCopyWithImpl(
+      _$PreviouslyGotRestrictionsImpl _value,
+      $Res Function(_$PreviouslyGotRestrictionsImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of UASRestrictionsState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
 
-class _$GettingOrAlreadyGotRestrictionsImpl
-    implements _GettingOrAlreadyGotRestrictions {
-  const _$GettingOrAlreadyGotRestrictionsImpl();
+class _$PreviouslyGotRestrictionsImpl implements _PreviouslyGotRestrictions {
+  const _$PreviouslyGotRestrictionsImpl();
 
   @override
   String toString() {
-    return 'UASRestrictionsState.gettingOrAlreadyGotRestrictions()';
+    return 'UASRestrictionsState.previouslyGotRestrictions()';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$GettingOrAlreadyGotRestrictionsImpl);
+            other is _$PreviouslyGotRestrictionsImpl);
   }
 
   @override
@@ -844,11 +1012,13 @@ class _$GettingOrAlreadyGotRestrictionsImpl
     required TResult Function(
             String geoHash, List<RestrictionEntity> restrictionEntities)
         gotRestrictions,
-    required TResult Function() gettingOrAlreadyGotRestrictions,
+    required TResult Function() previouslyGotRestrictions,
     required TResult Function(UASRestrictionsFailure uasRestrictionsFailure)
         failedToGetRestrictions,
+    required TResult Function(RestrictionEntity? selectedRestriction)
+        selectedRestriction,
   }) {
-    return gettingOrAlreadyGotRestrictions();
+    return previouslyGotRestrictions();
   }
 
   @override
@@ -859,11 +1029,13 @@ class _$GettingOrAlreadyGotRestrictionsImpl
     TResult? Function(
             String geoHash, List<RestrictionEntity> restrictionEntities)?
         gotRestrictions,
-    TResult? Function()? gettingOrAlreadyGotRestrictions,
+    TResult? Function()? previouslyGotRestrictions,
     TResult? Function(UASRestrictionsFailure uasRestrictionsFailure)?
         failedToGetRestrictions,
+    TResult? Function(RestrictionEntity? selectedRestriction)?
+        selectedRestriction,
   }) {
-    return gettingOrAlreadyGotRestrictions?.call();
+    return previouslyGotRestrictions?.call();
   }
 
   @override
@@ -874,13 +1046,15 @@ class _$GettingOrAlreadyGotRestrictionsImpl
     TResult Function(
             String geoHash, List<RestrictionEntity> restrictionEntities)?
         gotRestrictions,
-    TResult Function()? gettingOrAlreadyGotRestrictions,
+    TResult Function()? previouslyGotRestrictions,
     TResult Function(UASRestrictionsFailure uasRestrictionsFailure)?
         failedToGetRestrictions,
+    TResult Function(RestrictionEntity? selectedRestriction)?
+        selectedRestriction,
     required TResult orElse(),
   }) {
-    if (gettingOrAlreadyGotRestrictions != null) {
-      return gettingOrAlreadyGotRestrictions();
+    if (previouslyGotRestrictions != null) {
+      return previouslyGotRestrictions();
     }
     return orElse();
   }
@@ -891,12 +1065,13 @@ class _$GettingOrAlreadyGotRestrictionsImpl
     required TResult Function(_Initial value) initial,
     required TResult Function(_GettingRestrictions value) gettingRestrictions,
     required TResult Function(_GotRestrictions value) gotRestrictions,
-    required TResult Function(_GettingOrAlreadyGotRestrictions value)
-        gettingOrAlreadyGotRestrictions,
+    required TResult Function(_PreviouslyGotRestrictions value)
+        previouslyGotRestrictions,
     required TResult Function(_FailedToGetRestrictions value)
         failedToGetRestrictions,
+    required TResult Function(_SelectedRestriction value) selectedRestriction,
   }) {
-    return gettingOrAlreadyGotRestrictions(this);
+    return previouslyGotRestrictions(this);
   }
 
   @override
@@ -905,11 +1080,12 @@ class _$GettingOrAlreadyGotRestrictionsImpl
     TResult? Function(_Initial value)? initial,
     TResult? Function(_GettingRestrictions value)? gettingRestrictions,
     TResult? Function(_GotRestrictions value)? gotRestrictions,
-    TResult? Function(_GettingOrAlreadyGotRestrictions value)?
-        gettingOrAlreadyGotRestrictions,
+    TResult? Function(_PreviouslyGotRestrictions value)?
+        previouslyGotRestrictions,
     TResult? Function(_FailedToGetRestrictions value)? failedToGetRestrictions,
+    TResult? Function(_SelectedRestriction value)? selectedRestriction,
   }) {
-    return gettingOrAlreadyGotRestrictions?.call(this);
+    return previouslyGotRestrictions?.call(this);
   }
 
   @override
@@ -918,22 +1094,21 @@ class _$GettingOrAlreadyGotRestrictionsImpl
     TResult Function(_Initial value)? initial,
     TResult Function(_GettingRestrictions value)? gettingRestrictions,
     TResult Function(_GotRestrictions value)? gotRestrictions,
-    TResult Function(_GettingOrAlreadyGotRestrictions value)?
-        gettingOrAlreadyGotRestrictions,
+    TResult Function(_PreviouslyGotRestrictions value)?
+        previouslyGotRestrictions,
     TResult Function(_FailedToGetRestrictions value)? failedToGetRestrictions,
+    TResult Function(_SelectedRestriction value)? selectedRestriction,
     required TResult orElse(),
   }) {
-    if (gettingOrAlreadyGotRestrictions != null) {
-      return gettingOrAlreadyGotRestrictions(this);
+    if (previouslyGotRestrictions != null) {
+      return previouslyGotRestrictions(this);
     }
     return orElse();
   }
 }
 
-abstract class _GettingOrAlreadyGotRestrictions
-    implements UASRestrictionsState {
-  const factory _GettingOrAlreadyGotRestrictions() =
-      _$GettingOrAlreadyGotRestrictionsImpl;
+abstract class _PreviouslyGotRestrictions implements UASRestrictionsState {
+  const factory _PreviouslyGotRestrictions() = _$PreviouslyGotRestrictionsImpl;
 }
 
 /// @nodoc
@@ -1014,9 +1189,11 @@ class _$FailedToGetRestrictionsImpl implements _FailedToGetRestrictions {
     required TResult Function(
             String geoHash, List<RestrictionEntity> restrictionEntities)
         gotRestrictions,
-    required TResult Function() gettingOrAlreadyGotRestrictions,
+    required TResult Function() previouslyGotRestrictions,
     required TResult Function(UASRestrictionsFailure uasRestrictionsFailure)
         failedToGetRestrictions,
+    required TResult Function(RestrictionEntity? selectedRestriction)
+        selectedRestriction,
   }) {
     return failedToGetRestrictions(uasRestrictionsFailure);
   }
@@ -1029,9 +1206,11 @@ class _$FailedToGetRestrictionsImpl implements _FailedToGetRestrictions {
     TResult? Function(
             String geoHash, List<RestrictionEntity> restrictionEntities)?
         gotRestrictions,
-    TResult? Function()? gettingOrAlreadyGotRestrictions,
+    TResult? Function()? previouslyGotRestrictions,
     TResult? Function(UASRestrictionsFailure uasRestrictionsFailure)?
         failedToGetRestrictions,
+    TResult? Function(RestrictionEntity? selectedRestriction)?
+        selectedRestriction,
   }) {
     return failedToGetRestrictions?.call(uasRestrictionsFailure);
   }
@@ -1044,9 +1223,11 @@ class _$FailedToGetRestrictionsImpl implements _FailedToGetRestrictions {
     TResult Function(
             String geoHash, List<RestrictionEntity> restrictionEntities)?
         gotRestrictions,
-    TResult Function()? gettingOrAlreadyGotRestrictions,
+    TResult Function()? previouslyGotRestrictions,
     TResult Function(UASRestrictionsFailure uasRestrictionsFailure)?
         failedToGetRestrictions,
+    TResult Function(RestrictionEntity? selectedRestriction)?
+        selectedRestriction,
     required TResult orElse(),
   }) {
     if (failedToGetRestrictions != null) {
@@ -1061,10 +1242,11 @@ class _$FailedToGetRestrictionsImpl implements _FailedToGetRestrictions {
     required TResult Function(_Initial value) initial,
     required TResult Function(_GettingRestrictions value) gettingRestrictions,
     required TResult Function(_GotRestrictions value) gotRestrictions,
-    required TResult Function(_GettingOrAlreadyGotRestrictions value)
-        gettingOrAlreadyGotRestrictions,
+    required TResult Function(_PreviouslyGotRestrictions value)
+        previouslyGotRestrictions,
     required TResult Function(_FailedToGetRestrictions value)
         failedToGetRestrictions,
+    required TResult Function(_SelectedRestriction value) selectedRestriction,
   }) {
     return failedToGetRestrictions(this);
   }
@@ -1075,9 +1257,10 @@ class _$FailedToGetRestrictionsImpl implements _FailedToGetRestrictions {
     TResult? Function(_Initial value)? initial,
     TResult? Function(_GettingRestrictions value)? gettingRestrictions,
     TResult? Function(_GotRestrictions value)? gotRestrictions,
-    TResult? Function(_GettingOrAlreadyGotRestrictions value)?
-        gettingOrAlreadyGotRestrictions,
+    TResult? Function(_PreviouslyGotRestrictions value)?
+        previouslyGotRestrictions,
     TResult? Function(_FailedToGetRestrictions value)? failedToGetRestrictions,
+    TResult? Function(_SelectedRestriction value)? selectedRestriction,
   }) {
     return failedToGetRestrictions?.call(this);
   }
@@ -1088,9 +1271,10 @@ class _$FailedToGetRestrictionsImpl implements _FailedToGetRestrictions {
     TResult Function(_Initial value)? initial,
     TResult Function(_GettingRestrictions value)? gettingRestrictions,
     TResult Function(_GotRestrictions value)? gotRestrictions,
-    TResult Function(_GettingOrAlreadyGotRestrictions value)?
-        gettingOrAlreadyGotRestrictions,
+    TResult Function(_PreviouslyGotRestrictions value)?
+        previouslyGotRestrictions,
     TResult Function(_FailedToGetRestrictions value)? failedToGetRestrictions,
+    TResult Function(_SelectedRestriction value)? selectedRestriction,
     required TResult orElse(),
   }) {
     if (failedToGetRestrictions != null) {
@@ -1112,4 +1296,188 @@ abstract class _FailedToGetRestrictions implements UASRestrictionsState {
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$FailedToGetRestrictionsImplCopyWith<_$FailedToGetRestrictionsImpl>
       get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$SelectedRestrictionImplCopyWith<$Res> {
+  factory _$$SelectedRestrictionImplCopyWith(_$SelectedRestrictionImpl value,
+          $Res Function(_$SelectedRestrictionImpl) then) =
+      __$$SelectedRestrictionImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({RestrictionEntity? selectedRestriction});
+}
+
+/// @nodoc
+class __$$SelectedRestrictionImplCopyWithImpl<$Res>
+    extends _$UASRestrictionsStateCopyWithImpl<$Res, _$SelectedRestrictionImpl>
+    implements _$$SelectedRestrictionImplCopyWith<$Res> {
+  __$$SelectedRestrictionImplCopyWithImpl(_$SelectedRestrictionImpl _value,
+      $Res Function(_$SelectedRestrictionImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of UASRestrictionsState
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? selectedRestriction = freezed,
+  }) {
+    return _then(_$SelectedRestrictionImpl(
+      selectedRestriction: freezed == selectedRestriction
+          ? _value.selectedRestriction
+          : selectedRestriction // ignore: cast_nullable_to_non_nullable
+              as RestrictionEntity?,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$SelectedRestrictionImpl implements _SelectedRestriction {
+  const _$SelectedRestrictionImpl({required this.selectedRestriction});
+
+  @override
+  final RestrictionEntity? selectedRestriction;
+
+  @override
+  String toString() {
+    return 'UASRestrictionsState.selectedRestriction(selectedRestriction: $selectedRestriction)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$SelectedRestrictionImpl &&
+            (identical(other.selectedRestriction, selectedRestriction) ||
+                other.selectedRestriction == selectedRestriction));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, selectedRestriction);
+
+  /// Create a copy of UASRestrictionsState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$SelectedRestrictionImplCopyWith<_$SelectedRestrictionImpl> get copyWith =>
+      __$$SelectedRestrictionImplCopyWithImpl<_$SelectedRestrictionImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() gettingRestrictions,
+    required TResult Function(
+            String geoHash, List<RestrictionEntity> restrictionEntities)
+        gotRestrictions,
+    required TResult Function() previouslyGotRestrictions,
+    required TResult Function(UASRestrictionsFailure uasRestrictionsFailure)
+        failedToGetRestrictions,
+    required TResult Function(RestrictionEntity? selectedRestriction)
+        selectedRestriction,
+  }) {
+    return selectedRestriction(this.selectedRestriction);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? gettingRestrictions,
+    TResult? Function(
+            String geoHash, List<RestrictionEntity> restrictionEntities)?
+        gotRestrictions,
+    TResult? Function()? previouslyGotRestrictions,
+    TResult? Function(UASRestrictionsFailure uasRestrictionsFailure)?
+        failedToGetRestrictions,
+    TResult? Function(RestrictionEntity? selectedRestriction)?
+        selectedRestriction,
+  }) {
+    return selectedRestriction?.call(this.selectedRestriction);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? gettingRestrictions,
+    TResult Function(
+            String geoHash, List<RestrictionEntity> restrictionEntities)?
+        gotRestrictions,
+    TResult Function()? previouslyGotRestrictions,
+    TResult Function(UASRestrictionsFailure uasRestrictionsFailure)?
+        failedToGetRestrictions,
+    TResult Function(RestrictionEntity? selectedRestriction)?
+        selectedRestriction,
+    required TResult orElse(),
+  }) {
+    if (selectedRestriction != null) {
+      return selectedRestriction(this.selectedRestriction);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_GettingRestrictions value) gettingRestrictions,
+    required TResult Function(_GotRestrictions value) gotRestrictions,
+    required TResult Function(_PreviouslyGotRestrictions value)
+        previouslyGotRestrictions,
+    required TResult Function(_FailedToGetRestrictions value)
+        failedToGetRestrictions,
+    required TResult Function(_SelectedRestriction value) selectedRestriction,
+  }) {
+    return selectedRestriction(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(_GettingRestrictions value)? gettingRestrictions,
+    TResult? Function(_GotRestrictions value)? gotRestrictions,
+    TResult? Function(_PreviouslyGotRestrictions value)?
+        previouslyGotRestrictions,
+    TResult? Function(_FailedToGetRestrictions value)? failedToGetRestrictions,
+    TResult? Function(_SelectedRestriction value)? selectedRestriction,
+  }) {
+    return selectedRestriction?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_GettingRestrictions value)? gettingRestrictions,
+    TResult Function(_GotRestrictions value)? gotRestrictions,
+    TResult Function(_PreviouslyGotRestrictions value)?
+        previouslyGotRestrictions,
+    TResult Function(_FailedToGetRestrictions value)? failedToGetRestrictions,
+    TResult Function(_SelectedRestriction value)? selectedRestriction,
+    required TResult orElse(),
+  }) {
+    if (selectedRestriction != null) {
+      return selectedRestriction(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _SelectedRestriction implements UASRestrictionsState {
+  const factory _SelectedRestriction(
+          {required final RestrictionEntity? selectedRestriction}) =
+      _$SelectedRestrictionImpl;
+
+  RestrictionEntity? get selectedRestriction;
+
+  /// Create a copy of UASRestrictionsState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$SelectedRestrictionImplCopyWith<_$SelectedRestrictionImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }

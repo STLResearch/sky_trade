@@ -154,12 +154,15 @@ class HomeView extends StatefulWidget {
 
 class _HomeViewState extends State<HomeView> {
   MapboxMap? _mapboxMap;
+
   late final ValueNotifier<RestrictionEntity?> _clickedRestriction;
   late final ValueNotifier<bool> _centerLocationNotifier;
   late final ValueNotifier<MapStyle> _mapStyleNotifier;
-  final List<String> _restrictionLayerIds = [];
-  String _previousBridGeoJsonData = emptyString;
-  String _previousNridGeoJsonData = emptyString;
+  late final List<String> _restrictionLayerIds;
+
+  late String _previousBridGeoJsonData;
+  late String _previousNridGeoJsonData;
+
   String? _currentlySelectedRestrictionFeatureId;
   String? _currentlySelectedRestrictionSourceId;
 
@@ -180,6 +183,14 @@ class _HomeViewState extends State<HomeView> {
     _mapStyleNotifier = ValueNotifier<MapStyle>(
       MapStyle.dark,
     );
+
+    _restrictionLayerIds = List<String>.empty(
+      growable: true,
+    );
+
+    _previousBridGeoJsonData = emptyString;
+
+    _previousNridGeoJsonData = emptyString;
 
     _startTransmitter();
 
@@ -412,7 +423,9 @@ class _HomeViewState extends State<HomeView> {
                     geoHash: geoHash,
                     restrictionEntities: restrictionEntities,
                   );
-                  _restrictionLayerIds.add(geoHash + layerId);
+                  _restrictionLayerIds.add(
+                    geoHash + layerId,
+                  );
                 },
                 selectedRestriction: (restrictionEntity) =>
                     _clickedRestriction.value = restrictionEntity,
@@ -513,12 +526,13 @@ class _HomeViewState extends State<HomeView> {
                 },
                 onCameraChanged: (cameraEventData) {
                   context.read<LocationPermissionBloc>().state.whenOrNull(
-                    maybeGrantedPermission: (locationPermissionEntity) async {
+                    maybeGrantedPermission: (locationPermissionEntity) {
                       if (locationPermissionEntity.granted) {
                         final cameraState = cameraEventData.cameraState;
                         if (cameraState.zoom < six) {
                           return;
                         }
+
                         context.read<GeoHashBloc>().add(
                               GeoHashEvent.computeGeoHash(
                                 coordinates: (

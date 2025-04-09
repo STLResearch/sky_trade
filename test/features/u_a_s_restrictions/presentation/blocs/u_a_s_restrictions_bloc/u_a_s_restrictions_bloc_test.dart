@@ -38,17 +38,22 @@ void main() {
       testRestrictionEntities = List<RestrictionEntity>.generate(
         10,
         (index) => RestrictionEntity(
-          additionLinks: [
-            AdditionalLinkEntity(
-              link: 'testRestrictionEntityAdditionalLinkEntityLink$index',
-              name: 'testRestrictionEntityAdditionalLinkEntityName$index',
-            ),
-          ],
-          country: 'testRestrictionEntityCountry$index',
-          lowerLimit: 'testRestrictionEntityLowerLimit$index',
-          message: 'testRestrictionEntityMessage$index',
-          region: RegionEntity(
-            restrictionType: GeometryType.polygon,
+          id: 'testId$index',
+          properties: PropertiesEntity(
+            type: RestrictionType.prohibited,
+            country: 'testRestrictionEntityCountry$index',
+            upperLimit: 'testRestrictionEntityUpperLimit$index',
+            lowerLimit: 'testRestrictionEntityLowerLimit$index',
+            message: 'testRestrictionEntityMessage$index',
+            additionLinks: [
+              AdditionalLinkEntity(
+                link: 'testRestrictionEntityAdditionalLinkEntityLink$index',
+                name: 'testRestrictionEntityAdditionalLinkEntityName$index',
+              ),
+            ],
+          ),
+          geometry: GeometryEntity(
+            type: GeometryType.polygon,
             coordinates: [
               [
                 [
@@ -70,8 +75,6 @@ void main() {
               ],
             ],
           ),
-          restrictionType: RestrictionType.prohibited,
-          upperLimit: 'testRestrictionEntityUpperLimit$index',
         ),
       );
     },
@@ -149,6 +152,7 @@ void main() {
     expect: () => <UASRestrictionsState>[
       const UASRestrictionsState.gettingRestrictions(),
       UASRestrictionsState.gotRestrictions(
+        geoHash: testGeoHash,
         restrictionEntities: testRestrictionEntities,
       ),
     ],

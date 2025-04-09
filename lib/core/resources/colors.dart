@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart' show Color;
 
-const rgba = 'rgba';
-
 const hex0653EA = Color(0xFF0653EA);
 const hex4285F4 = Color(0xFF4285F4);
 const hex5D7285 = Color(0xFF5D7285);
@@ -38,11 +36,12 @@ const hex33000000 = Color(0x33000000);
 const hex5BC4FF = Color(0xFF5BC4FF);
 const hexE9E9EA = Color(0xFFE9E9EA);
 const hex65C466 = Color(0xFF65C466);
+const hexB3BBBD48 = Color(0xB3BBBD48);
+const hexBBBD48 = Color(0xFFBBBD48);
+const hexB3E04F64 = Color(0xB3E04F64);
+const hexB3F68351 = Color(0xB3F68351);
+const hexF68351 = Color(0xFFF68351);
+const hexECEE75 = Color(0xFFECEE75);
+const hexFF9D72 = Color(0xFFFF9D72);
 
-const rawHexB3F68351 = 0xB3F68351;
-const rawHexF68351 = 0xFFF68351;
-const rawHexB3E04F64 = 0xB3E04F64;
-const rawHexA9143A = 0xFFA9143A;
-const rawHexB3BBBD48 = 0xB3BBBD48;
-const rawHexBBBD48 = 0xFFBBBD48;
 const rawHex2A60C4 = 0xFF2A60C4;

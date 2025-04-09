@@ -2,10 +2,13 @@
 const hmma = 'h:mm a';
 const ddMMyyhmma = 'dd/MM/yy h:mm a';
 
+// Color related
+const rgba = 'rgba';
+
 // Mapbox
 const durationKey = 'duration';
 const delayKey = 'delay';
-// LayerPaintProperties
+// Layer paint properties
 const fillOpacityTransitionProperty = 'fill-opacity-transition';
 // Expressions
 const getExpression = 'get';

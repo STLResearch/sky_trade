@@ -116,6 +116,9 @@ class $AssetsSvgsGen {
   /// File path: assets/svgs/community.svg
   SvgGenImage get community => const SvgGenImage('assets/svgs/community.svg');
 
+  /// File path: assets/svgs/danger.svg
+  SvgGenImage get danger => const SvgGenImage('assets/svgs/danger.svg');
+
   /// File path: assets/svgs/flight.svg
   SvgGenImage get flight => const SvgGenImage('assets/svgs/flight.svg');
 
@@ -143,9 +146,6 @@ class $AssetsSvgsGen {
   /// File path: assets/svgs/indicator.svg
   SvgGenImage get indicator => const SvgGenImage('assets/svgs/indicator.svg');
 
-  /// File path: assets/svgs/info.svg
-  SvgGenImage get info => const SvgGenImage('assets/svgs/info.svg');
-
   /// File path: assets/svgs/info_danger.svg
   SvgGenImage get infoDanger =>
       const SvgGenImage('assets/svgs/info_danger.svg');
@@ -161,13 +161,17 @@ class $AssetsSvgsGen {
   /// File path: assets/svgs/insights.svg
   SvgGenImage get insights => const SvgGenImage('assets/svgs/insights.svg');
 
-  /// File path: assets/svgs/location_danger_restricted.svg
-  SvgGenImage get locationDangerRestricted =>
-      const SvgGenImage('assets/svgs/location_danger_restricted.svg');
+  /// File path: assets/svgs/location_danger.svg
+  SvgGenImage get locationDanger =>
+      const SvgGenImage('assets/svgs/location_danger.svg');
 
   /// File path: assets/svgs/location_prohibited.svg
   SvgGenImage get locationProhibited =>
       const SvgGenImage('assets/svgs/location_prohibited.svg');
+
+  /// File path: assets/svgs/location_restricted.svg
+  SvgGenImage get locationRestricted =>
+      const SvgGenImage('assets/svgs/location_restricted.svg');
 
   /// File path: assets/svgs/logout.svg
   SvgGenImage get logout => const SvgGenImage('assets/svgs/logout.svg');
@@ -204,6 +208,9 @@ class $AssetsSvgsGen {
 
   /// File path: assets/svgs/rain.svg
   SvgGenImage get rain => const SvgGenImage('assets/svgs/rain.svg');
+
+  /// File path: assets/svgs/restricted.svg
+  SvgGenImage get restricted => const SvgGenImage('assets/svgs/restricted.svg');
 
   /// File path: assets/svgs/search.svg
   SvgGenImage get search => const SvgGenImage('assets/svgs/search.svg');
@@ -249,6 +256,7 @@ class $AssetsSvgsGen {
     cloud,
     cloudAlt,
     community,
+    danger,
     flight,
     gift,
     google,
@@ -257,13 +265,13 @@ class $AssetsSvgsGen {
     iconDroneBlack,
     iconDroneBlue,
     indicator,
-    info,
     infoDanger,
     infoProhibited,
     infoRestricted,
     insights,
-    locationDangerRestricted,
+    locationDanger,
     locationProhibited,
+    locationRestricted,
     logout,
     logoutCircle,
     map,
@@ -274,6 +282,7 @@ class $AssetsSvgsGen {
     myLocationNotFollowed,
     prohibited,
     rain,
+    restricted,
     search,
     settings,
     skyTradeLogo,
