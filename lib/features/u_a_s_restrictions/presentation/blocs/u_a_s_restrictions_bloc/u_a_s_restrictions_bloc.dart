@@ -22,14 +22,34 @@ class UASRestrictionsBloc
     on<_GetRestrictions>(
       _getRestrictions,
     );
+
+    on<_SelectRestriction>(
+      _selectRestriction,
+    );
   }
 
   final UASRestrictionsRepository _uASRestrictionsRepository;
+  final Set<RestrictionEntity> _restrictionEntities = {};
+  final Set<String> previousGeoHashRequest = {};
 
   Future<void> _getRestrictions(
     _GetRestrictions event,
     Emitter<UASRestrictionsState> emit,
   ) async {
+    if (previousGeoHashRequest.contains(
+      event.geoHash,
+    )) {
+      emit(
+        const UASRestrictionsState.previouslyGotRestrictions(),
+      );
+
+      return;
+    }
+
+    previousGeoHashRequest.add(
+      event.geoHash,
+    );
+
     emit(
       const UASRestrictionsState.gettingRestrictions(),
     );
@@ -39,15 +59,48 @@ class UASRestrictionsBloc
     );
 
     result.fold(
-      (uASRestrictionsFailure) => emit(
-        UASRestrictionsState.failedToGetRestrictions(
-          uasRestrictionsFailure: uASRestrictionsFailure,
-        ),
-      ),
-      (restrictionEntities) => emit(
-        UASRestrictionsState.gotRestrictions(
-          restrictionEntities: restrictionEntities,
-        ),
+      (uASRestrictionsFailure) {
+        emit(
+          UASRestrictionsState.failedToGetRestrictions(
+            uasRestrictionsFailure: uASRestrictionsFailure,
+          ),
+        );
+
+        previousGeoHashRequest.remove(
+          event.geoHash,
+        );
+      },
+      (restrictionEntities) {
+        restrictionEntities.removeWhere(
+          _restrictionEntities.contains,
+        );
+
+        emit(
+          UASRestrictionsState.gotRestrictions(
+            geoHash: event.geoHash,
+            restrictionEntities: restrictionEntities,
+          ),
+        );
+
+        _restrictionEntities.addAll(
+          restrictionEntities,
+        );
+      },
+    );
+  }
+
+  void _selectRestriction(
+    _SelectRestriction event,
+    Emitter<UASRestrictionsState> emit,
+  ) {
+    emit(
+      UASRestrictionsState.selectedRestriction(
+        selectedRestriction: switch (event.restrictionId == null) {
+          true => null,
+          false => _restrictionEntities.firstWhere(
+              (entity) => entity.id == event.restrictionId,
+            ),
+        },
       ),
     );
   }

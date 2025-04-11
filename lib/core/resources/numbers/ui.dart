@@ -22,6 +22,7 @@ const twoFiftyFive = 255;
 const threeSixtyFive = 365;
 const threeSixtySix = 366;
 const oneThousand = 1000;
+const oneThousandThreeHundred = 1300;
 const oneThousandFiveHundred = 1500;
 
 // Doubles
@@ -33,9 +34,11 @@ const nilDotNil = 0.0;
 const nilDotNilOne = 0.01;
 const nilDotOneFive = 0.15;
 const nilDotOneNine = 0.19;
+const nilDotThree = 0.3;
 const nilDotThreeNine = 0.39;
 const nilDotSixFour = 0.64;
 const oneDotNil = 1.0;
+const oneDotThree = 1.3;
 const oneDotFive = 1.5;
 const oneDotSevenTwo = 1.72;
 const twoDotNil = 2.0;

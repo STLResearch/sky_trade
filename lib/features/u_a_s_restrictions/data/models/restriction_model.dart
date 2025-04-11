@@ -4,11 +4,13 @@ import 'package:sky_trade/core/resources/strings/networking.dart'
         additionalLinksKey,
         coordinatesKey,
         countryKey,
+        geometryKey,
+        idKey,
         linkKey,
         lowerLimitKey,
         messageKey,
         nameKey,
-        regionKey,
+        propertiesKey,
         typeKey,
         upperLimitKey;
 import 'package:sky_trade/core/utils/enums/networking.dart'
@@ -20,31 +22,59 @@ part 'restriction_model.g.dart';
 @JsonSerializable()
 final class RestrictionModel extends RestrictionEntity {
   const RestrictionModel({
-    required this.mAdditionLinks,
-    required this.mCountry,
-    required this.mLowerLimit,
-    required this.mMessage,
-    required this.mRegion,
-    required this.mType,
-    required this.mUpperLimit,
+    required this.mId,
+    required this.mProperties,
+    required this.mGeometry,
   }) : super(
-          additionLinks: mAdditionLinks,
-          country: mCountry,
-          lowerLimit: mLowerLimit,
-          message: mMessage,
-          region: mRegion,
-          type: mType,
-          upperLimit: mUpperLimit,
+          id: mId,
+          properties: mProperties,
+          geometry: mGeometry,
         );
 
   factory RestrictionModel.fromJson(Map<String, dynamic> json) =>
       _$RestrictionModelFromJson(json);
 
-  @JsonKey(name: additionalLinksKey)
-  final List<AdditionalLinkModel> mAdditionLinks;
+  @JsonKey(name: idKey)
+  final String mId;
+
+  @JsonKey(name: propertiesKey)
+  final PropertiesModel mProperties;
+
+  @JsonKey(name: geometryKey)
+  final GeometryModel mGeometry;
+
+  Map<String, dynamic> toJson() => _$RestrictionModelToJson(this);
+}
+
+@JsonSerializable()
+final class PropertiesModel extends PropertiesEntity {
+  const PropertiesModel({
+    required this.mType,
+    required this.mCountry,
+    required this.mUpperLimit,
+    required this.mLowerLimit,
+    required this.mMessage,
+    required this.mAdditionLinks,
+  }) : super(
+          type: mType,
+          country: mCountry,
+          upperLimit: mUpperLimit,
+          lowerLimit: mLowerLimit,
+          message: mMessage,
+          additionLinks: mAdditionLinks,
+        );
+
+  factory PropertiesModel.fromJson(Map<String, dynamic> json) =>
+      _$PropertiesModelFromJson(json);
+
+  @JsonKey(name: typeKey)
+  final RestrictionType mType;
 
   @JsonKey(name: countryKey)
   final String mCountry;
+
+  @JsonKey(name: upperLimitKey)
+  final String mUpperLimit;
 
   @JsonKey(name: lowerLimitKey)
   final String mLowerLimit;
@@ -52,16 +82,10 @@ final class RestrictionModel extends RestrictionEntity {
   @JsonKey(name: messageKey)
   final String mMessage;
 
-  @JsonKey(name: regionKey)
-  final RegionModel mRegion;
+  @JsonKey(name: additionalLinksKey)
+  final List<AdditionalLinkModel> mAdditionLinks;
 
-  @JsonKey(name: typeKey)
-  final RestrictionType mType;
-
-  @JsonKey(name: upperLimitKey)
-  final String mUpperLimit;
-
-  Map<String, dynamic> toJson() => _$RestrictionModelToJson(this);
+  Map<String, dynamic> toJson() => _$PropertiesModelToJson(this);
 }
 
 @JsonSerializable()
@@ -87,8 +111,8 @@ final class AdditionalLinkModel extends AdditionalLinkEntity {
 }
 
 @JsonSerializable()
-final class RegionModel extends RegionEntity {
-  const RegionModel({
+final class GeometryModel extends GeometryEntity {
+  const GeometryModel({
     required this.mType,
     required this.mCoordinates,
   }) : super(
@@ -96,8 +120,8 @@ final class RegionModel extends RegionEntity {
           coordinates: mCoordinates,
         );
 
-  factory RegionModel.fromJson(Map<String, dynamic> json) =>
-      _$RegionModelFromJson(json);
+  factory GeometryModel.fromJson(Map<String, dynamic> json) =>
+      _$GeometryModelFromJson(json);
 
   @JsonKey(name: typeKey)
   final GeometryType mType;
@@ -105,5 +129,5 @@ final class RegionModel extends RegionEntity {
   @JsonKey(name: coordinatesKey)
   final List<List<List<double>>> mCoordinates;
 
-  Map<String, dynamic> toJson() => _$RegionModelToJson(this);
+  Map<String, dynamic> toJson() => _$GeometryModelToJson(this);
 }

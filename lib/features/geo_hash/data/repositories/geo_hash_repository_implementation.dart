@@ -6,10 +6,12 @@ final class GeoHashRepositoryImplementation implements GeoHashRepository {
   @override
   String geoHashForCoordinates({
     required LatLng coordinates,
+    required int precision,
   }) {
     final geoHash = GeoHash.fromDecimalDegrees(
       coordinates.longitude,
       coordinates.latitude,
+      precision: precision,
     );
     return geoHash.geohash;
   }

@@ -7,7 +7,6 @@ import 'package:flutter/material.dart'
         BoxDecoration,
         BuildContext,
         Clip,
-        Color,
         Container,
         EdgeInsetsDirectional,
         InkWell,
@@ -74,23 +73,27 @@ class RestrictionIndicator extends StatelessWidget {
                             eightDotNil,
                           ),
                           border: Border.all(
-                            color: Color(
-                              clickedRestrictionValue.polygonFillOutlineColor,
-                            ),
+                            color:
+                                clickedRestrictionValue.indicatorOutlineColor,
                           ),
                         ),
-                        child: clickedRestrictionValue
-                            .restrictionIndicatorInfoAsset
-                            .svg(
-                          width: eighteenDotNil,
-                          height: eighteenDotNil,
+                        child: Padding(
+                          padding: const EdgeInsetsDirectional.all(
+                            eightDotNil,
+                          ),
+                          child: clickedRestrictionValue
+                              .restrictionIndicatorInfoAsset
+                              .svg(
+                            width: eighteenDotNil,
+                            height: eighteenDotNil,
+                          ),
                         ),
                       ),
                     ),
                     RestrictionBubble(
-                      bubbleColor: Color(
-                        clickedRestrictionValue.polygonFillOutlineColor,
-                      ),
+                      bubbleColor:
+                          clickedRestrictionValue.indicatorOutlineColor,
+                      textColor: clickedRestrictionValue.indicatorTextColor,
                     ),
                   ],
                 ),

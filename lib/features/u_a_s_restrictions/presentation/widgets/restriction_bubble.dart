@@ -13,7 +13,6 @@ import 'package:flutter/material.dart'
         Theme,
         Transform,
         Widget;
-import 'package:sky_trade/core/resources/colors.dart' show hexFFFFFF;
 import 'package:sky_trade/core/resources/numbers/ui.dart'
     show
         elevenDotNil,
@@ -27,10 +26,12 @@ import 'package:sky_trade/core/resources/numbers/ui.dart'
 class RestrictionBubble extends StatelessWidget {
   const RestrictionBubble({
     required this.bubbleColor,
+    required this.textColor,
     super.key,
   });
 
   final Color bubbleColor;
+  final Color textColor;
 
   @override
   Widget build(BuildContext context) => Transform.translate(
@@ -53,7 +54,7 @@ class RestrictionBubble extends StatelessWidget {
                   fontSize: elevenDotNil,
                   height: twentyOneDotThreeSeven / elevenDotNil,
                   letterSpacing: nilDotNilOne,
-                  color: hexFFFFFF,
+                  color: textColor,
                 ),
           ),
         ),

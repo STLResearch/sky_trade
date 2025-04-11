@@ -4,32 +4,55 @@ import 'package:sky_trade/core/utils/enums/networking.dart'
 
 base class RestrictionEntity extends Equatable {
   const RestrictionEntity({
-    required this.additionLinks,
-    required this.country,
-    required this.lowerLimit,
-    required this.message,
-    required this.region,
-    required this.type,
-    required this.upperLimit,
+    required this.id,
+    required this.properties,
+    required this.geometry,
   });
 
-  final List<AdditionalLinkEntity> additionLinks;
-  final String country;
-  final String lowerLimit;
-  final String message;
-  final RegionEntity region;
-  final RestrictionType type;
-  final String upperLimit;
+  final String id;
+
+  final PropertiesEntity properties;
+
+  final GeometryEntity geometry;
 
   @override
   List<Object?> get props => [
-        additionLinks,
+        id,
+        properties,
+        geometry,
+      ];
+}
+
+base class PropertiesEntity extends Equatable {
+  const PropertiesEntity({
+    required this.type,
+    required this.country,
+    required this.upperLimit,
+    required this.lowerLimit,
+    required this.message,
+    required this.additionLinks,
+  });
+
+  final RestrictionType type;
+
+  final String country;
+
+  final String upperLimit;
+
+  final String lowerLimit;
+
+  final String message;
+
+  final List<AdditionalLinkEntity> additionLinks;
+
+  @override
+  List<Object?> get props => [
+        type,
         country,
+        upperLimit,
         lowerLimit,
         message,
-        region,
-        type,
-        upperLimit,
+        additionLinks,
       ];
 }
 
@@ -40,6 +63,7 @@ base class AdditionalLinkEntity extends Equatable {
   });
 
   final String link;
+
   final String name;
 
   @override
@@ -49,13 +73,14 @@ base class AdditionalLinkEntity extends Equatable {
       ];
 }
 
-base class RegionEntity extends Equatable {
-  const RegionEntity({
+base class GeometryEntity extends Equatable {
+  const GeometryEntity({
     required this.type,
     required this.coordinates,
   });
 
   final GeometryType type;
+
   final List<List<List<double>>> coordinates;
 
   @override

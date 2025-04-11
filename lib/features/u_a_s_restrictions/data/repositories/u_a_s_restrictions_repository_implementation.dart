@@ -29,42 +29,10 @@ final class UASRestrictionsRepositoryImplementation
     required String geoHash,
   }) =>
           handleData<UASRestrictionsFailure, List<RestrictionEntity>>(
-            dataSourceOperation: () async {
-              final localDataExists = await _uASRestrictionsLocalDataSource
-                  .checkForCachedRestrictionsUsing(
-                geoHash: geoHash,
-              );
-
-              if (localDataExists) {
-                final localDataIsStale = await _uASRestrictionsLocalDataSource
-                    .checkCachedRestrictionsIsStaleUsing(
-                  geoHash: geoHash,
-                );
-
-                if (localDataIsStale) {
-                  final remoteData = await _uASRestrictionsRemoteDataSource
-                      .getRestrictionsUsing(
-                    geoHash: geoHash,
-                  );
-
-                  await _uASRestrictionsLocalDataSource.cacheRestrictionsUsing(
-                    geoHash: geoHash,
-                    data: remoteData,
-                  );
-
-                  return remoteData;
-                }
-
-                return _uASRestrictionsLocalDataSource
-                    .getCachedRestrictionsUsing(
-                  geoHash: geoHash,
-                );
-              }
-
-              return _uASRestrictionsRemoteDataSource.getRestrictionsUsing(
-                geoHash: geoHash,
-              );
-            },
+            dataSourceOperation: () =>
+                _uASRestrictionsRemoteDataSource.getRestrictionsUsing(
+              geoHash: geoHash,
+            ),
             onSuccess: (restrictionEntities) => restrictionEntities,
             onFailure: (_) => UASRestrictionsFailure(),
           );
