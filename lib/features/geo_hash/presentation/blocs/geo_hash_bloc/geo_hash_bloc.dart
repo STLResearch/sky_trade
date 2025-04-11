@@ -1,6 +1,6 @@
 import 'package:bloc/bloc.dart' show Bloc, Emitter, EventTransformer;
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:rxdart/rxdart.dart' show DebounceExtensions;
+import 'package:rxdart/rxdart.dart' show DebounceExtensions, SwitchMapExtension;
 import 'package:sky_trade/core/resources/numbers/ui.dart' show three;
 import 'package:sky_trade/core/utils/typedefs/ui.dart' show LatLng;
 import 'package:sky_trade/features/geo_hash/domain/repositories/geo_hash_repository.dart';
@@ -56,7 +56,7 @@ class GeoHashBloc extends Bloc<GeoHashEvent, GeoHashState> {
               seconds: three,
             ),
           )
-          .asyncExpand(
+          .switchMap(
             mapper,
           );
 }
