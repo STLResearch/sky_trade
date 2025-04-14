@@ -73,8 +73,8 @@ loc: ## Prints the lines of code of each file in lib and the total lines thereaf
 	find lib -type f -name "*.dart" ! -name "*.g.dart" ! -name "*.freezed.dart" ! -name "*.gen.dart" ! -name "firebase_options.dart" ! -path "*/firebase/*" -print0 | xargs -0 wc -l
 
 u-d-s-l: ## Uploads Android and iOS live app debug symbols to Sentry
-	flutter build apk --flavor live
-	flutter build ios --flavor live
+	flutter build apk -t lib/main_live.dart --flavor live
+	flutter build ios -t lib/main_live.dart --flavor live
 	dart run sentry_dart_plugin
 
 c-f-d: ## Configures Firebase for dev environment
@@ -108,5 +108,5 @@ o-i: ## Opens iOS module with information about the pods in XCode for build rela
 	open ios/Runner.xcworkspace/
 
 p-sds: ## Builds new live release apk, mints a new release NFT and publishes app to the Solana dApp store. Does not upgrade version code, version name and new_in_version field of config.yaml in android/publishing. Those need to be done manually first. Please make sure to fund the public address of the keypair with some SOL before this process starts to avoid errors
-	flutter build apk --flavor live
+	flutter build apk -t lib/main_live.dart --flavor live
 	cd android/publishing && npx dapp-store validate -k ${SOLANA_KEYPAIR_PATH} && npx dapp-store create release -k ${SOLANA_KEYPAIR_PATH} -u "%d", ${MAINNET_BETA_RPC_URL} && npx dapp-store publish update -k ${SOLANA_KEYPAIR_PATH} --requestor-is-authorized --complies-with-solana-dapp-store-policies
