@@ -1,4 +1,3 @@
-const jsonFileEnding = '.json';
 const pngFileEnding = '.png';
 
 const nonceCharacterSet =
@@ -13,3 +12,6 @@ const analyticsStateKey = 'analyticsState';
 const base36UpperBound = '1z141z4';
 
 const auth0SessionForDeletedUserExistsKey = 'auth0SessionForDeletedUserExists';
+
+// Hive
+const restrictionsBoxKey = 'restrictions_box';

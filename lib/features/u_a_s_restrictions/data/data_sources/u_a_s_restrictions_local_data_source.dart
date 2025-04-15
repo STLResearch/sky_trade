@@ -1,49 +1,55 @@
-// ignore_for_file: avoid_slow_async_io
-
-import 'dart:convert' show jsonDecode, jsonEncode;
-import 'dart:io' show File;
-
-import 'package:path_provider/path_provider.dart'
-    show getApplicationDocumentsDirectory;
+import 'package:hive_ce/hive.dart' show Box, Hive;
 import 'package:sky_trade/core/resources/numbers/local.dart' show one, three;
 import 'package:sky_trade/core/resources/strings/local.dart'
-    show jsonFileEnding;
-import 'package:sky_trade/core/resources/strings/special_characters.dart'
-    show forwardSlash;
+    show restrictionsBoxKey;
 import 'package:sky_trade/features/u_a_s_restrictions/data/models/restriction_model.dart'
     show RestrictionModel;
 
 abstract interface class UASRestrictionsLocalDataSource {
-  Future<bool> checkCachedRestrictionsIsStaleUsing({
+  Future<List<RestrictionModel>?> getCachedRestrictionsUsing({
     required String geoHash,
   });
 
   Future<void> cacheRestrictionsUsing({
     required String geoHash,
-    required List<RestrictionModel> data,
+    required List<RestrictionModel> restrictions,
   });
 
-  Future<bool> checkForCachedRestrictionsUsing({
-    required String geoHash,
-  });
-
-  Future<List<RestrictionModel>> getCachedRestrictionsUsing({
-    required String geoHash,
-  });
+  Future<void> cleanUpResources();
 }
 
 final class UASRestrictionsLocalDataSourceImplementation
     implements UASRestrictionsLocalDataSource {
   @override
-  Future<bool> checkCachedRestrictionsIsStaleUsing({
+  Future<List<RestrictionModel>?> getCachedRestrictionsUsing({
     required String geoHash,
   }) async {
-    final file = await _getOrCreateFileWith(
-      name: geoHash,
+    final box = await _maybeOpenBoxForStoringRestrictionsData();
+
+    final data = box
+        .get(
+          geoHash,
+        )
+        ?.cast<DateTime, List<dynamic>>();
+
+    if (data == null) {
+      return null;
+    }
+
+    final isStale = _checkCachedRestrictionsIsStaleUsing(
+      geoHash: geoHash,
+      createdAt: data.entries.first.key,
     );
 
-    final lastModified = await file.lastModified();
+    if (isStale) return null;
 
+    return data.entries.first.value.cast<RestrictionModel>();
+  }
+
+  bool _checkCachedRestrictionsIsStaleUsing({
+    required String geoHash,
+    required DateTime createdAt,
+  }) {
     final now = DateTime.now();
 
     final todayAt3Am = DateTime(
@@ -64,10 +70,10 @@ final class UASRestrictionsLocalDataSourceImplementation
       ),
     );
 
-    final isNotStale = lastModified.isAfter(
+    final isNotStale = createdAt.isAfter(
           todayAt3Am,
         ) &&
-        lastModified.isBefore(
+        createdAt.isBefore(
           tomorrowAt3Am,
         );
 
@@ -77,62 +83,31 @@ final class UASRestrictionsLocalDataSourceImplementation
   @override
   Future<void> cacheRestrictionsUsing({
     required String geoHash,
-    required List<RestrictionModel> data,
+    required List<RestrictionModel> restrictions,
   }) async {
-    final file = await _getOrCreateFileWith(
-      name: geoHash,
+    final box = await _maybeOpenBoxForStoringRestrictionsData();
+
+    await box.delete(
+      geoHash,
     );
 
-    await file.writeAsString(
-      jsonEncode(
-        data,
-      ),
+    await box.put(
+      geoHash,
+      {
+        DateTime.now(): restrictions,
+      },
     );
   }
 
   @override
-  Future<bool> checkForCachedRestrictionsUsing({
-    required String geoHash,
-  }) async {
-    final file = await _getOrCreateFileWith(
-      name: geoHash,
-    );
-
-    final fileExists = await file.exists();
-
-    return fileExists;
+  Future<void> cleanUpResources() async {
+    final box = await _maybeOpenBoxForStoringRestrictionsData();
+    await box.close();
   }
 
-  @override
-  Future<List<RestrictionModel>> getCachedRestrictionsUsing({
-    required String geoHash,
-  }) async {
-    final file = await _getOrCreateFileWith(
-      name: geoHash,
-    );
-
-    final data = await file.readAsString();
-
-    final jsonList = jsonDecode(
-      data,
-    ) as List<dynamic>;
-
-    return jsonList
-        .map(
-          (json) => RestrictionModel.fromJson(
-            json as Map<String, dynamic>,
-          ),
-        )
-        .toList();
-  }
-
-  Future<File> _getOrCreateFileWith({
-    required String name,
-  }) async {
-    final directory = await getApplicationDocumentsDirectory();
-
-    return File(
-      directory.path + forwardSlash + name + jsonFileEnding,
-    );
-  }
+  Future<Box<Map<dynamic, dynamic>>>
+      _maybeOpenBoxForStoringRestrictionsData() =>
+          Hive.openBox<Map<dynamic, dynamic>>(
+            restrictionsBoxKey,
+          );
 }

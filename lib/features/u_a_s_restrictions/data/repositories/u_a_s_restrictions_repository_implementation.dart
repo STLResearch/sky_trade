@@ -29,11 +29,38 @@ final class UASRestrictionsRepositoryImplementation
     required String geoHash,
   }) =>
           handleData<UASRestrictionsFailure, List<RestrictionEntity>>(
-            dataSourceOperation: () =>
-                _uASRestrictionsRemoteDataSource.getRestrictionsUsing(
-              geoHash: geoHash,
-            ),
+            dataSourceOperation: () async {
+              final cachedRestrictions = await _uASRestrictionsLocalDataSource
+                  .getCachedRestrictionsUsing(
+                geoHash: geoHash,
+              );
+
+              return cachedRestrictions ??
+                  await _getAndCacheRestrictionsUsing(
+                    geoHash: geoHash,
+                  );
+            },
             onSuccess: (restrictionEntities) => restrictionEntities,
             onFailure: (_) => UASRestrictionsFailure(),
           );
+
+  Future<List<RestrictionEntity>> _getAndCacheRestrictionsUsing({
+    required String geoHash,
+  }) async {
+    final restrictions =
+        await _uASRestrictionsRemoteDataSource.getRestrictionsUsing(
+      geoHash: geoHash,
+    );
+
+    await _uASRestrictionsLocalDataSource.cacheRestrictionsUsing(
+      geoHash: geoHash,
+      restrictions: restrictions,
+    );
+
+    return restrictions;
+  }
+
+  @override
+  Future<void> cleanUpResources() =>
+      _uASRestrictionsLocalDataSource.cleanUpResources();
 }
