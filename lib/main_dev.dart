@@ -11,6 +11,7 @@ import 'package:flutter/foundation.dart'
 import 'package:flutter/material.dart' show WidgetsFlutterBinding, runApp;
 import 'package:flutter_dotenv/flutter_dotenv.dart' show dotenv;
 import 'package:flutter_native_splash/flutter_native_splash.dart';
+import 'package:hive_ce_flutter/adapters.dart' show Hive, HiveX;
 import 'package:hydrated_bloc/hydrated_bloc.dart'
     show Bloc, HydratedBloc, HydratedStorage, HydratedStorageDirectory;
 import 'package:path_provider/path_provider.dart'
@@ -25,6 +26,7 @@ import 'package:sky_trade/core/resources/strings/local.dart'
     show analyticsStateKey;
 import 'package:sky_trade/core/resources/strings/special_characters.dart'
     show fullStop;
+import 'package:sky_trade/core/utils/adapters/hive/hive_registrar.g.dart';
 import 'package:sky_trade/firebase_options_dev.dart';
 import 'package:sky_trade/injection_container.dart';
 
@@ -46,6 +48,9 @@ Future<void> _initializeImportantResources() async {
   FlutterNativeSplash.preserve(
     widgetsBinding: widgetsBinding,
   );
+
+  await Hive.initFlutter();
+  Hive.registerAdapters();
 
   await Firebase.initializeApp(
     name: _firebaseOptions.projectId,

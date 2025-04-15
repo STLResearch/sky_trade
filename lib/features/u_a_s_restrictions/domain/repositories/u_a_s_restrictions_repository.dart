@@ -8,4 +8,6 @@ abstract interface class UASRestrictionsRepository {
       getRestrictionsUsing({
     required String geoHash,
   });
+
+  Future<void> cleanUpResources();
 }

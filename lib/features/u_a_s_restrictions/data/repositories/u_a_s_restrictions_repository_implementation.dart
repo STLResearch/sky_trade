@@ -29,11 +29,55 @@ final class UASRestrictionsRepositoryImplementation
     required String geoHash,
   }) =>
           handleData<UASRestrictionsFailure, List<RestrictionEntity>>(
-            dataSourceOperation: () =>
-                _uASRestrictionsRemoteDataSource.getRestrictionsUsing(
-              geoHash: geoHash,
-            ),
+            dataSourceOperation: () async {
+              final localDataExists = await _uASRestrictionsLocalDataSource
+                  .checkForCachedRestrictionsUsing(
+                geoHash: geoHash,
+              );
+
+              if (localDataExists) {
+                final localDataIsStale = await _uASRestrictionsLocalDataSource
+                    .checkCachedRestrictionsIsStaleUsing(
+                  geoHash: geoHash,
+                );
+
+                if (localDataIsStale) {
+                  return _getAndCacheRestrictionsUsing(
+                    geoHash: geoHash,
+                  );
+                }
+
+                return _uASRestrictionsLocalDataSource
+                    .getCachedRestrictionsUsing(
+                  geoHash: geoHash,
+                );
+              }
+
+              return _getAndCacheRestrictionsUsing(
+                geoHash: geoHash,
+              );
+            },
             onSuccess: (restrictionEntities) => restrictionEntities,
             onFailure: (_) => UASRestrictionsFailure(),
           );
+
+  Future<List<RestrictionEntity>> _getAndCacheRestrictionsUsing({
+    required String geoHash,
+  }) async {
+    final remoteData =
+        await _uASRestrictionsRemoteDataSource.getRestrictionsUsing(
+      geoHash: geoHash,
+    );
+
+    await _uASRestrictionsLocalDataSource.cacheRestrictionsUsing(
+      geoHash: geoHash,
+      data: remoteData,
+    );
+
+    return remoteData;
+  }
+
+  @override
+  Future<void> cleanUpResources() =>
+      _uASRestrictionsLocalDataSource.cleanUpResources();
 }

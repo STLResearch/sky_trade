@@ -28,6 +28,13 @@ class UASRestrictionsBloc
     );
   }
 
+  @override
+  Future<void> close() async {
+    await _cleanUpResources();
+
+    return super.close();
+  }
+
   final UASRestrictionsRepository _uASRestrictionsRepository;
   final Set<RestrictionEntity> _restrictionEntities = {};
   final Set<String> previousGeoHashRequest = {};
@@ -104,4 +111,7 @@ class UASRestrictionsBloc
       ),
     );
   }
+
+  Future<void> _cleanUpResources() =>
+      _uASRestrictionsRepository.cleanUpResources();
 }

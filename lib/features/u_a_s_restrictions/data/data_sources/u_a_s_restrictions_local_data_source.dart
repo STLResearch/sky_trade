@@ -1,19 +1,15 @@
-// ignore_for_file: avoid_slow_async_io
-
-import 'dart:convert' show jsonDecode, jsonEncode;
-import 'dart:io' show File;
-
-import 'package:path_provider/path_provider.dart'
-    show getApplicationDocumentsDirectory;
+import 'package:hive_ce/hive.dart' show Box, Hive;
 import 'package:sky_trade/core/resources/numbers/local.dart' show one, three;
 import 'package:sky_trade/core/resources/strings/local.dart'
-    show jsonFileEnding;
-import 'package:sky_trade/core/resources/strings/special_characters.dart'
-    show forwardSlash;
+    show restrictionsBoxKey;
 import 'package:sky_trade/features/u_a_s_restrictions/data/models/restriction_model.dart'
     show RestrictionModel;
 
 abstract interface class UASRestrictionsLocalDataSource {
+  Future<bool> checkForCachedRestrictionsUsing({
+    required String geoHash,
+  });
+
   Future<bool> checkCachedRestrictionsIsStaleUsing({
     required String geoHash,
   });
@@ -23,26 +19,31 @@ abstract interface class UASRestrictionsLocalDataSource {
     required List<RestrictionModel> data,
   });
 
-  Future<bool> checkForCachedRestrictionsUsing({
-    required String geoHash,
-  });
-
   Future<List<RestrictionModel>> getCachedRestrictionsUsing({
     required String geoHash,
   });
+
+  Future<void> cleanUpResources();
 }
 
 final class UASRestrictionsLocalDataSourceImplementation
     implements UASRestrictionsLocalDataSource {
   @override
+  Future<bool> checkForCachedRestrictionsUsing({
+    required String geoHash,
+  }) async {
+    final database = await _openRestrictionsDatabase();
+
+    return database.containsKey(
+      geoHash,
+    );
+  }
+
+  @override
   Future<bool> checkCachedRestrictionsIsStaleUsing({
     required String geoHash,
   }) async {
-    final file = await _getOrCreateFileWith(
-      name: geoHash,
-    );
-
-    final lastModified = await file.lastModified();
+    final database = await _openRestrictionsDatabase();
 
     final now = DateTime.now();
 
@@ -64,6 +65,15 @@ final class UASRestrictionsLocalDataSourceImplementation
       ),
     );
 
+    final lastModified = database
+        .get(
+          geoHash,
+        )!
+        .cast<DateTime, List<dynamic>>()
+        .entries
+        .first
+        .key;
+
     final isNotStale = lastModified.isAfter(
           todayAt3Am,
         ) &&
@@ -79,60 +89,45 @@ final class UASRestrictionsLocalDataSourceImplementation
     required String geoHash,
     required List<RestrictionModel> data,
   }) async {
-    final file = await _getOrCreateFileWith(
-      name: geoHash,
+    final database = await _openRestrictionsDatabase();
+
+    await database.delete(
+      geoHash,
     );
 
-    await file.writeAsString(
-      jsonEncode(
-        data,
-      ),
+    await database.put(
+      geoHash,
+      {
+        DateTime.now(): data,
+      },
     );
-  }
-
-  @override
-  Future<bool> checkForCachedRestrictionsUsing({
-    required String geoHash,
-  }) async {
-    final file = await _getOrCreateFileWith(
-      name: geoHash,
-    );
-
-    final fileExists = await file.exists();
-
-    return fileExists;
   }
 
   @override
   Future<List<RestrictionModel>> getCachedRestrictionsUsing({
     required String geoHash,
   }) async {
-    final file = await _getOrCreateFileWith(
-      name: geoHash,
-    );
+    final database = await _openRestrictionsDatabase();
 
-    final data = await file.readAsString();
-
-    final jsonList = jsonDecode(
-      data,
-    ) as List<dynamic>;
-
-    return jsonList
-        .map(
-          (json) => RestrictionModel.fromJson(
-            json as Map<String, dynamic>,
-          ),
-        )
-        .toList();
+    return database
+        .get(
+          geoHash,
+        )!
+        .cast<DateTime, List<dynamic>>()
+        .entries
+        .first
+        .value
+        .cast<RestrictionModel>();
   }
 
-  Future<File> _getOrCreateFileWith({
-    required String name,
-  }) async {
-    final directory = await getApplicationDocumentsDirectory();
-
-    return File(
-      directory.path + forwardSlash + name + jsonFileEnding,
-    );
+  @override
+  Future<void> cleanUpResources() async {
+    final database = await _openRestrictionsDatabase();
+    await database.close();
   }
+
+  Future<Box<Map<dynamic, dynamic>>> _openRestrictionsDatabase() =>
+      Hive.openBox<Map<dynamic, dynamic>>(
+        restrictionsBoxKey,
+      );
 }
