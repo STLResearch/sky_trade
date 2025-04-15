@@ -6,21 +6,13 @@ import 'package:sky_trade/features/u_a_s_restrictions/data/models/restriction_mo
     show RestrictionModel;
 
 abstract interface class UASRestrictionsLocalDataSource {
-  Future<bool> checkForCachedRestrictionsUsing({
-    required String geoHash,
-  });
-
-  Future<bool> checkCachedRestrictionsIsStaleUsing({
+  Future<List<RestrictionModel>?> getCachedRestrictionsUsing({
     required String geoHash,
   });
 
   Future<void> cacheRestrictionsUsing({
     required String geoHash,
-    required List<RestrictionModel> data,
-  });
-
-  Future<List<RestrictionModel>> getCachedRestrictionsUsing({
-    required String geoHash,
+    required List<RestrictionModel> restrictions,
   });
 
   Future<void> cleanUpResources();
@@ -29,22 +21,35 @@ abstract interface class UASRestrictionsLocalDataSource {
 final class UASRestrictionsLocalDataSourceImplementation
     implements UASRestrictionsLocalDataSource {
   @override
-  Future<bool> checkForCachedRestrictionsUsing({
+  Future<List<RestrictionModel>?> getCachedRestrictionsUsing({
     required String geoHash,
   }) async {
-    final database = await _openRestrictionsDatabase();
+    final box = await _maybeOpenBoxForStoringRestrictionsData();
 
-    return database.containsKey(
-      geoHash,
+    final data = box
+        .get(
+          geoHash,
+        )
+        ?.cast<DateTime, List<dynamic>>();
+
+    if (data == null) {
+      return null;
+    }
+
+    final isStale = _checkCachedRestrictionsIsStaleUsing(
+      geoHash: geoHash,
+      createdAt: data.entries.first.key,
     );
+
+    if (isStale) return null;
+
+    return data.entries.first.value.cast<RestrictionModel>();
   }
 
-  @override
-  Future<bool> checkCachedRestrictionsIsStaleUsing({
+  bool _checkCachedRestrictionsIsStaleUsing({
     required String geoHash,
-  }) async {
-    final database = await _openRestrictionsDatabase();
-
+    required DateTime createdAt,
+  }) {
     final now = DateTime.now();
 
     final todayAt3Am = DateTime(
@@ -65,19 +70,10 @@ final class UASRestrictionsLocalDataSourceImplementation
       ),
     );
 
-    final lastModified = database
-        .get(
-          geoHash,
-        )!
-        .cast<DateTime, List<dynamic>>()
-        .entries
-        .first
-        .key;
-
-    final isNotStale = lastModified.isAfter(
+    final isNotStale = createdAt.isAfter(
           todayAt3Am,
         ) &&
-        lastModified.isBefore(
+        createdAt.isBefore(
           tomorrowAt3Am,
         );
 
@@ -87,47 +83,31 @@ final class UASRestrictionsLocalDataSourceImplementation
   @override
   Future<void> cacheRestrictionsUsing({
     required String geoHash,
-    required List<RestrictionModel> data,
+    required List<RestrictionModel> restrictions,
   }) async {
-    final database = await _openRestrictionsDatabase();
+    final box = await _maybeOpenBoxForStoringRestrictionsData();
 
-    await database.delete(
+    await box.delete(
       geoHash,
     );
 
-    await database.put(
+    await box.put(
       geoHash,
       {
-        DateTime.now(): data,
+        DateTime.now(): restrictions,
       },
     );
   }
 
   @override
-  Future<List<RestrictionModel>> getCachedRestrictionsUsing({
-    required String geoHash,
-  }) async {
-    final database = await _openRestrictionsDatabase();
-
-    return database
-        .get(
-          geoHash,
-        )!
-        .cast<DateTime, List<dynamic>>()
-        .entries
-        .first
-        .value
-        .cast<RestrictionModel>();
-  }
-
-  @override
   Future<void> cleanUpResources() async {
-    final database = await _openRestrictionsDatabase();
-    await database.close();
+    final box = await _maybeOpenBoxForStoringRestrictionsData();
+    await box.close();
   }
 
-  Future<Box<Map<dynamic, dynamic>>> _openRestrictionsDatabase() =>
-      Hive.openBox<Map<dynamic, dynamic>>(
-        restrictionsBoxKey,
-      );
+  Future<Box<Map<dynamic, dynamic>>>
+      _maybeOpenBoxForStoringRestrictionsData() =>
+          Hive.openBox<Map<dynamic, dynamic>>(
+            restrictionsBoxKey,
+          );
 }

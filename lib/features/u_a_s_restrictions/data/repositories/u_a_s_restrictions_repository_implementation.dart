@@ -30,32 +30,15 @@ final class UASRestrictionsRepositoryImplementation
   }) =>
           handleData<UASRestrictionsFailure, List<RestrictionEntity>>(
             dataSourceOperation: () async {
-              final localDataExists = await _uASRestrictionsLocalDataSource
-                  .checkForCachedRestrictionsUsing(
+              final cachedRestrictions = await _uASRestrictionsLocalDataSource
+                  .getCachedRestrictionsUsing(
                 geoHash: geoHash,
               );
 
-              if (localDataExists) {
-                final localDataIsStale = await _uASRestrictionsLocalDataSource
-                    .checkCachedRestrictionsIsStaleUsing(
-                  geoHash: geoHash,
-                );
-
-                if (localDataIsStale) {
-                  return _getAndCacheRestrictionsUsing(
+              return cachedRestrictions ??
+                  await _getAndCacheRestrictionsUsing(
                     geoHash: geoHash,
                   );
-                }
-
-                return _uASRestrictionsLocalDataSource
-                    .getCachedRestrictionsUsing(
-                  geoHash: geoHash,
-                );
-              }
-
-              return _getAndCacheRestrictionsUsing(
-                geoHash: geoHash,
-              );
             },
             onSuccess: (restrictionEntities) => restrictionEntities,
             onFailure: (_) => UASRestrictionsFailure(),
@@ -64,17 +47,17 @@ final class UASRestrictionsRepositoryImplementation
   Future<List<RestrictionEntity>> _getAndCacheRestrictionsUsing({
     required String geoHash,
   }) async {
-    final remoteData =
+    final restrictions =
         await _uASRestrictionsRemoteDataSource.getRestrictionsUsing(
       geoHash: geoHash,
     );
 
     await _uASRestrictionsLocalDataSource.cacheRestrictionsUsing(
       geoHash: geoHash,
-      data: remoteData,
+      restrictions: restrictions,
     );
 
-    return remoteData;
+    return restrictions;
   }
 
   @override
