@@ -27,6 +27,7 @@ import 'package:flutter/material.dart'
         SliverToBoxAdapter,
         State,
         StatefulWidget,
+        StatelessWidget,
         Text,
         Theme,
         ValueListenableBuilder,
@@ -35,7 +36,13 @@ import 'package:flutter/material.dart'
         WidgetStatePropertyAll,
         showModalBottomSheet;
 import 'package:flutter_bloc/flutter_bloc.dart'
-    show BlocBuilder, BlocListener, MultiBlocListener, ReadContext;
+    show
+        BlocBuilder,
+        BlocListener,
+        BlocProvider,
+        MultiBlocListener,
+        MultiBlocProvider,
+        ReadContext;
 import 'package:skeletonizer/skeletonizer.dart'
     show BoneMock, ShimmerEffect, Skeletonizer, SoldColorEffect;
 import 'package:sky_trade/core/assets/generated/assets.gen.dart' show Assets;
@@ -48,6 +55,7 @@ import 'package:sky_trade/core/resources/numbers/ui.dart'
         fortyEightDotNil,
         fortyThreeDotNil,
         fourteenDotNil,
+        one,
         seventeenDotNil,
         thirtyTwoDotNil,
         twentyDotNil,
@@ -86,18 +94,56 @@ import 'package:sky_trade/features/referral/presentation/widgets/share.dart';
 import 'package:sky_trade/features/referral/presentation/widgets/sky_points_reward_details.dart';
 import 'package:sky_trade/features/referral/presentation/widgets/tabs_section.dart';
 import 'package:sky_trade/features/referral/presentation/widgets/the_program.dart';
+import 'package:sky_trade/injection_container.dart' show serviceLocator;
 
-class ReferralScreen extends StatefulWidget {
+class ReferralScreen extends StatelessWidget {
   const ReferralScreen({super.key});
 
   @override
-  State<ReferralScreen> createState() => _ReferralScreenState();
+  Widget build(BuildContext context) => MultiBlocProvider(
+        providers: [
+          BlocProvider<EarningsReportBloc>(
+            create: (_) => serviceLocator(),
+          ),
+          BlocProvider<HighlightsBloc>(
+            create: (_) => serviceLocator(),
+          ),
+          BlocProvider<InviteBloc>(
+            create: (_) => serviceLocator(),
+          ),
+          BlocProvider<LeaderboardStatisticsBloc>(
+            create: (_) => serviceLocator(),
+          ),
+          BlocProvider<ReferralCodeBloc>(
+            create: (_) => serviceLocator(),
+          ),
+          BlocProvider<ReferralHistoryBloc>(
+            create: (_) => serviceLocator(),
+          ),
+          BlocProvider<ReferralLinkBloc>(
+            create: (_) => serviceLocator(),
+          ),
+          BlocProvider<SkyPointsBloc>(
+            create: (_) => serviceLocator(),
+          ),
+        ],
+        child: const ReferralScreenView(),
+      );
 }
 
-class _ReferralScreenState extends State<ReferralScreen> {
+class ReferralScreenView extends StatefulWidget {
+  const ReferralScreenView({super.key});
+
+  @override
+  State<ReferralScreenView> createState() => _ReferralScreenViewState();
+}
+
+class _ReferralScreenViewState extends State<ReferralScreenView> {
   late final PageController _pageController;
   late final ScrollController _tabsScrollController;
   late final ValueNotifier<ReferralTab> _selectedTabNotifier;
+  late final ValueNotifier<int> _referralHistoryTablePageNumberNotifier;
+  late final ValueNotifier<int> _leaderboardTablePageNumberNotifier;
 
   @override
   void initState() {
@@ -105,6 +151,12 @@ class _ReferralScreenState extends State<ReferralScreen> {
     _tabsScrollController = ScrollController();
     _selectedTabNotifier = ValueNotifier<ReferralTab>(
       ReferralTab.theProgram,
+    );
+    _referralHistoryTablePageNumberNotifier = ValueNotifier<int>(
+      one,
+    );
+    _leaderboardTablePageNumberNotifier = ValueNotifier<int>(
+      one,
     );
 
     _maybeGetSkyPoints();
@@ -126,17 +178,15 @@ class _ReferralScreenState extends State<ReferralScreen> {
 
   Future<void> _getReferralHistory() async =>
       context.read<ReferralHistoryBloc>().add(
-            const ReferralHistoryEvent.getReferralHistory(
-              page: 1,
-              limit: 10,
+            ReferralHistoryEvent.getReferralHistory(
+              page: _referralHistoryTablePageNumberNotifier.value,
             ),
           );
 
   Future<void> _getLeaderboardStatistics() async =>
       context.read<LeaderboardStatisticsBloc>().add(
-            const LeaderboardStatisticsEvent.getLeaderboardStatistics(
-              page: 1,
-              limit: 10,
+            LeaderboardStatisticsEvent.getLeaderboardStatistics(
+              page: _leaderboardTablePageNumberNotifier.value,
             ),
           );
 
@@ -150,6 +200,8 @@ class _ReferralScreenState extends State<ReferralScreen> {
     _pageController.dispose();
     _tabsScrollController.dispose();
     _selectedTabNotifier.dispose();
+    _referralHistoryTablePageNumberNotifier.dispose();
+    _leaderboardTablePageNumberNotifier.dispose();
 
     super.dispose();
   }
@@ -387,8 +439,14 @@ class _ReferralScreenState extends State<ReferralScreen> {
                         child: switch (ReferralTab.values[index]) {
                           ReferralTab.theProgram => const TheProgram(),
                           ReferralTab.share => const Share(),
-                          ReferralTab.history => const History(),
-                          ReferralTab.leaderboard => const Leaderboard(),
+                          ReferralTab.history => History(
+                              tablePageNumberNotifier:
+                                  _referralHistoryTablePageNumberNotifier,
+                            ),
+                          ReferralTab.leaderboard => Leaderboard(
+                              tablePageNumberNotifier:
+                                  _leaderboardTablePageNumberNotifier,
+                            ),
                         },
                       ),
                       onPageChanged: (index) {

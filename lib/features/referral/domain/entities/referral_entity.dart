@@ -126,13 +126,17 @@ base class ToEntity extends Equatable {
 base class ReferralHistoryEntity extends Equatable {
   const ReferralHistoryEntity({
     required this.histories,
+    required this.totalCount,
   });
 
   final List<HistoryEntity> histories;
 
+  final int totalCount;
+
   @override
   List<Object?> get props => [
         histories,
+        totalCount,
       ];
 }
 
@@ -150,7 +154,7 @@ base class HistoryEntity extends Equatable {
 
   final int balance;
 
-  final String date;
+  final DateTime date;
 
   @override
   List<Object?> get props => [
@@ -175,7 +179,7 @@ base class LeaderboardStatisticsEntity extends Equatable {
 
   final List<PeriodPointEntity> currentPeriodPoints;
 
-  final int totalCount; // total number of rows divide by page count
+  final int totalCount;
 
   @override
   List<Object?> get props => [
@@ -188,13 +192,13 @@ base class LeaderboardStatisticsEntity extends Equatable {
 
 base class PeriodPointEntity extends Equatable {
   const PeriodPointEntity({
-    required this.email,
+    required this.referralCode,
     required this.totalPoints,
     required this.rewardCount,
     required this.blockchainAddress,
   });
 
-  final String email;
+  final String referralCode;
 
   final int totalPoints;
 
@@ -204,7 +208,7 @@ base class PeriodPointEntity extends Equatable {
 
   @override
   List<Object?> get props => [
-        email,
+        referralCode,
         totalPoints,
         rewardCount,
         blockchainAddress,

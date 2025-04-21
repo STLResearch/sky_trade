@@ -4,6 +4,5 @@ part of 'leaderboard_statistics_bloc.dart';
 class LeaderboardStatisticsEvent with _$LeaderboardStatisticsEvent {
   const factory LeaderboardStatisticsEvent.getLeaderboardStatistics({
     required int page,
-    required int limit,
   }) = _GetLeaderboardStatistics;
 }

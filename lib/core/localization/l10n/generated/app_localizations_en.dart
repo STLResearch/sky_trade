@@ -648,7 +648,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get amount => 'Amount';
 
   @override
-  String get from => 'From';
+  String get description => 'Description';
 
   @override
   String get yourEarnings => 'Your Earnings';
@@ -736,4 +736,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get earnings => 'Earnings';
+
+  @override
+  String get thereIsNothingToShowHere => 'There is nothing to show here';
 }

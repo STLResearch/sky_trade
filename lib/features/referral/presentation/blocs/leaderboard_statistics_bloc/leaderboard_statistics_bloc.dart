@@ -2,6 +2,7 @@ import 'package:bloc/bloc.dart' show Bloc, Emitter;
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:sky_trade/core/errors/failures/referral_failure.dart'
     show LeaderboardStatisticsFailure;
+import 'package:sky_trade/core/resources/numbers/ui.dart' show six;
 import 'package:sky_trade/features/referral/domain/entities/referral_entity.dart'
     show LeaderboardStatisticsEntity;
 import 'package:sky_trade/features/referral/domain/repositories/referral_repository.dart';
@@ -37,7 +38,7 @@ class LeaderboardStatisticsBloc
 
     final result = await _referralRepository.getLeaderboardStatisticsOn(
       page: event.page,
-      limit: event.limit,
+      limit: six,
     );
 
     result.fold(

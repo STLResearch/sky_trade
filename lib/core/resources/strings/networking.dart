@@ -1,5 +1,8 @@
 // ignore_for_file: lines_longer_than_80_chars
 
+// Schemes
+const https = 'https';
+
 // App links
 const appLinkHttpScheme = 'http';
 const appLinkHttpsScheme = 'https';

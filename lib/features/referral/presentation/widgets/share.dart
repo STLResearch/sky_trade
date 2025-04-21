@@ -44,7 +44,8 @@ import 'package:sky_trade/features/referral/presentation/blocs/referral_code_blo
 import 'package:sky_trade/features/referral/presentation/blocs/referral_link_bloc/referral_link_bloc.dart'
     show ReferralLinkBloc, ReferralLinkEvent;
 import 'package:sky_trade/features/referral/presentation/widgets/copiable_content_card.dart';
-import 'package:sky_trade/features/referral/presentation/widgets/email_field.dart';
+import 'package:sky_trade/features/referral/presentation/widgets/email_field.dart'
+    show EmailField;
 import 'package:sky_trade/features/referral/presentation/widgets/socials_section.dart';
 
 class Share extends StatefulWidget {

@@ -8,6 +8,7 @@ import 'package:sky_trade/core/resources/strings/networking.dart'
         overralLeaderboardInfoPath,
         pageKey,
         privatePath,
+        publicPath,
         referralCodePath,
         retrieveReferralDataPath,
         rewardPath,
@@ -89,7 +90,7 @@ class ReferralRemoteDataSourceImplementation
   }) =>
       handleResponse<InviteException, Map<String, dynamic>, InviteModel>(
         requestInitiator: _httpClient.request(
-          requestMethod: RequestMethod.get,
+          requestMethod: RequestMethod.post,
           path: referralCodePath + sendReferralPath + forwardSlash + email,
           includeSignature: true,
         ),
@@ -126,7 +127,7 @@ class ReferralRemoteDataSourceImplementation
           LeaderboardStatisticsModel>(
         requestInitiator: _httpClient.request(
           requestMethod: RequestMethod.get,
-          path: privatePath + rewardPath + currentLeaderboardInfoPath,
+          path: publicPath + rewardPath + currentLeaderboardInfoPath,
           includeSignature: true,
           queryParameters: {
             pageKey: page,

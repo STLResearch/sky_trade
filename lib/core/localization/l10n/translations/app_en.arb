@@ -212,7 +212,7 @@
   "yourReferrals": "Your referrals",
   "date": "Date",
   "amount": "Amount",
-  "from": "From",
+  "description": "Description",
   "yourEarnings": "Your Earnings",
   "lifetimeEarnings": "Lifetime Earnings",
   "user": "User",
@@ -241,5 +241,6 @@
   "qTwo": "Q2",
   "qOne": "Q1",
   "qFour": "Q4",
-  "earnings": "Earnings"
+  "earnings": "Earnings",
+  "thereIsNothingToShowHere": "There is nothing to show here"
 }

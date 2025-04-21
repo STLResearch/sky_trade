@@ -1,6 +1,7 @@
 // Date time formatters
 const hmma = 'h:mm a';
 const ddMMyyhmma = 'dd/MM/yy h:mm a';
+const dMMMyy = 'd MMM yy';
 
 // Color related
 const rgba = 'rgba';
@@ -40,4 +41,4 @@ const nridDronesLayerId = 'nrid-drones-layer';
 const iconDroneValue = 'icon-drone';
 
 // Hardcoded strings
-const ref = 'ref';
+const r = 'r';

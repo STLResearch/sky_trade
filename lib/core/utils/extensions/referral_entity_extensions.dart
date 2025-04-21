@@ -1,20 +1,25 @@
 import 'package:flutter_dotenv/flutter_dotenv.dart' show dotenv;
 import 'package:sky_trade/core/resources/numbers/networking.dart'
     show one, zero;
+import 'package:sky_trade/core/resources/strings/networking.dart' show https;
 import 'package:sky_trade/core/resources/strings/secret_keys.dart'
-    show skyTradeServerHttpSignUrl;
+    show skyTradeServerSignUrl;
 import 'package:sky_trade/core/resources/strings/special_characters.dart'
-    show equals, question;
-import 'package:sky_trade/core/resources/strings/ui.dart' show ref;
+    show colon, forwardSlash;
+import 'package:sky_trade/core/resources/strings/ui.dart' show r;
 import 'package:sky_trade/features/referral/domain/entities/referral_entity.dart'
     show EarningsReportEntity, HighlightsEntity, PeriodSummaryEntity;
 
 extension HighlightsEntityExtensions on HighlightsEntity {
   String get referralLink =>
-      dotenv.env[skyTradeServerHttpSignUrl]! +
-      question +
-      ref +
-      equals +
+      https +
+      colon +
+      forwardSlash +
+      forwardSlash +
+      dotenv.env[skyTradeServerSignUrl]! +
+      forwardSlash +
+      r +
+      forwardSlash +
       referralCode;
 }
 

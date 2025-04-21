@@ -95,19 +95,21 @@ ReferralHistoryModel _$ReferralHistoryModelFromJson(
       mHistories: (json['histories'] as List<dynamic>)
           .map((e) => HistoryModel.fromJson(e as Map<String, dynamic>))
           .toList(),
+      mTotalCount: (json['totalCount'] as num).toInt(),
     );
 
 Map<String, dynamic> _$ReferralHistoryModelToJson(
         ReferralHistoryModel instance) =>
     <String, dynamic>{
       'histories': instance.mHistories,
+      'totalCount': instance.mTotalCount,
     };
 
 HistoryModel _$HistoryModelFromJson(Map<String, dynamic> json) => HistoryModel(
       mDescription: json['description'] as String,
       mAmount: json['amount'] as String,
       mBalance: (json['balance'] as num).toInt(),
-      mDate: json['date'] as String,
+      mDate: const StringDateTimeConverter().fromJson(json['date'] as String),
     );
 
 Map<String, dynamic> _$HistoryModelToJson(HistoryModel instance) =>
@@ -115,7 +117,7 @@ Map<String, dynamic> _$HistoryModelToJson(HistoryModel instance) =>
       'description': instance.mDescription,
       'amount': instance.mAmount,
       'balance': instance.mBalance,
-      'date': instance.mDate,
+      'date': const StringDateTimeConverter().toJson(instance.mDate),
     };
 
 LeaderboardStatisticsModel _$LeaderboardStatisticsModelFromJson(
@@ -142,7 +144,7 @@ Map<String, dynamic> _$LeaderboardStatisticsModelToJson(
 
 PeriodPointModel _$PeriodPointModelFromJson(Map<String, dynamic> json) =>
     PeriodPointModel(
-      mEmail: json['email'] as String,
+      mReferralCode: json['referralCode'] as String,
       mTotalPoints: (json['totalPoints'] as num).toInt(),
       mRewardCount: (json['rewardCount'] as num).toInt(),
       mBlockchainAddress: json['blockchainAddress'] as String,
@@ -150,7 +152,7 @@ PeriodPointModel _$PeriodPointModelFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$PeriodPointModelToJson(PeriodPointModel instance) =>
     <String, dynamic>{
-      'email': instance.mEmail,
+      'referralCode': instance.mReferralCode,
       'totalPoints': instance.mTotalPoints,
       'rewardCount': instance.mRewardCount,
       'blockchainAddress': instance.mBlockchainAddress,

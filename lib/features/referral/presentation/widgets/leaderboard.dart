@@ -12,6 +12,7 @@ import 'package:flutter/material.dart'
         Text,
         TextSpan,
         Theme,
+        ValueNotifier,
         Widget,
         WidgetSpan;
 import 'package:flutter_bloc/flutter_bloc.dart' show BlocBuilder;
@@ -41,7 +42,12 @@ import 'package:sky_trade/features/referral/presentation/widgets/leaderboard_tab
 import 'package:sky_trade/features/referral/presentation/widgets/quarterly_reports_section.dart';
 
 class Leaderboard extends StatelessWidget {
-  const Leaderboard({super.key});
+  const Leaderboard({
+    required this.tablePageNumberNotifier,
+    super.key,
+  });
+
+  final ValueNotifier<int> tablePageNumberNotifier;
 
   @override
   Widget build(BuildContext context) => Column(
@@ -50,7 +56,9 @@ class Leaderboard extends StatelessWidget {
           const SizedBox(
             height: twentyDotNil,
           ),
-          const LeaderboardTable(),
+          LeaderboardTable(
+            pageNumberNotifier: tablePageNumberNotifier,
+          ),
           const SizedBox(
             height: twentyThreeDotNil,
           ),

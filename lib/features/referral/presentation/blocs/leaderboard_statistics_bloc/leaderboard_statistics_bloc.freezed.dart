@@ -17,20 +17,19 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$LeaderboardStatisticsEvent {
   int get page => throw _privateConstructorUsedError;
-  int get limit => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(int page, int limit) getLeaderboardStatistics,
+    required TResult Function(int page) getLeaderboardStatistics,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(int page, int limit)? getLeaderboardStatistics,
+    TResult? Function(int page)? getLeaderboardStatistics,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(int page, int limit)? getLeaderboardStatistics,
+    TResult Function(int page)? getLeaderboardStatistics,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -67,7 +66,7 @@ abstract class $LeaderboardStatisticsEventCopyWith<$Res> {
       _$LeaderboardStatisticsEventCopyWithImpl<$Res,
           LeaderboardStatisticsEvent>;
   @useResult
-  $Res call({int page, int limit});
+  $Res call({int page});
 }
 
 /// @nodoc
@@ -87,16 +86,11 @@ class _$LeaderboardStatisticsEventCopyWithImpl<$Res,
   @override
   $Res call({
     Object? page = null,
-    Object? limit = null,
   }) {
     return _then(_value.copyWith(
       page: null == page
           ? _value.page
           : page // ignore: cast_nullable_to_non_nullable
-              as int,
-      limit: null == limit
-          ? _value.limit
-          : limit // ignore: cast_nullable_to_non_nullable
               as int,
     ) as $Val);
   }
@@ -111,7 +105,7 @@ abstract class _$$GetLeaderboardStatisticsImplCopyWith<$Res>
       __$$GetLeaderboardStatisticsImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int page, int limit});
+  $Res call({int page});
 }
 
 /// @nodoc
@@ -130,16 +124,11 @@ class __$$GetLeaderboardStatisticsImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? page = null,
-    Object? limit = null,
   }) {
     return _then(_$GetLeaderboardStatisticsImpl(
       page: null == page
           ? _value.page
           : page // ignore: cast_nullable_to_non_nullable
-              as int,
-      limit: null == limit
-          ? _value.limit
-          : limit // ignore: cast_nullable_to_non_nullable
               as int,
     ));
   }
@@ -148,17 +137,14 @@ class __$$GetLeaderboardStatisticsImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$GetLeaderboardStatisticsImpl implements _GetLeaderboardStatistics {
-  const _$GetLeaderboardStatisticsImpl(
-      {required this.page, required this.limit});
+  const _$GetLeaderboardStatisticsImpl({required this.page});
 
   @override
   final int page;
-  @override
-  final int limit;
 
   @override
   String toString() {
-    return 'LeaderboardStatisticsEvent.getLeaderboardStatistics(page: $page, limit: $limit)';
+    return 'LeaderboardStatisticsEvent.getLeaderboardStatistics(page: $page)';
   }
 
   @override
@@ -166,12 +152,11 @@ class _$GetLeaderboardStatisticsImpl implements _GetLeaderboardStatistics {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$GetLeaderboardStatisticsImpl &&
-            (identical(other.page, page) || other.page == page) &&
-            (identical(other.limit, limit) || other.limit == limit));
+            (identical(other.page, page) || other.page == page));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, page, limit);
+  int get hashCode => Object.hash(runtimeType, page);
 
   /// Create a copy of LeaderboardStatisticsEvent
   /// with the given fields replaced by the non-null parameter values.
@@ -185,27 +170,27 @@ class _$GetLeaderboardStatisticsImpl implements _GetLeaderboardStatistics {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(int page, int limit) getLeaderboardStatistics,
+    required TResult Function(int page) getLeaderboardStatistics,
   }) {
-    return getLeaderboardStatistics(page, limit);
+    return getLeaderboardStatistics(page);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(int page, int limit)? getLeaderboardStatistics,
+    TResult? Function(int page)? getLeaderboardStatistics,
   }) {
-    return getLeaderboardStatistics?.call(page, limit);
+    return getLeaderboardStatistics?.call(page);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(int page, int limit)? getLeaderboardStatistics,
+    TResult Function(int page)? getLeaderboardStatistics,
     required TResult orElse(),
   }) {
     if (getLeaderboardStatistics != null) {
-      return getLeaderboardStatistics(page, limit);
+      return getLeaderboardStatistics(page);
     }
     return orElse();
   }
@@ -242,14 +227,11 @@ class _$GetLeaderboardStatisticsImpl implements _GetLeaderboardStatistics {
 }
 
 abstract class _GetLeaderboardStatistics implements LeaderboardStatisticsEvent {
-  const factory _GetLeaderboardStatistics(
-      {required final int page,
-      required final int limit}) = _$GetLeaderboardStatisticsImpl;
+  const factory _GetLeaderboardStatistics({required final int page}) =
+      _$GetLeaderboardStatisticsImpl;
 
   @override
   int get page;
-  @override
-  int get limit;
 
   /// Create a copy of LeaderboardStatisticsEvent
   /// with the given fields replaced by the non-null parameter values.

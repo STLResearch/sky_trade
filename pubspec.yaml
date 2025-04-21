@@ -58,11 +58,10 @@ dependencies:
   sentry_flutter: ^8.14.0
   shared_preferences: ^2.5.2
   single_factor_auth_flutter: ^7.0.0
-  skeletonizer: ^1.4.2
+  skeletonizer: ^1.4.3
   socket_io_client: ^3.0.2
   solana: ^0.31.0
   syncfusion_flutter_charts: ^28.2.12
-  two_dimensional_scrollables: ^0.3.3
   url_launcher: ^6.3.0
   uuid_v4: ^1.0.2
 

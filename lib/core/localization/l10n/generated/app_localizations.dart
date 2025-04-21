@@ -1371,11 +1371,11 @@ abstract class AppLocalizations {
   /// **'Amount'**
   String get amount;
 
-  /// No description provided for @from.
+  /// No description provided for @description.
   ///
   /// In en, this message translates to:
-  /// **'From'**
-  String get from;
+  /// **'Description'**
+  String get description;
 
   /// No description provided for @yourEarnings.
   ///
@@ -1550,6 +1550,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Earnings'**
   String get earnings;
+
+  /// No description provided for @thereIsNothingToShowHere.
+  ///
+  /// In en, this message translates to:
+  /// **'There is nothing to show here'**
+  String get thereIsNothingToShowHere;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

@@ -17,20 +17,19 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$ReferralHistoryEvent {
   int get page => throw _privateConstructorUsedError;
-  int get limit => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(int page, int limit) getReferralHistory,
+    required TResult Function(int page) getReferralHistory,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(int page, int limit)? getReferralHistory,
+    TResult? Function(int page)? getReferralHistory,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(int page, int limit)? getReferralHistory,
+    TResult Function(int page)? getReferralHistory,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -64,7 +63,7 @@ abstract class $ReferralHistoryEventCopyWith<$Res> {
           $Res Function(ReferralHistoryEvent) then) =
       _$ReferralHistoryEventCopyWithImpl<$Res, ReferralHistoryEvent>;
   @useResult
-  $Res call({int page, int limit});
+  $Res call({int page});
 }
 
 /// @nodoc
@@ -84,16 +83,11 @@ class _$ReferralHistoryEventCopyWithImpl<$Res,
   @override
   $Res call({
     Object? page = null,
-    Object? limit = null,
   }) {
     return _then(_value.copyWith(
       page: null == page
           ? _value.page
           : page // ignore: cast_nullable_to_non_nullable
-              as int,
-      limit: null == limit
-          ? _value.limit
-          : limit // ignore: cast_nullable_to_non_nullable
               as int,
     ) as $Val);
   }
@@ -107,7 +101,7 @@ abstract class _$$GetReferralHistoryImplCopyWith<$Res>
       __$$GetReferralHistoryImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int page, int limit});
+  $Res call({int page});
 }
 
 /// @nodoc
@@ -124,16 +118,11 @@ class __$$GetReferralHistoryImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? page = null,
-    Object? limit = null,
   }) {
     return _then(_$GetReferralHistoryImpl(
       page: null == page
           ? _value.page
           : page // ignore: cast_nullable_to_non_nullable
-              as int,
-      limit: null == limit
-          ? _value.limit
-          : limit // ignore: cast_nullable_to_non_nullable
               as int,
     ));
   }
@@ -142,16 +131,14 @@ class __$$GetReferralHistoryImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$GetReferralHistoryImpl implements _GetReferralHistory {
-  const _$GetReferralHistoryImpl({required this.page, required this.limit});
+  const _$GetReferralHistoryImpl({required this.page});
 
   @override
   final int page;
-  @override
-  final int limit;
 
   @override
   String toString() {
-    return 'ReferralHistoryEvent.getReferralHistory(page: $page, limit: $limit)';
+    return 'ReferralHistoryEvent.getReferralHistory(page: $page)';
   }
 
   @override
@@ -159,12 +146,11 @@ class _$GetReferralHistoryImpl implements _GetReferralHistory {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$GetReferralHistoryImpl &&
-            (identical(other.page, page) || other.page == page) &&
-            (identical(other.limit, limit) || other.limit == limit));
+            (identical(other.page, page) || other.page == page));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, page, limit);
+  int get hashCode => Object.hash(runtimeType, page);
 
   /// Create a copy of ReferralHistoryEvent
   /// with the given fields replaced by the non-null parameter values.
@@ -178,27 +164,27 @@ class _$GetReferralHistoryImpl implements _GetReferralHistory {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(int page, int limit) getReferralHistory,
+    required TResult Function(int page) getReferralHistory,
   }) {
-    return getReferralHistory(page, limit);
+    return getReferralHistory(page);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(int page, int limit)? getReferralHistory,
+    TResult? Function(int page)? getReferralHistory,
   }) {
-    return getReferralHistory?.call(page, limit);
+    return getReferralHistory?.call(page);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(int page, int limit)? getReferralHistory,
+    TResult Function(int page)? getReferralHistory,
     required TResult orElse(),
   }) {
     if (getReferralHistory != null) {
-      return getReferralHistory(page, limit);
+      return getReferralHistory(page);
     }
     return orElse();
   }
@@ -233,14 +219,11 @@ class _$GetReferralHistoryImpl implements _GetReferralHistory {
 }
 
 abstract class _GetReferralHistory implements ReferralHistoryEvent {
-  const factory _GetReferralHistory(
-      {required final int page,
-      required final int limit}) = _$GetReferralHistoryImpl;
+  const factory _GetReferralHistory({required final int page}) =
+      _$GetReferralHistoryImpl;
 
   @override
   int get page;
-  @override
-  int get limit;
 
   /// Create a copy of ReferralHistoryEvent
   /// with the given fields replaced by the non-null parameter values.

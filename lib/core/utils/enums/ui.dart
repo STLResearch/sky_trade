@@ -1,10 +1,3 @@
-enum AuthButtonType {
-  getStarted,
-  continueWithApple,
-  continueWithGoogle,
-  moreOptions,
-}
-
 enum MapStyle {
   dark,
   satellite;

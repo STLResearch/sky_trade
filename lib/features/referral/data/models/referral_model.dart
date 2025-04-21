@@ -9,7 +9,6 @@ import 'package:sky_trade/core/resources/strings/networking.dart'
         dateKey,
         descriptionKey,
         emailAltKey,
-        emailKey,
         endDateKey,
         historiesKey,
         messageHrefKey,
@@ -201,8 +200,10 @@ final class ToModel extends ToEntity {
 final class ReferralHistoryModel extends ReferralHistoryEntity {
   const ReferralHistoryModel({
     required this.mHistories,
+    required this.mTotalCount,
   }) : super(
           histories: mHistories,
+          totalCount: mTotalCount,
         );
 
   factory ReferralHistoryModel.fromJson(Map<String, dynamic> json) =>
@@ -210,6 +211,9 @@ final class ReferralHistoryModel extends ReferralHistoryEntity {
 
   @JsonKey(name: historiesKey)
   final List<HistoryModel> mHistories;
+
+  @JsonKey(name: totalCountKey)
+  final int mTotalCount;
 
   Map<String, dynamic> toJson() => _$ReferralHistoryModelToJson(this);
 }
@@ -241,7 +245,8 @@ final class HistoryModel extends HistoryEntity {
   final int mBalance;
 
   @JsonKey(name: dateKey)
-  final String mDate;
+  @StringDateTimeConverter()
+  final DateTime mDate;
 
   Map<String, dynamic> toJson() => _$HistoryModelToJson(this);
 }
@@ -283,12 +288,12 @@ final class LeaderboardStatisticsModel extends LeaderboardStatisticsEntity {
 @JsonSerializable()
 final class PeriodPointModel extends PeriodPointEntity {
   const PeriodPointModel({
-    required this.mEmail,
+    required this.mReferralCode,
     required this.mTotalPoints,
     required this.mRewardCount,
     required this.mBlockchainAddress,
   }) : super(
-          email: mEmail,
+          referralCode: mReferralCode,
           totalPoints: mTotalPoints,
           rewardCount: mRewardCount,
           blockchainAddress: mBlockchainAddress,
@@ -297,8 +302,8 @@ final class PeriodPointModel extends PeriodPointEntity {
   factory PeriodPointModel.fromJson(Map<String, dynamic> json) =>
       _$PeriodPointModelFromJson(json);
 
-  @JsonKey(name: emailKey)
-  final String mEmail;
+  @JsonKey(name: referralCodeKey)
+  final String mReferralCode;
 
   @JsonKey(name: totalPointsKey)
   final int mTotalPoints;

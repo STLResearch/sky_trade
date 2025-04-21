@@ -15,6 +15,7 @@ import 'package:flutter/material.dart'
         SizedBox,
         State,
         StatefulWidget,
+        StatelessWidget,
         TextEditingController,
         TextFormField,
         TextInputAction,
@@ -24,7 +25,7 @@ import 'package:flutter/material.dart'
         ValueNotifier,
         Widget;
 import 'package:flutter_bloc/flutter_bloc.dart'
-    show BlocBuilder, BlocListener, ReadContext;
+    show BlocBuilder, BlocListener, BlocProvider, ReadContext;
 import 'package:sky_trade/core/assets/generated/assets.gen.dart' show Assets;
 import 'package:sky_trade/core/resources/colors.dart'
     show hex0653EA, hex222222, hex87878D, hexE04F64;
@@ -50,15 +51,26 @@ import 'package:sky_trade/features/referral/presentation/blocs/email_bloc/email_
 import 'package:sky_trade/features/referral/presentation/blocs/invite_bloc/invite_bloc.dart'
     show InviteBloc, InviteEvent, InviteState;
 import 'package:sky_trade/features/referral/presentation/widgets/card.dart';
+import 'package:sky_trade/injection_container.dart' show serviceLocator;
 
-class EmailField extends StatefulWidget {
+class EmailField extends StatelessWidget {
   const EmailField({super.key});
 
   @override
-  State<StatefulWidget> createState() => _EmailFieldState();
+  Widget build(BuildContext context) => BlocProvider<EmailBloc>(
+        create: (_) => serviceLocator(),
+        child: const EmailFieldView(),
+      );
 }
 
-class _EmailFieldState extends State<EmailField> {
+class EmailFieldView extends StatefulWidget {
+  const EmailFieldView({super.key});
+
+  @override
+  State<EmailFieldView> createState() => _EmailFieldViewState();
+}
+
+class _EmailFieldViewState extends State<EmailFieldView> {
   late final GlobalKey<FormState> _formKey;
   late final TextEditingController _emailController;
   late final ValueNotifier<bool> _showInviteFailureMessageNotifier;
@@ -121,7 +133,9 @@ class _EmailFieldState extends State<EmailField> {
                   cursorColor: hex87878D,
                   cursorErrorColor: hexE04F64,
                   textInputAction: TextInputAction.done,
-                  style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                  style: Theme.of(
+                    context,
+                  ).textTheme.bodySmall?.copyWith(
                         fontSize: fourteenDotNil,
                         height: twentyOneDotNil / fourteenDotNil,
                         color: hex222222,
