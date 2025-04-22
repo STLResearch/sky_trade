@@ -185,5 +185,6 @@
   "youDeletedAnAccountAtSomePointButDeclinedOurRequestForYouToInvalidateTheSessionInOrderToProceedKindlyAcceptTheNextDialogThatShowsUp": "You deleted an account at some point but declined our request for you to invalidate the session. In order to proceed, kindly accept the next dialog that shows up",
   "youNeedToAcceptTheDialogInOrderToProceed": "You need to accept the dialog in order to proceed",
   "anActionRequiresYourInputWeNeedToFinishLoggingYouOutOf": "An action requires your input. We need to finish logging you out of",
-  "thereIsNoOtherWayToProceedUnlessYouCompleteTheLogoutProcessYouWillBeAbleToLogBackInAfterwards": "There is no other way to proceed unless you complete the logout process. You will be able to log back in afterwards"
+  "thereIsNoOtherWayToProceedUnlessYouCompleteTheLogoutProcessYouWillBeAbleToLogBackInAfterwards": "There is no other way to proceed unless you complete the logout process. You will be able to log back in afterwards",
+  "failedToFetchAppVersion" : "Failed to fetch App version"
 }

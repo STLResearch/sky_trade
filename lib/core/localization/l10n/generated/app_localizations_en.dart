@@ -568,4 +568,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get thereIsNoOtherWayToProceedUnlessYouCompleteTheLogoutProcessYouWillBeAbleToLogBackInAfterwards => 'There is no other way to proceed unless you complete the logout process. You will be able to log back in afterwards';
+
+  @override
+  String get failedToFetchAppVersion => 'Failed to fetch App version';
 }

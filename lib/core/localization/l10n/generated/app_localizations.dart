@@ -1214,6 +1214,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'There is no other way to proceed unless you complete the logout process. You will be able to log back in afterwards'**
   String get thereIsNoOtherWayToProceedUnlessYouCompleteTheLogoutProcessYouWillBeAbleToLogBackInAfterwards;
+
+  /// No description provided for @failedToFetchAppVersion.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to fetch App version'**
+  String get failedToFetchAppVersion;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {
