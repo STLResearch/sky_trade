@@ -17,12 +17,23 @@ Map<String, dynamic> _$SkyPointsModelToJson(SkyPointsModel instance) =>
     };
 
 StatsModel _$StatsModelFromJson(Map<String, dynamic> json) => StatsModel(
+      mCount: CountModel.fromJson(json['_count'] as Map<String, dynamic>),
       mSum: SumModel.fromJson(json['_sum'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$StatsModelToJson(StatsModel instance) =>
     <String, dynamic>{
+      '_count': instance.mCount,
       '_sum': instance.mSum,
+    };
+
+CountModel _$CountModelFromJson(Map<String, dynamic> json) => CountModel(
+      mPoint: (json['point'] as num).toInt(),
+    );
+
+Map<String, dynamic> _$CountModelToJson(CountModel instance) =>
+    <String, dynamic>{
+      'point': instance.mPoint,
     };
 
 SumModel _$SumModelFromJson(Map<String, dynamic> json) => SumModel(
@@ -95,21 +106,22 @@ ReferralHistoryModel _$ReferralHistoryModelFromJson(
       mHistories: (json['histories'] as List<dynamic>)
           .map((e) => HistoryModel.fromJson(e as Map<String, dynamic>))
           .toList(),
-      mTotalCount: (json['totalCount'] as num).toInt(),
+      mStats: StatsModel.fromJson(json['stats'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$ReferralHistoryModelToJson(
         ReferralHistoryModel instance) =>
     <String, dynamic>{
       'histories': instance.mHistories,
-      'totalCount': instance.mTotalCount,
+      'stats': instance.mStats,
     };
 
 HistoryModel _$HistoryModelFromJson(Map<String, dynamic> json) => HistoryModel(
       mDescription: json['description'] as String,
       mAmount: json['amount'] as String,
       mBalance: (json['balance'] as num).toInt(),
-      mDate: const StringDateTimeConverter().fromJson(json['date'] as String),
+      mDate: json['date'] as String,
+      mPoint: (json['point'] as num).toInt(),
     );
 
 Map<String, dynamic> _$HistoryModelToJson(HistoryModel instance) =>
@@ -117,7 +129,8 @@ Map<String, dynamic> _$HistoryModelToJson(HistoryModel instance) =>
       'description': instance.mDescription,
       'amount': instance.mAmount,
       'balance': instance.mBalance,
-      'date': const StringDateTimeConverter().toJson(instance.mDate),
+      'date': instance.mDate,
+      'point': instance.mPoint,
     };
 
 LeaderboardStatisticsModel _$LeaderboardStatisticsModelFromJson(

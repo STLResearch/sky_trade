@@ -92,14 +92,19 @@ class SkyPointsRewardDetails extends StatelessWidget {
             const SizedBox(
               height: twentyOneDotNil,
             ),
-            Text(
-              context.localize.howCanIEarnSkyPoints,
-              style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                    fontWeight: FontWeight.w600,
-                    fontSize: twentyTwoDotNil,
-                    height: thirtyTwoDotNil / twentyTwoDotNil,
-                    color: hex1E1E1E,
-                  ),
+            Padding(
+              padding: const EdgeInsetsDirectional.symmetric(
+                horizontal: twentyEightDotFive,
+              ),
+              child: Text(
+                context.localize.howCanIEarnSkyPoints,
+                style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                      fontWeight: FontWeight.w600,
+                      fontSize: twentyTwoDotNil,
+                      height: thirtyTwoDotNil / twentyTwoDotNil,
+                      color: hex1E1E1E,
+                    ),
+              ),
             ),
             const SizedBox(
               height: fifteenDotNil,

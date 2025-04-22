@@ -739,4 +739,16 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get thereIsNothingToShowHere => 'There is nothing to show here';
+
+  @override
+  String get joinMeOnSkyTradeAndStartTradingAirspaceAndRealEstateSignUpWithMyLinkAndGetExclusiveRewards => '🌍🚀Join me on SkyTrade and start trading airspace and real estate! Sign up with my link and get exclusive rewards';
+
+  @override
+  String get hashTagSkyTradeHashTagEarnRewardsHashTagRealEstate => '💸#SkyTrade #EarnRewards #RealEstate';
+
+  @override
+  String get yourExclusiveInvitationToSkyTradesAirspaceAndRealEstateTradingPlatform => 'Your exclusive invitation to SkyTrade\'s airspace & real estate trading platform';
+
+  @override
+  String get unableToShareTheCorrespondingAppMayNotBeInstalledOnYourDevice => 'Unable to share. The corresponding app may not be installed on your device';
 }

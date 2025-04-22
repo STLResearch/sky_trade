@@ -4,6 +4,7 @@ import 'package:sky_trade/core/resources/strings/networking.dart'
         amountKey,
         balanceKey,
         blockchainAddressKey,
+        countKey,
         currentPeriodPointsKey,
         customIdKey,
         dateKey,
@@ -57,18 +58,40 @@ final class SkyPointsModel extends SkyPointsEntity {
 @JsonSerializable()
 final class StatsModel extends StatsEntity {
   const StatsModel({
+    required this.mCount,
     required this.mSum,
   }) : super(
+          count: mCount,
           sum: mSum,
         );
 
   factory StatsModel.fromJson(Map<String, dynamic> json) =>
       _$StatsModelFromJson(json);
 
+  @JsonKey(name: countKey)
+  final CountModel mCount;
+
   @JsonKey(name: sumKey)
   final SumModel mSum;
 
   Map<String, dynamic> toJson() => _$StatsModelToJson(this);
+}
+
+@JsonSerializable()
+final class CountModel extends CountEntity {
+  const CountModel({
+    required this.mPoint,
+  }) : super(
+          point: mPoint,
+        );
+
+  factory CountModel.fromJson(Map<String, dynamic> json) =>
+      _$CountModelFromJson(json);
+
+  @JsonKey(name: pointKey)
+  final int mPoint;
+
+  Map<String, dynamic> toJson() => _$CountModelToJson(this);
 }
 
 @JsonSerializable()
@@ -200,10 +223,10 @@ final class ToModel extends ToEntity {
 final class ReferralHistoryModel extends ReferralHistoryEntity {
   const ReferralHistoryModel({
     required this.mHistories,
-    required this.mTotalCount,
+    required this.mStats,
   }) : super(
           histories: mHistories,
-          totalCount: mTotalCount,
+          stats: mStats,
         );
 
   factory ReferralHistoryModel.fromJson(Map<String, dynamic> json) =>
@@ -212,8 +235,8 @@ final class ReferralHistoryModel extends ReferralHistoryEntity {
   @JsonKey(name: historiesKey)
   final List<HistoryModel> mHistories;
 
-  @JsonKey(name: totalCountKey)
-  final int mTotalCount;
+  @JsonKey(name: statsKey)
+  final StatsModel mStats;
 
   Map<String, dynamic> toJson() => _$ReferralHistoryModelToJson(this);
 }
@@ -225,11 +248,13 @@ final class HistoryModel extends HistoryEntity {
     required this.mAmount,
     required this.mBalance,
     required this.mDate,
+    required this.mPoint,
   }) : super(
           description: mDescription,
           amount: mAmount,
           balance: mBalance,
           date: mDate,
+          point: mPoint,
         );
 
   factory HistoryModel.fromJson(Map<String, dynamic> json) =>
@@ -245,8 +270,10 @@ final class HistoryModel extends HistoryEntity {
   final int mBalance;
 
   @JsonKey(name: dateKey)
-  @StringDateTimeConverter()
-  final DateTime mDate;
+  final String mDate;
+
+  @JsonKey(name: pointKey)
+  final int mPoint;
 
   Map<String, dynamic> toJson() => _$HistoryModelToJson(this);
 }

@@ -34,13 +34,8 @@ enum Tips {
 enum Socials {
   facebook,
   linkedIn,
-  google,
+  email,
   x,
-}
-
-enum SocialsSectionArrangement {
-  flat,
-  cube,
 }
 
 enum Highlights {

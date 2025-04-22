@@ -15,14 +15,31 @@ base class SkyPointsEntity extends Equatable {
 
 base class StatsEntity extends Equatable {
   const StatsEntity({
+    required this.count,
     required this.sum,
   });
+
+  final CountEntity count;
 
   final SumEntity sum;
 
   @override
   List<Object?> get props => [
+        count,
         sum,
+      ];
+}
+
+base class CountEntity extends Equatable {
+  const CountEntity({
+    required this.point,
+  });
+
+  final int point;
+
+  @override
+  List<Object?> get props => [
+        point,
       ];
 }
 
@@ -126,17 +143,17 @@ base class ToEntity extends Equatable {
 base class ReferralHistoryEntity extends Equatable {
   const ReferralHistoryEntity({
     required this.histories,
-    required this.totalCount,
+    required this.stats,
   });
 
   final List<HistoryEntity> histories;
 
-  final int totalCount;
+  final StatsEntity stats;
 
   @override
   List<Object?> get props => [
         histories,
-        totalCount,
+        stats,
       ];
 }
 
@@ -146,6 +163,7 @@ base class HistoryEntity extends Equatable {
     required this.amount,
     required this.balance,
     required this.date,
+    required this.point,
   });
 
   final String description;
@@ -154,7 +172,9 @@ base class HistoryEntity extends Equatable {
 
   final int balance;
 
-  final DateTime date;
+  final String date;
+
+  final int point;
 
   @override
   List<Object?> get props => [
@@ -162,6 +182,7 @@ base class HistoryEntity extends Equatable {
         amount,
         balance,
         date,
+        point,
       ];
 }
 

@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart'
     show
         BuildContext,
+        ColoredBox,
         Column,
         CrossAxisAlignment,
+        EdgeInsets,
         FontWeight,
-        MainAxisAlignment,
-        Row,
         SizedBox,
         State,
         StatefulWidget,
@@ -15,7 +15,7 @@ import 'package:flutter/material.dart'
 import 'package:flutter_bloc/flutter_bloc.dart' show BlocBuilder, ReadContext;
 import 'package:qr_flutter/qr_flutter.dart' show QrImageView;
 import 'package:skeletonizer/skeletonizer.dart'
-    show BoneMock, ShimmerEffect, Skeletonizer, SoldColorEffect;
+    show BoneMock, ShimmerEffect, Skeleton, Skeletonizer, SoldColorEffect;
 import 'package:sky_trade/core/resources/colors.dart' show hexEBEBF4;
 import 'package:sky_trade/core/resources/numbers/ui.dart'
     show
@@ -24,16 +24,14 @@ import 'package:sky_trade/core/resources/numbers/ui.dart'
         fiveDotNil,
         fortyNineDotNil,
         four,
+        oneFortyDotNil,
         oneThirtyNineDotSixEight,
         six,
         tenDotNil,
-        thirteenDotOneSix,
         thirtyFiveDotNil,
         twentyDotNil;
 import 'package:sky_trade/core/resources/strings/special_characters.dart'
     show comma;
-import 'package:sky_trade/core/utils/enums/ui.dart'
-    show SocialsSectionArrangement;
 import 'package:sky_trade/core/utils/extensions/build_context_extensions.dart';
 import 'package:sky_trade/core/utils/extensions/referral_entity_extensions.dart'
     show HighlightsEntityExtensions;
@@ -46,7 +44,8 @@ import 'package:sky_trade/features/referral/presentation/blocs/referral_link_blo
 import 'package:sky_trade/features/referral/presentation/widgets/copiable_content_card.dart';
 import 'package:sky_trade/features/referral/presentation/widgets/email_field.dart'
     show EmailField;
-import 'package:sky_trade/features/referral/presentation/widgets/socials_section.dart';
+import 'package:sky_trade/features/referral/presentation/widgets/socials_section.dart'
+    show SocialsSection;
 
 class Share extends StatefulWidget {
   const Share({super.key});
@@ -127,14 +126,7 @@ class _ShareState extends State<Share> {
             ),
           ),
           const SizedBox(
-            height: fiveDotNil,
-          ),
-          SocialsSection(
-            socialsSectionArrangement: SocialsSectionArrangement.flat,
-            onSocialsItemTap: (socials) {},
-          ),
-          const SizedBox(
-            height: fiveDotNil,
+            height: tenDotNil,
           ),
           BlocBuilder<HighlightsBloc, HighlightsState>(
             builder: (_, highlightsState) => Skeletonizer(
@@ -176,10 +168,7 @@ class _ShareState extends State<Share> {
           const SizedBox(
             height: fiveDotNil,
           ),
-          SocialsSection(
-            socialsSectionArrangement: SocialsSectionArrangement.flat,
-            onSocialsItemTap: (socials) {},
-          ),
+          const SocialsSection(),
           const SizedBox(
             height: thirtyFiveDotNil,
           ),
@@ -209,29 +198,49 @@ class _ShareState extends State<Share> {
           const SizedBox(
             height: elevenDotNil,
           ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              BlocBuilder<HighlightsBloc, HighlightsState>(
-                builder: (_, highlightsState) => QrImageView(
-                  data: highlightsState.maybeWhen(
-                    gotHighlights: (highlightsEntity) =>
-                        highlightsEntity.referralLink,
-                    orElse: () => BoneMock.words(
-                      four,
-                    ),
-                  ),
-                  size: oneThirtyNineDotSixEight,
+          BlocBuilder<HighlightsBloc, HighlightsState>(
+            builder: (_, highlightsState) => Skeletonizer(
+              effect: highlightsState.maybeWhen(
+                failedToGetHighlights: (_) => const SoldColorEffect(
+                  color: hexEBEBF4,
+                ),
+                orElse: () => ShimmerEffect(
+                  highlightColor: Theme.of(
+                    context,
+                  ).scaffoldBackgroundColor,
                 ),
               ),
-              const SizedBox(
-                width: thirteenDotOneSix,
+              enabled: highlightsState.maybeWhen(
+                gotHighlights: (_) => false,
+                orElse: () => true,
               ),
-              SocialsSection(
-                socialsSectionArrangement: SocialsSectionArrangement.cube,
-                onSocialsItemTap: (socials) {},
+              child: highlightsState.maybeWhen(
+                gotHighlights: (_) => SizedBox(
+                  width: oneFortyDotNil,
+                  height: oneFortyDotNil,
+                  child: QrImageView(
+                    padding: EdgeInsets.zero,
+                    data: highlightsState.maybeWhen(
+                      gotHighlights: (highlightsEntity) =>
+                          highlightsEntity.referralLink,
+                      orElse: () => BoneMock.words(
+                        four,
+                      ),
+                    ),
+                    size: oneThirtyNineDotSixEight,
+                  ),
+                ),
+                orElse: () => const Skeleton.leaf(
+                  child: SizedBox(
+                    width: oneFortyDotNil,
+                    height: oneFortyDotNil,
+                    child: ColoredBox(
+                      color: hexEBEBF4,
+                    ),
+                  ),
+                ),
               ),
-            ],
+            ),
           ),
           const SizedBox(
             height: fortyNineDotNil,

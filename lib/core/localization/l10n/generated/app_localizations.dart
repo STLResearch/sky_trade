@@ -1556,6 +1556,30 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'There is nothing to show here'**
   String get thereIsNothingToShowHere;
+
+  /// No description provided for @joinMeOnSkyTradeAndStartTradingAirspaceAndRealEstateSignUpWithMyLinkAndGetExclusiveRewards.
+  ///
+  /// In en, this message translates to:
+  /// **'🌍🚀Join me on SkyTrade and start trading airspace and real estate! Sign up with my link and get exclusive rewards'**
+  String get joinMeOnSkyTradeAndStartTradingAirspaceAndRealEstateSignUpWithMyLinkAndGetExclusiveRewards;
+
+  /// No description provided for @hashTagSkyTradeHashTagEarnRewardsHashTagRealEstate.
+  ///
+  /// In en, this message translates to:
+  /// **'💸#SkyTrade #EarnRewards #RealEstate'**
+  String get hashTagSkyTradeHashTagEarnRewardsHashTagRealEstate;
+
+  /// No description provided for @yourExclusiveInvitationToSkyTradesAirspaceAndRealEstateTradingPlatform.
+  ///
+  /// In en, this message translates to:
+  /// **'Your exclusive invitation to SkyTrade\'s airspace & real estate trading platform'**
+  String get yourExclusiveInvitationToSkyTradesAirspaceAndRealEstateTradingPlatform;
+
+  /// No description provided for @unableToShareTheCorrespondingAppMayNotBeInstalledOnYourDevice.
+  ///
+  /// In en, this message translates to:
+  /// **'Unable to share. The corresponding app may not be installed on your device'**
+  String get unableToShareTheCorrespondingAppMayNotBeInstalledOnYourDevice;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

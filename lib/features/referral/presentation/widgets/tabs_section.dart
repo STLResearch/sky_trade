@@ -5,9 +5,9 @@ import 'package:flutter/material.dart'
         BuildContext,
         Center,
         EdgeInsetsDirectional,
-        ListView,
         Padding,
-        SizedBox,
+        Row,
+        SingleChildScrollView,
         StatelessWidget,
         Text,
         Theme,
@@ -17,15 +17,11 @@ import 'package:sky_trade/core/resources/colors.dart'
 import 'package:sky_trade/core/resources/numbers/ui.dart'
     show
         fifteenDotNil,
-        five,
-        fortyFourDotNil,
-        one,
+        nilDotNil,
         seventeenDotNil,
         tenDotNil,
         twentySixDotNil,
-        twentyTwoDotNil,
-        two,
-        zero;
+        twentyTwoDotNil;
 import 'package:sky_trade/core/utils/enums/ui.dart' show ReferralTab;
 import 'package:sky_trade/core/utils/extensions/build_context_extensions.dart';
 import 'package:sky_trade/features/referral/presentation/widgets/card.dart';
@@ -41,24 +37,36 @@ class TabsSection extends StatelessWidget {
   final ReferralTab selectedTab;
 
   @override
-  Widget build(BuildContext context) => SizedBox(
-        height: fortyFourDotNil,
-        child: ListView.separated(
-          shrinkWrap: true,
-          scrollDirection: Axis.horizontal,
-          itemCount: ReferralTab.values.length + two,
-          itemBuilder: (_, index) => switch (index == zero || index == five) {
-            true => const SizedBox(
-                width: twentySixDotNil,
+  Widget build(BuildContext context) => SingleChildScrollView(
+        scrollDirection: Axis.horizontal,
+        child: Row(
+          children: List<Widget>.generate(
+            ReferralTab.values.length,
+            (index) => Padding(
+              padding: EdgeInsetsDirectional.only(
+                start: switch (ReferralTab.values[index]) {
+                  ReferralTab.theProgram => twentySixDotNil,
+                  ReferralTab.share ||
+                  ReferralTab.history ||
+                  ReferralTab.leaderboard =>
+                    seventeenDotNil,
+                },
+                end: switch (ReferralTab.values[index]) {
+                  ReferralTab.theProgram ||
+                  ReferralTab.share ||
+                  ReferralTab.history =>
+                    nilDotNil,
+                  ReferralTab.leaderboard => twentySixDotNil,
+                },
               ),
-            false => Card(
+              child: Card(
                 cornerRadius: tenDotNil,
-                backgroundColor: switch (selectedTab.index == index - one) {
+                backgroundColor: switch (selectedTab.index == index) {
                   true => hex222222,
                   false => hex1A222222,
                 },
                 onTap: () => onTabItemSelected(
-                  ReferralTab.values[index - one],
+                  ReferralTab.values[index],
                 ),
                 child: Center(
                   child: Padding(
@@ -67,16 +75,18 @@ class TabsSection extends StatelessWidget {
                       horizontal: fifteenDotNil,
                     ),
                     child: Text(
-                      _computeLocalizedTabItemTextUsing(
-                        context,
-                        index: index - one,
-                      ),
+                      switch (ReferralTab.values[index]) {
+                        ReferralTab.theProgram => context.localize.theProgram,
+                        ReferralTab.share => context.localize.share,
+                        ReferralTab.history => context.localize.history,
+                        ReferralTab.leaderboard => context.localize.leaderboard,
+                      },
                       style: Theme.of(
                         context,
                       ).textTheme.bodySmall?.copyWith(
                             fontSize: fifteenDotNil,
                             height: twentyTwoDotNil / fifteenDotNil,
-                            color: switch (selectedTab.index == index - one) {
+                            color: switch (selectedTab.index == index) {
                               true => hexFFFFFF,
                               false => hex222222,
                             },
@@ -85,21 +95,8 @@ class TabsSection extends StatelessWidget {
                   ),
                 ),
               ),
-          },
-          separatorBuilder: (_, __) => const SizedBox(
-            width: seventeenDotNil,
+            ),
           ),
         ),
       );
-
-  String _computeLocalizedTabItemTextUsing(
-    BuildContext context, {
-    required int index,
-  }) =>
-      switch (ReferralTab.values[index]) {
-        ReferralTab.theProgram => context.localize.theProgram,
-        ReferralTab.share => context.localize.share,
-        ReferralTab.history => context.localize.history,
-        ReferralTab.leaderboard => context.localize.leaderboard,
-      };
 }

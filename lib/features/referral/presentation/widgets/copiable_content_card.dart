@@ -20,7 +20,6 @@ import 'package:sky_trade/core/resources/numbers/ui.dart'
     show
         eightDotNil,
         fifteenDotNil,
-        fortyNineDotNil,
         fourteenDotNil,
         one,
         twentyOneDotNil,
@@ -45,7 +44,6 @@ class CopiableContentCard extends StatelessWidget {
         width: MediaQuery.sizeOf(
           context,
         ).width,
-        height: fortyNineDotNil,
         cornerRadius: eightDotNil,
         backgroundColor: hexE9F5FE,
         child: Padding(

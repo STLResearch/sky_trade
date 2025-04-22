@@ -1,7 +1,6 @@
 // Date time formatters
 const hmma = 'h:mm a';
 const ddMMyyhmma = 'dd/MM/yy h:mm a';
-const dMMMyy = 'd MMM yy';
 
 // Color related
 const rgba = 'rgba';

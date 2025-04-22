@@ -156,6 +156,7 @@ const ninetySixDotNil = 96.0;
 const oneHundredDotNil = 100.0;
 const oneThirtyDotNil = 130.0;
 const oneThirtyNineDotSixEight = 139.68;
+const oneFortyDotNil = 140.0;
 const oneFiftyDotNil = 150.0;
 const oneFiftyTwoDotNil = 152.0;
 const oneSixtyThreeDotThreeTwo = 163.32;

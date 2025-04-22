@@ -3,31 +3,31 @@ import 'package:flutter/material.dart'
         BuildContext,
         Column,
         CrossAxisAlignment,
+        Divider,
+        Expanded,
         FontWeight,
-        PlaceholderAlignment,
-        RichText,
+        Row,
         SizedBox,
         State,
         StatefulWidget,
         Text,
-        TextAlign,
-        TextSpan,
         Theme,
-        Widget,
-        WidgetSpan;
+        Widget;
 import 'package:flutter_bloc/flutter_bloc.dart' show BlocBuilder, ReadContext;
-import 'package:flutter_svg/flutter_svg.dart' show SvgPicture;
 import 'package:skeletonizer/skeletonizer.dart'
     show BoneMock, ShimmerEffect, Skeletonizer, SoldColorEffect;
 import 'package:sky_trade/core/assets/generated/assets.gen.dart' show Assets;
 import 'package:sky_trade/core/resources/colors.dart'
-    show hex4285F4, hex868686, hexEBEBF4;
+    show hex4285F4, hex868686, hexD9D9D9, hexEBEBF4;
 import 'package:sky_trade/core/resources/numbers/ui.dart'
     show
         fifteenDotNil,
         fortyDotNil,
+        oneDotNil,
         seventeenDotNil,
         sixtyDotNil,
+        tenDotNil,
+        thirtyFourDotNil,
         twentyTwoDotFive,
         two;
 import 'package:sky_trade/core/utils/enums/ui.dart' show Highlights;
@@ -64,24 +64,21 @@ class _HighlightsSectionState extends State<HighlightsSection> {
         children: List<Widget>.generate(
           Highlights.values.length,
           (index) => BlocBuilder<HighlightsBloc, HighlightsState>(
-            builder: (_, highlightsState) => RichText(
-              textAlign: TextAlign.center,
-              text: TextSpan(
-                children: [
-                  WidgetSpan(
-                    child: _buildHighlightIconUsing(
-                      index: index,
-                    ),
-                    alignment: PlaceholderAlignment.middle,
-                  ),
-                  const WidgetSpan(
-                    child: SizedBox(
+            builder: (_, highlightsState) => Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  children: [
+                    switch (Highlights.values[index]) {
+                      Highlights.registeredFriends =>
+                        Assets.svgs.userGroup.svg(),
+                      Highlights.registeredAirspaces => Assets.svgs.earth.svg(),
+                      Highlights.validatedProperties => Assets.svgs.home.svg(),
+                    },
+                    const SizedBox(
                       width: seventeenDotNil,
                     ),
-                    alignment: PlaceholderAlignment.middle,
-                  ),
-                  WidgetSpan(
-                    child: Skeletonizer(
+                    Skeletonizer(
                       effect: highlightsState.maybeWhen(
                         failedToGetHighlights: (_) => const SoldColorEffect(
                           color: hexEBEBF4,
@@ -99,15 +96,15 @@ class _HighlightsSectionState extends State<HighlightsSection> {
                       child: Text(
                         highlightsState.maybeWhen(
                           gotHighlights: (highlightsEntity) =>
-                              _computeHighlightValueUsing(
-                            index: index,
-                            registeredFriends:
-                                highlightsEntity.registeredFriends,
-                            registeredAirspaces:
-                                highlightsEntity.registeredAirspaces,
-                            validatedProperties:
-                                highlightsEntity.validatedProperties,
-                          ),
+                              switch (Highlights.values[index]) {
+                            Highlights.registeredFriends =>
+                              highlightsEntity.registeredFriends,
+                            Highlights.registeredAirspaces =>
+                              highlightsEntity.registeredAirspaces,
+                            Highlights.validatedProperties =>
+                              highlightsEntity.validatedProperties,
+                          }
+                                  .toString(),
                           orElse: () => BoneMock.chars(
                             two,
                           ),
@@ -122,66 +119,65 @@ class _HighlightsSectionState extends State<HighlightsSection> {
                             ),
                       ),
                     ),
-                    alignment: PlaceholderAlignment.middle,
-                  ),
-                  const WidgetSpan(
-                    child: SizedBox(
+                    const SizedBox(
                       width: seventeenDotNil,
                     ),
-                    alignment: PlaceholderAlignment.middle,
-                  ),
-                  WidgetSpan(
-                    child: Text(
-                      _computeHighlightUsing(
-                        context,
-                        index: index,
+                    Expanded(
+                      child: Text(
+                        switch (Highlights.values[index]) {
+                          Highlights.registeredFriends =>
+                            context.localize.registeredFriends,
+                          Highlights.registeredAirspaces =>
+                            context.localize.registeredAirspaces,
+                          Highlights.validatedProperties =>
+                            context.localize.validatedProperties,
+                        },
+                        style: Theme.of(
+                          context,
+                        ).textTheme.bodySmall?.copyWith(
+                              fontSize: fifteenDotNil,
+                              height: twentyTwoDotFive / fifteenDotNil,
+                              color: hex868686,
+                            ),
                       ),
-                      style: Theme.of(
-                        context,
-                      ).textTheme.bodySmall?.copyWith(
-                            fontSize: fifteenDotNil,
-                            height: twentyTwoDotFive / fifteenDotNil,
-                            color: hex868686,
-                          ),
                     ),
-                    alignment: PlaceholderAlignment.middle,
-                  ),
-                ],
-              ),
+                  ],
+                ),
+                switch (
+                    Highlights.values[index] == Highlights.registeredFriends ||
+                        Highlights.values[index] ==
+                            Highlights.registeredAirspaces) {
+                  true => const SizedBox(
+                      height: tenDotNil,
+                    ),
+                  false => const SizedBox.shrink(),
+                },
+                switch (
+                    Highlights.values[index] == Highlights.registeredFriends ||
+                        Highlights.values[index] ==
+                            Highlights.registeredAirspaces) {
+                  true => const SizedBox(
+                      width: thirtyFourDotNil,
+                      child: Divider(
+                        height: oneDotNil,
+                        thickness: oneDotNil,
+                        color: hexD9D9D9,
+                      ),
+                    ),
+                  false => const SizedBox.shrink(),
+                },
+                switch (
+                    Highlights.values[index] == Highlights.registeredFriends ||
+                        Highlights.values[index] ==
+                            Highlights.registeredAirspaces) {
+                  true => const SizedBox(
+                      height: tenDotNil,
+                    ),
+                  false => const SizedBox.shrink(),
+                },
+              ],
             ),
           ),
         ),
       );
-
-  SvgPicture _buildHighlightIconUsing({
-    required int index,
-  }) =>
-      switch (Highlights.values[index]) {
-        Highlights.registeredFriends => Assets.svgs.userGroup.svg(),
-        Highlights.registeredAirspaces => Assets.svgs.earth.svg(),
-        Highlights.validatedProperties => Assets.svgs.home.svg(),
-      };
-
-  String _computeHighlightValueUsing({
-    required int index,
-    required int registeredFriends,
-    required int registeredAirspaces,
-    required int validatedProperties,
-  }) =>
-      switch (Highlights.values[index]) {
-        Highlights.registeredFriends => registeredFriends,
-        Highlights.registeredAirspaces => registeredAirspaces,
-        Highlights.validatedProperties => validatedProperties,
-      }
-          .toString();
-
-  String _computeHighlightUsing(
-    BuildContext context, {
-    required int index,
-  }) =>
-      switch (Highlights.values[index]) {
-        Highlights.registeredFriends => context.localize.registeredFriends,
-        Highlights.registeredAirspaces => context.localize.registeredAirspaces,
-        Highlights.validatedProperties => context.localize.validatedProperties,
-      };
 }

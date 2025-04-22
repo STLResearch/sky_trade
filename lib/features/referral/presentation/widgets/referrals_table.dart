@@ -28,7 +28,6 @@ import 'package:flutter/material.dart'
         ValueNotifier,
         Widget;
 import 'package:flutter_bloc/flutter_bloc.dart' show BlocBuilder, ReadContext;
-import 'package:intl/intl.dart' show DateFormat;
 import 'package:skeletonizer/skeletonizer.dart'
     show BoneMock, ShimmerEffect, Skeletonizer, SoldColorEffect;
 import 'package:sky_trade/core/resources/colors.dart'
@@ -59,7 +58,6 @@ import 'package:sky_trade/core/resources/numbers/ui.dart'
         zero;
 import 'package:sky_trade/core/resources/strings/special_characters.dart'
     show hyphen;
-import 'package:sky_trade/core/resources/strings/ui.dart' show dMMMyy;
 import 'package:sky_trade/core/utils/enums/ui.dart' show ReferralsHistory;
 import 'package:sky_trade/core/utils/extensions/build_context_extensions.dart';
 import 'package:sky_trade/features/referral/presentation/blocs/referral_history_bloc/referral_history_bloc.dart'
@@ -277,13 +275,9 @@ class _ReferralsTableState extends State<ReferralsTable> {
                                                   switch (ReferralsHistory
                                                       .values[rowIndex]) {
                                                     ReferralsHistory.date =>
-                                                      DateFormat(
-                                                        dMMMyy,
-                                                      ).format(
-                                                        referralHistoryEntity
-                                                            .histories[index]
-                                                            .date,
-                                                      ),
+                                                      referralHistoryEntity
+                                                          .histories[index]
+                                                          .date,
                                                     ReferralsHistory.amount =>
                                                       referralHistoryEntity
                                                           .histories[index]
@@ -372,12 +366,20 @@ class _ReferralsTableState extends State<ReferralsTable> {
                                                       true ||
                                                       false
                                                           when index >=
-                                                              referralHistoryEntity
-                                                                  .histories
-                                                                  .length =>
+                                                                  referralHistoryEntity
+                                                                      .histories
+                                                                      .length &&
+                                                              index % two ==
+                                                                  zero =>
                                                         Theme.of(
                                                           context,
                                                         ).scaffoldBackgroundColor,
+                                                      false
+                                                          when index >=
+                                                              referralHistoryEntity
+                                                                  .histories
+                                                                  .length =>
+                                                        hexF0F4FA,
                                                       _
                                                           when ReferralsHistory
                                                                           .values[
