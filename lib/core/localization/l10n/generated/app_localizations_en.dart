@@ -747,7 +747,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get hashTagSkyTradeHashTagEarnRewardsHashTagRealEstate => '💸#SkyTrade #EarnRewards #RealEstate';
 
   @override
-  String get yourExclusiveInvitationToSkyTradesAirspaceAndRealEstateTradingPlatform => 'Your exclusive invitation to SkyTrade\'s airspace & real estate trading platform';
+  String get yourExclusiveInvitationToSkyTrade => 'Your exclusive invitation to SkyTrade';
 
   @override
   String get unableToShareTheCorrespondingAppMayNotBeInstalledOnYourDevice => 'Unable to share. The corresponding app may not be installed on your device';

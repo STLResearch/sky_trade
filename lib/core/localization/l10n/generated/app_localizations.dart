@@ -1569,11 +1569,11 @@ abstract class AppLocalizations {
   /// **'💸#SkyTrade #EarnRewards #RealEstate'**
   String get hashTagSkyTradeHashTagEarnRewardsHashTagRealEstate;
 
-  /// No description provided for @yourExclusiveInvitationToSkyTradesAirspaceAndRealEstateTradingPlatform.
+  /// No description provided for @yourExclusiveInvitationToSkyTrade.
   ///
   /// In en, this message translates to:
-  /// **'Your exclusive invitation to SkyTrade\'s airspace & real estate trading platform'**
-  String get yourExclusiveInvitationToSkyTradesAirspaceAndRealEstateTradingPlatform;
+  /// **'Your exclusive invitation to SkyTrade'**
+  String get yourExclusiveInvitationToSkyTrade;
 
   /// No description provided for @unableToShareTheCorrespondingAppMayNotBeInstalledOnYourDevice.
   ///

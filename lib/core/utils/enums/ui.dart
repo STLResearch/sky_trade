@@ -38,6 +38,11 @@ enum Socials {
   x,
 }
 
+enum SocialsLinkType {
+  webLink,
+  appLink,
+}
+
 enum Highlights {
   registeredFriends,
   registeredAirspaces,

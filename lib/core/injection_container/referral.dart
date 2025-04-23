@@ -20,6 +20,8 @@ import 'package:sky_trade/features/referral/presentation/blocs/referral_link_blo
     show ReferralLinkBloc;
 import 'package:sky_trade/features/referral/presentation/blocs/sky_points_bloc/sky_points_bloc.dart'
     show SkyPointsBloc;
+import 'package:sky_trade/features/referral/presentation/blocs/socials_link_bloc/socials_link_bloc.dart'
+    show SocialsLinkBloc;
 
 final _sl = GetIt.I;
 
@@ -70,6 +72,9 @@ Future<void> registerReferralServices() async {
       () => SkyPointsBloc(
         _sl(),
       ),
+    )
+    ..registerFactory<SocialsLinkBloc>(
+      SocialsLinkBloc.new,
     )
 
     // Repositories

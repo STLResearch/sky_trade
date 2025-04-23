@@ -13,23 +13,24 @@ const emailVerificationAppLinkPath = '/$emailVerificationAppLinkPathSegment';
 const ticketAppLinkQueryParameter = 'ticket';
 
 // Social medial share links
-const facebookShareLinkBaseUrl = 'https://www.facebook.com/sharer/sharer.php';
+const facebookWebShareLinkBaseUrl =
+    'https://www.facebook.com/sharer/sharer.php';
 const facebookShareLinkUrlQueryParameterKey = 'u';
-const facebookShareLinkTextQueryParameterKey = 't';
 
-const linkedInShareLinkBaseUrl = 'https://www.linkedin.com/shareArticle';
-const linkedInShareLinkMiniQueryParameterKey = 'mini';
-const linkedInShareLinkMiniQueryParameterValue = 'true';
+const linkedInAppShareLinkBaseUrl = 'linkedin://shareArticle';
+const linkedInWebShareLinkBaseUrl =
+    'https://www.linkedin.com/sharing/share-offsite';
 const linkedInShareLinkUrlQueryParameterKey = 'url';
-const linkedInShareLinkTitleQueryParameterKey = 'title';
 
 const emailShareLinkBaseScheme = 'mailto';
 const emailShareLinkSubjectQueryParameterKey = 'subject';
 const emailShareLinkBodyQueryParameterKey = 'body';
 
-const xShareLinkBaseUrl = 'https://twitter.com/intent/tweet';
+const xAppShareLinkBaseUrl = 'twitter://post';
+const xWebShareLinkBaseUrl = 'https://twitter.com/intent/tweet';
 const xShareLinkUrlQueryParameterKey = 'url';
 const xShareLinkTextQueryParameterKey = 'text';
+const xShareLinkMessageQueryParameterKey = 'message';
 
 // OpenWeather
 // Endpoints
