@@ -66,7 +66,6 @@
   "aRestrictedAreaIsADesignatedAirspaceWhereDroneFlightsAreLimitedOrProhibitedToEnsureSafetySecurityOrEnvironmentalProtectionTheseAreasCanIncludeMilitaryZonesNoFlyZonesAroundAirportsAndGovernmentBuildingsAndProtectedEnvironmentalAreasLikeNationalParksFlyingInTheseAreasWithoutAuthorizationIsIllegalAndCanResultInPenalties": "A restricted area is a designated airspace where drone flights are limited or prohibited to ensure safety, security, or environmental protection. These areas can include military zones, no-fly zones around airports and government buildings, and protected environmental areas like national parks. Flying in these areas without authorization is illegal and can result in penalties.",
   "whatAreTheRedOrangeYellowAndGreenZones": "What are the red, orange, yellow and green zones?",
   "inDroneOperationsDifferentZonesIndicateVaryingLevelsOfRestrictionRedZonesAreProhibitedAreasWhereFlyingIsNotAllowedDueToSafetySecurityOrEnvironmentalConcernsOrangeZonesRequireAuthorizationFromTheFaaBeforeYouCanFlyYellowZonesAreAreasWhereFlyingIsPermittedButMayBeHazardousSoExtraCautionIsAdvisedGreenZonesAreOpenForFlyingWithoutAnySpecificRestrictionsOrAdditionalPermissions": "In drone operations, different zones indicate varying levels of restriction. Red Zones are prohibited areas where flying is not allowed due to safety, security, or environmental concerns. Orange Zones require authorization from the FAA before you can fly. Yellow Zones are areas where flying is permitted but may be hazardous, so extra caution is advised. Green Zones are open for flying without any specific restrictions or additional permissions.",
-  "v1": "v1",
   "view3rdPartyLicenses": "View 3rd party licenses",
   "developedBySkyTrade": "Developed by SkyTrade",
   "copyrightSkyTrade2024": "© SkyTrade 2024",
@@ -185,6 +184,5 @@
   "youDeletedAnAccountAtSomePointButDeclinedOurRequestForYouToInvalidateTheSessionInOrderToProceedKindlyAcceptTheNextDialogThatShowsUp": "You deleted an account at some point but declined our request for you to invalidate the session. In order to proceed, kindly accept the next dialog that shows up",
   "youNeedToAcceptTheDialogInOrderToProceed": "You need to accept the dialog in order to proceed",
   "anActionRequiresYourInputWeNeedToFinishLoggingYouOutOf": "An action requires your input. We need to finish logging you out of",
-  "thereIsNoOtherWayToProceedUnlessYouCompleteTheLogoutProcessYouWillBeAbleToLogBackInAfterwards": "There is no other way to proceed unless you complete the logout process. You will be able to log back in afterwards",
-  "failedToFetchAppVersion" : "Failed to fetch App version"
+  "thereIsNoOtherWayToProceedUnlessYouCompleteTheLogoutProcessYouWillBeAbleToLogBackInAfterwards": "There is no other way to proceed unless you complete the logout process. You will be able to log back in afterwards"
 }

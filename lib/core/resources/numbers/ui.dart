@@ -54,6 +54,7 @@ const fiveDotOneSeven = 5.17;
 const fiveDotFourFive = 5.45;
 const fiveDotEightFour = 5.84;
 const sixDotNil = 6.0;
+const sixDotFive = 6.5;
 const sixDotTwoThree = 6.23;
 const sevenDotNil = 7.0;
 const sevenDotSevenFive = 7.75;

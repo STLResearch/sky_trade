@@ -495,12 +495,6 @@ abstract class AppLocalizations {
   /// **'In drone operations, different zones indicate varying levels of restriction. Red Zones are prohibited areas where flying is not allowed due to safety, security, or environmental concerns. Orange Zones require authorization from the FAA before you can fly. Yellow Zones are areas where flying is permitted but may be hazardous, so extra caution is advised. Green Zones are open for flying without any specific restrictions or additional permissions.'**
   String get inDroneOperationsDifferentZonesIndicateVaryingLevelsOfRestrictionRedZonesAreProhibitedAreasWhereFlyingIsNotAllowedDueToSafetySecurityOrEnvironmentalConcernsOrangeZonesRequireAuthorizationFromTheFaaBeforeYouCanFlyYellowZonesAreAreasWhereFlyingIsPermittedButMayBeHazardousSoExtraCautionIsAdvisedGreenZonesAreOpenForFlyingWithoutAnySpecificRestrictionsOrAdditionalPermissions;
 
-  /// No description provided for @v1.
-  ///
-  /// In en, this message translates to:
-  /// **'v1'**
-  String get v1;
-
   /// No description provided for @view3rdPartyLicenses.
   ///
   /// In en, this message translates to:
@@ -1214,12 +1208,6 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'There is no other way to proceed unless you complete the logout process. You will be able to log back in afterwards'**
   String get thereIsNoOtherWayToProceedUnlessYouCompleteTheLogoutProcessYouWillBeAbleToLogBackInAfterwards;
-
-  /// No description provided for @failedToFetchAppVersion.
-  ///
-  /// In en, this message translates to:
-  /// **'Failed to fetch App version'**
-  String get failedToFetchAppVersion;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {
