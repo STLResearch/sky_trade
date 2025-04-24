@@ -1,5 +1,7 @@
 // ignore_for_file: lines_longer_than_80_chars
 
+import 'dart:io' show Platform;
+
 import 'package:flutter/material.dart'
     show
         AlignmentDirectional,
@@ -11,6 +13,7 @@ import 'package:flutter/material.dart'
         CircleBorder,
         Column,
         Container,
+        CrossAxisAlignment,
         Divider,
         EdgeInsetsDirectional,
         Expanded,
@@ -56,11 +59,13 @@ import 'package:sky_trade/core/resources/numbers/ui.dart'
         fourDotNil,
         fourteen,
         fourteenDotNil,
+        nilDotNil,
         nineteenDotTwo,
         one,
         oneDotNil,
         seventeen,
         six,
+        sixDotFive,
         sixDotNil,
         sixteen,
         sixteenDotEight,
@@ -68,6 +73,7 @@ import 'package:sky_trade/core/resources/numbers/ui.dart'
         ten,
         tenDotNil,
         thirtyDotNil,
+        thirtyFourDotFive,
         thirtyFourDotNil,
         thirtyOneDotNil,
         three,
@@ -168,9 +174,14 @@ class _LeaderboardTableState extends State<LeaderboardTable> {
         ).scaffoldBackgroundColor,
         elevated: true,
         child: Padding(
-          padding: const EdgeInsetsDirectional.symmetric(
-            vertical: thirtyOneDotNil,
-            horizontal: thirtyFourDotNil,
+          padding: EdgeInsetsDirectional.only(
+            top: thirtyOneDotNil,
+            bottom: switch (Platform.isIOS) {
+              true => nilDotNil,
+              false => thirtyOneDotNil,
+            },
+            start: thirtyFourDotNil,
+            end: thirtyFourDotNil,
           ),
           child: Column(
             children: [
@@ -426,6 +437,10 @@ class _LeaderboardTableState extends State<LeaderboardTable> {
                 height: twentyFourDotNil,
               ),
               Row(
+                crossAxisAlignment: switch (Platform.isIOS) {
+                  true => CrossAxisAlignment.start,
+                  false => CrossAxisAlignment.center,
+                },
                 children: [
                   Expanded(
                     child: BlocBuilder<LeaderboardStatisticsBloc,
@@ -446,88 +461,101 @@ class _LeaderboardTableState extends State<LeaderboardTable> {
                           ),
                           scrollDirection: Axis.horizontal,
                           controller: _scrollController,
-                          child: Row(
-                            children: List<Widget>.generate(
-                              leaderboardStatisticsState.maybeWhen(
-                                gotLeaderboardStatistics:
-                                    (leaderboardStatisticsEntity) => switch (
-                                        leaderboardStatisticsEntity
-                                                .totalCount ==
-                                            zero) {
-                                  true => zero,
-                                  false => _computeNumberOfPagesUsing(
-                                      totalPageCount:
-                                          leaderboardStatisticsEntity
-                                              .totalCount,
+                          child: Column(
+                            children: [
+                              Row(
+                                children: List<Widget>.generate(
+                                  leaderboardStatisticsState.maybeWhen(
+                                    gotLeaderboardStatistics:
+                                        (leaderboardStatisticsEntity) =>
+                                            switch (leaderboardStatisticsEntity
+                                                    .totalCount ==
+                                                zero) {
+                                      true => zero,
+                                      false => _computeNumberOfPagesUsing(
+                                          totalPageCount:
+                                              leaderboardStatisticsEntity
+                                                  .totalCount,
+                                        ),
+                                    },
+                                    orElse: () => ten,
+                                  ),
+                                  (index) => Skeletonizer(
+                                    effect:
+                                        leaderboardStatisticsState.maybeWhen(
+                                      failedToGetLeaderboardStatistics: (_) =>
+                                          const SoldColorEffect(
+                                        color: hexEBEBF4,
+                                      ),
+                                      orElse: () => ShimmerEffect(
+                                        highlightColor: Theme.of(
+                                          context,
+                                        ).scaffoldBackgroundColor,
+                                      ),
                                     ),
-                                },
-                                orElse: () => ten,
-                              ),
-                              (index) => Skeletonizer(
-                                effect: leaderboardStatisticsState.maybeWhen(
-                                  failedToGetLeaderboardStatistics: (_) =>
-                                      const SoldColorEffect(
-                                    color: hexEBEBF4,
-                                  ),
-                                  orElse: () => ShimmerEffect(
-                                    highlightColor: Theme.of(
-                                      context,
-                                    ).scaffoldBackgroundColor,
-                                  ),
-                                ),
-                                enabled: leaderboardStatisticsState.maybeWhen(
-                                  gotLeaderboardStatistics: (_) => false,
-                                  orElse: () => true,
-                                ),
-                                child: Skeleton.leaf(
-                                  child: ValueListenableBuilder(
-                                    valueListenable: widget.pageNumberNotifier,
-                                    builder: (_, pageNumberNotifierValue, __) =>
-                                        InkWell(
-                                      customBorder: const CircleBorder(),
-                                      child: Container(
-                                        padding: const EdgeInsetsDirectional
-                                            .symmetric(
-                                          vertical: eightDotNil,
-                                          horizontal: tenDotNil,
-                                        ),
-                                        decoration: BoxDecoration(
-                                          color: switch (index + one ==
-                                              pageNumberNotifierValue) {
-                                            true => hex5D7285,
-                                            false => null,
+                                    enabled:
+                                        leaderboardStatisticsState.maybeWhen(
+                                      gotLeaderboardStatistics: (_) => false,
+                                      orElse: () => true,
+                                    ),
+                                    child: Skeleton.leaf(
+                                      child: ValueListenableBuilder(
+                                        valueListenable:
+                                            widget.pageNumberNotifier,
+                                        builder:
+                                            (_, pageNumberNotifierValue, __) =>
+                                                InkWell(
+                                          customBorder: const CircleBorder(),
+                                          child: Container(
+                                            padding: const EdgeInsetsDirectional
+                                                .symmetric(
+                                              vertical: eightDotNil,
+                                              horizontal: tenDotNil,
+                                            ),
+                                            decoration: BoxDecoration(
+                                              color: switch (index + one ==
+                                                  pageNumberNotifierValue) {
+                                                true => hex5D7285,
+                                                false => null,
+                                              },
+                                              shape: BoxShape.circle,
+                                            ),
+                                            child: Text(
+                                              (index + one).toString(),
+                                              style: Theme.of(
+                                                context,
+                                              ).textTheme.bodySmall?.copyWith(
+                                                    fontFamily: FontFamily.lato,
+                                                    fontSize: fourteenDotNil,
+                                                    height: sixteenDotEight /
+                                                        fourteenDotNil,
+                                                    color: switch (index +
+                                                            one ==
+                                                        pageNumberNotifierValue) {
+                                                      true => Theme.of(
+                                                          context,
+                                                        ).scaffoldBackgroundColor,
+                                                      false => hex5D7285,
+                                                    },
+                                                  ),
+                                            ),
+                                          ),
+                                          onTap: () {
+                                            _goToPage(
+                                              number: index + one,
+                                            );
                                           },
-                                          shape: BoxShape.circle,
-                                        ),
-                                        child: Text(
-                                          (index + one).toString(),
-                                          style: Theme.of(
-                                            context,
-                                          ).textTheme.bodySmall?.copyWith(
-                                                fontFamily: FontFamily.lato,
-                                                fontSize: fourteenDotNil,
-                                                height: sixteenDotEight /
-                                                    fourteenDotNil,
-                                                color: switch (index + one ==
-                                                    pageNumberNotifierValue) {
-                                                  true => Theme.of(
-                                                      context,
-                                                    ).scaffoldBackgroundColor,
-                                                  false => hex5D7285,
-                                                },
-                                              ),
                                         ),
                                       ),
-                                      onTap: () {
-                                        _goToPage(
-                                          number: index + one,
-                                        );
-                                      },
                                     ),
                                   ),
                                 ),
                               ),
-                            ),
+                              if (Platform.isIOS)
+                                const SizedBox(
+                                  height: thirtyFourDotFive,
+                                ),
+                            ],
                           ),
                         ),
                       ),
@@ -536,110 +564,122 @@ class _LeaderboardTableState extends State<LeaderboardTable> {
                   const SizedBox(
                     width: twentyThreeDotNil,
                   ),
-                  BlocBuilder<LeaderboardStatisticsBloc,
-                      LeaderboardStatisticsState>(
-                    builder: (_, leaderboardStatisticsState) => RichText(
-                      text: WidgetSpan(
-                        child: InkWell(
-                          customBorder: RoundedRectangleBorder(
-                            borderRadius: BorderRadiusDirectional.circular(
-                              eightDotNil,
-                            ),
-                          ),
-                          onTap: leaderboardStatisticsState.maybeWhen(
-                            gotLeaderboardStatistics: (
-                              leaderboardStatisticsEntity,
-                            ) =>
-                                switch (
-                                    leaderboardStatisticsEntity.totalCount ==
+                  Column(
+                    children: [
+                      if (Platform.isIOS)
+                        const SizedBox(
+                          height: sixDotFive,
+                        ),
+                      BlocBuilder<LeaderboardStatisticsBloc,
+                          LeaderboardStatisticsState>(
+                        builder: (_, leaderboardStatisticsState) => RichText(
+                          text: WidgetSpan(
+                            child: InkWell(
+                              customBorder: RoundedRectangleBorder(
+                                borderRadius: BorderRadiusDirectional.circular(
+                                  eightDotNil,
+                                ),
+                              ),
+                              onTap: leaderboardStatisticsState.maybeWhen(
+                                gotLeaderboardStatistics: (
+                                  leaderboardStatisticsEntity,
+                                ) =>
+                                    switch (leaderboardStatisticsEntity
+                                            .totalCount ==
                                         zero) {
-                              true => null,
-                              false => () {
-                                  final isLastPage = _checkIsLastPageUsing(
-                                    totalPageCount:
-                                        leaderboardStatisticsEntity.totalCount,
-                                  );
-
-                                  if (!isLastPage) {
-                                    _goToNextPage();
-                                  }
-                                },
-                            },
-                            orElse: () => null,
-                          ),
-                          child: Padding(
-                            padding: const EdgeInsetsDirectional.all(
-                              eightDotNil,
-                            ),
-                            child: Row(
-                              children: [
-                                Text(
-                                  context.localize.next,
-                                  style: TextStyle(
-                                    fontFamily: FontFamily.lato,
-                                    fontWeight: FontWeight.w700,
-                                    fontSize: sixteenDotNil,
-                                    height: nineteenDotTwo / sixteenDotNil,
-                                    color: leaderboardStatisticsState.maybeWhen(
-                                      gotLeaderboardStatistics: (
-                                        leaderboardStatisticsEntity,
-                                      ) {
-                                        if (leaderboardStatisticsEntity
-                                                .totalCount ==
-                                            zero) {
-                                          return hexEBEBF4;
-                                        }
-
-                                        final isLastPage =
-                                            _checkIsLastPageUsing(
-                                          totalPageCount:
-                                              leaderboardStatisticsEntity
-                                                  .totalCount,
-                                        );
-
-                                        return switch (isLastPage) {
-                                          true => hexEBEBF4,
-                                          false => hex5D7285,
-                                        };
-                                      },
-                                      orElse: () => hexEBEBF4,
-                                    ),
-                                  ),
-                                ),
-                                const SizedBox(
-                                  width: eightDotSevenSeven,
-                                ),
-                                Assets.svgs.nextArrow.svg(
-                                  color: leaderboardStatisticsState.maybeWhen(
-                                    gotLeaderboardStatistics: (
-                                      leaderboardStatisticsEntity,
-                                    ) {
-                                      if (leaderboardStatisticsEntity
-                                              .totalCount ==
-                                          zero) {
-                                        return hexEBEBF4;
-                                      }
-
+                                  true => null,
+                                  false => () {
                                       final isLastPage = _checkIsLastPageUsing(
                                         totalPageCount:
                                             leaderboardStatisticsEntity
                                                 .totalCount,
                                       );
 
-                                      return switch (isLastPage) {
-                                        true => hexEBEBF4,
-                                        false => hex5D7285,
-                                      };
+                                      if (!isLastPage) {
+                                        _goToNextPage();
+                                      }
                                     },
-                                    orElse: () => hexEBEBF4,
-                                  ),
+                                },
+                                orElse: () => null,
+                              ),
+                              child: Padding(
+                                padding: const EdgeInsetsDirectional.all(
+                                  eightDotNil,
                                 ),
-                              ],
+                                child: Row(
+                                  children: [
+                                    Text(
+                                      context.localize.next,
+                                      style: TextStyle(
+                                        fontFamily: FontFamily.lato,
+                                        fontWeight: FontWeight.w700,
+                                        fontSize: sixteenDotNil,
+                                        height: nineteenDotTwo / sixteenDotNil,
+                                        color: leaderboardStatisticsState
+                                            .maybeWhen(
+                                          gotLeaderboardStatistics: (
+                                            leaderboardStatisticsEntity,
+                                          ) {
+                                            if (leaderboardStatisticsEntity
+                                                    .totalCount ==
+                                                zero) {
+                                              return hexEBEBF4;
+                                            }
+
+                                            final isLastPage =
+                                                _checkIsLastPageUsing(
+                                              totalPageCount:
+                                                  leaderboardStatisticsEntity
+                                                      .totalCount,
+                                            );
+
+                                            return switch (isLastPage) {
+                                              true => hexEBEBF4,
+                                              false => hex5D7285,
+                                            };
+                                          },
+                                          orElse: () => hexEBEBF4,
+                                        ),
+                                      ),
+                                    ),
+                                    const SizedBox(
+                                      width: eightDotSevenSeven,
+                                    ),
+                                    Assets.svgs.nextArrow.svg(
+                                      color:
+                                          leaderboardStatisticsState.maybeWhen(
+                                        gotLeaderboardStatistics: (
+                                          leaderboardStatisticsEntity,
+                                        ) {
+                                          if (leaderboardStatisticsEntity
+                                                  .totalCount ==
+                                              zero) {
+                                            return hexEBEBF4;
+                                          }
+
+                                          final isLastPage =
+                                              _checkIsLastPageUsing(
+                                            totalPageCount:
+                                                leaderboardStatisticsEntity
+                                                    .totalCount,
+                                          );
+
+                                          return switch (isLastPage) {
+                                            true => hexEBEBF4,
+                                            false => hex5D7285,
+                                          };
+                                        },
+                                        orElse: () => hexEBEBF4,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
                             ),
                           ),
                         ),
                       ),
-                    ),
+                    ],
                   ),
                 ],
               ),

@@ -1,5 +1,7 @@
 // ignore_for_file: lines_longer_than_80_chars
 
+import 'dart:io' show Platform;
+
 import 'package:flutter/material.dart'
     show
         AlignmentDirectional,
@@ -45,6 +47,7 @@ import 'package:sky_trade/core/resources/numbers/ui.dart'
         seven,
         six,
         sixteenDotNil,
+        sixtyDotNil,
         sixtySixDotNil,
         tenDotNil,
         thirtyDotNil,
@@ -164,17 +167,6 @@ class _ReferralsTableState extends State<ReferralsTable> {
                           ).textTheme.bodyLarge?.copyWith(
                                 fontSize: fifteenDotNil,
                                 height: twentyTwoDotFive / fifteenDotNil,
-                                color: referralHistoryState.maybeWhen(
-                                  gotReferralHistory: (referralHistoryEntity) =>
-                                      switch (referralHistoryEntity
-                                          .histories.isEmpty) {
-                                    true => Theme.of(
-                                        context,
-                                      ).scaffoldBackgroundColor,
-                                    false => null,
-                                  },
-                                  orElse: () => null,
-                                ),
                               ),
                         ),
                       ),
@@ -198,28 +190,38 @@ class _ReferralsTableState extends State<ReferralsTable> {
                               const SizedBox(
                                 height: twelveDotNil,
                               ),
-                            Container(
-                              padding: const EdgeInsetsDirectional.all(
-                                tenDotNil,
-                              ),
-                              decoration: switch (index % two == zero) {
-                                true => null,
-                                false => BoxDecoration(
-                                    color: hexF0F4FA,
-                                    borderRadius:
-                                        BorderRadiusDirectional.circular(
-                                      eightDotNil,
+                            BlocBuilder<ReferralHistoryBloc,
+                                ReferralHistoryState>(
+                              builder: (_, referralHistoryState) => Container(
+                                padding: const EdgeInsetsDirectional.all(
+                                  tenDotNil,
+                                ),
+                                decoration: switch (index % two == zero) {
+                                  true => null,
+                                  false => BoxDecoration(
+                                      color: referralHistoryState.maybeWhen(
+                                        gotReferralHistory:
+                                            (referralHistoryEntity) => switch (
+                                                referralHistoryEntity
+                                                    .histories.isEmpty) {
+                                          true => Theme.of(
+                                              context,
+                                            ).scaffoldBackgroundColor,
+                                          false => hexF0F4FA,
+                                        },
+                                        orElse: () => hexF0F4FA,
+                                      ),
+                                      borderRadius:
+                                          BorderRadiusDirectional.circular(
+                                        eightDotNil,
+                                      ),
                                     ),
-                                  ),
-                              },
-                              child: Row(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: List<Widget>.generate(
-                                  ReferralsHistory.values.length,
-                                  (rowIndex) => BlocBuilder<ReferralHistoryBloc,
-                                      ReferralHistoryState>(
-                                    builder: (_, referralHistoryState) =>
-                                        Padding(
+                                },
+                                child: Row(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: List<Widget>.generate(
+                                    ReferralsHistory.values.length,
+                                    (rowIndex) => Padding(
                                       padding: EdgeInsetsDirectional.only(
                                         end: switch (
                                             ReferralsHistory.values[rowIndex]) {
@@ -363,7 +365,9 @@ class _ReferralsTableState extends State<ReferralsTable> {
                                                                 referralHistoryEntity
                                                                     .histories
                                                                     .isEmpty) {
-                                                      true ||
+                                                      true => Theme.of(
+                                                          context,
+                                                        ).scaffoldBackgroundColor,
                                                       false
                                                           when index >=
                                                                   referralHistoryEntity
@@ -440,8 +444,11 @@ class _ReferralsTableState extends State<ReferralsTable> {
                   ),
                 ],
               ),
-              const SizedBox(
-                height: twentySevenDotNil,
+              SizedBox(
+                height: switch (Platform.isIOS) {
+                  true => sixtyDotNil,
+                  false => twentySevenDotNil,
+                },
               ),
             ],
           ),

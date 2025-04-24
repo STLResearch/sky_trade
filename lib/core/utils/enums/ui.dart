@@ -61,11 +61,6 @@ enum Leaderboard {
   balance,
 }
 
-enum ArrangementType {
-  row,
-  cube,
-}
-
 enum Quarter {
   q3,
   q2,

@@ -14,7 +14,6 @@ import 'package:flutter/material.dart'
         MediaQuery,
         Navigator,
         NestedScrollView,
-        OverscrollNotification,
         Padding,
         PageController,
         PageView,
@@ -276,12 +275,9 @@ class _ReferralScreenViewState extends State<ReferralScreenView> {
                 ),
               ),
               Expanded(
-                child: RefreshIndicator.adaptive(
+                child: RefreshIndicator(
                   notificationPredicate: (scrollNotification) =>
-                      switch (scrollNotification is OverscrollNotification) {
-                    true => scrollNotification.depth == two,
-                    false => scrollNotification.depth == zero,
-                  },
+                      scrollNotification.depth == two,
                   onRefresh: () => switch (_selectedTabNotifier.value) {
                     ReferralTab.theProgram => _getSkyPoints(),
                     ReferralTab.share => Future.wait<void>([
