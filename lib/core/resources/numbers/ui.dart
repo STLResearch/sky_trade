@@ -122,6 +122,7 @@ const thirtyDotNil = 30.0;
 const thirtyOneDotNil = 31.0;
 const thirtyTwoDotNil = 32.0;
 const thirtyTwoDotFive = 32.5;
+const thirtyTwoDotThreeFive = 32.35;
 const thirtyTwoDotSixFour = 32.64;
 const thirtyThreeDotNil = 33.0;
 const thirtyFourDotNil = 34.0;

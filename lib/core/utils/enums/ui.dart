@@ -67,3 +67,13 @@ enum Quarter {
   q1,
   q4,
 }
+
+enum InputFieldType {
+  textInput,
+  phoneInput,
+}
+
+enum UserCategory {
+  individual,
+  corporateEntity;
+}

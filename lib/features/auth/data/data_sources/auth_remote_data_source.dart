@@ -1,7 +1,6 @@
 // ignore_for_file: lines_longer_than_80_chars
 
 import 'package:sky_trade/core/errors/exceptions/auth_exception.dart';
-import 'package:sky_trade/core/resources/numbers/networking.dart' show zero;
 import 'package:sky_trade/core/resources/strings/networking.dart'
     show
         aWalletAlreadyExistsForThisEmailAddressKindlySignInWithTheSameMethodUsedPreviouslyCode,
@@ -11,11 +10,10 @@ import 'package:sky_trade/core/resources/strings/networking.dart'
         emailKey,
         invalidEmailCode,
         invalidSignatureCode,
-        nameKey,
         newsletterKey,
         phoneNumberKey,
-        pirateValue,
         privatePath,
+        referralCodeKey,
         sessionPath,
         unauthorizedCode,
         userDeletedCode,
@@ -27,6 +25,7 @@ import 'package:sky_trade/core/utils/clients/network_client.dart'
     show HttpClient;
 import 'package:sky_trade/core/utils/clients/response_handler.dart';
 import 'package:sky_trade/core/utils/enums/networking.dart' show RequestMethod;
+import 'package:sky_trade/core/utils/enums/ui.dart' show UserCategory;
 import 'package:sky_trade/features/auth/data/models/auth_model.dart'
     show SkyTradeUserModel;
 
@@ -34,7 +33,10 @@ abstract interface class AuthRemoteDataSource {
   Future<SkyTradeUserModel> createSkyTradeUserUsing({
     required String email,
     required String blockchainAddress,
+    required String phoneNumber,
+    required UserCategory userCategory,
     required bool subscribeToNewsletter,
+    required String? referralCode,
   });
 
   Future<SkyTradeUserModel> checkSkyTradeUserExists();
@@ -53,7 +55,10 @@ final class AuthRemoteDataSourceImplementation
   Future<SkyTradeUserModel> createSkyTradeUserUsing({
     required String email,
     required String blockchainAddress,
+    required String phoneNumber,
+    required UserCategory userCategory,
     required bool subscribeToNewsletter,
+    required String? referralCode,
   }) =>
       handleResponse<CreateSkyTradeUserException, Map<String, dynamic>,
           SkyTradeUserModel>(
@@ -62,12 +67,12 @@ final class AuthRemoteDataSourceImplementation
           path: privatePath + usersPath + createPath,
           includeSignature: true,
           data: {
-            nameKey: pirateValue,
             emailKey: email,
             blockchainAddressKey: blockchainAddress,
+            phoneNumberKey: phoneNumber,
+            categoryIdKey: userCategory.index,
             newsletterKey: subscribeToNewsletter,
-            categoryIdKey: zero,
-            phoneNumberKey: pirateValue,
+            if (referralCode != null) referralCodeKey: referralCode,
           },
         ),
         onSuccess: SkyTradeUserModel.fromJson,

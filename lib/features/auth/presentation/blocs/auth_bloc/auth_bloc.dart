@@ -3,10 +3,8 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:sky_trade/core/errors/failures/auth_failure.dart'
     show
         CheckSkyTradeUserFailure,
-        CreateSkyTradeUserFailure,
         SFAAuthenticationUnknownFailure,
-        SFAUserShouldLogoutFailure,
-        UserNotFoundFailure;
+        SFAUserShouldLogoutFailure;
 import 'package:sky_trade/features/auth/domain/repositories/auth_repository.dart';
 
 part 'auth_event.dart';
@@ -40,10 +38,6 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
 
     on<_CheckSkyTradeUserExists>(
       _checkSkyTradeUserExists,
-    );
-
-    on<_CreateSkyTradeUser>(
-      _createSkyTradeUser,
     );
   }
 
@@ -222,39 +216,9 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
 
     checkSkyTradeUserExists.fold(
       (checkSkyTradeUserFailure) {
-        if (checkSkyTradeUserFailure is UserNotFoundFailure) {
-          add(
-            const AuthEvent.createSkyTradeUser(),
-          );
-
-          return;
-        }
-
         emit(
           AuthState.failedToCheckSkyTradeUser(
             checkSkyTradeUserFailure: checkSkyTradeUserFailure,
-          ),
-        );
-      },
-      (_) {
-        emit(
-          const AuthState.authenticated(),
-        );
-      },
-    );
-  }
-
-  Future<void> _createSkyTradeUser(
-    _CreateSkyTradeUser _,
-    Emitter<AuthState> emit,
-  ) async {
-    final createSkyTradeUser = await _authRepository.createSkyTradeUser();
-
-    createSkyTradeUser.fold(
-      (createSkyTradeUserFailure) {
-        emit(
-          AuthState.failedToCreateSkyTradeUser(
-            createSkyTradeUserFailure: createSkyTradeUserFailure,
           ),
         );
       },

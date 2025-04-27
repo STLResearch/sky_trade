@@ -10,6 +10,8 @@ import 'package:sky_trade/features/auth/presentation/views/get_started_screen.da
     show GetStartedScreen;
 import 'package:sky_trade/features/auth/presentation/views/loading_screen.dart'
     show LoadingScreen;
+import 'package:sky_trade/features/auth/presentation/views/onboarding_screen.dart'
+    show OnboardingScreen;
 import 'package:sky_trade/features/drone_insights/presentation/views/insights_screen.dart'
     show InsightsScreen;
 import 'package:sky_trade/features/help/presentation/views/help_screen.dart';
@@ -34,6 +36,7 @@ Route routes(RouteSettings settings) => MaterialPageRoute(
         insightsRoutePath => const InsightsScreen(),
         settingsRoutePath => const SettingsScreen(),
         referralRoutePath => const ReferralScreen(),
+        onboardingRoutePath => const OnboardingScreen(),
         _ => const ErrorScreen(
             reason: ErrorReason.unknownNavigationRoute,
           ),

@@ -8,3 +8,4 @@ const helpRoutePath = '/help';
 const insightsRoutePath = '/insights';
 const settingsRoutePath = '/settings';
 const referralRoutePath = '/referral';
+const onboardingRoutePath = '/onboarding';

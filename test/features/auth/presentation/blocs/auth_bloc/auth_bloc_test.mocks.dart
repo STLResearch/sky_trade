@@ -9,6 +9,7 @@ import 'package:auth0_flutter/auth0_flutter.dart' as _i3;
 import 'package:dartz/dartz.dart' as _i2;
 import 'package:mockito/mockito.dart' as _i1;
 import 'package:sky_trade/core/errors/failures/auth_failure.dart' as _i6;
+import 'package:sky_trade/core/utils/enums/ui.dart' as _i8;
 import 'package:sky_trade/features/auth/domain/entities/auth_entity.dart'
     as _i7;
 import 'package:sky_trade/features/auth/domain/repositories/auth_repository.dart'
@@ -76,6 +77,15 @@ class MockAuthRepository extends _i1.Mock implements _i4.AuthRepository {
             returnValueForMissingStub: _i5.Future<bool>.value(false),
           )
           as _i5.Future<bool>);
+
+  @override
+  _i5.Future<String?> get userEmail =>
+      (super.noSuchMethod(
+            Invocation.getter(#userEmail),
+            returnValue: _i5.Future<String?>.value(),
+            returnValueForMissingStub: _i5.Future<String?>.value(),
+          )
+          as _i5.Future<String?>);
 
   @override
   _i5.Future<_i2.Either<_i6.Auth0AuthenticationFailure, _i7.Auth0UserEntity>>
@@ -306,16 +316,34 @@ class MockAuthRepository extends _i1.Mock implements _i4.AuthRepository {
 
   @override
   _i5.Future<_i2.Either<_i6.CreateSkyTradeUserFailure, _i7.SkyTradeUserEntity>>
-  createSkyTradeUser() =>
+  createSkyTradeUserUsing({
+    required String? phoneNumber,
+    required _i8.UserCategory? userCategory,
+    required bool? subscribeToNewsletter,
+    required String? referralCode,
+  }) =>
       (super.noSuchMethod(
-            Invocation.method(#createSkyTradeUser, []),
+            Invocation.method(#createSkyTradeUserUsing, [], {
+              #phoneNumber: phoneNumber,
+              #userCategory: userCategory,
+              #subscribeToNewsletter: subscribeToNewsletter,
+              #referralCode: referralCode,
+            }),
             returnValue: _i5.Future<
               _i2.Either<_i6.CreateSkyTradeUserFailure, _i7.SkyTradeUserEntity>
             >.value(
               _FakeEither_0<
                 _i6.CreateSkyTradeUserFailure,
                 _i7.SkyTradeUserEntity
-              >(this, Invocation.method(#createSkyTradeUser, [])),
+              >(
+                this,
+                Invocation.method(#createSkyTradeUserUsing, [], {
+                  #phoneNumber: phoneNumber,
+                  #userCategory: userCategory,
+                  #subscribeToNewsletter: subscribeToNewsletter,
+                  #referralCode: referralCode,
+                }),
+              ),
             ),
             returnValueForMissingStub: _i5.Future<
               _i2.Either<_i6.CreateSkyTradeUserFailure, _i7.SkyTradeUserEntity>
@@ -323,7 +351,15 @@ class MockAuthRepository extends _i1.Mock implements _i4.AuthRepository {
               _FakeEither_0<
                 _i6.CreateSkyTradeUserFailure,
                 _i7.SkyTradeUserEntity
-              >(this, Invocation.method(#createSkyTradeUser, [])),
+              >(
+                this,
+                Invocation.method(#createSkyTradeUserUsing, [], {
+                  #phoneNumber: phoneNumber,
+                  #userCategory: userCategory,
+                  #subscribeToNewsletter: subscribeToNewsletter,
+                  #referralCode: referralCode,
+                }),
+              ),
             ),
           )
           as _i5.Future<

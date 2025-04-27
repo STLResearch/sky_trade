@@ -751,4 +751,55 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get unableToShareTheCorrespondingAppMayNotBeInstalledOnYourDevice => 'Unable to share. The corresponding app may not be installed on your device';
+
+  @override
+  String get email => 'Email';
+
+  @override
+  String get emailAtMailDotCom => 'email@mail.com';
+
+  @override
+  String get phone => 'Phone';
+
+  @override
+  String get phoneNumberCannotBeEmpty => 'Phone number cannot be empty';
+
+  @override
+  String get searchCountryOrCountryCode => 'Search country or country code';
+
+  @override
+  String get yourStatus => 'Your Status';
+
+  @override
+  String get selectACategory => 'Select a category';
+
+  @override
+  String get referralCode => 'Referral Code';
+
+  @override
+  String get enterReferralCode => 'Enter referral code';
+
+  @override
+  String get subscribeToNewsletter => 'Subscribe to newsletter';
+
+  @override
+  String get invalidPhoneNumber => 'Invalid phone number';
+
+  @override
+  String get removeWhitespaces => 'Remove whitespaces';
+
+  @override
+  String get referralCodeTooShortSkyTradeReferralCodeIsSixCharactersLong => 'Referral code too short. SkyTrade referral code is six characters long';
+
+  @override
+  String get referralCodeTooLongSkyTradeReferralCodeIsSixCharactersLong => 'Referral code too long. SkyTrade referral code is six characters long';
+
+  @override
+  String get submit => 'Submit';
+
+  @override
+  String get iAmAnIndividual => 'I am an individual';
+
+  @override
+  String get iAmACorporateEntity => 'I am a corporate entity';
 }
