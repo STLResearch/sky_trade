@@ -119,6 +119,13 @@ class $AssetsSvgsGen {
   /// File path: assets/svgs/danger.svg
   SvgGenImage get danger => const SvgGenImage('assets/svgs/danger.svg');
 
+  /// File path: assets/svgs/dotted_line.svg
+  SvgGenImage get dottedLine =>
+      const SvgGenImage('assets/svgs/dotted_line.svg');
+
+  /// File path: assets/svgs/earth.svg
+  SvgGenImage get earth => const SvgGenImage('assets/svgs/earth.svg');
+
   /// File path: assets/svgs/flight.svg
   SvgGenImage get flight => const SvgGenImage('assets/svgs/flight.svg');
 
@@ -130,6 +137,9 @@ class $AssetsSvgsGen {
 
   /// File path: assets/svgs/help.svg
   SvgGenImage get help => const SvgGenImage('assets/svgs/help.svg');
+
+  /// File path: assets/svgs/home.svg
+  SvgGenImage get home => const SvgGenImage('assets/svgs/home.svg');
 
   /// File path: assets/svgs/icon_drone_about.svg
   SvgGenImage get iconDroneAbout =>
@@ -195,6 +205,9 @@ class $AssetsSvgsGen {
   SvgGenImage get meatballsMenu =>
       const SvgGenImage('assets/svgs/meatballs_menu.svg');
 
+  /// File path: assets/svgs/menu_gift.svg
+  SvgGenImage get menuGift => const SvgGenImage('assets/svgs/menu_gift.svg');
+
   /// File path: assets/svgs/my_location_followed.svg
   SvgGenImage get myLocationFollowed =>
       const SvgGenImage('assets/svgs/my_location_followed.svg');
@@ -203,11 +216,33 @@ class $AssetsSvgsGen {
   SvgGenImage get myLocationNotFollowed =>
       const SvgGenImage('assets/svgs/my_location_not_followed.svg');
 
+  /// File path: assets/svgs/next_arrow.svg
+  SvgGenImage get nextArrow => const SvgGenImage('assets/svgs/next_arrow.svg');
+
   /// File path: assets/svgs/prohibited.svg
   SvgGenImage get prohibited => const SvgGenImage('assets/svgs/prohibited.svg');
 
   /// File path: assets/svgs/rain.svg
   SvgGenImage get rain => const SvgGenImage('assets/svgs/rain.svg');
+
+  /// File path: assets/svgs/referral_facebook.svg
+  SvgGenImage get referralFacebook =>
+      const SvgGenImage('assets/svgs/referral_facebook.svg');
+
+  /// File path: assets/svgs/referral_gift.svg
+  SvgGenImage get referralGift =>
+      const SvgGenImage('assets/svgs/referral_gift.svg');
+
+  /// File path: assets/svgs/referral_google.svg
+  SvgGenImage get referralGoogle =>
+      const SvgGenImage('assets/svgs/referral_google.svg');
+
+  /// File path: assets/svgs/referral_linked_in.svg
+  SvgGenImage get referralLinkedIn =>
+      const SvgGenImage('assets/svgs/referral_linked_in.svg');
+
+  /// File path: assets/svgs/referral_x.svg
+  SvgGenImage get referralX => const SvgGenImage('assets/svgs/referral_x.svg');
 
   /// File path: assets/svgs/restricted.svg
   SvgGenImage get restricted => const SvgGenImage('assets/svgs/restricted.svg');
@@ -217,6 +252,13 @@ class $AssetsSvgsGen {
 
   /// File path: assets/svgs/settings.svg
   SvgGenImage get settings => const SvgGenImage('assets/svgs/settings.svg');
+
+  /// File path: assets/svgs/share.svg
+  SvgGenImage get share => const SvgGenImage('assets/svgs/share.svg');
+
+  /// File path: assets/svgs/share_invite.svg
+  SvgGenImage get shareInvite =>
+      const SvgGenImage('assets/svgs/share_invite.svg');
 
   /// File path: assets/svgs/sky_trade_logo.svg
   SvgGenImage get skyTradeLogo =>
@@ -231,6 +273,9 @@ class $AssetsSvgsGen {
 
   /// File path: assets/svgs/sun.svg
   SvgGenImage get sun => const SvgGenImage('assets/svgs/sun.svg');
+
+  /// File path: assets/svgs/user_group.svg
+  SvgGenImage get userGroup => const SvgGenImage('assets/svgs/user_group.svg');
 
   /// File path: assets/svgs/weather.svg
   SvgGenImage get weather => const SvgGenImage('assets/svgs/weather.svg');
@@ -257,10 +302,13 @@ class $AssetsSvgsGen {
     cloudAlt,
     community,
     danger,
+    dottedLine,
+    earth,
     flight,
     gift,
     google,
     help,
+    home,
     iconDroneAbout,
     iconDroneBlack,
     iconDroneBlue,
@@ -278,17 +326,27 @@ class $AssetsSvgsGen {
     mapLayerDark,
     mapLayerSatellite,
     meatballsMenu,
+    menuGift,
     myLocationFollowed,
     myLocationNotFollowed,
+    nextArrow,
     prohibited,
     rain,
+    referralFacebook,
+    referralGift,
+    referralGoogle,
+    referralLinkedIn,
+    referralX,
     restricted,
     search,
     settings,
+    share,
+    shareInvite,
     skyTradeLogo,
     skyTradeRadarLogo,
     storm,
     sun,
+    userGroup,
     weather,
     wifiOff,
     wifiOn,

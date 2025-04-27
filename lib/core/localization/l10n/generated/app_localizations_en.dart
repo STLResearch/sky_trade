@@ -33,6 +33,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get pleaseEnterAValidEmail => 'Please enter a valid email';
 
   @override
+  String get emailFieldCannotBeEmpty => 'Email field cannot be empty';
+
+  @override
   String get signInOrSignUpEffortlesslyUseTheAuthenticationMethodYouChoseDuringSignUpToSignIn => 'Sign in or sign up effortlessly. Use the authentication method you chose during sign up to sign in.';
 
   @override
@@ -565,4 +568,187 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get thereIsNoOtherWayToProceedUnlessYouCompleteTheLogoutProcessYouWillBeAbleToLogBackInAfterwards => 'There is no other way to proceed unless you complete the logout process. You will be able to log back in afterwards';
+
+  @override
+  String get referralProgram => 'Referral Program';
+
+  @override
+  String get theProgram => 'The Program';
+
+  @override
+  String get share => 'Share';
+
+  @override
+  String get history => 'History';
+
+  @override
+  String get leaderboard => 'Leaderboard';
+
+  @override
+  String get skyPointsBalance => 'SKY Points Balance';
+
+  @override
+  String get skyPoints => 'SKY Points';
+
+  @override
+  String get howCanIEarnSkyPoints => 'How can I earn SKY Points?';
+
+  @override
+  String get shareAndEarn => 'Share And Earn! 🚀✨';
+
+  @override
+  String get registerAndClaim => 'Register & Claim';
+
+  @override
+  String get earn => 'Earn';
+
+  @override
+  String get sendYourInviteLinkOrCodeToYourFriendsAndExplainToThemHowCoolSkyTradeIs => 'Send your invite link or code to your friends and explain to them how cool SkyTrade is';
+
+  @override
+  String get letThemRegisterAndClaimTheirAirspacesUsingYourReferralLinkOrCode => 'Let them register and claim their airspaces using your referral link or code';
+
+  @override
+  String get youAndYourFriendsAreRewardedWith50CreditsAndMore => 'You and your friends are rewarded with 50 credits and more';
+
+  @override
+  String get shareTheReferralLinkOrCode => 'Share the referral link or code';
+
+  @override
+  String get copyCode => 'Copy code';
+
+  @override
+  String get copyLink => 'Copy link';
+
+  @override
+  String get inviteYourFriends => 'Invite your friends';
+
+  @override
+  String get emailAddress => 'email address';
+
+  @override
+  String get shareYourUniqueQrCode => 'Share your unique QR Code';
+
+  @override
+  String get registeredFriends => 'Registered friends';
+
+  @override
+  String get registeredAirspaces => 'Registered airspaces';
+
+  @override
+  String get validatedProperties => 'Validated properties';
+
+  @override
+  String get yourReferrals => 'Your referrals';
+
+  @override
+  String get date => 'Date';
+
+  @override
+  String get amount => 'Amount';
+
+  @override
+  String get description => 'Description';
+
+  @override
+  String get yourEarnings => 'Your Earnings';
+
+  @override
+  String get lifetimeEarnings => 'Lifetime Earnings';
+
+  @override
+  String get user => 'User';
+
+  @override
+  String get balance => 'Balance';
+
+  @override
+  String get next => 'Next';
+
+  @override
+  String get currentPeriodChallengeLeaderboard => 'Current Period Challenge Leaderboard';
+
+  @override
+  String get accountRegistrationNoKycRequiredToGetThesePoints => 'Account Registration (no KYC required to get these points)';
+
+  @override
+  String get claimYourAirspaceFullClaimVerifiedAirspaceThisIsPerEveryUniqueClaimedAirspaceKycCompletedIsAPreconditionForThisAllocation => 'Claim your airspace (full claim/verified airspace). This is per every unique claimed airspace. KYC completed is a precondition for this allocation.';
+
+  @override
+  String get forClaimedAirSpaceWhichIsFullyValidatedDoneByTheReferredAccount => 'For claimed air space which is fully validated done by the referred account.';
+
+  @override
+  String get referAFriendFriendRegistersAnAccountButKycOnThatFriendsAccountIsNotRequiredForTheIntroducingAccountToGetTheirSkyPointsFraudulentActivityWillBeMinimizedByTAndCsWhereWeSayWeWillDeductPointsForFraudulentActsIfDiscovered => 'Refer a friend (friend registers an account, but KYC on that friend’s account is not required for the introducing account to get their SKY points, fraudulent activity will be minimized by T&Cs where we say we will deduct points for fraudulent acts if discovered)';
+
+  @override
+  String get forMakingAFirstValidBidInTheAuctionHouse => 'For making a first valid bid in the Auction House';
+
+  @override
+  String get claimOrReferOneAirspacesInASpecificAreaNewYorkManhattanAndBoroughsTexasGarlandMurphyPlanoRichardsonMesquiteDallasRowlettColonyCollegeStationFloridaClermontNewPortRicheyValricoWinterHavenTampaBrandonRiverviewSeffnerArizonaPhoenixGlendalePeoriaArkansasFarmingtonBentonvilleRogersPeaRidgeVirginiaVirginiaBeachUtahLindonHerrimanNorthCarolinaRaeford => 'Claim or refer 1 airspaces in a specific area:  New York: Manhattan & Boroughs Texas: Garland, Murphy, Plano, Richardson, Mesquite, Dallas, Rowlett, Colony, College Station Florida: Clermont, New Port Richey, Valrico, Winter Haven, Tampa, Brandon, Riverview, Seffner Arizona: Phoenix, Glendale, Peoria Arkansas: Farmington, Bentonville, Rogers, Pea Ridge Virginia: Virginia Beach Utah: Lindon, Herriman North Carolina: Raeford';
+
+  @override
+  String get trackADroneWithTheRadarApp => 'Track a drone with the radar app';
+
+  @override
+  String get trackADroneWithTheRadarAppInASpecificAreaTexasGarlandMurphyPlanoRichardsonMesquiteDallasRowlettColonyCollegeStationFloridaClermontNewPortRicheyValricoWinterHavenTampaBrandonRiverviewSeffnerArizonaPhoenixGlendalePeoriaArkansasFarmingtonBentonvilleRogersPeaRidgeVirginiaVirginiaBeachUtahLindonHerrimanNorthCarolinaRaeford => 'Track a drone with the radar app in a specific area:  Texas: Garland, Murphy, Plano, Richardson, Mesquite, Dallas, Rowlett, Colony, College Station Florida: Clermont, New Port Richey, Valrico, Winter Haven, Tampa, Brandon, Riverview, Seffner Arizona: Phoenix, Glendale, Peoria Arkansas: Farmington, Bentonville, Rogers, Pea Ridge Virginia: Virginia Beach Utah: Lindon, Herriman North Carolina: Raeford';
+
+  @override
+  String get fiveSkyPoints => '5 SKY points';
+
+  @override
+  String get hundredSkyPoints => '100 SKY points';
+
+  @override
+  String get boostingSkyPointsEgXThree => 'Boosting: SKY points eg x 3';
+
+  @override
+  String get hundredSkyPointsToYouAndHundredSkyPointsToYourFriendThisIsPartOfThePointsAllocationTwoPlusTenPercentBonusOnTheReferredIncomeStreamFromAirRightRental => '100 SKY points to you and 100 SKY points to your friend (this is part of the points allocation 2) + 10% bonus on the referred income stream from air-right rental';
+
+  @override
+  String get fiveSkyPointsPerDrone => '5 SKY points/drone';
+
+  @override
+  String get itDoesNotMakeSenseToSendYourselfAnInvite => 'It does not make sense to send yourself an invite';
+
+  @override
+  String get weCouldNotSendTheInvitePleaseTryAgain => 'We could not send the invite. Please try again';
+
+  @override
+  String get referralCodeCopied => 'Referral code copied';
+
+  @override
+  String get referralLinkCopied => 'Referral link copied';
+
+  @override
+  String get inviteSent => 'Invite sent';
+
+  @override
+  String get qThree => 'Q3';
+
+  @override
+  String get qTwo => 'Q2';
+
+  @override
+  String get qOne => 'Q1';
+
+  @override
+  String get qFour => 'Q4';
+
+  @override
+  String get earnings => 'Earnings';
+
+  @override
+  String get thereIsNothingToShowHere => 'There is nothing to show here';
+
+  @override
+  String get joinMeOnSkyTradeAndStartTradingAirspaceAndRealEstateSignUpWithMyLinkAndGetExclusiveRewards => '🌍🚀Join me on SkyTrade and start trading airspace and real estate! Sign up with my link and get exclusive rewards';
+
+  @override
+  String get hashTagSkyTradeHashTagEarnRewardsHashTagRealEstate => '💸#SkyTrade #EarnRewards #RealEstate';
+
+  @override
+  String get yourExclusiveInvitationToSkyTrade => 'Your exclusive invitation to SkyTrade';
+
+  @override
+  String get unableToShareTheCorrespondingAppMayNotBeInstalledOnYourDevice => 'Unable to share. The corresponding app may not be installed on your device';
 }

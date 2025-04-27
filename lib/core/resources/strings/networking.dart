@@ -1,5 +1,8 @@
 // ignore_for_file: lines_longer_than_80_chars
 
+// Schemes
+const https = 'https';
+
 // App links
 const appLinkHttpScheme = 'http';
 const appLinkHttpsScheme = 'https';
@@ -8,6 +11,26 @@ const emailVerificationAppLinkPathSegment = 'email-verification';
 const uAppLinkPath = '/$uAppLinkPathSegment';
 const emailVerificationAppLinkPath = '/$emailVerificationAppLinkPathSegment';
 const ticketAppLinkQueryParameter = 'ticket';
+
+// Social medial share links
+const facebookWebShareLinkBaseUrl =
+    'https://www.facebook.com/sharer/sharer.php';
+const facebookShareLinkUrlQueryParameterKey = 'u';
+
+const linkedInAppShareLinkBaseUrl = 'linkedin://shareArticle';
+const linkedInWebShareLinkBaseUrl =
+    'https://www.linkedin.com/sharing/share-offsite';
+const linkedInShareLinkUrlQueryParameterKey = 'url';
+
+const emailShareLinkBaseScheme = 'mailto';
+const emailShareLinkSubjectQueryParameterKey = 'subject';
+const emailShareLinkBodyQueryParameterKey = 'body';
+
+const xAppShareLinkBaseUrl = 'twitter://post';
+const xWebShareLinkBaseUrl = 'https://twitter.com/intent/tweet';
+const xShareLinkUrlQueryParameterKey = 'url';
+const xShareLinkTextQueryParameterKey = 'text';
+const xShareLinkMessageQueryParameterKey = 'message';
 
 // OpenWeather
 // Endpoints
@@ -54,6 +77,14 @@ const getAuctionableAirspacesPath = '/get-auctionable-airspaces';
 const sendTxPath = '/send-tx';
 const generateCreateAuctionTxPath = '/generate-create-auction-tx';
 const getOfferForUnclaimedPropertyPath = '/get-offer-for-unclaimed-property';
+const rewardPath = '/reward';
+const referralCodePath = '/referral-code';
+const getRewardInfoPath = '/get-reward-info';
+const retrieveReferralDataPath = '/retrieve-referral-data';
+const sendReferralPath = '/send-referral';
+const findReferralHistoryPath = '/find-referral-history';
+const currentLeaderboardInfoPath = '/current-leaderboard-info';
+const overralLeaderboardInfoPath = '/overral-leaderboard-info';
 // Signature
 const signatureFirstLine = 'wants you to sign in with your Solana account:';
 const signatureThirdLine = 'Sign in to SkyTrade app.';
@@ -419,6 +450,31 @@ const oneDKey = '1D';
 const oneWKey = '1W';
 const oneMKey = '1M';
 const oneYKey = '1Y';
+const statsKey = 'stats';
+const sumKey = '_sum';
+const pointKey = 'point';
+const referralCodeKey = 'referralCode';
+const registeredFriendsKey = 'registeredFriends';
+const registeredAirspacesKey = 'registeredAirspaces';
+const validatedPropertiesKey = 'validatedProperties';
+const messagesKey = 'Messages';
+const statusAltKey = 'Status';
+const customIdKey = 'CustomID';
+const toAltKey = 'To';
+const emailAltKey = 'Email';
+const messageUuidKey = 'MessageUUID';
+const messageIdKey = 'MessageID';
+const messageHrefKey = 'MessageHref';
+const historiesKey = 'histories';
+const balanceKey = 'balance';
+const startDateKey = 'startDate';
+const currentPeriodPointsKey = 'currentPeriodPoints';
+const totalCountKey = 'totalCount';
+const totalPointsKey = 'totalPoints';
+const rewardCountKey = 'rewardCount';
+const periodSummariesKey = 'periodSummaries';
+const periodStartDateKey = 'periodStartDate';
+const periodEndDateKey = 'periodEndDate';
 // Error response data message
 const unauthorizedCode = 'UNAUTHORIZED';
 const invalidSignatureCode = 'INVALID_SIGNATURE';

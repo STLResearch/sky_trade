@@ -36,6 +36,10 @@
 	<array>
 		<string>sms</string>
 		<string>tel</string>
+		<string>mailto</string>
+		<string>fb</string>
+		<string>linkedin</string>
+		<string>twitter</string>
 	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
