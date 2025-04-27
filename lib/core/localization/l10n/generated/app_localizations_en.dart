@@ -210,9 +210,6 @@ class AppLocalizationsEn extends AppLocalizations {
   String get inDroneOperationsDifferentZonesIndicateVaryingLevelsOfRestrictionRedZonesAreProhibitedAreasWhereFlyingIsNotAllowedDueToSafetySecurityOrEnvironmentalConcernsOrangeZonesRequireAuthorizationFromTheFaaBeforeYouCanFlyYellowZonesAreAreasWhereFlyingIsPermittedButMayBeHazardousSoExtraCautionIsAdvisedGreenZonesAreOpenForFlyingWithoutAnySpecificRestrictionsOrAdditionalPermissions => 'In drone operations, different zones indicate varying levels of restriction. Red Zones are prohibited areas where flying is not allowed due to safety, security, or environmental concerns. Orange Zones require authorization from the FAA before you can fly. Yellow Zones are areas where flying is permitted but may be hazardous, so extra caution is advised. Green Zones are open for flying without any specific restrictions or additional permissions.';
 
   @override
-  String get v1 => 'v1';
-
-  @override
   String get view3rdPartyLicenses => 'View 3rd party licenses';
 
   @override

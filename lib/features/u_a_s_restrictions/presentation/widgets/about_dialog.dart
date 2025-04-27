@@ -5,11 +5,11 @@ import 'package:flutter/material.dart'
         BorderRadius,
         BoxDecoration,
         BuildContext,
-        Center,
         Column,
         Container,
         Dialog,
         EdgeInsetsDirectional,
+        Flexible,
         FontWeight,
         InkWell,
         MainAxisAlignment,
@@ -19,6 +19,8 @@ import 'package:flutter/material.dart'
         Row,
         SingleChildScrollView,
         SizedBox,
+        State,
+        StatefulWidget,
         StatelessWidget,
         Text,
         TextAlign,
@@ -27,22 +29,26 @@ import 'package:flutter/material.dart'
         Widget,
         showDialog,
         showLicensePage;
+import 'package:flutter_bloc/flutter_bloc.dart'
+    show BlocBuilder, BlocProvider, ReadContext;
 import 'package:sky_trade/core/assets/generated/assets.gen.dart' show Assets;
 import 'package:sky_trade/core/resources/colors.dart'
     show hex00AEEF, hex222222, hex303478F5, hex74D9FF;
 import 'package:sky_trade/core/resources/numbers/ui.dart'
     show
-        eighteenDotNil,
         fifteenDotNil,
         fiveDotNil,
+        sixDotFive,
         tenDotNil,
         thirtyDotNil,
         threeDotNil,
-        twentyDotNil,
-        twentyFourDotNil;
+        twentyDotNil;
 import 'package:sky_trade/core/resources/strings/special_characters.dart'
     show newLine;
 import 'package:sky_trade/core/utils/extensions/build_context_extensions.dart';
+import 'package:sky_trade/features/about/presentation/blocs/app_version_bloc/app_version_bloc.dart'
+    show AppVersionBloc, AppVersionEvent, AppVersionState;
+import 'package:sky_trade/injection_container.dart' show serviceLocator;
 
 final class AboutDialog {
   static void show(
@@ -57,6 +63,32 @@ final class AboutDialog {
 
 class About extends StatelessWidget {
   const About({super.key});
+
+  @override
+  Widget build(BuildContext context) => BlocProvider<AppVersionBloc>(
+        create: (_) => serviceLocator(),
+        child: const AboutView(),
+      );
+}
+
+class AboutView extends StatefulWidget {
+  const AboutView({super.key});
+
+  @override
+  State<AboutView> createState() => _AboutViewState();
+}
+
+class _AboutViewState extends State<AboutView> {
+  @override
+  void initState() {
+    _getAppVersion();
+
+    super.initState();
+  }
+
+  void _getAppVersion() => context.read<AppVersionBloc>().add(
+        const AppVersionEvent.getVersion(),
+      );
 
   @override
   Widget build(BuildContext context) => Dialog(
@@ -80,24 +112,40 @@ class About extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Container(
-                      width: twentyFourDotNil,
-                      height: eighteenDotNil,
-                      decoration: BoxDecoration(
-                        color: hex74D9FF,
-                        borderRadius: BorderRadius.circular(
-                          threeDotNil,
-                        ),
-                      ),
-                      child: Center(
-                        child: Text(
-                          context.localize.v1,
-                          style: Theme.of(
-                            context,
-                          ).textTheme.bodySmall?.copyWith(
-                                color: hex222222,
+                    BlocBuilder<AppVersionBloc, AppVersionState>(
+                      builder: (_, appVersionState) =>
+                          appVersionState.maybeWhen(
+                        gotVersion: (appVersionEntity) => Flexible(
+                          child: Container(
+                            padding: const EdgeInsetsDirectional.symmetric(
+                              horizontal: sixDotFive,
+                            ),
+                            decoration: BoxDecoration(
+                              color: hex74D9FF,
+                              borderRadius: BorderRadius.circular(
+                                threeDotNil,
                               ),
+                            ),
+                            child: Text(
+                              appVersionEntity.versionName,
+                              style: Theme.of(
+                                context,
+                              ).textTheme.bodySmall?.copyWith(
+                                    color: hex222222,
+                                  ),
+                            ),
+                          ),
                         ),
+                        orElse: () => const SizedBox.shrink(),
+                      ),
+                    ),
+                    BlocBuilder<AppVersionBloc, AppVersionState>(
+                      builder: (_, appVersionState) =>
+                          appVersionState.maybeWhen(
+                        gotVersion: (_) => const SizedBox(
+                          width: twentyDotNil,
+                        ),
+                        orElse: () => const SizedBox.shrink(),
                       ),
                     ),
                     InkWell(
@@ -120,7 +168,11 @@ class About extends StatelessWidget {
 
                     showLicensePage(
                       context: context,
-                      applicationVersion: context.localize.v1,
+                      applicationVersion:
+                          context.read<AppVersionBloc>().state.whenOrNull(
+                                gotVersion: (appVersionEntity) =>
+                                    appVersionEntity.versionName,
+                              ),
                       applicationIcon: Assets.svgs.skyTradeRadarLogo.svg(),
                     );
                   },
