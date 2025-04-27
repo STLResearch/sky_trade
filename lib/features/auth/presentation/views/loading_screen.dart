@@ -44,7 +44,7 @@ import 'package:sky_trade/core/resources/numbers/ui.dart'
 import 'package:sky_trade/core/resources/strings/routes.dart'
     show
         errorRoutePath,
-        getStartedRoutePath,
+        guestRoutePath,
         homeRoutePath,
         noInternetConnectionRoutePath,
         onboardingRoutePath;
@@ -242,7 +242,7 @@ class _LoadingViewState extends State<LoadingView> {
                 },
                 nonExistentUserSession: () {
                   _removeSplashScreenAndNavigateTo(
-                    route: getStartedRoutePath,
+                    route: guestRoutePath,
                   );
                 },
               );
@@ -259,7 +259,7 @@ class _LoadingViewState extends State<LoadingView> {
                 },
                 failedToRenewCredentials: () {
                   _removeSplashScreenAndNavigateTo(
-                    route: getStartedRoutePath,
+                    route: guestRoutePath,
                   );
                 },
               );
@@ -292,7 +292,7 @@ class _LoadingViewState extends State<LoadingView> {
                 },
                 sessionNotExist: () {
                   _removeSplashScreenAndNavigateTo(
-                    route: getStartedRoutePath,
+                    route: guestRoutePath,
                   );
                 },
               );
@@ -311,7 +311,7 @@ class _LoadingViewState extends State<LoadingView> {
                   _removeSplashScreenAndNavigateTo(
                     route: switch (checkSkyTradeUserFailure) {
                       UserNotFoundFailure() => onboardingRoutePath,
-                      _ => getStartedRoutePath,
+                      _ => guestRoutePath,
                     },
                   );
                 },

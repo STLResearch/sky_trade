@@ -2,6 +2,7 @@ const baseRoutePath = '/';
 const loadingRoutePath = '/loading';
 const errorRoutePath = '/error';
 const getStartedRoutePath = '/getStarted';
+const guestRoutePath = '/guest';
 const homeRoutePath = '/home';
 const noInternetConnectionRoutePath = '/noInternetConnection';
 const helpRoutePath = '/help';

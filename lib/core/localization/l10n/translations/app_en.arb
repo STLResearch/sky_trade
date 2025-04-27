@@ -341,5 +341,9 @@
   "turnOnLocationServices": "Turn On Location Services",
   "skyTradeNeedsGpsToFindYourLocationAndShowRelevantFeaturesAroundYouPleaseEnableItInYourDeviceSettings": "SkyTrade needs GPS to find your location and show relevant features around you. Please enable it in your device settings",
   "trackedDrone": "Tracked Drone",
-  "trackedDrones": "Tracked Drones"
+  "trackedDrones": "Tracked Drones",
+  "youNeedToBeLoggedInToAccessDroneInsights": "You need to be logged in to access Drone Insights",
+  "youveTrackedFivePlusDronesReadyToUnlockMore": "You've tracked 5+ drones.\nReady to unlock more?",
+  "logInToViewTrendsInDroneActivityAndTrackingHistory": "Log in to view trends in drone activity and tracking history.",
+  "createYourProfileToSaveProgressGetAlertsAndExploreDeeperInsights": "Create your profile to save progress, get alerts, and explore deeper insights."
 }

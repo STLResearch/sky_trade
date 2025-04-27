@@ -76,6 +76,7 @@ import 'package:sky_trade/injection_container.dart' show serviceLocator;
 class MapOverlay extends StatelessWidget {
   const MapOverlay({
     required this.myLocationFollowed,
+    required this.isGuestUser,
     required this.mapStyle,
     required this.onMyLocationIconTap,
     required this.onMapLayerIconTap,
@@ -83,6 +84,7 @@ class MapOverlay extends StatelessWidget {
   });
 
   final bool myLocationFollowed;
+  final bool isGuestUser;
   final MapStyle mapStyle;
   final Function0<void> onMyLocationIconTap;
   final Function0<void> onMapLayerIconTap;
@@ -99,6 +101,7 @@ class MapOverlay extends StatelessWidget {
         ],
         child: MapOverlayView(
           myLocationFollowed: myLocationFollowed,
+          isGuestUser: isGuestUser,
           mapStyle: mapStyle,
           onMyLocationIconTap: onMyLocationIconTap,
           onMapLayerIconTap: onMapLayerIconTap,
@@ -109,6 +112,7 @@ class MapOverlay extends StatelessWidget {
 class MapOverlayView extends StatefulWidget {
   const MapOverlayView({
     required this.myLocationFollowed,
+    required this.isGuestUser,
     required this.mapStyle,
     required this.onMyLocationIconTap,
     required this.onMapLayerIconTap,
@@ -116,6 +120,7 @@ class MapOverlayView extends StatefulWidget {
   });
 
   final bool myLocationFollowed;
+  final bool isGuestUser;
   final MapStyle mapStyle;
   final Function0<void> onMyLocationIconTap;
   final Function0<void> onMapLayerIconTap;

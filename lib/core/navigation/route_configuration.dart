@@ -33,6 +33,8 @@ import 'package:sky_trade/features/rewards/presentation/views/rewards_screen.dar
     show RewardsScreen;
 import 'package:sky_trade/features/settings/presentation/views/settings_screen.dart'
     show SettingsScreen;
+import 'package:sky_trade/features/u_a_s_restrictions/presentation/views/guest_home_screen.dart'
+    show GuestHomeScreen;
 import 'package:sky_trade/features/u_a_s_restrictions/presentation/views/home_screen.dart'
     show HomeScreen;
 
@@ -45,6 +47,7 @@ Route routes(RouteSettings settings) => MaterialPageRoute(
               reason: settings.arguments! as ErrorReason,
             ),
           getStartedRoutePath => const GetStartedScreen(),
+          guestRoutePath => const GuestHomeScreen(),
           homeRoutePath => const HomeScreen(),
           helpRoutePath => const HelpScreen(),
           insightsRoutePath => InsightsScreen(

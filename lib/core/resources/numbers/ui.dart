@@ -47,6 +47,7 @@ const oneDotThree = 1.3;
 const oneDotFive = 1.5;
 const oneDotSevenTwo = 1.72;
 const twoDotNil = 2.0;
+const twoDotTwo = 2.2;
 const twoDotFive = 2.5;
 const twoDotSixFour = 2.64;
 const threeDotNil = 3.0;

@@ -44,7 +44,7 @@ import 'package:sky_trade/core/resources/colors.dart' show hexB3FFFFFF;
 import 'package:sky_trade/core/resources/numbers/ui.dart'
     show fiveDotNil, fourteenDotNil, six, zero;
 import 'package:sky_trade/core/resources/strings/routes.dart'
-    show getStartedRoutePath;
+    show guestRoutePath;
 import 'package:sky_trade/core/resources/strings/secret_keys.dart'
     show
         mapboxMapsDarkStyleUri,
@@ -382,7 +382,7 @@ class _HomeViewState extends State<HomeView> {
                   Navigator.of(
                     context,
                   ).pushReplacementNamed(
-                    getStartedRoutePath,
+                    guestRoutePath,
                   );
                 },
                 failedToLogOut: (_) {
@@ -742,6 +742,7 @@ class _HomeViewState extends State<HomeView> {
                   valueListenable: _mapStyleNotifier,
                   builder: (_, mapStyleNotifierValue, __) => MapOverlay(
                     myLocationFollowed: centerLocationNotifierValue,
+                    isGuestUser: false,
                     mapStyle: mapStyleNotifierValue,
                     onMyLocationIconTap: () {
                       context.read<LocationPermissionBloc>().state.whenOrNull(

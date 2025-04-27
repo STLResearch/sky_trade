@@ -71,7 +71,7 @@ import 'package:sky_trade/core/resources/numbers/ui.dart'
         twoDotNil,
         zero;
 import 'package:sky_trade/core/resources/strings/routes.dart'
-    show errorRoutePath, getStartedRoutePath;
+    show errorRoutePath, guestRoutePath;
 import 'package:sky_trade/core/resources/strings/special_characters.dart'
     show emptyString, whiteSpace;
 import 'package:sky_trade/core/utils/enums/ui.dart' show ErrorReason;
@@ -206,7 +206,7 @@ class _DeleteAccountViewState extends State<DeleteAccountView> {
               auth0LogoutState.whenOrNull(
                 loggedOut: () {
                   _closeSheetSettingsScreenAndNavigateTo(
-                    route: getStartedRoutePath,
+                    route: guestRoutePath,
                   );
                 },
                 failedToLogOut: (_) {
