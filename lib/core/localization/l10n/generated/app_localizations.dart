@@ -1653,17 +1653,17 @@ abstract class AppLocalizations {
   /// **'Remove whitespaces'**
   String get removeWhitespaces;
 
-  /// No description provided for @referralCodeTooShortSkyTradeReferralCodeIsSixCharactersLong.
+  /// No description provided for @referralCodeTooShortReferralCodeCanEitherBeSixCharactersLongOrTheEmailOfTheReferer.
   ///
   /// In en, this message translates to:
-  /// **'Referral code too short. SkyTrade referral code is six characters long'**
-  String get referralCodeTooShortSkyTradeReferralCodeIsSixCharactersLong;
+  /// **'Referral code too short. Referral code can either be six characters long or the email of the referer'**
+  String get referralCodeTooShortReferralCodeCanEitherBeSixCharactersLongOrTheEmailOfTheReferer;
 
-  /// No description provided for @referralCodeTooLongSkyTradeReferralCodeIsSixCharactersLong.
+  /// No description provided for @referralCodeTooLongReferralCodeCanEitherBeSixCharactersLongOrTheEmailOfTheReferer.
   ///
   /// In en, this message translates to:
-  /// **'Referral code too long. SkyTrade referral code is six characters long'**
-  String get referralCodeTooLongSkyTradeReferralCodeIsSixCharactersLong;
+  /// **'Referral code too long. Referral code can either be six characters long or the email of the referer'**
+  String get referralCodeTooLongReferralCodeCanEitherBeSixCharactersLongOrTheEmailOfTheReferer;
 
   /// No description provided for @submit.
   ///

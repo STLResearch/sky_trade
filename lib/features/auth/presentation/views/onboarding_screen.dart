@@ -59,6 +59,8 @@ import 'package:sky_trade/core/resources/numbers/ui.dart'
         twentyFourDotNil,
         twentyTwoDotFive,
         twoDotNil;
+import 'package:sky_trade/core/resources/strings/regex_patterns.dart'
+    show emailRegexPatternRawString;
 import 'package:sky_trade/core/resources/strings/routes.dart'
     show homeRoutePath;
 import 'package:sky_trade/core/resources/strings/special_characters.dart'
@@ -289,12 +291,24 @@ class _OnboardingScreenViewState extends State<OnboardingScreenView> {
                                           whiteSpace,
                                         ) =>
                                   context.localize.removeWhitespaces,
-                                true when value!.length < six => context
-                                    .localize
-                                    .referralCodeTooShortSkyTradeReferralCodeIsSixCharactersLong,
-                                true when value!.length > six => context
-                                    .localize
-                                    .referralCodeTooLongSkyTradeReferralCodeIsSixCharactersLong,
+                                true
+                                    when value!.length < six &&
+                                        !value.contains(
+                                          RegExp(
+                                            emailRegexPatternRawString,
+                                          ),
+                                        ) =>
+                                  context.localize
+                                      .referralCodeTooShortReferralCodeCanEitherBeSixCharactersLongOrTheEmailOfTheReferer,
+                                true
+                                    when value!.length > six &&
+                                        !value.contains(
+                                          RegExp(
+                                            emailRegexPatternRawString,
+                                          ),
+                                        ) =>
+                                  context.localize
+                                      .referralCodeTooLongReferralCodeCanEitherBeSixCharactersLongOrTheEmailOfTheReferer,
                                 _ => null,
                               },
                             ),

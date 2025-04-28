@@ -259,8 +259,8 @@
   "subscribeToNewsletter": "Subscribe to newsletter",
   "invalidPhoneNumber": "Invalid phone number",
   "removeWhitespaces": "Remove whitespaces",
-  "referralCodeTooShortSkyTradeReferralCodeIsSixCharactersLong": "Referral code too short. SkyTrade referral code is six characters long",
-  "referralCodeTooLongSkyTradeReferralCodeIsSixCharactersLong": "Referral code too long. SkyTrade referral code is six characters long",
+  "referralCodeTooShortReferralCodeCanEitherBeSixCharactersLongOrTheEmailOfTheReferer": "Referral code too short. Referral code can either be six characters long or the email of the referer",
+  "referralCodeTooLongReferralCodeCanEitherBeSixCharactersLongOrTheEmailOfTheReferer": "Referral code too long. Referral code can either be six characters long or the email of the referer",
   "submit": "Submit",
   "iAmAnIndividual": "I am an individual",
   "iAmACorporateEntity": "I am a corporate entity"

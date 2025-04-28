@@ -789,10 +789,10 @@ class AppLocalizationsEn extends AppLocalizations {
   String get removeWhitespaces => 'Remove whitespaces';
 
   @override
-  String get referralCodeTooShortSkyTradeReferralCodeIsSixCharactersLong => 'Referral code too short. SkyTrade referral code is six characters long';
+  String get referralCodeTooShortReferralCodeCanEitherBeSixCharactersLongOrTheEmailOfTheReferer => 'Referral code too short. Referral code can either be six characters long or the email of the referer';
 
   @override
-  String get referralCodeTooLongSkyTradeReferralCodeIsSixCharactersLong => 'Referral code too long. SkyTrade referral code is six characters long';
+  String get referralCodeTooLongReferralCodeCanEitherBeSixCharactersLongOrTheEmailOfTheReferer => 'Referral code too long. Referral code can either be six characters long or the email of the referer';
 
   @override
   String get submit => 'Submit';
