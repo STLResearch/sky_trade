@@ -513,11 +513,11 @@ abstract class AppLocalizations {
   /// **'Developed by SkyTrade'**
   String get developedBySkyTrade;
 
-  /// No description provided for @copyrightSkyTrade2024.
+  /// No description provided for @copyrightSkyTrade.
   ///
   /// In en, this message translates to:
-  /// **'© SkyTrade 2024'**
-  String get copyrightSkyTrade2024;
+  /// **'© SkyTrade'**
+  String get copyrightSkyTrade;
 
   /// No description provided for @disclaimer.
   ///

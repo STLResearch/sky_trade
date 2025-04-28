@@ -219,7 +219,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get developedBySkyTrade => 'Developed by SkyTrade';
 
   @override
-  String get copyrightSkyTrade2024 => '© SkyTrade 2024';
+  String get copyrightSkyTrade => '© SkyTrade';
 
   @override
   String get disclaimer => 'Disclaimer';
