@@ -44,7 +44,7 @@ import 'package:sky_trade/core/resources/numbers/ui.dart'
         threeDotNil,
         twentyDotNil;
 import 'package:sky_trade/core/resources/strings/special_characters.dart'
-    show newLine;
+    show newLine, whiteSpace;
 import 'package:sky_trade/core/utils/extensions/build_context_extensions.dart';
 import 'package:sky_trade/features/about/presentation/blocs/app_version_bloc/app_version_bloc.dart'
     show AppVersionBloc, AppVersionEvent, AppVersionState;
@@ -200,7 +200,9 @@ class _AboutViewState extends State<AboutView> {
                             ),
                       ),
                       TextSpan(
-                        text: context.localize.copyrightSkyTrade2024,
+                        text: context.localize.copyrightSkyTrade +
+                            whiteSpace +
+                            DateTime.now().year.toString(),
                         style: Theme.of(
                           context,
                         ).textTheme.bodyMedium?.copyWith(
