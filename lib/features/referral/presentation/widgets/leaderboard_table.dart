@@ -83,6 +83,8 @@ import 'package:sky_trade/core/resources/numbers/ui.dart'
         twentyTwoDotFive,
         two,
         zero;
+import 'package:sky_trade/core/resources/strings/special_characters.dart'
+    show threeDots;
 import 'package:sky_trade/core/utils/enums/ui.dart' show Leaderboard;
 import 'package:sky_trade/core/utils/extensions/build_context_extensions.dart';
 import 'package:sky_trade/features/referral/presentation/blocs/leaderboard_statistics_bloc/leaderboard_statistics_bloc.dart'
@@ -299,9 +301,10 @@ class _LeaderboardTableState extends State<LeaderboardTable> {
                                                   .values[rowIndex]) {
                                                 Leaderboard.user =>
                                                   leaderboardStatisticsEntity
-                                                      .currentPeriodPoints[
-                                                          index]
-                                                      .blockchainAddress,
+                                                          .currentPeriodPoints[
+                                                              index]
+                                                          .blockchainAddress ??
+                                                      threeDots,
                                                 Leaderboard.balance =>
                                                   leaderboardStatisticsEntity
                                                       .currentPeriodPoints[

@@ -35,7 +35,7 @@ base class CountEntity extends Equatable {
     required this.point,
   });
 
-  final int point;
+  final int? point;
 
   @override
   List<Object?> get props => [
@@ -219,13 +219,13 @@ base class PeriodPointEntity extends Equatable {
     required this.blockchainAddress,
   });
 
-  final String referralCode;
+  final String? referralCode;
 
   final int totalPoints;
 
   final int rewardCount;
 
-  final String blockchainAddress;
+  final String? blockchainAddress;
 
   @override
   List<Object?> get props => [

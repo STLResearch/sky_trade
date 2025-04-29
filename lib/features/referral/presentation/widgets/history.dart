@@ -196,12 +196,15 @@ class _HistoryState extends State<History> {
                               referralHistoryState.maybeWhen(
                                 gotReferralHistory: (referralHistoryEntity) =>
                                     switch (referralHistoryEntity
-                                            .stats.count.point ==
-                                        zero) {
+                                                .stats.count.point ==
+                                            null ||
+                                        referralHistoryEntity
+                                                .stats.count.point ==
+                                            zero) {
                                   true => zero,
                                   false => _computeNumberOfPagesUsing(
                                       totalPageCount: referralHistoryEntity
-                                          .stats.count.point,
+                                          .stats.count.point!,
                                     ),
                                 },
                                 orElse: () => ten,
@@ -309,14 +312,16 @@ class _HistoryState extends State<History> {
                             gotReferralHistory: (
                               referralHistoryEntity,
                             ) =>
-                                switch (
+                                switch (referralHistoryEntity
+                                            .stats.count.point ==
+                                        null ||
                                     referralHistoryEntity.stats.count.point ==
                                         zero) {
                               true => null,
                               false => () {
                                   final isLastPage = _checkIsLastPageUsing(
-                                    totalPageCount:
-                                        referralHistoryEntity.stats.count.point,
+                                    totalPageCount: referralHistoryEntity
+                                        .stats.count.point!,
                                   );
 
                                   if (!isLastPage) {
@@ -344,15 +349,18 @@ class _HistoryState extends State<History> {
                                         referralHistoryEntity,
                                       ) {
                                         if (referralHistoryEntity
-                                                .stats.count.point ==
-                                            zero) {
+                                                    .stats.count.point ==
+                                                null ||
+                                            referralHistoryEntity
+                                                    .stats.count.point ==
+                                                zero) {
                                           return hexEBEBF4;
                                         }
 
                                         final isLastPage =
                                             _checkIsLastPageUsing(
                                           totalPageCount: referralHistoryEntity
-                                              .stats.count.point,
+                                              .stats.count.point!,
                                         );
 
                                         return switch (isLastPage) {
@@ -373,14 +381,17 @@ class _HistoryState extends State<History> {
                                       referralHistoryEntity,
                                     ) {
                                       if (referralHistoryEntity
-                                              .stats.count.point ==
-                                          zero) {
+                                                  .stats.count.point ==
+                                              null ||
+                                          referralHistoryEntity
+                                                  .stats.count.point ==
+                                              zero) {
                                         return hexEBEBF4;
                                       }
 
                                       final isLastPage = _checkIsLastPageUsing(
                                         totalPageCount: referralHistoryEntity
-                                            .stats.count.point,
+                                            .stats.count.point!,
                                       );
 
                                       return switch (isLastPage) {
