@@ -2,6 +2,8 @@ import 'package:hive_ce/hive.dart' show Box, Hive;
 import 'package:sky_trade/core/resources/numbers/local.dart' show one, three;
 import 'package:sky_trade/core/resources/strings/local.dart'
     show restrictionsBoxKey;
+import 'package:sky_trade/core/resources/strings/special_characters.dart'
+    show underscore;
 import 'package:sky_trade/features/u_a_s_restrictions/data/models/restriction_model.dart'
     show RestrictionModel;
 
@@ -24,60 +26,14 @@ final class UASRestrictionsLocalDataSourceImplementation
   Future<List<RestrictionModel>?> getCachedRestrictionsUsing({
     required String geoHash,
   }) async {
-    final box = await _maybeOpenBoxForStoringRestrictionsData();
-
+    final box = await _getBoxForStoringRestrictionsData();
     final data = box
         .get(
-          geoHash,
+          _getTodayKey(),
         )
-        ?.cast<DateTime, List<dynamic>>();
+        ?.cast<String, List<dynamic>>();
 
-    if (data == null) {
-      return null;
-    }
-
-    final isStale = _checkCachedRestrictionsIsStaleUsing(
-      geoHash: geoHash,
-      createdAt: data.entries.first.key,
-    );
-
-    if (isStale) return null;
-
-    return data.entries.first.value.cast<RestrictionModel>();
-  }
-
-  bool _checkCachedRestrictionsIsStaleUsing({
-    required String geoHash,
-    required DateTime createdAt,
-  }) {
-    final now = DateTime.now();
-
-    final todayAt3Am = DateTime(
-      now.year,
-      now.month,
-      now.day,
-      three,
-    );
-
-    final tomorrowAt3Am = DateTime(
-      now.year,
-      now.month,
-      now.day,
-      three,
-    ).add(
-      const Duration(
-        days: one,
-      ),
-    );
-
-    final isNotStale = createdAt.isAfter(
-          todayAt3Am,
-        ) &&
-        createdAt.isBefore(
-          tomorrowAt3Am,
-        );
-
-    return !isNotStale;
+    return data?[geoHash]?.cast<RestrictionModel>();
   }
 
   @override
@@ -85,29 +41,57 @@ final class UASRestrictionsLocalDataSourceImplementation
     required String geoHash,
     required List<RestrictionModel> restrictions,
   }) async {
-    final box = await _maybeOpenBoxForStoringRestrictionsData();
-
-    await box.delete(
-      geoHash,
+    final box = await _getBoxForStoringRestrictionsData();
+    final todayKey = _getTodayKey();
+    final previouslyAddedRestrictions = box.get(
+      todayKey,
     );
 
+    await _deleteStaleRestrictions(
+      box,
+      todayKey,
+    );
     await box.put(
-      geoHash,
+      todayKey,
       {
-        DateTime.now(): restrictions,
+        ...?previouslyAddedRestrictions,
+        geoHash: restrictions,
       },
     );
   }
 
   @override
   Future<void> cleanUpResources() async {
-    final box = await _maybeOpenBoxForStoringRestrictionsData();
+    final box = await _getBoxForStoringRestrictionsData();
     await box.close();
   }
 
-  Future<Box<Map<dynamic, dynamic>>>
-      _maybeOpenBoxForStoringRestrictionsData() =>
-          Hive.openBox<Map<dynamic, dynamic>>(
-            restrictionsBoxKey,
-          );
+  Future<Box<Map<dynamic, dynamic>>> _getBoxForStoringRestrictionsData() =>
+      Hive.openBox<Map<dynamic, dynamic>>(
+        restrictionsBoxKey,
+      );
+
+  Future<void> _deleteStaleRestrictions(
+    Box<Map<dynamic, dynamic>> box,
+    String todayKey,
+  ) async =>
+      box.containsKey(todayKey) ? null : await box.clear();
+
+  String _getTodayKey() {
+    final now = DateTime.timestamp();
+    final today3AmUTC = DateTime.utc(
+      now.year,
+      now.month,
+      now.day,
+      three,
+    );
+    final tomorrow3AmUTC = DateTime.utc(
+      now.year,
+      now.month,
+      now.day + one,
+      three,
+    );
+
+    return today3AmUTC.toString() + underscore + tomorrow3AmUTC.toString();
+  }
 }

@@ -8,6 +8,7 @@ const equals = '=';
 const ampersand = '&';
 const colon = ':';
 const hyphen = '-';
+const underscore = '_';
 const newLine = '\n';
 const at = '@';
 const question = '?';
