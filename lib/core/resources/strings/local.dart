@@ -14,4 +14,5 @@ const base36UpperBound = '1z141z4';
 const auth0SessionForDeletedUserExistsKey = 'auth0SessionForDeletedUserExists';
 
 // Hive
+const dataKey = 'data';
 const restrictionsBoxKey = 'restrictions_box';
