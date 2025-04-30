@@ -15,3 +15,4 @@ const question = '?';
 const plus = '+';
 const openingParenthesis = '(';
 const closingParenthesis = ')';
+const threeDots = '...';

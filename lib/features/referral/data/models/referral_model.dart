@@ -89,7 +89,7 @@ final class CountModel extends CountEntity {
       _$CountModelFromJson(json);
 
   @JsonKey(name: pointKey)
-  final int mPoint;
+  final int? mPoint;
 
   Map<String, dynamic> toJson() => _$CountModelToJson(this);
 }
@@ -330,7 +330,7 @@ final class PeriodPointModel extends PeriodPointEntity {
       _$PeriodPointModelFromJson(json);
 
   @JsonKey(name: referralCodeKey)
-  final String mReferralCode;
+  final String? mReferralCode;
 
   @JsonKey(name: totalPointsKey)
   final int mTotalPoints;
@@ -339,7 +339,7 @@ final class PeriodPointModel extends PeriodPointEntity {
   final int mRewardCount;
 
   @JsonKey(name: blockchainAddressKey)
-  final String mBlockchainAddress;
+  final String? mBlockchainAddress;
 
   Map<String, dynamic> toJson() => _$PeriodPointModelToJson(this);
 }

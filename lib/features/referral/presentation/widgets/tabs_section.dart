@@ -5,8 +5,10 @@ import 'package:flutter/material.dart'
         BuildContext,
         Center,
         EdgeInsetsDirectional,
+        GlobalKey,
         Padding,
         Row,
+        ScrollController,
         SingleChildScrollView,
         StatelessWidget,
         Text,
@@ -28,21 +30,27 @@ import 'package:sky_trade/features/referral/presentation/widgets/card.dart';
 
 class TabsSection extends StatelessWidget {
   const TabsSection({
+    required this.scrollController,
+    required this.tabKeys,
     required this.onTabItemSelected,
     required this.selectedTab,
     super.key,
   });
 
+  final ScrollController scrollController;
+  final List<GlobalKey> tabKeys;
   final Function1<ReferralTab, void> onTabItemSelected;
   final ReferralTab selectedTab;
 
   @override
   Widget build(BuildContext context) => SingleChildScrollView(
+        controller: scrollController,
         scrollDirection: Axis.horizontal,
         child: Row(
           children: List<Widget>.generate(
             ReferralTab.values.length,
             (index) => Padding(
+              key: tabKeys[index],
               padding: EdgeInsetsDirectional.only(
                 start: switch (ReferralTab.values[index]) {
                   ReferralTab.theProgram => twentySixDotNil,

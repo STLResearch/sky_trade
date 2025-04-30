@@ -10,14 +10,17 @@ import 'package:flutter/material.dart'
         EdgeInsetsDirectional,
         ElevatedButton,
         Expanded,
+        GlobalKey,
         IconButton,
         MediaQuery,
         Navigator,
         NestedScrollView,
+        Offset,
         Padding,
         PageController,
         PageView,
         RefreshIndicator,
+        RenderBox,
         Scaffold,
         ScrollController,
         SingleChildScrollView,
@@ -50,6 +53,7 @@ import 'package:sky_trade/core/resources/numbers/ui.dart'
     show
         eightDotNil,
         eighteenDotNil,
+        fifty,
         fiveHundred,
         fortyEightDotNil,
         fortyThreeDotNil,
@@ -139,15 +143,31 @@ class ReferralScreenView extends StatefulWidget {
 
 class _ReferralScreenViewState extends State<ReferralScreenView> {
   late final PageController _pageController;
+  late bool _isPageAnimatingDueToTabSelection;
+
+  late final List<GlobalKey> _tabKeys;
   late final ScrollController _tabsScrollController;
+
   late final ValueNotifier<ReferralTab> _selectedTabNotifier;
   late final ValueNotifier<int> _referralHistoryTablePageNumberNotifier;
   late final ValueNotifier<int> _leaderboardTablePageNumberNotifier;
 
   @override
   void initState() {
-    _pageController = PageController();
+    _pageController = PageController()
+      ..addListener(
+        _pageChangeListener,
+      );
+    _isPageAnimatingDueToTabSelection = false;
+
+    _tabKeys = List<GlobalKey>.generate(
+      ReferralTab.values.length,
+      (index) => GlobalKey(
+        debugLabel: ReferralTab.values[index].name,
+      ),
+    );
     _tabsScrollController = ScrollController();
+
     _selectedTabNotifier = ValueNotifier<ReferralTab>(
       ReferralTab.theProgram,
     );
@@ -161,6 +181,44 @@ class _ReferralScreenViewState extends State<ReferralScreenView> {
     _maybeGetSkyPoints();
 
     super.initState();
+  }
+
+  void _pageChangeListener() {
+    _scrollToTabAt(
+      index: _selectedTabNotifier.value.index,
+    );
+  }
+
+  void _scrollToTabAt({
+    required int index,
+  }) {
+    if (_tabKeys[index].currentContext != null) {
+      final renderBox =
+          _tabKeys[index].currentContext!.findRenderObject()! as RenderBox;
+      final position = renderBox.localToGlobal(
+        Offset.zero,
+      );
+
+      final screenWidth = MediaQuery.of(
+        context,
+      ).size.width;
+
+      final targetScroll = _tabsScrollController.offset +
+          position.dx -
+          (screenWidth / two) +
+          (renderBox.size.width / two);
+
+      _tabsScrollController.animateTo(
+        targetScroll.clamp(
+          _tabsScrollController.position.minScrollExtent,
+          _tabsScrollController.position.maxScrollExtent,
+        ),
+        duration: const Duration(
+          milliseconds: fifty,
+        ),
+        curve: Curves.easeInOut,
+      );
+    }
   }
 
   void _maybeGetSkyPoints() => context.read<SkyPointsBloc>().state.whenOrNull(
@@ -196,7 +254,12 @@ class _ReferralScreenViewState extends State<ReferralScreenView> {
 
   @override
   void dispose() {
-    _pageController.dispose();
+    _pageController
+      ..removeListener(
+        _pageChangeListener,
+      )
+      ..dispose();
+
     _tabsScrollController.dispose();
     _selectedTabNotifier.dispose();
     _referralHistoryTablePageNumberNotifier.dispose();
@@ -260,16 +323,28 @@ class _ReferralScreenViewState extends State<ReferralScreenView> {
               ValueListenableBuilder<ReferralTab>(
                 valueListenable: _selectedTabNotifier,
                 builder: (_, selectedTabNotifierValue, __) => TabsSection(
+                  scrollController: _tabsScrollController,
+                  tabKeys: _tabKeys,
                   selectedTab: selectedTabNotifierValue,
                   onTabItemSelected: (referralTab) {
+                    _isPageAnimatingDueToTabSelection = true;
+
                     _selectedTabNotifier.value = referralTab;
 
-                    _pageController.animateToPage(
-                      referralTab.index,
-                      duration: const Duration(
-                        milliseconds: fiveHundred,
-                      ),
-                      curve: Curves.easeIn,
+                    _pageController
+                        .animateToPage(
+                          referralTab.index,
+                          duration: const Duration(
+                            milliseconds: fiveHundred,
+                          ),
+                          curve: Curves.easeIn,
+                        )
+                        .then(
+                          (_) => _isPageAnimatingDueToTabSelection = false,
+                        );
+
+                    _scrollToTabAt(
+                      index: referralTab.index,
                     );
                   },
                 ),
@@ -419,7 +494,10 @@ class _ReferralScreenViewState extends State<ReferralScreenView> {
                             ),
                             onPressed: () => showModalBottomSheet<void>(
                               context: context,
-                              builder: (_) => const SkyPointsRewardDetails(),
+                              builder: (
+                                _,
+                              ) =>
+                                  const SkyPointsRewardDetails(),
                             ),
                           ),
                         ),
@@ -446,29 +524,10 @@ class _ReferralScreenViewState extends State<ReferralScreenView> {
                         },
                       ),
                       onPageChanged: (index) {
-                        _selectedTabNotifier.value = ReferralTab.values[index];
-                        // final tappedTab = _selectedTabNotifier.value;
-
-                        // final selectedTab = ReferralTab.values[index];
-
-                        // if()
-                        // _selectedTabNotifier.value = selectedTab;
-
-                        // switch (selectedTab) {
-                        //   case ReferralTab.theProgram:
-                        //     ;
-                        //   case ReferralTab.share:
-                        //     // context.read<HighlightsBloc>().state.whenOrNull(
-                        //     //       initial: () =>
-                        //     //           context.read<HighlightsBloc>().add(
-                        //     //                 const HighlightsEvent.getHighlights(),
-                        //     //               ),
-                        //     //     );
-                        //   case ReferralTab.history:
-                        //     ;
-                        //   case ReferralTab.leaderboard:
-                        //     ;
-                        // }
+                        if (!_isPageAnimatingDueToTabSelection) {
+                          _selectedTabNotifier.value =
+                              ReferralTab.values[index];
+                        }
                       },
                     ),
                   ),

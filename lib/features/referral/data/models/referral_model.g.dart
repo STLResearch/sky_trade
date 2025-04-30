@@ -28,7 +28,7 @@ Map<String, dynamic> _$StatsModelToJson(StatsModel instance) =>
     };
 
 CountModel _$CountModelFromJson(Map<String, dynamic> json) => CountModel(
-      mPoint: (json['point'] as num).toInt(),
+      mPoint: (json['point'] as num?)?.toInt(),
     );
 
 Map<String, dynamic> _$CountModelToJson(CountModel instance) =>
@@ -157,10 +157,10 @@ Map<String, dynamic> _$LeaderboardStatisticsModelToJson(
 
 PeriodPointModel _$PeriodPointModelFromJson(Map<String, dynamic> json) =>
     PeriodPointModel(
-      mReferralCode: json['referralCode'] as String,
+      mReferralCode: json['referralCode'] as String?,
       mTotalPoints: (json['totalPoints'] as num).toInt(),
       mRewardCount: (json['rewardCount'] as num).toInt(),
-      mBlockchainAddress: json['blockchainAddress'] as String,
+      mBlockchainAddress: json['blockchainAddress'] as String?,
     );
 
 Map<String, dynamic> _$PeriodPointModelToJson(PeriodPointModel instance) =>

@@ -19,6 +19,7 @@ const twenty = 20;
 const twentyThree = 23;
 const twentyFour = 24;
 const forty = 40;
+const fifty = 50;
 const fiftyNine = 59;
 const oneHundred = 100;
 const oneEighty = 180;
