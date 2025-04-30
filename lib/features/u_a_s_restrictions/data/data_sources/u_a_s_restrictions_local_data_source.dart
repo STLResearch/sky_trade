@@ -74,8 +74,12 @@ final class UASRestrictionsLocalDataSourceImplementation
   Future<void> _deleteStaleRestrictions(
     Box<Map<dynamic, dynamic>> box,
     String todayKey,
-  ) async =>
-      box.containsKey(todayKey) ? null : await box.clear();
+  ) async {
+    if(box.containsKey(todayKey)) {
+      return;
+    }
+    await box.clear();
+  }
 
   String _getTodayKey() {
     final now = DateTime.timestamp();
