@@ -933,4 +933,100 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get shareRadarApp => 'Share Radar App';
+
+  @override
+  String get unableToShareTheCorrespondingAppMayNotBeInstalledOnYourDevice =>
+      'Unable to share. The corresponding app may not be installed on your device';
+
+  @override
+  String get introducingSkytradeRadarRewards =>
+      'Introducing SkyTrade\n\n Radar Rewards';
+
+  @override
+  String get earn25PointsForEveryVerifiedDroneObservationCompleteDailyQuestsToBoostYourScoreAndLevelUpPointsResetEverySeasonSoStayActiveToClimbTheLeaderboardsAndMakeYourMark =>
+      'Earn 25 points for every verified drone observation. Complete daily quests to boost your score and level up.\n\n Points reset every season, so stay active to climb the leaderboards and make your mark.';
+
+  @override
+  String get startEarning => 'Start Earning';
+
+  @override
+  String get pointsProgram => 'Points Program';
+
+  @override
+  String get completeTasksToEarnSkyPoints =>
+      'Complete tasks to earn \$SKY points.';
+
+  @override
+  String get advancedTracker => 'Advanced Tracker';
+
+  @override
+  String get level2 => 'Level 2';
+
+  @override
+  String get twentyOfTwoHundredPoints => '20 of 200 points';
+
+  @override
+  String get dailyQuests => 'Daily Quests';
+
+  @override
+  String get track5Drones => 'Track 5 drones';
+
+  @override
+  String get nilUponFive => '0/5';
+
+  @override
+  String get howItWorks => 'How it works';
+
+  @override
+  String get earn25PointsForEveryVerifiedDroneObservationCompleteDailyQuestsToEarnBonusPointsAndClimbTheRanksTheMoreYouContributeTheMoreTouLevelUp =>
+      'Earn 25 points for every verified drone observation. Complete daily quests to earn bonus points and climb the ranks.\nThe more you contribute, the more you level up.';
+
+  @override
+  String get viewLeaderboard => 'View leaderboard';
+
+  @override
+  String get twentyPoints => '20 points';
+
+  @override
+  String get twoHundredPoints => '200 points';
+
+  @override
+  String get close => 'Close';
+
+  @override
+  String get descriptionAboutTask => 'Description about task';
+
+  @override
+  String get earn10$kyPoints => 'Earn 10 \$KY points';
+
+  @override
+  String get competeWithOthersToClimbTheRanksByEarningPointsThroughDroneObservationsAndQuestsPointsResetAtTheStartOfEachNewSeasonSoStayActiveToMaintainYourPosition =>
+      'Compete with others to climb the ranks by earning points through drone observations and quests. \n\n Points reset at the start of each new season, so stay active to maintain your position.';
+
+  @override
+  String get topTrackersThisSeason => 'Top trackers this season';
+
+  @override
+  String get twentyThreeDaysLeft => '23 days left';
+
+  @override
+  String get seeMyPosition => 'See my position';
+
+  @override
+  String get youveUnlockedAdvancedTracker =>
+      'You\'ve unlocked\n\n Advanced Tracker!';
+
+  @override
+  String get youveUnlockedDroneMaster => 'You\'ve unlocked\n\n Drone Master!';
+
+  @override
+  String get keepMakingDroneObservationsAndCompletingDailyQuestsToClimbEvenHigherNewChallengesAwait =>
+      'Keep making drone observations and completing daily quests to climb even higher.New challenges await!';
+
+  @override
+  String get youveReachedTheHighestLevelThisSeasonKeepGoingToStayOnTopOfTheLeaderboardAndPrepareForNewChallengesInTheNextSeason =>
+      'You’ve reached the highest level this season!\\nKeep going to stay on top of the leaderboard and prepare for new challenges in the next season.';
+
+  @override
+  String get letsFly => 'Lets Fly';
 }

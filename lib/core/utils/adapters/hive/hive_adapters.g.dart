@@ -8,7 +8,7 @@ part of 'hive_adapters.dart';
 
 class RestrictionModelAdapter extends TypeAdapter<RestrictionModel> {
   @override
-  final int typeId = 0;
+  final typeId = 0;
 
   @override
   RestrictionModel read(BinaryReader reader) {
@@ -48,7 +48,7 @@ class RestrictionModelAdapter extends TypeAdapter<RestrictionModel> {
 
 class PropertiesModelAdapter extends TypeAdapter<PropertiesModel> {
   @override
-  final int typeId = 1;
+  final typeId = 1;
 
   @override
   PropertiesModel read(BinaryReader reader) {
@@ -97,7 +97,7 @@ class PropertiesModelAdapter extends TypeAdapter<PropertiesModel> {
 
 class AdditionalLinkModelAdapter extends TypeAdapter<AdditionalLinkModel> {
   @override
-  final int typeId = 2;
+  final typeId = 2;
 
   @override
   AdditionalLinkModel read(BinaryReader reader) {
@@ -134,7 +134,7 @@ class AdditionalLinkModelAdapter extends TypeAdapter<AdditionalLinkModel> {
 
 class GeometryModelAdapter extends TypeAdapter<GeometryModel> {
   @override
-  final int typeId = 3;
+  final typeId = 3;
 
   @override
   GeometryModel read(BinaryReader reader) {
@@ -174,7 +174,7 @@ class GeometryModelAdapter extends TypeAdapter<GeometryModel> {
 
 class RestrictionTypeAdapter extends TypeAdapter<RestrictionType> {
   @override
-  final int typeId = 4;
+  final typeId = 4;
 
   @override
   RestrictionType read(BinaryReader reader) {
@@ -215,7 +215,7 @@ class RestrictionTypeAdapter extends TypeAdapter<RestrictionType> {
 
 class GeometryTypeAdapter extends TypeAdapter<GeometryType> {
   @override
-  final int typeId = 5;
+  final typeId = 5;
 
   @override
   GeometryType read(BinaryReader reader) {

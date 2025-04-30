@@ -15,3 +15,14 @@ extension HiveRegistrar on HiveInterface {
     registerAdapter(RestrictionTypeAdapter());
   }
 }
+
+extension IsolatedHiveRegistrar on IsolatedHiveInterface {
+  void registerAdapters() {
+    registerAdapter(AdditionalLinkModelAdapter());
+    registerAdapter(GeometryModelAdapter());
+    registerAdapter(GeometryTypeAdapter());
+    registerAdapter(PropertiesModelAdapter());
+    registerAdapter(RestrictionModelAdapter());
+    registerAdapter(RestrictionTypeAdapter());
+  }
+}

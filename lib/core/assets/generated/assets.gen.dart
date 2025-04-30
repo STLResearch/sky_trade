@@ -23,9 +23,24 @@ class $AssetsPngsGen {
   AssetGenImage get appIconIos =>
       const AssetGenImage('assets/pngs/app_icon_ios.png');
 
+  /// File path: assets/pngs/crown.png
+  AssetGenImage get crown => const AssetGenImage('assets/pngs/crown.png');
+
+  /// File path: assets/pngs/drone_back.png
+  AssetGenImage get droneBack =>
+      const AssetGenImage('assets/pngs/drone_back.png');
+
+  /// File path: assets/pngs/drone_front.png
+  AssetGenImage get droneFront =>
+      const AssetGenImage('assets/pngs/drone_front.png');
+
   /// File path: assets/pngs/icon_drone.png
   AssetGenImage get iconDrone =>
       const AssetGenImage('assets/pngs/icon_drone.png');
+
+  /// File path: assets/pngs/info_leaderboard.png
+  AssetGenImage get infoLeaderboard =>
+      const AssetGenImage('assets/pngs/info_leaderboard.png');
 
   /// File path: assets/pngs/location_puck.png
   AssetGenImage get locationPuck =>
@@ -54,11 +69,19 @@ class $AssetsPngsGen {
   AssetGenImage get splashAndroid12 =>
       const AssetGenImage('assets/pngs/splash_android_12.png');
 
+  /// File path: assets/pngs/track_drones.png
+  AssetGenImage get trackDrones =>
+      const AssetGenImage('assets/pngs/track_drones.png');
+
   /// List of all assets
   List<AssetGenImage> get values => [
     appIconAndroid,
     appIconIos,
+    crown,
+    droneBack,
+    droneFront,
     iconDrone,
+    infoLeaderboard,
     locationPuck,
     locationPuckShadow,
     markerDanger,
@@ -66,6 +89,7 @@ class $AssetsPngsGen {
     markerRestricted,
     splash,
     splashAndroid12,
+    trackDrones,
   ];
 }
 
@@ -85,6 +109,21 @@ class $AssetsSvgsGen {
   SvgGenImage get arrowRight =>
       const SvgGenImage('assets/svgs/arrow_right.svg');
 
+  /// File path: assets/svgs/arrow_right_white.svg
+  SvgGenImage get arrowRightWhite =>
+      const SvgGenImage('assets/svgs/arrow_right_white.svg');
+
+  /// File path: assets/svgs/badge_level2.svg
+  SvgGenImage get badgeLevel2 =>
+      const SvgGenImage('assets/svgs/badge_level2.svg');
+
+  /// File path: assets/svgs/badge_level3.svg
+  SvgGenImage get badgeLevel3 =>
+      const SvgGenImage('assets/svgs/badge_level3.svg');
+
+  /// File path: assets/svgs/badges.svg
+  SvgGenImage get badges => const SvgGenImage('assets/svgs/badges.svg');
+
   /// File path: assets/svgs/bluetooth_off.svg
   SvgGenImage get bluetoothOff =>
       const SvgGenImage('assets/svgs/bluetooth_off.svg');
@@ -92,6 +131,9 @@ class $AssetsSvgsGen {
   /// File path: assets/svgs/bluetooth_on.svg
   SvgGenImage get bluetoothOn =>
       const SvgGenImage('assets/svgs/bluetooth_on.svg');
+
+  /// File path: assets/svgs/check.svg
+  SvgGenImage get check => const SvgGenImage('assets/svgs/check.svg');
 
   /// File path: assets/svgs/chevron_down.svg
   SvgGenImage get chevronDown =>
@@ -101,11 +143,23 @@ class $AssetsSvgsGen {
   SvgGenImage get chevronLeft =>
       const SvgGenImage('assets/svgs/chevron_left.svg');
 
+  /// File path: assets/svgs/chevron_left_black.svg
+  SvgGenImage get chevronLeftBlack =>
+      const SvgGenImage('assets/svgs/chevron_left_black.svg');
+
+  /// File path: assets/svgs/chevron_right.svg
+  SvgGenImage get chevronRight =>
+      const SvgGenImage('assets/svgs/chevron_right.svg');
+
   /// File path: assets/svgs/chevron_up.svg
   SvgGenImage get chevronUp => const SvgGenImage('assets/svgs/chevron_up.svg');
 
   /// File path: assets/svgs/clear.svg
   SvgGenImage get clear => const SvgGenImage('assets/svgs/clear.svg');
+
+  /// File path: assets/svgs/clear_white.svg
+  SvgGenImage get clearWhite =>
+      const SvgGenImage('assets/svgs/clear_white.svg');
 
   /// File path: assets/svgs/cloud.svg
   SvgGenImage get cloud => const SvgGenImage('assets/svgs/cloud.svg');
@@ -137,6 +191,10 @@ class $AssetsSvgsGen {
 
   /// File path: assets/svgs/help.svg
   SvgGenImage get help => const SvgGenImage('assets/svgs/help.svg');
+
+  /// File path: assets/svgs/help_circle.svg
+  SvgGenImage get helpCircle =>
+      const SvgGenImage('assets/svgs/help_circle.svg');
 
   /// File path: assets/svgs/home.svg
   SvgGenImage get home => const SvgGenImage('assets/svgs/home.svg');
@@ -170,6 +228,9 @@ class $AssetsSvgsGen {
 
   /// File path: assets/svgs/insights.svg
   SvgGenImage get insights => const SvgGenImage('assets/svgs/insights.svg');
+
+  /// File path: assets/svgs/level2.svg
+  SvgGenImage get level2 => const SvgGenImage('assets/svgs/level2.svg');
 
   /// File path: assets/svgs/location_danger.svg
   SvgGenImage get locationDanger =>
@@ -218,6 +279,9 @@ class $AssetsSvgsGen {
 
   /// File path: assets/svgs/next_arrow.svg
   SvgGenImage get nextArrow => const SvgGenImage('assets/svgs/next_arrow.svg');
+
+  /// File path: assets/svgs/points.svg
+  SvgGenImage get points => const SvgGenImage('assets/svgs/points.svg');
 
   /// File path: assets/svgs/prohibited.svg
   SvgGenImage get prohibited => const SvgGenImage('assets/svgs/prohibited.svg');
@@ -296,12 +360,20 @@ class $AssetsSvgsGen {
     apple,
     arrow,
     arrowRight,
+    arrowRightWhite,
+    badgeLevel2,
+    badgeLevel3,
+    badges,
     bluetoothOff,
     bluetoothOn,
+    check,
     chevronDown,
     chevronLeft,
+    chevronLeftBlack,
+    chevronRight,
     chevronUp,
     clear,
+    clearWhite,
     cloud,
     cloudAlt,
     community,
@@ -312,6 +384,7 @@ class $AssetsSvgsGen {
     gift,
     google,
     help,
+    helpCircle,
     home,
     iconDroneAbout,
     iconDroneBlack,
@@ -321,6 +394,7 @@ class $AssetsSvgsGen {
     infoProhibited,
     infoRestricted,
     insights,
+    level2,
     locationDanger,
     locationProhibited,
     locationRestricted,
@@ -334,6 +408,7 @@ class $AssetsSvgsGen {
     myLocationFollowed,
     myLocationNotFollowed,
     nextArrow,
+    points,
     prohibited,
     rain,
     referralFacebook,

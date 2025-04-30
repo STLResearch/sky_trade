@@ -1812,6 +1812,185 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Share Radar App'**
   String get shareRadarApp;
+
+  /// No description provided for @unableToShareTheCorrespondingAppMayNotBeInstalledOnYourDevice.
+  ///
+  /// In en, this message translates to:
+  /// **'Unable to share. The corresponding app may not be installed on your device'**
+  String get unableToShareTheCorrespondingAppMayNotBeInstalledOnYourDevice;
+
+  /// No description provided for @introducingSkytradeRadarRewards.
+  ///
+  /// In en, this message translates to:
+  /// **'Introducing SkyTrade\n\n Radar Rewards'**
+  String get introducingSkytradeRadarRewards;
+
+  /// No description provided for @earn25PointsForEveryVerifiedDroneObservationCompleteDailyQuestsToBoostYourScoreAndLevelUpPointsResetEverySeasonSoStayActiveToClimbTheLeaderboardsAndMakeYourMark.
+  ///
+  /// In en, this message translates to:
+  /// **'Earn 25 points for every verified drone observation. Complete daily quests to boost your score and level up.\n\n Points reset every season, so stay active to climb the leaderboards and make your mark.'**
+  String
+      get earn25PointsForEveryVerifiedDroneObservationCompleteDailyQuestsToBoostYourScoreAndLevelUpPointsResetEverySeasonSoStayActiveToClimbTheLeaderboardsAndMakeYourMark;
+
+  /// No description provided for @startEarning.
+  ///
+  /// In en, this message translates to:
+  /// **'Start Earning'**
+  String get startEarning;
+
+  /// No description provided for @pointsProgram.
+  ///
+  /// In en, this message translates to:
+  /// **'Points Program'**
+  String get pointsProgram;
+
+  /// No description provided for @completeTasksToEarnSkyPoints.
+  ///
+  /// In en, this message translates to:
+  /// **'Complete tasks to earn \$SKY points.'**
+  String get completeTasksToEarnSkyPoints;
+
+  /// No description provided for @advancedTracker.
+  ///
+  /// In en, this message translates to:
+  /// **'Advanced Tracker'**
+  String get advancedTracker;
+
+  /// No description provided for @level2.
+  ///
+  /// In en, this message translates to:
+  /// **'Level 2'**
+  String get level2;
+
+  /// No description provided for @twentyOfTwoHundredPoints.
+  ///
+  /// In en, this message translates to:
+  /// **'20 of 200 points'**
+  String get twentyOfTwoHundredPoints;
+
+  /// No description provided for @dailyQuests.
+  ///
+  /// In en, this message translates to:
+  /// **'Daily Quests'**
+  String get dailyQuests;
+
+  /// No description provided for @track5Drones.
+  ///
+  /// In en, this message translates to:
+  /// **'Track 5 drones'**
+  String get track5Drones;
+
+  /// No description provided for @nilUponFive.
+  ///
+  /// In en, this message translates to:
+  /// **'0/5'**
+  String get nilUponFive;
+
+  /// No description provided for @howItWorks.
+  ///
+  /// In en, this message translates to:
+  /// **'How it works'**
+  String get howItWorks;
+
+  /// No description provided for @earn25PointsForEveryVerifiedDroneObservationCompleteDailyQuestsToEarnBonusPointsAndClimbTheRanksTheMoreYouContributeTheMoreTouLevelUp.
+  ///
+  /// In en, this message translates to:
+  /// **'Earn 25 points for every verified drone observation. Complete daily quests to earn bonus points and climb the ranks.\nThe more you contribute, the more you level up.'**
+  String
+      get earn25PointsForEveryVerifiedDroneObservationCompleteDailyQuestsToEarnBonusPointsAndClimbTheRanksTheMoreYouContributeTheMoreTouLevelUp;
+
+  /// No description provided for @viewLeaderboard.
+  ///
+  /// In en, this message translates to:
+  /// **'View leaderboard'**
+  String get viewLeaderboard;
+
+  /// No description provided for @twentyPoints.
+  ///
+  /// In en, this message translates to:
+  /// **'20 points'**
+  String get twentyPoints;
+
+  /// No description provided for @twoHundredPoints.
+  ///
+  /// In en, this message translates to:
+  /// **'200 points'**
+  String get twoHundredPoints;
+
+  /// No description provided for @close.
+  ///
+  /// In en, this message translates to:
+  /// **'Close'**
+  String get close;
+
+  /// No description provided for @descriptionAboutTask.
+  ///
+  /// In en, this message translates to:
+  /// **'Description about task'**
+  String get descriptionAboutTask;
+
+  /// No description provided for @earn10$kyPoints.
+  ///
+  /// In en, this message translates to:
+  /// **'Earn 10 \$KY points'**
+  String get earn10$kyPoints;
+
+  /// No description provided for @competeWithOthersToClimbTheRanksByEarningPointsThroughDroneObservationsAndQuestsPointsResetAtTheStartOfEachNewSeasonSoStayActiveToMaintainYourPosition.
+  ///
+  /// In en, this message translates to:
+  /// **'Compete with others to climb the ranks by earning points through drone observations and quests. \n\n Points reset at the start of each new season, so stay active to maintain your position.'**
+  String
+      get competeWithOthersToClimbTheRanksByEarningPointsThroughDroneObservationsAndQuestsPointsResetAtTheStartOfEachNewSeasonSoStayActiveToMaintainYourPosition;
+
+  /// No description provided for @topTrackersThisSeason.
+  ///
+  /// In en, this message translates to:
+  /// **'Top trackers this season'**
+  String get topTrackersThisSeason;
+
+  /// No description provided for @twentyThreeDaysLeft.
+  ///
+  /// In en, this message translates to:
+  /// **'23 days left'**
+  String get twentyThreeDaysLeft;
+
+  /// No description provided for @seeMyPosition.
+  ///
+  /// In en, this message translates to:
+  /// **'See my position'**
+  String get seeMyPosition;
+
+  /// No description provided for @youveUnlockedAdvancedTracker.
+  ///
+  /// In en, this message translates to:
+  /// **'You\'ve unlocked\n\n Advanced Tracker!'**
+  String get youveUnlockedAdvancedTracker;
+
+  /// No description provided for @youveUnlockedDroneMaster.
+  ///
+  /// In en, this message translates to:
+  /// **'You\'ve unlocked\n\n Drone Master!'**
+  String get youveUnlockedDroneMaster;
+
+  /// No description provided for @keepMakingDroneObservationsAndCompletingDailyQuestsToClimbEvenHigherNewChallengesAwait.
+  ///
+  /// In en, this message translates to:
+  /// **'Keep making drone observations and completing daily quests to climb even higher.New challenges await!'**
+  String
+      get keepMakingDroneObservationsAndCompletingDailyQuestsToClimbEvenHigherNewChallengesAwait;
+
+  /// No description provided for @youveReachedTheHighestLevelThisSeasonKeepGoingToStayOnTopOfTheLeaderboardAndPrepareForNewChallengesInTheNextSeason.
+  ///
+  /// In en, this message translates to:
+  /// **'You’ve reached the highest level this season!\\nKeep going to stay on top of the leaderboard and prepare for new challenges in the next season.'**
+  String
+      get youveReachedTheHighestLevelThisSeasonKeepGoingToStayOnTopOfTheLeaderboardAndPrepareForNewChallengesInTheNextSeason;
+
+  /// No description provided for @letsFly.
+  ///
+  /// In en, this message translates to:
+  /// **'Lets Fly'**
+  String get letsFly;
 }
 
 class _AppLocalizationsDelegate
