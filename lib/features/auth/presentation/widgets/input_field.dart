@@ -57,6 +57,7 @@ final class InputField<T> extends StatefulWidget {
     required this.keyboardType,
     required this.inputFieldType,
     this.hintText,
+    this.errorMaxLines,
     this.validator,
     this.onChanged,
     this.onCountryChanged,
@@ -71,6 +72,7 @@ final class InputField<T> extends StatefulWidget {
   final TextInputType keyboardType;
   final InputFieldType inputFieldType;
   final String? hintText;
+  final int? errorMaxLines;
   final Function1<String?, String?>? validator;
   final Function1<T, void>? onChanged;
   final Function1<Country, void>? onCountryChanged;
@@ -167,6 +169,7 @@ class _InputFieldState<T> extends State<InputField<T>> {
                     ),
                 keyboardType: widget.keyboardType,
                 decoration: InputDecoration(
+                  errorMaxLines: widget.errorMaxLines,
                   hintText: widget.hintText,
                   filled: widget.filledWhenDisabled && !widget.enabled,
                   fillColor: switch (widget.enabled) {

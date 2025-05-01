@@ -56,6 +56,7 @@ import 'package:sky_trade/core/resources/numbers/ui.dart'
         tenDotNil,
         thirtyDotNil,
         thirtyTwoDotThreeFive,
+        three,
         twentyFourDotNil,
         twentyTwoDotFive,
         twoDotNil;
@@ -281,6 +282,7 @@ class _OnboardingScreenViewState extends State<OnboardingScreenView> {
                               keyboardType: TextInputType.emailAddress,
                               inputFieldType: InputFieldType.textInput,
                               hintText: context.localize.enterReferralCode,
+                              errorMaxLines: three,
                               validator: (value) =>
                                   switch (value?.isNotEmpty ?? false) {
                                 true
