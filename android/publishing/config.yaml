@@ -19,7 +19,7 @@ app:
     - purpose: icon
       uri: ../fastlane/metadata/android/en-GB/images/icon.png
 release:
-  address: 252EWVh8C2K8eeHgTBWTGZPSmqKqf1CR9736zKR7573q
+  address: 8y2PdB68YZmBn2fAJm6eMXxTggzEy2QrcyTmQzYjSbJ5
   media:
     - purpose: icon
       uri: ../fastlane/metadata/android/en-GB/images/icon.png
@@ -45,8 +45,8 @@ solana_mobile_dapp_publisher_portal:
   google_store_package: mobile.trade.sky
   testing_instructions: We refined our authentication flow. The new flow simplifies authentication for users making it easy for both new and existing users to sign up or sign in. We created a test account for the Solana dApp store review team to test this new flow easily. On the new authentication screen, click Get started -> Use password -> then enter the following credentials we specially created for the Solana dApp store review team to test with. Email is testrestrictionsapp+solanadappstorereview@gmail.com and password is Shivam##%27
 lastSubmittedVersionOnChain:
-  address: 252EWVh8C2K8eeHgTBWTGZPSmqKqf1CR9736zKR7573q
-  version_code: 7
-  apk_hash: Yt0dosmPoZKTDb+dJMy+3ocng5lEpH3zhtn9hb1UPJU=
+  address: 8y2PdB68YZmBn2fAJm6eMXxTggzEy2QrcyTmQzYjSbJ5
+  version_code: 9
+  apk_hash: fxlPhxBM0wIExISqvPNyzg5gbYbS9lxr5iqxiPDH/Ow=
 lastUpdatedVersionOnStore:
-  address: 252EWVh8C2K8eeHgTBWTGZPSmqKqf1CR9736zKR7573q
+  address: 8y2PdB68YZmBn2fAJm6eMXxTggzEy2QrcyTmQzYjSbJ5

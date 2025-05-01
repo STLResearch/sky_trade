@@ -1,4 +1,4 @@
-.PHONY: f-np, c-p, br-b, br-w, t, gcr-t, ocr-t, t-got, d-d-r, d-s-r, d-l-r-o, d-l-r-p, loc, u-d-s-l, c-f-d, c-f-s, c-f-l, o-i, p-sds
+.PHONY: f-np, c-p, br-b, br-w, t, gcr-t, ocr-t, t-got, d-d-r, d-s-r, d-l-r-o, d-l-r-p, loc, u-d-s-l, c-f-d, c-f-s, c-f-l, o-i, p-sds, r-sdp
 
 include .env.makefile
 
@@ -75,7 +75,7 @@ loc: ## Prints the lines of code of each file in lib and the total lines thereaf
 u-d-s-l: ## Uploads Android and iOS live app debug symbols to Sentry
 	flutter build apk -t lib/main_live.dart --flavor live
 	flutter build ios -t lib/main_live.dart --flavor live
-	dart run sentry_dart_plugin
+	make r-sdp
 
 c-f-d: ## Configures Firebase for dev environment
 	flutterfire config \
@@ -109,4 +109,8 @@ o-i: ## Opens iOS module with information about the pods in XCode for build rela
 
 p-sds: ## Builds new live release apk, mints a new release NFT and publishes app to the Solana dApp store. Does not upgrade version code, version name and new_in_version field of config.yaml in android/publishing. Those need to be done manually first. Please make sure to fund the public address of the keypair with some SOL before this process starts to avoid errors
 	flutter build apk -t lib/main_live.dart --flavor live
-	cd android/publishing && npx dapp-store validate -k ${SOLANA_KEYPAIR_PATH} && npx dapp-store create release -k ${SOLANA_KEYPAIR_PATH} -u "%d", ${MAINNET_BETA_RPC_URL} && npx dapp-store publish update -k ${SOLANA_KEYPAIR_PATH} --requestor-is-authorized --complies-with-solana-dapp-store-policies
+	make r-sdp
+	cd android/publishing && npx dapp-store validate -k ${SOLANA_KEYPAIR_PATH} && npx dapp-store create release -k ${SOLANA_KEYPAIR_PATH} -u "${MAINNET_BETA_RPC_URL}" && npx dapp-store publish update -k ${SOLANA_KEYPAIR_PATH} -u "${MAINNET_BETA_RPC_URL}" --requestor-is-authorized --complies-with-solana-dapp-store-policies
+
+r-sdp: ## Runs sentry dart plugin to upload debug symbols to Sentry. Should be run after building an apk or ipa
+	dart run sentry_dart_plugin
