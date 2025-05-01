@@ -207,7 +207,6 @@ const blockchainAddressKey = 'blockchainAddress';
 const newsletterKey = 'newsletter';
 const categoryIdKey = 'categoryId';
 const phoneNumberKey = 'phoneNumber';
-const pirateValue = 'pirate';
 const usernameKey = 'username';
 const passwordKey = 'password';
 const isAdminKey = 'isAdmin';

@@ -28,6 +28,8 @@ import 'package:flutter_bloc/flutter_bloc.dart'
         ReadContext;
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:sky_trade/core/assets/generated/assets.gen.dart' show Assets;
+import 'package:sky_trade/core/errors/failures/auth_failure.dart'
+    show UserNotFoundFailure;
 import 'package:sky_trade/core/resources/colors.dart' show hex4285F4;
 import 'package:sky_trade/core/resources/numbers/ui.dart'
     show
@@ -44,7 +46,8 @@ import 'package:sky_trade/core/resources/strings/routes.dart'
         errorRoutePath,
         getStartedRoutePath,
         homeRoutePath,
-        noInternetConnectionRoutePath;
+        noInternetConnectionRoutePath,
+        onboardingRoutePath;
 import 'package:sky_trade/core/utils/enums/ui.dart' show ErrorReason;
 import 'package:sky_trade/core/utils/extensions/build_context_extensions.dart';
 import 'package:sky_trade/features/auth/presentation/blocs/auth_0_credentials_bloc/auth_0_credentials_bloc.dart'
@@ -272,9 +275,12 @@ class _LoadingViewState extends State<LoadingView> {
                     route: homeRoutePath,
                   );
                 },
-                failedToCheckUser: (_) {
+                failedToCheckUser: (checkSkyTradeUserFailure) {
                   _removeSplashScreenAndNavigateTo(
-                    route: getStartedRoutePath,
+                    route: switch (checkSkyTradeUserFailure) {
+                      UserNotFoundFailure() => onboardingRoutePath,
+                      _ => getStartedRoutePath,
+                    },
                   );
                 },
               );
@@ -293,7 +299,7 @@ class _LoadingViewState extends State<LoadingView> {
                   const SizedBox(
                     height: tenDotNil,
                   ),
-                  Assets.svgs.skyTradeLogo.svg(),
+                  Assets.svgs.skyTradeRadarLogo.svg(),
                   const SizedBox(
                     height: fortyEightDotNil,
                   ),

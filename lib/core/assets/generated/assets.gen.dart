@@ -260,10 +260,6 @@ class $AssetsSvgsGen {
   SvgGenImage get shareInvite =>
       const SvgGenImage('assets/svgs/share_invite.svg');
 
-  /// File path: assets/svgs/sky_trade_logo.svg
-  SvgGenImage get skyTradeLogo =>
-      const SvgGenImage('assets/svgs/sky_trade_logo.svg');
-
   /// File path: assets/svgs/sky_trade_radar_logo.svg
   SvgGenImage get skyTradeRadarLogo =>
       const SvgGenImage('assets/svgs/sky_trade_radar_logo.svg');
@@ -342,7 +338,6 @@ class $AssetsSvgsGen {
     settings,
     share,
     shareInvite,
-    skyTradeLogo,
     skyTradeRadarLogo,
     storm,
     sun,

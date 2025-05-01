@@ -125,7 +125,7 @@ class ErrorScreenView extends StatelessWidget {
                     const SizedBox(
                       height: tenDotNil,
                     ),
-                    Assets.svgs.skyTradeLogo.svg(),
+                    Assets.svgs.skyTradeRadarLogo.svg(),
                     const SizedBox(
                       height: fortyDotNil,
                     ),

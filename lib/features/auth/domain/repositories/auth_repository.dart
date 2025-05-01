@@ -1,6 +1,7 @@
 import 'package:auth0_flutter/auth0_flutter.dart' show Credentials;
 import 'package:dartz/dartz.dart' show Either, Unit;
 import 'package:sky_trade/core/errors/failures/auth_failure.dart';
+import 'package:sky_trade/core/utils/enums/ui.dart' show UserCategory;
 import 'package:sky_trade/features/auth/domain/entities/auth_entity.dart'
     show Auth0UserEntity, SFAUserEntity, SkyTradeUserEntity;
 
@@ -43,8 +44,15 @@ abstract interface class AuthRepository {
   Future<Either<SFALogoutFailure, Unit>> logoutCurrentSFAUser();
 
   Future<Either<CreateSkyTradeUserFailure, SkyTradeUserEntity>>
-      createSkyTradeUser();
+      createSkyTradeUserUsing({
+    required String phoneNumber,
+    required UserCategory userCategory,
+    required bool subscribeToNewsletter,
+    required String? referralCode,
+  });
 
   Future<Either<CheckSkyTradeUserFailure, SkyTradeUserEntity>>
       checkSkyTradeUserExists();
+
+  Future<String?> get userEmail;
 }

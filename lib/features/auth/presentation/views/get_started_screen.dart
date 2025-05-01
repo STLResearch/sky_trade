@@ -31,15 +31,11 @@ import 'package:sky_trade/core/assets/generated/assets.gen.dart' show Assets;
 import 'package:sky_trade/core/errors/failures/auth_failure.dart'
     show
         CheckSkyTradeUserUnknownFailure,
-        CreateSkyTradeUserUnknownFailure,
-        EmailReuseNotAllowedFailure,
-        InvalidEmailFailure,
         InvalidSignatureFailure,
         UnauthorizedFailure,
         UserDeletedFailure,
         UserMismatchFailure,
-        UserNotFoundFailure,
-        WalletAlreadyExistsFailure;
+        UserNotFoundFailure;
 import 'package:sky_trade/core/resources/colors.dart' show hexFFFFFF;
 import 'package:sky_trade/core/resources/numbers/ui.dart'
     show
@@ -53,7 +49,7 @@ import 'package:sky_trade/core/resources/numbers/ui.dart'
 import 'package:sky_trade/core/resources/strings/networking.dart'
     show skyTradePrivacyPolicyUrl, skyTradeTermsOfServiceUrl;
 import 'package:sky_trade/core/resources/strings/routes.dart'
-    show homeRoutePath;
+    show homeRoutePath, onboardingRoutePath;
 import 'package:sky_trade/core/resources/strings/special_characters.dart'
     show fullStop, whiteSpace;
 import 'package:sky_trade/core/utils/extensions/build_context_extensions.dart';
@@ -187,7 +183,13 @@ class GetStartedView extends StatelessWidget {
                   );
                 },
                 failedToCheckSkyTradeUser: (checkSkyTradeUserFailure) {
-                  if (checkSkyTradeUserFailure is UserDeletedFailure) {
+                  if (checkSkyTradeUserFailure is UserNotFoundFailure) {
+                    Navigator.of(
+                      context,
+                    ).pushReplacementNamed(
+                      onboardingRoutePath,
+                    );
+                  } else if (checkSkyTradeUserFailure is UserDeletedFailure) {
                     ActionDialog.show(
                       context,
                       content: context.localize
@@ -223,21 +225,6 @@ class GetStartedView extends StatelessWidget {
                       },
                     );
                   }
-                },
-                failedToCreateSkyTradeUser: (createSkyTradeUserFailure) {
-                  AlertSnackBar.show(
-                    context,
-                    message: switch (createSkyTradeUserFailure) {
-                      InvalidEmailFailure() =>
-                        context.localize.pleaseEnterAValidEmail,
-                      WalletAlreadyExistsFailure() => context
-                          .localize.thisEmailIsAlreadyLinkedToAnExistingAccount,
-                      EmailReuseNotAllowedFailure() => context.localize
-                          .thisEmailCannotBeUsedToCreateANewAccountPleaseUseADifferentEmail,
-                      CreateSkyTradeUserUnknownFailure() =>
-                        context.localize.anUnknownErrorOccurredPleaseTryAgain,
-                    },
-                  );
                 },
                 failedToAuthenticateUserWithAuth0: () {
                   AlertSnackBar.show(
@@ -317,7 +304,7 @@ class GetStartedView extends StatelessWidget {
                     const SizedBox(
                       height: tenDotNil,
                     ),
-                    Assets.svgs.skyTradeLogo.svg(),
+                    Assets.svgs.skyTradeRadarLogo.svg(),
                     const SizedBox(
                       height: fortyDotNil,
                     ),

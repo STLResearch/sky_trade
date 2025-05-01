@@ -1580,6 +1580,108 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Unable to share. The corresponding app may not be installed on your device'**
   String get unableToShareTheCorrespondingAppMayNotBeInstalledOnYourDevice;
+
+  /// No description provided for @email.
+  ///
+  /// In en, this message translates to:
+  /// **'Email'**
+  String get email;
+
+  /// No description provided for @emailAtMailDotCom.
+  ///
+  /// In en, this message translates to:
+  /// **'email@mail.com'**
+  String get emailAtMailDotCom;
+
+  /// No description provided for @phone.
+  ///
+  /// In en, this message translates to:
+  /// **'Phone'**
+  String get phone;
+
+  /// No description provided for @phoneNumberCannotBeEmpty.
+  ///
+  /// In en, this message translates to:
+  /// **'Phone number cannot be empty'**
+  String get phoneNumberCannotBeEmpty;
+
+  /// No description provided for @searchCountryOrCountryCode.
+  ///
+  /// In en, this message translates to:
+  /// **'Search country or country code'**
+  String get searchCountryOrCountryCode;
+
+  /// No description provided for @yourStatus.
+  ///
+  /// In en, this message translates to:
+  /// **'Your Status'**
+  String get yourStatus;
+
+  /// No description provided for @selectACategory.
+  ///
+  /// In en, this message translates to:
+  /// **'Select a category'**
+  String get selectACategory;
+
+  /// No description provided for @referralCode.
+  ///
+  /// In en, this message translates to:
+  /// **'Referral Code'**
+  String get referralCode;
+
+  /// No description provided for @enterReferralCode.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter referral code'**
+  String get enterReferralCode;
+
+  /// No description provided for @subscribeToNewsletter.
+  ///
+  /// In en, this message translates to:
+  /// **'Subscribe to newsletter'**
+  String get subscribeToNewsletter;
+
+  /// No description provided for @invalidPhoneNumber.
+  ///
+  /// In en, this message translates to:
+  /// **'Invalid phone number'**
+  String get invalidPhoneNumber;
+
+  /// No description provided for @removeWhitespaces.
+  ///
+  /// In en, this message translates to:
+  /// **'Remove whitespaces'**
+  String get removeWhitespaces;
+
+  /// No description provided for @referralCodeTooShortReferralCodeCanEitherBeSixCharactersLongOrTheEmailOfTheReferer.
+  ///
+  /// In en, this message translates to:
+  /// **'Referral code too short. Referral code can either be six characters long or the email of the referer'**
+  String get referralCodeTooShortReferralCodeCanEitherBeSixCharactersLongOrTheEmailOfTheReferer;
+
+  /// No description provided for @referralCodeTooLongReferralCodeCanEitherBeSixCharactersLongOrTheEmailOfTheReferer.
+  ///
+  /// In en, this message translates to:
+  /// **'Referral code too long. Referral code can either be six characters long or the email of the referer'**
+  String get referralCodeTooLongReferralCodeCanEitherBeSixCharactersLongOrTheEmailOfTheReferer;
+
+  /// No description provided for @submit.
+  ///
+  /// In en, this message translates to:
+  /// **'Submit'**
+  String get submit;
+
+  /// No description provided for @iAmAnIndividual.
+  ///
+  /// In en, this message translates to:
+  /// **'I am an individual'**
+  String get iAmAnIndividual;
+
+  /// No description provided for @iAmACorporateEntity.
+  ///
+  /// In en, this message translates to:
+  /// **'I am a corporate entity'**
+  String get iAmACorporateEntity;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

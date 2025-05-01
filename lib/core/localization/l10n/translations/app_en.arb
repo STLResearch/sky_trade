@@ -246,5 +246,22 @@
   "joinMeOnSkyTradeAndStartTradingAirspaceAndRealEstateSignUpWithMyLinkAndGetExclusiveRewards": "🌍🚀Join me on SkyTrade and start trading airspace and real estate! Sign up with my link and get exclusive rewards",
   "hashTagSkyTradeHashTagEarnRewardsHashTagRealEstate": "💸#SkyTrade #EarnRewards #RealEstate",
   "yourExclusiveInvitationToSkyTrade": "Your exclusive invitation to SkyTrade",
-  "unableToShareTheCorrespondingAppMayNotBeInstalledOnYourDevice": "Unable to share. The corresponding app may not be installed on your device"
+  "unableToShareTheCorrespondingAppMayNotBeInstalledOnYourDevice": "Unable to share. The corresponding app may not be installed on your device",
+  "email": "Email",
+  "emailAtMailDotCom": "email@mail.com",
+  "phone": "Phone",
+  "phoneNumberCannotBeEmpty": "Phone number cannot be empty",
+  "searchCountryOrCountryCode": "Search country or country code",
+  "yourStatus": "Your Status",
+  "selectACategory": "Select a category",
+  "referralCode": "Referral Code",
+  "enterReferralCode": "Enter referral code",
+  "subscribeToNewsletter": "Subscribe to newsletter",
+  "invalidPhoneNumber": "Invalid phone number",
+  "removeWhitespaces": "Remove whitespaces",
+  "referralCodeTooShortReferralCodeCanEitherBeSixCharactersLongOrTheEmailOfTheReferer": "Referral code too short. Referral code can either be six characters long or the email of the referer",
+  "referralCodeTooLongReferralCodeCanEitherBeSixCharactersLongOrTheEmailOfTheReferer": "Referral code too long. Referral code can either be six characters long or the email of the referer",
+  "submit": "Submit",
+  "iAmAnIndividual": "I am an individual",
+  "iAmACorporateEntity": "I am a corporate entity"
 }
