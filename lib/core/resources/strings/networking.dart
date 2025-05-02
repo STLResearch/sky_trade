@@ -35,9 +35,6 @@ const xShareLinkMessageQueryParameterKey = 'message';
 // OpenWeather
 // Endpoints
 // Paths
-const dataPath = '/data';
-const twoDotFivePath = '/2.5';
-const weatherPath = '/weather';
 const imgPath = '/img';
 const wnPath = '/wn';
 
@@ -48,6 +45,8 @@ const skyTradePrivacyPolicyUrl = 'https://docs.sky.trade/privacy.htm';
 const skyTradeTermsOfServiceUrl = 'https://docs.sky.trade/terms.htm';
 
 // Paths
+const airRightsPath = '/air-rights';
+const getWeatherDataPath = '/get-weather-data';
 const radarPath = '/radar';
 const restrictionsPath = '/restrictions';
 const suggestPath = '/suggest';
@@ -326,11 +325,6 @@ const weatherKey = 'weather';
 const iconKey = 'icon';
 const mainKey = 'main';
 const tempKey = 'temp';
-const latKey = 'lat';
-const lonKey = 'lon';
-const appidKey = 'appid';
-const unitsKey = 'units';
-const metricValue = 'metric';
 const twoXValue = '2x';
 const userIdKey = 'userId';
 const devicesObservedKey = 'devicesObserved';
@@ -474,6 +468,7 @@ const rewardCountKey = 'rewardCount';
 const periodSummariesKey = 'periodSummaries';
 const periodStartDateKey = 'periodStartDate';
 const periodEndDateKey = 'periodEndDate';
+const weatherDataKey = 'weatherData';
 // Error response data message
 const unauthorizedCode = 'UNAUTHORIZED';
 const invalidSignatureCode = 'INVALID_SIGNATURE';
