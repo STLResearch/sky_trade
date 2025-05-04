@@ -26,7 +26,7 @@ class WeatherRemoteDataSourceImplementation
   @override
   Future<WeatherModel> getWeatherConditionOf({
     required String geoHash,
-  }) async =>
+  }) =>
       handleResponse<WeatherException, Map<String, dynamic>, WeatherModel>(
         requestInitiator: _httpClient.request(
           requestMethod: RequestMethod.get,
