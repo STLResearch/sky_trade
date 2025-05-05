@@ -635,10 +635,10 @@ packages:
     description:
       path: "."
       ref: main
-      resolved-ref: "280f752e6fc51bea12c1b1af0239ad35e81e1ca2"
+      resolved-ref: b29982fa5b4f009b0fb4fcab5fb1accdf57729d6
       url: "https://github.com/microsoft/clarity-flutter-preview"
     source: git
-    version: "1.0.0-alpha.4"
+    version: "1.0.0-alpha.5"
   flutter_dotenv:
     dependency: "direct main"
     description:
