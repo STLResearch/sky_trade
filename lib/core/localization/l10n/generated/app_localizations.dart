@@ -1706,6 +1706,24 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'There was an error computing your position on the leaderboard'**
   String get thereWasAnErrorComputingYourPositionOnTheLeaderboard;
+
+  /// No description provided for @code.
+  ///
+  /// In en, this message translates to:
+  /// **'Code'**
+  String get code;
+
+  /// No description provided for @joinMeOnSkyTradeRadarAndStartEarningPointsUseMyCode.
+  ///
+  /// In en, this message translates to:
+  /// **'Join me on SkyTrade Radar and start earning points! 🌟 Use my code'**
+  String get joinMeOnSkyTradeRadarAndStartEarningPointsUseMyCode;
+
+  /// No description provided for @whenYouSignUpAndGetABonusSignUpHere.
+  ///
+  /// In en, this message translates to:
+  /// **'when you sign up and get a bonus. Sign up here: '**
+  String get whenYouSignUpAndGetABonusSignUpHere;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

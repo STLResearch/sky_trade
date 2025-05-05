@@ -814,4 +814,13 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get thereWasAnErrorComputingYourPositionOnTheLeaderboard => 'There was an error computing your position on the leaderboard';
+
+  @override
+  String get code => 'Code';
+
+  @override
+  String get joinMeOnSkyTradeRadarAndStartEarningPointsUseMyCode => 'Join me on SkyTrade Radar and start earning points! 🌟 Use my code';
+
+  @override
+  String get whenYouSignUpAndGetABonusSignUpHere => 'when you sign up and get a bonus. Sign up here: ';
 }

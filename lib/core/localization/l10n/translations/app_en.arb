@@ -267,5 +267,8 @@
   "viewMyPosition": "View my position",
   "youHaveNotEarnedAnyPointsWithinTheCurrentPeriod": "You have not earned any points within the current period",
   "weCouldNotGetYourPositionOnTheLeaderboardTryRefreshingTheLeaderboardTableOrTheEntirePageThenTryViewingYourPositionAgain": "We could not get your position on the leaderboard. Try refreshing the leaderboard table or the entire page then try viewing your position again",
-  "thereWasAnErrorComputingYourPositionOnTheLeaderboard": "There was an error computing your position on the leaderboard"
+  "thereWasAnErrorComputingYourPositionOnTheLeaderboard": "There was an error computing your position on the leaderboard",
+  "code": "Code",
+  "joinMeOnSkyTradeRadarAndStartEarningPointsUseMyCode": "Join me on SkyTrade Radar and start earning points! 🌟 Use my code",
+  "whenYouSignUpAndGetABonusSignUpHere": "when you sign up and get a bonus. Sign up here: "
 }
