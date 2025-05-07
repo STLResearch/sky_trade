@@ -835,4 +835,10 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get tryRefreshingThePageIfTheIssueContinuesYouMayWantToCheckYourConnectionOrTryAgainLater => 'Try refreshing the page if the issue continues. You may want to check your connection or try again later';
+
+  @override
+  String get heyImUsingSkyTradeRadarAndThoughtYoudLikeItCheckItOutHere => 'Hey! I\'m using SkyTrade Radar and thought you\'d like it. Check it out here:';
+
+  @override
+  String get shareRadarApp => 'Share Radar App';
 }

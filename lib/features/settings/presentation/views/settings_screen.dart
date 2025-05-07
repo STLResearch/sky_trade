@@ -1,9 +1,12 @@
 // ignore_for_file: lines_longer_than_80_chars
 
+import 'dart:io' show Platform;
+
 import 'package:flutter/material.dart'
     show
         AppBar,
         BuildContext,
+        ButtonStyle,
         Center,
         Color,
         Column,
@@ -13,12 +16,14 @@ import 'package:flutter/material.dart'
         EdgeInsetsGeometry,
         ElevatedButton,
         Expanded,
+        FontWeight,
         IconButton,
         Navigator,
         Padding,
         Row,
         Scaffold,
         SingleChildScrollView,
+        Size,
         SizedBox,
         State,
         StatefulWidget,
@@ -38,16 +43,18 @@ import 'package:flutter_bloc/flutter_bloc.dart'
         MultiBlocListener,
         MultiBlocProvider,
         ReadContext;
+import 'package:share_plus/share_plus.dart';
 import 'package:sky_trade/core/assets/generated/assets.gen.dart' show Assets;
 import 'package:sky_trade/core/assets/generated/fonts.gen.dart';
 import 'package:sky_trade/core/errors/failures/settings_failure.dart'
     show TrackingRequestFailure, TrackingRequestNotRequiredFailure;
 import 'package:sky_trade/core/resources/colors.dart'
-    show hex4285F4, hex65C466, hex838187, hexE04F64;
+    show hex0653EA, hex4285F4, hex65C466, hex838187, hexE04F64, hexE9F5FE;
 import 'package:sky_trade/core/resources/numbers/ui.dart'
     show
         eightDotNil,
         eighteenDotNil,
+        fortyNineDotNil,
         fourteenDotNil,
         oneDotNil,
         seventyThreeDotNil,
@@ -55,6 +62,8 @@ import 'package:sky_trade/core/resources/numbers/ui.dart'
         sixteenDotOne,
         tenDotNil,
         twentyOneDotNil;
+import 'package:sky_trade/core/resources/strings/networking.dart'
+    show appleAppStorePageLink, googlePlayStorePageLink;
 import 'package:sky_trade/core/utils/enums/networking.dart'
     show TrackingTransparencyRequestStatus;
 import 'package:sky_trade/core/utils/extensions/build_context_extensions.dart';
@@ -134,6 +143,21 @@ class _SettingsViewState extends State<SettingsView> {
           value: !_analyticsSwitchState,
         ),
       );
+
+  Future<void> _shareApp() async {
+    final appLink =
+        Platform.isAndroid ? googlePlayStorePageLink : appleAppStorePageLink;
+
+    final message = context.localize
+            .heyImUsingSkyTradeRadarAndThoughtYoudLikeItCheckItOutHere +
+        appLink;
+
+    final params = ShareParams(
+      text: message,
+    );
+
+    await SharePlus.instance.share(params);
+  }
 
   @override
   Widget build(BuildContext context) => MultiBlocListener(
@@ -271,6 +295,32 @@ class _SettingsViewState extends State<SettingsView> {
                       ),
                       const SizedBox(
                         height: eighteenDotNil,
+                      ),
+                      SizedBox(
+                        width: double.infinity,
+                        child: ElevatedButton(
+                          onPressed: _shareApp,
+                          style: const ButtonStyle(
+                            backgroundColor: WidgetStatePropertyAll<Color>(
+                              hexE9F5FE,
+                            ),
+                            fixedSize: WidgetStatePropertyAll<Size>(
+                              Size.fromHeight(
+                                fortyNineDotNil,
+                              ),
+                            ),
+                          ),
+                          child: Text(
+                            context.localize.shareRadarApp,
+                            style: Theme.of(context)
+                                .textTheme
+                                .bodyMedium
+                                ?.copyWith(
+                                  color: hex0653EA,
+                                  fontWeight: FontWeight.w600,
+                                ),
+                          ),
+                        ),
                       ),
                     ],
                   ),

@@ -1748,6 +1748,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Try refreshing the page if the issue continues. You may want to check your connection or try again later'**
   String get tryRefreshingThePageIfTheIssueContinuesYouMayWantToCheckYourConnectionOrTryAgainLater;
+
+  /// No description provided for @heyImUsingSkyTradeRadarAndThoughtYoudLikeItCheckItOutHere.
+  ///
+  /// In en, this message translates to:
+  /// **'Hey! I\'m using SkyTrade Radar and thought you\'d like it. Check it out here:'**
+  String get heyImUsingSkyTradeRadarAndThoughtYoudLikeItCheckItOutHere;
+
+  /// No description provided for @shareRadarApp.
+  ///
+  /// In en, this message translates to:
+  /// **'Share Radar App'**
+  String get shareRadarApp;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {
