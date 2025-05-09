@@ -3,10 +3,12 @@ import 'dart:io' show Platform;
 
 import 'package:dartz/dartz.dart' show Either, Function1, Left, Right;
 import 'package:flutter_opendroneid/flutter_opendroneid.dart'
-    show FlutterOpenDroneId, UsedTechnologies;
+    show FlutterOpenDroneId;
+import 'package:flutter_opendroneid/models/dri_source_type.dart'
+    show DriSourceType;
 import 'package:flutter_opendroneid/models/message_container.dart';
-import 'package:sky_trade/core/errors/failures/remote_i_d_receiver_failure.dart'
-    show BroadcastRemoteIDReceiverFailure;
+import 'package:rxdart/rxdart.dart' show MergeStream;
+import 'package:sky_trade/core/errors/failures/remote_i_d_receiver_failure.dart';
 import 'package:sky_trade/core/resources/numbers/networking.dart' show zero;
 import 'package:sky_trade/core/utils/enums/networking.dart'
     show ConnectionState;
@@ -30,7 +32,6 @@ final class RemoteIDReceiverRepositoryImplementation
     late final StreamController<
             Either<BroadcastRemoteIDReceiverFailure, List<RemoteIDEntity>>>
         remoteIDStreamController;
-
     late final StreamSubscription<MessageContainer> remoteIDStreamSubscription;
 
     final remoteIDEntities = <RemoteIDEntity>{};
@@ -39,39 +40,24 @@ final class RemoteIDReceiverRepositoryImplementation
         Either<BroadcastRemoteIDReceiverFailure, List<RemoteIDEntity>>>(
       onListen: () {
         FlutterOpenDroneId.startScan(
-          switch (Platform.isAndroid) {
-            true => UsedTechnologies.Both,
-            false => UsedTechnologies.Bluetooth,
-          },
+          DriSourceType.Bluetooth,
         );
 
-        void addNewRemoteIDEntityAndEmitNewEventUsing(
-          RemoteIDEntity newRemoteIDEntity,
-        ) {
-          remoteIDEntities.add(
-            newRemoteIDEntity,
-          );
-
-          remoteIDStreamController.add(
-            Right(
-              remoteIDEntities.toList(),
-            ),
+        if (Platform.isAndroid) {
+          FlutterOpenDroneId.startScan(
+            DriSourceType.Wifi,
           );
         }
 
-        remoteIDStreamSubscription = FlutterOpenDroneId.allMessages.listen(
+        remoteIDStreamSubscription = MergeStream<MessageContainer>([
+          FlutterOpenDroneId.bluetoothMessages,
+          if (Platform.isAndroid) FlutterOpenDroneId.wifiMessages,
+        ]).listen(
           (messageContainer) {
-            final currentRemoteIDEntity = RemoteIDEntity.fromOpenDroneID(
+            final computedRemoteIDEntityWithPartialData =
+                RemoteIDEntity.fromOpenDroneID(
               messageContainer,
             );
-
-            if (remoteIDEntities.isEmpty) {
-              addNewRemoteIDEntityAndEmitNewEventUsing(
-                currentRemoteIDEntity,
-              );
-
-              return;
-            }
 
             if (remoteIDEntities.isNotEmpty) {
               for (var index = zero; index < remoteIDEntities.length; index++) {
@@ -81,21 +67,22 @@ final class RemoteIDReceiverRepositoryImplementation
                         )
                         .connection
                         .macAddress ==
-                    currentRemoteIDEntity.connection.macAddress) {
-                  final oldRemoteIDEntity = remoteIDEntities.elementAt(
+                    computedRemoteIDEntityWithPartialData
+                        .connection.macAddress) {
+                  final currentRemoteIDEntity = remoteIDEntities.elementAt(
                     index,
                   );
 
-                  final newRemoteIDEntity = oldRemoteIDEntity.merge(
-                    currentRemoteIDEntity,
+                  final freshRemoteIDEntity = currentRemoteIDEntity.merge(
+                    computedRemoteIDEntityWithPartialData,
                   );
 
                   remoteIDEntities
                     ..remove(
-                      oldRemoteIDEntity,
+                      currentRemoteIDEntity,
                     )
                     ..add(
-                      newRemoteIDEntity,
+                      freshRemoteIDEntity,
                     );
 
                   remoteIDStreamController.add(
@@ -107,11 +94,17 @@ final class RemoteIDReceiverRepositoryImplementation
                   return;
                 }
               }
-
-              addNewRemoteIDEntityAndEmitNewEventUsing(
-                currentRemoteIDEntity,
-              );
             }
+
+            remoteIDEntities.add(
+              computedRemoteIDEntityWithPartialData,
+            );
+
+            remoteIDStreamController.add(
+              Right(
+                remoteIDEntities.toList(),
+              ),
+            );
           },
           onError: (_) => remoteIDStreamController.add(
             Left(
@@ -121,7 +114,16 @@ final class RemoteIDReceiverRepositoryImplementation
         );
       },
       onCancel: () {
-        FlutterOpenDroneId.stopScan();
+        FlutterOpenDroneId.stopScan(
+          DriSourceType.Bluetooth,
+        );
+
+        if (Platform.isAndroid) {
+          FlutterOpenDroneId.stopScan(
+            DriSourceType.Wifi,
+          );
+        }
+
         remoteIDStreamController.close();
         remoteIDStreamSubscription.cancel();
       },

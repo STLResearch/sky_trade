@@ -201,7 +201,7 @@ base class ConnectionEntity extends Equatable {
       ConnectionEntity(
         macAddress: messageContainer.macAddress,
         lastSeen: messageContainer.lastUpdate,
-        messageSource: switch (messageContainer.source) {
+        messageSource: switch (messageContainer.packSource) {
           MessageSource.BluetoothLegacy =>
             RemoteIDMessageSource.bluetoothLegacy,
           MessageSource.BluetoothLongRange =>
@@ -210,7 +210,7 @@ base class ConnectionEntity extends Equatable {
           MessageSource.WifiBeacon => RemoteIDMessageSource.wifiBeacon,
           MessageSource.Unknown => RemoteIDMessageSource.unknown,
         },
-        rssi: messageContainer.lastMessageRssi,
+        rssi: messageContainer.metadata.rssi,
       );
 
   final String macAddress;

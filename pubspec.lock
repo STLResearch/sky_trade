@@ -365,10 +365,10 @@ packages:
     dependency: transitive
     description:
       name: dart_opendroneid
-      sha256: ea2e104552ef210f6077066169cc0becc602a3b9e8a560831cdc846257a3f08b
+      sha256: "1795f71b1bb3d132f2d02af35cfd679c1faf825289bcb341a4641faebae35723"
       url: "https://pub.dev"
     source: hosted
-    version: "0.4.2"
+    version: "0.6.2"
   dart_sort_queue:
     dependency: transitive
     description:
@@ -688,10 +688,10 @@ packages:
     dependency: "direct main"
     description:
       name: flutter_opendroneid
-      sha256: "964614f2ea91cbd7363789dd94096874edef6b5ef039034cb29bb6c88aa2b063"
+      sha256: "3009524daa25bc6a793d7072d67cfff168a6494a18ae4ab42b6d059521fd5750"
       url: "https://pub.dev"
     source: hosted
-    version: "0.19.1"
+    version: "0.22.1"
   flutter_plugin_android_lifecycle:
     dependency: transitive
     description:
