@@ -31,10 +31,7 @@ import 'package:sky_trade/core/assets/generated/assets.gen.dart' show Assets;
 import 'package:sky_trade/core/errors/failures/auth_failure.dart'
     show
         CheckSkyTradeUserUnknownFailure,
-        InvalidSignatureFailure,
-        UnauthorizedFailure,
         UserDeletedFailure,
-        UserMismatchFailure,
         UserNotFoundFailure;
 import 'package:sky_trade/core/resources/colors.dart' show hexFFFFFF;
 import 'package:sky_trade/core/resources/numbers/ui.dart'
@@ -189,13 +186,38 @@ class GetStartedView extends StatelessWidget {
                     ).pushReplacementNamed(
                       onboardingRoutePath,
                     );
-                  } else if (checkSkyTradeUserFailure is UserDeletedFailure) {
+                  } else {
                     ActionDialog.show(
                       context,
-                      content: context.localize
-                          .accountDoesNotExistIfItPreviouslyDidItMayHaveBeenDeletedHoweverWeNeedYourInputToFinishOff,
+                      content: switch (checkSkyTradeUserFailure) {
+                        UserDeletedFailure() => context.localize
+                            .accountDoesNotExistIfItPreviouslyDidItMayHaveBeenDeletedHoweverWeNeedYourInputToFinishOff,
+                        CheckSkyTradeUserUnknownFailure() => context.localize
+                            .anUnknownErrorOccurredKindlyRetryOrInvalidateYourSession,
+                        _ => context.localize
+                            .oopsSomethingWentWrongKindlyRetryOrInvalidateYourSession,
+                      },
                       dismissible: false,
-                      actionConfirmedText: context.localize.proceed,
+                      actionDismissedText: switch (checkSkyTradeUserFailure) {
+                        UserDeletedFailure() => null,
+                        _ => context.localize.retry,
+                      },
+                      onActionDismissed: switch (checkSkyTradeUserFailure) {
+                        UserDeletedFailure() => null,
+                        _ => () {
+                            Navigator.of(
+                              context,
+                            ).pop();
+
+                            context.read<AuthBloc>().add(
+                                  const AuthEvent.authenticate(),
+                                );
+                          },
+                      },
+                      actionConfirmedText: switch (checkSkyTradeUserFailure) {
+                        UserDeletedFailure() => context.localize.proceed,
+                        _ => context.localize.invalidate,
+                      },
                       onActionConfirmed: () {
                         Navigator.of(
                           context,
@@ -204,24 +226,6 @@ class GetStartedView extends StatelessWidget {
                         context.read<Auth0LogoutBloc>().add(
                               const Auth0LogoutEvent.logout(),
                             );
-                      },
-                    );
-                  } else {
-                    AlertSnackBar.show(
-                      context,
-                      message: switch (checkSkyTradeUserFailure) {
-                        UserNotFoundFailure() => context
-                            .localize.accountDoesNotExistPleaseRegisterInstead,
-                        UnauthorizedFailure() =>
-                          context.localize.oopsSomethingWentWrongPleaseTryAgain,
-                        InvalidSignatureFailure() =>
-                          context.localize.oopsSomethingWentWrongPleaseTryAgain,
-                        UserMismatchFailure() => context.localize
-                            .loginMethodMismatchKindlySignInWithTheSameMethodYouUsedToRegister,
-                        UserDeletedFailure() => context.localize
-                            .accountDoesNotExistIfItPreviouslyDidItMayHaveBeenDeleted,
-                        CheckSkyTradeUserUnknownFailure() =>
-                          context.localize.anUnknownErrorOccurredPleaseTryAgain,
                       },
                     );
                   }

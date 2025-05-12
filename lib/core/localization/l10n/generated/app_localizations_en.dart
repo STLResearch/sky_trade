@@ -129,16 +129,10 @@ class AppLocalizationsEn extends AppLocalizations {
   String get weCouldNotCreateYourAccountPleaseTryAgain => 'We could not create your account. Please try again';
 
   @override
-  String get oopsSomethingWentWrongPleaseTryAgain => 'Oops! something went wrong. Please try again';
-
-  @override
-  String get accountDoesNotExistPleaseRegisterInstead => 'Account does not exist. Please register instead';
+  String get oopsSomethingWentWrongKindlyRetryOrInvalidateYourSession => 'Oops! something went wrong. Kindly retry or invalidate your session';
 
   @override
   String get weCouldNotVerifyTheExistenceOfYourAccountPleaseTryAgain => 'We could not verify the existence of your account. Please try again';
-
-  @override
-  String get loginMethodMismatchKindlySignInWithTheSameMethodYouUsedToRegister => 'Login method mismatch. Kindly sign in with the same method you used to register';
 
   @override
   String get thisEmailIsAlreadyLinkedToAnExistingAccount => 'This email is already linked to an existing account';
@@ -154,6 +148,9 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get anUnknownErrorOccurredPleaseTryAgain => 'An unknown error occurred. Please try again';
+
+  @override
+  String get anUnknownErrorOccurredKindlyRetryOrInvalidateYourSession => 'An unknown error occurred. Kindly retry or invalidate your session';
 
   @override
   String get yes => 'Yes';
@@ -471,6 +468,12 @@ class AppLocalizationsEn extends AppLocalizations {
   String get proceed => 'Proceed';
 
   @override
+  String get invalidate => 'Invalidate';
+
+  @override
+  String get retry => 'Retry';
+
+  @override
   String get youAreAboutToDeleteYourAccountPleaseBeCertainThatThisIsWhatYouWantAsThisActionCannotBeReversed => 'You are about to delete your account. Please be certain that this is what you want as this action cannot be reversed';
 
   @override
@@ -478,9 +481,6 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get thisEmailCannotBeUsedToCreateANewAccountPleaseUseADifferentEmail => 'This email cannot be used to create a new account. Please use a different email';
-
-  @override
-  String get accountDoesNotExistIfItPreviouslyDidItMayHaveBeenDeleted => 'Account does not exist. If it previously did, it may have been deleted';
 
   @override
   String get accountDoesNotExistIfItPreviouslyDidItMayHaveBeenDeletedHoweverWeNeedYourInputToFinishOff => 'Account does not exist. If it previously did, it may have been deleted. However, we need your input to finish off';
