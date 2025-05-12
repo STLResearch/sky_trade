@@ -1991,6 +1991,138 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Lets Fly'**
   String get letsFly;
+
+  /// No description provided for @specialEvent.
+  ///
+  /// In en, this message translates to:
+  /// **'Special Event'**
+  String get specialEvent;
+
+  /// No description provided for @droneRush.
+  ///
+  /// In en, this message translates to:
+  /// **'Drone Rush'**
+  String get droneRush;
+
+  /// No description provided for @trackAndEarnFiveXPoints.
+  ///
+  /// In en, this message translates to:
+  /// **'Track & Earn 5x Points!'**
+  String get trackAndEarnFiveXPoints;
+
+  /// No description provided for @startTracking.
+  ///
+  /// In en, this message translates to:
+  /// **'Start Tracking'**
+  String get startTracking;
+
+  /// No description provided for @watchforRushZones.
+  ///
+  /// In en, this message translates to:
+  /// **'Watch for Rush Zones'**
+  String get watchforRushZones;
+
+  /// No description provided for @onlySpecificLocationsAreEligibleForFiveXPointsRushZonesWillBeMarkedClearlyOnYourMap.
+  ///
+  /// In en, this message translates to:
+  /// **'Only specific locations are eligible for 5x points. Rush zones will be marked clearly on your map.'**
+  String get onlySpecificLocationsAreEligibleForFiveXPointsRushZonesWillBeMarkedClearlyOnYourMap;
+
+  /// No description provided for @whichAreasAreEligible.
+  ///
+  /// In en, this message translates to:
+  /// **'Which areas are eligible?'**
+  String get whichAreasAreEligible;
+
+  /// No description provided for @enterARushZone.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter a Rush Zone'**
+  String get enterARushZone;
+
+  /// No description provided for @youMustBePhysicallyLocatedWithinARushZoneToStartTracking.
+  ///
+  /// In en, this message translates to:
+  /// **'You must be physically located within a Rush Zone to start tracking.'**
+  String get youMustBePhysicallyLocatedWithinARushZoneToStartTracking;
+
+  /// No description provided for @trackDrones.
+  ///
+  /// In en, this message translates to:
+  /// **'Track Drones'**
+  String get trackDrones;
+
+  /// No description provided for @observeAndConfirmDroneActivityAsUsual.
+  ///
+  /// In en, this message translates to:
+  /// **'Observe and confirm drone activity as usual.'**
+  String get observeAndConfirmDroneActivityAsUsual;
+
+  /// No description provided for @earnFiveXPoints.
+  ///
+  /// In en, this message translates to:
+  /// **'Earn 5x Points'**
+  String get earnFiveXPoints;
+
+  /// No description provided for @allSuccessfulObservationsInRushZonesWillAutomaticallyEarnBoostedRewards.
+  ///
+  /// In en, this message translates to:
+  /// **'All successful observations in Rush Zones will automatically earn boosted rewards.'**
+  String get allSuccessfulObservationsInRushZonesWillAutomaticallyEarnBoostedRewards;
+
+  /// No description provided for @duringTheDroneRushEventEarnFiveXPointsForTrackingDronesInSpecialHighActivityZonesTheseRushZonesAreOnlyActiveForALimitedTimeSoKeepAnEyeOnTheMapJumpInWhenTheyAppearAndBoostYourRankOnTheLeaderboardWhileMaximizingYourRewards.
+  ///
+  /// In en, this message translates to:
+  /// **'During the Drone Rush event, earn 5x points for tracking drones in special high-activity zones. \n\nThese Rush Zones are only active for a limited time, so keep an eye on the map, jump in when they appear, and boost your rank on the leaderboard while maximizing your rewards!'**
+  String get duringTheDroneRushEventEarnFiveXPointsForTrackingDronesInSpecialHighActivityZonesTheseRushZonesAreOnlyActiveForALimitedTimeSoKeepAnEyeOnTheMapJumpInWhenTheyAppearAndBoostYourRankOnTheLeaderboardWhileMaximizingYourRewards;
+
+  /// No description provided for @learnMore.
+  ///
+  /// In en, this message translates to:
+  /// **'Learn More'**
+  String get learnMore;
+
+  /// No description provided for @droneRushZones.
+  ///
+  /// In en, this message translates to:
+  /// **'Drone Rush Zones'**
+  String get droneRushZones;
+
+  /// No description provided for @keepAnEyeOnTheMapForActiveRushZonesAndStartTrackingToMaximizeTourRewards.
+  ///
+  /// In en, this message translates to:
+  /// **'Keep an eye on the map for active Rush Zones and start tracking to maximize your rewards.'**
+  String get keepAnEyeOnTheMapForActiveRushZonesAndStartTrackingToMaximizeTourRewards;
+
+  /// No description provided for @activeRushZones.
+  ///
+  /// In en, this message translates to:
+  /// **'Active Rush Zones'**
+  String get activeRushZones;
+
+  /// No description provided for @downtownCore.
+  ///
+  /// In en, this message translates to:
+  /// **'Downtown Core'**
+  String get downtownCore;
+
+  /// No description provided for @bayviewIndustrialPark.
+  ///
+  /// In en, this message translates to:
+  /// **'Bayview Industrial Park'**
+  String get bayviewIndustrialPark;
+
+  /// No description provided for @northHillsArstrip.
+  ///
+  /// In en, this message translates to:
+  /// **'North Hills Airstrip'**
+  String get northHillsArstrip;
+
+  /// No description provided for @metroEastCorridor.
+  ///
+  /// In en, this message translates to:
+  /// **'Metro East Corridor'**
+  String get metroEastCorridor;
 }
 
 class _AppLocalizationsDelegate

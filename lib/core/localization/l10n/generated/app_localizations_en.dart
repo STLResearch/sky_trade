@@ -1029,4 +1029,70 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get letsFly => 'Lets Fly';
+
+  @override
+  String get specialEvent => 'Special Event';
+
+  @override
+  String get droneRush => 'Drone Rush';
+
+  @override
+  String get trackAndEarnFiveXPoints => 'Track & Earn 5x Points!';
+
+  @override
+  String get startTracking => 'Start Tracking';
+
+  @override
+  String get watchforRushZones => 'Watch for Rush Zones';
+
+  @override
+  String get onlySpecificLocationsAreEligibleForFiveXPointsRushZonesWillBeMarkedClearlyOnYourMap => 'Only specific locations are eligible for 5x points. Rush zones will be marked clearly on your map.';
+
+  @override
+  String get whichAreasAreEligible => 'Which areas are eligible?';
+
+  @override
+  String get enterARushZone => 'Enter a Rush Zone';
+
+  @override
+  String get youMustBePhysicallyLocatedWithinARushZoneToStartTracking => 'You must be physically located within a Rush Zone to start tracking.';
+
+  @override
+  String get trackDrones => 'Track Drones';
+
+  @override
+  String get observeAndConfirmDroneActivityAsUsual => 'Observe and confirm drone activity as usual.';
+
+  @override
+  String get earnFiveXPoints => 'Earn 5x Points';
+
+  @override
+  String get allSuccessfulObservationsInRushZonesWillAutomaticallyEarnBoostedRewards => 'All successful observations in Rush Zones will automatically earn boosted rewards.';
+
+  @override
+  String get duringTheDroneRushEventEarnFiveXPointsForTrackingDronesInSpecialHighActivityZonesTheseRushZonesAreOnlyActiveForALimitedTimeSoKeepAnEyeOnTheMapJumpInWhenTheyAppearAndBoostYourRankOnTheLeaderboardWhileMaximizingYourRewards => 'During the Drone Rush event, earn 5x points for tracking drones in special high-activity zones. \n\nThese Rush Zones are only active for a limited time, so keep an eye on the map, jump in when they appear, and boost your rank on the leaderboard while maximizing your rewards!';
+
+  @override
+  String get learnMore => 'Learn More';
+
+  @override
+  String get droneRushZones => 'Drone Rush Zones';
+
+  @override
+  String get keepAnEyeOnTheMapForActiveRushZonesAndStartTrackingToMaximizeTourRewards => 'Keep an eye on the map for active Rush Zones and start tracking to maximize your rewards.';
+
+  @override
+  String get activeRushZones => 'Active Rush Zones';
+
+  @override
+  String get downtownCore => 'Downtown Core';
+
+  @override
+  String get bayviewIndustrialPark => 'Bayview Industrial Park';
+
+  @override
+  String get northHillsArstrip => 'North Hills Airstrip';
+
+  @override
+  String get metroEastCorridor => 'Metro East Corridor';
 }

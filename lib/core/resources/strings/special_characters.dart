@@ -2,6 +2,7 @@ const forwardSlash = '/';
 const whiteSpace = ' ';
 const asterisk = '*';
 const fullStop = '.';
+const dot = '•';
 const emptyString = '';
 const comma = ',';
 const equals = '=';

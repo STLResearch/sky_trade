@@ -68,5 +68,9 @@ const hex3478F5 = Color(0xFF3478F5);
 const hexDEDEDE = Color(0xFFDEDEDE);
 const hex989898 = Color(0xFF989898);
 const hexD0EBFF = Color(0xFFD0EBFF);
+const hex7583FF = Color(0xFF7583FF);
+const hexA8FFFF = Color(0xFFA8FFFF);
+const hexEAF6FF = Color(0xFFEAF6FF);
+const hex616161 = Color(0xFF616161);
 
 const rawHex2A60C4 = 0xFF2A60C4;
