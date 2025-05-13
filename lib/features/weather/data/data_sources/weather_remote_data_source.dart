@@ -1,6 +1,12 @@
 import 'package:sky_trade/core/errors/exceptions/weather_exception.dart';
 import 'package:sky_trade/core/resources/strings/networking.dart'
-    show airRightsPath, geoHashKey, getWeatherDataPath, weatherDataKey;
+    show
+        airRightsPath,
+        geoHashKey,
+        getWeatherDataPath,
+        imperialKey,
+        unitsKey,
+        weatherDataKey;
 import 'package:sky_trade/core/utils/clients/network_client.dart'
     show HttpClient;
 import 'package:sky_trade/core/utils/clients/response_handler.dart';
@@ -34,6 +40,7 @@ class WeatherRemoteDataSourceImplementation
           includeSignature: false,
           queryParameters: {
             geoHashKey: geoHash,
+            unitsKey: imperialKey,
           },
         ),
         onSuccess: (response) => WeatherModel.fromJson(

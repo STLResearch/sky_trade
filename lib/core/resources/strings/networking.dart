@@ -472,6 +472,8 @@ const periodSummariesKey = 'periodSummaries';
 const periodStartDateKey = 'periodStartDate';
 const periodEndDateKey = 'periodEndDate';
 const weatherDataKey = 'weatherData';
+const unitsKey = 'units';
+const imperialKey = 'imperial';
 // Error response data message
 const unauthorizedCode = 'UNAUTHORIZED';
 const invalidSignatureCode = 'INVALID_SIGNATURE';
