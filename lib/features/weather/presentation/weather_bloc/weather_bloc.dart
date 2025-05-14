@@ -27,17 +27,17 @@ class WeatherBloc extends Bloc<WeatherEvent, WeatherState> {
 
   final WeatherRepository _weatherRepository;
 
-  String _oldGeoHash = emptyString;
+  String _previousGeoHash = emptyString;
 
   Future<void> _getWeather(
     _GetWeather event,
     Emitter<WeatherState> emit,
   ) async {
-    if (event.geoHash == _oldGeoHash) {
+    if (event.geoHash == _previousGeoHash) {
       return;
     }
 
-    _oldGeoHash = event.geoHash;
+    _previousGeoHash = event.geoHash;
 
     emit(
       const WeatherState.gettingWeather(),

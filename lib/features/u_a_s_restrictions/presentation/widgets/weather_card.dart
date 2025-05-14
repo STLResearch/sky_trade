@@ -1,19 +1,20 @@
+import 'package:cached_network_image/cached_network_image.dart'
+    show CachedNetworkImage;
 import 'package:flutter/material.dart'
     show
         Align,
         AlignmentDirectional,
-        AlwaysStoppedAnimation,
         BuildContext,
         CircularProgressIndicator,
-        Color,
-        EdgeInsetsDirectional,
+        Column,
+        EdgeInsets,
         Image,
+        MainAxisAlignment,
         Padding,
         SizedBox,
-        Stack,
         StatelessWidget,
         Text,
-        Theme,
+        TextStyle,
         Widget;
 import 'package:flutter_bloc/flutter_bloc.dart' show BlocBuilder;
 import 'package:sky_trade/core/resources/colors.dart'
@@ -22,17 +23,16 @@ import 'package:sky_trade/core/resources/numbers/ui.dart'
     show
         elevenDotNil,
         fiftyFourDotNil,
-        fiveDotNil,
+        fourteenDotNil,
         sixtySixDotNil,
         thirtyTwoDotNil,
         threeDotNil,
         twentyDotNil,
-        twentyFourDotNil,
-        twentyOneDotThreeSeven,
         zero;
 import 'package:sky_trade/core/utils/extensions/build_context_extensions.dart';
 import 'package:sky_trade/core/utils/extensions/weather_entity_extensions.dart';
-import 'package:sky_trade/features/u_a_s_restrictions/presentation/widgets/options_card.dart';
+import 'package:sky_trade/features/u_a_s_restrictions/presentation/widgets/options_card.dart'
+    show OptionsCard;
 import 'package:sky_trade/features/weather/presentation/weather_bloc/weather_bloc.dart'
     show WeatherBloc, WeatherState;
 
@@ -46,67 +46,47 @@ class WeatherCard extends StatelessWidget {
           width: fiftyFourDotNil,
           height: sixtySixDotNil,
           backgroundColor: hexE6FFFFFF,
-          child: Stack(
-            children: [
-              BlocBuilder<WeatherBloc, WeatherState>(
-                builder: (_, weatherState) => weatherState.maybeWhen(
-                  gotWeather: (weatherEntity) => Align(
-                    alignment: AlignmentDirectional.topCenter,
-                    child: Padding(
-                      padding: const EdgeInsetsDirectional.only(
-                        top: fiveDotNil,
-                      ),
-                      child: Image.network(
-                        weatherEntity.weatherConditions[zero].iconUrl,
-                        width: thirtyTwoDotNil,
-                        height: thirtyTwoDotNil,
-                        errorBuilder: (_, __, ___) => const SizedBox.shrink(),
+          child: BlocBuilder<WeatherBloc, WeatherState>(
+            builder: (_, weatherState) => weatherState.maybeWhen(
+              gotWeather: (weatherEntity) => CachedNetworkImage(
+                imageUrl: weatherEntity.weatherConditions[zero].iconUrl,
+                imageBuilder: (context, imageProvider) => Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Image(
+                      image: imageProvider,
+                      width: thirtyTwoDotNil,
+                      height: thirtyTwoDotNil,
+                    ),
+                    Text(
+                      weatherEntity.main.temperature.round().toString() +
+                          context.localize.degrees,
+                      style: const TextStyle(
+                        fontSize: elevenDotNil,
+                        color: hex222222,
                       ),
                     ),
-                  ),
-                  gettingWeather: () => const Align(
-                    alignment: AlignmentDirectional.center,
-                    child: SizedBox(
-                      width: twentyFourDotNil,
-                      height: twentyFourDotNil,
-                      child: CircularProgressIndicator(
-                        strokeWidth: threeDotNil,
-                        valueColor: AlwaysStoppedAnimation<Color>(
-                          hex595959,
-                        ),
-                        backgroundColor: hexE6FFFFFF,
-                      ),
-                    ),
-                  ),
-                  orElse: () => const SizedBox.shrink(),
+                  ],
                 ),
+                placeholder: (_, __) => _loadingWidget(),
+                errorWidget: (_, __, ___) => const SizedBox.shrink(),
               ),
-              BlocBuilder<WeatherBloc, WeatherState>(
-                builder: (_, weatherState) => weatherState.maybeWhen(
-                  gotWeather: (weatherEntity) => Align(
-                    alignment: AlignmentDirectional.center,
-                    child: Padding(
-                      padding: const EdgeInsetsDirectional.only(
-                        top: twentyDotNil,
-                      ),
-                      child: Text(
-                        weatherEntity.main.temperature.round().toString() +
-                            context.localize.degrees,
-                        style: Theme.of(
-                          context,
-                        ).textTheme.bodySmall?.copyWith(
-                              fontSize: elevenDotNil,
-                              height: twentyOneDotThreeSeven / elevenDotNil,
-                              color: hex222222,
-                            ),
-                      ),
-                    ),
-                  ),
-                  orElse: () => const SizedBox.shrink(),
-                ),
-              ),
-            ],
+              gettingWeather: _loadingWidget,
+              orElse: SizedBox.shrink,
+            ),
           ),
+        ),
+      );
+
+  Widget _loadingWidget() => const Padding(
+        padding: EdgeInsets.symmetric(
+          vertical: twentyDotNil,
+          horizontal: fourteenDotNil,
+        ),
+        child: CircularProgressIndicator(
+          strokeWidth: threeDotNil,
+          color: hex595959,
+          backgroundColor: hexE6FFFFFF,
         ),
       );
 }
