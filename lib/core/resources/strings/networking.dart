@@ -82,6 +82,7 @@ const getRewardInfoPath = '/get-reward-info';
 const retrieveReferralDataPath = '/retrieve-referral-data';
 const sendReferralPath = '/send-referral';
 const findReferralHistoryPath = '/find-referral-history';
+const currentLeaderboardPositionPath = '/current-leaderboard-position';
 const currentLeaderboardInfoPath = '/current-leaderboard-info';
 const overralLeaderboardInfoPath = '/overral-leaderboard-info';
 // Signature
@@ -403,6 +404,8 @@ const featureCollectionKey = 'FeatureCollection';
 const geometryCollectionKey = 'GeometryCollection';
 const pageKey = 'page';
 const limitKey = 'limit';
+const currentLimitKey = 'currentLimit';
+const positionKey = 'position';
 const minPriceKey = 'min_price';
 const maxPriceKey = 'max_price';
 const filterKey = 'filter';

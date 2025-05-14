@@ -9,6 +9,7 @@ class LeaderboardStatisticsState with _$LeaderboardStatisticsState {
 
   const factory LeaderboardStatisticsState.gotLeaderboardStatistics({
     required LeaderboardStatisticsEntity leaderboardStatisticsEntity,
+    required LeaderboardPositionEntity? leaderboardPositionEntity,
   }) = _GotLeaderboardStatistics;
 
   const factory LeaderboardStatisticsState.failedToGetLeaderboardStatistics({

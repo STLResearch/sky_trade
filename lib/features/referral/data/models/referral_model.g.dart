@@ -133,6 +133,22 @@ Map<String, dynamic> _$HistoryModelToJson(HistoryModel instance) =>
       'point': instance.mPoint,
     };
 
+LeaderboardPositionModel _$LeaderboardPositionModelFromJson(
+        Map<String, dynamic> json) =>
+    LeaderboardPositionModel(
+      mPosition: (json['position'] as num?)?.toInt(),
+      mTotalCount: (json['totalCount'] as num).toInt(),
+      mPage: (json['page'] as num?)?.toInt(),
+    );
+
+Map<String, dynamic> _$LeaderboardPositionModelToJson(
+        LeaderboardPositionModel instance) =>
+    <String, dynamic>{
+      'position': instance.mPosition,
+      'totalCount': instance.mTotalCount,
+      'page': instance.mPage,
+    };
+
 LeaderboardStatisticsModel _$LeaderboardStatisticsModelFromJson(
         Map<String, dynamic> json) =>
     LeaderboardStatisticsModel(

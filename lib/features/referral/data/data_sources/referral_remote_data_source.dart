@@ -2,6 +2,8 @@ import 'package:sky_trade/core/errors/exceptions/referral_exception.dart';
 import 'package:sky_trade/core/resources/strings/networking.dart'
     show
         currentLeaderboardInfoPath,
+        currentLeaderboardPositionPath,
+        currentLimitKey,
         findReferralHistoryPath,
         getRewardInfoPath,
         limitKey,
@@ -25,6 +27,7 @@ import 'package:sky_trade/features/referral/data/models/referral_model.dart'
         EarningsReportModel,
         HighlightsModel,
         InviteModel,
+        LeaderboardPositionModel,
         LeaderboardStatisticsModel,
         ReferralHistoryModel,
         SkyPointsModel;
@@ -43,6 +46,10 @@ abstract interface class ReferralRemoteDataSource {
     required int limit,
   });
 
+  Future<LeaderboardPositionModel> getLeaderboardPositionUsing({
+    required int currentLimit,
+  });
+
   Future<LeaderboardStatisticsModel> getLeaderboardStatisticsOn({
     required int page,
     required int limit,
@@ -51,7 +58,7 @@ abstract interface class ReferralRemoteDataSource {
   Future<EarningsReportModel> get earningsReport;
 }
 
-class ReferralRemoteDataSourceImplementation
+final class ReferralRemoteDataSourceImplementation
     with ResponseHandler
     implements ReferralRemoteDataSource {
   const ReferralRemoteDataSourceImplementation(
@@ -116,6 +123,24 @@ class ReferralRemoteDataSourceImplementation
         ),
         onSuccess: ReferralHistoryModel.fromJson,
         onError: (_) => ReferralHistoryException(),
+      );
+
+  @override
+  Future<LeaderboardPositionModel> getLeaderboardPositionUsing({
+    required int currentLimit,
+  }) =>
+      handleResponse<LeaderboardPositionException, Map<String, dynamic>,
+          LeaderboardPositionModel>(
+        requestInitiator: _httpClient.request(
+          requestMethod: RequestMethod.get,
+          path: privatePath + rewardPath + currentLeaderboardPositionPath,
+          includeSignature: true,
+          queryParameters: {
+            currentLimitKey: currentLimit,
+          },
+        ),
+        onSuccess: LeaderboardPositionModel.fromJson,
+        onError: (_) => LeaderboardPositionException(),
       );
 
   @override

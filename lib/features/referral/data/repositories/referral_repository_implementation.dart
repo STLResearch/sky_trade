@@ -10,6 +10,7 @@ import 'package:sky_trade/features/referral/domain/entities/referral_entity.dart
         EarningsReportEntity,
         HighlightsEntity,
         InviteEntity,
+        LeaderboardPositionEntity,
         LeaderboardStatisticsEntity,
         ReferralHistoryEntity,
         SkyPointsEntity;
@@ -66,6 +67,20 @@ final class ReferralRepositoryImplementation
             ),
             onSuccess: (referralHistoryEntity) => referralHistoryEntity,
             onFailure: (_) => ReferralHistoryFailure(),
+          );
+
+  @override
+  Future<Either<LeaderboardPositionFailure, LeaderboardPositionEntity>>
+      getLeaderboardPositionUsing({
+    required int currentLimit,
+  }) =>
+          handleData<LeaderboardPositionFailure, LeaderboardPositionEntity>(
+            dataSourceOperation: () =>
+                _referralRemoteDataSource.getLeaderboardPositionUsing(
+              currentLimit: currentLimit,
+            ),
+            onSuccess: (leaderboardPositionEntity) => leaderboardPositionEntity,
+            onFailure: (_) => LeaderboardPositionFailure(),
           );
 
   @override

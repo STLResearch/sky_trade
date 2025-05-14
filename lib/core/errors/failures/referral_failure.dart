@@ -20,6 +20,11 @@ final class ReferralHistoryFailure extends Equatable {
   List<Object> get props => [];
 }
 
+final class LeaderboardPositionFailure extends Equatable {
+  @override
+  List<Object> get props => [];
+}
+
 final class LeaderboardStatisticsFailure extends Equatable {
   @override
   List<Object> get props => [];

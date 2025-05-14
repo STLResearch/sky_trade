@@ -186,6 +186,27 @@ base class HistoryEntity extends Equatable {
       ];
 }
 
+base class LeaderboardPositionEntity extends Equatable {
+  const LeaderboardPositionEntity({
+    required this.position,
+    required this.totalCount,
+    required this.page,
+  });
+
+  final int? position;
+
+  final int totalCount;
+
+  final int? page;
+
+  @override
+  List<Object?> get props => [
+        position,
+        totalCount,
+        page,
+      ];
+}
+
 base class LeaderboardStatisticsEntity extends Equatable {
   const LeaderboardStatisticsEntity({
     required this.startDate,

@@ -263,5 +263,9 @@
   "referralCodeTooLongReferralCodeCanEitherBeSixCharactersLongOrTheEmailOfTheReferer": "Referral code too long. Referral code can either be six characters long or the email of the referer",
   "submit": "Submit",
   "iAmAnIndividual": "I am an individual",
-  "iAmACorporateEntity": "I am a corporate entity"
+  "iAmACorporateEntity": "I am a corporate entity",
+  "viewMyPosition": "View my position",
+  "youHaveNotEarnedAnyPointsWithinTheCurrentPeriod": "You have not earned any points within the current period",
+  "weCouldNotGetYourPositionOnTheLeaderboardTryRefreshingTheLeaderboardTableOrTheEntirePageThenTryViewingYourPositionAgain": "We could not get your position on the leaderboard. Try refreshing the leaderboard table or the entire page then try viewing your position again",
+  "thereWasAnErrorComputingYourPositionOnTheLeaderboard": "There was an error computing your position on the leaderboard"
 }

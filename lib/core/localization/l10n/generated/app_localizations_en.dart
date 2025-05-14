@@ -802,4 +802,16 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get iAmACorporateEntity => 'I am a corporate entity';
+
+  @override
+  String get viewMyPosition => 'View my position';
+
+  @override
+  String get youHaveNotEarnedAnyPointsWithinTheCurrentPeriod => 'You have not earned any points within the current period';
+
+  @override
+  String get weCouldNotGetYourPositionOnTheLeaderboardTryRefreshingTheLeaderboardTableOrTheEntirePageThenTryViewingYourPositionAgain => 'We could not get your position on the leaderboard. Try refreshing the leaderboard table or the entire page then try viewing your position again';
+
+  @override
+  String get thereWasAnErrorComputingYourPositionOnTheLeaderboard => 'There was an error computing your position on the leaderboard';
 }
