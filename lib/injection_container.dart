@@ -19,6 +19,7 @@ import 'package:sky_trade/core/injection_container/rent_air_rights.dart';
 import 'package:sky_trade/core/injection_container/search_autocomplete.dart';
 import 'package:sky_trade/core/injection_container/settings.dart';
 import 'package:sky_trade/core/injection_container/u_a_s_restrictions.dart';
+import 'package:sky_trade/core/injection_container/update_manager.dart';
 import 'package:sky_trade/core/injection_container/weather.dart';
 import 'package:sky_trade/core/injection_container/wifi.dart';
 
@@ -47,4 +48,5 @@ Future<void> registerServices() => Future.wait<void>([
       registerWifiServices(),
       registerCoreServices(),
       registerExternalServices(),
+      registerUpdateManagerServices(),
     ]);

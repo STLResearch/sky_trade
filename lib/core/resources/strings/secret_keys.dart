@@ -20,6 +20,7 @@ const skyTradeServerHttpBaseUrl = 'SKYTRADE_SERVER_HTTP_BASE_URL';
 const skyTradeServerSignUrl = 'SKYTRADE_SERVER_SIGN_URL';
 const skyTradeServerHttpSignUrl = 'SKYTRADE_SERVER_HTTP_SIGN_URL';
 const skyTradeServerSocketIOBaseUrl = 'SKYTRADE_SERVER_SOCKET_IO_BASE_URL';
+const skyTradeApiVersion = 'SKYTRADE_API_VERSION';
 
 // Open Weather Map
 const openWeatherMapIconBaseUrl = 'OPEN_WEATHER_MAP_ICON_BASE_URL';

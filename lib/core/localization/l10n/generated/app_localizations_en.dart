@@ -811,4 +811,25 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get whenYouSignUpAndGetABonusSignUpHere => 'when you sign up and get a bonus. Sign up here';
+
+  @override
+  String get aNewVersionOfTheAppIsRequiredToContinuePleaseUpdateToTheLatestVersion => 'A new version of the app is required to continue. Please update to the latest version.';
+
+  @override
+  String get updateRequired => 'Update Required';
+
+  @override
+  String get aNewerVersionOfTheAppIsRequiredPleaseUpdateInTheAppStore => 'A newer version of the app is required. Please update in the app store.';
+
+  @override
+  String get aNewerVersionOfTheAppIsRequiredPleaseUpdateInThePlayStore => 'A newer version of the app is required. Please update in the play store.';
+
+  @override
+  String get pleaseUpdateTheAppFromTheAppStoreToContinueUsingSkyTrade => 'Please update the app from the app store to continue using SkyTrade.';
+
+  @override
+  String get pleaseUpdateTheAppFromThePlayStoreToContinueUsingSkyTrade => 'Please update the app from the play store to continue using SkyTrade.';
+
+  @override
+  String get updateNow => 'Update Now';
 }

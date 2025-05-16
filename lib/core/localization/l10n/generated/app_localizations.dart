@@ -1700,6 +1700,48 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'when you sign up and get a bonus. Sign up here'**
   String get whenYouSignUpAndGetABonusSignUpHere;
+
+  /// No description provided for @aNewVersionOfTheAppIsRequiredToContinuePleaseUpdateToTheLatestVersion.
+  ///
+  /// In en, this message translates to:
+  /// **'A new version of the app is required to continue. Please update to the latest version.'**
+  String get aNewVersionOfTheAppIsRequiredToContinuePleaseUpdateToTheLatestVersion;
+
+  /// No description provided for @updateRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'Update Required'**
+  String get updateRequired;
+
+  /// No description provided for @aNewerVersionOfTheAppIsRequiredPleaseUpdateInTheAppStore.
+  ///
+  /// In en, this message translates to:
+  /// **'A newer version of the app is required. Please update in the app store.'**
+  String get aNewerVersionOfTheAppIsRequiredPleaseUpdateInTheAppStore;
+
+  /// No description provided for @aNewerVersionOfTheAppIsRequiredPleaseUpdateInThePlayStore.
+  ///
+  /// In en, this message translates to:
+  /// **'A newer version of the app is required. Please update in the play store.'**
+  String get aNewerVersionOfTheAppIsRequiredPleaseUpdateInThePlayStore;
+
+  /// No description provided for @pleaseUpdateTheAppFromTheAppStoreToContinueUsingSkyTrade.
+  ///
+  /// In en, this message translates to:
+  /// **'Please update the app from the app store to continue using SkyTrade.'**
+  String get pleaseUpdateTheAppFromTheAppStoreToContinueUsingSkyTrade;
+
+  /// No description provided for @pleaseUpdateTheAppFromThePlayStoreToContinueUsingSkyTrade.
+  ///
+  /// In en, this message translates to:
+  /// **'Please update the app from the play store to continue using SkyTrade.'**
+  String get pleaseUpdateTheAppFromThePlayStoreToContinueUsingSkyTrade;
+
+  /// No description provided for @updateNow.
+  ///
+  /// In en, this message translates to:
+  /// **'Update Now'**
+  String get updateNow;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

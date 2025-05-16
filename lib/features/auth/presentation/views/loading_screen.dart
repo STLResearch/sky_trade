@@ -75,6 +75,13 @@ import 'package:sky_trade/features/internet_connection_checker/presentation/bloc
         InternetConnectionCheckerState;
 import 'package:sky_trade/features/link_handler/presentation/blocs/app_link_bloc/app_link_bloc.dart'
     show AppLinkBloc;
+import 'package:sky_trade/features/update_manager/presentation/upgrade_bloc/update_manager_bloc.dart'
+    show
+        EnvConfig,
+        UpdateManagerBloc,
+        UpdateManagerEvent,
+        UpdateManagerState,
+        VersionComparator;
 import 'package:sky_trade/injection_container.dart' show serviceLocator;
 
 class LoadingScreen extends StatelessWidget {
@@ -104,6 +111,9 @@ class LoadingScreen extends StatelessWidget {
           BlocProvider<CheckSkyTradeUserExistsBloc>(
             create: (_) => serviceLocator(),
           ),
+          BlocProvider<UpdateManagerBloc>(
+            create: (_) => serviceLocator(),
+          ),
         ],
         child: const LoadingView(),
       );
@@ -117,11 +127,18 @@ class LoadingView extends StatefulWidget {
 }
 
 class _LoadingViewState extends State<LoadingView> {
+
   @override
   void initState() {
     _configureSFA();
-
+    _checkMinimumAppVersion();
     super.initState();
+  }
+
+  Future<void> _checkMinimumAppVersion() async {
+    context.read<UpdateManagerBloc>().add(
+      const UpdateManagerEvent.checkMinimumAppVersion(),
+    );
   }
 
   void _configureSFA() => context.read<SFAConfigurationBloc>().add(
@@ -245,6 +262,37 @@ class _LoadingViewState extends State<LoadingView> {
                 noActiveInternetConnection: () {
                   _removeSplashScreenAndNavigateTo(
                     route: noInternetConnectionRoutePath,
+                  );
+                },
+              );
+            },
+          ),
+          BlocListener<UpdateManagerBloc, UpdateManagerState>(
+            listener: (_, updateManagerState) {
+              updateManagerState.whenOrNull(
+                checkedMinimumMobileAppVersion: (updateManagerEntity) {
+                  final currentAppVersion =
+                      EnvConfig.getApiVersion();
+                  final requiredVersion = updateManagerEntity.currentAPIVersion;
+
+                  if (VersionComparator.isUpdateRequired(
+                    currentAppVersion!,
+                    requiredVersion,
+                  )) {
+                    _removeSplashScreenAndNavigateTo(
+                      route: errorRoutePath,
+                      arguments: ErrorReason.upgradeRequired,
+                    );
+                  } else {
+                    context.read<SFAUserSessionBloc>().add(
+                          const SFAUserSessionEvent.checkSession(),
+                        );
+                  }
+                },
+                failedToCheckMinimumAppVersion: (_) {
+                  _removeSplashScreenAndNavigateTo(
+                    route: errorRoutePath,
+                    arguments: ErrorReason.upgradeRequired,
                   );
                 },
               );

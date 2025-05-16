@@ -16,6 +16,7 @@ enum ErrorReason {
   deletedSkyTradeUserWithExistingAuth0Session,
   sessionInitializationFailure,
   unknownNavigationRoute,
+  upgradeRequired,
 }
 
 enum ReferralTab {

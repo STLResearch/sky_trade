@@ -24,6 +24,13 @@ const skyTradePrivacyPolicyUrl = 'https://docs.sky.trade/privacy.htm';
 // Terms of service
 const skyTradeTermsOfServiceUrl = 'https://docs.sky.trade/terms.htm';
 
+//App Store link
+const appStoreLink =
+    'https://apps.apple.com/in/app/skytrade-radar/id6738989830';
+// Play Store link
+const playStoreLink =
+    'https://play.google.com/store/apps/details?id=mobile.trade.sky';
+
 // Paths
 const airRightsPath = '/air-rights';
 const getWeatherDataPath = '/get-weather-data';
@@ -65,6 +72,8 @@ const findReferralHistoryPath = '/find-referral-history';
 const currentLeaderboardPositionPath = '/current-leaderboard-position';
 const currentLeaderboardInfoPath = '/current-leaderboard-info';
 const overralLeaderboardInfoPath = '/overral-leaderboard-info';
+const versionInfoPath = '/version-info';
+const getMinimumMobileAppVersionPath = '/get-minimum-mobile-app-version';
 // Signature
 const signatureFirstLine = 'wants you to sign in with your Solana account:';
 const signatureThirdLine = 'Sign in to SkyTrade app.';
@@ -454,6 +463,7 @@ const periodEndDateKey = 'periodEndDate';
 const weatherDataKey = 'weatherData';
 const unitsKey = 'units';
 const imperialValue = 'imperial';
+const currentAPIVersionKey = 'currentAPIVersion';
 // Error response data message
 const unauthorizedCode = 'UNAUTHORIZED';
 const invalidSignatureCode = 'INVALID_SIGNATURE';
