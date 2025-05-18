@@ -50,8 +50,8 @@ import 'package:sky_trade/features/remote_i_d_receiver/presentation/blocs/broadc
 import 'package:sky_trade/features/u_a_s_restrictions/presentation/widgets/u_a_s_detail_section.dart';
 
 class UASDetails extends StatelessWidget {
-  const UASDetails(
-    this.broadcastRemoteIDReceiverBloc, {
+  const UASDetails({
+    required this.broadcastRemoteIDReceiverBloc,
     required this.index,
     super.key,
   });

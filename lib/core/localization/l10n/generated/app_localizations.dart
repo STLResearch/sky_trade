@@ -201,11 +201,11 @@ abstract class AppLocalizations {
   /// **'agreement'**
   String get agreement;
 
-  /// No description provided for @flightRestrictedAirspace.
+  /// No description provided for @restrictedAirspace.
   ///
   /// In en, this message translates to:
-  /// **'Flight Restricted Airspace'**
-  String get flightRestrictedAirspace;
+  /// **'Restricted Airspace'**
+  String get restrictedAirspace;
 
   /// No description provided for @address.
   ///

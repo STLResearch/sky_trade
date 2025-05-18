@@ -7,9 +7,14 @@ import 'package:flutter/material.dart'
         AlignmentDirectional,
         BuildContext,
         Column,
+        CrossAxisAlignment,
+        EdgeInsetsDirectional,
+        MainAxisAlignment,
         MainAxisSize,
         Navigator,
+        Padding,
         Scaffold,
+        SizedBox,
         Stack,
         State,
         StatefulWidget,
@@ -26,9 +31,16 @@ import 'package:flutter_bloc/flutter_bloc.dart'
         ReadContext;
 import 'package:flutter_dotenv/flutter_dotenv.dart' show dotenv;
 import 'package:mapbox_maps_flutter/mapbox_maps_flutter.dart'
-    show CompassSettings, MapboxMap, MapboxOptions, ScaleBarSettings;
+    show
+        AttributionSettings,
+        CompassSettings,
+        LogoSettings,
+        MapboxMap,
+        MapboxOptions,
+        ScaleBarSettings;
 import 'package:sky_trade/core/resources/colors.dart' show hexB3FFFFFF;
-import 'package:sky_trade/core/resources/numbers/ui.dart' show six;
+import 'package:sky_trade/core/resources/numbers/ui.dart'
+    show fiveDotNil, fourteenDotNil, six, zero;
 import 'package:sky_trade/core/resources/strings/routes.dart'
     show getStartedRoutePath;
 import 'package:sky_trade/core/resources/strings/secret_keys.dart'
@@ -39,7 +51,7 @@ import 'package:sky_trade/core/resources/strings/secret_keys.dart'
 import 'package:sky_trade/core/resources/strings/special_characters.dart'
     show emptyString;
 import 'package:sky_trade/core/resources/strings/ui.dart'
-    show bridDronesSourceId, layerId, nridDronesSourceId;
+    show bridDronesSourceId, layerId;
 import 'package:sky_trade/core/utils/enums/ui.dart' show MapStyle;
 import 'package:sky_trade/core/utils/extensions/build_context_extensions.dart';
 import 'package:sky_trade/core/utils/extensions/mapbox_map_extensions.dart';
@@ -83,12 +95,12 @@ import 'package:sky_trade/features/u_a_s_restrictions/domain/entities/restrictio
 import 'package:sky_trade/features/u_a_s_restrictions/presentation/blocs/u_a_s_restrictions_bloc/u_a_s_restrictions_bloc.dart'
     show UASRestrictionsBloc, UASRestrictionsEvent, UASRestrictionsState;
 import 'package:sky_trade/features/u_a_s_restrictions/presentation/widgets/alert_snack_bar.dart';
+import 'package:sky_trade/features/u_a_s_restrictions/presentation/widgets/drones_indicator.dart';
 import 'package:sky_trade/features/u_a_s_restrictions/presentation/widgets/map_overlay.dart'
     show MapOverlay;
 import 'package:sky_trade/features/u_a_s_restrictions/presentation/widgets/map_view.dart';
 import 'package:sky_trade/features/u_a_s_restrictions/presentation/widgets/progress_dialog.dart';
 import 'package:sky_trade/features/u_a_s_restrictions/presentation/widgets/restriction_indicator.dart';
-import 'package:sky_trade/features/u_a_s_restrictions/presentation/widgets/u_a_s_list.dart';
 import 'package:sky_trade/features/weather/presentation/weather_bloc/weather_bloc.dart'
     show WeatherBloc, WeatherEvent;
 import 'package:sky_trade/features/wifi/presentation/blocs/wifi_permission_bloc/wifi_permission_bloc.dart'
@@ -159,7 +171,9 @@ class _HomeViewState extends State<HomeView> {
   late final ValueNotifier<bool> _centerLocationNotifier;
   late final ValueNotifier<MapStyle> _mapStyleNotifier;
   late final List<String> _restrictionLayerIds;
+  late final ValueNotifier<int> _newBridDronesCountNotifier;
 
+  late int _previousBridDronesCount;
   late String _previousBridGeoJsonData;
   late String _previousNridGeoJsonData;
 
@@ -180,6 +194,10 @@ class _HomeViewState extends State<HomeView> {
       false,
     );
 
+    _newBridDronesCountNotifier = ValueNotifier<int>(
+      zero,
+    );
+
     _mapStyleNotifier = ValueNotifier<MapStyle>(
       MapStyle.dark,
     );
@@ -191,6 +209,8 @@ class _HomeViewState extends State<HomeView> {
     _previousBridGeoJsonData = emptyString;
 
     _previousNridGeoJsonData = emptyString;
+
+    _previousBridDronesCount = zero;
 
     _startTransmitter();
 
@@ -235,6 +255,7 @@ class _HomeViewState extends State<HomeView> {
   void dispose() {
     _clickedRestriction.dispose();
     _centerLocationNotifier.dispose();
+    _newBridDronesCountNotifier.dispose();
     _mapStyleNotifier.dispose();
 
     super.dispose();
@@ -370,6 +391,13 @@ class _HomeViewState extends State<HomeView> {
             listener: (_, broadcastRemoteIDReceiverState) {
               broadcastRemoteIDReceiverState.whenOrNull(
                 gotRemoteIDs: (bridEntities) async {
+                  if (bridEntities.length > _previousBridDronesCount) {
+                    _newBridDronesCountNotifier.value =
+                        bridEntities.length - _previousBridDronesCount;
+                  }
+
+                  _previousBridDronesCount = bridEntities.length;
+
                   final latLng =
                       context.read<LocationPositionBloc>().state.whenOrNull(
                             gotLocationPosition: (locationPositionEntity) => (
@@ -520,6 +548,16 @@ class _HomeViewState extends State<HomeView> {
                       ScaleBarSettings(
                         enabled: false,
                       ),
+                    )
+                    ..logo.updateSettings(
+                      LogoSettings(
+                        enabled: false,
+                      ),
+                    )
+                    ..attribution.updateSettings(
+                      AttributionSettings(
+                        enabled: false,
+                      ),
                     );
 
                   _mapboxMap = mapboxMap;
@@ -615,14 +653,26 @@ class _HomeViewState extends State<HomeView> {
               ),
             ],
           ),
-          bottomSheet: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              RestrictionIndicator(
-                clickedRestriction: _clickedRestriction,
-              ),
-              const UASList(),
-            ],
+          floatingActionButton: Padding(
+            padding: const EdgeInsetsDirectional.symmetric(
+              horizontal: fiveDotNil,
+            ),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.end,
+              children: [
+                RestrictionIndicator(
+                  clickedRestriction: _clickedRestriction,
+                ),
+                const SizedBox(
+                  height: fourteenDotNil,
+                ),
+                DronesIndicator(
+                  newDronesCount: _newBridDronesCountNotifier,
+                ),
+              ],
+            ),
           ),
         ),
       );

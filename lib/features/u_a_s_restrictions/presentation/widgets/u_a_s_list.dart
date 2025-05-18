@@ -31,7 +31,8 @@ import 'package:flutter/material.dart'
         WidgetSpan,
         WidgetsBinding,
         showModalBottomSheet;
-import 'package:flutter_bloc/flutter_bloc.dart' show BlocBuilder, ReadContext;
+import 'package:flutter_bloc/flutter_bloc.dart'
+    show BlocBuilder, BlocProvider, ReadContext;
 import 'package:sky_trade/core/assets/generated/assets.gen.dart' show Assets;
 import 'package:sky_trade/core/resources/colors.dart' show hex3A4DE9;
 import 'package:sky_trade/core/resources/numbers/ui.dart'
@@ -58,17 +59,31 @@ import 'package:sky_trade/core/resources/numbers/ui.dart'
         twentyOneDotNil,
         twentyTwoDotNil;
 import 'package:sky_trade/core/resources/strings/special_characters.dart'
-    show comma, whiteSpace;
+    show whiteSpace;
 import 'package:sky_trade/core/utils/extensions/build_context_extensions.dart';
 import 'package:sky_trade/features/remote_i_d_receiver/presentation/blocs/broadcast_remote_i_d_receiver_bloc/broadcast_remote_i_d_receiver_bloc.dart'
     show BroadcastRemoteIDReceiverBloc, BroadcastRemoteIDReceiverState;
-import 'package:sky_trade/features/remote_i_d_receiver/presentation/blocs/network_remote_i_d_receiver_bloc/network_remote_i_d_receiver_bloc.dart'
-    show NetworkRemoteIDReceiverBloc, NetworkRemoteIDReceiverState;
 import 'package:sky_trade/features/u_a_s_restrictions/presentation/widgets/u_a_s_details.dart'
     show UASDetails;
 
 class UASList extends StatelessWidget {
-  const UASList({super.key});
+  const UASList({
+    required this.broadcastRemoteIDReceiverBloc,
+    super.key,
+  });
+
+  final BroadcastRemoteIDReceiverBloc broadcastRemoteIDReceiverBloc;
+
+  @override
+  Widget build(BuildContext context) =>
+      BlocProvider<BroadcastRemoteIDReceiverBloc>.value(
+        value: broadcastRemoteIDReceiverBloc,
+        child: const UASListView(),
+      );
+}
+
+class UASListView extends StatelessWidget {
+  const UASListView({super.key});
 
   @override
   Widget build(BuildContext context) => StatefulBuilder(
@@ -152,55 +167,6 @@ class UASList extends StatelessWidget {
                           },
                         ),
                       ),
-                      WidgetSpan(
-                        child: BlocBuilder<NetworkRemoteIDReceiverBloc,
-                            NetworkRemoteIDReceiverState>(
-                          builder: (_, networkRemoteIDReceiverState) =>
-                              networkRemoteIDReceiverState.maybeWhen(
-                            gotRemoteIDs: (remoteIDEntities) =>
-                                switch (remoteIDEntities.isNotEmpty) {
-                              true => Text(
-                                  comma + whiteSpace,
-                                  style: Theme.of(context).textTheme.bodyLarge,
-                                ),
-                              false => const SizedBox.shrink(),
-                            },
-                            orElse: () => const SizedBox.shrink(),
-                          ),
-                        ),
-                      ),
-                      WidgetSpan(
-                        child: BlocBuilder<NetworkRemoteIDReceiverBloc,
-                            NetworkRemoteIDReceiverState>(
-                          builder: (_, networkRemoteIDReceiverState) {
-                            WidgetsBinding.instance.addPostFrameCallback((_) {
-                              setState(() {});
-                            });
-
-                            return networkRemoteIDReceiverState.maybeWhen(
-                              gotRemoteIDs: (remoteIDEntities) =>
-                                  switch (remoteIDEntities.isNotEmpty) {
-                                true => Text(
-                                    remoteIDEntities.length.toString() +
-                                        whiteSpace +
-                                        switch (remoteIDEntities.length) {
-                                          one => context.localize.drone,
-                                          _ => context.localize.drones,
-                                        } +
-                                        whiteSpace +
-                                        context
-                                            .localize.trackedByOthersInThisArea,
-                                    textAlign: TextAlign.center,
-                                    style:
-                                        Theme.of(context).textTheme.bodyLarge,
-                                  ),
-                                false => const SizedBox.shrink(),
-                              },
-                              orElse: () => const SizedBox.shrink(),
-                            );
-                          },
-                        ),
-                      ),
                     ],
                   ),
                 ),
@@ -252,7 +218,7 @@ class UASList extends StatelessWidget {
                                 showModalBottomSheet<void>(
                                   context: context,
                                   builder: (_) => UASDetails(
-                                    context
+                                    broadcastRemoteIDReceiverBloc: context
                                         .read<BroadcastRemoteIDReceiverBloc>(),
                                     index: index,
                                   ),

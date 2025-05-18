@@ -63,7 +63,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get agreement => 'agreement';
 
   @override
-  String get flightRestrictedAirspace => 'Flight Restricted Airspace';
+  String get restrictedAirspace => 'Restricted Airspace';
 
   @override
   String get address => 'Address';
