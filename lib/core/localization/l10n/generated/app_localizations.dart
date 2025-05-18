@@ -1682,6 +1682,30 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'I am a corporate entity'**
   String get iAmACorporateEntity;
+
+  /// No description provided for @viewMyPosition.
+  ///
+  /// In en, this message translates to:
+  /// **'View my position'**
+  String get viewMyPosition;
+
+  /// No description provided for @youHaveNotEarnedAnyPointsWithinTheCurrentPeriod.
+  ///
+  /// In en, this message translates to:
+  /// **'You have not earned any points within the current period'**
+  String get youHaveNotEarnedAnyPointsWithinTheCurrentPeriod;
+
+  /// No description provided for @weCouldNotGetYourPositionOnTheLeaderboardTryRefreshingTheLeaderboardTableOrTheEntirePageThenTryViewingYourPositionAgain.
+  ///
+  /// In en, this message translates to:
+  /// **'We could not get your position on the leaderboard. Try refreshing the leaderboard table or the entire page then try viewing your position again'**
+  String get weCouldNotGetYourPositionOnTheLeaderboardTryRefreshingTheLeaderboardTableOrTheEntirePageThenTryViewingYourPositionAgain;
+
+  /// No description provided for @thereWasAnErrorComputingYourPositionOnTheLeaderboard.
+  ///
+  /// In en, this message translates to:
+  /// **'There was an error computing your position on the leaderboard'**
+  String get thereWasAnErrorComputingYourPositionOnTheLeaderboard;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

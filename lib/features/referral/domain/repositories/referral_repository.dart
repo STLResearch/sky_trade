@@ -5,6 +5,7 @@ import 'package:sky_trade/features/referral/domain/entities/referral_entity.dart
         EarningsReportEntity,
         HighlightsEntity,
         InviteEntity,
+        LeaderboardPositionEntity,
         LeaderboardStatisticsEntity,
         ReferralHistoryEntity,
         SkyPointsEntity;
@@ -22,6 +23,11 @@ abstract interface class ReferralRepository {
       getReferralHistoryOn({
     required int page,
     required int limit,
+  });
+
+  Future<Either<LeaderboardPositionFailure, LeaderboardPositionEntity>>
+      getLeaderboardPositionUsing({
+    required int currentLimit,
   });
 
   Future<Either<LeaderboardStatisticsFailure, LeaderboardStatisticsEntity>>

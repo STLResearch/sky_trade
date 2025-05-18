@@ -16,20 +16,26 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$LeaderboardStatisticsEvent {
-  int get page => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(int page) getLeaderboardStatistics,
+    required TResult Function(
+            LeaderboardStatisticsEntity leaderboardStatisticsEntity)
+        getLeaderboardPosition,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(int page)? getLeaderboardStatistics,
+    TResult? Function(LeaderboardStatisticsEntity leaderboardStatisticsEntity)?
+        getLeaderboardPosition,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(int page)? getLeaderboardStatistics,
+    TResult Function(LeaderboardStatisticsEntity leaderboardStatisticsEntity)?
+        getLeaderboardPosition,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -37,26 +43,24 @@ mixin _$LeaderboardStatisticsEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(_GetLeaderboardStatistics value)
         getLeaderboardStatistics,
+    required TResult Function(_GetLeaderboardPosition value)
+        getLeaderboardPosition,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_GetLeaderboardStatistics value)?
         getLeaderboardStatistics,
+    TResult? Function(_GetLeaderboardPosition value)? getLeaderboardPosition,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_GetLeaderboardStatistics value)? getLeaderboardStatistics,
+    TResult Function(_GetLeaderboardPosition value)? getLeaderboardPosition,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
-
-  /// Create a copy of LeaderboardStatisticsEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  $LeaderboardStatisticsEventCopyWith<LeaderboardStatisticsEvent>
-      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -65,8 +69,6 @@ abstract class $LeaderboardStatisticsEventCopyWith<$Res> {
           $Res Function(LeaderboardStatisticsEvent) then) =
       _$LeaderboardStatisticsEventCopyWithImpl<$Res,
           LeaderboardStatisticsEvent>;
-  @useResult
-  $Res call({int page});
 }
 
 /// @nodoc
@@ -82,28 +84,14 @@ class _$LeaderboardStatisticsEventCopyWithImpl<$Res,
 
   /// Create a copy of LeaderboardStatisticsEvent
   /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? page = null,
-  }) {
-    return _then(_value.copyWith(
-      page: null == page
-          ? _value.page
-          : page // ignore: cast_nullable_to_non_nullable
-              as int,
-    ) as $Val);
-  }
 }
 
 /// @nodoc
-abstract class _$$GetLeaderboardStatisticsImplCopyWith<$Res>
-    implements $LeaderboardStatisticsEventCopyWith<$Res> {
+abstract class _$$GetLeaderboardStatisticsImplCopyWith<$Res> {
   factory _$$GetLeaderboardStatisticsImplCopyWith(
           _$GetLeaderboardStatisticsImpl value,
           $Res Function(_$GetLeaderboardStatisticsImpl) then) =
       __$$GetLeaderboardStatisticsImplCopyWithImpl<$Res>;
-  @override
   @useResult
   $Res call({int page});
 }
@@ -171,6 +159,9 @@ class _$GetLeaderboardStatisticsImpl implements _GetLeaderboardStatistics {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(int page) getLeaderboardStatistics,
+    required TResult Function(
+            LeaderboardStatisticsEntity leaderboardStatisticsEntity)
+        getLeaderboardPosition,
   }) {
     return getLeaderboardStatistics(page);
   }
@@ -179,6 +170,8 @@ class _$GetLeaderboardStatisticsImpl implements _GetLeaderboardStatistics {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(int page)? getLeaderboardStatistics,
+    TResult? Function(LeaderboardStatisticsEntity leaderboardStatisticsEntity)?
+        getLeaderboardPosition,
   }) {
     return getLeaderboardStatistics?.call(page);
   }
@@ -187,6 +180,8 @@ class _$GetLeaderboardStatisticsImpl implements _GetLeaderboardStatistics {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(int page)? getLeaderboardStatistics,
+    TResult Function(LeaderboardStatisticsEntity leaderboardStatisticsEntity)?
+        getLeaderboardPosition,
     required TResult orElse(),
   }) {
     if (getLeaderboardStatistics != null) {
@@ -200,6 +195,8 @@ class _$GetLeaderboardStatisticsImpl implements _GetLeaderboardStatistics {
   TResult map<TResult extends Object?>({
     required TResult Function(_GetLeaderboardStatistics value)
         getLeaderboardStatistics,
+    required TResult Function(_GetLeaderboardPosition value)
+        getLeaderboardPosition,
   }) {
     return getLeaderboardStatistics(this);
   }
@@ -209,6 +206,7 @@ class _$GetLeaderboardStatisticsImpl implements _GetLeaderboardStatistics {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_GetLeaderboardStatistics value)?
         getLeaderboardStatistics,
+    TResult? Function(_GetLeaderboardPosition value)? getLeaderboardPosition,
   }) {
     return getLeaderboardStatistics?.call(this);
   }
@@ -217,6 +215,7 @@ class _$GetLeaderboardStatisticsImpl implements _GetLeaderboardStatistics {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_GetLeaderboardStatistics value)? getLeaderboardStatistics,
+    TResult Function(_GetLeaderboardPosition value)? getLeaderboardPosition,
     required TResult orElse(),
   }) {
     if (getLeaderboardStatistics != null) {
@@ -230,14 +229,169 @@ abstract class _GetLeaderboardStatistics implements LeaderboardStatisticsEvent {
   const factory _GetLeaderboardStatistics({required final int page}) =
       _$GetLeaderboardStatisticsImpl;
 
-  @override
   int get page;
 
   /// Create a copy of LeaderboardStatisticsEvent
   /// with the given fields replaced by the non-null parameter values.
-  @override
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$GetLeaderboardStatisticsImplCopyWith<_$GetLeaderboardStatisticsImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$GetLeaderboardPositionImplCopyWith<$Res> {
+  factory _$$GetLeaderboardPositionImplCopyWith(
+          _$GetLeaderboardPositionImpl value,
+          $Res Function(_$GetLeaderboardPositionImpl) then) =
+      __$$GetLeaderboardPositionImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({LeaderboardStatisticsEntity leaderboardStatisticsEntity});
+}
+
+/// @nodoc
+class __$$GetLeaderboardPositionImplCopyWithImpl<$Res>
+    extends _$LeaderboardStatisticsEventCopyWithImpl<$Res,
+        _$GetLeaderboardPositionImpl>
+    implements _$$GetLeaderboardPositionImplCopyWith<$Res> {
+  __$$GetLeaderboardPositionImplCopyWithImpl(
+      _$GetLeaderboardPositionImpl _value,
+      $Res Function(_$GetLeaderboardPositionImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of LeaderboardStatisticsEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? leaderboardStatisticsEntity = null,
+  }) {
+    return _then(_$GetLeaderboardPositionImpl(
+      leaderboardStatisticsEntity: null == leaderboardStatisticsEntity
+          ? _value.leaderboardStatisticsEntity
+          : leaderboardStatisticsEntity // ignore: cast_nullable_to_non_nullable
+              as LeaderboardStatisticsEntity,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$GetLeaderboardPositionImpl implements _GetLeaderboardPosition {
+  const _$GetLeaderboardPositionImpl(
+      {required this.leaderboardStatisticsEntity});
+
+  @override
+  final LeaderboardStatisticsEntity leaderboardStatisticsEntity;
+
+  @override
+  String toString() {
+    return 'LeaderboardStatisticsEvent.getLeaderboardPosition(leaderboardStatisticsEntity: $leaderboardStatisticsEntity)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$GetLeaderboardPositionImpl &&
+            (identical(other.leaderboardStatisticsEntity,
+                    leaderboardStatisticsEntity) ||
+                other.leaderboardStatisticsEntity ==
+                    leaderboardStatisticsEntity));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, leaderboardStatisticsEntity);
+
+  /// Create a copy of LeaderboardStatisticsEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$GetLeaderboardPositionImplCopyWith<_$GetLeaderboardPositionImpl>
+      get copyWith => __$$GetLeaderboardPositionImplCopyWithImpl<
+          _$GetLeaderboardPositionImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(int page) getLeaderboardStatistics,
+    required TResult Function(
+            LeaderboardStatisticsEntity leaderboardStatisticsEntity)
+        getLeaderboardPosition,
+  }) {
+    return getLeaderboardPosition(leaderboardStatisticsEntity);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(int page)? getLeaderboardStatistics,
+    TResult? Function(LeaderboardStatisticsEntity leaderboardStatisticsEntity)?
+        getLeaderboardPosition,
+  }) {
+    return getLeaderboardPosition?.call(leaderboardStatisticsEntity);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(int page)? getLeaderboardStatistics,
+    TResult Function(LeaderboardStatisticsEntity leaderboardStatisticsEntity)?
+        getLeaderboardPosition,
+    required TResult orElse(),
+  }) {
+    if (getLeaderboardPosition != null) {
+      return getLeaderboardPosition(leaderboardStatisticsEntity);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_GetLeaderboardStatistics value)
+        getLeaderboardStatistics,
+    required TResult Function(_GetLeaderboardPosition value)
+        getLeaderboardPosition,
+  }) {
+    return getLeaderboardPosition(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_GetLeaderboardStatistics value)?
+        getLeaderboardStatistics,
+    TResult? Function(_GetLeaderboardPosition value)? getLeaderboardPosition,
+  }) {
+    return getLeaderboardPosition?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_GetLeaderboardStatistics value)? getLeaderboardStatistics,
+    TResult Function(_GetLeaderboardPosition value)? getLeaderboardPosition,
+    required TResult orElse(),
+  }) {
+    if (getLeaderboardPosition != null) {
+      return getLeaderboardPosition(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _GetLeaderboardPosition implements LeaderboardStatisticsEvent {
+  const factory _GetLeaderboardPosition(
+      {required final LeaderboardStatisticsEntity
+          leaderboardStatisticsEntity}) = _$GetLeaderboardPositionImpl;
+
+  LeaderboardStatisticsEntity get leaderboardStatisticsEntity;
+
+  /// Create a copy of LeaderboardStatisticsEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$GetLeaderboardPositionImplCopyWith<_$GetLeaderboardPositionImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
 
@@ -248,7 +402,8 @@ mixin _$LeaderboardStatisticsState {
     required TResult Function() initial,
     required TResult Function() gettingLeaderboardStatistics,
     required TResult Function(
-            LeaderboardStatisticsEntity leaderboardStatisticsEntity)
+            LeaderboardStatisticsEntity leaderboardStatisticsEntity,
+            LeaderboardPositionEntity? leaderboardPositionEntity)
         gotLeaderboardStatistics,
     required TResult Function(
             LeaderboardStatisticsFailure leaderboardStatisticsFailure)
@@ -259,7 +414,8 @@ mixin _$LeaderboardStatisticsState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? gettingLeaderboardStatistics,
-    TResult? Function(LeaderboardStatisticsEntity leaderboardStatisticsEntity)?
+    TResult? Function(LeaderboardStatisticsEntity leaderboardStatisticsEntity,
+            LeaderboardPositionEntity? leaderboardPositionEntity)?
         gotLeaderboardStatistics,
     TResult? Function(
             LeaderboardStatisticsFailure leaderboardStatisticsFailure)?
@@ -270,7 +426,8 @@ mixin _$LeaderboardStatisticsState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? gettingLeaderboardStatistics,
-    TResult Function(LeaderboardStatisticsEntity leaderboardStatisticsEntity)?
+    TResult Function(LeaderboardStatisticsEntity leaderboardStatisticsEntity,
+            LeaderboardPositionEntity? leaderboardPositionEntity)?
         gotLeaderboardStatistics,
     TResult Function(LeaderboardStatisticsFailure leaderboardStatisticsFailure)?
         failedToGetLeaderboardStatistics,
@@ -379,7 +536,8 @@ class _$InitialImpl implements _Initial {
     required TResult Function() initial,
     required TResult Function() gettingLeaderboardStatistics,
     required TResult Function(
-            LeaderboardStatisticsEntity leaderboardStatisticsEntity)
+            LeaderboardStatisticsEntity leaderboardStatisticsEntity,
+            LeaderboardPositionEntity? leaderboardPositionEntity)
         gotLeaderboardStatistics,
     required TResult Function(
             LeaderboardStatisticsFailure leaderboardStatisticsFailure)
@@ -393,7 +551,8 @@ class _$InitialImpl implements _Initial {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? gettingLeaderboardStatistics,
-    TResult? Function(LeaderboardStatisticsEntity leaderboardStatisticsEntity)?
+    TResult? Function(LeaderboardStatisticsEntity leaderboardStatisticsEntity,
+            LeaderboardPositionEntity? leaderboardPositionEntity)?
         gotLeaderboardStatistics,
     TResult? Function(
             LeaderboardStatisticsFailure leaderboardStatisticsFailure)?
@@ -407,7 +566,8 @@ class _$InitialImpl implements _Initial {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? gettingLeaderboardStatistics,
-    TResult Function(LeaderboardStatisticsEntity leaderboardStatisticsEntity)?
+    TResult Function(LeaderboardStatisticsEntity leaderboardStatisticsEntity,
+            LeaderboardPositionEntity? leaderboardPositionEntity)?
         gotLeaderboardStatistics,
     TResult Function(LeaderboardStatisticsFailure leaderboardStatisticsFailure)?
         failedToGetLeaderboardStatistics,
@@ -518,7 +678,8 @@ class _$GettingLeaderboardStatisticsImpl
     required TResult Function() initial,
     required TResult Function() gettingLeaderboardStatistics,
     required TResult Function(
-            LeaderboardStatisticsEntity leaderboardStatisticsEntity)
+            LeaderboardStatisticsEntity leaderboardStatisticsEntity,
+            LeaderboardPositionEntity? leaderboardPositionEntity)
         gotLeaderboardStatistics,
     required TResult Function(
             LeaderboardStatisticsFailure leaderboardStatisticsFailure)
@@ -532,7 +693,8 @@ class _$GettingLeaderboardStatisticsImpl
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? gettingLeaderboardStatistics,
-    TResult? Function(LeaderboardStatisticsEntity leaderboardStatisticsEntity)?
+    TResult? Function(LeaderboardStatisticsEntity leaderboardStatisticsEntity,
+            LeaderboardPositionEntity? leaderboardPositionEntity)?
         gotLeaderboardStatistics,
     TResult? Function(
             LeaderboardStatisticsFailure leaderboardStatisticsFailure)?
@@ -546,7 +708,8 @@ class _$GettingLeaderboardStatisticsImpl
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? gettingLeaderboardStatistics,
-    TResult Function(LeaderboardStatisticsEntity leaderboardStatisticsEntity)?
+    TResult Function(LeaderboardStatisticsEntity leaderboardStatisticsEntity,
+            LeaderboardPositionEntity? leaderboardPositionEntity)?
         gotLeaderboardStatistics,
     TResult Function(LeaderboardStatisticsFailure leaderboardStatisticsFailure)?
         failedToGetLeaderboardStatistics,
@@ -617,7 +780,9 @@ abstract class _$$GotLeaderboardStatisticsImplCopyWith<$Res> {
           $Res Function(_$GotLeaderboardStatisticsImpl) then) =
       __$$GotLeaderboardStatisticsImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({LeaderboardStatisticsEntity leaderboardStatisticsEntity});
+  $Res call(
+      {LeaderboardStatisticsEntity leaderboardStatisticsEntity,
+      LeaderboardPositionEntity? leaderboardPositionEntity});
 }
 
 /// @nodoc
@@ -636,12 +801,17 @@ class __$$GotLeaderboardStatisticsImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? leaderboardStatisticsEntity = null,
+    Object? leaderboardPositionEntity = freezed,
   }) {
     return _then(_$GotLeaderboardStatisticsImpl(
       leaderboardStatisticsEntity: null == leaderboardStatisticsEntity
           ? _value.leaderboardStatisticsEntity
           : leaderboardStatisticsEntity // ignore: cast_nullable_to_non_nullable
               as LeaderboardStatisticsEntity,
+      leaderboardPositionEntity: freezed == leaderboardPositionEntity
+          ? _value.leaderboardPositionEntity
+          : leaderboardPositionEntity // ignore: cast_nullable_to_non_nullable
+              as LeaderboardPositionEntity?,
     ));
   }
 }
@@ -650,14 +820,17 @@ class __$$GotLeaderboardStatisticsImplCopyWithImpl<$Res>
 
 class _$GotLeaderboardStatisticsImpl implements _GotLeaderboardStatistics {
   const _$GotLeaderboardStatisticsImpl(
-      {required this.leaderboardStatisticsEntity});
+      {required this.leaderboardStatisticsEntity,
+      required this.leaderboardPositionEntity});
 
   @override
   final LeaderboardStatisticsEntity leaderboardStatisticsEntity;
+  @override
+  final LeaderboardPositionEntity? leaderboardPositionEntity;
 
   @override
   String toString() {
-    return 'LeaderboardStatisticsState.gotLeaderboardStatistics(leaderboardStatisticsEntity: $leaderboardStatisticsEntity)';
+    return 'LeaderboardStatisticsState.gotLeaderboardStatistics(leaderboardStatisticsEntity: $leaderboardStatisticsEntity, leaderboardPositionEntity: $leaderboardPositionEntity)';
   }
 
   @override
@@ -668,11 +841,15 @@ class _$GotLeaderboardStatisticsImpl implements _GotLeaderboardStatistics {
             (identical(other.leaderboardStatisticsEntity,
                     leaderboardStatisticsEntity) ||
                 other.leaderboardStatisticsEntity ==
-                    leaderboardStatisticsEntity));
+                    leaderboardStatisticsEntity) &&
+            (identical(other.leaderboardPositionEntity,
+                    leaderboardPositionEntity) ||
+                other.leaderboardPositionEntity == leaderboardPositionEntity));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, leaderboardStatisticsEntity);
+  int get hashCode => Object.hash(
+      runtimeType, leaderboardStatisticsEntity, leaderboardPositionEntity);
 
   /// Create a copy of LeaderboardStatisticsState
   /// with the given fields replaced by the non-null parameter values.
@@ -689,13 +866,15 @@ class _$GotLeaderboardStatisticsImpl implements _GotLeaderboardStatistics {
     required TResult Function() initial,
     required TResult Function() gettingLeaderboardStatistics,
     required TResult Function(
-            LeaderboardStatisticsEntity leaderboardStatisticsEntity)
+            LeaderboardStatisticsEntity leaderboardStatisticsEntity,
+            LeaderboardPositionEntity? leaderboardPositionEntity)
         gotLeaderboardStatistics,
     required TResult Function(
             LeaderboardStatisticsFailure leaderboardStatisticsFailure)
         failedToGetLeaderboardStatistics,
   }) {
-    return gotLeaderboardStatistics(leaderboardStatisticsEntity);
+    return gotLeaderboardStatistics(
+        leaderboardStatisticsEntity, leaderboardPositionEntity);
   }
 
   @override
@@ -703,13 +882,15 @@ class _$GotLeaderboardStatisticsImpl implements _GotLeaderboardStatistics {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? gettingLeaderboardStatistics,
-    TResult? Function(LeaderboardStatisticsEntity leaderboardStatisticsEntity)?
+    TResult? Function(LeaderboardStatisticsEntity leaderboardStatisticsEntity,
+            LeaderboardPositionEntity? leaderboardPositionEntity)?
         gotLeaderboardStatistics,
     TResult? Function(
             LeaderboardStatisticsFailure leaderboardStatisticsFailure)?
         failedToGetLeaderboardStatistics,
   }) {
-    return gotLeaderboardStatistics?.call(leaderboardStatisticsEntity);
+    return gotLeaderboardStatistics?.call(
+        leaderboardStatisticsEntity, leaderboardPositionEntity);
   }
 
   @override
@@ -717,14 +898,16 @@ class _$GotLeaderboardStatisticsImpl implements _GotLeaderboardStatistics {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? gettingLeaderboardStatistics,
-    TResult Function(LeaderboardStatisticsEntity leaderboardStatisticsEntity)?
+    TResult Function(LeaderboardStatisticsEntity leaderboardStatisticsEntity,
+            LeaderboardPositionEntity? leaderboardPositionEntity)?
         gotLeaderboardStatistics,
     TResult Function(LeaderboardStatisticsFailure leaderboardStatisticsFailure)?
         failedToGetLeaderboardStatistics,
     required TResult orElse(),
   }) {
     if (gotLeaderboardStatistics != null) {
-      return gotLeaderboardStatistics(leaderboardStatisticsEntity);
+      return gotLeaderboardStatistics(
+          leaderboardStatisticsEntity, leaderboardPositionEntity);
     }
     return orElse();
   }
@@ -777,10 +960,12 @@ class _$GotLeaderboardStatisticsImpl implements _GotLeaderboardStatistics {
 
 abstract class _GotLeaderboardStatistics implements LeaderboardStatisticsState {
   const factory _GotLeaderboardStatistics(
-      {required final LeaderboardStatisticsEntity
-          leaderboardStatisticsEntity}) = _$GotLeaderboardStatisticsImpl;
+      {required final LeaderboardStatisticsEntity leaderboardStatisticsEntity,
+      required final LeaderboardPositionEntity?
+          leaderboardPositionEntity}) = _$GotLeaderboardStatisticsImpl;
 
   LeaderboardStatisticsEntity get leaderboardStatisticsEntity;
+  LeaderboardPositionEntity? get leaderboardPositionEntity;
 
   /// Create a copy of LeaderboardStatisticsState
   /// with the given fields replaced by the non-null parameter values.
@@ -870,7 +1055,8 @@ class _$FailedToGetLeaderboardStatisticsImpl
     required TResult Function() initial,
     required TResult Function() gettingLeaderboardStatistics,
     required TResult Function(
-            LeaderboardStatisticsEntity leaderboardStatisticsEntity)
+            LeaderboardStatisticsEntity leaderboardStatisticsEntity,
+            LeaderboardPositionEntity? leaderboardPositionEntity)
         gotLeaderboardStatistics,
     required TResult Function(
             LeaderboardStatisticsFailure leaderboardStatisticsFailure)
@@ -884,7 +1070,8 @@ class _$FailedToGetLeaderboardStatisticsImpl
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? gettingLeaderboardStatistics,
-    TResult? Function(LeaderboardStatisticsEntity leaderboardStatisticsEntity)?
+    TResult? Function(LeaderboardStatisticsEntity leaderboardStatisticsEntity,
+            LeaderboardPositionEntity? leaderboardPositionEntity)?
         gotLeaderboardStatistics,
     TResult? Function(
             LeaderboardStatisticsFailure leaderboardStatisticsFailure)?
@@ -898,7 +1085,8 @@ class _$FailedToGetLeaderboardStatisticsImpl
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? gettingLeaderboardStatistics,
-    TResult Function(LeaderboardStatisticsEntity leaderboardStatisticsEntity)?
+    TResult Function(LeaderboardStatisticsEntity leaderboardStatisticsEntity,
+            LeaderboardPositionEntity? leaderboardPositionEntity)?
         gotLeaderboardStatistics,
     TResult Function(LeaderboardStatisticsFailure leaderboardStatisticsFailure)?
         failedToGetLeaderboardStatistics,

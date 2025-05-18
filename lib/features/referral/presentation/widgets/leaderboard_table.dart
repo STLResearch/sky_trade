@@ -4,6 +4,7 @@ import 'dart:io' show Platform;
 
 import 'package:flutter/material.dart'
     show
+        Align,
         AlignmentDirectional,
         Axis,
         BorderRadiusDirectional,
@@ -47,7 +48,7 @@ import 'package:skeletonizer/skeletonizer.dart'
 import 'package:sky_trade/core/assets/generated/assets.gen.dart' show Assets;
 import 'package:sky_trade/core/assets/generated/fonts.gen.dart';
 import 'package:sky_trade/core/resources/colors.dart'
-    show hex5D7285, hexB8CCE3, hexEBEBF4, hexF5F5F5;
+    show hex4285F4, hex5D7285, hexB8CCE3, hexEBEBF4, hexF5F5F5;
 import 'package:sky_trade/core/resources/numbers/ui.dart'
     show
         eightDotNil,
@@ -92,6 +93,7 @@ import 'package:sky_trade/features/referral/presentation/blocs/leaderboard_stati
         LeaderboardStatisticsBloc,
         LeaderboardStatisticsEvent,
         LeaderboardStatisticsState;
+import 'package:sky_trade/features/referral/presentation/widgets/alert_snack_bar.dart';
 import 'package:sky_trade/features/referral/presentation/widgets/card.dart';
 
 class LeaderboardTable extends StatefulWidget {
@@ -156,6 +158,20 @@ class _LeaderboardTableState extends State<LeaderboardTable> {
   }) {
     widget.pageNumberNotifier.value = number;
     _getLeaderboardStatistics();
+  }
+
+  int _computeUserPositionOnLeaderboardUsing({
+    required int page,
+    required int position,
+    required bool returnIndexPositionInstead,
+  }) {
+    final userPosition = six - ((six * page) - position);
+
+    if (returnIndexPositionInstead) {
+      return userPosition - one;
+    }
+
+    return userPosition;
   }
 
   @override
@@ -224,7 +240,7 @@ class _LeaderboardTableState extends State<LeaderboardTable> {
                               height: twentyTwoDotFive / fifteenDotNil,
                               color: leaderboardStatisticsState.maybeWhen(
                                 gotLeaderboardStatistics:
-                                    (leaderboardStatisticsEntity) => switch (
+                                    (leaderboardStatisticsEntity, _) => switch (
                                         leaderboardStatisticsEntity
                                             .currentPeriodPoints.isEmpty) {
                                   true => Theme.of(
@@ -281,105 +297,252 @@ class _LeaderboardTableState extends State<LeaderboardTable> {
                                       ),
                                       enabled:
                                           leaderboardStatisticsState.maybeWhen(
-                                        gotLeaderboardStatistics: (_) => false,
+                                        gotLeaderboardStatistics: (_, __) =>
+                                            false,
                                         orElse: () => true,
                                       ),
-                                      child: Text(
-                                        leaderboardStatisticsState.maybeWhen(
-                                          gotLeaderboardStatistics:
-                                              (leaderboardStatisticsEntity) =>
-                                                  switch (
-                                                      leaderboardStatisticsEntity
-                                                          .currentPeriodPoints
-                                                          .isEmpty) {
-                                            false
-                                                when index <
+                                      child: ValueListenableBuilder(
+                                        valueListenable:
+                                            widget.pageNumberNotifier,
+                                        builder: (
+                                          _,
+                                          pageNumberNotifierValue,
+                                          __,
+                                        ) =>
+                                            Text(
+                                          leaderboardStatisticsState.maybeWhen(
+                                            gotLeaderboardStatistics: (
+                                              leaderboardStatisticsEntity,
+                                              _,
+                                            ) =>
+                                                switch (
                                                     leaderboardStatisticsEntity
                                                         .currentPeriodPoints
-                                                        .length =>
-                                              switch (Leaderboard
-                                                  .values[rowIndex]) {
-                                                Leaderboard.user =>
-                                                  leaderboardStatisticsEntity
-                                                          .currentPeriodPoints[
-                                                              index]
-                                                          .blockchainAddress ??
-                                                      threeDots,
-                                                Leaderboard.balance =>
-                                                  leaderboardStatisticsEntity
-                                                      .currentPeriodPoints[
-                                                          index]
-                                                      .totalPoints
-                                                      .toString(),
-                                              },
-                                            _ => switch (Leaderboard
-                                                  .values[rowIndex]) {
-                                                Leaderboard.user =>
-                                                  context.localize.user,
-                                                Leaderboard.balance =>
-                                                  context.localize.balance,
-                                              },
-                                          },
-                                          orElse: () => BoneMock.chars(
-                                            switch (
-                                                Leaderboard.values[rowIndex]) {
-                                              Leaderboard.user => switch (
-                                                    index) {
-                                                  zero => fourteen,
-                                                  two => sixteen,
-                                                  _ => switch (
-                                                        index % two == zero) {
-                                                      true => fifteen,
-                                                      false => seventeen,
-                                                    },
+                                                        .isEmpty) {
+                                              false
+                                                  when index <
+                                                      leaderboardStatisticsEntity
+                                                          .currentPeriodPoints
+                                                          .length =>
+                                                switch (Leaderboard
+                                                    .values[rowIndex]) {
+                                                  Leaderboard.user =>
+                                                    leaderboardStatisticsEntity
+                                                            .currentPeriodPoints[
+                                                                index]
+                                                            .blockchainAddress ??
+                                                        threeDots,
+                                                  Leaderboard.balance =>
+                                                    leaderboardStatisticsEntity
+                                                        .currentPeriodPoints[
+                                                            index]
+                                                        .totalPoints
+                                                        .toString(),
                                                 },
-                                              Leaderboard.balance => switch (
-                                                    index) {
-                                                  zero => five,
-                                                  two => three,
-                                                  _ => switch (
-                                                        index % two == zero) {
-                                                      true => four,
-                                                      false => two,
-                                                    },
+                                              _ => switch (Leaderboard
+                                                    .values[rowIndex]) {
+                                                  Leaderboard.user =>
+                                                    context.localize.user,
+                                                  Leaderboard.balance =>
+                                                    context.localize.balance,
                                                 },
                                             },
+                                            orElse: () => BoneMock.chars(
+                                              switch (Leaderboard
+                                                  .values[rowIndex]) {
+                                                Leaderboard.user => switch (
+                                                      index) {
+                                                    zero => fourteen,
+                                                    two => sixteen,
+                                                    _ => switch (
+                                                          index % two == zero) {
+                                                        true => fifteen,
+                                                        false => seventeen,
+                                                      },
+                                                  },
+                                                Leaderboard.balance => switch (
+                                                      index) {
+                                                    zero => five,
+                                                    two => three,
+                                                    _ => switch (
+                                                          index % two == zero) {
+                                                        true => four,
+                                                        false => two,
+                                                      },
+                                                  },
+                                              },
+                                            ),
                                           ),
-                                        ),
-                                        maxLines: one,
-                                        overflow: TextOverflow.ellipsis,
-                                        textAlign: switch (
-                                            Leaderboard.values[rowIndex]) {
-                                          Leaderboard.user => TextAlign.start,
-                                          Leaderboard.balance => TextAlign.end,
-                                        },
-                                        style: Theme.of(
-                                          context,
-                                        ).textTheme.bodySmall?.copyWith(
-                                              fontSize: fifteenDotNil,
-                                              height: twentyTwoDotFive /
-                                                  fifteenDotNil,
-                                              color: leaderboardStatisticsState
-                                                  .maybeWhen(
-                                                gotLeaderboardStatistics:
-                                                    (leaderboardStatisticsEntity) =>
-                                                        switch (leaderboardStatisticsEntity
-                                                            .currentPeriodPoints
-                                                            .isEmpty) {
-                                                  true ||
-                                                  false
-                                                      when index >=
+                                          maxLines: one,
+                                          overflow: TextOverflow.ellipsis,
+                                          textAlign: switch (
+                                              Leaderboard.values[rowIndex]) {
+                                            Leaderboard.user => TextAlign.start,
+                                            Leaderboard.balance =>
+                                              TextAlign.end,
+                                          },
+                                          style: Theme.of(
+                                            context,
+                                          ).textTheme.bodySmall?.copyWith(
+                                                fontSize: fifteenDotNil,
+                                                height: twentyTwoDotFive /
+                                                    fifteenDotNil,
+                                                fontWeight:
+                                                    leaderboardStatisticsState
+                                                        .maybeWhen(
+                                                  gotLeaderboardStatistics: (
+                                                    leaderboardStatisticsEntity,
+                                                    leaderboardPositionEntity,
+                                                  ) =>
+                                                      switch (leaderboardPositionEntity !=
+                                                              null &&
+                                                          leaderboardPositionEntity
+                                                                  .position !=
+                                                              null &&
+                                                          leaderboardPositionEntity
+                                                                  .page !=
+                                                              null &&
+                                                          _computeUserPositionOnLeaderboardUsing(
+                                                                page:
+                                                                    leaderboardPositionEntity
+                                                                        .page!,
+                                                                position:
+                                                                    leaderboardPositionEntity
+                                                                        .position!,
+                                                                returnIndexPositionInstead:
+                                                                    false,
+                                                              ) >=
+                                                              one &&
+                                                          _computeUserPositionOnLeaderboardUsing(
+                                                                page:
+                                                                    leaderboardPositionEntity
+                                                                        .page!,
+                                                                position:
+                                                                    leaderboardPositionEntity
+                                                                        .position!,
+                                                                returnIndexPositionInstead:
+                                                                    false,
+                                                              ) <=
+                                                              six) {
+                                                    true
+                                                        when pageNumberNotifierValue ==
+                                                                leaderboardPositionEntity!
+                                                                    .page &&
+                                                            index ==
+                                                                _computeUserPositionOnLeaderboardUsing(
+                                                                  page:
+                                                                      leaderboardPositionEntity
+                                                                          .page!,
+                                                                  position:
+                                                                      leaderboardPositionEntity
+                                                                          .position!,
+                                                                  returnIndexPositionInstead:
+                                                                      true,
+                                                                ) &&
+                                                            _computeUserPositionOnLeaderboardUsing(
+                                                                  page:
+                                                                      leaderboardPositionEntity
+                                                                          .page!,
+                                                                  position:
+                                                                      leaderboardPositionEntity
+                                                                          .position!,
+                                                                  returnIndexPositionInstead:
+                                                                      true,
+                                                                ) <
+                                                                leaderboardStatisticsEntity
+                                                                    .currentPeriodPoints
+                                                                    .length =>
+                                                      FontWeight.w700,
+                                                    _ => null,
+                                                  },
+                                                  orElse: () => null,
+                                                ),
+                                                color:
+                                                    leaderboardStatisticsState
+                                                        .maybeWhen(
+                                                  gotLeaderboardStatistics: (
+                                                    leaderboardStatisticsEntity,
+                                                    leaderboardPositionEntity,
+                                                  ) =>
+                                                      switch (leaderboardPositionEntity !=
+                                                              null &&
+                                                          leaderboardPositionEntity
+                                                                  .position !=
+                                                              null &&
+                                                          leaderboardPositionEntity
+                                                                  .page !=
+                                                              null &&
+                                                          _computeUserPositionOnLeaderboardUsing(
+                                                                page:
+                                                                    leaderboardPositionEntity
+                                                                        .page!,
+                                                                position:
+                                                                    leaderboardPositionEntity
+                                                                        .position!,
+                                                                returnIndexPositionInstead:
+                                                                    false,
+                                                              ) >=
+                                                              one &&
+                                                          _computeUserPositionOnLeaderboardUsing(
+                                                                page:
+                                                                    leaderboardPositionEntity
+                                                                        .page!,
+                                                                position:
+                                                                    leaderboardPositionEntity
+                                                                        .position!,
+                                                                returnIndexPositionInstead:
+                                                                    false,
+                                                              ) <=
+                                                              six) {
+                                                    true
+                                                        when pageNumberNotifierValue ==
+                                                                leaderboardPositionEntity!
+                                                                    .page &&
+                                                            index ==
+                                                                _computeUserPositionOnLeaderboardUsing(
+                                                                  page:
+                                                                      leaderboardPositionEntity
+                                                                          .page!,
+                                                                  position:
+                                                                      leaderboardPositionEntity
+                                                                          .position!,
+                                                                  returnIndexPositionInstead:
+                                                                      true,
+                                                                ) &&
+                                                            _computeUserPositionOnLeaderboardUsing(
+                                                                  page:
+                                                                      leaderboardPositionEntity
+                                                                          .page!,
+                                                                  position:
+                                                                      leaderboardPositionEntity
+                                                                          .position!,
+                                                                  returnIndexPositionInstead:
+                                                                      true,
+                                                                ) <
+                                                                leaderboardStatisticsEntity
+                                                                    .currentPeriodPoints
+                                                                    .length =>
+                                                      hex4285F4,
+                                                    _ => switch (
                                                           leaderboardStatisticsEntity
                                                               .currentPeriodPoints
-                                                              .length =>
-                                                    Theme.of(
-                                                      context,
-                                                    ).scaffoldBackgroundColor,
-                                                  _ => null,
-                                                },
-                                                orElse: () => null,
+                                                              .isEmpty) {
+                                                        true ||
+                                                        false
+                                                            when index >=
+                                                                leaderboardStatisticsEntity
+                                                                    .currentPeriodPoints
+                                                                    .length =>
+                                                          Theme.of(
+                                                            context,
+                                                          ).scaffoldBackgroundColor,
+                                                        _ => null,
+                                                      },
+                                                  },
+                                                  orElse: () => null,
+                                                ),
                                               ),
-                                            ),
+                                        ),
                                       ),
                                     ),
                                   ),
@@ -395,10 +558,12 @@ class _LeaderboardTableState extends State<LeaderboardTable> {
                                   Divider(
                                 height: oneDotNil,
                                 color: leaderboardStatisticsState.maybeWhen(
-                                  gotLeaderboardStatistics:
-                                      (leaderboardStatisticsEntity) => switch (
-                                          leaderboardStatisticsEntity
-                                              .currentPeriodPoints.isEmpty) {
+                                  gotLeaderboardStatistics: (
+                                    leaderboardStatisticsEntity,
+                                    _,
+                                  ) =>
+                                      switch (leaderboardStatisticsEntity
+                                          .currentPeriodPoints.isEmpty) {
                                     true => Theme.of(
                                         context,
                                       ).scaffoldBackgroundColor,
@@ -417,7 +582,10 @@ class _LeaderboardTableState extends State<LeaderboardTable> {
                       LeaderboardStatisticsState>(
                     builder: (_, leaderboardStatisticsState) =>
                         leaderboardStatisticsState.maybeWhen(
-                      gotLeaderboardStatistics: (leaderboardStatisticsEntity) =>
+                      gotLeaderboardStatistics: (
+                        leaderboardStatisticsEntity,
+                        _,
+                      ) =>
                           switch (leaderboardStatisticsEntity
                               .currentPeriodPoints.isEmpty) {
                         true => Text(
@@ -435,6 +603,104 @@ class _LeaderboardTableState extends State<LeaderboardTable> {
                     ),
                   ),
                 ],
+              ),
+              const SizedBox(
+                height: twentyFourDotNil,
+              ),
+              Align(
+                alignment: AlignmentDirectional.topStart,
+                child: BlocBuilder<LeaderboardStatisticsBloc,
+                    LeaderboardStatisticsState>(
+                  builder: (_, leaderboardStatisticsState) => RichText(
+                    text: WidgetSpan(
+                      child: InkWell(
+                        customBorder: RoundedRectangleBorder(
+                          borderRadius: BorderRadiusDirectional.circular(
+                            eightDotNil,
+                          ),
+                        ),
+                        onTap: leaderboardStatisticsState.maybeWhen(
+                          gotLeaderboardStatistics: (
+                            leaderboardStatisticsEntity,
+                            leaderboardPositionEntity,
+                          ) =>
+                              switch (leaderboardStatisticsEntity.totalCount ==
+                                  zero) {
+                            true => null,
+                            false => () {
+                                if (leaderboardPositionEntity == null) {
+                                  AlertSnackBar.show(
+                                    context,
+                                    message: context.localize
+                                        .weCouldNotGetYourPositionOnTheLeaderboardTryRefreshingTheLeaderboardTableOrTheEntirePageThenTryViewingYourPositionAgain,
+                                  );
+
+                                  return;
+                                }
+
+                                if (leaderboardPositionEntity.position ==
+                                        null ||
+                                    leaderboardPositionEntity.page == null) {
+                                  AlertSnackBar.show(
+                                    context,
+                                    message: context.localize
+                                        .youHaveNotEarnedAnyPointsWithinTheCurrentPeriod,
+                                  );
+
+                                  return;
+                                }
+
+                                final totalNumberOfPages =
+                                    _computeNumberOfPagesUsing(
+                                  totalPageCount:
+                                      leaderboardStatisticsEntity.totalCount,
+                                );
+
+                                if (leaderboardPositionEntity.page! > zero &&
+                                    leaderboardPositionEntity.page! <=
+                                        totalNumberOfPages) {
+                                  _goToPage(
+                                    number: leaderboardPositionEntity.page!,
+                                  );
+
+                                  return;
+                                }
+
+                                AlertSnackBar.show(
+                                  context,
+                                  message: context.localize
+                                      .thereWasAnErrorComputingYourPositionOnTheLeaderboard,
+                                );
+                              },
+                          },
+                          orElse: () => null,
+                        ),
+                        child: Text(
+                          context.localize.viewMyPosition,
+                          style: TextStyle(
+                            fontFamily: FontFamily.lato,
+                            fontWeight: FontWeight.w700,
+                            fontSize: sixteenDotNil,
+                            height: nineteenDotTwo / sixteenDotNil,
+                            color: leaderboardStatisticsState.maybeWhen(
+                              gotLeaderboardStatistics: (
+                                leaderboardStatisticsEntity,
+                                _,
+                              ) =>
+                                  switch (
+                                      leaderboardStatisticsEntity.totalCount ==
+                                          zero) {
+                                true => hexEBEBF4,
+                                false => hex4285F4,
+                              },
+                              orElse: () => hexEBEBF4,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
               ),
               const SizedBox(
                 height: twentyFourDotNil,
@@ -469,11 +735,13 @@ class _LeaderboardTableState extends State<LeaderboardTable> {
                               Row(
                                 children: List<Widget>.generate(
                                   leaderboardStatisticsState.maybeWhen(
-                                    gotLeaderboardStatistics:
-                                        (leaderboardStatisticsEntity) =>
-                                            switch (leaderboardStatisticsEntity
-                                                    .totalCount ==
-                                                zero) {
+                                    gotLeaderboardStatistics: (
+                                      leaderboardStatisticsEntity,
+                                      _,
+                                    ) =>
+                                        switch (leaderboardStatisticsEntity
+                                                .totalCount ==
+                                            zero) {
                                       true => zero,
                                       false => _computeNumberOfPagesUsing(
                                           totalPageCount:
@@ -498,16 +766,23 @@ class _LeaderboardTableState extends State<LeaderboardTable> {
                                     ),
                                     enabled:
                                         leaderboardStatisticsState.maybeWhen(
-                                      gotLeaderboardStatistics: (_) => false,
+                                      gotLeaderboardStatistics: (
+                                        _,
+                                        __,
+                                      ) =>
+                                          false,
                                       orElse: () => true,
                                     ),
                                     child: Skeleton.leaf(
                                       child: ValueListenableBuilder(
                                         valueListenable:
                                             widget.pageNumberNotifier,
-                                        builder:
-                                            (_, pageNumberNotifierValue, __) =>
-                                                InkWell(
+                                        builder: (
+                                          _,
+                                          pageNumberNotifierValue,
+                                          __,
+                                        ) =>
+                                            InkWell(
                                           customBorder: const CircleBorder(),
                                           child: Container(
                                             padding: const EdgeInsetsDirectional
@@ -586,6 +861,7 @@ class _LeaderboardTableState extends State<LeaderboardTable> {
                               onTap: leaderboardStatisticsState.maybeWhen(
                                 gotLeaderboardStatistics: (
                                   leaderboardStatisticsEntity,
+                                  _,
                                 ) =>
                                     switch (leaderboardStatisticsEntity
                                             .totalCount ==
@@ -622,6 +898,7 @@ class _LeaderboardTableState extends State<LeaderboardTable> {
                                             .maybeWhen(
                                           gotLeaderboardStatistics: (
                                             leaderboardStatisticsEntity,
+                                            _,
                                           ) {
                                             if (leaderboardStatisticsEntity
                                                     .totalCount ==
@@ -653,6 +930,7 @@ class _LeaderboardTableState extends State<LeaderboardTable> {
                                           leaderboardStatisticsState.maybeWhen(
                                         gotLeaderboardStatistics: (
                                           leaderboardStatisticsEntity,
+                                          _,
                                         ) {
                                           if (leaderboardStatisticsEntity
                                                   .totalCount ==

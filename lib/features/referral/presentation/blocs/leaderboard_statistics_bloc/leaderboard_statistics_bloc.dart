@@ -4,7 +4,7 @@ import 'package:sky_trade/core/errors/failures/referral_failure.dart'
     show LeaderboardStatisticsFailure;
 import 'package:sky_trade/core/resources/numbers/ui.dart' show six;
 import 'package:sky_trade/features/referral/domain/entities/referral_entity.dart'
-    show LeaderboardStatisticsEntity;
+    show LeaderboardPositionEntity, LeaderboardStatisticsEntity;
 import 'package:sky_trade/features/referral/domain/repositories/referral_repository.dart';
 
 part 'leaderboard_statistics_event.dart';
@@ -23,6 +23,10 @@ class LeaderboardStatisticsBloc
         ) {
     on<_GetLeaderboardStatistics>(
       _getLeaderboardStatistics,
+    );
+
+    on<_GetLeaderboardPosition>(
+      _getLeaderboardPosition,
     );
   }
 
@@ -47,9 +51,28 @@ class LeaderboardStatisticsBloc
           leaderboardStatisticsFailure: leaderboardStatisticsFailure,
         ),
       ),
-      (leaderboardStatisticsEntity) => emit(
-        LeaderboardStatisticsState.gotLeaderboardStatistics(
+      (leaderboardStatisticsEntity) => add(
+        LeaderboardStatisticsEvent.getLeaderboardPosition(
           leaderboardStatisticsEntity: leaderboardStatisticsEntity,
+        ),
+      ),
+    );
+  }
+
+  Future<void> _getLeaderboardPosition(
+    _GetLeaderboardPosition event,
+    Emitter<LeaderboardStatisticsState> emit,
+  ) async {
+    final result = await _referralRepository.getLeaderboardPositionUsing(
+      currentLimit: six,
+    );
+
+    emit(
+      LeaderboardStatisticsState.gotLeaderboardStatistics(
+        leaderboardStatisticsEntity: event.leaderboardStatisticsEntity,
+        leaderboardPositionEntity: result.fold(
+          (leaderboardPositionFailure) => null,
+          (leaderboardPositionEntity) => leaderboardPositionEntity,
         ),
       ),
     );

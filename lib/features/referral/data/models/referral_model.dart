@@ -16,10 +16,12 @@ import 'package:sky_trade/core/resources/strings/networking.dart'
         messageIdKey,
         messageUuidKey,
         messagesKey,
+        pageKey,
         periodEndDateKey,
         periodStartDateKey,
         periodSummariesKey,
         pointKey,
+        positionKey,
         referralCodeKey,
         registeredAirspacesKey,
         registeredFriendsKey,
@@ -276,6 +278,33 @@ final class HistoryModel extends HistoryEntity {
   final int mPoint;
 
   Map<String, dynamic> toJson() => _$HistoryModelToJson(this);
+}
+
+@JsonSerializable()
+final class LeaderboardPositionModel extends LeaderboardPositionEntity {
+  const LeaderboardPositionModel({
+    required this.mPosition,
+    required this.mTotalCount,
+    required this.mPage,
+  }) : super(
+          position: mPosition,
+          totalCount: mTotalCount,
+          page: mPage,
+        );
+
+  factory LeaderboardPositionModel.fromJson(Map<String, dynamic> json) =>
+      _$LeaderboardPositionModelFromJson(json);
+
+  @JsonKey(name: positionKey)
+  final int? mPosition;
+
+  @JsonKey(name: totalCountKey)
+  final int mTotalCount;
+
+  @JsonKey(name: pageKey)
+  final int? mPage;
+
+  Map<String, dynamic> toJson() => _$LeaderboardPositionModelToJson(this);
 }
 
 @JsonSerializable()
