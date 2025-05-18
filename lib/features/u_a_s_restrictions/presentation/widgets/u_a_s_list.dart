@@ -21,9 +21,7 @@ import 'package:flutter/material.dart'
         RichText,
         Row,
         SizedBox,
-        State,
         StatefulBuilder,
-        StatefulWidget,
         StatelessWidget,
         Text,
         TextAlign,
@@ -77,20 +75,16 @@ class UASList extends StatelessWidget {
   final BroadcastRemoteIDReceiverBloc broadcastRemoteIDReceiverBloc;
 
   @override
-  Widget build(BuildContext context) => BlocProvider.value(
+  Widget build(BuildContext context) =>
+      BlocProvider<BroadcastRemoteIDReceiverBloc>.value(
         value: broadcastRemoteIDReceiverBloc,
         child: const UASListView(),
       );
 }
 
-class UASListView extends StatefulWidget {
+class UASListView extends StatelessWidget {
   const UASListView({super.key});
 
-  @override
-  State<UASListView> createState() => _UASListViewState();
-}
-
-class _UASListViewState extends State<UASListView> {
   @override
   Widget build(BuildContext context) => StatefulBuilder(
         builder: (context, setState) => LayoutBuilder(

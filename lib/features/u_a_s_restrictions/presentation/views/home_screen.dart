@@ -7,9 +7,14 @@ import 'package:flutter/material.dart'
         AlignmentDirectional,
         BuildContext,
         Column,
+        CrossAxisAlignment,
+        EdgeInsetsDirectional,
+        MainAxisAlignment,
         MainAxisSize,
         Navigator,
+        Padding,
         Scaffold,
+        SizedBox,
         Stack,
         State,
         StatefulWidget,
@@ -34,7 +39,8 @@ import 'package:mapbox_maps_flutter/mapbox_maps_flutter.dart'
         MapboxOptions,
         ScaleBarSettings;
 import 'package:sky_trade/core/resources/colors.dart' show hexB3FFFFFF;
-import 'package:sky_trade/core/resources/numbers/ui.dart' show six;
+import 'package:sky_trade/core/resources/numbers/ui.dart'
+    show fiveDotNil, fourteenDotNil, six, zero;
 import 'package:sky_trade/core/resources/strings/routes.dart'
     show getStartedRoutePath;
 import 'package:sky_trade/core/resources/strings/secret_keys.dart'
@@ -89,7 +95,7 @@ import 'package:sky_trade/features/u_a_s_restrictions/domain/entities/restrictio
 import 'package:sky_trade/features/u_a_s_restrictions/presentation/blocs/u_a_s_restrictions_bloc/u_a_s_restrictions_bloc.dart'
     show UASRestrictionsBloc, UASRestrictionsEvent, UASRestrictionsState;
 import 'package:sky_trade/features/u_a_s_restrictions/presentation/widgets/alert_snack_bar.dart';
-import 'package:sky_trade/features/u_a_s_restrictions/presentation/widgets/drone_radar_fab.dart';
+import 'package:sky_trade/features/u_a_s_restrictions/presentation/widgets/drones_indicator.dart';
 import 'package:sky_trade/features/u_a_s_restrictions/presentation/widgets/map_overlay.dart'
     show MapOverlay;
 import 'package:sky_trade/features/u_a_s_restrictions/presentation/widgets/map_view.dart';
@@ -165,9 +171,9 @@ class _HomeViewState extends State<HomeView> {
   late final ValueNotifier<bool> _centerLocationNotifier;
   late final ValueNotifier<MapStyle> _mapStyleNotifier;
   late final List<String> _restrictionLayerIds;
-  late final ValueNotifier<int> _newDronesCountNotifier;
+  late final ValueNotifier<int> _newBridDronesCountNotifier;
 
-  late int _previousDronesCount;
+  late int _previousBridDronesCount;
   late String _previousBridGeoJsonData;
   late String _previousNridGeoJsonData;
 
@@ -188,8 +194,8 @@ class _HomeViewState extends State<HomeView> {
       false,
     );
 
-    _newDronesCountNotifier = ValueNotifier<int>(
-      0,
+    _newBridDronesCountNotifier = ValueNotifier<int>(
+      zero,
     );
 
     _mapStyleNotifier = ValueNotifier<MapStyle>(
@@ -204,7 +210,7 @@ class _HomeViewState extends State<HomeView> {
 
     _previousNridGeoJsonData = emptyString;
 
-    _previousDronesCount = 0;
+    _previousBridDronesCount = zero;
 
     _startTransmitter();
 
@@ -249,7 +255,7 @@ class _HomeViewState extends State<HomeView> {
   void dispose() {
     _clickedRestriction.dispose();
     _centerLocationNotifier.dispose();
-    _newDronesCountNotifier.dispose();
+    _newBridDronesCountNotifier.dispose();
     _mapStyleNotifier.dispose();
 
     super.dispose();
@@ -385,10 +391,13 @@ class _HomeViewState extends State<HomeView> {
             listener: (_, broadcastRemoteIDReceiverState) {
               broadcastRemoteIDReceiverState.whenOrNull(
                 gotRemoteIDs: (bridEntities) async {
-                  if (bridEntities.length > _previousDronesCount) {
-                    _newDronesCountNotifier.value = bridEntities.length - _previousDronesCount;
+                  if (bridEntities.length > _previousBridDronesCount) {
+                    _newBridDronesCountNotifier.value =
+                        bridEntities.length - _previousBridDronesCount;
                   }
-                  _previousDronesCount = bridEntities.length;
+
+                  _previousBridDronesCount = bridEntities.length;
+
                   final latLng =
                       context.read<LocationPositionBloc>().state.whenOrNull(
                             gotLocationPosition: (locationPositionEntity) => (
@@ -541,10 +550,14 @@ class _HomeViewState extends State<HomeView> {
                       ),
                     )
                     ..logo.updateSettings(
-                      LogoSettings(enabled: false),
+                      LogoSettings(
+                        enabled: false,
+                      ),
                     )
                     ..attribution.updateSettings(
-                      AttributionSettings(enabled: false),
+                      AttributionSettings(
+                        enabled: false,
+                      ),
                     );
 
                   _mapboxMap = mapboxMap;
@@ -640,16 +653,26 @@ class _HomeViewState extends State<HomeView> {
               ),
             ],
           ),
-          floatingActionButton: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              RestrictionIndicator(
-                clickedRestriction: _clickedRestriction,
-              ),
-              DroneRadarFab(
-                newDronesCount: _newDronesCountNotifier,
-              ),
-            ],
+          floatingActionButton: Padding(
+            padding: const EdgeInsetsDirectional.symmetric(
+              horizontal: fiveDotNil,
+            ),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.end,
+              children: [
+                RestrictionIndicator(
+                  clickedRestriction: _clickedRestriction,
+                ),
+                const SizedBox(
+                  height: fourteenDotNil,
+                ),
+                DronesIndicator(
+                  newDronesCount: _newBridDronesCountNotifier,
+                ),
+              ],
+            ),
           ),
         ),
       );

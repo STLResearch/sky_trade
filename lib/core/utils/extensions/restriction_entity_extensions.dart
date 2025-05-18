@@ -76,7 +76,7 @@ extension RestrictionEntityExtensions on RestrictionEntity {
   }) =>
       switch (properties.type) {
         RestrictionType.danger => context.localize.specialUseAirspace,
-        RestrictionType.prohibited => context.localize.flightRestrictedAirspace,
+        RestrictionType.prohibited => context.localize.restrictedAirspace,
         RestrictionType.restricted => context.localize.controlledAirspace,
       };
 

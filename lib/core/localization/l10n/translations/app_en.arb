@@ -17,7 +17,7 @@
   "and": "and",
   "privacyPolicy": "Privacy Policy",
   "agreement": "agreement",
-  "flightRestrictedAirspace": "Flight Restricted Airspace",
+  "restrictedAirspace": "Restricted Airspace",
   "address": "Address",
   "controlledAirspace": "Controlled Airspace",
   "specialUseAirspace": "Special Use Airspace",
