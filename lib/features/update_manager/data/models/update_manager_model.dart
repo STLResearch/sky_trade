@@ -1,5 +1,4 @@
-import 'package:freezed_annotation/freezed_annotation.dart'
-    show JsonKey, JsonSerializable;
+import 'package:json_annotation/json_annotation.dart';
 import 'package:sky_trade/core/resources/strings/networking.dart'
     show currentAPIVersionKey;
 import 'package:sky_trade/features/update_manager/domain/entities/update_manager_entity.dart';
@@ -7,18 +6,18 @@ import 'package:sky_trade/features/update_manager/domain/entities/update_manager
 part 'update_manager_model.g.dart';
 
 @JsonSerializable()
-final class UpdateManagerModel extends UpdateManagerEntity {
-  const UpdateManagerModel({
-    required this.mCurrentAPIVersion,
+final class VersionModel extends VersionEntity {
+  const VersionModel({
+    required this.mCurrentApiVersion,
   }) : super(
-    currentAPIVersion: mCurrentAPIVersion,
-  );
+          currentApiVersion: mCurrentApiVersion,
+        );
 
-  factory UpdateManagerModel.fromJson(Map<String, dynamic> json) =>
-      _$UpdateManagerModelFromJson(json);
+  factory VersionModel.fromJson(Map<String, dynamic> json) =>
+      _$VersionModelFromJson(json);
 
   @JsonKey(name: currentAPIVersionKey)
-  final String mCurrentAPIVersion;
+  final String mCurrentApiVersion;
 
-  Map<String, dynamic> toJson() => _$UpdateManagerModelToJson(this);
+  Map<String, dynamic> toJson() => _$VersionModelToJson(this);
 }

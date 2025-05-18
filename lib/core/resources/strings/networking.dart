@@ -23,13 +23,14 @@ const wnPath = '/wn';
 const skyTradePrivacyPolicyUrl = 'https://docs.sky.trade/privacy.htm';
 // Terms of service
 const skyTradeTermsOfServiceUrl = 'https://docs.sky.trade/terms.htm';
-
-//App Store link
-const appStoreLink =
+// Apple app store page link
+const appleAppStorePageLink =
     'https://apps.apple.com/in/app/skytrade-radar/id6738989830';
-// Play Store link
-const playStoreLink =
+// Google play store page link
+const googlePlayStorePageLink =
     'https://play.google.com/store/apps/details?id=mobile.trade.sky';
+// Solana dApp store page link
+const solanaDAppStorePageLink = 'solanadappstore://details?id=mobile.trade.sky';
 
 // Paths
 const airRightsPath = '/air-rights';

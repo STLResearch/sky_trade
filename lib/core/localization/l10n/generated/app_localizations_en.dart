@@ -813,23 +813,26 @@ class AppLocalizationsEn extends AppLocalizations {
   String get whenYouSignUpAndGetABonusSignUpHere => 'when you sign up and get a bonus. Sign up here';
 
   @override
-  String get aNewVersionOfTheAppIsRequiredToContinuePleaseUpdateToTheLatestVersion => 'A new version of the app is required to continue. Please update to the latest version.';
+  String get yourVersionOfThisAppIsTooOld => 'Your version of this app is too old';
 
   @override
-  String get updateRequired => 'Update Required';
+  String get certainThingsMayBreakDueToSignificantChangesThatHaveBeenMade => 'Certain things may break due to significant changes that have been made';
 
   @override
-  String get aNewerVersionOfTheAppIsRequiredPleaseUpdateInTheAppStore => 'A newer version of the app is required. Please update in the app store.';
+  String get weEncourageYouToUpdateTheAppInOrderToKeepUsingIt => 'We encourage you to update the app in order to keep using it';
 
   @override
-  String get aNewerVersionOfTheAppIsRequiredPleaseUpdateInThePlayStore => 'A newer version of the app is required. Please update in the play store.';
+  String get openAppStore => 'Open App Store';
 
   @override
-  String get pleaseUpdateTheAppFromTheAppStoreToContinueUsingSkyTrade => 'Please update the app from the app store to continue using SkyTrade.';
+  String get openPlayStore => 'Open Play Store';
 
   @override
-  String get pleaseUpdateTheAppFromThePlayStoreToContinueUsingSkyTrade => 'Please update the app from the play store to continue using SkyTrade.';
+  String get openDAppStore => 'Open dApp Store';
 
   @override
-  String get updateNow => 'Update Now';
+  String get weAreNotSureWhatMayHaveCausedThis => 'We are not sure what may have caused this';
+
+  @override
+  String get tryRefreshingThePageIfTheIssueContinuesYouMayWantToCheckYourConnectionOrTryAgainLater => 'Try refreshing the page if the issue continues. You may want to check your connection or try again later';
 }

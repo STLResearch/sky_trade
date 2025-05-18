@@ -1,1 +1,1 @@
-final class UpdateManagerException implements Exception {}
+final class IncompatibleBackendApiVersionException implements Exception {}

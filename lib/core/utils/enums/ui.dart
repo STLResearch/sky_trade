@@ -15,8 +15,9 @@ enum MenuItem {
 enum ErrorReason {
   deletedSkyTradeUserWithExistingAuth0Session,
   sessionInitializationFailure,
+  incompatibleBackendApiVersion,
   unknownNavigationRoute,
-  upgradeRequired,
+  unknownError,
 }
 
 enum ReferralTab {

@@ -1,6 +1,6 @@
-import 'package:sky_trade/core/errors/exceptions/update_manager_exception.dart'
-    show UpdateManagerException;
-import 'package:sky_trade/core/resources/strings/networking.dart';
+import 'package:sky_trade/core/errors/exceptions/update_manager_exception.dart';
+import 'package:sky_trade/core/resources/strings/networking.dart'
+    show getMinimumMobileAppVersionPath, publicPath, versionInfoPath;
 import 'package:sky_trade/core/utils/clients/network_client.dart'
     show HttpClient;
 import 'package:sky_trade/core/utils/clients/response_handler.dart';
@@ -8,7 +8,7 @@ import 'package:sky_trade/core/utils/enums/networking.dart' show RequestMethod;
 import 'package:sky_trade/features/update_manager/data/models/update_manager_model.dart';
 
 abstract interface class UpdateManagerRemoteDataSource {
-  Future<UpdateManagerModel> get getMinimumMobileAppVersion;
+  Future<VersionModel> get compatibleBackendApiVersion;
 }
 
 final class UpdateManagerRemoteDataSourceImplementation
@@ -21,14 +21,16 @@ final class UpdateManagerRemoteDataSourceImplementation
   final HttpClient _httpClient;
 
   @override
-  Future<UpdateManagerModel> get getMinimumMobileAppVersion => handleResponse<
-          UpdateManagerException, Map<String, dynamic>, UpdateManagerModel>(
+  Future<VersionModel> get compatibleBackendApiVersion => handleResponse<
+          IncompatibleBackendApiVersionException,
+          Map<String, dynamic>,
+          VersionModel>(
         requestInitiator: _httpClient.request(
           requestMethod: RequestMethod.get,
           path: publicPath + versionInfoPath + getMinimumMobileAppVersionPath,
           includeSignature: false,
         ),
-        onSuccess: UpdateManagerModel.fromJson,
-        onError: (_) => UpdateManagerException(),
+        onSuccess: VersionModel.fromJson,
+        onError: (_) => IncompatibleBackendApiVersionException(),
       );
 }

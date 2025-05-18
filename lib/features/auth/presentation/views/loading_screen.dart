@@ -75,13 +75,11 @@ import 'package:sky_trade/features/internet_connection_checker/presentation/bloc
         InternetConnectionCheckerState;
 import 'package:sky_trade/features/link_handler/presentation/blocs/app_link_bloc/app_link_bloc.dart'
     show AppLinkBloc;
-import 'package:sky_trade/features/update_manager/presentation/upgrade_bloc/update_manager_bloc.dart'
+import 'package:sky_trade/features/update_manager/presentation/blocs/compatible_backend_api_version_bloc/compatible_backend_api_version_bloc.dart'
     show
-        EnvConfig,
-        UpdateManagerBloc,
-        UpdateManagerEvent,
-        UpdateManagerState,
-        VersionComparator;
+        CompatibleBackendApiVersionBloc,
+        CompatibleBackendApiVersionEvent,
+        CompatibleBackendApiVersionState;
 import 'package:sky_trade/injection_container.dart' show serviceLocator;
 
 class LoadingScreen extends StatelessWidget {
@@ -111,7 +109,7 @@ class LoadingScreen extends StatelessWidget {
           BlocProvider<CheckSkyTradeUserExistsBloc>(
             create: (_) => serviceLocator(),
           ),
-          BlocProvider<UpdateManagerBloc>(
+          BlocProvider<CompatibleBackendApiVersionBloc>(
             create: (_) => serviceLocator(),
           ),
         ],
@@ -127,23 +125,16 @@ class LoadingView extends StatefulWidget {
 }
 
 class _LoadingViewState extends State<LoadingView> {
-
   @override
   void initState() {
-    _configureSFA();
-    _checkMinimumAppVersion();
+    _checkCompatibleBackendApiVersion();
     super.initState();
   }
 
-  Future<void> _checkMinimumAppVersion() async {
-    context.read<UpdateManagerBloc>().add(
-      const UpdateManagerEvent.checkMinimumAppVersion(),
-    );
-  }
-
-  void _configureSFA() => context.read<SFAConfigurationBloc>().add(
-        const SFAConfigurationEvent.configure(),
-      );
+  void _checkCompatibleBackendApiVersion() =>
+      context.read<CompatibleBackendApiVersionBloc>().add(
+            const CompatibleBackendApiVersionEvent.checkVersion(),
+          );
 
   void _removeSplashScreenAndNavigateTo({
     required String route,
@@ -162,6 +153,30 @@ class _LoadingViewState extends State<LoadingView> {
   @override
   Widget build(BuildContext context) => MultiBlocListener(
         listeners: [
+          BlocListener<CompatibleBackendApiVersionBloc,
+              CompatibleBackendApiVersionState>(
+            listener: (_, compatibleBackendApiVersionState) {
+              compatibleBackendApiVersionState.whenOrNull(
+                versionCompatible: () {
+                  context.read<SFAConfigurationBloc>().add(
+                        const SFAConfigurationEvent.configure(),
+                      );
+                },
+                versionIncompatible: () {
+                  _removeSplashScreenAndNavigateTo(
+                    route: errorRoutePath,
+                    arguments: ErrorReason.incompatibleBackendApiVersion,
+                  );
+                },
+                failedToCheckVersion: (_) {
+                  _removeSplashScreenAndNavigateTo(
+                    route: errorRoutePath,
+                    arguments: ErrorReason.unknownError,
+                  );
+                },
+              );
+            },
+          ),
           BlocListener<SFAConfigurationBloc, SFAConfigurationState>(
             listener: (_, sFAConfigurationState) {
               sFAConfigurationState.whenOrNull(
@@ -262,37 +277,6 @@ class _LoadingViewState extends State<LoadingView> {
                 noActiveInternetConnection: () {
                   _removeSplashScreenAndNavigateTo(
                     route: noInternetConnectionRoutePath,
-                  );
-                },
-              );
-            },
-          ),
-          BlocListener<UpdateManagerBloc, UpdateManagerState>(
-            listener: (_, updateManagerState) {
-              updateManagerState.whenOrNull(
-                checkedMinimumMobileAppVersion: (updateManagerEntity) {
-                  final currentAppVersion =
-                      EnvConfig.getApiVersion();
-                  final requiredVersion = updateManagerEntity.currentAPIVersion;
-
-                  if (VersionComparator.isUpdateRequired(
-                    currentAppVersion!,
-                    requiredVersion,
-                  )) {
-                    _removeSplashScreenAndNavigateTo(
-                      route: errorRoutePath,
-                      arguments: ErrorReason.upgradeRequired,
-                    );
-                  } else {
-                    context.read<SFAUserSessionBloc>().add(
-                          const SFAUserSessionEvent.checkSession(),
-                        );
-                  }
-                },
-                failedToCheckMinimumAppVersion: (_) {
-                  _removeSplashScreenAndNavigateTo(
-                    route: errorRoutePath,
-                    arguments: ErrorReason.upgradeRequired,
                   );
                 },
               );

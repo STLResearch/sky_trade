@@ -1,14 +1,14 @@
 import 'package:equatable/equatable.dart' show Equatable;
 
-base class UpdateManagerEntity extends Equatable {
-  const UpdateManagerEntity({
-    required this.currentAPIVersion,
+base class VersionEntity extends Equatable {
+  const VersionEntity({
+    required this.currentApiVersion,
   });
 
-  final String currentAPIVersion;
+  final String currentApiVersion;
 
   @override
   List<Object?> get props => [
-    currentAPIVersion,
-  ];
+        currentApiVersion,
+      ];
 }

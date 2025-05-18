@@ -6,12 +6,11 @@ part of 'update_manager_model.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-UpdateManagerModel _$UpdateManagerModelFromJson(Map<String, dynamic> json) =>
-    UpdateManagerModel(
-      mCurrentAPIVersion: json['currentAPIVersion'] as String,
+VersionModel _$VersionModelFromJson(Map<String, dynamic> json) => VersionModel(
+      mCurrentApiVersion: json['currentAPIVersion'] as String,
     );
 
-Map<String, dynamic> _$UpdateManagerModelToJson(UpdateManagerModel instance) =>
+Map<String, dynamic> _$VersionModelToJson(VersionModel instance) =>
     <String, dynamic>{
-      'currentAPIVersion': instance.mCurrentAPIVersion,
+      'currentAPIVersion': instance.mCurrentApiVersion,
     };

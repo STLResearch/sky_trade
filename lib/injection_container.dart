@@ -44,9 +44,9 @@ Future<void> registerServices() => Future.wait<void>([
       registerSearchAutocompleteServices(),
       registerSettingsServices(),
       registerUASRestrictionsServices(),
+      registerUpdateManagerServices(),
       registerWeatherServices(),
       registerWifiServices(),
       registerCoreServices(),
       registerExternalServices(),
-      registerUpdateManagerServices(),
     ]);

@@ -1701,47 +1701,53 @@ abstract class AppLocalizations {
   /// **'when you sign up and get a bonus. Sign up here'**
   String get whenYouSignUpAndGetABonusSignUpHere;
 
-  /// No description provided for @aNewVersionOfTheAppIsRequiredToContinuePleaseUpdateToTheLatestVersion.
+  /// No description provided for @yourVersionOfThisAppIsTooOld.
   ///
   /// In en, this message translates to:
-  /// **'A new version of the app is required to continue. Please update to the latest version.'**
-  String get aNewVersionOfTheAppIsRequiredToContinuePleaseUpdateToTheLatestVersion;
+  /// **'Your version of this app is too old'**
+  String get yourVersionOfThisAppIsTooOld;
 
-  /// No description provided for @updateRequired.
+  /// No description provided for @certainThingsMayBreakDueToSignificantChangesThatHaveBeenMade.
   ///
   /// In en, this message translates to:
-  /// **'Update Required'**
-  String get updateRequired;
+  /// **'Certain things may break due to significant changes that have been made'**
+  String get certainThingsMayBreakDueToSignificantChangesThatHaveBeenMade;
 
-  /// No description provided for @aNewerVersionOfTheAppIsRequiredPleaseUpdateInTheAppStore.
+  /// No description provided for @weEncourageYouToUpdateTheAppInOrderToKeepUsingIt.
   ///
   /// In en, this message translates to:
-  /// **'A newer version of the app is required. Please update in the app store.'**
-  String get aNewerVersionOfTheAppIsRequiredPleaseUpdateInTheAppStore;
+  /// **'We encourage you to update the app in order to keep using it'**
+  String get weEncourageYouToUpdateTheAppInOrderToKeepUsingIt;
 
-  /// No description provided for @aNewerVersionOfTheAppIsRequiredPleaseUpdateInThePlayStore.
+  /// No description provided for @openAppStore.
   ///
   /// In en, this message translates to:
-  /// **'A newer version of the app is required. Please update in the play store.'**
-  String get aNewerVersionOfTheAppIsRequiredPleaseUpdateInThePlayStore;
+  /// **'Open App Store'**
+  String get openAppStore;
 
-  /// No description provided for @pleaseUpdateTheAppFromTheAppStoreToContinueUsingSkyTrade.
+  /// No description provided for @openPlayStore.
   ///
   /// In en, this message translates to:
-  /// **'Please update the app from the app store to continue using SkyTrade.'**
-  String get pleaseUpdateTheAppFromTheAppStoreToContinueUsingSkyTrade;
+  /// **'Open Play Store'**
+  String get openPlayStore;
 
-  /// No description provided for @pleaseUpdateTheAppFromThePlayStoreToContinueUsingSkyTrade.
+  /// No description provided for @openDAppStore.
   ///
   /// In en, this message translates to:
-  /// **'Please update the app from the play store to continue using SkyTrade.'**
-  String get pleaseUpdateTheAppFromThePlayStoreToContinueUsingSkyTrade;
+  /// **'Open dApp Store'**
+  String get openDAppStore;
 
-  /// No description provided for @updateNow.
+  /// No description provided for @weAreNotSureWhatMayHaveCausedThis.
   ///
   /// In en, this message translates to:
-  /// **'Update Now'**
-  String get updateNow;
+  /// **'We are not sure what may have caused this'**
+  String get weAreNotSureWhatMayHaveCausedThis;
+
+  /// No description provided for @tryRefreshingThePageIfTheIssueContinuesYouMayWantToCheckYourConnectionOrTryAgainLater.
+  ///
+  /// In en, this message translates to:
+  /// **'Try refreshing the page if the issue continues. You may want to check your connection or try again later'**
+  String get tryRefreshingThePageIfTheIssueContinuesYouMayWantToCheckYourConnectionOrTryAgainLater;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

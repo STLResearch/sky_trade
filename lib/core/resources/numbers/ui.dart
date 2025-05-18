@@ -1,5 +1,4 @@
 // Integers
-const minusOne = -1;
 const zero = 0;
 const one = 1;
 const two = 2;

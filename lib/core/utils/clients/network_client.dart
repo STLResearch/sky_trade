@@ -445,6 +445,14 @@ final class HttpClient with SignatureHandler {
     required Map<String, dynamic>? queryParameters,
     required Map<String, dynamic>? headers,
   }) async {
+    if (!includeSignature) {
+      return Options(
+        headers: headers,
+        sendTimeout: overrideSendTimeout,
+        receiveTimeout: overrideReceiveTimeout,
+      );
+    }
+
     final issuedAt = computeIssuedAt();
     final nonce = computeNonce();
     final walletAddress = await computeWalletAddress();
@@ -460,24 +468,17 @@ final class HttpClient with SignatureHandler {
       message,
     );
 
-    return switch (headers) {
-      _ when includeSignature => Options(
-          headers: {
-            signHeaderKey: sign,
-            signIssueAtHeaderKey: issuedAt,
-            signNonceHeaderKey: nonce,
-            signAddressHeaderKey: walletAddress,
-            if (email != null) emailAddressHeaderKey: email,
-            if (headers != null) ...headers,
-          },
-          sendTimeout: overrideSendTimeout,
-          receiveTimeout: overrideReceiveTimeout,
-        ),
-      _ => Options(
-          headers: headers,
-          sendTimeout: overrideSendTimeout,
-          receiveTimeout: overrideReceiveTimeout,
-        )
-    };
+    return Options(
+      headers: {
+        signHeaderKey: sign,
+        signIssueAtHeaderKey: issuedAt,
+        signNonceHeaderKey: nonce,
+        signAddressHeaderKey: walletAddress,
+        if (email != null) emailAddressHeaderKey: email,
+        if (headers != null) ...headers,
+      },
+      sendTimeout: overrideSendTimeout,
+      receiveTimeout: overrideReceiveTimeout,
+    );
   }
 }
