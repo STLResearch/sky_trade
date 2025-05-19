@@ -37,14 +37,11 @@ import 'package:sky_trade/core/resources/numbers/ui.dart'
 import 'package:sky_trade/core/utils/enums/ui.dart' show MapStyle;
 import 'package:sky_trade/features/search_autocomplete/presentation/blocs/search_autocomplete_bloc/search_autocomplete_bloc.dart'
     show SearchAutocompleteBloc;
-import 'package:sky_trade/features/u_a_s_restrictions/presentation/widgets/options_card.dart'
-    show OptionsCard;
+import 'package:sky_trade/features/u_a_s_restrictions/presentation/widgets/options_card.dart';
 import 'package:sky_trade/features/u_a_s_restrictions/presentation/widgets/search_card.dart'
     show SearchCard;
-import 'package:sky_trade/features/u_a_s_restrictions/presentation/widgets/search_result_card.dart'
-    show SearchResultCard;
-import 'package:sky_trade/features/u_a_s_restrictions/presentation/widgets/weather_card.dart'
-    show WeatherCard;
+import 'package:sky_trade/features/u_a_s_restrictions/presentation/widgets/search_result_card.dart';
+import 'package:sky_trade/features/u_a_s_restrictions/presentation/widgets/weather_card.dart';
 import 'package:sky_trade/injection_container.dart' show serviceLocator;
 
 class MapOverlay extends StatelessWidget {

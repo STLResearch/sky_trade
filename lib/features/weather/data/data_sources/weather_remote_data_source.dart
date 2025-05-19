@@ -4,7 +4,7 @@ import 'package:sky_trade/core/resources/strings/networking.dart'
         airRightsPath,
         geoHashKey,
         getWeatherDataPath,
-        imperialKey,
+        imperialValue,
         unitsKey,
         weatherDataKey;
 import 'package:sky_trade/core/utils/clients/network_client.dart'
@@ -40,7 +40,7 @@ class WeatherRemoteDataSourceImplementation
           includeSignature: false,
           queryParameters: {
             geoHashKey: geoHash,
-            unitsKey: imperialKey,
+            unitsKey: imperialValue,
           },
         ),
         onSuccess: (response) => WeatherModel.fromJson(

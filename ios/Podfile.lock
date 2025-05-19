@@ -196,6 +196,9 @@ PODS:
     - JWTDecode (~> 3.2)
     - Torus-utils (~> 10.0.1)
     - TorusSessionManager (~> 6.1.0)
+  - sqflite_darwin (0.0.4):
+    - Flutter
+    - FlutterMacOS
   - Torus-fetchNodeDetails (8.0.1):
     - BigInt (~> 5.2.0)
   - Torus-utils (10.0.1):
@@ -230,6 +233,7 @@ DEPENDENCIES:
   - sentry_flutter (from `.symlinks/plugins/sentry_flutter/ios`)
   - shared_preferences_foundation (from `.symlinks/plugins/shared_preferences_foundation/darwin`)
   - single_factor_auth_flutter (from `.symlinks/plugins/single_factor_auth_flutter/ios`)
+  - sqflite_darwin (from `.symlinks/plugins/sqflite_darwin/darwin`)
   - url_launcher_ios (from `.symlinks/plugins/url_launcher_ios/ios`)
 
 SPEC REPOS:
@@ -308,6 +312,8 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/shared_preferences_foundation/darwin"
   single_factor_auth_flutter:
     :path: ".symlinks/plugins/single_factor_auth_flutter/ios"
+  sqflite_darwin:
+    :path: ".symlinks/plugins/sqflite_darwin/darwin"
   url_launcher_ios:
     :path: ".symlinks/plugins/url_launcher_ios/ios"
 
@@ -359,6 +365,7 @@ SPEC CHECKSUMS:
   SimpleKeychain: 768cf43ae778b1c21816e94dddf01bb8ee96a075
   single_factor_auth_flutter: 48ebc6c128b88f01604a45ae2216388b2877a5e3
   SingleFactorAuth: ddb65765484f6e98813797b007e094996c2bc4b9
+  sqflite_darwin: 20b2a3a3b70e43edae938624ce550a3cbf66a3d0
   Torus-fetchNodeDetails: 0ae97719263ee98f5bf5549a86464eea38a828f3
   Torus-utils: 7c53a9c71663c2f458bfdcf1a380d7a5b88f9632
   TorusSessionManager: cd2de693425cefb976c7bca42a45964297d8c2cc

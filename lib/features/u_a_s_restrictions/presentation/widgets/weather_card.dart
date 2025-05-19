@@ -5,29 +5,26 @@ import 'package:flutter/material.dart'
         Align,
         AlignmentDirectional,
         BuildContext,
-        CircularProgressIndicator,
         Column,
-        EdgeInsets,
-        Image,
         MainAxisAlignment,
-        Padding,
-        SizedBox,
         StatelessWidget,
         Text,
-        TextStyle,
+        Theme,
         Widget;
 import 'package:flutter_bloc/flutter_bloc.dart' show BlocBuilder;
+import 'package:skeletonizer/skeletonizer.dart'
+    show BoneMock, ShimmerEffect, Skeleton, Skeletonizer, SoldColorEffect;
+import 'package:sky_trade/core/assets/generated/assets.gen.dart' show Assets;
 import 'package:sky_trade/core/resources/colors.dart'
-    show hex222222, hex595959, hexE6FFFFFF;
+    show hex222222, hexE6FFFFFF, hexEBEBF4;
 import 'package:sky_trade/core/resources/numbers/ui.dart'
     show
         elevenDotNil,
         fiftyFourDotNil,
-        fourteenDotNil,
         sixtySixDotNil,
-        thirtyTwoDotNil,
-        threeDotNil,
-        twentyDotNil,
+        twentyFourDotNil,
+        twentyOneDotThreeSeven,
+        two,
         zero;
 import 'package:sky_trade/core/utils/extensions/build_context_extensions.dart';
 import 'package:sky_trade/core/utils/extensions/weather_entity_extensions.dart';
@@ -47,46 +44,70 @@ class WeatherCard extends StatelessWidget {
           height: sixtySixDotNil,
           backgroundColor: hexE6FFFFFF,
           child: BlocBuilder<WeatherBloc, WeatherState>(
-            builder: (_, weatherState) => weatherState.maybeWhen(
-              gotWeather: (weatherEntity) => CachedNetworkImage(
-                imageUrl: weatherEntity.weatherConditions[zero].iconUrl,
-                imageBuilder: (context, imageProvider) => Column(
+            builder: (_, weatherState) => Skeletonizer(
+              effect: weatherState.maybeWhen(
+                failedToGetWeather: (_) => const SoldColorEffect(
+                  color: hexEBEBF4,
+                ),
+                orElse: () => ShimmerEffect(
+                  highlightColor: Theme.of(
+                    context,
+                  ).scaffoldBackgroundColor,
+                ),
+              ),
+              enabled: weatherState.maybeWhen(
+                gotWeather: (_) => false,
+                orElse: () => true,
+              ),
+              child: weatherState.maybeWhen(
+                gotWeather: (weatherEntity) => Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Image(
-                      image: imageProvider,
-                      width: thirtyTwoDotNil,
-                      height: thirtyTwoDotNil,
+                    CachedNetworkImage(
+                      imageUrl: weatherEntity.weatherConditions[zero].iconUrl,
+                      width: twentyFourDotNil,
+                      height: twentyFourDotNil,
+                      placeholder: (_, __) => Assets.svgs.weather.svg(),
+                      errorWidget: (_, __, ___) => Assets.svgs.weather.svg(),
                     ),
                     Text(
                       weatherEntity.main.temperature.round().toString() +
                           context.localize.degrees,
-                      style: const TextStyle(
-                        fontSize: elevenDotNil,
-                        color: hex222222,
-                      ),
+                      style: Theme.of(
+                        context,
+                      ).textTheme.bodySmall?.copyWith(
+                            fontSize: elevenDotNil,
+                            height: twentyOneDotThreeSeven / elevenDotNil,
+                            color: hex222222,
+                          ),
                     ),
                   ],
                 ),
-                placeholder: (_, __) => _loadingWidget(),
-                errorWidget: (_, __, ___) => const SizedBox.shrink(),
+                orElse: () => Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Skeleton.shade(
+                      child: Assets.svgs.weather.svg(),
+                    ),
+                    Text(
+                      BoneMock.chars(
+                            two,
+                            two.toString(),
+                          ) +
+                          context.localize.degrees,
+                      style: Theme.of(
+                        context,
+                      ).textTheme.bodySmall?.copyWith(
+                            fontSize: elevenDotNil,
+                            height: twentyOneDotThreeSeven / elevenDotNil,
+                            color: hex222222,
+                          ),
+                    ),
+                  ],
+                ),
               ),
-              gettingWeather: _loadingWidget,
-              orElse: SizedBox.shrink,
             ),
           ),
-        ),
-      );
-
-  Widget _loadingWidget() => const Padding(
-        padding: EdgeInsets.symmetric(
-          vertical: twentyDotNil,
-          horizontal: fourteenDotNil,
-        ),
-        child: CircularProgressIndicator(
-          strokeWidth: threeDotNil,
-          color: hex595959,
-          backgroundColor: hexE6FFFFFF,
         ),
       );
 }
