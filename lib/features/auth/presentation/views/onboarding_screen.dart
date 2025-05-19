@@ -19,6 +19,7 @@ import 'package:flutter/material.dart'
         SafeArea,
         Scaffold,
         SingleChildScrollView,
+        Size,
         SizedBox,
         State,
         StatefulWidget,
@@ -30,7 +31,8 @@ import 'package:flutter/material.dart'
         Theme,
         ValueListenableBuilder,
         ValueNotifier,
-        Widget;
+        Widget,
+        WidgetStatePropertyAll;
 import 'package:flutter_bloc/flutter_bloc.dart'
     show
         BlocBuilder,
@@ -51,6 +53,7 @@ import 'package:sky_trade/core/resources/colors.dart' show hex0653EA, hexFFFFFF;
 import 'package:sky_trade/core/resources/numbers/ui.dart'
     show
         fifteenDotNil,
+        fiftyFiveDotNil,
         six,
         sixteenDotNil,
         tenDotNil,
@@ -378,6 +381,16 @@ class _OnboardingScreenViewState extends State<OnboardingScreenView> {
                                   }
                                 },
                               ),
+                              style: Theme.of(
+                                context,
+                              ).elevatedButtonTheme.style?.copyWith(
+                                    fixedSize:
+                                        const WidgetStatePropertyAll<Size>(
+                                      Size.fromHeight(
+                                        fiftyFiveDotNil,
+                                      ),
+                                    ),
+                                  ),
                               child: Center(
                                 child: createSkyTradeUserState.maybeWhen(
                                   creatingUser: () => const SizedBox(

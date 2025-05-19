@@ -13,12 +13,14 @@ import 'package:flutter/material.dart'
         SafeArea,
         Scaffold,
         SingleChildScrollView,
+        Size,
         SizedBox,
         StatelessWidget,
         Text,
         TextAlign,
         Theme,
-        Widget;
+        Widget,
+        WidgetStatePropertyAll;
 import 'package:flutter_bloc/flutter_bloc.dart'
     show
         BlocBuilder,
@@ -37,6 +39,7 @@ import 'package:sky_trade/core/resources/colors.dart' show hexFFFFFF;
 import 'package:sky_trade/core/resources/numbers/ui.dart'
     show
         fifteenDotNil,
+        fiftyFiveDotNil,
         fortyDotNil,
         sixteenDotNil,
         tenDotNil,
@@ -350,6 +353,15 @@ class GetStartedView extends StatelessWidget {
                                   ),
                             ),
                           ),
+                          style: Theme.of(
+                            context,
+                          ).elevatedButtonTheme.style?.copyWith(
+                                fixedSize: const WidgetStatePropertyAll<Size>(
+                                  Size.fromHeight(
+                                    fiftyFiveDotNil,
+                                  ),
+                                ),
+                              ),
                           child: Center(
                             child: authState.maybeWhen(
                               authenticating: () => const SizedBox(

@@ -12,12 +12,14 @@ import 'package:flutter/material.dart'
         SafeArea,
         Scaffold,
         SingleChildScrollView,
+        Size,
         SizedBox,
         StatelessWidget,
         Text,
         TextAlign,
         Theme,
-        Widget;
+        Widget,
+        WidgetStatePropertyAll;
 import 'package:flutter_bloc/flutter_bloc.dart'
     show
         BlocListener,
@@ -28,7 +30,13 @@ import 'package:flutter_bloc/flutter_bloc.dart'
 import 'package:sky_trade/core/assets/generated/assets.gen.dart' show Assets;
 import 'package:sky_trade/core/resources/colors.dart' show hexFFFFFF;
 import 'package:sky_trade/core/resources/numbers/ui.dart'
-    show fifteenDotNil, fortyDotNil, tenDotNil, thirtyDotNil, twentyTwoDotFive;
+    show
+        fifteenDotNil,
+        fiftyFiveDotNil,
+        fortyDotNil,
+        tenDotNil,
+        thirtyDotNil,
+        twentyTwoDotFive;
 import 'package:sky_trade/core/resources/strings/routes.dart'
     show loadingRoutePath;
 import 'package:sky_trade/core/utils/enums/ui.dart' show ErrorReason;
@@ -206,7 +214,13 @@ class ErrorScreenView extends StatelessWidget {
                       },
                       style: Theme.of(
                         context,
-                      ).elevatedButtonTheme.style,
+                      ).elevatedButtonTheme.style?.copyWith(
+                            fixedSize: const WidgetStatePropertyAll<Size>(
+                              Size.fromHeight(
+                                fiftyFiveDotNil,
+                              ),
+                            ),
+                          ),
                       child: Center(
                         child: Text(
                           switch (reason) {
