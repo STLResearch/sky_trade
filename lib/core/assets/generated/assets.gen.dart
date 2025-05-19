@@ -276,6 +276,10 @@ class $AssetsSvgsGen {
   /// File path: assets/svgs/weather.svg
   SvgGenImage get weather => const SvgGenImage('assets/svgs/weather.svg');
 
+  /// File path: assets/svgs/weather_placeholder.svg
+  SvgGenImage get weatherPlaceholder =>
+      const SvgGenImage('assets/svgs/weather_placeholder.svg');
+
   /// File path: assets/svgs/wifi_off.svg
   SvgGenImage get wifiOff => const SvgGenImage('assets/svgs/wifi_off.svg');
 
@@ -343,6 +347,7 @@ class $AssetsSvgsGen {
     sun,
     userGroup,
     weather,
+    weatherPlaceholder,
     wifiOff,
     wifiOn,
   ];
