@@ -333,29 +333,17 @@ abstract class AppLocalizations {
   /// **'We could not create your account. Please try again'**
   String get weCouldNotCreateYourAccountPleaseTryAgain;
 
-  /// No description provided for @oopsSomethingWentWrongPleaseTryAgain.
+  /// No description provided for @oopsSomethingWentWrongKindlyRetryOrInvalidateYourSession.
   ///
   /// In en, this message translates to:
-  /// **'Oops! something went wrong. Please try again'**
-  String get oopsSomethingWentWrongPleaseTryAgain;
-
-  /// No description provided for @accountDoesNotExistPleaseRegisterInstead.
-  ///
-  /// In en, this message translates to:
-  /// **'Account does not exist. Please register instead'**
-  String get accountDoesNotExistPleaseRegisterInstead;
+  /// **'Oops! something went wrong. Kindly retry or invalidate your session'**
+  String get oopsSomethingWentWrongKindlyRetryOrInvalidateYourSession;
 
   /// No description provided for @weCouldNotVerifyTheExistenceOfYourAccountPleaseTryAgain.
   ///
   /// In en, this message translates to:
   /// **'We could not verify the existence of your account. Please try again'**
   String get weCouldNotVerifyTheExistenceOfYourAccountPleaseTryAgain;
-
-  /// No description provided for @loginMethodMismatchKindlySignInWithTheSameMethodYouUsedToRegister.
-  ///
-  /// In en, this message translates to:
-  /// **'Login method mismatch. Kindly sign in with the same method you used to register'**
-  String get loginMethodMismatchKindlySignInWithTheSameMethodYouUsedToRegister;
 
   /// No description provided for @thisEmailIsAlreadyLinkedToAnExistingAccount.
   ///
@@ -386,6 +374,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'An unknown error occurred. Please try again'**
   String get anUnknownErrorOccurredPleaseTryAgain;
+
+  /// No description provided for @anUnknownErrorOccurredKindlyRetryOrInvalidateYourSession.
+  ///
+  /// In en, this message translates to:
+  /// **'An unknown error occurred. Kindly retry or invalidate your session'**
+  String get anUnknownErrorOccurredKindlyRetryOrInvalidateYourSession;
 
   /// No description provided for @yes.
   ///
@@ -1017,6 +1011,18 @@ abstract class AppLocalizations {
   /// **'Proceed'**
   String get proceed;
 
+  /// No description provided for @invalidate.
+  ///
+  /// In en, this message translates to:
+  /// **'Invalidate'**
+  String get invalidate;
+
+  /// No description provided for @retry.
+  ///
+  /// In en, this message translates to:
+  /// **'Retry'**
+  String get retry;
+
   /// No description provided for @youAreAboutToDeleteYourAccountPleaseBeCertainThatThisIsWhatYouWantAsThisActionCannotBeReversed.
   ///
   /// In en, this message translates to:
@@ -1034,12 +1040,6 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'This email cannot be used to create a new account. Please use a different email'**
   String get thisEmailCannotBeUsedToCreateANewAccountPleaseUseADifferentEmail;
-
-  /// No description provided for @accountDoesNotExistIfItPreviouslyDidItMayHaveBeenDeleted.
-  ///
-  /// In en, this message translates to:
-  /// **'Account does not exist. If it previously did, it may have been deleted'**
-  String get accountDoesNotExistIfItPreviouslyDidItMayHaveBeenDeleted;
 
   /// No description provided for @accountDoesNotExistIfItPreviouslyDidItMayHaveBeenDeletedHoweverWeNeedYourInputToFinishOff.
   ///
