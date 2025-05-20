@@ -220,11 +220,6 @@ ThemeData get lightTheme => ThemeData(
           elevation: const WidgetStatePropertyAll<double>(
             nilDotNil,
           ),
-          fixedSize: const WidgetStatePropertyAll<Size>(
-            Size.fromHeight(
-              fiftyFiveDotNil,
-            ),
-          ),
         ),
       ),
       textButtonTheme: TextButtonThemeData(

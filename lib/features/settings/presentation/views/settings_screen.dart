@@ -4,13 +4,13 @@ import 'package:flutter/material.dart'
     show
         AppBar,
         BuildContext,
-        ButtonStyle,
         Center,
         Color,
         Column,
         CrossAxisAlignment,
         Divider,
         EdgeInsetsDirectional,
+        EdgeInsetsGeometry,
         ElevatedButton,
         Expanded,
         IconButton,
@@ -19,7 +19,6 @@ import 'package:flutter/material.dart'
         Row,
         Scaffold,
         SingleChildScrollView,
-        Size,
         SizedBox,
         State,
         StatefulWidget,
@@ -47,9 +46,9 @@ import 'package:sky_trade/core/resources/colors.dart'
     show hex4285F4, hex65C466, hex838187, hexE04F64;
 import 'package:sky_trade/core/resources/numbers/ui.dart'
     show
+        eightDotNil,
         eighteenDotNil,
         fourteenDotNil,
-        nilDotNil,
         oneDotNil,
         seventyThreeDotNil,
         sixteenDotNil,
@@ -310,16 +309,20 @@ class _SettingsViewState extends State<SettingsView> {
                     },
                     actionConfirmText: context.localize.proceed,
                   ),
-                  style: const ButtonStyle(
-                    backgroundColor: WidgetStatePropertyAll<Color>(
-                      hexE04F64,
-                    ),
-                    fixedSize: WidgetStatePropertyAll<Size>(
-                      Size.fromHeight(
-                        nilDotNil,
+                  style: Theme.of(
+                    context,
+                  ).elevatedButtonTheme.style?.copyWith(
+                        backgroundColor: const WidgetStatePropertyAll<Color>(
+                          hexE04F64,
+                        ),
+                        padding:
+                            const WidgetStatePropertyAll<EdgeInsetsGeometry>(
+                          EdgeInsetsDirectional.symmetric(
+                            horizontal: sixteenDotNil,
+                            vertical: eightDotNil,
+                          ),
+                        ),
                       ),
-                    ),
-                  ),
                   child: Center(
                     child: Text(
                       context.localize.deleteAccount,

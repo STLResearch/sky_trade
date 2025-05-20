@@ -2,12 +2,12 @@ import 'package:flutter/material.dart'
     show
         AppBar,
         BuildContext,
-        ButtonStyle,
         Center,
         Column,
         CrossAxisAlignment,
         Curves,
         EdgeInsetsDirectional,
+        EdgeInsetsGeometry,
         ElevatedButton,
         Expanded,
         GlobalKey,
@@ -24,7 +24,6 @@ import 'package:flutter/material.dart'
         Scaffold,
         ScrollController,
         SingleChildScrollView,
-        Size,
         SizedBox,
         SliverToBoxAdapter,
         State,
@@ -56,10 +55,10 @@ import 'package:sky_trade/core/resources/numbers/ui.dart'
         fifty,
         fiveHundred,
         fortyEightDotNil,
-        fortyThreeDotNil,
         fourteenDotNil,
         one,
         seventeenDotNil,
+        sixteenDotNil,
         thirtyTwoDotNil,
         twentyDotNil,
         twentyOneDotEightFive,
@@ -468,16 +467,17 @@ class _ReferralScreenViewState extends State<ReferralScreenView> {
                             horizontal: twentySixDotNil,
                           ),
                           child: ElevatedButton(
-                            style: ButtonStyle(
-                              fixedSize: WidgetStatePropertyAll<Size>(
-                                Size(
-                                  MediaQuery.sizeOf(
-                                    context,
-                                  ).width,
-                                  fortyThreeDotNil,
+                            style: Theme.of(
+                              context,
+                            ).elevatedButtonTheme.style?.copyWith(
+                                  padding: const WidgetStatePropertyAll<
+                                      EdgeInsetsGeometry>(
+                                    EdgeInsetsDirectional.symmetric(
+                                      horizontal: sixteenDotNil,
+                                      vertical: eightDotNil,
+                                    ),
+                                  ),
                                 ),
-                              ),
-                            ),
                             child: Center(
                               child: Text(
                                 context.localize.howCanIEarnSkyPoints,
