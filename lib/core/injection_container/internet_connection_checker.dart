@@ -17,6 +17,8 @@ Future<void> registerInternetConnectionCheckerServices() async {
 
     // Repositories
     ..registerLazySingleton<InternetConnectionCheckerRepository>(
-      InternetConnectionCheckerRepositoryImplementation.new,
+      () => InternetConnectionCheckerRepositoryImplementation(
+        _sl(),
+      ),
     );
 }
