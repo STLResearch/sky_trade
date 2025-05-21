@@ -227,8 +227,10 @@ final class AuthRepositoryImplementation
           );
 
   @override
-  Future<bool> checkSFAUserSessionExists() async =>
-      await _singleFactorAuthentication.getSessionData() != null;
+  Future<bool> checkSFAUserSessionExists() async {
+    final sessionData = await _singleFactorAuthentication.getSessionData();
+    return sessionData != null;
+  }
 
   @override
   Future<Either<SFALogoutFailure, Unit>> logoutCurrentSFAUser() =>
