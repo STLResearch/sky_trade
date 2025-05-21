@@ -1,4 +1,5 @@
 import 'package:equatable/equatable.dart' show Equatable;
+import 'package:sky_trade/core/utils/enums/ui.dart' show ShareResult;
 
 base class SkyPointsEntity extends Equatable {
   const SkyPointsEntity({
@@ -81,7 +82,20 @@ base class HighlightsEntity extends Equatable {
       ];
 }
 
-base class InviteEntity extends Equatable {
+base class ShareEntity extends Equatable {
+  const ShareEntity({
+    required this.result,
+  });
+
+  final ShareResult result;
+
+  @override
+  List<Object?> get props => [
+        result,
+      ];
+}
+
+class InviteEntity extends Equatable {
   const InviteEntity({
     required this.messages,
   });

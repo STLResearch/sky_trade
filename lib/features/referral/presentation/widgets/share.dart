@@ -1,17 +1,11 @@
 import 'package:flutter/material.dart'
     show
-        BorderRadius,
-        BoxDecoration,
         BuildContext,
+        ColoredBox,
         Column,
-        Container,
         CrossAxisAlignment,
         EdgeInsets,
-        EdgeInsetsDirectional,
-        Expanded,
         FontWeight,
-        Padding,
-        Row,
         SizedBox,
         State,
         StatefulWidget,
@@ -19,26 +13,21 @@ import 'package:flutter/material.dart'
         Theme,
         Widget;
 import 'package:flutter_bloc/flutter_bloc.dart' show BlocBuilder, ReadContext;
-import 'package:share_plus/share_plus.dart';
+import 'package:qr_flutter/qr_flutter.dart' show QrImageView;
 import 'package:skeletonizer/skeletonizer.dart'
     show BoneMock, ShimmerEffect, Skeleton, Skeletonizer, SoldColorEffect;
-import 'package:sky_trade/core/assets/generated/assets.gen.dart';
-import 'package:sky_trade/core/resources/colors.dart'
-    show hex0653EA, hex838187, hexE9F5FE, hexEBEBF4;
+import 'package:sky_trade/core/resources/colors.dart' show hexB8B8B8, hexEBEBF4;
 import 'package:sky_trade/core/resources/numbers/ui.dart'
     show
-        eightDotNil,
+        eighteenDotNil,
         elevenDotNil,
-        fortyDotNil,
         fortyNineDotNil,
-        fourDotNil,
-        nineDotNil,
-        six,
-        sixteenDotNil,
-        tenDotFive,
+        four,
+        oneFortyDotNil,
+        oneThirtyNineDotSixEight,
         tenDotNil,
-        thirtyEightDotNil,
         thirtyFiveDotNil,
+        twelveDotNil,
         twentyDotNil,
         twentyFourDotNil;
 import 'package:sky_trade/core/resources/strings/special_characters.dart'
@@ -48,9 +37,10 @@ import 'package:sky_trade/core/utils/extensions/referral_entity_extensions.dart'
     show HighlightsEntityExtensions;
 import 'package:sky_trade/features/referral/presentation/blocs/highlights_bloc/highlights_bloc.dart'
     show HighlightsBloc, HighlightsEvent, HighlightsState;
-import 'package:sky_trade/features/referral/presentation/widgets/card.dart';
 import 'package:sky_trade/features/referral/presentation/widgets/email_field.dart'
     show EmailField;
+import 'package:sky_trade/features/referral/presentation/widgets/shareable_content_card.dart'
+    show ShareableContentCard;
 
 class Share extends StatefulWidget {
   const Share({super.key});
@@ -75,20 +65,6 @@ class _ShareState extends State<Share> {
         const HighlightsEvent.getHighlights(),
       );
 
-  Future<void> _shareReferral(String referralCode, String referralLink) async {
-    final message =
-        context.localize.joinMeOnSkyTradeRadarAndStartEarningPointsUseMyCode +
-            referralCode +
-            context.localize.whenYouSignUpAndGetABonusSignUpHere +
-            referralLink;
-
-    final params = ShareParams(
-      text: message,
-    );
-
-    await SharePlus.instance.share(params);
-  }
-
   @override
   Widget build(BuildContext context) => Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -102,21 +78,54 @@ class _ShareState extends State<Share> {
               context,
             ).textTheme.bodyLarge?.copyWith(
                   fontWeight: FontWeight.w400,
-                  fontSize: sixteenDotNil,
                 ),
           ),
+          const SizedBox(
+            height: tenDotNil,
+          ),
+          Text(
+            context.localize.code,
+            style: Theme.of(
+              context,
+            ).textTheme.bodyMedium?.copyWith(
+                  fontWeight: FontWeight.w400,
+                  fontSize: twelveDotNil,
+                  height: eighteenDotNil / twelveDotNil,
+                  color: hexB8B8B8,
+                ),
+          ),
+          const SizedBox(
+            height: tenDotNil,
+          ),
+          const ShareableContentCard(),
           const SizedBox(
             height: twentyFourDotNil,
           ),
           Text(
-            context.localize.code,
-            style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                  color: hex838187,
+            context.localize.inviteYourFriends + comma,
+            style: Theme.of(
+              context,
+            ).textTheme.bodyLarge?.copyWith(
                   fontWeight: FontWeight.w400,
                 ),
           ),
           const SizedBox(
-            height: twentyFourDotNil,
+            height: elevenDotNil,
+          ),
+          const EmailField(),
+          const SizedBox(
+            height: thirtyFiveDotNil,
+          ),
+          Text(
+            context.localize.shareYourUniqueQrCode,
+            style: Theme.of(
+              context,
+            ).textTheme.bodyLarge?.copyWith(
+                  fontWeight: FontWeight.w400,
+                ),
+          ),
+          const SizedBox(
+            height: elevenDotNil,
           ),
           BlocBuilder<HighlightsBloc, HighlightsState>(
             builder: (_, highlightsState) => Skeletonizer(
@@ -134,102 +143,33 @@ class _ShareState extends State<Share> {
                 gotHighlights: (_) => false,
                 orElse: () => true,
               ),
-              child: Container(
-                decoration: BoxDecoration(
-                  color: hexE9F5FE,
-                  borderRadius: BorderRadius.circular(8),
+              child: highlightsState.maybeWhen(
+                gotHighlights: (_) => SizedBox(
+                  width: oneFortyDotNil,
+                  height: oneFortyDotNil,
+                  child: QrImageView(
+                    padding: EdgeInsets.zero,
+                    data: highlightsState.maybeWhen(
+                      gotHighlights: (highlightsEntity) =>
+                          highlightsEntity.referralLink,
+                      orElse: () => BoneMock.words(
+                        four,
+                      ),
+                    ),
+                    size: oneThirtyNineDotSixEight,
+                  ),
                 ),
-                child: Row(
-                  children: [
-                    Expanded(
-                      child: Padding(
-                        padding: const EdgeInsetsDirectional.all(
-                          eightDotNil,
-                        ),
-                        child: Text(
-                          highlightsState.maybeWhen(
-                            gotHighlights: (highlightsEntity) =>
-                                highlightsEntity.referralCode,
-                            orElse: () => BoneMock.chars(six),
-                          ),
-                          style: Theme.of(
-                            context,
-                          ).textTheme.bodyMedium?.copyWith(
-                                fontWeight: FontWeight.w400,
-                                fontSize: sixteenDotNil,
-                              ),
-                        ),
-                      ),
+                orElse: () => const Skeleton.leaf(
+                  child: SizedBox(
+                    width: oneFortyDotNil,
+                    height: oneFortyDotNil,
+                    child: ColoredBox(
+                      color: hexEBEBF4,
                     ),
-                    highlightsState.maybeWhen(
-                      gotHighlights: (highlightsEntity) => Padding(
-                        padding: const EdgeInsets.all(eightDotNil),
-                        child: Card(
-                          width: thirtyEightDotNil,
-                          height: fortyDotNil,
-                          cornerRadius: eightDotNil,
-                          backgroundColor: hex0653EA,
-                          child: Padding(
-                            padding: const EdgeInsetsDirectional.symmetric(
-                              vertical: nineDotNil,
-                              horizontal: tenDotFive,
-                            ),
-                            child: Assets.svgs.shareReferral.svg(),
-                          ),
-                          onTap: () => _shareReferral(
-                            highlightsEntity.referralCode,
-                            highlightsEntity.referralLink,
-                          ),
-                        ),
-                      ),
-                      orElse: () => Padding(
-                        padding: const EdgeInsets.all(fourDotNil),
-                        child: Skeleton.leaf(
-                          child: Container(
-                            width: thirtyEightDotNil,
-                            height: fortyDotNil,
-                            decoration: BoxDecoration(
-                              color: hexEBEBF4,
-                              borderRadius: BorderRadius.circular(eightDotNil),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
+                  ),
                 ),
               ),
             ),
-          ),
-          const SizedBox(
-            height: tenDotNil,
-          ),
-          const SizedBox(
-            height: thirtyFiveDotNil,
-          ),
-          Text(
-            context.localize.inviteYourFriends + comma,
-            style: Theme.of(
-              context,
-            ).textTheme.bodyLarge?.copyWith(
-                  fontWeight: FontWeight.w400,
-                  fontSize: sixteenDotNil,
-                ),
-          ),
-          const SizedBox(
-            height: elevenDotNil,
-          ),
-          const EmailField(),
-          const SizedBox(
-            height: thirtyFiveDotNil,
-          ),
-          Text(
-            context.localize.shareYourUniqueQrCode,
-            style: Theme.of(
-              context,
-            ).textTheme.bodyLarge?.copyWith(
-                  fontWeight: FontWeight.w400,
-                ),
           ),
           const SizedBox(
             height: fortyNineDotNil,

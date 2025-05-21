@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart'
     show
         AutovalidateMode,
+        BorderSide,
         BuildContext,
         Center,
         CircularProgressIndicator,
@@ -28,14 +29,15 @@ import 'package:flutter_bloc/flutter_bloc.dart'
     show BlocBuilder, BlocListener, BlocProvider, ReadContext;
 import 'package:sky_trade/core/assets/generated/assets.gen.dart' show Assets;
 import 'package:sky_trade/core/resources/colors.dart'
-    show hex0653EA, hex222222, hex87878D, hexE04F64;
+    show hex0653EA, hex222222, hex87878D, hexD6D6D6, hexE04F64;
 import 'package:sky_trade/core/resources/numbers/ui.dart'
     show
         eightDotNil,
         fortyOneDotNil,
-        fourDotNil,
         fourteenDotNil,
         nineDotNil,
+        sevenDotNil,
+        sixteenDotNil,
         tenDotFive,
         thirtyEightDotNil,
         threeDotNil,
@@ -142,10 +144,28 @@ class _EmailFieldViewState extends State<EmailFieldView> {
                       ),
                   keyboardType: TextInputType.emailAddress,
                   decoration: InputDecoration(
+                    contentPadding: const EdgeInsetsDirectional.symmetric(
+                      horizontal: sixteenDotNil,
+                    ),
                     hintText: context.localize.emailAddress,
+                    border: Theme.of(
+                      context,
+                    ).inputDecorationTheme.border?.copyWith(
+                          borderSide: const BorderSide(
+                            color: hexD6D6D6,
+                          ),
+                        ),
+                    enabledBorder: Theme.of(
+                      context,
+                    ).inputDecorationTheme.enabledBorder?.copyWith(
+                          borderSide: const BorderSide(
+                            color: hexD6D6D6,
+                          ),
+                        ),
                     suffixIcon: Padding(
-                      padding: const EdgeInsetsDirectional.all(
-                        fourDotNil,
+                      padding: const EdgeInsetsDirectional.symmetric(
+                        vertical: sevenDotNil,
+                        horizontal: eightDotNil,
                       ),
                       child: inviteState.maybeWhen(
                         sendingInvite: () => const Padding(
@@ -169,8 +189,8 @@ class _EmailFieldViewState extends State<EmailFieldView> {
                           backgroundColor: hex0653EA,
                           child: Padding(
                             padding: const EdgeInsetsDirectional.symmetric(
-                              vertical: nineDotNil,
-                              horizontal: tenDotFive,
+                              vertical: tenDotFive,
+                              horizontal: nineDotNil,
                             ),
                             child: Assets.svgs.shareInvite.svg(),
                           ),

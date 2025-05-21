@@ -234,8 +234,6 @@
   "fiveSkyPointsPerDrone": "5 SKY points/drone",
   "itDoesNotMakeSenseToSendYourselfAnInvite": "It does not make sense to send yourself an invite",
   "weCouldNotSendTheInvitePleaseTryAgain": "We could not send the invite. Please try again",
-  "referralCodeCopied": "Referral code copied",
-  "referralLinkCopied": "Referral link copied",
   "inviteSent": "Invite sent",
   "qThree": "Q3",
   "qTwo": "Q2",
@@ -243,10 +241,7 @@
   "qFour": "Q4",
   "earnings": "Earnings",
   "thereIsNothingToShowHere": "There is nothing to show here",
-  "joinMeOnSkyTradeAndStartTradingAirspaceAndRealEstateSignUpWithMyLinkAndGetExclusiveRewards": "🌍🚀Join me on SkyTrade and start trading airspace and real estate! Sign up with my link and get exclusive rewards",
-  "hashTagSkyTradeHashTagEarnRewardsHashTagRealEstate": "💸#SkyTrade #EarnRewards #RealEstate",
   "yourExclusiveInvitationToSkyTrade": "Your exclusive invitation to SkyTrade",
-  "unableToShareTheCorrespondingAppMayNotBeInstalledOnYourDevice": "Unable to share. The corresponding app may not be installed on your device",
   "email": "Email",
   "emailAtMailDotCom": "email@mail.com",
   "phone": "Phone",
@@ -269,6 +264,7 @@
   "weCouldNotGetYourPositionOnTheLeaderboardTryRefreshingTheLeaderboardTableOrTheEntirePageThenTryViewingYourPositionAgain": "We could not get your position on the leaderboard. Try refreshing the leaderboard table or the entire page then try viewing your position again",
   "thereWasAnErrorComputingYourPositionOnTheLeaderboard": "There was an error computing your position on the leaderboard",
   "code": "Code",
-  "joinMeOnSkyTradeRadarAndStartEarningPointsUseMyCode": "Join me on SkyTrade Radar and start earning points! 🌟 Use my code",
-  "whenYouSignUpAndGetABonusSignUpHere": "when you sign up and get a bonus. Sign up here: "
+  "joinMeOnSkyTradeRadarAndStartEarningPoints": "Join me on SkyTrade Radar and start earning points",
+  "useMyCode": "\uD83C\uDF1F Use my code",
+  "whenYouSignUpAndGetABonusSignUpHere": "when you sign up and get a bonus. Sign up here"
 }

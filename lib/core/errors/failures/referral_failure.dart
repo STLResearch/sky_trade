@@ -10,6 +10,11 @@ final class HighlightsFailure extends Equatable {
   List<Object> get props => [];
 }
 
+final class ShareFailure extends Equatable {
+  @override
+  List<Object> get props => [];
+}
+
 final class InviteFailure extends Equatable {
   @override
   List<Object> get props => [];
