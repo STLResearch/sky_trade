@@ -1,6 +1,7 @@
 import 'package:bloc/bloc.dart' show Bloc, Emitter;
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:sky_trade/core/errors/failures/link_handler_failure.dart';
+import 'package:sky_trade/core/errors/failures/link_handler_failure.dart'
+    show CheckLinkFailure;
 import 'package:sky_trade/features/link_handler/domain/entities/link_entity.dart';
 import 'package:sky_trade/features/link_handler/domain/repositories/link_handler_repository.dart';
 

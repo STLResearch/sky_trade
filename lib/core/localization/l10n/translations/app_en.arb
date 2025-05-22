@@ -266,5 +266,13 @@
   "code": "Code",
   "joinMeOnSkyTradeRadarAndStartEarningPoints": "Join me on SkyTrade Radar and start earning points",
   "useMyCode": "\uD83C\uDF1F Use my code",
-  "whenYouSignUpAndGetABonusSignUpHere": "when you sign up and get a bonus. Sign up here"
+  "whenYouSignUpAndGetABonusSignUpHere": "when you sign up and get a bonus. Sign up here",
+  "yourVersionOfThisAppIsTooOld": "Your version of this app is too old",
+  "certainThingsMayBreakDueToSignificantChangesThatHaveBeenMade": "Certain things may break due to significant changes that have been made",
+  "weEncourageYouToUpdateTheAppInOrderToKeepUsingIt": "We encourage you to update the app in order to keep using it",
+  "openAppStore": "Open App Store",
+  "openPlayStore": "Open Play Store",
+  "openDAppStore": "Open dApp Store",
+  "weAreNotSureWhatMayHaveCausedThis": "We are not sure what may have caused this",
+  "tryRefreshingThePageIfTheIssueContinuesYouMayWantToCheckYourConnectionOrTryAgainLater": "Try refreshing the page if the issue continues. You may want to check your connection or try again later"
 }

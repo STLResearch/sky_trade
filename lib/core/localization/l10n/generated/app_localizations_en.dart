@@ -811,4 +811,28 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get whenYouSignUpAndGetABonusSignUpHere => 'when you sign up and get a bonus. Sign up here';
+
+  @override
+  String get yourVersionOfThisAppIsTooOld => 'Your version of this app is too old';
+
+  @override
+  String get certainThingsMayBreakDueToSignificantChangesThatHaveBeenMade => 'Certain things may break due to significant changes that have been made';
+
+  @override
+  String get weEncourageYouToUpdateTheAppInOrderToKeepUsingIt => 'We encourage you to update the app in order to keep using it';
+
+  @override
+  String get openAppStore => 'Open App Store';
+
+  @override
+  String get openPlayStore => 'Open Play Store';
+
+  @override
+  String get openDAppStore => 'Open dApp Store';
+
+  @override
+  String get weAreNotSureWhatMayHaveCausedThis => 'We are not sure what may have caused this';
+
+  @override
+  String get tryRefreshingThePageIfTheIssueContinuesYouMayWantToCheckYourConnectionOrTryAgainLater => 'Try refreshing the page if the issue continues. You may want to check your connection or try again later';
 }

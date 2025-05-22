@@ -1700,6 +1700,54 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'when you sign up and get a bonus. Sign up here'**
   String get whenYouSignUpAndGetABonusSignUpHere;
+
+  /// No description provided for @yourVersionOfThisAppIsTooOld.
+  ///
+  /// In en, this message translates to:
+  /// **'Your version of this app is too old'**
+  String get yourVersionOfThisAppIsTooOld;
+
+  /// No description provided for @certainThingsMayBreakDueToSignificantChangesThatHaveBeenMade.
+  ///
+  /// In en, this message translates to:
+  /// **'Certain things may break due to significant changes that have been made'**
+  String get certainThingsMayBreakDueToSignificantChangesThatHaveBeenMade;
+
+  /// No description provided for @weEncourageYouToUpdateTheAppInOrderToKeepUsingIt.
+  ///
+  /// In en, this message translates to:
+  /// **'We encourage you to update the app in order to keep using it'**
+  String get weEncourageYouToUpdateTheAppInOrderToKeepUsingIt;
+
+  /// No description provided for @openAppStore.
+  ///
+  /// In en, this message translates to:
+  /// **'Open App Store'**
+  String get openAppStore;
+
+  /// No description provided for @openPlayStore.
+  ///
+  /// In en, this message translates to:
+  /// **'Open Play Store'**
+  String get openPlayStore;
+
+  /// No description provided for @openDAppStore.
+  ///
+  /// In en, this message translates to:
+  /// **'Open dApp Store'**
+  String get openDAppStore;
+
+  /// No description provided for @weAreNotSureWhatMayHaveCausedThis.
+  ///
+  /// In en, this message translates to:
+  /// **'We are not sure what may have caused this'**
+  String get weAreNotSureWhatMayHaveCausedThis;
+
+  /// No description provided for @tryRefreshingThePageIfTheIssueContinuesYouMayWantToCheckYourConnectionOrTryAgainLater.
+  ///
+  /// In en, this message translates to:
+  /// **'Try refreshing the page if the issue continues. You may want to check your connection or try again later'**
+  String get tryRefreshingThePageIfTheIssueContinuesYouMayWantToCheckYourConnectionOrTryAgainLater;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {
