@@ -8,12 +8,19 @@ import 'package:sky_trade/features/referral/domain/entities/referral_entity.dart
         LeaderboardPositionEntity,
         LeaderboardStatisticsEntity,
         ReferralHistoryEntity,
+        ShareEntity,
         SkyPointsEntity;
 
 abstract interface class ReferralRepository {
   Future<Either<SkyPointsFailure, SkyPointsEntity>> get skyPoints;
 
   Future<Either<HighlightsFailure, HighlightsEntity>> get highlights;
+
+  Future<Either<ShareFailure, ShareEntity>> share({
+    required String subject,
+    required String title,
+    required String message,
+  });
 
   Future<Either<InviteFailure, InviteEntity>> sendInviteTo({
     required String email,

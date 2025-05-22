@@ -1,15 +1,16 @@
+// ignore_for_file: lines_longer_than_80_chars
+
+import 'package:flutter/gestures.dart' show TapGestureRecognizer;
 import 'package:flutter/material.dart'
     show
         AppBar,
         BuildContext,
-        Center,
         Column,
         CrossAxisAlignment,
         Curves,
         EdgeInsetsDirectional,
-        EdgeInsetsGeometry,
-        ElevatedButton,
         Expanded,
+        FontWeight,
         GlobalKey,
         IconButton,
         MediaQuery,
@@ -21,6 +22,7 @@ import 'package:flutter/material.dart'
         PageView,
         RefreshIndicator,
         RenderBox,
+        RichText,
         Scaffold,
         ScrollController,
         SingleChildScrollView,
@@ -30,11 +32,12 @@ import 'package:flutter/material.dart'
         StatefulWidget,
         StatelessWidget,
         Text,
+        TextAlign,
+        TextSpan,
         Theme,
         ValueListenableBuilder,
         ValueNotifier,
         Widget,
-        WidgetStatePropertyAll,
         showModalBottomSheet;
 import 'package:flutter_bloc/flutter_bloc.dart'
     show
@@ -47,7 +50,8 @@ import 'package:flutter_bloc/flutter_bloc.dart'
 import 'package:skeletonizer/skeletonizer.dart'
     show BoneMock, ShimmerEffect, Skeletonizer, SoldColorEffect;
 import 'package:sky_trade/core/assets/generated/assets.gen.dart' show Assets;
-import 'package:sky_trade/core/resources/colors.dart' show hex4285F4, hexEBEBF4;
+import 'package:sky_trade/core/resources/colors.dart'
+    show hex0653EA, hex5F95FF, hexEBEBF4;
 import 'package:sky_trade/core/resources/numbers/ui.dart'
     show
         eightDotNil,
@@ -59,11 +63,12 @@ import 'package:sky_trade/core/resources/numbers/ui.dart'
         one,
         seventeenDotNil,
         sixteenDotNil,
+        thirtyDotNil,
         thirtyTwoDotNil,
         twentyDotNil,
-        twentyOneDotEightFive,
         twentyOneDotNil,
         twentySevenDotEightNine,
+        twentySevenDotNil,
         twentySixDotNil,
         twentyTwoDotThreeOne,
         two,
@@ -80,12 +85,8 @@ import 'package:sky_trade/features/referral/presentation/blocs/invite_bloc/invit
     show InviteBloc, InviteState;
 import 'package:sky_trade/features/referral/presentation/blocs/leaderboard_statistics_bloc/leaderboard_statistics_bloc.dart'
     show LeaderboardStatisticsBloc, LeaderboardStatisticsEvent;
-import 'package:sky_trade/features/referral/presentation/blocs/referral_code_bloc/referral_code_bloc.dart'
-    show ReferralCodeBloc, ReferralCodeState;
 import 'package:sky_trade/features/referral/presentation/blocs/referral_history_bloc/referral_history_bloc.dart'
     show ReferralHistoryBloc, ReferralHistoryEvent;
-import 'package:sky_trade/features/referral/presentation/blocs/referral_link_bloc/referral_link_bloc.dart'
-    show ReferralLinkBloc, ReferralLinkState;
 import 'package:sky_trade/features/referral/presentation/blocs/sky_points_bloc/sky_points_bloc.dart'
     show SkyPointsBloc, SkyPointsEvent, SkyPointsState;
 import 'package:sky_trade/features/referral/presentation/widgets/alert_snack_bar.dart';
@@ -116,13 +117,7 @@ class ReferralScreen extends StatelessWidget {
           BlocProvider<LeaderboardStatisticsBloc>(
             create: (_) => serviceLocator(),
           ),
-          BlocProvider<ReferralCodeBloc>(
-            create: (_) => serviceLocator(),
-          ),
           BlocProvider<ReferralHistoryBloc>(
-            create: (_) => serviceLocator(),
-          ),
-          BlocProvider<ReferralLinkBloc>(
             create: (_) => serviceLocator(),
           ),
           BlocProvider<SkyPointsBloc>(
@@ -270,26 +265,6 @@ class _ReferralScreenViewState extends State<ReferralScreenView> {
   @override
   Widget build(BuildContext context) => MultiBlocListener(
         listeners: [
-          BlocListener<ReferralCodeBloc, ReferralCodeState>(
-            listener: (_, referralCodeState) {
-              referralCodeState.whenOrNull(
-                copiedCode: () => AlertSnackBar.show(
-                  context,
-                  message: context.localize.referralCodeCopied,
-                ),
-              );
-            },
-          ),
-          BlocListener<ReferralLinkBloc, ReferralLinkState>(
-            listener: (_, referralLinkState) {
-              referralLinkState.whenOrNull(
-                copiedLink: () => AlertSnackBar.show(
-                  context,
-                  message: context.localize.referralLinkCopied,
-                ),
-              );
-            },
-          ),
           BlocListener<InviteBloc, InviteState>(
             listener: (_, referralLinkState) {
               referralLinkState.whenOrNull(
@@ -398,16 +373,20 @@ class _ReferralScreenViewState extends State<ReferralScreenView> {
                                 end: seventeenDotNil,
                               ),
                               child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
                                     context.localize.skyPointsBalance,
+                                    textAlign: TextAlign.center,
                                     style: Theme.of(
                                       context,
-                                    ).textTheme.bodyLarge,
+                                    ).textTheme.bodyLarge?.copyWith(
+                                          fontWeight: FontWeight.w300,
+                                          fontSize: sixteenDotNil,
+                                          height: thirtyDotNil / sixteenDotNil,
+                                        ),
                                   ),
                                   const SizedBox(
-                                    height: twentyOneDotEightFive,
+                                    height: sixteenDotNil,
                                   ),
                                   BlocBuilder<SkyPointsBloc, SkyPointsState>(
                                     builder: (_, skyPointsState) =>
@@ -439,15 +418,44 @@ class _ReferralScreenViewState extends State<ReferralScreenView> {
                                             two,
                                           ),
                                         ),
+                                        textAlign: TextAlign.center,
                                         style: Theme.of(
                                           context,
                                         ).textTheme.bodyLarge?.copyWith(
+                                              fontWeight: FontWeight.w600,
                                               fontSize: thirtyTwoDotNil,
                                               height: fortyEightDotNil /
                                                   thirtyTwoDotNil,
-                                              color: hex4285F4,
+                                              color: hex0653EA,
                                             ),
                                       ),
+                                    ),
+                                  ),
+                                  const SizedBox(
+                                    height: sixteenDotNil,
+                                  ),
+                                  RichText(
+                                    text: TextSpan(
+                                      text:
+                                          context.localize.howCanIEarnSkyPoints,
+                                      recognizer: TapGestureRecognizer()
+                                        ..onTap =
+                                            () => showModalBottomSheet<void>(
+                                                  context: context,
+                                                  builder: (
+                                                    _,
+                                                  ) =>
+                                                      const SkyPointsRewardDetails(),
+                                                ),
+                                      style: Theme.of(
+                                        context,
+                                      ).textTheme.bodyLarge?.copyWith(
+                                            fontWeight: FontWeight.w600,
+                                            fontSize: fourteenDotNil,
+                                            height: twentyOneDotNil /
+                                                fourteenDotNil,
+                                            color: hex5F95FF,
+                                          ),
                                     ),
                                   ),
                                 ],
@@ -458,48 +466,7 @@ class _ReferralScreenViewState extends State<ReferralScreenView> {
                       ),
                       const SliverToBoxAdapter(
                         child: SizedBox(
-                          height: fourteenDotNil,
-                        ),
-                      ),
-                      SliverToBoxAdapter(
-                        child: Padding(
-                          padding: const EdgeInsetsDirectional.symmetric(
-                            horizontal: twentySixDotNil,
-                          ),
-                          child: ElevatedButton(
-                            style: Theme.of(
-                              context,
-                            ).elevatedButtonTheme.style?.copyWith(
-                                  padding: const WidgetStatePropertyAll<
-                                      EdgeInsetsGeometry>(
-                                    EdgeInsetsDirectional.symmetric(
-                                      horizontal: sixteenDotNil,
-                                      vertical: eightDotNil,
-                                    ),
-                                  ),
-                                ),
-                            child: Center(
-                              child: Text(
-                                context.localize.howCanIEarnSkyPoints,
-                                style: Theme.of(
-                                  context,
-                                ).textTheme.bodyLarge?.copyWith(
-                                      fontSize: fourteenDotNil,
-                                      height: twentyOneDotNil / fourteenDotNil,
-                                      color: Theme.of(
-                                        context,
-                                      ).scaffoldBackgroundColor,
-                                    ),
-                              ),
-                            ),
-                            onPressed: () => showModalBottomSheet<void>(
-                              context: context,
-                              builder: (
-                                _,
-                              ) =>
-                                  const SkyPointsRewardDetails(),
-                            ),
-                          ),
+                          height: twentySevenDotNil,
                         ),
                       ),
                     ],

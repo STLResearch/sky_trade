@@ -714,12 +714,6 @@ class AppLocalizationsEn extends AppLocalizations {
   String get weCouldNotSendTheInvitePleaseTryAgain => 'We could not send the invite. Please try again';
 
   @override
-  String get referralCodeCopied => 'Referral code copied';
-
-  @override
-  String get referralLinkCopied => 'Referral link copied';
-
-  @override
   String get inviteSent => 'Invite sent';
 
   @override
@@ -741,16 +735,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get thereIsNothingToShowHere => 'There is nothing to show here';
 
   @override
-  String get joinMeOnSkyTradeAndStartTradingAirspaceAndRealEstateSignUpWithMyLinkAndGetExclusiveRewards => '🌍🚀Join me on SkyTrade and start trading airspace and real estate! Sign up with my link and get exclusive rewards';
-
-  @override
-  String get hashTagSkyTradeHashTagEarnRewardsHashTagRealEstate => '💸#SkyTrade #EarnRewards #RealEstate';
-
-  @override
   String get yourExclusiveInvitationToSkyTrade => 'Your exclusive invitation to SkyTrade';
-
-  @override
-  String get unableToShareTheCorrespondingAppMayNotBeInstalledOnYourDevice => 'Unable to share. The corresponding app may not be installed on your device';
 
   @override
   String get email => 'Email';
@@ -814,4 +799,16 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get thereWasAnErrorComputingYourPositionOnTheLeaderboard => 'There was an error computing your position on the leaderboard';
+
+  @override
+  String get code => 'Code';
+
+  @override
+  String get joinMeOnSkyTradeRadarAndStartEarningPoints => 'Join me on SkyTrade Radar and start earning points';
+
+  @override
+  String get useMyCode => '🌟 Use my code';
+
+  @override
+  String get whenYouSignUpAndGetABonusSignUpHere => 'when you sign up and get a bonus. Sign up here';
 }

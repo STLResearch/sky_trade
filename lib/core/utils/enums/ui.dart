@@ -31,16 +31,10 @@ enum Tips {
   earn,
 }
 
-enum Socials {
-  facebook,
-  linkedIn,
-  email,
-  x,
-}
-
-enum SocialsLinkType {
-  webLink,
-  appLink,
+enum ShareResult {
+  success,
+  dismissed,
+  unknown,
 }
 
 enum Highlights {

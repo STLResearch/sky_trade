@@ -12,16 +12,12 @@ import 'package:sky_trade/features/referral/presentation/blocs/invite_bloc/invit
     show InviteBloc;
 import 'package:sky_trade/features/referral/presentation/blocs/leaderboard_statistics_bloc/leaderboard_statistics_bloc.dart'
     show LeaderboardStatisticsBloc;
-import 'package:sky_trade/features/referral/presentation/blocs/referral_code_bloc/referral_code_bloc.dart'
-    show ReferralCodeBloc;
 import 'package:sky_trade/features/referral/presentation/blocs/referral_history_bloc/referral_history_bloc.dart'
     show ReferralHistoryBloc;
-import 'package:sky_trade/features/referral/presentation/blocs/referral_link_bloc/referral_link_bloc.dart'
-    show ReferralLinkBloc;
+import 'package:sky_trade/features/referral/presentation/blocs/share_bloc/share_bloc.dart'
+    show ShareBloc;
 import 'package:sky_trade/features/referral/presentation/blocs/sky_points_bloc/sky_points_bloc.dart'
     show SkyPointsBloc;
-import 'package:sky_trade/features/referral/presentation/blocs/socials_link_bloc/socials_link_bloc.dart'
-    show SocialsLinkBloc;
 
 final _sl = GetIt.I;
 
@@ -53,18 +49,13 @@ Future<void> registerReferralServices() async {
         _sl(),
       ),
     )
-    ..registerFactory<ReferralCodeBloc>(
-      () => ReferralCodeBloc(
-        _sl(),
-      ),
-    )
     ..registerFactory<ReferralHistoryBloc>(
       () => ReferralHistoryBloc(
         _sl(),
       ),
     )
-    ..registerFactory<ReferralLinkBloc>(
-      () => ReferralLinkBloc(
+    ..registerFactory<ShareBloc>(
+      () => ShareBloc(
         _sl(),
       ),
     )
@@ -73,14 +64,12 @@ Future<void> registerReferralServices() async {
         _sl(),
       ),
     )
-    ..registerFactory<SocialsLinkBloc>(
-      SocialsLinkBloc.new,
-    )
 
     // Repositories
     ..registerLazySingleton<ReferralRepository>(
       () => ReferralRepositoryImplementation(
-        _sl(),
+        sharePlus: _sl(),
+        referralRemoteDataSource: _sl(),
       ),
     )
 

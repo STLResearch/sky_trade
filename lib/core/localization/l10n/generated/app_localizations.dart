@@ -1503,18 +1503,6 @@ abstract class AppLocalizations {
   /// **'We could not send the invite. Please try again'**
   String get weCouldNotSendTheInvitePleaseTryAgain;
 
-  /// No description provided for @referralCodeCopied.
-  ///
-  /// In en, this message translates to:
-  /// **'Referral code copied'**
-  String get referralCodeCopied;
-
-  /// No description provided for @referralLinkCopied.
-  ///
-  /// In en, this message translates to:
-  /// **'Referral link copied'**
-  String get referralLinkCopied;
-
   /// No description provided for @inviteSent.
   ///
   /// In en, this message translates to:
@@ -1557,29 +1545,11 @@ abstract class AppLocalizations {
   /// **'There is nothing to show here'**
   String get thereIsNothingToShowHere;
 
-  /// No description provided for @joinMeOnSkyTradeAndStartTradingAirspaceAndRealEstateSignUpWithMyLinkAndGetExclusiveRewards.
-  ///
-  /// In en, this message translates to:
-  /// **'🌍🚀Join me on SkyTrade and start trading airspace and real estate! Sign up with my link and get exclusive rewards'**
-  String get joinMeOnSkyTradeAndStartTradingAirspaceAndRealEstateSignUpWithMyLinkAndGetExclusiveRewards;
-
-  /// No description provided for @hashTagSkyTradeHashTagEarnRewardsHashTagRealEstate.
-  ///
-  /// In en, this message translates to:
-  /// **'💸#SkyTrade #EarnRewards #RealEstate'**
-  String get hashTagSkyTradeHashTagEarnRewardsHashTagRealEstate;
-
   /// No description provided for @yourExclusiveInvitationToSkyTrade.
   ///
   /// In en, this message translates to:
   /// **'Your exclusive invitation to SkyTrade'**
   String get yourExclusiveInvitationToSkyTrade;
-
-  /// No description provided for @unableToShareTheCorrespondingAppMayNotBeInstalledOnYourDevice.
-  ///
-  /// In en, this message translates to:
-  /// **'Unable to share. The corresponding app may not be installed on your device'**
-  String get unableToShareTheCorrespondingAppMayNotBeInstalledOnYourDevice;
 
   /// No description provided for @email.
   ///
@@ -1706,6 +1676,30 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'There was an error computing your position on the leaderboard'**
   String get thereWasAnErrorComputingYourPositionOnTheLeaderboard;
+
+  /// No description provided for @code.
+  ///
+  /// In en, this message translates to:
+  /// **'Code'**
+  String get code;
+
+  /// No description provided for @joinMeOnSkyTradeRadarAndStartEarningPoints.
+  ///
+  /// In en, this message translates to:
+  /// **'Join me on SkyTrade Radar and start earning points'**
+  String get joinMeOnSkyTradeRadarAndStartEarningPoints;
+
+  /// No description provided for @useMyCode.
+  ///
+  /// In en, this message translates to:
+  /// **'🌟 Use my code'**
+  String get useMyCode;
+
+  /// No description provided for @whenYouSignUpAndGetABonusSignUpHere.
+  ///
+  /// In en, this message translates to:
+  /// **'when you sign up and get a bonus. Sign up here'**
+  String get whenYouSignUpAndGetABonusSignUpHere;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

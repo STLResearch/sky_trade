@@ -8,6 +8,7 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get_it/get_it.dart' show GetIt;
 import 'package:internet_connection_checker_plus/internet_connection_checker_plus.dart'
     show InternetConnection;
+import 'package:share_plus/share_plus.dart' show SharePlus;
 import 'package:shared_preferences/shared_preferences.dart'
     show SharedPreferencesWithCache, SharedPreferencesWithCacheOptions;
 import 'package:single_factor_auth_flutter/single_factor_auth_flutter.dart';
@@ -53,5 +54,8 @@ Future<void> registerExternalServices() async {
     )
     ..registerLazySingleton<InternetConnection>(
       InternetConnection.new,
+    )
+    ..registerLazySingleton<SharePlus>(
+      () => SharePlus.instance,
     );
 }

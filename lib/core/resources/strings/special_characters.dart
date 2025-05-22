@@ -16,3 +16,4 @@ const plus = '+';
 const openingParenthesis = '(';
 const closingParenthesis = ')';
 const threeDots = '...';
+const exclamationMark = '!';
