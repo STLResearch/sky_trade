@@ -327,12 +327,12 @@ class _ErrorScreenViewState extends State<ErrorScreenView> {
                         style: Theme.of(
                           context,
                         ).elevatedButtonTheme.style?.copyWith(
-                          fixedSize: const WidgetStatePropertyAll<Size>(
-                            Size.fromHeight(
-                              fiftyFiveDotNil,
+                              fixedSize: const WidgetStatePropertyAll<Size>(
+                                Size.fromHeight(
+                                  fiftyFiveDotNil,
+                                ),
+                              ),
                             ),
-                          ),
-                        ),
                         child: Center(
                           child: switch (widget.reason) {
                             ErrorReason.incompatibleBackendApiVersion =>

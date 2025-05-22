@@ -21,4 +21,10 @@ abstract interface class SettingsRepository {
   Future<void> setAnalyticsCollectionEnabled({
     required bool value,
   });
+
+  Future<Either<ShareFailure, ShareEntity>> share({
+    required String subject,
+    required String title,
+    required String message,
+  });
 }

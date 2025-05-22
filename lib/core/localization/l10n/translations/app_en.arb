@@ -274,5 +274,10 @@
   "openPlayStore": "Open Play Store",
   "openDAppStore": "Open dApp Store",
   "weAreNotSureWhatMayHaveCausedThis": "We are not sure what may have caused this",
-  "tryRefreshingThePageIfTheIssueContinuesYouMayWantToCheckYourConnectionOrTryAgainLater": "Try refreshing the page if the issue continues. You may want to check your connection or try again later"
+  "tryRefreshingThePageIfTheIssueContinuesYouMayWantToCheckYourConnectionOrTryAgainLater": "Try refreshing the page if the issue continues. You may want to check your connection or try again later",
+  "tryOutSkyTradeRadar": "Try out SkyTrade Radar",
+  "heyImUsingSkyTradeRadarAndThoughtYoudLikeItCheckItOutHere": "Hey! I'm using SkyTrade Radar and thought you'd like it. Check it out here",
+  "heyImUsingSkyTradeRadarAndThoughtYoudLikeItCheckItOutOnPlaystoreHere": "Hey! I'm using SkyTrade Radar and thought you'd like it. Check it out on Playstore here",
+  "orOnTheDAppStoreHere": "or on the dApp Store here",
+  "shareRadarApp": "Share Radar App"
 }

@@ -835,4 +835,19 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get tryRefreshingThePageIfTheIssueContinuesYouMayWantToCheckYourConnectionOrTryAgainLater => 'Try refreshing the page if the issue continues. You may want to check your connection or try again later';
+
+  @override
+  String get tryOutSkyTradeRadar => 'Try out SkyTrade Radar';
+
+  @override
+  String get heyImUsingSkyTradeRadarAndThoughtYoudLikeItCheckItOutHere => 'Hey! I\'m using SkyTrade Radar and thought you\'d like it. Check it out here';
+
+  @override
+  String get heyImUsingSkyTradeRadarAndThoughtYoudLikeItCheckItOutOnPlaystoreHere => 'Hey! I\'m using SkyTrade Radar and thought you\'d like it. Check it out on Playstore here';
+
+  @override
+  String get orOnTheDAppStoreHere => 'or on the dApp Store here';
+
+  @override
+  String get shareRadarApp => 'Share Radar App';
 }

@@ -73,7 +73,7 @@ final class ReferralRepositoryImplementation
             },
           );
         },
-        onSuccess: (highlightsEntity) => highlightsEntity,
+        onSuccess: (shareEntity) => shareEntity,
         onFailure: (_) => ShareFailure(),
       );
 
