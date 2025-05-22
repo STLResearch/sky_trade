@@ -1749,11 +1749,29 @@ abstract class AppLocalizations {
   /// **'Try refreshing the page if the issue continues. You may want to check your connection or try again later'**
   String get tryRefreshingThePageIfTheIssueContinuesYouMayWantToCheckYourConnectionOrTryAgainLater;
 
+  /// No description provided for @tryOutSkyTradeRadar.
+  ///
+  /// In en, this message translates to:
+  /// **'Try out SkyTrade Radar'**
+  String get tryOutSkyTradeRadar;
+
   /// No description provided for @heyImUsingSkyTradeRadarAndThoughtYoudLikeItCheckItOutHere.
   ///
   /// In en, this message translates to:
-  /// **'Hey! I\'m using SkyTrade Radar and thought you\'d like it. Check it out here:'**
+  /// **'Hey! I\'m using SkyTrade Radar and thought you\'d like it. Check it out here'**
   String get heyImUsingSkyTradeRadarAndThoughtYoudLikeItCheckItOutHere;
+
+  /// No description provided for @heyImUsingSkyTradeRadarAndThoughtYoudLikeItCheckItOutOnPlaystoreHere.
+  ///
+  /// In en, this message translates to:
+  /// **'Hey! I\'m using SkyTrade Radar and thought you\'d like it. Check it out on Playstore here'**
+  String get heyImUsingSkyTradeRadarAndThoughtYoudLikeItCheckItOutOnPlaystoreHere;
+
+  /// No description provided for @orOnTheDAppStoreHere.
+  ///
+  /// In en, this message translates to:
+  /// **'or on the dApp Store here'**
+  String get orOnTheDAppStoreHere;
 
   /// No description provided for @shareRadarApp.
   ///

@@ -2,12 +2,15 @@ import 'dart:io' show Platform;
 
 import 'package:app_tracking_transparency/app_tracking_transparency.dart';
 import 'package:dartz/dartz.dart' show Either, Left, Right;
+import 'package:share_plus/share_plus.dart'
+    show ShareParams, SharePlus, ShareResultStatus;
 import 'package:sky_trade/core/errors/exceptions/settings_exception.dart'
     show DeleteAccountException, InvalidCodeException;
 import 'package:sky_trade/core/errors/failures/settings_failure.dart';
 import 'package:sky_trade/core/utils/clients/data_handler.dart';
 import 'package:sky_trade/core/utils/enums/networking.dart'
     show TrackingTransparencyRequestStatus;
+import 'package:sky_trade/core/utils/enums/ui.dart' show ShareResult;
 import 'package:sky_trade/features/settings/data/data_sources/settings_local_data_source.dart'
     show SettingsLocalDataSource;
 import 'package:sky_trade/features/settings/data/data_sources/settings_remote_data_source.dart'
@@ -19,10 +22,14 @@ final class SettingsRepositoryImplementation
     with DataHandler
     implements SettingsRepository {
   const SettingsRepositoryImplementation({
+    required SharePlus sharePlus,
     required SettingsLocalDataSource settingsLocalDataSource,
     required SettingsRemoteDataSource settingsRemoteDataSource,
-  })  : _settingsLocalDataSource = settingsLocalDataSource,
+  })  : _sharePlus = sharePlus,
+        _settingsLocalDataSource = settingsLocalDataSource,
         _settingsRemoteDataSource = settingsRemoteDataSource;
+
+  final SharePlus _sharePlus;
 
   final SettingsLocalDataSource _settingsLocalDataSource;
 
@@ -128,5 +135,33 @@ final class SettingsRepositoryImplementation
   }) =>
       _settingsLocalDataSource.setAnalyticsCollectionEnabled(
         value: value,
+      );
+
+  @override
+  Future<Either<ShareFailure, ShareEntity>> share({
+    required String subject,
+    required String title,
+    required String message,
+  }) =>
+      handleData<ShareFailure, ShareEntity>(
+        dataSourceOperation: () async {
+          final shareResult = await _sharePlus.share(
+            ShareParams(
+              subject: subject,
+              title: title,
+              text: message,
+            ),
+          );
+
+          return ShareEntity(
+            result: switch (shareResult.status) {
+              ShareResultStatus.success => ShareResult.success,
+              ShareResultStatus.dismissed => ShareResult.dismissed,
+              ShareResultStatus.unavailable => ShareResult.unknown,
+            },
+          );
+        },
+        onSuccess: (shareEntity) => shareEntity,
+        onFailure: (_) => ShareFailure(),
       );
 }
