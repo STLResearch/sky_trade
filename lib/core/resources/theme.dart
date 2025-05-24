@@ -13,7 +13,7 @@ import 'package:flutter/material.dart'
         Color,
         ColorScheme,
         Colors,
-        DialogTheme,
+        DialogThemeData,
         DividerThemeData,
         EdgeInsetsDirectional,
         ElevatedButtonThemeData,
@@ -319,7 +319,7 @@ ThemeData get lightTheme => ThemeData(
           ),
         ),
       ),
-      dialogTheme: DialogTheme(
+      dialogTheme: DialogThemeData(
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(
             twentyDotNil,
