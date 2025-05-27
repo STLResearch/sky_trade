@@ -34,6 +34,7 @@ extension RemoteIDEntityExtensions on RemoteIDEntity {
             mSerialNumber: basicIDEntity.serialNumber,
             mRegistrationID: basicIDEntity.registrationID,
             mID: basicIDEntity.iD,
+            mRawData: basicIDEntity.rawData,
           ),
         )
         .toList();
@@ -64,6 +65,7 @@ extension RemoteIDEntityExtensions on RemoteIDEntity {
         mHeight: location!.height,
         mTimestamp: location!.timestamp,
         mTimestampAccuracy: location!.timestampAccuracy,
+        mRawData: location!.rawData,
       );
     }
 
@@ -89,6 +91,7 @@ extension RemoteIDEntityExtensions on RemoteIDEntity {
         mAreaFloor: system!.areaFloor,
         mCategory: system!.category,
         mClassValue: system!.classValue,
+        mRawData: system!.rawData,
       );
     }
 
@@ -98,6 +101,7 @@ extension RemoteIDEntityExtensions on RemoteIDEntity {
         mDescriptionType: selfID!.descriptionType,
         mOperationDescription: selfID!.operationDescription,
         mDescription: selfID!.description,
+        mRawData: selfID!.rawData,
       );
     }
 
@@ -108,6 +112,7 @@ extension RemoteIDEntityExtensions on RemoteIDEntity {
         mOperatorIDClassification: operatorID!.operatorIDClassification,
         mOperatorID: operatorID!.operatorID,
         mID: operatorID!.iD,
+        mRawData: operatorID!.rawData,
       );
     }
 
@@ -121,6 +126,7 @@ extension RemoteIDEntityExtensions on RemoteIDEntity {
             authentication!.lastAuthenticationPageIndex,
         mAuthenticationLength: authentication!.authenticationLength,
         mTimestamp: authentication!.timestamp,
+        mRawData: authentication!.rawData,
       );
     }
 

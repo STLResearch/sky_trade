@@ -1,5 +1,3 @@
-import 'dart:typed_data' show Uint8List;
-
 import 'package:dartz/dartz.dart' show Function0, Function1;
 import 'package:sky_trade/core/utils/enums/networking.dart'
     show ConnectionState;
@@ -17,7 +15,6 @@ abstract interface class RemoteIDTransmitterRepository {
   void transmit({
     required List<RemoteIDEntity> remoteIDEntities,
     required DeviceEntity deviceEntity,
-    required Uint8List rawData,
   });
 
   void stopTransmitter();

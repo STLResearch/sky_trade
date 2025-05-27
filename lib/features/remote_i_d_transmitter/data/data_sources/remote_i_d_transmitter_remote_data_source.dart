@@ -1,8 +1,9 @@
-import 'dart:typed_data' show Uint8List;
-
 import 'package:dartz/dartz.dart' show Function0, Function1;
+import 'package:flutter_dotenv/flutter_dotenv.dart' show dotenv;
 import 'package:sky_trade/core/resources/strings/networking.dart'
     show remoteIDTransmissionEvent, remoteIDTransmissionResponseEvent;
+import 'package:sky_trade/core/resources/strings/secret_keys.dart'
+    show remoteIDTransmissionApiVersion;
 import 'package:sky_trade/core/utils/clients/network_client.dart'
     show SocketIOClient;
 import 'package:sky_trade/core/utils/enums/networking.dart'
@@ -22,7 +23,6 @@ abstract interface class RemoteIDTransmitterRemoteDataSource {
   void transmit({
     required List<RemoteIDEntity> remoteIDEntities,
     required DeviceEntity deviceEntity,
-    required Uint8List rawData,
   });
 
   void stopTransmitter();
@@ -51,7 +51,6 @@ final class RemoteIDTransmitterRemoteDataSourceImplementation
   void transmit({
     required List<RemoteIDEntity> remoteIDEntities,
     required DeviceEntity deviceEntity,
-    required Uint8List rawData,
   }) =>
       Future.forEach(
         List<RemoteIDEntity>.from(
@@ -63,7 +62,7 @@ final class RemoteIDTransmitterRemoteDataSourceImplementation
             remoteData: remoteIDEntity,
             isTest: false,
             device: deviceEntity,
-            rawData: rawData,
+            version: dotenv.env[remoteIDTransmissionApiVersion]!,
           ).toRemoteTransmissionModel().toJson(),
         ),
       );

@@ -1,5 +1,4 @@
 import 'dart:async' show StreamController, StreamSubscription;
-import 'dart:typed_data' show Uint8List;
 
 import 'package:bloc/bloc.dart' show Bloc, Emitter;
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -15,11 +14,9 @@ import 'package:sky_trade/features/remote_i_d_transmitter/domain/entities/remote
     show DeviceEntity;
 import 'package:sky_trade/features/remote_i_d_transmitter/domain/repositories/remote_i_d_transmitter_repository.dart';
 
-part 'remote_i_d_transmitter_event.dart';
-
-part 'remote_i_d_transmitter_state.dart';
-
 part 'remote_i_d_transmitter_bloc.freezed.dart';
+part 'remote_i_d_transmitter_event.dart';
+part 'remote_i_d_transmitter_state.dart';
 
 class RemoteIDTransmitterBloc
     extends Bloc<RemoteIDTransmitterEvent, RemoteIDTransmitterState> {
@@ -89,9 +86,6 @@ class RemoteIDTransmitterBloc
         _remoteIDTransmitterRepository.transmit(
           remoteIDEntities: remoteIDSetDeviceCoordinatesTuple.remoteIDEntities,
           deviceEntity: remoteIDSetDeviceCoordinatesTuple.deviceEntity,
-          rawData: Uint8List.fromList(
-            [],
-          ),
         );
       },
     );
