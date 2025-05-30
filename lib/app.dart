@@ -47,12 +47,13 @@ class _AppViewState extends State<AppView> {
 
   @override
   Widget build(BuildContext context) => MaterialApp(
-        locale: AppLocalizations.supportedLocales.first,
-        theme: lightTheme,
-        darkTheme: darkTheme,
-        themeMode: ThemeMode.light,
-        localizationsDelegates: AppLocalizations.localizationsDelegates,
-        supportedLocales: AppLocalizations.supportedLocales,
-        onGenerateRoute: routes,
+          locale: AppLocalizations.supportedLocales.first,
+          theme: lightTheme,
+          darkTheme: darkTheme,
+          themeMode: ThemeMode.light,
+          localizationsDelegates: AppLocalizations.localizationsDelegates,
+          supportedLocales: AppLocalizations.supportedLocales,
+          debugShowCheckedModeBanner: false,
+          onGenerateRoute: routes,
       );
 }
