@@ -76,6 +76,23 @@ final class LocationRepositoryImplementation
   @override
   Future<Either<LocationPermissionFailure, LocationPermissionEntity>>
       requestLocationPermission() async {
+    final currentPermission = await Geolocator.checkPermission();
+
+    // If permission is permanently denied, return failure
+    if (currentPermission == LocationPermission.deniedForever) {
+      return Left(LocationPermissionFailure());
+    }
+
+    // If permission is already granted, return success
+    if (currentPermission == LocationPermission.always ||
+        currentPermission == LocationPermission.whileInUse) {
+      return const Right(
+        LocationPermissionEntity(
+          granted: true,
+        ),
+      );
+    }
+
     final permissionResult = await Geolocator.requestPermission();
 
     return switch (permissionResult) {
@@ -93,5 +110,15 @@ final class LocationRepositoryImplementation
           LocationPermissionFailure(),
         ),
     };
+  }
+
+  @override
+  Future<void> openLocationSettings() async {
+    await Geolocator.openLocationSettings();
+  }
+
+  @override
+  Future<void> openAppSettings() async {
+    await Geolocator.openAppSettings();
   }
 }

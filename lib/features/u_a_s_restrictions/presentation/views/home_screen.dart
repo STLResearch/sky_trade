@@ -100,6 +100,7 @@ import 'package:sky_trade/features/u_a_s_restrictions/presentation/blocs/u_a_s_r
     show UASRestrictionsBloc, UASRestrictionsEvent, UASRestrictionsState;
 import 'package:sky_trade/features/u_a_s_restrictions/presentation/widgets/alert_snack_bar.dart';
 import 'package:sky_trade/features/u_a_s_restrictions/presentation/widgets/drones_indicator.dart';
+import 'package:sky_trade/features/u_a_s_restrictions/presentation/widgets/location_action_dialog.dart';
 import 'package:sky_trade/features/u_a_s_restrictions/presentation/widgets/map_overlay.dart'
     show MapOverlay;
 import 'package:sky_trade/features/u_a_s_restrictions/presentation/widgets/map_view.dart';
@@ -282,6 +283,68 @@ class _HomeViewState extends State<HomeView> {
       .add(
         const LocationServiceStatusEvent.stopListeningLocationServiceStatus(),
       );
+
+  void _showLocationPermissionRequestDialog(BuildContext context) {
+    LocationActionDialog.show(
+      context,
+      title: context.localize.locationAccessNeeded,
+      content: context.localize.skyTradeNeedsYourLocationToShowRelevantInvestmentZonesAroundYou,
+      allowButtonText: context.localize.allow,
+      onAllowPressed: () {
+        Navigator.of(context).pop();
+        context.read<LocationPermissionBloc>().add(
+          const LocationPermissionEvent.requestPermission(),
+        );
+      },
+
+      // title: context.localize.locationAccessRequired, // You'll need to add this localization
+      // content: context.localize.skyTradeNeedsLocationAccess, // You'll need to add this localization
+      // onActionDismissed: () {
+      //   Navigator.of(context).pop();
+      // },
+      // onActionConfirmed: () {
+      //   Navigator.of(context).pop();
+      //   // Request location permission
+      //   context.read<LocationPermissionBloc>().add(
+      //     const LocationPermissionEvent.requestPermission(),
+      //   );
+      // },
+    );
+  }
+
+  void _showLocationPermissionPermanentlyDeniedDialog(BuildContext context) {
+    LocationActionDialog.show(
+      context,
+      title: context.localize.enableLocationInSettings,
+      content: context.localize.youveDeniedLocationAccessPleaseEnableItInYourAppSettingsSoSkyTradeCanShowYouRelevantInvestmentZonesNearYou,
+      showAllowButton: false,
+      showSettingsButton: true,
+      settingsButtonText: context.localize.openSettings,
+      onSettingsPressed: () {
+        Navigator.of(context).pop();
+        context.read<LocationPermissionBloc>().add(
+          const LocationPermissionEvent.openAppSettings(),
+        );
+      },
+    );
+  }
+
+  void _showLocationServicesDisabledDialog(BuildContext context) {
+    LocationActionDialog.show(
+      context,
+      title: context.localize.turnOnLocationServices,
+      content: context.localize.skyTradeNeedsGpsToFindYourLocationAndShowYouRelevantInvestmentZonesAroundYouPleaseEnableItInYourDeviceSettings,
+      showAllowButton: false,
+      showSettingsButton: true,
+      settingsButtonText: context.localize.openSettings,
+      onSettingsPressed: () {
+        Navigator.of(context).pop();
+        context.read<LocationServiceStatusBloc>().add(
+          const LocationServiceStatusEvent.openLocationSettings(),
+        );
+      },
+    );
+  }
 
   @override
   void dispose() {
@@ -690,9 +753,25 @@ class _HomeViewState extends State<HomeView> {
                                         );
                                   }
                                 }
+                                else {
+                                  _showLocationServicesDisabledDialog(context);
+                                }
                               },
                             );
+                          } else {
+                            // Case 1: Location Permission Not Granted (Can Still Request)
+                            _showLocationPermissionRequestDialog(context);
                           }
+                        },
+                        cannotRequestPermission: (_) {
+                          // Case 2: Location Permission Permanently Denied
+                          _showLocationPermissionPermanentlyDeniedDialog(context);
+                        },
+                        initial: () {
+                          // First time - request permission
+                          context.read<LocationPermissionBloc>().add(
+                            const LocationPermissionEvent.requestPermission(),
+                          );
                         },
                       );
                     },

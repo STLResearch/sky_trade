@@ -1113,4 +1113,31 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get texasGarlandMurphyPlanoRichardsonMesquiteDallasRowlettColonyCollegeStationFloridaClermontNewPortRicheyValricoWinterHavenTampaBrandonRiverviewSeffnerArizonaPhoenixGlendalePeoriaArkansasFarmingtonBentonvilleRogersPeaRidgeVirginiaVirginiaBeachUtahLindonHerrimanNorthCarolinaRaeford =>
       'Texas: Garland, Murphy, Plano, Richardson, Mesquite, Dallas, Rowlett, Colony, College Station Florida: Clermont, New Port Richey, Valrico, Winter Haven, Tampa, Brandon, Riverview, Seffner Arizona: Phoenix, Glendale, Peoria Arkansas: Farmington, Bentonville, Rogers, Pea Ridge Virginia: Virginia Beach Utah: Lindon, Herriman North Carolina: Raeford';
+
+  @override
+  String get allow => 'Allow';
+
+  @override
+  String get openSettings => 'Open Settings';
+
+  @override
+  String get locationAccessNeeded => 'Location access needed';
+
+  @override
+  String get skyTradeNeedsYourLocationToShowRelevantInvestmentZonesAroundYou =>
+      'SkyTrade needs your location to show relevant investment zones around you';
+
+  @override
+  String get enableLocationInSettings => 'Enable location in settings';
+
+  @override
+  String get youveDeniedLocationAccessPleaseEnableItInYourAppSettingsSoSkyTradeCanShowYouRelevantInvestmentZonesNearYou =>
+      'You\'ve denied location access. Please enable it in your app settings so SkyTrade can show you relevant investment zones near you';
+
+  @override
+  String get turnOnLocationServices => 'Turn on location services';
+
+  @override
+  String get skyTradeNeedsGpsToFindYourLocationAndShowYouRelevantInvestmentZonesAroundYouPleaseEnableItInYourDeviceSettings =>
+      'SkyTrade needs GPS to find your location and show you relevant investment zones around you. Please enable it in your device settings';
 }

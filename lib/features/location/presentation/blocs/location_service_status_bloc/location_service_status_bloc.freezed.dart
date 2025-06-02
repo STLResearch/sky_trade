@@ -26,6 +26,7 @@ mixin _$LocationServiceStatusEvent {
             LocationServiceStatusFailure locationServiceStatusFailure)
         locationServiceStatusNotGotten,
     required TResult Function() stopListeningLocationServiceStatus,
+    required TResult Function() openLocationSettings,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -37,6 +38,7 @@ mixin _$LocationServiceStatusEvent {
             LocationServiceStatusFailure locationServiceStatusFailure)?
         locationServiceStatusNotGotten,
     TResult? Function()? stopListeningLocationServiceStatus,
+    TResult? Function()? openLocationSettings,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -47,6 +49,7 @@ mixin _$LocationServiceStatusEvent {
     TResult Function(LocationServiceStatusFailure locationServiceStatusFailure)?
         locationServiceStatusNotGotten,
     TResult Function()? stopListeningLocationServiceStatus,
+    TResult Function()? openLocationSettings,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -60,6 +63,7 @@ mixin _$LocationServiceStatusEvent {
         locationServiceStatusNotGotten,
     required TResult Function(_StopListeningLocationServiceStatus value)
         stopListeningLocationServiceStatus,
+    required TResult Function(_OpenLocationSettings value) openLocationSettings,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -72,6 +76,7 @@ mixin _$LocationServiceStatusEvent {
         locationServiceStatusNotGotten,
     TResult? Function(_StopListeningLocationServiceStatus value)?
         stopListeningLocationServiceStatus,
+    TResult? Function(_OpenLocationSettings value)? openLocationSettings,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -84,6 +89,7 @@ mixin _$LocationServiceStatusEvent {
         locationServiceStatusNotGotten,
     TResult Function(_StopListeningLocationServiceStatus value)?
         stopListeningLocationServiceStatus,
+    TResult Function(_OpenLocationSettings value)? openLocationSettings,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -166,6 +172,7 @@ class _$ListenLocationServiceStatusImpl
             LocationServiceStatusFailure locationServiceStatusFailure)
         locationServiceStatusNotGotten,
     required TResult Function() stopListeningLocationServiceStatus,
+    required TResult Function() openLocationSettings,
   }) {
     return listenLocationServiceStatus();
   }
@@ -180,6 +187,7 @@ class _$ListenLocationServiceStatusImpl
             LocationServiceStatusFailure locationServiceStatusFailure)?
         locationServiceStatusNotGotten,
     TResult? Function()? stopListeningLocationServiceStatus,
+    TResult? Function()? openLocationSettings,
   }) {
     return listenLocationServiceStatus?.call();
   }
@@ -193,6 +201,7 @@ class _$ListenLocationServiceStatusImpl
     TResult Function(LocationServiceStatusFailure locationServiceStatusFailure)?
         locationServiceStatusNotGotten,
     TResult Function()? stopListeningLocationServiceStatus,
+    TResult Function()? openLocationSettings,
     required TResult orElse(),
   }) {
     if (listenLocationServiceStatus != null) {
@@ -212,6 +221,7 @@ class _$ListenLocationServiceStatusImpl
         locationServiceStatusNotGotten,
     required TResult Function(_StopListeningLocationServiceStatus value)
         stopListeningLocationServiceStatus,
+    required TResult Function(_OpenLocationSettings value) openLocationSettings,
   }) {
     return listenLocationServiceStatus(this);
   }
@@ -227,6 +237,7 @@ class _$ListenLocationServiceStatusImpl
         locationServiceStatusNotGotten,
     TResult? Function(_StopListeningLocationServiceStatus value)?
         stopListeningLocationServiceStatus,
+    TResult? Function(_OpenLocationSettings value)? openLocationSettings,
   }) {
     return listenLocationServiceStatus?.call(this);
   }
@@ -242,6 +253,7 @@ class _$ListenLocationServiceStatusImpl
         locationServiceStatusNotGotten,
     TResult Function(_StopListeningLocationServiceStatus value)?
         stopListeningLocationServiceStatus,
+    TResult Function(_OpenLocationSettings value)? openLocationSettings,
     required TResult orElse(),
   }) {
     if (listenLocationServiceStatus != null) {
@@ -342,6 +354,7 @@ class _$LocationServiceStatusGottenImpl
             LocationServiceStatusFailure locationServiceStatusFailure)
         locationServiceStatusNotGotten,
     required TResult Function() stopListeningLocationServiceStatus,
+    required TResult Function() openLocationSettings,
   }) {
     return locationServiceStatusGotten(locationServiceStatusEntity);
   }
@@ -356,6 +369,7 @@ class _$LocationServiceStatusGottenImpl
             LocationServiceStatusFailure locationServiceStatusFailure)?
         locationServiceStatusNotGotten,
     TResult? Function()? stopListeningLocationServiceStatus,
+    TResult? Function()? openLocationSettings,
   }) {
     return locationServiceStatusGotten?.call(locationServiceStatusEntity);
   }
@@ -369,6 +383,7 @@ class _$LocationServiceStatusGottenImpl
     TResult Function(LocationServiceStatusFailure locationServiceStatusFailure)?
         locationServiceStatusNotGotten,
     TResult Function()? stopListeningLocationServiceStatus,
+    TResult Function()? openLocationSettings,
     required TResult orElse(),
   }) {
     if (locationServiceStatusGotten != null) {
@@ -388,6 +403,7 @@ class _$LocationServiceStatusGottenImpl
         locationServiceStatusNotGotten,
     required TResult Function(_StopListeningLocationServiceStatus value)
         stopListeningLocationServiceStatus,
+    required TResult Function(_OpenLocationSettings value) openLocationSettings,
   }) {
     return locationServiceStatusGotten(this);
   }
@@ -403,6 +419,7 @@ class _$LocationServiceStatusGottenImpl
         locationServiceStatusNotGotten,
     TResult? Function(_StopListeningLocationServiceStatus value)?
         stopListeningLocationServiceStatus,
+    TResult? Function(_OpenLocationSettings value)? openLocationSettings,
   }) {
     return locationServiceStatusGotten?.call(this);
   }
@@ -418,6 +435,7 @@ class _$LocationServiceStatusGottenImpl
         locationServiceStatusNotGotten,
     TResult Function(_StopListeningLocationServiceStatus value)?
         stopListeningLocationServiceStatus,
+    TResult Function(_OpenLocationSettings value)? openLocationSettings,
     required TResult orElse(),
   }) {
     if (locationServiceStatusGotten != null) {
@@ -528,6 +546,7 @@ class _$LocationServiceStatusNotGottenImpl
             LocationServiceStatusFailure locationServiceStatusFailure)
         locationServiceStatusNotGotten,
     required TResult Function() stopListeningLocationServiceStatus,
+    required TResult Function() openLocationSettings,
   }) {
     return locationServiceStatusNotGotten(locationServiceStatusFailure);
   }
@@ -542,6 +561,7 @@ class _$LocationServiceStatusNotGottenImpl
             LocationServiceStatusFailure locationServiceStatusFailure)?
         locationServiceStatusNotGotten,
     TResult? Function()? stopListeningLocationServiceStatus,
+    TResult? Function()? openLocationSettings,
   }) {
     return locationServiceStatusNotGotten?.call(locationServiceStatusFailure);
   }
@@ -555,6 +575,7 @@ class _$LocationServiceStatusNotGottenImpl
     TResult Function(LocationServiceStatusFailure locationServiceStatusFailure)?
         locationServiceStatusNotGotten,
     TResult Function()? stopListeningLocationServiceStatus,
+    TResult Function()? openLocationSettings,
     required TResult orElse(),
   }) {
     if (locationServiceStatusNotGotten != null) {
@@ -574,6 +595,7 @@ class _$LocationServiceStatusNotGottenImpl
         locationServiceStatusNotGotten,
     required TResult Function(_StopListeningLocationServiceStatus value)
         stopListeningLocationServiceStatus,
+    required TResult Function(_OpenLocationSettings value) openLocationSettings,
   }) {
     return locationServiceStatusNotGotten(this);
   }
@@ -589,6 +611,7 @@ class _$LocationServiceStatusNotGottenImpl
         locationServiceStatusNotGotten,
     TResult? Function(_StopListeningLocationServiceStatus value)?
         stopListeningLocationServiceStatus,
+    TResult? Function(_OpenLocationSettings value)? openLocationSettings,
   }) {
     return locationServiceStatusNotGotten?.call(this);
   }
@@ -604,6 +627,7 @@ class _$LocationServiceStatusNotGottenImpl
         locationServiceStatusNotGotten,
     TResult Function(_StopListeningLocationServiceStatus value)?
         stopListeningLocationServiceStatus,
+    TResult Function(_OpenLocationSettings value)? openLocationSettings,
     required TResult orElse(),
   }) {
     if (locationServiceStatusNotGotten != null) {
@@ -683,6 +707,7 @@ class _$StopListeningLocationServiceStatusImpl
             LocationServiceStatusFailure locationServiceStatusFailure)
         locationServiceStatusNotGotten,
     required TResult Function() stopListeningLocationServiceStatus,
+    required TResult Function() openLocationSettings,
   }) {
     return stopListeningLocationServiceStatus();
   }
@@ -697,6 +722,7 @@ class _$StopListeningLocationServiceStatusImpl
             LocationServiceStatusFailure locationServiceStatusFailure)?
         locationServiceStatusNotGotten,
     TResult? Function()? stopListeningLocationServiceStatus,
+    TResult? Function()? openLocationSettings,
   }) {
     return stopListeningLocationServiceStatus?.call();
   }
@@ -710,6 +736,7 @@ class _$StopListeningLocationServiceStatusImpl
     TResult Function(LocationServiceStatusFailure locationServiceStatusFailure)?
         locationServiceStatusNotGotten,
     TResult Function()? stopListeningLocationServiceStatus,
+    TResult Function()? openLocationSettings,
     required TResult orElse(),
   }) {
     if (stopListeningLocationServiceStatus != null) {
@@ -729,6 +756,7 @@ class _$StopListeningLocationServiceStatusImpl
         locationServiceStatusNotGotten,
     required TResult Function(_StopListeningLocationServiceStatus value)
         stopListeningLocationServiceStatus,
+    required TResult Function(_OpenLocationSettings value) openLocationSettings,
   }) {
     return stopListeningLocationServiceStatus(this);
   }
@@ -744,6 +772,7 @@ class _$StopListeningLocationServiceStatusImpl
         locationServiceStatusNotGotten,
     TResult? Function(_StopListeningLocationServiceStatus value)?
         stopListeningLocationServiceStatus,
+    TResult? Function(_OpenLocationSettings value)? openLocationSettings,
   }) {
     return stopListeningLocationServiceStatus?.call(this);
   }
@@ -759,6 +788,7 @@ class _$StopListeningLocationServiceStatusImpl
         locationServiceStatusNotGotten,
     TResult Function(_StopListeningLocationServiceStatus value)?
         stopListeningLocationServiceStatus,
+    TResult Function(_OpenLocationSettings value)? openLocationSettings,
     required TResult orElse(),
   }) {
     if (stopListeningLocationServiceStatus != null) {
@@ -772,6 +802,152 @@ abstract class _StopListeningLocationServiceStatus
     implements LocationServiceStatusEvent {
   const factory _StopListeningLocationServiceStatus() =
       _$StopListeningLocationServiceStatusImpl;
+}
+
+/// @nodoc
+abstract class _$$OpenLocationSettingsImplCopyWith<$Res> {
+  factory _$$OpenLocationSettingsImplCopyWith(_$OpenLocationSettingsImpl value,
+          $Res Function(_$OpenLocationSettingsImpl) then) =
+      __$$OpenLocationSettingsImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$OpenLocationSettingsImplCopyWithImpl<$Res>
+    extends _$LocationServiceStatusEventCopyWithImpl<$Res,
+        _$OpenLocationSettingsImpl>
+    implements _$$OpenLocationSettingsImplCopyWith<$Res> {
+  __$$OpenLocationSettingsImplCopyWithImpl(_$OpenLocationSettingsImpl _value,
+      $Res Function(_$OpenLocationSettingsImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of LocationServiceStatusEvent
+  /// with the given fields replaced by the non-null parameter values.
+}
+
+/// @nodoc
+
+class _$OpenLocationSettingsImpl implements _OpenLocationSettings {
+  const _$OpenLocationSettingsImpl();
+
+  @override
+  String toString() {
+    return 'LocationServiceStatusEvent.openLocationSettings()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$OpenLocationSettingsImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() listenLocationServiceStatus,
+    required TResult Function(
+            LocationServiceStatusEntity locationServiceStatusEntity)
+        locationServiceStatusGotten,
+    required TResult Function(
+            LocationServiceStatusFailure locationServiceStatusFailure)
+        locationServiceStatusNotGotten,
+    required TResult Function() stopListeningLocationServiceStatus,
+    required TResult Function() openLocationSettings,
+  }) {
+    return openLocationSettings();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? listenLocationServiceStatus,
+    TResult? Function(LocationServiceStatusEntity locationServiceStatusEntity)?
+        locationServiceStatusGotten,
+    TResult? Function(
+            LocationServiceStatusFailure locationServiceStatusFailure)?
+        locationServiceStatusNotGotten,
+    TResult? Function()? stopListeningLocationServiceStatus,
+    TResult? Function()? openLocationSettings,
+  }) {
+    return openLocationSettings?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? listenLocationServiceStatus,
+    TResult Function(LocationServiceStatusEntity locationServiceStatusEntity)?
+        locationServiceStatusGotten,
+    TResult Function(LocationServiceStatusFailure locationServiceStatusFailure)?
+        locationServiceStatusNotGotten,
+    TResult Function()? stopListeningLocationServiceStatus,
+    TResult Function()? openLocationSettings,
+    required TResult orElse(),
+  }) {
+    if (openLocationSettings != null) {
+      return openLocationSettings();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_ListenLocationServiceStatus value)
+        listenLocationServiceStatus,
+    required TResult Function(_LocationServiceStatusGotten value)
+        locationServiceStatusGotten,
+    required TResult Function(_LocationServiceStatusNotGotten value)
+        locationServiceStatusNotGotten,
+    required TResult Function(_StopListeningLocationServiceStatus value)
+        stopListeningLocationServiceStatus,
+    required TResult Function(_OpenLocationSettings value) openLocationSettings,
+  }) {
+    return openLocationSettings(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_ListenLocationServiceStatus value)?
+        listenLocationServiceStatus,
+    TResult? Function(_LocationServiceStatusGotten value)?
+        locationServiceStatusGotten,
+    TResult? Function(_LocationServiceStatusNotGotten value)?
+        locationServiceStatusNotGotten,
+    TResult? Function(_StopListeningLocationServiceStatus value)?
+        stopListeningLocationServiceStatus,
+    TResult? Function(_OpenLocationSettings value)? openLocationSettings,
+  }) {
+    return openLocationSettings?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_ListenLocationServiceStatus value)?
+        listenLocationServiceStatus,
+    TResult Function(_LocationServiceStatusGotten value)?
+        locationServiceStatusGotten,
+    TResult Function(_LocationServiceStatusNotGotten value)?
+        locationServiceStatusNotGotten,
+    TResult Function(_StopListeningLocationServiceStatus value)?
+        stopListeningLocationServiceStatus,
+    TResult Function(_OpenLocationSettings value)? openLocationSettings,
+    required TResult orElse(),
+  }) {
+    if (openLocationSettings != null) {
+      return openLocationSettings(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _OpenLocationSettings implements LocationServiceStatusEvent {
+  const factory _OpenLocationSettings() = _$OpenLocationSettingsImpl;
 }
 
 /// @nodoc

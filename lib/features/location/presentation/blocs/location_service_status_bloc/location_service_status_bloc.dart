@@ -38,6 +38,10 @@ class LocationServiceStatusBloc
     on<_StopListeningLocationServiceStatus>(
       _stopListeningLocationServiceStatus,
     );
+
+    on<_OpenLocationSettings>(
+      _openLocationSettings,
+    );
   }
 
   @override
@@ -131,6 +135,13 @@ class LocationServiceStatusBloc
     emit(
       const LocationServiceStatusState.initial(),
     );
+  }
+
+  Future<void> _openLocationSettings(
+      _OpenLocationSettings event,
+      Emitter<LocationServiceStatusState> emit,
+      ) async {
+    await _locationRepository.openLocationSettings();
   }
 
   Future<void> _cleanupStreamSubscription() async {

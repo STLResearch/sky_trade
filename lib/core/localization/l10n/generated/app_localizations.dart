@@ -2131,6 +2131,56 @@ abstract class AppLocalizations {
   /// **'Texas: Garland, Murphy, Plano, Richardson, Mesquite, Dallas, Rowlett, Colony, College Station Florida: Clermont, New Port Richey, Valrico, Winter Haven, Tampa, Brandon, Riverview, Seffner Arizona: Phoenix, Glendale, Peoria Arkansas: Farmington, Bentonville, Rogers, Pea Ridge Virginia: Virginia Beach Utah: Lindon, Herriman North Carolina: Raeford'**
   String
       get texasGarlandMurphyPlanoRichardsonMesquiteDallasRowlettColonyCollegeStationFloridaClermontNewPortRicheyValricoWinterHavenTampaBrandonRiverviewSeffnerArizonaPhoenixGlendalePeoriaArkansasFarmingtonBentonvilleRogersPeaRidgeVirginiaVirginiaBeachUtahLindonHerrimanNorthCarolinaRaeford;
+
+  /// No description provided for @allow.
+  ///
+  /// In en, this message translates to:
+  /// **'Allow'**
+  String get allow;
+
+  /// No description provided for @openSettings.
+  ///
+  /// In en, this message translates to:
+  /// **'Open Settings'**
+  String get openSettings;
+
+  /// No description provided for @locationAccessNeeded.
+  ///
+  /// In en, this message translates to:
+  /// **'Location access needed'**
+  String get locationAccessNeeded;
+
+  /// No description provided for @skyTradeNeedsYourLocationToShowRelevantInvestmentZonesAroundYou.
+  ///
+  /// In en, this message translates to:
+  /// **'SkyTrade needs your location to show relevant investment zones around you'**
+  String get skyTradeNeedsYourLocationToShowRelevantInvestmentZonesAroundYou;
+
+  /// No description provided for @enableLocationInSettings.
+  ///
+  /// In en, this message translates to:
+  /// **'Enable location in settings'**
+  String get enableLocationInSettings;
+
+  /// No description provided for @youveDeniedLocationAccessPleaseEnableItInYourAppSettingsSoSkyTradeCanShowYouRelevantInvestmentZonesNearYou.
+  ///
+  /// In en, this message translates to:
+  /// **'You\'ve denied location access. Please enable it in your app settings so SkyTrade can show you relevant investment zones near you'**
+  String
+      get youveDeniedLocationAccessPleaseEnableItInYourAppSettingsSoSkyTradeCanShowYouRelevantInvestmentZonesNearYou;
+
+  /// No description provided for @turnOnLocationServices.
+  ///
+  /// In en, this message translates to:
+  /// **'Turn on location services'**
+  String get turnOnLocationServices;
+
+  /// No description provided for @skyTradeNeedsGpsToFindYourLocationAndShowYouRelevantInvestmentZonesAroundYouPleaseEnableItInYourDeviceSettings.
+  ///
+  /// In en, this message translates to:
+  /// **'SkyTrade needs GPS to find your location and show you relevant investment zones around you. Please enable it in your device settings'**
+  String
+      get skyTradeNeedsGpsToFindYourLocationAndShowYouRelevantInvestmentZonesAroundYouPleaseEnableItInYourDeviceSettings;
 }
 
 class _AppLocalizationsDelegate

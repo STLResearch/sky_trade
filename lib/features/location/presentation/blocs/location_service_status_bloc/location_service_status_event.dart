@@ -17,4 +17,7 @@ class LocationServiceStatusEvent with _$LocationServiceStatusEvent {
 
   const factory LocationServiceStatusEvent.stopListeningLocationServiceStatus() =
       _StopListeningLocationServiceStatus;
+
+  const factory LocationServiceStatusEvent.openLocationSettings() =
+  _OpenLocationSettings;
 }

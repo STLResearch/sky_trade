@@ -19,32 +19,38 @@ mixin _$LocationPermissionEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() requestPermission,
+    required TResult Function() openAppSettings,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? requestPermission,
+    TResult? Function()? openAppSettings,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? requestPermission,
+    TResult Function()? openAppSettings,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_RequestPermission value) requestPermission,
+    required TResult Function(_OpenAppSettings value) openAppSettings,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_RequestPermission value)? requestPermission,
+    TResult? Function(_OpenAppSettings value)? openAppSettings,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_RequestPermission value)? requestPermission,
+    TResult Function(_OpenAppSettings value)? openAppSettings,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -114,6 +120,7 @@ class _$RequestPermissionImpl implements _RequestPermission {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() requestPermission,
+    required TResult Function() openAppSettings,
   }) {
     return requestPermission();
   }
@@ -122,6 +129,7 @@ class _$RequestPermissionImpl implements _RequestPermission {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? requestPermission,
+    TResult? Function()? openAppSettings,
   }) {
     return requestPermission?.call();
   }
@@ -130,6 +138,7 @@ class _$RequestPermissionImpl implements _RequestPermission {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? requestPermission,
+    TResult Function()? openAppSettings,
     required TResult orElse(),
   }) {
     if (requestPermission != null) {
@@ -142,6 +151,7 @@ class _$RequestPermissionImpl implements _RequestPermission {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_RequestPermission value) requestPermission,
+    required TResult Function(_OpenAppSettings value) openAppSettings,
   }) {
     return requestPermission(this);
   }
@@ -150,6 +160,7 @@ class _$RequestPermissionImpl implements _RequestPermission {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_RequestPermission value)? requestPermission,
+    TResult? Function(_OpenAppSettings value)? openAppSettings,
   }) {
     return requestPermission?.call(this);
   }
@@ -158,6 +169,7 @@ class _$RequestPermissionImpl implements _RequestPermission {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_RequestPermission value)? requestPermission,
+    TResult Function(_OpenAppSettings value)? openAppSettings,
     required TResult orElse(),
   }) {
     if (requestPermission != null) {
@@ -169,6 +181,111 @@ class _$RequestPermissionImpl implements _RequestPermission {
 
 abstract class _RequestPermission implements LocationPermissionEvent {
   const factory _RequestPermission() = _$RequestPermissionImpl;
+}
+
+/// @nodoc
+abstract class _$$OpenAppSettingsImplCopyWith<$Res> {
+  factory _$$OpenAppSettingsImplCopyWith(_$OpenAppSettingsImpl value,
+          $Res Function(_$OpenAppSettingsImpl) then) =
+      __$$OpenAppSettingsImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$OpenAppSettingsImplCopyWithImpl<$Res>
+    extends _$LocationPermissionEventCopyWithImpl<$Res, _$OpenAppSettingsImpl>
+    implements _$$OpenAppSettingsImplCopyWith<$Res> {
+  __$$OpenAppSettingsImplCopyWithImpl(
+      _$OpenAppSettingsImpl _value, $Res Function(_$OpenAppSettingsImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of LocationPermissionEvent
+  /// with the given fields replaced by the non-null parameter values.
+}
+
+/// @nodoc
+
+class _$OpenAppSettingsImpl implements _OpenAppSettings {
+  const _$OpenAppSettingsImpl();
+
+  @override
+  String toString() {
+    return 'LocationPermissionEvent.openAppSettings()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$OpenAppSettingsImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() requestPermission,
+    required TResult Function() openAppSettings,
+  }) {
+    return openAppSettings();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? requestPermission,
+    TResult? Function()? openAppSettings,
+  }) {
+    return openAppSettings?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? requestPermission,
+    TResult Function()? openAppSettings,
+    required TResult orElse(),
+  }) {
+    if (openAppSettings != null) {
+      return openAppSettings();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_RequestPermission value) requestPermission,
+    required TResult Function(_OpenAppSettings value) openAppSettings,
+  }) {
+    return openAppSettings(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_RequestPermission value)? requestPermission,
+    TResult? Function(_OpenAppSettings value)? openAppSettings,
+  }) {
+    return openAppSettings?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_RequestPermission value)? requestPermission,
+    TResult Function(_OpenAppSettings value)? openAppSettings,
+    required TResult orElse(),
+  }) {
+    if (openAppSettings != null) {
+      return openAppSettings(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _OpenAppSettings implements LocationPermissionEvent {
+  const factory _OpenAppSettings() = _$OpenAppSettingsImpl;
 }
 
 /// @nodoc
