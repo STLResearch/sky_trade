@@ -21,7 +21,8 @@ import 'package:flutter/material.dart'
         StatelessWidget,
         ValueListenableBuilder,
         ValueNotifier,
-        Widget;
+        Widget,
+        showModalBottomSheet;
 import 'package:flutter_bloc/flutter_bloc.dart'
     show
         BlocListener,
@@ -88,6 +89,9 @@ import 'package:sky_trade/features/remote_i_d_receiver/presentation/blocs/networ
         NetworkRemoteIDReceiverState;
 import 'package:sky_trade/features/remote_i_d_transmitter/presentation/blocs/remote_i_d_transmitter_bloc/remote_i_d_transmitter_bloc.dart'
     show RemoteIDTransmitterBloc, RemoteIDTransmitterEvent;
+import 'package:sky_trade/features/rewards/presentation/blocs/drone_rush_zones_bloc/drone_rush_zones_bloc.dart'
+    show DroneRushZonesBloc, DroneRushZonesEvent, DroneRushZonesState;
+import 'package:sky_trade/features/rewards/presentation/widgets/event_details.dart';
 import 'package:sky_trade/features/search_autocomplete/presentation/blocs/retrieve_geometric_coordinates_bloc/retrieve_geometric_coordinates_bloc.dart'
     show RetrieveGeometricCoordinatesBloc, RetrieveGeometricCoordinatesState;
 import 'package:sky_trade/features/u_a_s_restrictions/domain/entities/restriction_entity.dart'
@@ -152,6 +156,9 @@ class HomeScreen extends StatelessWidget {
           BlocProvider<RetrieveGeometricCoordinatesBloc>(
             create: (_) => serviceLocator(),
           ),
+          BlocProvider<DroneRushZonesBloc>(
+            create: (_) => serviceLocator(),
+          ),
         ],
         child: const HomeView(),
       );
@@ -179,6 +186,12 @@ class _HomeViewState extends State<HomeView> {
 
   String? _currentlySelectedRestrictionFeatureId;
   String? _currentlySelectedRestrictionSourceId;
+
+  late final ValueNotifier<
+      ({
+        List<String> list,
+        int index,
+      })> _droneRushZonesIdsAndIndexNotifier;
 
   @override
   void initState() {
@@ -212,7 +225,22 @@ class _HomeViewState extends State<HomeView> {
 
     _previousBridDronesCount = zero;
 
+    _droneRushZonesIdsAndIndexNotifier = ValueNotifier<
+        ({
+          List<String> list,
+          int index,
+        })>(
+      (
+        list: List.empty(
+          growable: true,
+        ),
+        index: zero,
+      ),
+    );
+
     _startTransmitter();
+
+    _listenDroneRushZones();
 
     _listenNetworkRemoteIDs();
 
@@ -223,6 +251,10 @@ class _HomeViewState extends State<HomeView> {
 
   void _startTransmitter() => context.read<RemoteIDTransmitterBloc>().add(
         const RemoteIDTransmitterEvent.startTransmitter(),
+      );
+
+  void _listenDroneRushZones() => context.read<DroneRushZonesBloc>().add(
+        const DroneRushZonesEvent.listenDroneRushZones(),
       );
 
   void _listenNetworkRemoteIDs() =>
@@ -257,6 +289,7 @@ class _HomeViewState extends State<HomeView> {
     _centerLocationNotifier.dispose();
     _newBridDronesCountNotifier.dispose();
     _mapStyleNotifier.dispose();
+    _droneRushZonesIdsAndIndexNotifier.dispose();
 
     super.dispose();
   }
@@ -500,6 +533,23 @@ class _HomeViewState extends State<HomeView> {
               );
             },
           ),
+          BlocListener<DroneRushZonesBloc, DroneRushZonesState>(
+            listener: (_, droneRushZonesState) {
+              droneRushZonesState.whenOrNull(
+                gotOngoingDroneRushZones: (droneRushZoneEntities) {
+                  _mapboxMap?.addOrUpdateDroneRushZonesOnMap(
+                    droneRushZoneEntities: droneRushZoneEntities,
+                  );
+                },
+                noLatestDroneRushZone: () {
+                  _mapboxMap?.maybeRemoveDroneRushZonesFromMap();
+                },
+                noOngoingDroneRushZone: () {
+                  _mapboxMap?.maybeRemoveDroneRushZonesFromMap();
+                },
+              );
+            },
+          ),
         ],
         child: Scaffold(
           resizeToAvoidBottomInset: false,
@@ -509,7 +559,23 @@ class _HomeViewState extends State<HomeView> {
               MapView(
                 mapStyleUri: dotenv.env[mapboxMapsDarkStyleUri]!,
                 onTap: (mapContentGestureContext) async {
-                  if (_restrictionLayerIds.isEmpty || _mapboxMap == null) {
+                  if (_mapboxMap == null) {
+                    return;
+                  }
+
+                  _centerLocationNotifier.value = false;
+
+                  await _mapboxMap!.handleDroneRushZoneTapUsing(
+                    touchPosition: mapContentGestureContext.touchPosition,
+                    previousDroneRushZonesIdsAndIndexNotifier:
+                        _droneRushZonesIdsAndIndexNotifier,
+                    onTap: (_) => showModalBottomSheet<void>(
+                      context: context,
+                      builder: (_) => const EventDetails(),
+                    ),
+                  );
+
+                  if (_restrictionLayerIds.isEmpty) {
                     return;
                   }
 

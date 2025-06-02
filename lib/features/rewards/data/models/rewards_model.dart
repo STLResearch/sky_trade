@@ -1,24 +1,19 @@
-import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:json_annotation/json_annotation.dart';
 import 'package:sky_trade/core/resources/strings/networking.dart'
     show
-        avgKey,
         blockchainAddressKey,
         boundingBoxKey,
         completedKey,
         countKey,
         createdAtKey,
         currentPeriodPointsKey,
-        descriptionKey,
-        emailKey,
         endDateKey,
         endTimeKey,
         idKey,
         latitudeKey,
         longitudeKey,
-        maxKey,
         maxLatitudeKey,
         maxLongitudeKey,
-        minKey,
         minLatitudeKey,
         minLongitudeKey,
         pageKey,
@@ -31,60 +26,36 @@ import 'package:sky_trade/core/resources/strings/networking.dart'
         radiusKey,
         referralCodeKey,
         rewardCountKey,
-        rewardIdKey,
-        rewardsKey,
         startDateKey,
         startTimeKey,
         statsKey,
         sumKey,
-        taskTypeKey,
         titleKey,
         totalCountKey,
         totalPointsKey,
-        updateAtKey,
-        userIdKey;
+        updateAtKey;
 import 'package:sky_trade/core/utils/converters/date_time_converter.dart'
     show StringDateTimeConverter;
-import 'package:sky_trade/features/rewards/domain/entities/rewards_entity.dart'
-    show
-        AvgEntity,
-        BoundingBoxEntity,
-        CountEntity,
-        CurrentPeriodPointsEntity,
-        DailyQuestEntity,
-        DroneRushZoneEntity,
-        LeaderboardInfoEntity,
-        LeaderboardPositionEntity,
-        MaxEntity,
-        MinEntity,
-        QuestLocationEntity,
-        RewardInfoEntity,
-        RewardsEntity,
-        StatsEntity,
-        SumEntity;
+import 'package:sky_trade/core/utils/enums/networking.dart' show QuestType;
+import 'package:sky_trade/features/rewards/domain/entities/rewards_entity.dart';
 
 part 'rewards_model.g.dart';
 
 @JsonSerializable()
-final class RewardInfoModel extends RewardInfoEntity {
-  const RewardInfoModel({
+final class RewardPointsModel extends RewardPointsEntity {
+  const RewardPointsModel({
     required this.mStats,
-    required this.mRewards,
   }) : super(
           stats: mStats,
-          rewards: mRewards,
         );
 
-  factory RewardInfoModel.fromJson(Map<String, dynamic> json) =>
-      _$RewardInfoModelFromJson(json);
+  factory RewardPointsModel.fromJson(Map<String, dynamic> json) =>
+      _$RewardPointsModelFromJson(json);
 
   @JsonKey(name: statsKey)
   final StatsModel mStats;
 
-  @JsonKey(name: rewardsKey)
-  final List<RewardsModel> mRewards;
-
-  Map<String, dynamic> toJson() => _$RewardInfoModelToJson(this);
+  Map<String, dynamic> toJson() => _$RewardPointsModelToJson(this);
 }
 
 @JsonSerializable()
@@ -92,15 +63,9 @@ final class StatsModel extends StatsEntity {
   const StatsModel({
     required this.mCount,
     required this.mSum,
-    required this.mAvg,
-    required this.mMin,
-    required this.mMax,
   }) : super(
           count: mCount,
           sum: mSum,
-          avg: mAvg,
-          min: mMin,
-          max: mMax,
         );
 
   factory StatsModel.fromJson(Map<String, dynamic> json) =>
@@ -111,15 +76,6 @@ final class StatsModel extends StatsEntity {
 
   @JsonKey(name: sumKey)
   final SumModel mSum;
-
-  @JsonKey(name: avgKey)
-  final AvgModel mAvg;
-
-  @JsonKey(name: minKey)
-  final MinModel mMin;
-
-  @JsonKey(name: maxKey)
-  final MaxModel mMax;
 
   Map<String, dynamic> toJson() => _$StatsModelToJson(this);
 }
@@ -159,118 +115,8 @@ final class SumModel extends SumEntity {
 }
 
 @JsonSerializable()
-final class AvgModel extends AvgEntity {
-  const AvgModel({
-    required this.mPoint,
-  }) : super(
-          point: mPoint,
-        );
-
-  factory AvgModel.fromJson(Map<String, dynamic> json) =>
-      _$AvgModelFromJson(json);
-
-  @JsonKey(name: pointKey)
-  final num? mPoint;
-
-  Map<String, dynamic> toJson() => _$AvgModelToJson(this);
-}
-
-@JsonSerializable()
-final class MinModel extends MinEntity {
-  const MinModel({
-    required this.mPoint,
-  }) : super(
-          point: mPoint,
-        );
-
-  factory MinModel.fromJson(Map<String, dynamic> json) =>
-      _$MinModelFromJson(json);
-
-  @JsonKey(name: pointKey)
-  final num? mPoint;
-
-  Map<String, dynamic> toJson() => _$MinModelToJson(this);
-}
-
-@JsonSerializable()
-final class MaxModel extends MaxEntity {
-  const MaxModel({
-    required this.mPoint,
-  }) : super(
-          point: mPoint,
-        );
-
-  factory MaxModel.fromJson(Map<String, dynamic> json) =>
-      _$MaxModelFromJson(json);
-
-  @JsonKey(name: pointKey)
-  final num? mPoint;
-
-  Map<String, dynamic> toJson() => _$MaxModelToJson(this);
-}
-
-@JsonSerializable()
-final class RewardsModel extends RewardsEntity {
-  const RewardsModel({
-    required this.mId,
-    required this.mRewardId,
-    required this.mEmail,
-    required this.mUserId,
-    required this.mDescription,
-    required this.mTaskType,
-    required this.mPoint,
-    required this.mCreatedAt,
-    required this.mUpdateAt,
-  }) : super(
-          id: mId,
-          rewardId: mRewardId,
-          email: mEmail,
-          userId: mUserId,
-          description: mDescription,
-          taskType: mTaskType,
-          point: mPoint,
-          createdAt: mCreatedAt,
-          updateAt: mUpdateAt,
-        );
-
-  factory RewardsModel.fromJson(Map<String, dynamic> json) =>
-      _$RewardsModelFromJson(json);
-
-  @JsonKey(name: idKey)
-  final String mId;
-
-  @JsonKey(name: rewardIdKey)
-  final String mRewardId;
-
-  @JsonKey(name: emailKey)
-  final String mEmail;
-
-  @JsonKey(name: userIdKey)
-  final String mUserId;
-
-  @JsonKey(name: descriptionKey)
-  final String? mDescription;
-
-  @JsonKey(name: taskTypeKey)
-  final String mTaskType;
-
-  @JsonKey(name: pointKey)
-  final int? mPoint;
-
-  @JsonKey(name: createdAtKey)
-  @StringDateTimeConverter()
-  final DateTime mCreatedAt;
-
-  @JsonKey(name: updateAtKey)
-  @StringDateTimeConverter()
-  final DateTime mUpdateAt;
-
-  Map<String, dynamic> toJson() => _$RewardsModelToJson(this);
-}
-
-@JsonSerializable()
-final class DailyQuestModel extends DailyQuestEntity {
-  const DailyQuestModel({
+final class QuestModel extends QuestEntity {
+  const QuestModel({
     required this.mId,
     required this.mCreatedAt,
     required this.mUpdateAt,
@@ -292,8 +138,8 @@ final class DailyQuestModel extends DailyQuestEntity {
           completed: mCompleted,
         );
 
-  factory DailyQuestModel.fromJson(Map<String, dynamic> json) =>
-      _$DailyQuestModelFromJson(json);
+  factory QuestModel.fromJson(Map<String, dynamic> json) =>
+      _$QuestModelFromJson(json);
 
   @JsonKey(name: idKey)
   final String mId;
@@ -317,7 +163,7 @@ final class DailyQuestModel extends DailyQuestEntity {
   final DateTime mQuestDate;
 
   @JsonKey(name: questTypeKey)
-  final String mQuestType;
+  final QuestType mQuestType;
 
   @JsonKey(name: questLocationKey)
   final QuestLocationModel? mQuestLocation;
@@ -325,7 +171,7 @@ final class DailyQuestModel extends DailyQuestEntity {
   @JsonKey(name: completedKey)
   final bool mCompleted;
 
-  Map<String, dynamic> toJson() => _$DailyQuestModelToJson(this);
+  Map<String, dynamic> toJson() => _$QuestModelToJson(this);
 }
 
 @JsonSerializable()
@@ -356,72 +202,6 @@ final class QuestLocationModel extends QuestLocationEntity {
 }
 
 @JsonSerializable()
-final class LeaderboardInfoModel extends LeaderboardInfoEntity {
-  const LeaderboardInfoModel({
-    required this.mStartDate,
-    required this.mEndDate,
-    required this.mCurrentPeriodPoints,
-    required this.mTotalCount,
-  }) : super(
-          startDate: mStartDate,
-          endDate: mEndDate,
-          currentPeriodPoints: mCurrentPeriodPoints,
-          totalCount: mTotalCount,
-        );
-
-  factory LeaderboardInfoModel.fromJson(Map<String, dynamic> json) =>
-      _$LeaderboardInfoModelFromJson(json);
-
-  @JsonKey(name: startDateKey)
-  @StringDateTimeConverter()
-  final DateTime mStartDate;
-
-  @JsonKey(name: endDateKey)
-  @StringDateTimeConverter()
-  final DateTime mEndDate;
-
-  @JsonKey(name: currentPeriodPointsKey)
-  final List<CurrentPeriodPointsModel> mCurrentPeriodPoints;
-
-  @JsonKey(name: totalCountKey)
-  final int mTotalCount;
-
-  Map<String, dynamic> toJson() => _$LeaderboardInfoModelToJson(this);
-}
-
-@JsonSerializable()
-final class CurrentPeriodPointsModel extends CurrentPeriodPointsEntity {
-  const CurrentPeriodPointsModel({
-    required this.mReferralCode,
-    required this.mTotalPoints,
-    required this.mRewardCount,
-    required this.mBlockchainAddress,
-  }) : super(
-          referralCode: mReferralCode,
-          totalPoints: mTotalPoints,
-          rewardCount: mRewardCount,
-          blockchainAddress: mBlockchainAddress,
-        );
-
-  factory CurrentPeriodPointsModel.fromJson(Map<String, dynamic> json) =>
-      _$CurrentPeriodPointsModelFromJson(json);
-
-  @JsonKey(name: referralCodeKey)
-  final String mReferralCode;
-
-  @JsonKey(name: totalPointsKey)
-  final int mTotalPoints;
-
-  @JsonKey(name: rewardCountKey)
-  final int mRewardCount;
-
-  @JsonKey(name: blockchainAddressKey)
-  final String mBlockchainAddress;
-
-  Map<String, dynamic> toJson() => _$CurrentPeriodPointsModelToJson(this);
-}
-
-@JsonSerializable()
 final class LeaderboardPositionModel extends LeaderboardPositionEntity {
   const LeaderboardPositionModel({
     required this.mPosition,
@@ -437,15 +217,81 @@ final class LeaderboardPositionModel extends LeaderboardPositionEntity {
       _$LeaderboardPositionModelFromJson(json);
 
   @JsonKey(name: positionKey)
-  final int mPosition;
+  final int? mPosition;
 
   @JsonKey(name: totalCountKey)
   final int mTotalCount;
 
   @JsonKey(name: pageKey)
-  final int mPage;
+  final int? mPage;
 
   Map<String, dynamic> toJson() => _$LeaderboardPositionModelToJson(this);
+}
+
+@JsonSerializable()
+final class LeaderboardStatisticsModel extends LeaderboardStatisticsEntity {
+  const LeaderboardStatisticsModel({
+    required this.mStartDate,
+    required this.mEndDate,
+    required this.mCurrentPeriodPoints,
+    required this.mTotalCount,
+  }) : super(
+          startDate: mStartDate,
+          endDate: mEndDate,
+          currentPeriodPoints: mCurrentPeriodPoints,
+          totalCount: mTotalCount,
+        );
+
+  factory LeaderboardStatisticsModel.fromJson(Map<String, dynamic> json) =>
+      _$LeaderboardStatisticsModelFromJson(json);
+
+  @JsonKey(name: startDateKey)
+  @StringDateTimeConverter()
+  final DateTime mStartDate;
+
+  @JsonKey(name: endDateKey)
+  @StringDateTimeConverter()
+  final DateTime mEndDate;
+
+  @JsonKey(name: currentPeriodPointsKey)
+  final List<PeriodPointModel> mCurrentPeriodPoints;
+
+  @JsonKey(name: totalCountKey)
+  final int mTotalCount;
+
+  Map<String, dynamic> toJson() => _$LeaderboardStatisticsModelToJson(this);
+}
+
+@JsonSerializable()
+final class PeriodPointModel extends PeriodPointEntity {
+  const PeriodPointModel({
+    required this.mReferralCode,
+    required this.mTotalPoints,
+    required this.mRewardCount,
+    required this.mBlockchainAddress,
+  }) : super(
+          referralCode: mReferralCode,
+          totalPoints: mTotalPoints,
+          rewardCount: mRewardCount,
+          blockchainAddress: mBlockchainAddress,
+        );
+
+  factory PeriodPointModel.fromJson(Map<String, dynamic> json) =>
+      _$PeriodPointModelFromJson(json);
+
+  @JsonKey(name: referralCodeKey)
+  final String? mReferralCode;
+
+  @JsonKey(name: totalPointsKey)
+  final int mTotalPoints;
+
+  @JsonKey(name: rewardCountKey)
+  final int mRewardCount;
+
+  @JsonKey(name: blockchainAddressKey)
+  final String? mBlockchainAddress;
+
+  Map<String, dynamic> toJson() => _$PeriodPointModelToJson(this);
 }
 
 @JsonSerializable()

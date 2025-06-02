@@ -23,8 +23,9 @@ class $AssetsPngsGen {
   AssetGenImage get appIconIos =>
       const AssetGenImage('assets/pngs/app_icon_ios.png');
 
-  /// File path: assets/pngs/crown.png
-  AssetGenImage get crown => const AssetGenImage('assets/pngs/crown.png');
+  /// File path: assets/pngs/drone-rush.png
+  AssetGenImage get droneRush =>
+      const AssetGenImage('assets/pngs/drone-rush.png');
 
   /// File path: assets/pngs/drone_back.png
   AssetGenImage get droneBack =>
@@ -34,13 +35,13 @@ class $AssetsPngsGen {
   AssetGenImage get droneFront =>
       const AssetGenImage('assets/pngs/drone_front.png');
 
+  /// File path: assets/pngs/drone_rush_zone_back.png
+  AssetGenImage get droneRushZoneBack =>
+      const AssetGenImage('assets/pngs/drone_rush_zone_back.png');
+
   /// File path: assets/pngs/icon_drone.png
   AssetGenImage get iconDrone =>
       const AssetGenImage('assets/pngs/icon_drone.png');
-
-  /// File path: assets/pngs/info_leaderboard.png
-  AssetGenImage get infoLeaderboard =>
-      const AssetGenImage('assets/pngs/info_leaderboard.png');
 
   /// File path: assets/pngs/location_puck.png
   AssetGenImage get locationPuck =>
@@ -69,19 +70,15 @@ class $AssetsPngsGen {
   AssetGenImage get splashAndroid12 =>
       const AssetGenImage('assets/pngs/splash_android_12.png');
 
-  /// File path: assets/pngs/track_drones.png
-  AssetGenImage get trackDrones =>
-      const AssetGenImage('assets/pngs/track_drones.png');
-
   /// List of all assets
   List<AssetGenImage> get values => [
     appIconAndroid,
     appIconIos,
-    crown,
+    droneRush,
     droneBack,
     droneFront,
+    droneRushZoneBack,
     iconDrone,
-    infoLeaderboard,
     locationPuck,
     locationPuckShadow,
     markerDanger,
@@ -89,7 +86,6 @@ class $AssetsPngsGen {
     markerRestricted,
     splash,
     splashAndroid12,
-    trackDrones,
   ];
 }
 
@@ -113,14 +109,6 @@ class $AssetsSvgsGen {
   SvgGenImage get arrowRightWhite =>
       const SvgGenImage('assets/svgs/arrow_right_white.svg');
 
-  /// File path: assets/svgs/badge_level2.svg
-  SvgGenImage get badgeLevel2 =>
-      const SvgGenImage('assets/svgs/badge_level2.svg');
-
-  /// File path: assets/svgs/badge_level3.svg
-  SvgGenImage get badgeLevel3 =>
-      const SvgGenImage('assets/svgs/badge_level3.svg');
-
   /// File path: assets/svgs/badges.svg
   SvgGenImage get badges => const SvgGenImage('assets/svgs/badges.svg');
 
@@ -143,13 +131,13 @@ class $AssetsSvgsGen {
   SvgGenImage get chevronLeft =>
       const SvgGenImage('assets/svgs/chevron_left.svg');
 
+  /// File path: assets/svgs/chevron_left_alt.svg
+  SvgGenImage get chevronLeftAlt =>
+      const SvgGenImage('assets/svgs/chevron_left_alt.svg');
+
   /// File path: assets/svgs/chevron_left_black.svg
   SvgGenImage get chevronLeftBlack =>
       const SvgGenImage('assets/svgs/chevron_left_black.svg');
-
-  /// File path: assets/svgs/chevron_right.svg
-  SvgGenImage get chevronRight =>
-      const SvgGenImage('assets/svgs/chevron_right.svg');
 
   /// File path: assets/svgs/chevron_up.svg
   SvgGenImage get chevronUp => const SvgGenImage('assets/svgs/chevron_up.svg');
@@ -177,6 +165,10 @@ class $AssetsSvgsGen {
   SvgGenImage get dottedLine =>
       const SvgGenImage('assets/svgs/dotted_line.svg');
 
+  /// File path: assets/svgs/drone_rush_points.svg
+  SvgGenImage get droneRushPoints =>
+      const SvgGenImage('assets/svgs/drone_rush_points.svg');
+
   /// File path: assets/svgs/earth.svg
   SvgGenImage get earth => const SvgGenImage('assets/svgs/earth.svg');
 
@@ -192,9 +184,13 @@ class $AssetsSvgsGen {
   /// File path: assets/svgs/help.svg
   SvgGenImage get help => const SvgGenImage('assets/svgs/help.svg');
 
-  /// File path: assets/svgs/help_circle.svg
-  SvgGenImage get helpCircle =>
-      const SvgGenImage('assets/svgs/help_circle.svg');
+  /// File path: assets/svgs/help_circle_large.svg
+  SvgGenImage get helpCircleLarge =>
+      const SvgGenImage('assets/svgs/help_circle_large.svg');
+
+  /// File path: assets/svgs/help_circle_small.svg
+  SvgGenImage get helpCircleSmall =>
+      const SvgGenImage('assets/svgs/help_circle_small.svg');
 
   /// File path: assets/svgs/home.svg
   SvgGenImage get home => const SvgGenImage('assets/svgs/home.svg');
@@ -218,6 +214,10 @@ class $AssetsSvgsGen {
   SvgGenImage get infoDanger =>
       const SvgGenImage('assets/svgs/info_danger.svg');
 
+  /// File path: assets/svgs/info_leaderboard.svg
+  SvgGenImage get infoLeaderboard =>
+      const SvgGenImage('assets/svgs/info_leaderboard.svg');
+
   /// File path: assets/svgs/info_prohibited.svg
   SvgGenImage get infoProhibited =>
       const SvgGenImage('assets/svgs/info_prohibited.svg');
@@ -228,9 +228,6 @@ class $AssetsSvgsGen {
 
   /// File path: assets/svgs/insights.svg
   SvgGenImage get insights => const SvgGenImage('assets/svgs/insights.svg');
-
-  /// File path: assets/svgs/level2.svg
-  SvgGenImage get level2 => const SvgGenImage('assets/svgs/level2.svg');
 
   /// File path: assets/svgs/location_danger.svg
   SvgGenImage get locationDanger =>
@@ -277,14 +274,21 @@ class $AssetsSvgsGen {
   SvgGenImage get myLocationNotFollowed =>
       const SvgGenImage('assets/svgs/my_location_not_followed.svg');
 
+  /// File path: assets/svgs/next.svg
+  SvgGenImage get next => const SvgGenImage('assets/svgs/next.svg');
+
   /// File path: assets/svgs/next_arrow.svg
   SvgGenImage get nextArrow => const SvgGenImage('assets/svgs/next_arrow.svg');
 
-  /// File path: assets/svgs/points.svg
-  SvgGenImage get points => const SvgGenImage('assets/svgs/points.svg');
+  /// File path: assets/svgs/previous.svg
+  SvgGenImage get previous => const SvgGenImage('assets/svgs/previous.svg');
 
   /// File path: assets/svgs/prohibited.svg
   SvgGenImage get prohibited => const SvgGenImage('assets/svgs/prohibited.svg');
+
+  /// File path: assets/svgs/quest_points.svg
+  SvgGenImage get questPoints =>
+      const SvgGenImage('assets/svgs/quest_points.svg');
 
   /// File path: assets/svgs/rain.svg
   SvgGenImage get rain => const SvgGenImage('assets/svgs/rain.svg');
@@ -338,6 +342,10 @@ class $AssetsSvgsGen {
   /// File path: assets/svgs/sun.svg
   SvgGenImage get sun => const SvgGenImage('assets/svgs/sun.svg');
 
+  /// File path: assets/svgs/total_points.svg
+  SvgGenImage get totalPoints =>
+      const SvgGenImage('assets/svgs/total_points.svg');
+
   /// File path: assets/svgs/user_group.svg
   SvgGenImage get userGroup => const SvgGenImage('assets/svgs/user_group.svg');
 
@@ -361,16 +369,14 @@ class $AssetsSvgsGen {
     arrow,
     arrowRight,
     arrowRightWhite,
-    badgeLevel2,
-    badgeLevel3,
     badges,
     bluetoothOff,
     bluetoothOn,
     check,
     chevronDown,
     chevronLeft,
+    chevronLeftAlt,
     chevronLeftBlack,
-    chevronRight,
     chevronUp,
     clear,
     clearWhite,
@@ -379,22 +385,24 @@ class $AssetsSvgsGen {
     community,
     danger,
     dottedLine,
+    droneRushPoints,
     earth,
     flight,
     gift,
     google,
     help,
-    helpCircle,
+    helpCircleLarge,
+    helpCircleSmall,
     home,
     iconDroneAbout,
     iconDroneBlack,
     iconDroneBlue,
     indicator,
     infoDanger,
+    infoLeaderboard,
     infoProhibited,
     infoRestricted,
     insights,
-    level2,
     locationDanger,
     locationProhibited,
     locationRestricted,
@@ -407,9 +415,11 @@ class $AssetsSvgsGen {
     menuGift,
     myLocationFollowed,
     myLocationNotFollowed,
+    next,
     nextArrow,
-    points,
+    previous,
     prohibited,
+    questPoints,
     rain,
     referralFacebook,
     referralGift,
@@ -425,6 +435,7 @@ class $AssetsSvgsGen {
     skyTradeRadarLogo,
     storm,
     sun,
+    totalPoints,
     userGroup,
     weather,
     weatherPlaceholder,

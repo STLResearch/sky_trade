@@ -153,7 +153,7 @@ final class ReferralRemoteDataSourceImplementation
         requestInitiator: _httpClient.request(
           requestMethod: RequestMethod.get,
           path: publicPath + rewardPath + currentLeaderboardInfoPath,
-          includeSignature: true,
+          includeSignature: false,
           queryParameters: {
             pageKey: page,
             limitKey: limit,

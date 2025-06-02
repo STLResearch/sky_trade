@@ -3,15 +3,19 @@ import 'package:flutter/material.dart'
     show
         Align,
         AlignmentDirectional,
+        BorderRadius,
         BuildContext,
         Column,
         EdgeInsets,
         EdgeInsetsDirectional,
         FocusManager,
+        FontWeight,
         GestureDetector,
         InkWell,
+        LinearGradient,
         MainAxisAlignment,
         MainAxisSize,
+        Navigator,
         Padding,
         SafeArea,
         SizedBox,
@@ -19,22 +23,38 @@ import 'package:flutter/material.dart'
         State,
         StatefulWidget,
         StatelessWidget,
+        Text,
+        TextOverflow,
+        Theme,
         ValueListenableBuilder,
         ValueNotifier,
         Widget;
-import 'package:flutter_bloc/flutter_bloc.dart' show BlocProvider;
+import 'package:flutter_bloc/flutter_bloc.dart'
+    show BlocBuilder, BlocProvider, ReadContext;
+import 'package:skeletonizer/skeletonizer.dart'
+    show BoneMock, ShimmerEffect, Skeletonizer, SoldColorEffect;
 import 'package:sky_trade/core/assets/generated/assets.gen.dart' show Assets;
-import 'package:sky_trade/core/resources/colors.dart' show hexE6FFFFFF;
+import 'package:sky_trade/core/resources/colors.dart'
+    show hex4040FF, hex68DEFF, hexE6FFFFFF, hexEBEBF4, hexFFFFFF;
 import 'package:sky_trade/core/resources/numbers/ui.dart'
     show
+        eightDotNil,
+        elevenDotNil,
         fiftyDotNil,
         fiftyFourDotNil,
-        sevenDotNil,
+        fiftyOneDotNil,
+        one,
         sixDotNil,
+        sixteenDotNil,
         sixtyOneDotNil,
-        twelveDotNil,
-        twentyOneDotNil;
+        twentyOneDotNil,
+        twentyOneDotThreeSeven,
+        two;
+import 'package:sky_trade/core/resources/strings/routes.dart'
+    show rewardsRoutePath;
 import 'package:sky_trade/core/utils/enums/ui.dart' show MapStyle;
+import 'package:sky_trade/features/rewards/presentation/blocs/drone_rush_zones_bloc/drone_rush_zones_bloc.dart'
+    show DroneRushZonesBloc, DroneRushZonesState;
 import 'package:sky_trade/features/search_autocomplete/presentation/blocs/search_autocomplete_bloc/search_autocomplete_bloc.dart'
     show SearchAutocompleteBloc;
 import 'package:sky_trade/features/u_a_s_restrictions/presentation/widgets/options_card.dart';
@@ -151,7 +171,110 @@ class _MapOverlayViewState extends State<MapOverlayView> {
                       ),
                     ),
                     const SizedBox(
-                      height: twelveDotNil,
+                      height: sixteenDotNil,
+                    ),
+                    Align(
+                      alignment: AlignmentDirectional.topEnd,
+                      child: OptionsCard(
+                        width: fiftyFourDotNil,
+                        height: fiftyOneDotNil,
+                        gradient: const LinearGradient(
+                          colors: [
+                            hex4040FF,
+                            hex68DEFF,
+                          ],
+                          begin: AlignmentDirectional.topStart,
+                          end: AlignmentDirectional.bottomEnd,
+                        ),
+                        child: InkWell(
+                          borderRadius: BorderRadius.circular(
+                            eightDotNil,
+                          ),
+                          onTap: () => Navigator.of(context).pushNamed(
+                            rewardsRoutePath,
+                            arguments:
+                              context.read<DroneRushZonesBloc>(),
+                          ),
+                          child: Padding(
+                            padding: const EdgeInsetsDirectional.symmetric(
+                              horizontal: eightDotNil,
+                            ),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Assets.svgs.gift.svg(),
+                                BlocBuilder<DroneRushZonesBloc,
+                                    DroneRushZonesState>(
+                                  builder: (_, droneRushZonesState) =>
+                                      Skeletonizer(
+                                    effect: droneRushZonesState.maybeWhen(
+                                      failedToGetLatestDroneRushZone: (_) =>
+                                          const SoldColorEffect(
+                                        color: hexEBEBF4,
+                                      ),
+                                      failedToGetOngoingDroneRushZones: (_) =>
+                                          const SoldColorEffect(
+                                        color: hexEBEBF4,
+                                      ),
+                                      orElse: () => ShimmerEffect(
+                                        highlightColor: Theme.of(
+                                          context,
+                                        ).scaffoldBackgroundColor,
+                                      ),
+                                    ),
+                                    enabled: droneRushZonesState.maybeWhen(
+                                      noLatestDroneRushZone: () => false,
+                                      noOngoingDroneRushZone: () => false,
+                                      gotOngoingDroneRushZones: (_) => false,
+                                      orElse: () => true,
+                                    ),
+                                    child: droneRushZonesState.maybeWhen(
+                                      noLatestDroneRushZone: () =>
+                                          const SizedBox.shrink(),
+                                      noOngoingDroneRushZone: () =>
+                                          const SizedBox.shrink(),
+                                      gotOngoingDroneRushZones:
+                                          (droneRushZoneEntities) => Text(
+                                        droneRushZoneEntities.length.toString(),
+                                        maxLines: one,
+                                        overflow: TextOverflow.ellipsis,
+                                        style: Theme.of(
+                                          context,
+                                        ).textTheme.bodySmall?.copyWith(
+                                              fontWeight: FontWeight.w700,
+                                              fontSize: elevenDotNil,
+                                              height: twentyOneDotThreeSeven /
+                                                  elevenDotNil,
+                                              color: hexFFFFFF,
+                                            ),
+                                      ),
+                                      orElse: () => Text(
+                                        BoneMock.chars(
+                                          two,
+                                        ),
+                                        maxLines: one,
+                                        overflow: TextOverflow.ellipsis,
+                                        style: Theme.of(
+                                          context,
+                                        ).textTheme.bodySmall?.copyWith(
+                                              fontWeight: FontWeight.w700,
+                                              fontSize: elevenDotNil,
+                                              height: twentyOneDotThreeSeven /
+                                                  elevenDotNil,
+                                              color: hexFFFFFF,
+                                            ),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                    const SizedBox(
+                      height: eightDotNil,
                     ),
                     Align(
                       alignment: AlignmentDirectional.topEnd,
@@ -175,7 +298,7 @@ class _MapOverlayViewState extends State<MapOverlayView> {
                       ),
                     ),
                     const SizedBox(
-                      height: sevenDotNil,
+                      height: eightDotNil,
                     ),
                     const WeatherCard(),
                   ],

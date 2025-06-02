@@ -11,6 +11,7 @@ import 'package:sky_trade/core/resources/strings/networking.dart'
         aeroplaneKey,
         airborneKey,
         airshipKey,
+        amountValue,
         bluetoothLegacyKey,
         bluetoothLongRangeKey,
         cAARegistrationIDKey,
@@ -49,6 +50,7 @@ import 'package:sky_trade/core/resources/strings/networking.dart'
         kilometers7_408Key,
         kiteKey,
         lineStringValue,
+        locationValue,
         messageSetSignatureKey,
         meterPerSecond0_3Key,
         meterPerSecond10Key,
@@ -470,4 +472,11 @@ enum RangeFilter {
   );
 
   final String value;
+}
+
+enum QuestType {
+  @JsonValue(amountValue)
+  amount,
+  @JsonValue(locationValue)
+  location,
 }

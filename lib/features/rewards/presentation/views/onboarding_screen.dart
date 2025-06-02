@@ -1,10 +1,63 @@
-import 'package:flutter/material.dart';
-import 'package:sky_trade/core/assets/generated/assets.gen.dart';
-import 'package:sky_trade/core/assets/generated/fonts.gen.dart';
-import 'package:sky_trade/core/resources/colors.dart';
-import 'package:sky_trade/core/resources/numbers/ui.dart';
+// ignore_for_file: lines_longer_than_80_chars
+
+import 'package:flutter/material.dart'
+    show
+        AlignmentDirectional,
+        AppBar,
+        BorderRadiusDirectional,
+        BoxDecoration,
+        BuildContext,
+        Center,
+        Colors,
+        Column,
+        Container,
+        EdgeInsetsDirectional,
+        ElevatedButton,
+        Expanded,
+        FontWeight,
+        IconButton,
+        LinearGradient,
+        MainAxisAlignment,
+        Navigator,
+        OutlinedBorder,
+        Padding,
+        Positioned,
+        RoundedRectangleBorder,
+        SafeArea,
+        Scaffold,
+        SingleChildScrollView,
+        Size,
+        SizedBox,
+        Stack,
+        StatelessWidget,
+        Text,
+        TextAlign,
+        Theme,
+        Widget,
+        WidgetStatePropertyAll;
+import 'package:sky_trade/core/assets/generated/assets.gen.dart' show Assets;
+import 'package:sky_trade/core/resources/colors.dart'
+    show hex161616, hex4040FF, hex626262, hex68DEFF, hexFFFFFF;
+import 'package:sky_trade/core/resources/numbers/ui.dart'
+    show
+        fifteenDotNil,
+        fiftyDotNil,
+        fortyDotNil,
+        fourteenDotNil,
+        minusNilDotThree,
+        nilDotNil,
+        nilDotNilTwo,
+        nilDotOneSevenTwoTwo,
+        nilDotThreeFiveFourEight,
+        oneDotNil,
+        sixteenDotNil,
+        thirtyFiveDotNil,
+        thirtyTwoDotNil,
+        twentyDotNil,
+        twentyFourDotNil,
+        twentyTwoDotNil,
+        twoEightyDotNil;
 import 'package:sky_trade/core/utils/extensions/build_context_extensions.dart';
-import 'package:sky_trade/features/rewards/presentation/views/points_screen.dart';
 
 class OnboardingScreen extends StatelessWidget {
   const OnboardingScreen({super.key});
@@ -14,10 +67,16 @@ class OnboardingScreen extends StatelessWidget {
         appBar: AppBar(
           backgroundColor: Colors.transparent,
           elevation: nilDotNil,
+          automaticallyImplyLeading: false,
+          actionsPadding: const EdgeInsetsDirectional.symmetric(
+            horizontal: twentyFourDotNil,
+          ),
           actions: [
             IconButton(
               icon: Assets.svgs.clearWhite.svg(),
-              onPressed: () => Navigator.of(context).pop(),
+              onPressed: () => Navigator.of(
+                context,
+              ).pop(),
             ),
           ],
         ),
@@ -25,8 +84,8 @@ class OnboardingScreen extends StatelessWidget {
         body: Container(
           decoration: const BoxDecoration(
             gradient: LinearGradient(
-              begin: Alignment.topCenter,
-              end: Alignment.bottomCenter,
+              begin: AlignmentDirectional.topCenter,
+              end: AlignmentDirectional.bottomCenter,
               colors: [
                 hex4040FF,
                 hex68DEFF,
@@ -45,16 +104,17 @@ class OnboardingScreen extends StatelessWidget {
                 Expanded(
                   child: SingleChildScrollView(
                     child: Padding(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: twentyFourDotNil),
+                      padding: const EdgeInsetsDirectional.symmetric(
+                        horizontal: twentyFourDotNil,
+                      ),
                       child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           SizedBox(
                             height: twoEightyDotNil,
                             width: double.infinity,
                             child: Stack(
-                              clipBehavior: Clip.none,
-                              fit: StackFit.expand,
+                              alignment: AlignmentDirectional.center,
                               children: [
                                 Positioned(
                                   top: nilDotNil,
@@ -73,78 +133,87 @@ class OnboardingScreen extends StatelessWidget {
                               ],
                             ),
                           ),
-                          // Title
                           Text(
-                            context.localize.introducingSkytradeRadarRewards,
+                            context.localize.introducingSkyTradeRadarRewards,
                             textAlign: TextAlign.center,
-                            style: const TextStyle(
+                            style: Theme.of(
+                              context,
+                            ).textTheme.bodyLarge?.copyWith(
                                   color: hex161616,
-                                  fontWeight: FontWeight.w500,
                                   fontSize: thirtyTwoDotNil,
-                                  fontFamily: FontFamily.poppins,
                                   height: oneDotNil,
                                   letterSpacing: minusNilDotThree,
                                 ),
                           ),
-
-                          const SizedBox(height: twentyDotNil),
-                          // Description
+                          const SizedBox(
+                            height: sixteenDotNil,
+                          ),
                           Text(
                             context.localize
-                                .earn25PointsForEveryVerifiedDroneObservationCompleteDailyQuestsToBoostYourScoreAndLevelUpPointsResetEverySeasonSoStayActiveToClimbTheLeaderboardsAndMakeYourMark,
+                                .earn25PointsForEveryVerifiedDroneObservationCompleteDailyQuestsToEarnEvenMorePoints,
                             textAlign: TextAlign.center,
-                            style: Theme.of(context)
-                                .textTheme
-                                .bodyMedium
-                                ?.copyWith(
-                                  color: hex626262,
+                            style: Theme.of(
+                              context,
+                            ).textTheme.bodyMedium?.copyWith(
                                   fontWeight: FontWeight.w300,
+                                  color: hex626262,
                                   fontSize: fourteenDotNil,
-                                  fontFamily: FontFamily.poppins,
-                                  height: oneDotFiveSeven,
+                                  height: twentyTwoDotNil / fourteenDotNil,
                                   letterSpacing: nilDotNil,
                                 ),
                           ),
-                          const SizedBox(height: fortyDotNil),
+                          const SizedBox(
+                            height: fortyDotNil,
+                          ),
                         ],
                       ),
                     ),
                   ),
                 ),
-                const SizedBox(height: twentyDotNil),
+                const SizedBox(
+                  height: twentyDotNil,
+                ),
                 Padding(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: fifteenDotNil,
-                    vertical: thirteenDotNil,
+                  padding: const EdgeInsetsDirectional.symmetric(
+                    horizontal: twentyFourDotNil,
                   ),
                   child: ElevatedButton(
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute<void>(
-                          builder: (context) => const PointsScreen(),
+                    onPressed: () => Navigator.of(
+                      context,
+                    ).pop(),
+                    style: Theme.of(
+                      context,
+                    ).elevatedButtonTheme.style?.copyWith(
+                          fixedSize: const WidgetStatePropertyAll<Size>(
+                            Size.fromHeight(
+                              fiftyDotNil,
+                            ),
+                          ),
+                          shape: WidgetStatePropertyAll<OutlinedBorder>(
+                            RoundedRectangleBorder(
+                              borderRadius: BorderRadiusDirectional.circular(
+                                fifteenDotNil,
+                              ),
+                            ),
+                          ),
                         ),
-                      );
-                    },
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: hex0653EA,
-                      minimumSize: const Size(double.infinity, fiftySixDotNil),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(fifteenDotNil),
-                      ),
-                    ),
-                    child: Text(
-                      context.localize.startEarning,
-                      style: const TextStyle(
-                        color: hexFFFFFF,
-                        fontWeight: FontWeight.w500,
-                        fontSize: sixteenDotNil,
-                        fontFamily: FontFamily.poppins,
-                        height: oneDotNil,
-                        letterSpacing: nilDotNil,
+                    child: Center(
+                      child: Text(
+                        context.localize.startEarning,
+                        style: Theme.of(
+                          context,
+                        ).textTheme.bodyLarge?.copyWith(
+                              color: hexFFFFFF,
+                              fontSize: sixteenDotNil,
+                              height: oneDotNil,
+                              letterSpacing: nilDotNil,
+                            ),
                       ),
                     ),
                   ),
+                ),
+                const SizedBox(
+                  height: thirtyFiveDotNil,
                 ),
               ],
             ),

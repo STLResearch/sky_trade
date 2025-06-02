@@ -9,6 +9,8 @@ const sessionTokenAgeKey = 'sessionTokenAge';
 
 const analyticsStateKey = 'analyticsState';
 
+const shouldShowRewardsOnboardingKey = 'shouldShowRewardsOnboarding';
+
 const base36UpperBound = '1z141z4';
 
 const auth0SessionForDeletedUserExistsKey = 'auth0SessionForDeletedUserExists';

@@ -1813,30 +1813,18 @@ abstract class AppLocalizations {
   /// **'Share Radar App'**
   String get shareRadarApp;
 
-  /// No description provided for @unableToShareTheCorrespondingAppMayNotBeInstalledOnYourDevice.
+  /// No description provided for @introducingSkyTradeRadarRewards.
   ///
   /// In en, this message translates to:
-  /// **'Unable to share. The corresponding app may not be installed on your device'**
-  String get unableToShareTheCorrespondingAppMayNotBeInstalledOnYourDevice;
+  /// **'Introducing SkyTrade Radar Rewards'**
+  String get introducingSkyTradeRadarRewards;
 
-  /// No description provided for @introducingSkytradeRadarRewards.
+  /// No description provided for @earn25PointsForEveryVerifiedDroneObservationCompleteDailyQuestsToEarnEvenMorePoints.
   ///
   /// In en, this message translates to:
-  /// **'Introducing SkyTrade\n\n Radar Rewards'**
-  String get introducingSkytradeRadarRewards;
-
-  /// No description provided for @earn25PointsForEveryVerifiedDroneObservationCompleteDailyQuestsToBoostYourScoreAndLevelUpPointsResetEverySeasonSoStayActiveToClimbTheLeaderboardsAndMakeYourMark.
-  ///
-  /// In en, this message translates to:
-  /// **'Earn 25 points for every verified drone observation. Complete daily quests to boost your score and level up.\n\n Points reset every season, so stay active to climb the leaderboards and make your mark.'**
+  /// **'Earn 25 points for every verified drone observation. Complete daily quests to earn even more points'**
   String
-      get earn25PointsForEveryVerifiedDroneObservationCompleteDailyQuestsToBoostYourScoreAndLevelUpPointsResetEverySeasonSoStayActiveToClimbTheLeaderboardsAndMakeYourMark;
-
-  /// No description provided for @startEarning.
-  ///
-  /// In en, this message translates to:
-  /// **'Start Earning'**
-  String get startEarning;
+      get earn25PointsForEveryVerifiedDroneObservationCompleteDailyQuestsToEarnEvenMorePoints;
 
   /// No description provided for @pointsProgram.
   ///
@@ -1847,44 +1835,14 @@ abstract class AppLocalizations {
   /// No description provided for @completeTasksToEarnSkyPoints.
   ///
   /// In en, this message translates to:
-  /// **'Complete tasks to earn \$SKY points.'**
+  /// **'Complete tasks to earn \$SKY points'**
   String get completeTasksToEarnSkyPoints;
-
-  /// No description provided for @advancedTracker.
-  ///
-  /// In en, this message translates to:
-  /// **'Advanced Tracker'**
-  String get advancedTracker;
-
-  /// No description provided for @level2.
-  ///
-  /// In en, this message translates to:
-  /// **'Level 2'**
-  String get level2;
-
-  /// No description provided for @twentyOfTwoHundredPoints.
-  ///
-  /// In en, this message translates to:
-  /// **'20 of 200 points'**
-  String get twentyOfTwoHundredPoints;
 
   /// No description provided for @dailyQuests.
   ///
   /// In en, this message translates to:
   /// **'Daily Quests'**
   String get dailyQuests;
-
-  /// No description provided for @track5Drones.
-  ///
-  /// In en, this message translates to:
-  /// **'Track 5 drones'**
-  String get track5Drones;
-
-  /// No description provided for @nilUponFive.
-  ///
-  /// In en, this message translates to:
-  /// **'0/5'**
-  String get nilUponFive;
 
   /// No description provided for @howItWorks.
   ///
@@ -1895,7 +1853,7 @@ abstract class AppLocalizations {
   /// No description provided for @earn25PointsForEveryVerifiedDroneObservationCompleteDailyQuestsToEarnBonusPointsAndClimbTheRanksTheMoreYouContributeTheMoreTouLevelUp.
   ///
   /// In en, this message translates to:
-  /// **'Earn 25 points for every verified drone observation. Complete daily quests to earn bonus points and climb the ranks.\nThe more you contribute, the more you level up.'**
+  /// **'Earn 25 points for every verified drone observation. Complete daily quests to earn bonus points and climb the ranks.\nThe more you contribute, the more you level up'**
   String
       get earn25PointsForEveryVerifiedDroneObservationCompleteDailyQuestsToEarnBonusPointsAndClimbTheRanksTheMoreYouContributeTheMoreTouLevelUp;
 
@@ -1905,54 +1863,17 @@ abstract class AppLocalizations {
   /// **'View leaderboard'**
   String get viewLeaderboard;
 
-  /// No description provided for @twentyPoints.
+  /// No description provided for @claim.
   ///
   /// In en, this message translates to:
-  /// **'20 points'**
-  String get twentyPoints;
+  /// **'Claim'**
+  String get claim;
 
-  /// No description provided for @twoHundredPoints.
+  /// No description provided for @thereAreNoQuestsAtThisTime.
   ///
   /// In en, this message translates to:
-  /// **'200 points'**
-  String get twoHundredPoints;
-
-  /// No description provided for @close.
-  ///
-  /// In en, this message translates to:
-  /// **'Close'**
-  String get close;
-
-  /// No description provided for @descriptionAboutTask.
-  ///
-  /// In en, this message translates to:
-  /// **'Description about task'**
-  String get descriptionAboutTask;
-
-  /// No description provided for @earn10$kyPoints.
-  ///
-  /// In en, this message translates to:
-  /// **'Earn 10 \$KY points'**
-  String get earn10$kyPoints;
-
-  /// No description provided for @competeWithOthersToClimbTheRanksByEarningPointsThroughDroneObservationsAndQuestsPointsResetAtTheStartOfEachNewSeasonSoStayActiveToMaintainYourPosition.
-  ///
-  /// In en, this message translates to:
-  /// **'Compete with others to climb the ranks by earning points through drone observations and quests. \n\n Points reset at the start of each new season, so stay active to maintain your position.'**
-  String
-      get competeWithOthersToClimbTheRanksByEarningPointsThroughDroneObservationsAndQuestsPointsResetAtTheStartOfEachNewSeasonSoStayActiveToMaintainYourPosition;
-
-  /// No description provided for @topTrackersThisSeason.
-  ///
-  /// In en, this message translates to:
-  /// **'Top trackers this season'**
-  String get topTrackersThisSeason;
-
-  /// No description provided for @twentyThreeDaysLeft.
-  ///
-  /// In en, this message translates to:
-  /// **'23 days left'**
-  String get twentyThreeDaysLeft;
+  /// **'There are no quests at this time'**
+  String get thereAreNoQuestsAtThisTime;
 
   /// No description provided for @seeMyPosition.
   ///
@@ -1960,37 +1881,80 @@ abstract class AppLocalizations {
   /// **'See my position'**
   String get seeMyPosition;
 
-  /// No description provided for @youveUnlockedAdvancedTracker.
+  /// No description provided for @weCouldNotGetYourPositionOnTheLeaderboardTryRefreshingThePageThenTryViewingYourPositionAgain.
   ///
   /// In en, this message translates to:
-  /// **'You\'ve unlocked\n\n Advanced Tracker!'**
-  String get youveUnlockedAdvancedTracker;
-
-  /// No description provided for @youveUnlockedDroneMaster.
-  ///
-  /// In en, this message translates to:
-  /// **'You\'ve unlocked\n\n Drone Master!'**
-  String get youveUnlockedDroneMaster;
-
-  /// No description provided for @keepMakingDroneObservationsAndCompletingDailyQuestsToClimbEvenHigherNewChallengesAwait.
-  ///
-  /// In en, this message translates to:
-  /// **'Keep making drone observations and completing daily quests to climb even higher.New challenges await!'**
+  /// **'We could not get your position on the leaderboard. Try refreshing the page then try viewing your position again'**
   String
-      get keepMakingDroneObservationsAndCompletingDailyQuestsToClimbEvenHigherNewChallengesAwait;
+      get weCouldNotGetYourPositionOnTheLeaderboardTryRefreshingThePageThenTryViewingYourPositionAgain;
 
-  /// No description provided for @youveReachedTheHighestLevelThisSeasonKeepGoingToStayOnTopOfTheLeaderboardAndPrepareForNewChallengesInTheNextSeason.
+  /// No description provided for @daysLeft.
   ///
   /// In en, this message translates to:
-  /// **'You’ve reached the highest level this season!\\nKeep going to stay on top of the leaderboard and prepare for new challenges in the next season.'**
+  /// **'day(s) left'**
+  String get daysLeft;
+
+  /// No description provided for @crownEmoji.
+  ///
+  /// In en, this message translates to:
+  /// **'👑'**
+  String get crownEmoji;
+
+  /// No description provided for @competeWithOthersToClimbTheRanksByEarningPointsThroughDroneObservationsAndQuestsPointsResetAtTheStartOfEachNewSeasonSoStayActiveToMaintainYourPosition.
+  ///
+  /// In en, this message translates to:
+  /// **'Compete with others to climb the ranks by earning points through drone observations and quests. \n\nPoints reset at the start of each new season, so stay active to maintain your position'**
   String
-      get youveReachedTheHighestLevelThisSeasonKeepGoingToStayOnTopOfTheLeaderboardAndPrepareForNewChallengesInTheNextSeason;
+      get competeWithOthersToClimbTheRanksByEarningPointsThroughDroneObservationsAndQuestsPointsResetAtTheStartOfEachNewSeasonSoStayActiveToMaintainYourPosition;
 
-  /// No description provided for @letsFly.
+  /// No description provided for @close.
   ///
   /// In en, this message translates to:
-  /// **'Lets Fly'**
-  String get letsFly;
+  /// **'Close'**
+  String get close;
+
+  /// No description provided for @droneRushZones.
+  ///
+  /// In en, this message translates to:
+  /// **'Drone Rush Zones'**
+  String get droneRushZones;
+
+  /// No description provided for @droneRushZone.
+  ///
+  /// In en, this message translates to:
+  /// **'Drone Rush Zone'**
+  String get droneRushZone;
+
+  /// No description provided for @keepAnEyeOnTheMapForActiveRushZonesAndStartTrackingToMaximizeYourRewards.
+  ///
+  /// In en, this message translates to:
+  /// **'Keep an eye on the map for active Rush Zones and start tracking to maximize your rewards'**
+  String
+      get keepAnEyeOnTheMapForActiveRushZonesAndStartTrackingToMaximizeYourRewards;
+
+  /// No description provided for @activeRushZones.
+  ///
+  /// In en, this message translates to:
+  /// **'Active Rush Zones'**
+  String get activeRushZones;
+
+  /// No description provided for @learnMore.
+  ///
+  /// In en, this message translates to:
+  /// **'Learn More'**
+  String get learnMore;
+
+  /// No description provided for @inThisZoneYouCanEarn.
+  ///
+  /// In en, this message translates to:
+  /// **'In this zone you can earn'**
+  String get inThisZoneYouCanEarn;
+
+  /// No description provided for @forTrackingDronesInSpecialHighActivityZones.
+  ///
+  /// In en, this message translates to:
+  /// **'for tracking drones in special high-activity zones'**
+  String get forTrackingDronesInSpecialHighActivityZones;
 
   /// No description provided for @specialEvent.
   ///
@@ -2010,23 +1974,18 @@ abstract class AppLocalizations {
   /// **'Track & Earn 5x Points!'**
   String get trackAndEarnFiveXPoints;
 
-  /// No description provided for @startTracking.
-  ///
-  /// In en, this message translates to:
-  /// **'Start Tracking'**
-  String get startTracking;
-
-  /// No description provided for @watchforRushZones.
+  /// No description provided for @watchForRushZones.
   ///
   /// In en, this message translates to:
   /// **'Watch for Rush Zones'**
-  String get watchforRushZones;
+  String get watchForRushZones;
 
-  /// No description provided for @onlySpecificLocationsAreEligibleForFiveXPointsRushZonesWillBeMarkedClearlyOnYourMap.
+  /// No description provided for @onlySpecificLocationsAreEligibleForExtraPointsRushZonesWillBeMarkedClearlyOnYourMap.
   ///
   /// In en, this message translates to:
-  /// **'Only specific locations are eligible for 5x points. Rush zones will be marked clearly on your map.'**
-  String get onlySpecificLocationsAreEligibleForFiveXPointsRushZonesWillBeMarkedClearlyOnYourMap;
+  /// **'Only specific locations are eligible for extra points. Rush zones will be marked clearly on your map'**
+  String
+      get onlySpecificLocationsAreEligibleForExtraPointsRushZonesWillBeMarkedClearlyOnYourMap;
 
   /// No description provided for @whichAreasAreEligible.
   ///
@@ -2043,7 +2002,7 @@ abstract class AppLocalizations {
   /// No description provided for @youMustBePhysicallyLocatedWithinARushZoneToStartTracking.
   ///
   /// In en, this message translates to:
-  /// **'You must be physically located within a Rush Zone to start tracking.'**
+  /// **'You must be physically located within a Rush Zone to start tracking'**
   String get youMustBePhysicallyLocatedWithinARushZoneToStartTracking;
 
   /// No description provided for @trackDrones.
@@ -2055,74 +2014,87 @@ abstract class AppLocalizations {
   /// No description provided for @observeAndConfirmDroneActivityAsUsual.
   ///
   /// In en, this message translates to:
-  /// **'Observe and confirm drone activity as usual.'**
+  /// **'Observe and confirm drone activity as usual'**
   String get observeAndConfirmDroneActivityAsUsual;
 
-  /// No description provided for @earnFiveXPoints.
+  /// No description provided for @earnMorePoints.
   ///
   /// In en, this message translates to:
-  /// **'Earn 5x Points'**
-  String get earnFiveXPoints;
+  /// **'Earn More Points'**
+  String get earnMorePoints;
 
   /// No description provided for @allSuccessfulObservationsInRushZonesWillAutomaticallyEarnBoostedRewards.
   ///
   /// In en, this message translates to:
-  /// **'All successful observations in Rush Zones will automatically earn boosted rewards.'**
-  String get allSuccessfulObservationsInRushZonesWillAutomaticallyEarnBoostedRewards;
+  /// **'All successful observations in Rush Zones will automatically earn boosted rewards'**
+  String
+      get allSuccessfulObservationsInRushZonesWillAutomaticallyEarnBoostedRewards;
 
-  /// No description provided for @duringTheDroneRushEventEarnFiveXPointsForTrackingDronesInSpecialHighActivityZonesTheseRushZonesAreOnlyActiveForALimitedTimeSoKeepAnEyeOnTheMapJumpInWhenTheyAppearAndBoostYourRankOnTheLeaderboardWhileMaximizingYourRewards.
+  /// No description provided for @startEarning.
   ///
   /// In en, this message translates to:
-  /// **'During the Drone Rush event, earn 5x points for tracking drones in special high-activity zones. \n\nThese Rush Zones are only active for a limited time, so keep an eye on the map, jump in when they appear, and boost your rank on the leaderboard while maximizing your rewards!'**
-  String get duringTheDroneRushEventEarnFiveXPointsForTrackingDronesInSpecialHighActivityZonesTheseRushZonesAreOnlyActiveForALimitedTimeSoKeepAnEyeOnTheMapJumpInWhenTheyAppearAndBoostYourRankOnTheLeaderboardWhileMaximizingYourRewards;
+  /// **'Start Earning'**
+  String get startEarning;
 
-  /// No description provided for @learnMore.
+  /// No description provided for @topTrackersThisPeriod.
   ///
   /// In en, this message translates to:
-  /// **'Learn More'**
-  String get learnMore;
+  /// **'Top trackers this period'**
+  String get topTrackersThisPeriod;
 
-  /// No description provided for @droneRushZones.
+  /// No description provided for @startTracking.
   ///
   /// In en, this message translates to:
-  /// **'Drone Rush Zones'**
-  String get droneRushZones;
+  /// **'Start Tracking'**
+  String get startTracking;
 
-  /// No description provided for @keepAnEyeOnTheMapForActiveRushZonesAndStartTrackingToMaximizeTourRewards.
+  /// No description provided for @whatAreasAreEligible.
   ///
   /// In en, this message translates to:
-  /// **'Keep an eye on the map for active Rush Zones and start tracking to maximize your rewards.'**
-  String get keepAnEyeOnTheMapForActiveRushZonesAndStartTrackingToMaximizeTourRewards;
+  /// **'What areas are eligible?'**
+  String get whatAreasAreEligible;
 
-  /// No description provided for @activeRushZones.
+  /// No description provided for @oopsSomethingWentWrongSwipeDownToRefreshThePage.
   ///
   /// In en, this message translates to:
-  /// **'Active Rush Zones'**
-  String get activeRushZones;
+  /// **'Oops! Something Went Wrong. Swipe down to refresh the page'**
+  String get oopsSomethingWentWrongSwipeDownToRefreshThePage;
 
-  /// No description provided for @downtownCore.
+  /// No description provided for @couldNotGetDailyQuestsSwipeDownToRefreshThePage.
   ///
   /// In en, this message translates to:
-  /// **'Downtown Core'**
-  String get downtownCore;
+  /// **'Could not get daily quests. Swipe down to refresh the page'**
+  String get couldNotGetDailyQuestsSwipeDownToRefreshThePage;
 
-  /// No description provided for @bayviewIndustrialPark.
+  /// No description provided for @couldNotGetPointsSwipeDownToRefreshThePage.
   ///
   /// In en, this message translates to:
-  /// **'Bayview Industrial Park'**
-  String get bayviewIndustrialPark;
+  /// **'Could not get points. Swipe down to refresh the page'**
+  String get couldNotGetPointsSwipeDownToRefreshThePage;
 
-  /// No description provided for @northHillsArstrip.
+  /// No description provided for @points.
   ///
   /// In en, this message translates to:
-  /// **'North Hills Airstrip'**
-  String get northHillsArstrip;
+  /// **'points'**
+  String get points;
 
-  /// No description provided for @metroEastCorridor.
+  /// No description provided for @morePoints.
   ///
   /// In en, this message translates to:
-  /// **'Metro East Corridor'**
-  String get metroEastCorridor;
+  /// **'more points'**
+  String get morePoints;
+
+  /// No description provided for @forTrackingDronesInHighlightedZonesDuringThisLimitedTimeEvent.
+  ///
+  /// In en, this message translates to:
+  /// **'for tracking drones in highlighted zones during this limited-time event'**
+  String get forTrackingDronesInHighlightedZonesDuringThisLimitedTimeEvent;
+
+  /// No description provided for @theListOfActiveRushZonesPlaceNamesCannotBeShownAtTheMoment.
+  ///
+  /// In en, this message translates to:
+  /// **'The list of active rush zones place names cannot be shown at the moment'**
+  String get theListOfActiveRushZonesPlaceNamesCannotBeShownAtTheMoment;
 }
 
 class _AppLocalizationsDelegate

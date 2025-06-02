@@ -67,7 +67,6 @@ dependencies:
   syncfusion_flutter_charts: ^29.2.5
   url_launcher: ^6.3.1
   uuid_v4: ^1.0.2
-  webview_flutter: ^4.11.0
 
 dev_dependencies:
   build_runner: ^2.4.15
@@ -168,6 +167,7 @@ flutter:
     - family: Lato
       fonts:
         - asset: assets/fonts/lato/Lato-Bold-700.ttf
+          weight: 700
 
     - family: ChakraPetch
       fonts:
@@ -176,7 +176,7 @@ flutter:
 
     - family: Urbanist
       fonts:
-        - asset: assets/fonts/urbanist/Urbanist-SemiBold.ttf
-          weight: 600
-        - asset: assets/fonts/urbanist/Urbanist-Regular.ttf
+        - asset: assets/fonts/urbanist/Urbanist-Regular-400.ttf
           weight: 400
+        - asset: assets/fonts/urbanist/Urbanist-SemiBold-600.ttf
+          weight: 600

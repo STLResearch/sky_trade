@@ -9,3 +9,7 @@ const insightsRoutePath = '/insights';
 const settingsRoutePath = '/settings';
 const referralRoutePath = '/referral';
 const onboardingRoutePath = '/onboarding';
+const rewardsOnboardingRoutePath = '/rewardsOnboarding';
+const rewardsLeaderboardRoutePath = '/rewardsLeaderboard';
+const rewardsDroneRushDetailsRoutePath = '/rewardsDroneRushDetails';
+const rewardsRoutePath = '/rewards';

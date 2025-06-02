@@ -32,10 +32,6 @@ const googlePlayStorePageLink =
 // Solana dApp store page link
 const solanaDAppStorePageLink = 'solanadappstore://details?id=mobile.trade.sky';
 
-//iframe links
-const eventDetailsUrl = 'https://www.canva.com/design/DAGmkbRHvm0/tWsy6tr3ZrhZJDHd4WPWrw/watch';
-const droneRushDetailsUrl = 'https://www.canva.com/design/DAGmG2vLCfU/35XJQ1Lj3pVMj9Qh9l1tpg/watch';
-
 // Paths
 const airRightsPath = '/air-rights';
 const getWeatherDataPath = '/get-weather-data';
@@ -473,18 +469,17 @@ const weatherDataKey = 'weatherData';
 const unitsKey = 'units';
 const imperialValue = 'imperial';
 const currentAPIVersionKey = 'currentAPIVersion';
-const rewardsKey = 'rewards';
-const avgKey = '_avg';
-const minKey = '_min';
-const maxKey = '_max';
-const rewardIdKey = 'rewardId';
 const taskTypeKey = 'taskType';
+const droneObservationValue = 'drone-observation';
 const pointsKey = 'points';
 const questDateKey = 'questDate';
 const questTypeKey = 'questType';
+const amountValue = 'AMOUNT';
+const locationValue = 'LOCATION';
 const questLocationKey = 'questLocation';
 const completedKey = 'completed';
 const radiusKey = 'radius';
+const typesKey = 'types';
 const boundingBoxKey = 'boundingBox';
 // Error response data message
 const unauthorizedCode = 'UNAUTHORIZED';
