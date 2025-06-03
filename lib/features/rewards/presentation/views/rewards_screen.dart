@@ -117,7 +117,8 @@ import 'package:sky_trade/core/resources/strings/routes.dart'
     show
         rewardsDroneRushDetailsRoutePath,
         rewardsLeaderboardRoutePath,
-        rewardsOnboardingRoutePath;
+        rewardsOnboardingRoutePath,
+        rewardsRoutePath;
 import 'package:sky_trade/core/resources/strings/special_characters.dart'
     show exclamationMark, plus, whiteSpace;
 import 'package:sky_trade/core/utils/extensions/build_context_extensions.dart';
@@ -550,6 +551,7 @@ class _RewardsScreenViewState extends State<RewardsScreenView> {
                                     context,
                                   ).pushNamed(
                                     rewardsDroneRushDetailsRoutePath,
+                                    arguments: rewardsRoutePath,
                                   ),
                                 ),
                                 Positioned(

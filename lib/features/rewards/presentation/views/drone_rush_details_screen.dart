@@ -87,11 +87,18 @@ import 'package:sky_trade/core/resources/numbers/ui.dart'
         twentyTwoDotNil,
         two,
         zero;
+import 'package:sky_trade/core/resources/strings/routes.dart'
+    show homeRoutePath, rewardsRoutePath;
 import 'package:sky_trade/core/utils/extensions/build_context_extensions.dart';
 import 'package:sky_trade/features/rewards/presentation/widgets/eligible_areas.dart';
 
 class DroneRushDetailsScreen extends StatelessWidget {
-  const DroneRushDetailsScreen({super.key});
+  const DroneRushDetailsScreen({
+    required this.openedFromRoute,
+    super.key,
+  });
+
+  final String openedFromRoute;
 
   @override
   Widget build(BuildContext context) => Scaffold(
@@ -353,12 +360,18 @@ class DroneRushDetailsScreen extends StatelessWidget {
                     ),
                     ElevatedButton(
                       onPressed: () {
-                        Navigator.of(
-                          context,
-                        ).pop();
-                        Navigator.of(
-                          context,
-                        ).pop();
+                        if (openedFromRoute == homeRoutePath) {
+                          Navigator.of(
+                            context,
+                          ).pop();
+                        } else if (openedFromRoute == rewardsRoutePath) {
+                          Navigator.of(
+                            context,
+                          ).pop();
+                          Navigator.of(
+                            context,
+                          ).pop();
+                        }
                       },
                       style: Theme.of(
                         context,

@@ -62,7 +62,7 @@ import 'package:sky_trade/core/resources/numbers/ui.dart'
         twentyOneDotNil,
         twentyTwoDotNil;
 import 'package:sky_trade/core/resources/strings/routes.dart'
-    show rewardsDroneRushDetailsRoutePath;
+    show homeRoutePath, rewardsDroneRushDetailsRoutePath;
 import 'package:sky_trade/core/resources/strings/special_characters.dart';
 import 'package:sky_trade/core/utils/extensions/build_context_extensions.dart';
 
@@ -211,6 +211,7 @@ class EventDetails extends StatelessWidget {
                     context,
                   ).pushNamed(
                     rewardsDroneRushDetailsRoutePath,
+                    arguments: homeRoutePath,
                   );
                 },
                 style: Theme.of(
