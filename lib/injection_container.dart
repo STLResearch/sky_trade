@@ -16,6 +16,7 @@ import 'package:sky_trade/core/injection_container/referral.dart';
 import 'package:sky_trade/core/injection_container/remote_i_d_receiver.dart';
 import 'package:sky_trade/core/injection_container/remote_i_d_transmitter.dart';
 import 'package:sky_trade/core/injection_container/rent_air_rights.dart';
+import 'package:sky_trade/core/injection_container/rewards.dart';
 import 'package:sky_trade/core/injection_container/search_autocomplete.dart';
 import 'package:sky_trade/core/injection_container/settings.dart';
 import 'package:sky_trade/core/injection_container/u_a_s_restrictions.dart';
@@ -41,6 +42,7 @@ Future<void> registerServices() => Future.wait<void>([
       registerRemoteIDReceiverServices(),
       registerRemoteIDTransmitterServices(),
       registerRentAirRightsServices(),
+      registerRewardsServices(),
       registerSearchAutocompleteServices(),
       registerSettingsServices(),
       registerUASRestrictionsServices(),

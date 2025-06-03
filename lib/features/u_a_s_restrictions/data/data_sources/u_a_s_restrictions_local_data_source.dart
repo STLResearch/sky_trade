@@ -51,6 +51,7 @@ final class UASRestrictionsLocalDataSourceImplementation
       box,
       todayKey,
     );
+
     await box.put(
       todayKey,
       {
@@ -63,6 +64,7 @@ final class UASRestrictionsLocalDataSourceImplementation
   @override
   Future<void> cleanUpResources() async {
     final box = await _getBoxForStoringRestrictionsData();
+
     await box.close();
   }
 
@@ -75,9 +77,10 @@ final class UASRestrictionsLocalDataSourceImplementation
     Box<Map<dynamic, dynamic>> box,
     String todayKey,
   ) async {
-    if(box.containsKey(todayKey)) {
+    if (box.containsKey(todayKey)) {
       return;
     }
+
     await box.clear();
   }
 

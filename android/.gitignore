@@ -36,3 +36,6 @@ publishing/.asset-manifest.json
 
 # CXX
 *.cxx
+
+# Android build
+build/reports/problems/**

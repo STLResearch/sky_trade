@@ -27,7 +27,20 @@ const typeKey = 'type';
 const polygonGeometry = 'Polygon';
 const lineStringGeometry = 'LineString';
 const colorKey = 'color';
+const strokeColorKey = 'strokeColor';
 const isSelectedKey = 'isSelected';
+const createdAtKey = 'createdAt';
+const updateAtKey = 'updateAt';
+const startTimeKey = 'startTime';
+const endTimeKey = 'endTime';
+const latitudeKey = 'latitude';
+const longitudeKey = 'longitude';
+const radiusKey = 'radius';
+const boundingBoxKey = 'boundingBox';
+const minLatitudeKey = 'minLatitude';
+const maxLatitudeKey = 'maxLatitude';
+const minLongitudeKey = 'minLongitude';
+const maxLongitudeKey = 'maxLongitude';
 // Marker/layer
 const layerId = '-layer';
 const boundaryId = '-boundary';
@@ -38,6 +51,8 @@ const bridDronesLayerId = 'brid-drones-layer';
 const nridDronesSourceId = 'nrid-drones-source';
 const nridDronesLayerId = 'nrid-drones-layer';
 const iconDroneValue = 'icon-drone';
+const droneRushZonesSourceId = 'drone-rush-zones-source';
+const droneRushZonesLayerId = 'drone-rush-zones-layer';
 
 // Hardcoded strings
 const r = 'r';

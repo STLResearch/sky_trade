@@ -167,3 +167,16 @@ flutter:
     - family: Lato
       fonts:
         - asset: assets/fonts/lato/Lato-Bold-700.ttf
+          weight: 700
+
+    - family: ChakraPetch
+      fonts:
+        - asset: assets/fonts/chakra_petch/ChakraPetch-SemiBold-600.ttf
+          weight: 600
+
+    - family: Urbanist
+      fonts:
+        - asset: assets/fonts/urbanist/Urbanist-Regular-400.ttf
+          weight: 400
+        - asset: assets/fonts/urbanist/Urbanist-SemiBold-600.ttf
+          weight: 600

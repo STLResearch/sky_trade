@@ -933,4 +933,159 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get shareRadarApp => 'Share Radar App';
+
+  @override
+  String get introducingSkyTradeRadarRewards =>
+      'Introducing SkyTrade Radar Rewards';
+
+  @override
+  String get earn25PointsForEveryVerifiedDroneObservationCompleteDailyQuestsToEarnEvenMorePoints =>
+      'Earn 25 points for every verified drone observation. Complete daily quests to earn even more points';
+
+  @override
+  String get pointsProgram => 'Points Program';
+
+  @override
+  String get completeTasksToEarnSkyPoints =>
+      'Complete tasks to earn \$SKY points';
+
+  @override
+  String get dailyQuests => 'Daily Quests';
+
+  @override
+  String get howItWorks => 'How it works';
+
+  @override
+  String get earn25PointsForEveryVerifiedDroneObservationCompleteDailyQuestsToEarnBonusPointsAndClimbTheRanksTheMoreYouContributeTheMoreTouLevelUp =>
+      'Earn 25 points for every verified drone observation. Complete daily quests to earn bonus points and climb the ranks.\nThe more you contribute, the more you level up';
+
+  @override
+  String get viewLeaderboard => 'View leaderboard';
+
+  @override
+  String get claim => 'Claim';
+
+  @override
+  String get thereAreNoQuestsAtThisTime => 'There are no quests at this time';
+
+  @override
+  String get seeMyPosition => 'See my position';
+
+  @override
+  String get weCouldNotGetYourPositionOnTheLeaderboardTryRefreshingThePageThenTryViewingYourPositionAgain =>
+      'We could not get your position on the leaderboard. Try refreshing the page then try viewing your position again';
+
+  @override
+  String get daysLeft => 'day(s) left';
+
+  @override
+  String get crownEmoji => '👑';
+
+  @override
+  String get competeWithOthersToClimbTheRanksByEarningPointsThroughDroneObservationsAndQuestsPointsResetAtTheStartOfEachNewSeasonSoStayActiveToMaintainYourPosition =>
+      'Compete with others to climb the ranks by earning points through drone observations and quests. \n\nPoints reset at the start of each new season, so stay active to maintain your position';
+
+  @override
+  String get close => 'Close';
+
+  @override
+  String get droneRushZones => 'Drone Rush Zones';
+
+  @override
+  String get droneRushZone => 'Drone Rush Zone';
+
+  @override
+  String get keepAnEyeOnTheMapForActiveRushZonesAndStartTrackingToMaximizeYourRewards =>
+      'Keep an eye on the map for active Rush Zones and start tracking to maximize your rewards';
+
+  @override
+  String get activeRushZones => 'Active Rush Zones';
+
+  @override
+  String get learnMore => 'Learn More';
+
+  @override
+  String get inThisZoneYouCanEarn => 'In this zone you can earn';
+
+  @override
+  String get forTrackingDronesInSpecialHighActivityZones =>
+      'for tracking drones in special high-activity zones';
+
+  @override
+  String get specialEvent => 'Special Event';
+
+  @override
+  String get droneRush => 'Drone Rush';
+
+  @override
+  String get trackAndEarnFiveXPoints => 'Track & Earn 5x Points!';
+
+  @override
+  String get watchForRushZones => 'Watch for Rush Zones';
+
+  @override
+  String get onlySpecificLocationsAreEligibleForExtraPointsRushZonesWillBeMarkedClearlyOnYourMap =>
+      'Only specific locations are eligible for extra points. Rush zones will be marked clearly on your map';
+
+  @override
+  String get whichAreasAreEligible => 'Which areas are eligible?';
+
+  @override
+  String get enterARushZone => 'Enter a Rush Zone';
+
+  @override
+  String get youMustBePhysicallyLocatedWithinARushZoneToStartTracking =>
+      'You must be physically located within a Rush Zone to start tracking';
+
+  @override
+  String get trackDrones => 'Track Drones';
+
+  @override
+  String get observeAndConfirmDroneActivityAsUsual =>
+      'Observe and confirm drone activity as usual';
+
+  @override
+  String get earnMorePoints => 'Earn More Points';
+
+  @override
+  String get allSuccessfulObservationsInRushZonesWillAutomaticallyEarnBoostedRewards =>
+      'All successful observations in Rush Zones will automatically earn boosted rewards';
+
+  @override
+  String get startEarning => 'Start Earning';
+
+  @override
+  String get topTrackersThisPeriod => 'Top trackers this period';
+
+  @override
+  String get startTracking => 'Start Tracking';
+
+  @override
+  String get whatAreasAreEligible => 'What areas are eligible?';
+
+  @override
+  String get oopsSomethingWentWrongSwipeDownToRefreshThePage =>
+      'Oops! Something Went Wrong. Swipe down to refresh the page';
+
+  @override
+  String get couldNotGetDailyQuestsSwipeDownToRefreshThePage =>
+      'Could not get daily quests. Swipe down to refresh the page';
+
+  @override
+  String get couldNotGetPointsSwipeDownToRefreshThePage =>
+      'Could not get points. Swipe down to refresh the page';
+
+  @override
+  String get points => 'points';
+
+  @override
+  String get morePoints => 'more points';
+
+  @override
+  String get forTrackingDronesInHighlightedZonesDuringThisLimitedTimeEvent =>
+      'for tracking drones in highlighted zones during this limited-time event';
+
+  @override
+  String get theListOfActiveRushZonesPlaceNamesCannotBeShownAtTheMoment =>
+      'The list of active rush zones place names cannot be shown at the moment';
 }
