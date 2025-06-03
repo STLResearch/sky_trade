@@ -93,7 +93,6 @@ const twentyTwoDotFive = 22.5;
 const twentyThreeDotNil = 23.0;
 const twentyFourDotNil = 24.0;
 const twentyFiveDotNil = 25.0;
-const twentyFiveDotFive = 25.5;
 const twentyFiveDotEightFive = 25.85;
 const twentySixDotNil = 26.0;
 const twentySevenDotNil = 27.0;

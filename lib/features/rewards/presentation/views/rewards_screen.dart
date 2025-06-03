@@ -109,13 +109,15 @@ import 'package:sky_trade/core/resources/numbers/ui.dart'
         three,
         twelveDotNil,
         twentyDotNil,
-        twentyFiveDotFive,
         twentyFourDotNil,
         twentyTwoDotNil,
         two,
         zero;
 import 'package:sky_trade/core/resources/strings/routes.dart'
-    show rewardsLeaderboardRoutePath, rewardsOnboardingRoutePath;
+    show
+        rewardsDroneRushDetailsRoutePath,
+        rewardsLeaderboardRoutePath,
+        rewardsOnboardingRoutePath;
 import 'package:sky_trade/core/resources/strings/special_characters.dart'
     show exclamationMark, plus, whiteSpace;
 import 'package:sky_trade/core/utils/extensions/build_context_extensions.dart';
@@ -441,7 +443,7 @@ class _RewardsScreenViewState extends State<RewardsScreenView> {
                                   hasBorder: false,
                                   backgroundColor: hexFFFFFF,
                                   cornerRadius: twentyDotNil,
-                                  verticalPadding: twentyFiveDotFive,
+                                  verticalPadding: nilDotNil,
                                   horizontalPadding: fourteenDotNil,
                                   child: Row(
                                     mainAxisAlignment: MainAxisAlignment.center,
@@ -543,6 +545,11 @@ class _RewardsScreenViewState extends State<RewardsScreenView> {
                                       ),
                                       Assets.pngs.droneRush.image(),
                                     ],
+                                  ),
+                                  onTap: () => Navigator.of(
+                                    context,
+                                  ).pushNamed(
+                                    rewardsDroneRushDetailsRoutePath,
                                   ),
                                 ),
                                 Positioned(

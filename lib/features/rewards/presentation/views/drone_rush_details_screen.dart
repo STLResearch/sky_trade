@@ -352,9 +352,14 @@ class DroneRushDetailsScreen extends StatelessWidget {
                       height: eightyNineDotNil,
                     ),
                     ElevatedButton(
-                      onPressed: () => Navigator.of(
-                        context,
-                      ).pop(),
+                      onPressed: () {
+                        Navigator.of(
+                          context,
+                        ).pop();
+                        Navigator.of(
+                          context,
+                        ).pop();
+                      },
                       style: Theme.of(
                         context,
                       ).elevatedButtonTheme.style?.copyWith(
