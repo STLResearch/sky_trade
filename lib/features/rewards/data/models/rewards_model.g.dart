@@ -76,8 +76,8 @@ Map<String, dynamic> _$QuestModelToJson(QuestModel instance) =>
     };
 
 const _$QuestTypeEnumMap = {
-  QuestType.amount: 'AMOUNT',
-  QuestType.location: 'LOCATION',
+  QuestType.taskBased: 'TASK_BASED',
+  QuestType.locationBased: 'LOCATION_BASED',
 };
 
 QuestLocationModel _$QuestLocationModelFromJson(Map<String, dynamic> json) =>

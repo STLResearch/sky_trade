@@ -9,6 +9,7 @@ import 'package:sky_trade/core/resources/strings/networking.dart'
         droneRadarPath,
         endTimeKey,
         getDailyQuestPath,
+        getDroneRushZonesInTimeRangePath,
         getDroneRushZonesPath,
         getRewardInfoPath,
         limitKey,
@@ -172,10 +173,10 @@ final class RewardsRemoteDataSourceImplementation
       handleResponse<DroneRushZoneException, List<dynamic>,
           List<DroneRushZoneModel>>(
         requestInitiator: _httpClient.request(
-          requestMethod: RequestMethod.get,
-          path: privatePath + droneRadarPath + getDroneRushZonesPath,
+          requestMethod: RequestMethod.post,
+          path: privatePath + droneRadarPath + getDroneRushZonesInTimeRangePath,
           includeSignature: true,
-          queryParameters: {
+          data: {
             startTimeKey: startTime.toIso8601String(),
             endTimeKey: endTime.toIso8601String(),
           },

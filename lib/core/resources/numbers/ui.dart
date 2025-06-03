@@ -13,6 +13,7 @@ const fourteen = 14;
 const fifteen = 15;
 const sixteen = 16;
 const seventeen = 17;
+const thirty = 30;
 const forty = 40;
 const fifty = 50;
 const fiftyNine = 59;

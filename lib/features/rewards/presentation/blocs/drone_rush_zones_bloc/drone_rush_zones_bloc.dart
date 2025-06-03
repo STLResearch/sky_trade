@@ -4,7 +4,7 @@ import 'package:bloc/bloc.dart' show Bloc, Emitter;
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:sky_trade/core/errors/failures/rewards_failure.dart'
     show DroneRushZoneFailure;
-import 'package:sky_trade/core/resources/numbers/ui.dart' show one;
+import 'package:sky_trade/core/resources/numbers/ui.dart' show thirty;
 import 'package:sky_trade/features/rewards/domain/entities/rewards_entity.dart'
     show DroneRushZoneEntity;
 import 'package:sky_trade/features/rewards/domain/repositories/rewards_repository.dart';
@@ -63,7 +63,7 @@ class DroneRushZonesBloc
 
     _periodicStreamStreamSubscription ??= Stream<void>.periodic(
       const Duration(
-        minutes: one,
+        minutes: thirty,
       ),
     ).listen(
       (_) => add(

@@ -192,8 +192,7 @@ class _MapOverlayViewState extends State<MapOverlayView> {
                           ),
                           onTap: () => Navigator.of(context).pushNamed(
                             rewardsRoutePath,
-                            arguments:
-                              context.read<DroneRushZonesBloc>(),
+                            arguments: context.read<DroneRushZonesBloc>(),
                           ),
                           child: Padding(
                             padding: const EdgeInsetsDirectional.symmetric(
