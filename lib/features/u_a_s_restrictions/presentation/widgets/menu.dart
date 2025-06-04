@@ -1,24 +1,49 @@
 import 'package:dartz/dartz.dart' show Function0;
 import 'package:flutter/material.dart'
     show
+        BorderRadius,
         BoxDecoration,
         BoxShape,
         BuildContext,
         Center,
+        Colors,
+        Column,
         Container,
+        Divider,
+        EdgeInsets,
         EdgeInsetsDirectional,
+        FontWeight,
+        IconButton,
         InkWell,
-        MenuAnchor,
-        MenuItemButton,
+        ListTile,
+        ListView,
+        MainAxisSize,
         Navigator,
+        NeverScrollableScrollPhysics,
+        Padding,
+        Positioned,
+        Radius,
+        SafeArea,
+        SizedBox,
+        Stack,
         StatelessWidget,
         Text,
         Theme,
-        Widget;
+        Widget,
+        showModalBottomSheet;
 import 'package:flutter_bloc/flutter_bloc.dart' show ReadContext;
 import 'package:sky_trade/core/assets/generated/assets.gen.dart' show Assets;
-import 'package:sky_trade/core/resources/colors.dart' show hex1D1E2D;
-import 'package:sky_trade/core/resources/numbers/ui.dart' show twentyDotNil;
+import 'package:sky_trade/core/resources/colors.dart' show hex1E1E1E;
+import 'package:sky_trade/core/resources/numbers/ui.dart'
+    show
+        eightDotNil,
+        fortyDotNil,
+        nilDotNil,
+        oneDotNil,
+        sixteenDotNil,
+        tenDotNil,
+        thirtyDotNil,
+        twentyDotNil;
 import 'package:sky_trade/core/resources/strings/routes.dart'
     show helpRoutePath, insightsRoutePath, referralRoutePath, settingsRoutePath;
 import 'package:sky_trade/core/utils/enums/ui.dart' show MenuItem;
@@ -32,47 +57,122 @@ class Menu extends StatelessWidget {
   const Menu({super.key});
 
   @override
-  Widget build(BuildContext context) => MenuAnchor(
-        builder: (_, menuController, __) => InkWell(
-          onTap: () => switch (menuController.isOpen) {
-            true => menuController.close(),
-            false => menuController.open(),
-          },
-          child: Container(
-            padding: const EdgeInsetsDirectional.symmetric(
-              vertical: twentyDotNil,
-            ),
-            decoration: const BoxDecoration(
-              shape: BoxShape.circle,
-            ),
-            child: Center(
-              child: Assets.svgs.meatballsMenu.svg(),
-            ),
+  Widget build(BuildContext context) => InkWell(
+        onTap: () => _showMenuBottomSheet(context),
+        child: Container(
+          padding: const EdgeInsetsDirectional.symmetric(
+            vertical: twentyDotNil,
           ),
-        ),
-        menuChildren: List<MenuItemButton>.generate(
-          MenuItem.values.length,
-          (index) => MenuItemButton(
-            leadingIcon: _computeMenuItemLeadingIconUsing(
-              context,
-              index: index,
-            ),
-            onPressed: _computeMenuItemPressedActionUsing(
-              context,
-              index: index,
-            ),
-            child: Text(
-              _computeMenuItemLocalizedTextUsing(
-                context,
-                index: index,
-              ),
-              style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                    color: hex1D1E2D,
-                  ),
-            ),
+          decoration: const BoxDecoration(
+            shape: BoxShape.circle,
+          ),
+          child: Center(
+            child: Assets.svgs.meatballsMenu.svg(),
           ),
         ),
       );
+
+  void _showMenuBottomSheet(BuildContext context) {
+    showModalBottomSheet<void>(
+      context: context,
+      isScrollControlled: true,
+      backgroundColor: Colors.transparent,
+      builder: (context) => const MenuBottomSheet(),
+    );
+  }
+}
+
+class MenuBottomSheet extends StatelessWidget {
+  const MenuBottomSheet({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: const BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(
+            thirtyDotNil,
+          ),
+          topRight: Radius.circular(
+            thirtyDotNil,
+          ),
+        ),
+      ),
+      child: SafeArea(
+        bottom: false,
+        child: Padding(
+          padding: const EdgeInsets.symmetric(
+            horizontal: twentyDotNil,
+            vertical: tenDotNil,
+          ),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              SizedBox(
+                height: fortyDotNil,
+                child: Stack(
+                  children: [
+                    Center(
+                      child: Assets.svgs.skyTradeMenuLogo.svg(),
+                    ),
+                    Positioned(
+                      right: nilDotNil,
+                      top: nilDotNil,
+                      bottom: nilDotNil,
+                      child: IconButton(
+                        onPressed: () => Navigator.of(context).pop(),
+                        icon: Assets.svgs.menuClear.svg(),
+                        padding: EdgeInsets.zero,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              const SizedBox(
+                height: eightDotNil,
+              ),
+              const Divider(
+                height: oneDotNil,
+                indent: sixteenDotNil,
+                endIndent: sixteenDotNil,
+              ),
+              ListView.builder(
+                shrinkWrap: true,
+                physics: const NeverScrollableScrollPhysics(),
+                itemCount: MenuItem.values.length,
+                itemBuilder: _buildMenuItem,
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildMenuItem(BuildContext context, int index) {
+    return ListTile(
+      leading: SizedBox(
+        width: thirtyDotNil,
+        height: thirtyDotNil,
+        child: Center(
+          child: _computeMenuItemLeadingIconUsing(context, index: index),
+        ),
+      ),
+      title: Text(
+        _computeMenuItemLocalizedTextUsing(context, index: index),
+        style: Theme.of(context).textTheme.bodySmall?.copyWith(
+              color: hex1E1E1E,
+              fontWeight: FontWeight.w500,
+              letterSpacing: nilDotNil,
+            ),
+      ),
+      onTap: () {
+        Navigator.of(context).pop();
+        _computeMenuItemPressedActionUsing(context, index: index)();
+      },
+    );
+  }
 
   Widget _computeMenuItemLeadingIconUsing(
     BuildContext context, {
