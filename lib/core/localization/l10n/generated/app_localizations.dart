@@ -252,18 +252,18 @@ abstract class AppLocalizations {
   /// **'Oops!\nSomething Went Wrong'**
   String get oopsSomethingWentWrong;
 
-  /// No description provided for @itLooksLikeWereHavingTroubleInitializingYourSession.
+  /// No description provided for @itLooksLikeWeAreHavingTroubleInitializingYourSession.
   ///
   /// In en, this message translates to:
-  /// **'It looks like we’re having trouble initializing your session.'**
-  String get itLooksLikeWereHavingTroubleInitializingYourSession;
+  /// **'It looks like we are having trouble initializing your session.'**
+  String get itLooksLikeWeAreHavingTroubleInitializingYourSession;
 
-  /// No description provided for @anUnexpectedErrorOccurredPleaseTryRefreshingThePageIfTheIssueContinuesYouMayWantToCheckYourConnectionOrTryAgainLater.
+  /// No description provided for @tryClearingTheAppCacheFirstAndTheAppDataSecondAfterClosingTheAppRestartTheAppAfterwardsIfTheIssueContinuesFeelFreeToContactOurSupportTeam.
   ///
   /// In en, this message translates to:
-  /// **'An unexpected error occurred. Please try refreshing the page. If the issue continues, you may want to check your connection or try again later.\n\nFor further assistance, feel free to contact our support team.'**
+  /// **'Try clearing the app cache first and the app data second after closing the app. Restart the app afterwards. If the issue continues, feel free to contact our support team'**
   String
-      get anUnexpectedErrorOccurredPleaseTryRefreshingThePageIfTheIssueContinuesYouMayWantToCheckYourConnectionOrTryAgainLater;
+      get tryClearingTheAppCacheFirstAndTheAppDataSecondAfterClosingTheAppRestartTheAppAfterwardsIfTheIssueContinuesFeelFreeToContactOurSupportTeam;
 
   /// No description provided for @itLooksLikeYouDontHaveAnActiveInternetConnection.
   ///

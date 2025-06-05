@@ -90,12 +90,12 @@ class AppLocalizationsEn extends AppLocalizations {
   String get oopsSomethingWentWrong => 'Oops!\nSomething Went Wrong';
 
   @override
-  String get itLooksLikeWereHavingTroubleInitializingYourSession =>
-      'It looks like we’re having trouble initializing your session.';
+  String get itLooksLikeWeAreHavingTroubleInitializingYourSession =>
+      'It looks like we are having trouble initializing your session.';
 
   @override
-  String get anUnexpectedErrorOccurredPleaseTryRefreshingThePageIfTheIssueContinuesYouMayWantToCheckYourConnectionOrTryAgainLater =>
-      'An unexpected error occurred. Please try refreshing the page. If the issue continues, you may want to check your connection or try again later.\n\nFor further assistance, feel free to contact our support team.';
+  String get tryClearingTheAppCacheFirstAndTheAppDataSecondAfterClosingTheAppRestartTheAppAfterwardsIfTheIssueContinuesFeelFreeToContactOurSupportTeam =>
+      'Try clearing the app cache first and the app data second after closing the app. Restart the app afterwards. If the issue continues, feel free to contact our support team';
 
   @override
   String get itLooksLikeYouDontHaveAnActiveInternetConnection =>

@@ -226,7 +226,7 @@ class _ErrorScreenViewState extends State<ErrorScreenView> {
                               .youDidNotPerformARequiredStepNecessaryToCompleteAnAction,
                         ErrorReason.sessionInitializationFailure => context
                             .localize
-                            .itLooksLikeWereHavingTroubleInitializingYourSession,
+                            .itLooksLikeWeAreHavingTroubleInitializingYourSession,
                         ErrorReason.incompatibleBackendApiVersion => context
                             .localize
                             .certainThingsMayBreakDueToSignificantChangesThatHaveBeenMade,
@@ -251,7 +251,7 @@ class _ErrorScreenViewState extends State<ErrorScreenView> {
                               .youDeletedAnAccountAtSomePointButDeclinedOurRequestForYouToInvalidateTheSessionInOrderToProceedKindlyAcceptTheNextDialogThatShowsUp,
                         ErrorReason.sessionInitializationFailure => context
                             .localize
-                            .anUnexpectedErrorOccurredPleaseTryRefreshingThePageIfTheIssueContinuesYouMayWantToCheckYourConnectionOrTryAgainLater,
+                            .tryClearingTheAppCacheFirstAndTheAppDataSecondAfterClosingTheAppRestartTheAppAfterwardsIfTheIssueContinuesFeelFreeToContactOurSupportTeam,
                         ErrorReason.incompatibleBackendApiVersion => context
                             .localize
                             .weEncourageYouToUpdateTheAppInOrderToKeepUsingIt,
