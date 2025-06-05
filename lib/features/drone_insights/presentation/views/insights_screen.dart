@@ -1,5 +1,13 @@
 // ignore_for_file: lines_longer_than_80_chars
 
+import 'dart:io' show Platform;
+
+import 'package:flutter/cupertino.dart'
+    show
+        CupertinoSliverRefreshControl,
+        CustomScrollView,
+        SliverPadding,
+        SliverToBoxAdapter;
 import 'package:flutter/material.dart'
     show
         AlwaysScrollableScrollPhysics,
@@ -20,7 +28,6 @@ import 'package:flutter/material.dart'
         RefreshIndicator,
         Row,
         Scaffold,
-        SingleChildScrollView,
         SizedBox,
         State,
         StatefulWidget,
@@ -82,9 +89,156 @@ class _InsightsScreenViewState extends State<InsightsScreenView> {
     super.initState();
   }
 
-  void _trackDroneInsights() => context.read<TrackDroneInsightsBloc>().add(
-        const TrackDroneInsightsEvent.trackInsights(),
+  Future<void> _trackDroneInsights() async {
+    context.read<TrackDroneInsightsBloc>().add(
+          const TrackDroneInsightsEvent.trackInsights(),
+        );
+  }
+
+  Widget _buildScrollView() {
+    final content = SliverPadding(
+      padding: const EdgeInsetsDirectional.symmetric(
+        horizontal: twentySixDotNil,
+      ),
+      sliver: SliverToBoxAdapter(
+        child: Column(
+          children: [
+            const SizedBox(
+              height: twentySevenDotEightNine,
+            ),
+            const GraphSection(),
+            const SizedBox(
+              height: twentyEightDotOneTwo,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  context.localize.totalTrackedDrones,
+                  style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                        fontSize: fourteenDotNil,
+                        height: sixteenDotOne / fourteenDotNil,
+                        color: hex4285F4,
+                      ),
+                ),
+                const SizedBox(
+                  width: sixteenDotNil,
+                ),
+                BlocBuilder<TrackDroneInsightsBloc, TrackDroneInsightsState>(
+                  builder: (_, trackDroneInsightsState) =>
+                      trackDroneInsightsState.maybeWhen(
+                    trackedInsights: (trackedDroneInsightsEntity) => Text(
+                      trackedDroneInsightsEntity.devicesObserved.toString(),
+                      style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                            fontWeight: FontWeight.w700,
+                            fontSize: fourteenDotNil,
+                            height: twentyOneDotNil / fourteenDotNil,
+                            color: hex4285F4,
+                          ),
+                    ),
+                    orElse: () => const SizedBox.shrink(),
+                  ),
+                ),
+              ],
+            ),
+            const SizedBox(
+              height: tenDotNil,
+            ),
+            const Divider(
+              height: oneDotNil,
+            ),
+            const SizedBox(
+              height: tenDotNil,
+            ),
+            BlocBuilder<TrackDroneInsightsBloc, TrackDroneInsightsState>(
+              builder: (_, trackDroneInsightsState) =>
+                  trackDroneInsightsState.maybeWhen(
+                trackedInsights: (trackedDroneInsightsEntity) =>
+                    switch (trackedDroneInsightsEntity.devices.isEmpty) {
+                  true => SizedBox(
+                      height: MediaQuery.of(context).size.height / twoDotFive,
+                      child: Center(
+                        child: Text(
+                          context.localize
+                              .thereIsNotEnoughDataToDisplayYourTotalTrackedDrones,
+                          textAlign: TextAlign.center,
+                          style:
+                              Theme.of(context).textTheme.bodySmall?.copyWith(
+                                    color: hex838187,
+                                  ),
+                        ),
+                      ),
+                    ),
+                  false => ListView.separated(
+                      shrinkWrap: true,
+                      primary: false,
+                      physics: const NeverScrollableScrollPhysics(),
+                      itemCount: trackedDroneInsightsEntity.devices.length,
+                      itemBuilder: (_, index) => TrackedDrone(
+                        macAddress: trackedDroneInsightsEntity
+                            .devices[index].remoteData.connection.macAddress,
+                        lastUpdate:
+                            trackedDroneInsightsEntity.devices[index].updatedAt,
+                      ),
+                      separatorBuilder: (_, __) => const SizedBox(
+                        height: tenDotNil,
+                      ),
+                    ),
+                },
+                failedToTrackInsights: (_) => SizedBox(
+                  height: MediaQuery.of(context).size.height / twoDotFive,
+                  child: Center(
+                    child: Text(
+                      context.localize.weCouldNotLoadYourData,
+                      textAlign: TextAlign.center,
+                      style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                            color: hex838187,
+                          ),
+                    ),
+                  ),
+                ),
+                orElse: () => SizedBox(
+                  height: MediaQuery.of(context).size.height / twoDotFive,
+                  child: const Center(
+                    child: SizedBox(
+                      width: twentyFourDotNil,
+                      height: twentyFourDotNil,
+                      child: CircularProgressIndicator(),
+                    ),
+                  ),
+                ),
+              ),
+            ),
+            const SizedBox(
+              height: twentySevenDotEightNine,
+            ),
+          ],
+        ),
+      ),
+    );
+
+    if (Platform.isIOS) {
+      return CustomScrollView(
+        physics: const AlwaysScrollableScrollPhysics(),
+        slivers: [
+          CupertinoSliverRefreshControl(
+            onRefresh: _trackDroneInsights,
+          ),
+          content,
+        ],
       );
+    }
+
+    return RefreshIndicator(
+      onRefresh: _trackDroneInsights,
+      child: CustomScrollView(
+        physics: const AlwaysScrollableScrollPhysics(),
+        slivers: [
+          content,
+        ],
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) => Scaffold(
@@ -99,144 +253,6 @@ class _InsightsScreenViewState extends State<InsightsScreenView> {
             context.localize.insights,
           ),
         ),
-        body: RefreshIndicator(
-          onRefresh: () async => _trackDroneInsights(),
-          child: SingleChildScrollView(
-            physics: const AlwaysScrollableScrollPhysics(),
-            padding: const EdgeInsetsDirectional.symmetric(
-              horizontal: twentySixDotNil,
-            ),
-            child: Column(
-              children: [
-                const SizedBox(
-                  height: twentySevenDotEightNine,
-                ),
-                const GraphSection(),
-                const SizedBox(
-                  height: twentyEightDotOneTwo,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      context.localize.totalTrackedDrones,
-                      style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                            fontSize: fourteenDotNil,
-                            height: sixteenDotOne / fourteenDotNil,
-                            color: hex4285F4,
-                          ),
-                    ),
-                    const SizedBox(
-                      width: sixteenDotNil,
-                    ),
-                    BlocBuilder<TrackDroneInsightsBloc,
-                        TrackDroneInsightsState>(
-                      builder: (_, trackDroneInsightsState) =>
-                          trackDroneInsightsState.maybeWhen(
-                        trackedInsights: (trackedDroneInsightsEntity) => Text(
-                          trackedDroneInsightsEntity.devicesObserved.toString(),
-                          style:
-                              Theme.of(context).textTheme.bodySmall?.copyWith(
-                                    fontWeight: FontWeight.w700,
-                                    fontSize: fourteenDotNil,
-                                    height: twentyOneDotNil / fourteenDotNil,
-                                    color: hex4285F4,
-                                  ),
-                        ),
-                        orElse: () => const SizedBox.shrink(),
-                      ),
-                    ),
-                  ],
-                ),
-                const SizedBox(
-                  height: tenDotNil,
-                ),
-                const Divider(
-                  height: oneDotNil,
-                ),
-                const SizedBox(
-                  height: tenDotNil,
-                ),
-                BlocBuilder<TrackDroneInsightsBloc, TrackDroneInsightsState>(
-                  builder: (_, trackDroneInsightsState) =>
-                      trackDroneInsightsState.maybeWhen(
-                    trackedInsights: (trackedDroneInsightsEntity) =>
-                        switch (trackedDroneInsightsEntity.devices.isEmpty) {
-                      true => SizedBox(
-                          height: MediaQuery.of(
-                                context,
-                              ).size.height /
-                              twoDotFive,
-                          child: Center(
-                            child: Text(
-                              context.localize
-                                  .thereIsNotEnoughDataToDisplayYourTotalTrackedDrones,
-                              textAlign: TextAlign.center,
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .bodySmall
-                                  ?.copyWith(
-                                    color: hex838187,
-                                  ),
-                            ),
-                          ),
-                        ),
-                      false => ListView.separated(
-                          shrinkWrap: true,
-                          primary: false,
-                          physics: const NeverScrollableScrollPhysics(),
-                          itemCount: trackedDroneInsightsEntity.devices.length,
-                          itemBuilder: (_, index) => TrackedDrone(
-                            macAddress: trackedDroneInsightsEntity
-                                .devices[index]
-                                .remoteData
-                                .connection
-                                .macAddress,
-                            lastUpdate: trackedDroneInsightsEntity
-                                .devices[index].updatedAt,
-                          ),
-                          separatorBuilder: (_, __) => const SizedBox(
-                            height: tenDotNil,
-                          ),
-                        ),
-                    },
-                    failedToTrackInsights: (_) => SizedBox(
-                      height: MediaQuery.of(
-                            context,
-                          ).size.height /
-                          twoDotFive,
-                      child: Center(
-                        child: Text(
-                          context.localize.weCouldNotLoadYourData,
-                          textAlign: TextAlign.center,
-                          style:
-                              Theme.of(context).textTheme.bodySmall?.copyWith(
-                                    color: hex838187,
-                                  ),
-                        ),
-                      ),
-                    ),
-                    orElse: () => SizedBox(
-                      height: MediaQuery.of(
-                            context,
-                          ).size.height /
-                          twoDotFive,
-                      child: const Center(
-                        child: SizedBox(
-                          width: twentyFourDotNil,
-                          height: twentyFourDotNil,
-                          child: CircularProgressIndicator(),
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-                const SizedBox(
-                  height: twentySevenDotEightNine,
-                ),
-              ],
-            ),
-          ),
-        ),
+        body: _buildScrollView(),
       );
 }
