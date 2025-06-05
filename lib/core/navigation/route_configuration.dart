@@ -2,9 +2,9 @@
 
 import 'package:flutter/material.dart'
     show MaterialPageRoute, Route, RouteSettings;
+import 'package:sky_trade/app_banner.dart' show AppBanner;
 import 'package:sky_trade/core/resources/strings/routes.dart';
 import 'package:sky_trade/core/utils/enums/ui.dart' show ErrorReason;
-import 'package:sky_trade/env_banner.dart' show EnvBanner;
 import 'package:sky_trade/features/auth/presentation/views/error_screen.dart'
     show ErrorScreen;
 import 'package:sky_trade/features/auth/presentation/views/get_started_screen.dart'
@@ -35,7 +35,7 @@ import 'package:sky_trade/features/u_a_s_restrictions/presentation/views/home_sc
     show HomeScreen;
 
 Route routes(RouteSettings settings) => MaterialPageRoute(
-      builder: (context) => EnvBanner(
+      builder: (context) => AppBanner(
         child: switch (settings.name) {
           baseRoutePath || loadingRoutePath => const LoadingScreen(),
           noInternetConnectionRoutePath => const NoInternetConnectionScreen(),

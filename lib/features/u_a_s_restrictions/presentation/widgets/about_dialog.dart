@@ -48,7 +48,6 @@ import 'package:sky_trade/core/resources/strings/special_characters.dart'
 import 'package:sky_trade/core/utils/extensions/build_context_extensions.dart';
 import 'package:sky_trade/features/about/presentation/blocs/app_version_bloc/app_version_bloc.dart'
     show AppVersionBloc, AppVersionEvent, AppVersionState;
-import 'package:sky_trade/injection_container.dart' show serviceLocator;
 
 final class AboutDialog {
   static void show(
@@ -56,17 +55,24 @@ final class AboutDialog {
   ) {
     showDialog<void>(
       context: context,
-      builder: (_) => const About(),
+      builder: (_) => About(
+        appVersionBloc: context.read<AppVersionBloc>(),
+      ),
     );
   }
 }
 
 class About extends StatelessWidget {
-  const About({super.key});
+  const About({
+    required this.appVersionBloc,
+    super.key,
+  });
+
+  final AppVersionBloc appVersionBloc;
 
   @override
-  Widget build(BuildContext context) => BlocProvider<AppVersionBloc>(
-        create: (_) => serviceLocator(),
+  Widget build(BuildContext context) => BlocProvider<AppVersionBloc>.value(
+        value: appVersionBloc,
         child: const AboutView(),
       );
 }
