@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart'
     show MaterialPageRoute, Route, RouteSettings;
+import 'package:sky_trade/app_banner.dart' show AppBanner;
 import 'package:sky_trade/core/resources/strings/routes.dart';
 import 'package:sky_trade/core/utils/enums/ui.dart' show ErrorReason;
 import 'package:sky_trade/features/auth/presentation/views/error_screen.dart'
@@ -34,29 +35,31 @@ import 'package:sky_trade/features/u_a_s_restrictions/presentation/views/home_sc
     show HomeScreen;
 
 Route routes(RouteSettings settings) => MaterialPageRoute(
-      builder: (context) => switch (settings.name) {
-        baseRoutePath || loadingRoutePath => const LoadingScreen(),
-        noInternetConnectionRoutePath => const NoInternetConnectionScreen(),
-        errorRoutePath => ErrorScreen(
-            reason: settings.arguments! as ErrorReason,
-          ),
-        getStartedRoutePath => const GetStartedScreen(),
-        homeRoutePath => const HomeScreen(),
-        helpRoutePath => const HelpScreen(),
-        insightsRoutePath => const InsightsScreen(),
-        settingsRoutePath => const SettingsScreen(),
-        referralRoutePath => const ReferralScreen(),
-        onboardingRoutePath => const auth.OnboardingScreen(),
-        rewardsOnboardingRoutePath => const rewards.OnboardingScreen(),
-        rewardsLeaderboardRoutePath => const rewards.LeaderboardScreen(),
-        rewardsDroneRushDetailsRoutePath => rewards.DroneRushDetailsScreen(
-            openedFromRoute: settings.arguments! as String,
-          ),
-        rewardsRoutePath => RewardsScreen(
-            droneRushZonesBloc: settings.arguments! as DroneRushZonesBloc,
-          ),
-        _ => const ErrorScreen(
-            reason: ErrorReason.unknownNavigationRoute,
-          ),
-      },
+      builder: (context) => AppBanner(
+        child: switch (settings.name) {
+          baseRoutePath || loadingRoutePath => const LoadingScreen(),
+          noInternetConnectionRoutePath => const NoInternetConnectionScreen(),
+          errorRoutePath => ErrorScreen(
+              reason: settings.arguments! as ErrorReason,
+            ),
+          getStartedRoutePath => const GetStartedScreen(),
+          homeRoutePath => const HomeScreen(),
+          helpRoutePath => const HelpScreen(),
+          insightsRoutePath => const InsightsScreen(),
+          settingsRoutePath => const SettingsScreen(),
+          referralRoutePath => const ReferralScreen(),
+          onboardingRoutePath => const auth.OnboardingScreen(),
+          rewardsOnboardingRoutePath => const rewards.OnboardingScreen(),
+          rewardsLeaderboardRoutePath => const rewards.LeaderboardScreen(),
+          rewardsDroneRushDetailsRoutePath => rewards.DroneRushDetailsScreen(
+              openedFromRoute: settings.arguments! as String,
+            ),
+          rewardsRoutePath => RewardsScreen(
+              droneRushZonesBloc: settings.arguments! as DroneRushZonesBloc,
+            ),
+          _ => const ErrorScreen(
+              reason: ErrorReason.unknownNavigationRoute,
+            ),
+        },
+      ),
     );
