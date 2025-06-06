@@ -325,5 +325,8 @@
   "points": "points",
   "morePoints": "more points",
   "forTrackingDronesInHighlightedZonesDuringThisLimitedTimeEvent": "for tracking drones in highlighted zones during this limited-time event",
-  "theListOfActiveRushZonesPlaceNamesCannotBeShownAtTheMoment": "The list of active rush zones place names cannot be shown at the moment"
+  "theListOfActiveRushZonesPlaceNamesCannotBeShownAtTheMoment": "The list of active rush zones place names cannot be shown at the moment",
+  "appStore": "App Store",
+  "playStore": "Play Store",
+  "solanaDappStore": "Solana dApp Store"
 }

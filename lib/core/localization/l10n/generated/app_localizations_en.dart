@@ -1088,4 +1088,13 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get theListOfActiveRushZonesPlaceNamesCannotBeShownAtTheMoment =>
       'The list of active rush zones place names cannot be shown at the moment';
+
+  @override
+  String get appStore => 'App Store';
+
+  @override
+  String get playStore => 'Play Store';
+
+  @override
+  String get solanaDappStore => 'Solana dApp Store';
 }

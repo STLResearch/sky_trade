@@ -2095,6 +2095,24 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'The list of active rush zones place names cannot be shown at the moment'**
   String get theListOfActiveRushZonesPlaceNamesCannotBeShownAtTheMoment;
+
+  /// No description provided for @appStore.
+  ///
+  /// In en, this message translates to:
+  /// **'App Store'**
+  String get appStore;
+
+  /// No description provided for @playStore.
+  ///
+  /// In en, this message translates to:
+  /// **'Play Store'**
+  String get playStore;
+
+  /// No description provided for @solanaDappStore.
+  ///
+  /// In en, this message translates to:
+  /// **'Solana dApp Store'**
+  String get solanaDappStore;
 }
 
 class _AppLocalizationsDelegate

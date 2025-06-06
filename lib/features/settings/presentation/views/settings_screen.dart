@@ -76,7 +76,7 @@ import 'package:sky_trade/core/resources/strings/networking.dart'
         googlePlayStorePageLink,
         solanaDAppStorePageLink;
 import 'package:sky_trade/core/resources/strings/special_characters.dart'
-    show colon, comma, whiteSpace;
+    show colon, comma, newLine, whiteSpace;
 import 'package:sky_trade/core/utils/enums/networking.dart'
     show TrackingTransparencyRequestStatus;
 import 'package:sky_trade/core/utils/extensions/build_context_extensions.dart';
@@ -330,45 +330,30 @@ class _SettingsViewState extends State<SettingsView> {
                                           subject: context
                                               .localize.tryOutSkyTradeRadar,
                                           title: context.localize.skyTradeRadar,
-                                          message: switch (Platform.isIOS) {
-                                            true => context.localize
-                                                    .heyImUsingSkyTradeRadarAndThoughtYoudLikeItCheckItOutHere +
-                                                colon +
-                                                whiteSpace +
-                                                appleAppStorePageLink,
-                                            _ => checkLinkState.maybeWhen(
-                                                checked: (linkEntity) =>
-                                                    switch (linkEntity.link) {
-                                                  solanaDAppStorePageLink
-                                                      when linkEntity.handled =>
-                                                    context.localize
-                                                            .heyImUsingSkyTradeRadarAndThoughtYoudLikeItCheckItOutOnPlaystoreHere +
-                                                        colon +
-                                                        whiteSpace +
-                                                        googlePlayStorePageLink +
-                                                        comma +
-                                                        whiteSpace +
-                                                        context.localize
-                                                            .orOnTheDAppStoreHere +
-                                                        colon +
-                                                        whiteSpace +
-                                                        linkEntity.link,
-                                                  _ => context.localize
-                                                          .heyImUsingSkyTradeRadarAndThoughtYoudLikeItCheckItOutHere +
-                                                      colon +
-                                                      whiteSpace +
-                                                      googlePlayStorePageLink,
-                                                },
-                                                orElse: () =>
-                                                    context.localize
-                                                        .heyImUsingSkyTradeRadarAndThoughtYoudLikeItCheckItOutHere +
-                                                    colon +
-                                                    whiteSpace +
-                                                    googlePlayStorePageLink,
-                                              ),
-                                          },
+                                          message: context.localize
+                                              .heyImUsingSkyTradeRadarAndThoughtYoudLikeItCheckItOutHere +
+                                              colon +
+                                              newLine +
+                                              context.localize.appStore +
+                                              colon +
+                                              whiteSpace +
+                                              appleAppStorePageLink +
+                                              comma +
+                                              whiteSpace +
+                                              newLine +
+                                              context.localize.playStore +
+                                              colon +
+                                              whiteSpace +
+                                              googlePlayStorePageLink +
+                                              comma +
+                                              whiteSpace +
+                                              newLine +
+                                              context.localize.solanaDappStore +
+                                              colon +
+                                              whiteSpace +
+                                              solanaDAppStorePageLink,
                                         ),
-                                      ),
+                                  ),
                                 ),
                               ),
                               style: Theme.of(
