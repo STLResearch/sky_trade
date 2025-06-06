@@ -1,5 +1,8 @@
 // ignore_for_file: lines_longer_than_80_chars
 
+// Schemes
+const https = 'https';
+
 // App links
 const appLinkHttpScheme = 'http';
 const appLinkHttpsScheme = 'https';
@@ -12,9 +15,6 @@ const ticketAppLinkQueryParameter = 'ticket';
 // OpenWeather
 // Endpoints
 // Paths
-const dataPath = '/data';
-const twoDotFivePath = '/2.5';
-const weatherPath = '/weather';
 const imgPath = '/img';
 const wnPath = '/wn';
 
@@ -23,8 +23,18 @@ const wnPath = '/wn';
 const skyTradePrivacyPolicyUrl = 'https://docs.sky.trade/privacy.htm';
 // Terms of service
 const skyTradeTermsOfServiceUrl = 'https://docs.sky.trade/terms.htm';
+// Apple app store page link
+const appleAppStorePageLink =
+    'https://apps.apple.com/in/app/skytrade-radar/id6738989830';
+// Google play store page link
+const googlePlayStorePageLink =
+    'https://play.google.com/store/apps/details?id=mobile.trade.sky';
+// Solana dApp store page link
+const solanaDAppStorePageLink = 'solanadappstore://details?id=mobile.trade.sky';
 
 // Paths
+const airRightsPath = '/air-rights';
+const getWeatherDataPath = '/get-weather-data';
 const radarPath = '/radar';
 const restrictionsPath = '/restrictions';
 const suggestPath = '/suggest';
@@ -54,6 +64,22 @@ const getAuctionableAirspacesPath = '/get-auctionable-airspaces';
 const sendTxPath = '/send-tx';
 const generateCreateAuctionTxPath = '/generate-create-auction-tx';
 const getOfferForUnclaimedPropertyPath = '/get-offer-for-unclaimed-property';
+const rewardPath = '/reward';
+const referralCodePath = '/referral-code';
+const getRewardInfoPath = '/get-reward-info';
+const retrieveReferralDataPath = '/retrieve-referral-data';
+const sendReferralPath = '/send-referral';
+const findReferralHistoryPath = '/find-referral-history';
+const currentLeaderboardPositionPath = '/current-leaderboard-position';
+const currentLeaderboardInfoPath = '/current-leaderboard-info';
+const overralLeaderboardInfoPath = '/overral-leaderboard-info';
+const versionInfoPath = '/version-info';
+const getMinimumMobileAppVersionPath = '/get-minimum-mobile-app-version';
+const questPath = '/quest';
+const getDailyQuestPath = '/get-daily-quest';
+const droneRadarPath = '/drone-radar';
+const getDroneRushZonesPath = '/get-drone-rush-zones';
+const getDroneRushZonesInTimeRangePath = '/get-drone-rush-zones-in-time-range';
 // Signature
 const signatureFirstLine = 'wants you to sign in with your Solana account:';
 const signatureThirdLine = 'Sign in to SkyTrade app.';
@@ -92,7 +118,7 @@ const countryKey = 'country';
 const upperLimitKey = 'upper_limit';
 const lowerLimitKey = 'lower_limit';
 const messageKey = 'message';
-const regionKey = 'region';
+const propertiesKey = 'properties';
 const typeKey = 'type';
 const linkKey = 'link';
 const mapboxIdKey = 'mapbox_id';
@@ -176,7 +202,6 @@ const blockchainAddressKey = 'blockchainAddress';
 const newsletterKey = 'newsletter';
 const categoryIdKey = 'categoryId';
 const phoneNumberKey = 'phoneNumber';
-const pirateValue = 'pirate';
 const usernameKey = 'username';
 const passwordKey = 'password';
 const isAdminKey = 'isAdmin';
@@ -296,11 +321,6 @@ const weatherKey = 'weather';
 const iconKey = 'icon';
 const mainKey = 'main';
 const tempKey = 'temp';
-const latKey = 'lat';
-const lonKey = 'lon';
-const appidKey = 'appid';
-const unitsKey = 'units';
-const metricValue = 'metric';
 const twoXValue = '2x';
 const userIdKey = 'userId';
 const devicesObservedKey = 'devicesObserved';
@@ -379,6 +399,8 @@ const featureCollectionKey = 'FeatureCollection';
 const geometryCollectionKey = 'GeometryCollection';
 const pageKey = 'page';
 const limitKey = 'limit';
+const currentLimitKey = 'currentLimit';
+const positionKey = 'position';
 const minPriceKey = 'min_price';
 const maxPriceKey = 'max_price';
 const filterKey = 'filter';
@@ -419,6 +441,47 @@ const oneDKey = '1D';
 const oneWKey = '1W';
 const oneMKey = '1M';
 const oneYKey = '1Y';
+const statsKey = 'stats';
+const sumKey = '_sum';
+const pointKey = 'point';
+const referralCodeKey = 'referralCode';
+const registeredFriendsKey = 'registeredFriends';
+const registeredAirspacesKey = 'registeredAirspaces';
+const validatedPropertiesKey = 'validatedProperties';
+const messagesKey = 'Messages';
+const statusAltKey = 'Status';
+const customIdKey = 'CustomID';
+const toAltKey = 'To';
+const emailAltKey = 'Email';
+const messageUuidKey = 'MessageUUID';
+const messageIdKey = 'MessageID';
+const messageHrefKey = 'MessageHref';
+const historiesKey = 'histories';
+const balanceKey = 'balance';
+const startDateKey = 'startDate';
+const currentPeriodPointsKey = 'currentPeriodPoints';
+const totalCountKey = 'totalCount';
+const totalPointsKey = 'totalPoints';
+const rewardCountKey = 'rewardCount';
+const periodSummariesKey = 'periodSummaries';
+const periodStartDateKey = 'periodStartDate';
+const periodEndDateKey = 'periodEndDate';
+const weatherDataKey = 'weatherData';
+const unitsKey = 'units';
+const imperialValue = 'imperial';
+const currentAPIVersionKey = 'currentAPIVersion';
+const taskTypeKey = 'taskType';
+const droneObservationValue = 'drone-observation';
+const pointsKey = 'points';
+const questDateKey = 'questDate';
+const questTypeKey = 'questType';
+const taskBasedValue = 'TASK_BASED';
+const locationBasedValue = 'LOCATION_BASED';
+const questLocationKey = 'questLocation';
+const completedKey = 'completed';
+const radiusKey = 'radius';
+const typesKey = 'types';
+const boundingBoxKey = 'boundingBox';
 // Error response data message
 const unauthorizedCode = 'UNAUTHORIZED';
 const invalidSignatureCode = 'INVALID_SIGNATURE';

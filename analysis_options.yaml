@@ -23,3 +23,4 @@ linter:
     public_member_api_docs: false
     prefer_single_quotes: true
     one_member_abstracts: false
+    document_ignores: false

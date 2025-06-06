@@ -61,7 +61,8 @@ import 'app_localizations_en.dart';
 /// be consistent with the languages listed in the AppLocalizations.supportedLocales
 /// property.
 abstract class AppLocalizations {
-  AppLocalizations(String locale) : localeName = intl.Intl.canonicalizedLocale(locale.toString());
+  AppLocalizations(String locale)
+      : localeName = intl.Intl.canonicalizedLocale(locale.toString());
 
   final String localeName;
 
@@ -69,7 +70,8 @@ abstract class AppLocalizations {
     return Localizations.of<AppLocalizations>(context, AppLocalizations)!;
   }
 
-  static const LocalizationsDelegate<AppLocalizations> delegate = _AppLocalizationsDelegate();
+  static const LocalizationsDelegate<AppLocalizations> delegate =
+      _AppLocalizationsDelegate();
 
   /// A list of this localizations delegate along with the default localizations
   /// delegates.
@@ -81,7 +83,8 @@ abstract class AppLocalizations {
   /// Additional delegates can be added by appending to this list in
   /// MaterialApp. This list does not have to be used at all if a custom list
   /// of delegates is preferred or required.
-  static const List<LocalizationsDelegate<dynamic>> localizationsDelegates = <LocalizationsDelegate<dynamic>>[
+  static const List<LocalizationsDelegate<dynamic>> localizationsDelegates =
+      <LocalizationsDelegate<dynamic>>[
     delegate,
     GlobalMaterialLocalizations.delegate,
     GlobalCupertinoLocalizations.delegate,
@@ -89,9 +92,7 @@ abstract class AppLocalizations {
   ];
 
   /// A list of this localizations delegate's supported locales.
-  static const List<Locale> supportedLocales = <Locale>[
-    Locale('en')
-  ];
+  static const List<Locale> supportedLocales = <Locale>[Locale('en')];
 
   /// No description provided for @flight.
   ///
@@ -141,17 +142,25 @@ abstract class AppLocalizations {
   /// **'Please enter a valid email'**
   String get pleaseEnterAValidEmail;
 
+  /// No description provided for @emailFieldCannotBeEmpty.
+  ///
+  /// In en, this message translates to:
+  /// **'Email field cannot be empty'**
+  String get emailFieldCannotBeEmpty;
+
   /// No description provided for @signInOrSignUpEffortlesslyUseTheAuthenticationMethodYouChoseDuringSignUpToSignIn.
   ///
   /// In en, this message translates to:
   /// **'Sign in or sign up effortlessly. Use the authentication method you chose during sign up to sign in.'**
-  String get signInOrSignUpEffortlesslyUseTheAuthenticationMethodYouChoseDuringSignUpToSignIn;
+  String
+      get signInOrSignUpEffortlesslyUseTheAuthenticationMethodYouChoseDuringSignUpToSignIn;
 
   /// No description provided for @whitespacesAreNotAllowedPleaseRemoveAnyLeadingAndOrTrailingWhitespaces.
   ///
   /// In en, this message translates to:
   /// **'Whitespaces are not allowed. Please remove any leading and/or trailing whitespaces'**
-  String get whitespacesAreNotAllowedPleaseRemoveAnyLeadingAndOrTrailingWhitespaces;
+  String
+      get whitespacesAreNotAllowedPleaseRemoveAnyLeadingAndOrTrailingWhitespaces;
 
   /// No description provided for @getStarted.
   ///
@@ -195,11 +204,11 @@ abstract class AppLocalizations {
   /// **'agreement'**
   String get agreement;
 
-  /// No description provided for @flightRestrictedAirspace.
+  /// No description provided for @restrictedAirspace.
   ///
   /// In en, this message translates to:
-  /// **'Flight Restricted Airspace'**
-  String get flightRestrictedAirspace;
+  /// **'Restricted Airspace'**
+  String get restrictedAirspace;
 
   /// No description provided for @address.
   ///
@@ -243,17 +252,18 @@ abstract class AppLocalizations {
   /// **'Oops!\nSomething Went Wrong'**
   String get oopsSomethingWentWrong;
 
-  /// No description provided for @itLooksLikeWereHavingTroubleInitializingYourSession.
+  /// No description provided for @itLooksLikeWeAreHavingTroubleInitializingYourSession.
   ///
   /// In en, this message translates to:
-  /// **'It looks like we’re having trouble initializing your session.'**
-  String get itLooksLikeWereHavingTroubleInitializingYourSession;
+  /// **'It looks like we are having trouble initializing your session.'**
+  String get itLooksLikeWeAreHavingTroubleInitializingYourSession;
 
-  /// No description provided for @anUnexpectedErrorOccurredPleaseTryRefreshingThePageIfTheIssueContinuesYouMayWantToCheckYourConnectionOrTryAgainLater.
+  /// No description provided for @tryClearingTheAppCacheFirstAndTheAppDataSecondAfterClosingTheAppRestartTheAppAfterwardsIfTheIssueContinuesFeelFreeToContactOurSupportTeam.
   ///
   /// In en, this message translates to:
-  /// **'An unexpected error occurred. Please try refreshing the page. If the issue continues, you may want to check your connection or try again later.\n\nFor further assistance, feel free to contact our support team.'**
-  String get anUnexpectedErrorOccurredPleaseTryRefreshingThePageIfTheIssueContinuesYouMayWantToCheckYourConnectionOrTryAgainLater;
+  /// **'Try clearing the app cache first and the app data second after closing the app. Restart the app afterwards. If the issue continues, feel free to contact our support team'**
+  String
+      get tryClearingTheAppCacheFirstAndTheAppDataSecondAfterClosingTheAppRestartTheAppAfterwardsIfTheIssueContinuesFeelFreeToContactOurSupportTeam;
 
   /// No description provided for @itLooksLikeYouDontHaveAnActiveInternetConnection.
   ///
@@ -265,7 +275,8 @@ abstract class AppLocalizations {
   ///
   /// In en, this message translates to:
   /// **'Your internet connection may be poor or you are probably just out of coverage. Please check your connection or try again'**
-  String get yourInternetConnectionMayBePoorOrYouAreProbablyJustOutOfCoveragePleaseCheckYourConnectionOrTryAgain;
+  String
+      get yourInternetConnectionMayBePoorOrYouAreProbablyJustOutOfCoveragePleaseCheckYourConnectionOrTryAgain;
 
   /// No description provided for @refreshPage.
   ///
@@ -327,29 +338,17 @@ abstract class AppLocalizations {
   /// **'We could not create your account. Please try again'**
   String get weCouldNotCreateYourAccountPleaseTryAgain;
 
-  /// No description provided for @oopsSomethingWentWrongPleaseTryAgain.
+  /// No description provided for @oopsSomethingWentWrongKindlyRetryOrInvalidateYourSession.
   ///
   /// In en, this message translates to:
-  /// **'Oops! something went wrong. Please try again'**
-  String get oopsSomethingWentWrongPleaseTryAgain;
-
-  /// No description provided for @accountDoesNotExistPleaseRegisterInstead.
-  ///
-  /// In en, this message translates to:
-  /// **'Account does not exist. Please register instead'**
-  String get accountDoesNotExistPleaseRegisterInstead;
+  /// **'Oops! something went wrong. Kindly retry or invalidate your session'**
+  String get oopsSomethingWentWrongKindlyRetryOrInvalidateYourSession;
 
   /// No description provided for @weCouldNotVerifyTheExistenceOfYourAccountPleaseTryAgain.
   ///
   /// In en, this message translates to:
   /// **'We could not verify the existence of your account. Please try again'**
   String get weCouldNotVerifyTheExistenceOfYourAccountPleaseTryAgain;
-
-  /// No description provided for @loginMethodMismatchKindlySignInWithTheSameMethodYouUsedToRegister.
-  ///
-  /// In en, this message translates to:
-  /// **'Login method mismatch. Kindly sign in with the same method you used to register'**
-  String get loginMethodMismatchKindlySignInWithTheSameMethodYouUsedToRegister;
 
   /// No description provided for @thisEmailIsAlreadyLinkedToAnExistingAccount.
   ///
@@ -381,6 +380,12 @@ abstract class AppLocalizations {
   /// **'An unknown error occurred. Please try again'**
   String get anUnknownErrorOccurredPleaseTryAgain;
 
+  /// No description provided for @anUnknownErrorOccurredKindlyRetryOrInvalidateYourSession.
+  ///
+  /// In en, this message translates to:
+  /// **'An unknown error occurred. Kindly retry or invalidate your session'**
+  String get anUnknownErrorOccurredKindlyRetryOrInvalidateYourSession;
+
   /// No description provided for @yes.
   ///
   /// In en, this message translates to:
@@ -403,13 +408,15 @@ abstract class AppLocalizations {
   ///
   /// In en, this message translates to:
   /// **'Welcome to SkyTrade Radar Using our application, you can receive drone Remote ID data on your phone and see restricted areas for flying. The application can receive data transmitted over Bluetooth and Wi-Fi.'**
-  String get welcomeToSkyTradeRadarUsingOurApplicationYouCanReceiveDroneRemoteIdDataOnYourPhoneAndSeeRestrictedAreasForFlyingTheApplicationCanReceiveDataTransmittedOverBluetoothAndWiFi;
+  String
+      get welcomeToSkyTradeRadarUsingOurApplicationYouCanReceiveDroneRemoteIdDataOnYourPhoneAndSeeRestrictedAreasForFlyingTheApplicationCanReceiveDataTransmittedOverBluetoothAndWiFi;
 
   /// No description provided for @pleaseNoteThatTheFunctionalityOfThisApplicationIsEntirelyDependentOnTheOperationSystemOfYourMobileDeviceItsVersionAndAlsoTheHardwareComponentsAndFeaturesOfTheDroneYouWantToObserve.
   ///
   /// In en, this message translates to:
   /// **'Please note that the functionality of this application is entirely dependent on the operation system of your mobile device, its version and also the hardware components and features of the drone you want to observe.'**
-  String get pleaseNoteThatTheFunctionalityOfThisApplicationIsEntirelyDependentOnTheOperationSystemOfYourMobileDeviceItsVersionAndAlsoTheHardwareComponentsAndFeaturesOfTheDroneYouWantToObserve;
+  String
+      get pleaseNoteThatTheFunctionalityOfThisApplicationIsEntirelyDependentOnTheOperationSystemOfYourMobileDeviceItsVersionAndAlsoTheHardwareComponentsAndFeaturesOfTheDroneYouWantToObserve;
 
   /// No description provided for @howCanIFindOutWhatMyPhoneIsCapableOf.
   ///
@@ -421,7 +428,8 @@ abstract class AppLocalizations {
   ///
   /// In en, this message translates to:
   /// **'To find out what your phone is capable of, check the specifications on the manufacturer\'s website or the \"About Phone\" section in your settings. You can also use third-party apps like AIDA64 or CPU-Z for detailed hardware and software information. This will help you understand the sensors, connectivity options, and other features available on your device.'**
-  String get toFindOutWhatYourPhoneIsCapableOfCheckTheSpecificationsOnTheManufacturersWebsiteOrTheAboutPhoneSectionInYourSettingsYouCanAlsoUseThirdPartyAppsLikeAida64OrCpuZForDetailedHardwareAndSoftwareInformationThisWillHelpYouUnderstandTheSensorsConnectivityOptionsAndOtherFeaturesAvailableOnYourDevice;
+  String
+      get toFindOutWhatYourPhoneIsCapableOfCheckTheSpecificationsOnTheManufacturersWebsiteOrTheAboutPhoneSectionInYourSettingsYouCanAlsoUseThirdPartyAppsLikeAida64OrCpuZForDetailedHardwareAndSoftwareInformationThisWillHelpYouUnderstandTheSensorsConnectivityOptionsAndOtherFeaturesAvailableOnYourDevice;
 
   /// No description provided for @theresADroneFlyingNearbyButTheAppDoesntRecognizeIt.
   ///
@@ -433,7 +441,8 @@ abstract class AppLocalizations {
   ///
   /// In en, this message translates to:
   /// **'Some drones cannot be tracked by our app because they lack the necessary transponder or Remote ID technology. Additionally, custom-built or older models might not have the standardized identification systems required for detection. If a nearby drone isn\'t recognized, check for signal interference or obstructions, and ensure the app is updated and has the necessary permissions enabled on your phone.'**
-  String get someDronesCannotBeTrackedByOurAppBecauseTheyLackTheNecessaryTransponderOrRemoteIdTechnologyAdditionallyCustomBuiltOrOlderModelsMightNotHaveTheStandardizedIdentificationSystemsRequiredForDetectionIfANearbyDroneIsntRecognizedCheckForSignalInterferenceOrObstructionsAndEnsureTheAppIsUpdatedAndHasTheNecessaryPermissionsEnabledOnYourPhone;
+  String
+      get someDronesCannotBeTrackedByOurAppBecauseTheyLackTheNecessaryTransponderOrRemoteIdTechnologyAdditionallyCustomBuiltOrOlderModelsMightNotHaveTheStandardizedIdentificationSystemsRequiredForDetectionIfANearbyDroneIsntRecognizedCheckForSignalInterferenceOrObstructionsAndEnsureTheAppIsUpdatedAndHasTheNecessaryPermissionsEnabledOnYourPhone;
 
   /// No description provided for @whatIsARemoteIdAndWhyDoINeedIt.
   ///
@@ -445,7 +454,8 @@ abstract class AppLocalizations {
   ///
   /// In en, this message translates to:
   /// **'Remote ID is a system that allows drones to transmit identification and location information to others, similar to a digital license plate. It enhances airspace safety and security by enabling authorities to track and manage drones. Compliance with Remote ID regulations is necessary for legal drone operation in many countries.'**
-  String get remoteIdIsASystemThatAllowsDronesToTransmitIdentificationAndLocationInformationToOthersSimilarToADigitalLicensePlateItEnhancesAirspaceSafetyAndSecurityByEnablingAuthoritiesToTrackAndManageDronesComplianceWithRemoteIdRegulationsIsNecessaryForLegalDroneOperationInManyCountries;
+  String
+      get remoteIdIsASystemThatAllowsDronesToTransmitIdentificationAndLocationInformationToOthersSimilarToADigitalLicensePlateItEnhancesAirspaceSafetyAndSecurityByEnablingAuthoritiesToTrackAndManageDronesComplianceWithRemoteIdRegulationsIsNecessaryForLegalDroneOperationInManyCountries;
 
   /// No description provided for @areThereAnyRestrictionsOnWhereICanUseTheDroneRadarApp.
   ///
@@ -457,7 +467,8 @@ abstract class AppLocalizations {
   ///
   /// In en, this message translates to:
   /// **'Yes, there may be restrictions on using the drone radar app in no-fly zones such as airports, military bases, and other sensitive areas. Local privacy laws may also limit the use of drone detection technology in certain regions. Always check local regulations and guidelines to ensure compliant usage.'**
-  String get yesThereMayBeRestrictionsOnUsingTheDroneRadarAppInNoFlyZonesSuchAsAirportsMilitaryBasesAndOtherSensitiveAreasLocalPrivacyLawsMayAlsoLimitTheUseOfDroneDetectionTechnologyInCertainRegionsAlwaysCheckLocalRegulationsAndGuidelinesToEnsureCompliantUsage;
+  String
+      get yesThereMayBeRestrictionsOnUsingTheDroneRadarAppInNoFlyZonesSuchAsAirportsMilitaryBasesAndOtherSensitiveAreasLocalPrivacyLawsMayAlsoLimitTheUseOfDroneDetectionTechnologyInCertainRegionsAlwaysCheckLocalRegulationsAndGuidelinesToEnsureCompliantUsage;
 
   /// No description provided for @whyDoesTheAppRequireAccessToMyLocationAndConnectivityServices.
   ///
@@ -469,7 +480,8 @@ abstract class AppLocalizations {
   ///
   /// In en, this message translates to:
   /// **'The app requires access to your location to accurately detect and track drones in your vicinity. Connectivity services like Wi-Fi and Bluetooth help the app communicate with drones and other devices for better detection. These permissions are essential for providing accurate and reliable functionality.'**
-  String get theAppRequiresAccessToYourLocationToAccuratelyDetectAndTrackDronesInYourVicinityConnectivityServicesLikeWiFiAndBluetoothHelpTheAppCommunicateWithDronesAndOtherDevicesForBetterDetectionThesePermissionsAreEssentialForProvidingAccurateAndReliableFunctionality;
+  String
+      get theAppRequiresAccessToYourLocationToAccuratelyDetectAndTrackDronesInYourVicinityConnectivityServicesLikeWiFiAndBluetoothHelpTheAppCommunicateWithDronesAndOtherDevicesForBetterDetectionThesePermissionsAreEssentialForProvidingAccurateAndReliableFunctionality;
 
   /// No description provided for @whatIsARestrictedArea.
   ///
@@ -481,7 +493,8 @@ abstract class AppLocalizations {
   ///
   /// In en, this message translates to:
   /// **'A restricted area is a designated airspace where drone flights are limited or prohibited to ensure safety, security, or environmental protection. These areas can include military zones, no-fly zones around airports and government buildings, and protected environmental areas like national parks. Flying in these areas without authorization is illegal and can result in penalties.'**
-  String get aRestrictedAreaIsADesignatedAirspaceWhereDroneFlightsAreLimitedOrProhibitedToEnsureSafetySecurityOrEnvironmentalProtectionTheseAreasCanIncludeMilitaryZonesNoFlyZonesAroundAirportsAndGovernmentBuildingsAndProtectedEnvironmentalAreasLikeNationalParksFlyingInTheseAreasWithoutAuthorizationIsIllegalAndCanResultInPenalties;
+  String
+      get aRestrictedAreaIsADesignatedAirspaceWhereDroneFlightsAreLimitedOrProhibitedToEnsureSafetySecurityOrEnvironmentalProtectionTheseAreasCanIncludeMilitaryZonesNoFlyZonesAroundAirportsAndGovernmentBuildingsAndProtectedEnvironmentalAreasLikeNationalParksFlyingInTheseAreasWithoutAuthorizationIsIllegalAndCanResultInPenalties;
 
   /// No description provided for @whatAreTheRedOrangeYellowAndGreenZones.
   ///
@@ -493,13 +506,8 @@ abstract class AppLocalizations {
   ///
   /// In en, this message translates to:
   /// **'In drone operations, different zones indicate varying levels of restriction. Red Zones are prohibited areas where flying is not allowed due to safety, security, or environmental concerns. Orange Zones require authorization from the FAA before you can fly. Yellow Zones are areas where flying is permitted but may be hazardous, so extra caution is advised. Green Zones are open for flying without any specific restrictions or additional permissions.'**
-  String get inDroneOperationsDifferentZonesIndicateVaryingLevelsOfRestrictionRedZonesAreProhibitedAreasWhereFlyingIsNotAllowedDueToSafetySecurityOrEnvironmentalConcernsOrangeZonesRequireAuthorizationFromTheFaaBeforeYouCanFlyYellowZonesAreAreasWhereFlyingIsPermittedButMayBeHazardousSoExtraCautionIsAdvisedGreenZonesAreOpenForFlyingWithoutAnySpecificRestrictionsOrAdditionalPermissions;
-
-  /// No description provided for @v1.
-  ///
-  /// In en, this message translates to:
-  /// **'v1'**
-  String get v1;
+  String
+      get inDroneOperationsDifferentZonesIndicateVaryingLevelsOfRestrictionRedZonesAreProhibitedAreasWhereFlyingIsNotAllowedDueToSafetySecurityOrEnvironmentalConcernsOrangeZonesRequireAuthorizationFromTheFaaBeforeYouCanFlyYellowZonesAreAreasWhereFlyingIsPermittedButMayBeHazardousSoExtraCautionIsAdvisedGreenZonesAreOpenForFlyingWithoutAnySpecificRestrictionsOrAdditionalPermissions;
 
   /// No description provided for @view3rdPartyLicenses.
   ///
@@ -513,11 +521,11 @@ abstract class AppLocalizations {
   /// **'Developed by SkyTrade'**
   String get developedBySkyTrade;
 
-  /// No description provided for @copyrightSkyTrade2024.
+  /// No description provided for @copyrightSkyTrade.
   ///
   /// In en, this message translates to:
-  /// **'© SkyTrade 2024'**
-  String get copyrightSkyTrade2024;
+  /// **'© SkyTrade'**
+  String get copyrightSkyTrade;
 
   /// No description provided for @disclaimer.
   ///
@@ -535,7 +543,8 @@ abstract class AppLocalizations {
   ///
   /// In en, this message translates to:
   /// **'The drone restrictions and airspace data provided by this app are for informational purposes only. While we strive to keep this information accurate and up-to-date, we cannot guarantee its completeness or accuracy. Users are responsible for ensuring compliance with all local laws and regulations. The app providers assume no liability for any decisions or actions taken based on the data presented.'**
-  String get theDroneRestrictionsAndAirspaceDataProvidedByThisAppAreForInformationalPurposesOnlyWhileWeStriveToKeepThisInformationAccurateAndUpToDateWeCannotGuaranteeItsCompletenessOrAccuracyUsersAreResponsibleForEnsuringComplianceWithAllLocalLawsAndRegulationsTheAppProvidersAssumeNoLiabilityForAnyDecisionsOrActionsTakenBasedOnTheDataPresented;
+  String
+      get theDroneRestrictionsAndAirspaceDataProvidedByThisAppAreForInformationalPurposesOnlyWhileWeStriveToKeepThisInformationAccurateAndUpToDateWeCannotGuaranteeItsCompletenessOrAccuracyUsersAreResponsibleForEnsuringComplianceWithAllLocalLawsAndRegulationsTheAppProvidersAssumeNoLiabilityForAnyDecisionsOrActionsTakenBasedOnTheDataPresented;
 
   /// No description provided for @loadingPleaseWait.
   ///
@@ -991,7 +1000,8 @@ abstract class AppLocalizations {
   ///
   /// In en, this message translates to:
   /// **'Before we can enable analytics for you we need you to grant us tracking authorization'**
-  String get beforeWeCanEnableAnalyticsForYouWeNeedYouToGrantUsTrackingAuthorization;
+  String
+      get beforeWeCanEnableAnalyticsForYouWeNeedYouToGrantUsTrackingAuthorization;
 
   /// No description provided for @deleteAccount.
   ///
@@ -1017,11 +1027,24 @@ abstract class AppLocalizations {
   /// **'Proceed'**
   String get proceed;
 
+  /// No description provided for @invalidate.
+  ///
+  /// In en, this message translates to:
+  /// **'Invalidate'**
+  String get invalidate;
+
+  /// No description provided for @retry.
+  ///
+  /// In en, this message translates to:
+  /// **'Retry'**
+  String get retry;
+
   /// No description provided for @youAreAboutToDeleteYourAccountPleaseBeCertainThatThisIsWhatYouWantAsThisActionCannotBeReversed.
   ///
   /// In en, this message translates to:
   /// **'You are about to delete your account. Please be certain that this is what you want as this action cannot be reversed'**
-  String get youAreAboutToDeleteYourAccountPleaseBeCertainThatThisIsWhatYouWantAsThisActionCannotBeReversed;
+  String
+      get youAreAboutToDeleteYourAccountPleaseBeCertainThatThisIsWhatYouWantAsThisActionCannotBeReversed;
 
   /// No description provided for @weCouldNotDeleteYourAccountPleaseTryAgainLater.
   ///
@@ -1035,17 +1058,12 @@ abstract class AppLocalizations {
   /// **'This email cannot be used to create a new account. Please use a different email'**
   String get thisEmailCannotBeUsedToCreateANewAccountPleaseUseADifferentEmail;
 
-  /// No description provided for @accountDoesNotExistIfItPreviouslyDidItMayHaveBeenDeleted.
-  ///
-  /// In en, this message translates to:
-  /// **'Account does not exist. If it previously did, it may have been deleted'**
-  String get accountDoesNotExistIfItPreviouslyDidItMayHaveBeenDeleted;
-
   /// No description provided for @accountDoesNotExistIfItPreviouslyDidItMayHaveBeenDeletedHoweverWeNeedYourInputToFinishOff.
   ///
   /// In en, this message translates to:
   /// **'Account does not exist. If it previously did, it may have been deleted. However, we need your input to finish off'**
-  String get accountDoesNotExistIfItPreviouslyDidItMayHaveBeenDeletedHoweverWeNeedYourInputToFinishOff;
+  String
+      get accountDoesNotExistIfItPreviouslyDidItMayHaveBeenDeletedHoweverWeNeedYourInputToFinishOff;
 
   /// No description provided for @otp.
   ///
@@ -1147,7 +1165,8 @@ abstract class AppLocalizations {
   ///
   /// In en, this message translates to:
   /// **'however this email has not been verified. Click on the link sent to the email to proceed or logout instead'**
-  String get howeverThisEmailHasNotBeenVerifiedClickOnTheLinkSentToTheEmailToProceedOrLogoutInstead;
+  String
+      get howeverThisEmailHasNotBeenVerifiedClickOnTheLinkSentToTheEmailToProceedOrLogoutInstead;
 
   /// No description provided for @okay.
   ///
@@ -1159,7 +1178,8 @@ abstract class AppLocalizations {
   ///
   /// In en, this message translates to:
   /// **'We could not verify your email. Please ensure that you have clicked the correct link'**
-  String get weCouldNotVerifyYourEmailPleaseEnsureThatYouHaveClickedTheCorrectLink;
+  String
+      get weCouldNotVerifyYourEmailPleaseEnsureThatYouHaveClickedTheCorrectLink;
 
   /// No description provided for @ohMyThisIsOnUs.
   ///
@@ -1177,7 +1197,8 @@ abstract class AppLocalizations {
   ///
   /// In en, this message translates to:
   /// **'We must have done something wrong somewhere. We are really sorry about that. Regardless, refreshing this page will fix this'**
-  String get weMustHaveDoneSomethingWrongSomewhereWeAreReallySorryAboutThatRegardlessRefreshingThisPageWillFixThis;
+  String
+      get weMustHaveDoneSomethingWrongSomewhereWeAreReallySorryAboutThatRegardlessRefreshingThisPageWillFixThis;
 
   /// No description provided for @thereWasOneThingYouNeededToDo.
   ///
@@ -1195,7 +1216,8 @@ abstract class AppLocalizations {
   ///
   /// In en, this message translates to:
   /// **'You deleted an account at some point but declined our request for you to invalidate the session. In order to proceed, kindly accept the next dialog that shows up'**
-  String get youDeletedAnAccountAtSomePointButDeclinedOurRequestForYouToInvalidateTheSessionInOrderToProceedKindlyAcceptTheNextDialogThatShowsUp;
+  String
+      get youDeletedAnAccountAtSomePointButDeclinedOurRequestForYouToInvalidateTheSessionInOrderToProceedKindlyAcceptTheNextDialogThatShowsUp;
 
   /// No description provided for @youNeedToAcceptTheDialogInOrderToProceed.
   ///
@@ -1213,10 +1235,870 @@ abstract class AppLocalizations {
   ///
   /// In en, this message translates to:
   /// **'There is no other way to proceed unless you complete the logout process. You will be able to log back in afterwards'**
-  String get thereIsNoOtherWayToProceedUnlessYouCompleteTheLogoutProcessYouWillBeAbleToLogBackInAfterwards;
+  String
+      get thereIsNoOtherWayToProceedUnlessYouCompleteTheLogoutProcessYouWillBeAbleToLogBackInAfterwards;
+
+  /// No description provided for @referralProgram.
+  ///
+  /// In en, this message translates to:
+  /// **'Referral Program'**
+  String get referralProgram;
+
+  /// No description provided for @theProgram.
+  ///
+  /// In en, this message translates to:
+  /// **'The Program'**
+  String get theProgram;
+
+  /// No description provided for @share.
+  ///
+  /// In en, this message translates to:
+  /// **'Share'**
+  String get share;
+
+  /// No description provided for @history.
+  ///
+  /// In en, this message translates to:
+  /// **'History'**
+  String get history;
+
+  /// No description provided for @leaderboard.
+  ///
+  /// In en, this message translates to:
+  /// **'Leaderboard'**
+  String get leaderboard;
+
+  /// No description provided for @skyPointsBalance.
+  ///
+  /// In en, this message translates to:
+  /// **'SKY Points Balance'**
+  String get skyPointsBalance;
+
+  /// No description provided for @skyPoints.
+  ///
+  /// In en, this message translates to:
+  /// **'SKY Points'**
+  String get skyPoints;
+
+  /// No description provided for @howCanIEarnSkyPoints.
+  ///
+  /// In en, this message translates to:
+  /// **'How can I earn SKY Points?'**
+  String get howCanIEarnSkyPoints;
+
+  /// No description provided for @shareAndEarn.
+  ///
+  /// In en, this message translates to:
+  /// **'Share And Earn! 🚀✨'**
+  String get shareAndEarn;
+
+  /// No description provided for @registerAndClaim.
+  ///
+  /// In en, this message translates to:
+  /// **'Register & Claim'**
+  String get registerAndClaim;
+
+  /// No description provided for @earn.
+  ///
+  /// In en, this message translates to:
+  /// **'Earn'**
+  String get earn;
+
+  /// No description provided for @sendYourInviteLinkOrCodeToYourFriendsAndExplainToThemHowCoolSkyTradeIs.
+  ///
+  /// In en, this message translates to:
+  /// **'Send your invite link or code to your friends and explain to them how cool SkyTrade is'**
+  String
+      get sendYourInviteLinkOrCodeToYourFriendsAndExplainToThemHowCoolSkyTradeIs;
+
+  /// No description provided for @letThemRegisterAndClaimTheirAirspacesUsingYourReferralLinkOrCode.
+  ///
+  /// In en, this message translates to:
+  /// **'Let them register and claim their airspaces using your referral link or code'**
+  String get letThemRegisterAndClaimTheirAirspacesUsingYourReferralLinkOrCode;
+
+  /// No description provided for @youAndYourFriendsAreRewardedWith50CreditsAndMore.
+  ///
+  /// In en, this message translates to:
+  /// **'You and your friends are rewarded with 50 credits and more'**
+  String get youAndYourFriendsAreRewardedWith50CreditsAndMore;
+
+  /// No description provided for @shareTheReferralLinkOrCode.
+  ///
+  /// In en, this message translates to:
+  /// **'Share the referral link or code'**
+  String get shareTheReferralLinkOrCode;
+
+  /// No description provided for @copyCode.
+  ///
+  /// In en, this message translates to:
+  /// **'Copy code'**
+  String get copyCode;
+
+  /// No description provided for @copyLink.
+  ///
+  /// In en, this message translates to:
+  /// **'Copy link'**
+  String get copyLink;
+
+  /// No description provided for @inviteYourFriends.
+  ///
+  /// In en, this message translates to:
+  /// **'Invite your friends'**
+  String get inviteYourFriends;
+
+  /// No description provided for @emailAddress.
+  ///
+  /// In en, this message translates to:
+  /// **'email address'**
+  String get emailAddress;
+
+  /// No description provided for @shareYourUniqueQrCode.
+  ///
+  /// In en, this message translates to:
+  /// **'Share your unique QR Code'**
+  String get shareYourUniqueQrCode;
+
+  /// No description provided for @registeredFriends.
+  ///
+  /// In en, this message translates to:
+  /// **'Registered friends'**
+  String get registeredFriends;
+
+  /// No description provided for @registeredAirspaces.
+  ///
+  /// In en, this message translates to:
+  /// **'Registered airspaces'**
+  String get registeredAirspaces;
+
+  /// No description provided for @validatedProperties.
+  ///
+  /// In en, this message translates to:
+  /// **'Validated properties'**
+  String get validatedProperties;
+
+  /// No description provided for @yourReferrals.
+  ///
+  /// In en, this message translates to:
+  /// **'Your referrals'**
+  String get yourReferrals;
+
+  /// No description provided for @date.
+  ///
+  /// In en, this message translates to:
+  /// **'Date'**
+  String get date;
+
+  /// No description provided for @amount.
+  ///
+  /// In en, this message translates to:
+  /// **'Amount'**
+  String get amount;
+
+  /// No description provided for @description.
+  ///
+  /// In en, this message translates to:
+  /// **'Description'**
+  String get description;
+
+  /// No description provided for @yourEarnings.
+  ///
+  /// In en, this message translates to:
+  /// **'Your Earnings'**
+  String get yourEarnings;
+
+  /// No description provided for @lifetimeEarnings.
+  ///
+  /// In en, this message translates to:
+  /// **'Lifetime Earnings'**
+  String get lifetimeEarnings;
+
+  /// No description provided for @user.
+  ///
+  /// In en, this message translates to:
+  /// **'User'**
+  String get user;
+
+  /// No description provided for @balance.
+  ///
+  /// In en, this message translates to:
+  /// **'Balance'**
+  String get balance;
+
+  /// No description provided for @next.
+  ///
+  /// In en, this message translates to:
+  /// **'Next'**
+  String get next;
+
+  /// No description provided for @currentPeriodChallengeLeaderboard.
+  ///
+  /// In en, this message translates to:
+  /// **'Current Period Challenge Leaderboard'**
+  String get currentPeriodChallengeLeaderboard;
+
+  /// No description provided for @accountRegistrationNoKycRequiredToGetThesePoints.
+  ///
+  /// In en, this message translates to:
+  /// **'Account Registration (no KYC required to get these points)'**
+  String get accountRegistrationNoKycRequiredToGetThesePoints;
+
+  /// No description provided for @claimYourAirspaceFullClaimVerifiedAirspaceThisIsPerEveryUniqueClaimedAirspaceKycCompletedIsAPreconditionForThisAllocation.
+  ///
+  /// In en, this message translates to:
+  /// **'Claim your airspace (full claim/verified airspace). This is per every unique claimed airspace. KYC completed is a precondition for this allocation.'**
+  String
+      get claimYourAirspaceFullClaimVerifiedAirspaceThisIsPerEveryUniqueClaimedAirspaceKycCompletedIsAPreconditionForThisAllocation;
+
+  /// No description provided for @forClaimedAirSpaceWhichIsFullyValidatedDoneByTheReferredAccount.
+  ///
+  /// In en, this message translates to:
+  /// **'For claimed air space which is fully validated done by the referred account.'**
+  String get forClaimedAirSpaceWhichIsFullyValidatedDoneByTheReferredAccount;
+
+  /// No description provided for @referAFriendFriendRegistersAnAccountButKycOnThatFriendsAccountIsNotRequiredForTheIntroducingAccountToGetTheirSkyPointsFraudulentActivityWillBeMinimizedByTAndCsWhereWeSayWeWillDeductPointsForFraudulentActsIfDiscovered.
+  ///
+  /// In en, this message translates to:
+  /// **'Refer a friend (friend registers an account, but KYC on that friend’s account is not required for the introducing account to get their SKY points, fraudulent activity will be minimized by T&Cs where we say we will deduct points for fraudulent acts if discovered)'**
+  String
+      get referAFriendFriendRegistersAnAccountButKycOnThatFriendsAccountIsNotRequiredForTheIntroducingAccountToGetTheirSkyPointsFraudulentActivityWillBeMinimizedByTAndCsWhereWeSayWeWillDeductPointsForFraudulentActsIfDiscovered;
+
+  /// No description provided for @forMakingAFirstValidBidInTheAuctionHouse.
+  ///
+  /// In en, this message translates to:
+  /// **'For making a first valid bid in the Auction House'**
+  String get forMakingAFirstValidBidInTheAuctionHouse;
+
+  /// No description provided for @claimOrReferOneAirspacesInASpecificAreaNewYorkManhattanAndBoroughsTexasGarlandMurphyPlanoRichardsonMesquiteDallasRowlettColonyCollegeStationFloridaClermontNewPortRicheyValricoWinterHavenTampaBrandonRiverviewSeffnerArizonaPhoenixGlendalePeoriaArkansasFarmingtonBentonvilleRogersPeaRidgeVirginiaVirginiaBeachUtahLindonHerrimanNorthCarolinaRaeford.
+  ///
+  /// In en, this message translates to:
+  /// **'Claim or refer 1 airspaces in a specific area:  New York: Manhattan & Boroughs Texas: Garland, Murphy, Plano, Richardson, Mesquite, Dallas, Rowlett, Colony, College Station Florida: Clermont, New Port Richey, Valrico, Winter Haven, Tampa, Brandon, Riverview, Seffner Arizona: Phoenix, Glendale, Peoria Arkansas: Farmington, Bentonville, Rogers, Pea Ridge Virginia: Virginia Beach Utah: Lindon, Herriman North Carolina: Raeford'**
+  String
+      get claimOrReferOneAirspacesInASpecificAreaNewYorkManhattanAndBoroughsTexasGarlandMurphyPlanoRichardsonMesquiteDallasRowlettColonyCollegeStationFloridaClermontNewPortRicheyValricoWinterHavenTampaBrandonRiverviewSeffnerArizonaPhoenixGlendalePeoriaArkansasFarmingtonBentonvilleRogersPeaRidgeVirginiaVirginiaBeachUtahLindonHerrimanNorthCarolinaRaeford;
+
+  /// No description provided for @trackADroneWithTheRadarApp.
+  ///
+  /// In en, this message translates to:
+  /// **'Track a drone with the radar app'**
+  String get trackADroneWithTheRadarApp;
+
+  /// No description provided for @trackADroneWithTheRadarAppInASpecificAreaTexasGarlandMurphyPlanoRichardsonMesquiteDallasRowlettColonyCollegeStationFloridaClermontNewPortRicheyValricoWinterHavenTampaBrandonRiverviewSeffnerArizonaPhoenixGlendalePeoriaArkansasFarmingtonBentonvilleRogersPeaRidgeVirginiaVirginiaBeachUtahLindonHerrimanNorthCarolinaRaeford.
+  ///
+  /// In en, this message translates to:
+  /// **'Track a drone with the radar app in a specific area:  Texas: Garland, Murphy, Plano, Richardson, Mesquite, Dallas, Rowlett, Colony, College Station Florida: Clermont, New Port Richey, Valrico, Winter Haven, Tampa, Brandon, Riverview, Seffner Arizona: Phoenix, Glendale, Peoria Arkansas: Farmington, Bentonville, Rogers, Pea Ridge Virginia: Virginia Beach Utah: Lindon, Herriman North Carolina: Raeford'**
+  String
+      get trackADroneWithTheRadarAppInASpecificAreaTexasGarlandMurphyPlanoRichardsonMesquiteDallasRowlettColonyCollegeStationFloridaClermontNewPortRicheyValricoWinterHavenTampaBrandonRiverviewSeffnerArizonaPhoenixGlendalePeoriaArkansasFarmingtonBentonvilleRogersPeaRidgeVirginiaVirginiaBeachUtahLindonHerrimanNorthCarolinaRaeford;
+
+  /// No description provided for @fiveSkyPoints.
+  ///
+  /// In en, this message translates to:
+  /// **'5 SKY points'**
+  String get fiveSkyPoints;
+
+  /// No description provided for @hundredSkyPoints.
+  ///
+  /// In en, this message translates to:
+  /// **'100 SKY points'**
+  String get hundredSkyPoints;
+
+  /// No description provided for @boostingSkyPointsEgXThree.
+  ///
+  /// In en, this message translates to:
+  /// **'Boosting: SKY points eg x 3'**
+  String get boostingSkyPointsEgXThree;
+
+  /// No description provided for @hundredSkyPointsToYouAndHundredSkyPointsToYourFriendThisIsPartOfThePointsAllocationTwoPlusTenPercentBonusOnTheReferredIncomeStreamFromAirRightRental.
+  ///
+  /// In en, this message translates to:
+  /// **'100 SKY points to you and 100 SKY points to your friend (this is part of the points allocation 2) + 10% bonus on the referred income stream from air-right rental'**
+  String
+      get hundredSkyPointsToYouAndHundredSkyPointsToYourFriendThisIsPartOfThePointsAllocationTwoPlusTenPercentBonusOnTheReferredIncomeStreamFromAirRightRental;
+
+  /// No description provided for @fiveSkyPointsPerDrone.
+  ///
+  /// In en, this message translates to:
+  /// **'5 SKY points/drone'**
+  String get fiveSkyPointsPerDrone;
+
+  /// No description provided for @itDoesNotMakeSenseToSendYourselfAnInvite.
+  ///
+  /// In en, this message translates to:
+  /// **'It does not make sense to send yourself an invite'**
+  String get itDoesNotMakeSenseToSendYourselfAnInvite;
+
+  /// No description provided for @weCouldNotSendTheInvitePleaseTryAgain.
+  ///
+  /// In en, this message translates to:
+  /// **'We could not send the invite. Please try again'**
+  String get weCouldNotSendTheInvitePleaseTryAgain;
+
+  /// No description provided for @inviteSent.
+  ///
+  /// In en, this message translates to:
+  /// **'Invite sent'**
+  String get inviteSent;
+
+  /// No description provided for @qThree.
+  ///
+  /// In en, this message translates to:
+  /// **'Q3'**
+  String get qThree;
+
+  /// No description provided for @qTwo.
+  ///
+  /// In en, this message translates to:
+  /// **'Q2'**
+  String get qTwo;
+
+  /// No description provided for @qOne.
+  ///
+  /// In en, this message translates to:
+  /// **'Q1'**
+  String get qOne;
+
+  /// No description provided for @qFour.
+  ///
+  /// In en, this message translates to:
+  /// **'Q4'**
+  String get qFour;
+
+  /// No description provided for @earnings.
+  ///
+  /// In en, this message translates to:
+  /// **'Earnings'**
+  String get earnings;
+
+  /// No description provided for @thereIsNothingToShowHere.
+  ///
+  /// In en, this message translates to:
+  /// **'There is nothing to show here'**
+  String get thereIsNothingToShowHere;
+
+  /// No description provided for @yourExclusiveInvitationToSkyTrade.
+  ///
+  /// In en, this message translates to:
+  /// **'Your exclusive invitation to SkyTrade'**
+  String get yourExclusiveInvitationToSkyTrade;
+
+  /// No description provided for @email.
+  ///
+  /// In en, this message translates to:
+  /// **'Email'**
+  String get email;
+
+  /// No description provided for @emailAtMailDotCom.
+  ///
+  /// In en, this message translates to:
+  /// **'email@mail.com'**
+  String get emailAtMailDotCom;
+
+  /// No description provided for @phone.
+  ///
+  /// In en, this message translates to:
+  /// **'Phone'**
+  String get phone;
+
+  /// No description provided for @phoneNumberCannotBeEmpty.
+  ///
+  /// In en, this message translates to:
+  /// **'Phone number cannot be empty'**
+  String get phoneNumberCannotBeEmpty;
+
+  /// No description provided for @searchCountryOrCountryCode.
+  ///
+  /// In en, this message translates to:
+  /// **'Search country or country code'**
+  String get searchCountryOrCountryCode;
+
+  /// No description provided for @yourStatus.
+  ///
+  /// In en, this message translates to:
+  /// **'Your Status'**
+  String get yourStatus;
+
+  /// No description provided for @selectACategory.
+  ///
+  /// In en, this message translates to:
+  /// **'Select a category'**
+  String get selectACategory;
+
+  /// No description provided for @referralCode.
+  ///
+  /// In en, this message translates to:
+  /// **'Referral Code'**
+  String get referralCode;
+
+  /// No description provided for @enterReferralCode.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter referral code'**
+  String get enterReferralCode;
+
+  /// No description provided for @subscribeToNewsletter.
+  ///
+  /// In en, this message translates to:
+  /// **'Subscribe to newsletter'**
+  String get subscribeToNewsletter;
+
+  /// No description provided for @invalidPhoneNumber.
+  ///
+  /// In en, this message translates to:
+  /// **'Invalid phone number'**
+  String get invalidPhoneNumber;
+
+  /// No description provided for @removeWhitespaces.
+  ///
+  /// In en, this message translates to:
+  /// **'Remove whitespaces'**
+  String get removeWhitespaces;
+
+  /// No description provided for @referralCodeTooShortReferralCodeCanEitherBeSixCharactersLongOrTheEmailOfTheReferer.
+  ///
+  /// In en, this message translates to:
+  /// **'Referral code too short. Referral code can either be six characters long or the email of the referer'**
+  String
+      get referralCodeTooShortReferralCodeCanEitherBeSixCharactersLongOrTheEmailOfTheReferer;
+
+  /// No description provided for @referralCodeTooLongReferralCodeCanEitherBeSixCharactersLongOrTheEmailOfTheReferer.
+  ///
+  /// In en, this message translates to:
+  /// **'Referral code too long. Referral code can either be six characters long or the email of the referer'**
+  String
+      get referralCodeTooLongReferralCodeCanEitherBeSixCharactersLongOrTheEmailOfTheReferer;
+
+  /// No description provided for @submit.
+  ///
+  /// In en, this message translates to:
+  /// **'Submit'**
+  String get submit;
+
+  /// No description provided for @iAmAnIndividual.
+  ///
+  /// In en, this message translates to:
+  /// **'I am an individual'**
+  String get iAmAnIndividual;
+
+  /// No description provided for @iAmACorporateEntity.
+  ///
+  /// In en, this message translates to:
+  /// **'I am a corporate entity'**
+  String get iAmACorporateEntity;
+
+  /// No description provided for @viewMyPosition.
+  ///
+  /// In en, this message translates to:
+  /// **'View my position'**
+  String get viewMyPosition;
+
+  /// No description provided for @youHaveNotEarnedAnyPointsWithinTheCurrentPeriod.
+  ///
+  /// In en, this message translates to:
+  /// **'You have not earned any points within the current period'**
+  String get youHaveNotEarnedAnyPointsWithinTheCurrentPeriod;
+
+  /// No description provided for @weCouldNotGetYourPositionOnTheLeaderboardTryRefreshingTheLeaderboardTableOrTheEntirePageThenTryViewingYourPositionAgain.
+  ///
+  /// In en, this message translates to:
+  /// **'We could not get your position on the leaderboard. Try refreshing the leaderboard table or the entire page then try viewing your position again'**
+  String
+      get weCouldNotGetYourPositionOnTheLeaderboardTryRefreshingTheLeaderboardTableOrTheEntirePageThenTryViewingYourPositionAgain;
+
+  /// No description provided for @thereWasAnErrorComputingYourPositionOnTheLeaderboard.
+  ///
+  /// In en, this message translates to:
+  /// **'There was an error computing your position on the leaderboard'**
+  String get thereWasAnErrorComputingYourPositionOnTheLeaderboard;
+
+  /// No description provided for @code.
+  ///
+  /// In en, this message translates to:
+  /// **'Code'**
+  String get code;
+
+  /// No description provided for @joinMeOnSkyTradeRadarAndStartEarningPoints.
+  ///
+  /// In en, this message translates to:
+  /// **'Join me on SkyTrade Radar and start earning points'**
+  String get joinMeOnSkyTradeRadarAndStartEarningPoints;
+
+  /// No description provided for @useMyCode.
+  ///
+  /// In en, this message translates to:
+  /// **'🌟 Use my code'**
+  String get useMyCode;
+
+  /// No description provided for @whenYouSignUpAndGetABonusSignUpHere.
+  ///
+  /// In en, this message translates to:
+  /// **'when you sign up and get a bonus. Sign up here'**
+  String get whenYouSignUpAndGetABonusSignUpHere;
+
+  /// No description provided for @yourVersionOfThisAppIsTooOld.
+  ///
+  /// In en, this message translates to:
+  /// **'Your version of this app is too old'**
+  String get yourVersionOfThisAppIsTooOld;
+
+  /// No description provided for @certainThingsMayBreakDueToSignificantChangesThatHaveBeenMade.
+  ///
+  /// In en, this message translates to:
+  /// **'Certain things may break due to significant changes that have been made'**
+  String get certainThingsMayBreakDueToSignificantChangesThatHaveBeenMade;
+
+  /// No description provided for @weEncourageYouToUpdateTheAppInOrderToKeepUsingIt.
+  ///
+  /// In en, this message translates to:
+  /// **'We encourage you to update the app in order to keep using it'**
+  String get weEncourageYouToUpdateTheAppInOrderToKeepUsingIt;
+
+  /// No description provided for @openAppStore.
+  ///
+  /// In en, this message translates to:
+  /// **'Open App Store'**
+  String get openAppStore;
+
+  /// No description provided for @openPlayStore.
+  ///
+  /// In en, this message translates to:
+  /// **'Open Play Store'**
+  String get openPlayStore;
+
+  /// No description provided for @openDAppStore.
+  ///
+  /// In en, this message translates to:
+  /// **'Open dApp Store'**
+  String get openDAppStore;
+
+  /// No description provided for @weAreNotSureWhatMayHaveCausedThis.
+  ///
+  /// In en, this message translates to:
+  /// **'We are not sure what may have caused this'**
+  String get weAreNotSureWhatMayHaveCausedThis;
+
+  /// No description provided for @tryRefreshingThePageIfTheIssueContinuesYouMayWantToCheckYourConnectionOrTryAgainLater.
+  ///
+  /// In en, this message translates to:
+  /// **'Try refreshing the page if the issue continues. You may want to check your connection or try again later'**
+  String
+      get tryRefreshingThePageIfTheIssueContinuesYouMayWantToCheckYourConnectionOrTryAgainLater;
+
+  /// No description provided for @tryOutSkyTradeRadar.
+  ///
+  /// In en, this message translates to:
+  /// **'Try out SkyTrade Radar'**
+  String get tryOutSkyTradeRadar;
+
+  /// No description provided for @heyImUsingSkyTradeRadarAndThoughtYoudLikeItCheckItOutHere.
+  ///
+  /// In en, this message translates to:
+  /// **'Hey! I\'m using SkyTrade Radar and thought you\'d like it. Check it out here'**
+  String get heyImUsingSkyTradeRadarAndThoughtYoudLikeItCheckItOutHere;
+
+  /// No description provided for @heyImUsingSkyTradeRadarAndThoughtYoudLikeItCheckItOutOnPlaystoreHere.
+  ///
+  /// In en, this message translates to:
+  /// **'Hey! I\'m using SkyTrade Radar and thought you\'d like it. Check it out on Playstore here'**
+  String
+      get heyImUsingSkyTradeRadarAndThoughtYoudLikeItCheckItOutOnPlaystoreHere;
+
+  /// No description provided for @orOnTheDAppStoreHere.
+  ///
+  /// In en, this message translates to:
+  /// **'or on the dApp Store here'**
+  String get orOnTheDAppStoreHere;
+
+  /// No description provided for @shareRadarApp.
+  ///
+  /// In en, this message translates to:
+  /// **'Share Radar App'**
+  String get shareRadarApp;
+
+  /// No description provided for @introducingSkyTradeRadarRewards.
+  ///
+  /// In en, this message translates to:
+  /// **'Introducing SkyTrade Radar Rewards'**
+  String get introducingSkyTradeRadarRewards;
+
+  /// No description provided for @earn25PointsForEveryVerifiedDroneObservationCompleteDailyQuestsToEarnEvenMorePoints.
+  ///
+  /// In en, this message translates to:
+  /// **'Earn 25 points for every verified drone observation. Complete daily quests to earn even more points'**
+  String
+      get earn25PointsForEveryVerifiedDroneObservationCompleteDailyQuestsToEarnEvenMorePoints;
+
+  /// No description provided for @pointsProgram.
+  ///
+  /// In en, this message translates to:
+  /// **'Points Program'**
+  String get pointsProgram;
+
+  /// No description provided for @completeTasksToEarnSkyPoints.
+  ///
+  /// In en, this message translates to:
+  /// **'Complete tasks to earn \$SKY points'**
+  String get completeTasksToEarnSkyPoints;
+
+  /// No description provided for @dailyQuests.
+  ///
+  /// In en, this message translates to:
+  /// **'Daily Quests'**
+  String get dailyQuests;
+
+  /// No description provided for @howItWorks.
+  ///
+  /// In en, this message translates to:
+  /// **'How it works'**
+  String get howItWorks;
+
+  /// No description provided for @earn25PointsForEveryVerifiedDroneObservationCompleteDailyQuestsToEarnBonusPointsAndClimbTheRanksTheMoreYouContributeTheMoreTouLevelUp.
+  ///
+  /// In en, this message translates to:
+  /// **'Earn 25 points for every verified drone observation. Complete daily quests to earn bonus points and climb the ranks.\nThe more you contribute, the more you level up'**
+  String
+      get earn25PointsForEveryVerifiedDroneObservationCompleteDailyQuestsToEarnBonusPointsAndClimbTheRanksTheMoreYouContributeTheMoreTouLevelUp;
+
+  /// No description provided for @viewLeaderboard.
+  ///
+  /// In en, this message translates to:
+  /// **'View leaderboard'**
+  String get viewLeaderboard;
+
+  /// No description provided for @claim.
+  ///
+  /// In en, this message translates to:
+  /// **'Claim'**
+  String get claim;
+
+  /// No description provided for @thereAreNoQuestsAtThisTime.
+  ///
+  /// In en, this message translates to:
+  /// **'There are no quests at this time'**
+  String get thereAreNoQuestsAtThisTime;
+
+  /// No description provided for @seeMyPosition.
+  ///
+  /// In en, this message translates to:
+  /// **'See my position'**
+  String get seeMyPosition;
+
+  /// No description provided for @weCouldNotGetYourPositionOnTheLeaderboardTryRefreshingThePageThenTryViewingYourPositionAgain.
+  ///
+  /// In en, this message translates to:
+  /// **'We could not get your position on the leaderboard. Try refreshing the page then try viewing your position again'**
+  String
+      get weCouldNotGetYourPositionOnTheLeaderboardTryRefreshingThePageThenTryViewingYourPositionAgain;
+
+  /// No description provided for @daysLeft.
+  ///
+  /// In en, this message translates to:
+  /// **'day(s) left'**
+  String get daysLeft;
+
+  /// No description provided for @crownEmoji.
+  ///
+  /// In en, this message translates to:
+  /// **'👑'**
+  String get crownEmoji;
+
+  /// No description provided for @competeWithOthersToClimbTheRanksByEarningPointsThroughDroneObservationsAndQuestsPointsResetAtTheStartOfEachNewSeasonSoStayActiveToMaintainYourPosition.
+  ///
+  /// In en, this message translates to:
+  /// **'Compete with others to climb the ranks by earning points through drone observations and quests. \n\nPoints reset at the start of each new season, so stay active to maintain your position'**
+  String
+      get competeWithOthersToClimbTheRanksByEarningPointsThroughDroneObservationsAndQuestsPointsResetAtTheStartOfEachNewSeasonSoStayActiveToMaintainYourPosition;
+
+  /// No description provided for @close.
+  ///
+  /// In en, this message translates to:
+  /// **'Close'**
+  String get close;
+
+  /// No description provided for @droneRushZones.
+  ///
+  /// In en, this message translates to:
+  /// **'Drone Rush Zones'**
+  String get droneRushZones;
+
+  /// No description provided for @droneRushZone.
+  ///
+  /// In en, this message translates to:
+  /// **'Drone Rush Zone'**
+  String get droneRushZone;
+
+  /// No description provided for @keepAnEyeOnTheMapForActiveRushZonesAndStartTrackingToMaximizeYourRewards.
+  ///
+  /// In en, this message translates to:
+  /// **'Keep an eye on the map for active Rush Zones and start tracking to maximize your rewards'**
+  String
+      get keepAnEyeOnTheMapForActiveRushZonesAndStartTrackingToMaximizeYourRewards;
+
+  /// No description provided for @activeRushZones.
+  ///
+  /// In en, this message translates to:
+  /// **'Active Rush Zones'**
+  String get activeRushZones;
+
+  /// No description provided for @learnMore.
+  ///
+  /// In en, this message translates to:
+  /// **'Learn More'**
+  String get learnMore;
+
+  /// No description provided for @inThisZoneYouCanEarn.
+  ///
+  /// In en, this message translates to:
+  /// **'In this zone you can earn'**
+  String get inThisZoneYouCanEarn;
+
+  /// No description provided for @forTrackingDronesInSpecialHighActivityZones.
+  ///
+  /// In en, this message translates to:
+  /// **'for tracking drones in special high-activity zones'**
+  String get forTrackingDronesInSpecialHighActivityZones;
+
+  /// No description provided for @specialEvent.
+  ///
+  /// In en, this message translates to:
+  /// **'Special Event'**
+  String get specialEvent;
+
+  /// No description provided for @droneRush.
+  ///
+  /// In en, this message translates to:
+  /// **'Drone Rush'**
+  String get droneRush;
+
+  /// No description provided for @trackAndEarnFiveXPoints.
+  ///
+  /// In en, this message translates to:
+  /// **'Track & Earn 5x Points!'**
+  String get trackAndEarnFiveXPoints;
+
+  /// No description provided for @watchForRushZones.
+  ///
+  /// In en, this message translates to:
+  /// **'Watch for Rush Zones'**
+  String get watchForRushZones;
+
+  /// No description provided for @onlySpecificLocationsAreEligibleForExtraPointsRushZonesWillBeMarkedClearlyOnYourMap.
+  ///
+  /// In en, this message translates to:
+  /// **'Only specific locations are eligible for extra points. Rush zones will be marked clearly on your map'**
+  String
+      get onlySpecificLocationsAreEligibleForExtraPointsRushZonesWillBeMarkedClearlyOnYourMap;
+
+  /// No description provided for @whichAreasAreEligible.
+  ///
+  /// In en, this message translates to:
+  /// **'Which areas are eligible?'**
+  String get whichAreasAreEligible;
+
+  /// No description provided for @enterARushZone.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter a Rush Zone'**
+  String get enterARushZone;
+
+  /// No description provided for @youMustBePhysicallyLocatedWithinARushZoneToStartTracking.
+  ///
+  /// In en, this message translates to:
+  /// **'You must be physically located within a Rush Zone to start tracking'**
+  String get youMustBePhysicallyLocatedWithinARushZoneToStartTracking;
+
+  /// No description provided for @trackDrones.
+  ///
+  /// In en, this message translates to:
+  /// **'Track Drones'**
+  String get trackDrones;
+
+  /// No description provided for @observeAndConfirmDroneActivityAsUsual.
+  ///
+  /// In en, this message translates to:
+  /// **'Observe and confirm drone activity as usual'**
+  String get observeAndConfirmDroneActivityAsUsual;
+
+  /// No description provided for @earnMorePoints.
+  ///
+  /// In en, this message translates to:
+  /// **'Earn More Points'**
+  String get earnMorePoints;
+
+  /// No description provided for @allSuccessfulObservationsInRushZonesWillAutomaticallyEarnBoostedRewards.
+  ///
+  /// In en, this message translates to:
+  /// **'All successful observations in Rush Zones will automatically earn boosted rewards'**
+  String
+      get allSuccessfulObservationsInRushZonesWillAutomaticallyEarnBoostedRewards;
+
+  /// No description provided for @startEarning.
+  ///
+  /// In en, this message translates to:
+  /// **'Start Earning'**
+  String get startEarning;
+
+  /// No description provided for @topTrackersThisPeriod.
+  ///
+  /// In en, this message translates to:
+  /// **'Top trackers this period'**
+  String get topTrackersThisPeriod;
+
+  /// No description provided for @startTracking.
+  ///
+  /// In en, this message translates to:
+  /// **'Start Tracking'**
+  String get startTracking;
+
+  /// No description provided for @whatAreasAreEligible.
+  ///
+  /// In en, this message translates to:
+  /// **'What areas are eligible?'**
+  String get whatAreasAreEligible;
+
+  /// No description provided for @oopsSomethingWentWrongSwipeDownToRefreshThePage.
+  ///
+  /// In en, this message translates to:
+  /// **'Oops! Something Went Wrong. Swipe down to refresh the page'**
+  String get oopsSomethingWentWrongSwipeDownToRefreshThePage;
+
+  /// No description provided for @couldNotGetDailyQuestsSwipeDownToRefreshThePage.
+  ///
+  /// In en, this message translates to:
+  /// **'Could not get daily quests. Swipe down to refresh the page'**
+  String get couldNotGetDailyQuestsSwipeDownToRefreshThePage;
+
+  /// No description provided for @couldNotGetPointsSwipeDownToRefreshThePage.
+  ///
+  /// In en, this message translates to:
+  /// **'Could not get points. Swipe down to refresh the page'**
+  String get couldNotGetPointsSwipeDownToRefreshThePage;
+
+  /// No description provided for @points.
+  ///
+  /// In en, this message translates to:
+  /// **'points'**
+  String get points;
+
+  /// No description provided for @morePoints.
+  ///
+  /// In en, this message translates to:
+  /// **'more points'**
+  String get morePoints;
+
+  /// No description provided for @forTrackingDronesInHighlightedZonesDuringThisLimitedTimeEvent.
+  ///
+  /// In en, this message translates to:
+  /// **'for tracking drones in highlighted zones during this limited-time event'**
+  String get forTrackingDronesInHighlightedZonesDuringThisLimitedTimeEvent;
+
+  /// No description provided for @theListOfActiveRushZonesPlaceNamesCannotBeShownAtTheMoment.
+  ///
+  /// In en, this message translates to:
+  /// **'The list of active rush zones place names cannot be shown at the moment'**
+  String get theListOfActiveRushZonesPlaceNamesCannotBeShownAtTheMoment;
 }
 
-class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {
+class _AppLocalizationsDelegate
+    extends LocalizationsDelegate<AppLocalizations> {
   const _AppLocalizationsDelegate();
 
   @override
@@ -1225,24 +2107,23 @@ class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> 
   }
 
   @override
-  bool isSupported(Locale locale) => <String>['en'].contains(locale.languageCode);
+  bool isSupported(Locale locale) =>
+      <String>['en'].contains(locale.languageCode);
 
   @override
   bool shouldReload(_AppLocalizationsDelegate old) => false;
 }
 
 AppLocalizations lookupAppLocalizations(Locale locale) {
-
-
   // Lookup logic when only language code is specified.
   switch (locale.languageCode) {
-    case 'en': return AppLocalizationsEn();
+    case 'en':
+      return AppLocalizationsEn();
   }
 
   throw FlutterError(
-    'AppLocalizations.delegate failed to load unsupported locale "$locale". This is likely '
-    'an issue with the localizations generation tool. Please file an issue '
-    'on GitHub with a reproducible sample app and the gen-l10n configuration '
-    'that was used.'
-  );
+      'AppLocalizations.delegate failed to load unsupported locale "$locale". This is likely '
+      'an issue with the localizations generation tool. Please file an issue '
+      'on GitHub with a reproducible sample app and the gen-l10n configuration '
+      'that was used.');
 }

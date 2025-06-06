@@ -7,11 +7,14 @@ import 'package:sky_trade/features/settings/presentation/blocs/analytics_bloc/an
     show AnalyticsBloc;
 import 'package:sky_trade/features/settings/presentation/blocs/delete_account_bloc/delete_account_bloc.dart'
     show DeleteAccountBloc;
-import 'package:sky_trade/features/settings/presentation/blocs/otp_resend_timer_bloc/otp_resend_timer_bloc.dart';
+import 'package:sky_trade/features/settings/presentation/blocs/otp_resend_timer_bloc/otp_resend_timer_bloc.dart'
+    show OtpResendTimerBloc;
 import 'package:sky_trade/features/settings/presentation/blocs/request_delete_account_bloc/request_delete_account_bloc.dart'
     show RequestDeleteAccountBloc;
 import 'package:sky_trade/features/settings/presentation/blocs/request_tracking_authorization_bloc/request_tracking_authorization_bloc.dart'
     show RequestTrackingAuthorizationBloc;
+import 'package:sky_trade/features/settings/presentation/blocs/share_bloc/share_bloc.dart'
+    show ShareBloc;
 import 'package:sky_trade/features/settings/presentation/blocs/tracking_authorization_status_bloc/tracking_authorization_status_bloc.dart'
     show TrackingAuthorizationStatusBloc;
 
@@ -43,6 +46,11 @@ Future<void> registerSettingsServices() async {
         _sl(),
       ),
     )
+    ..registerFactory<ShareBloc>(
+      () => ShareBloc(
+        _sl(),
+      ),
+    )
     ..registerFactory<TrackingAuthorizationStatusBloc>(
       () => TrackingAuthorizationStatusBloc(
         _sl(),
@@ -52,6 +60,7 @@ Future<void> registerSettingsServices() async {
     // Repositories
     ..registerLazySingleton<SettingsRepository>(
       () => SettingsRepositoryImplementation(
+        sharePlus: _sl(),
         settingsLocalDataSource: _sl(),
         settingsRemoteDataSource: _sl(),
       ),

@@ -204,7 +204,7 @@ class RestrictionInfoView extends StatelessWidget {
                                         ),
                                   ),
                                   Text(
-                                    restrictionEntity.country,
+                                    restrictionEntity.properties.country,
                                     style: Theme.of(context)
                                         .textTheme
                                         .bodySmall
@@ -242,7 +242,7 @@ class RestrictionInfoView extends StatelessWidget {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  restrictionEntity.message,
+                                  restrictionEntity.properties.message,
                                   style: Theme.of(
                                     context,
                                   ).textTheme.bodySmall?.copyWith(
@@ -250,15 +250,17 @@ class RestrictionInfoView extends StatelessWidget {
                                       ),
                                 ),
                                 switch (restrictionEntity
-                                    .additionLinks.isNotEmpty) {
+                                    .properties.additionLinks.isNotEmpty) {
                                   true => const SizedBox(
                                       height: tenDotNil,
                                     ),
                                   false => const SizedBox.shrink(),
                                 },
-                                if (restrictionEntity.additionLinks.isNotEmpty)
+                                if (restrictionEntity
+                                    .properties.additionLinks.isNotEmpty)
                                   ...List<Widget>.generate(
-                                    restrictionEntity.additionLinks.length,
+                                    restrictionEntity
+                                        .properties.additionLinks.length,
                                     (index) => Padding(
                                       padding: const EdgeInsetsDirectional.only(
                                         bottom: tenDotNil,
@@ -267,7 +269,7 @@ class RestrictionInfoView extends StatelessWidget {
                                         children: [
                                           Expanded(
                                             child: Text(
-                                              restrictionEntity
+                                              restrictionEntity.properties
                                                   .additionLinks[index].name,
                                               style: Theme.of(
                                                 context,
@@ -286,6 +288,7 @@ class RestrictionInfoView extends StatelessWidget {
                                                 .add(
                                                   HandleLinkEvent.handle(
                                                     link: restrictionEntity
+                                                        .properties
                                                         .additionLinks[index]
                                                         .link,
                                                   ),

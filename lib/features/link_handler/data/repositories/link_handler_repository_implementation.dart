@@ -29,6 +29,7 @@ final class LinkHandlerRepositoryImplementation
           ),
         ).then(
           (checked) => LinkEntity(
+            link: link,
             handled: checked,
           ),
         ),
@@ -47,6 +48,7 @@ final class LinkHandlerRepositoryImplementation
           ),
         ).then(
           (handled) => LinkEntity(
+            link: link,
             handled: handled,
           ),
         ),

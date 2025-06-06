@@ -4,7 +4,13 @@ import 'package:sky_trade/features/internet_connection_checker/domain/repositori
 
 final class InternetConnectionCheckerRepositoryImplementation
     implements InternetConnectionCheckerRepository {
+  const InternetConnectionCheckerRepositoryImplementation(
+    InternetConnection internetConnection,
+  ) : _internetConnection = internetConnection;
+
+  final InternetConnection _internetConnection;
+
   @override
   Future<bool> get hasActiveInternetConnection =>
-      InternetConnection().hasInternetAccess;
+      _internetConnection.hasInternetAccess;
 }

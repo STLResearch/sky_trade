@@ -1,23 +1,16 @@
-import 'package:mapbox_maps_flutter/mapbox_maps_flutter.dart'
-    show
-        PointAnnotation,
-        PointAnnotationManager,
-        PolygonAnnotation,
-        PolygonAnnotationManager;
-
-typedef PolygonAnnotationManagerPolygonAnnotationTuple = ({
-  PolygonAnnotationManager polygonAnnotationManager,
-  PolygonAnnotation polygonAnnotation,
-});
-
-typedef PointAnnotationManagerPointAnnotationTuple = ({
-  PointAnnotationManager pointAnnotationManager,
-  PointAnnotation pointAnnotation,
-});
-
 typedef LatLng = ({
   double latitude,
   double longitude,
+});
+
+typedef LngLat = ({
+  double longitude,
+  double latitude,
+});
+
+typedef Bounds = ({
+  LngLat northEast,
+  LngLat southWest,
 });
 
 typedef Chart = ({
@@ -25,7 +18,7 @@ typedef Chart = ({
   int yAxis,
 });
 
-typedef SourceLayer = ({
-  String sourceId,
-  String layerId,
+typedef FeatureIdSourceIdTuple = ({
+  String? featureId,
+  String? sourceId,
 });

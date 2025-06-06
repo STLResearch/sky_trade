@@ -53,6 +53,7 @@ class _AppViewState extends State<AppView> {
         themeMode: ThemeMode.light,
         localizationsDelegates: AppLocalizations.localizationsDelegates,
         supportedLocales: AppLocalizations.supportedLocales,
+        debugShowCheckedModeBanner: false,
         onGenerateRoute: routes,
       );
 }

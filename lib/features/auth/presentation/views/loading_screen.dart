@@ -28,6 +28,8 @@ import 'package:flutter_bloc/flutter_bloc.dart'
         ReadContext;
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:sky_trade/core/assets/generated/assets.gen.dart' show Assets;
+import 'package:sky_trade/core/errors/failures/auth_failure.dart'
+    show UserNotFoundFailure;
 import 'package:sky_trade/core/resources/colors.dart' show hex4285F4;
 import 'package:sky_trade/core/resources/numbers/ui.dart'
     show
@@ -44,7 +46,8 @@ import 'package:sky_trade/core/resources/strings/routes.dart'
         errorRoutePath,
         getStartedRoutePath,
         homeRoutePath,
-        noInternetConnectionRoutePath;
+        noInternetConnectionRoutePath,
+        onboardingRoutePath;
 import 'package:sky_trade/core/utils/enums/ui.dart' show ErrorReason;
 import 'package:sky_trade/core/utils/extensions/build_context_extensions.dart';
 import 'package:sky_trade/features/auth/presentation/blocs/auth_0_credentials_bloc/auth_0_credentials_bloc.dart'
@@ -72,6 +75,11 @@ import 'package:sky_trade/features/internet_connection_checker/presentation/bloc
         InternetConnectionCheckerState;
 import 'package:sky_trade/features/link_handler/presentation/blocs/app_link_bloc/app_link_bloc.dart'
     show AppLinkBloc;
+import 'package:sky_trade/features/update_manager/presentation/blocs/compatible_backend_api_version_bloc/compatible_backend_api_version_bloc.dart'
+    show
+        CompatibleBackendApiVersionBloc,
+        CompatibleBackendApiVersionEvent,
+        CompatibleBackendApiVersionState;
 import 'package:sky_trade/injection_container.dart' show serviceLocator;
 
 class LoadingScreen extends StatelessWidget {
@@ -101,6 +109,9 @@ class LoadingScreen extends StatelessWidget {
           BlocProvider<CheckSkyTradeUserExistsBloc>(
             create: (_) => serviceLocator(),
           ),
+          BlocProvider<CompatibleBackendApiVersionBloc>(
+            create: (_) => serviceLocator(),
+          ),
         ],
         child: const LoadingView(),
       );
@@ -116,14 +127,14 @@ class LoadingView extends StatefulWidget {
 class _LoadingViewState extends State<LoadingView> {
   @override
   void initState() {
-    _configureSFA();
-
+    _checkCompatibleBackendApiVersion();
     super.initState();
   }
 
-  void _configureSFA() => context.read<SFAConfigurationBloc>().add(
-        const SFAConfigurationEvent.configure(),
-      );
+  void _checkCompatibleBackendApiVersion() =>
+      context.read<CompatibleBackendApiVersionBloc>().add(
+            const CompatibleBackendApiVersionEvent.checkVersion(),
+          );
 
   void _removeSplashScreenAndNavigateTo({
     required String route,
@@ -142,6 +153,30 @@ class _LoadingViewState extends State<LoadingView> {
   @override
   Widget build(BuildContext context) => MultiBlocListener(
         listeners: [
+          BlocListener<CompatibleBackendApiVersionBloc,
+              CompatibleBackendApiVersionState>(
+            listener: (_, compatibleBackendApiVersionState) {
+              compatibleBackendApiVersionState.whenOrNull(
+                versionCompatible: () {
+                  context.read<SFAConfigurationBloc>().add(
+                        const SFAConfigurationEvent.configure(),
+                      );
+                },
+                versionIncompatible: () {
+                  _removeSplashScreenAndNavigateTo(
+                    route: errorRoutePath,
+                    arguments: ErrorReason.incompatibleBackendApiVersion,
+                  );
+                },
+                failedToCheckVersion: (_) {
+                  _removeSplashScreenAndNavigateTo(
+                    route: errorRoutePath,
+                    arguments: ErrorReason.unknownError,
+                  );
+                },
+              );
+            },
+          ),
           BlocListener<SFAConfigurationBloc, SFAConfigurationState>(
             listener: (_, sFAConfigurationState) {
               sFAConfigurationState.whenOrNull(
@@ -272,9 +307,12 @@ class _LoadingViewState extends State<LoadingView> {
                     route: homeRoutePath,
                   );
                 },
-                failedToCheckUser: (_) {
+                failedToCheckUser: (checkSkyTradeUserFailure) {
                   _removeSplashScreenAndNavigateTo(
-                    route: getStartedRoutePath,
+                    route: switch (checkSkyTradeUserFailure) {
+                      UserNotFoundFailure() => onboardingRoutePath,
+                      _ => getStartedRoutePath,
+                    },
                   );
                 },
               );
@@ -293,7 +331,7 @@ class _LoadingViewState extends State<LoadingView> {
                   const SizedBox(
                     height: tenDotNil,
                   ),
-                  Assets.svgs.skyTradeLogo.svg(),
+                  Assets.svgs.skyTradeRadarLogo.svg(),
                   const SizedBox(
                     height: fortyEightDotNil,
                   ),

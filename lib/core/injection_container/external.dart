@@ -6,11 +6,17 @@ import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart' show dotenv;
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get_it/get_it.dart' show GetIt;
+import 'package:internet_connection_checker_plus/internet_connection_checker_plus.dart'
+    show InternetConnection;
+import 'package:share_plus/share_plus.dart' show SharePlus;
 import 'package:shared_preferences/shared_preferences.dart'
     show SharedPreferencesWithCache, SharedPreferencesWithCacheOptions;
 import 'package:single_factor_auth_flutter/single_factor_auth_flutter.dart';
 import 'package:sky_trade/core/resources/strings/local.dart'
-    show analyticsStateKey, auth0SessionForDeletedUserExistsKey;
+    show
+        analyticsStateKey,
+        auth0SessionForDeletedUserExistsKey,
+        shouldShowRewardsOnboardingKey;
 import 'package:sky_trade/core/resources/strings/secret_keys.dart'
     show auth0ClientId, auth0Domain;
 
@@ -42,11 +48,18 @@ Future<void> registerExternalServices() async {
           allowList: {
             analyticsStateKey,
             auth0SessionForDeletedUserExistsKey,
+            shouldShowRewardsOnboardingKey,
           },
         ),
       ),
     )
     ..registerLazySingleton<AppLinks>(
       AppLinks.new,
+    )
+    ..registerLazySingleton<InternetConnection>(
+      InternetConnection.new,
+    )
+    ..registerLazySingleton<SharePlus>(
+      () => SharePlus.instance,
     );
 }

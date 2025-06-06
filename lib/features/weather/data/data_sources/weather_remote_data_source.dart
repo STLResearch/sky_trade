@@ -1,28 +1,22 @@
-import 'package:flutter_dotenv/flutter_dotenv.dart' show dotenv;
 import 'package:sky_trade/core/errors/exceptions/weather_exception.dart';
 import 'package:sky_trade/core/resources/strings/networking.dart'
     show
-        appidKey,
-        dataPath,
-        latKey,
-        lonKey,
-        metricValue,
-        twoDotFivePath,
+        airRightsPath,
+        geoHashKey,
+        getWeatherDataPath,
+        imperialValue,
         unitsKey,
-        weatherPath;
-import 'package:sky_trade/core/resources/strings/secret_keys.dart'
-    show openWeatherMapApiBaseUrl, openWeatherMapApiKey;
+        weatherDataKey;
 import 'package:sky_trade/core/utils/clients/network_client.dart'
     show HttpClient;
 import 'package:sky_trade/core/utils/clients/response_handler.dart';
 import 'package:sky_trade/core/utils/enums/networking.dart' show RequestMethod;
-import 'package:sky_trade/core/utils/typedefs/networking.dart' show LngLat;
 import 'package:sky_trade/features/weather/data/models/weather_model.dart'
     show WeatherModel;
 
 abstract interface class WeatherRemoteDataSource {
   Future<WeatherModel> getWeatherConditionOf({
-    required LngLat coordinates,
+    required String geoHash,
   });
 }
 
@@ -37,22 +31,21 @@ class WeatherRemoteDataSourceImplementation
 
   @override
   Future<WeatherModel> getWeatherConditionOf({
-    required LngLat coordinates,
-  }) async =>
+    required String geoHash,
+  }) =>
       handleResponse<WeatherException, Map<String, dynamic>, WeatherModel>(
         requestInitiator: _httpClient.request(
-          overrideBaseUrl: dotenv.env[openWeatherMapApiBaseUrl],
           requestMethod: RequestMethod.get,
-          path: dataPath + twoDotFivePath + weatherPath,
+          path: airRightsPath + getWeatherDataPath,
           includeSignature: false,
           queryParameters: {
-            latKey: coordinates.latitude,
-            lonKey: coordinates.longitude,
-            appidKey: dotenv.env[openWeatherMapApiKey],
-            unitsKey: metricValue,
+            geoHashKey: geoHash,
+            unitsKey: imperialValue,
           },
         ),
-        onSuccess: WeatherModel.fromJson,
+        onSuccess: (response) => WeatherModel.fromJson(
+          response[weatherDataKey] as Map<String, dynamic>,
+        ),
         onError: (_) => WeatherException(),
       );
 }

@@ -32,6 +32,7 @@ import 'package:sky_trade/core/resources/strings/secret_keys.dart'
     show sFAVerifier, sFAVerifierSubIdentifier, web3AuthClientId;
 import 'package:sky_trade/core/utils/clients/data_handler.dart';
 import 'package:sky_trade/core/utils/clients/signature_handler.dart';
+import 'package:sky_trade/core/utils/enums/ui.dart' show UserCategory;
 import 'package:sky_trade/features/auth/data/data_sources/auth_local_data_source.dart'
     show AuthLocalDataSource;
 import 'package:sky_trade/features/auth/data/data_sources/auth_remote_data_source.dart'
@@ -226,8 +227,10 @@ final class AuthRepositoryImplementation
           );
 
   @override
-  Future<bool> checkSFAUserSessionExists() =>
-      _singleFactorAuthentication.connected();
+  Future<bool> checkSFAUserSessionExists() async {
+    final sessionData = await _singleFactorAuthentication.getSessionData();
+    return sessionData != null;
+  }
 
   @override
   Future<Either<SFALogoutFailure, Unit>> logoutCurrentSFAUser() =>
@@ -243,17 +246,25 @@ final class AuthRepositoryImplementation
 
   @override
   Future<Either<CreateSkyTradeUserFailure, SkyTradeUserEntity>>
-      createSkyTradeUser() =>
+      createSkyTradeUserUsing({
+    required String phoneNumber,
+    required UserCategory userCategory,
+    required bool subscribeToNewsletter,
+    required String? referralCode,
+  }) =>
           handleData<CreateSkyTradeUserFailure, SkyTradeUserEntity>(
             dataSourceOperation: () async {
-              final email = await computeUserEmail();
+              final email = await userEmail;
 
               final walletAddress = await computeWalletAddress();
 
               return _authRemoteDataSource.createSkyTradeUserUsing(
                 email: email!,
                 blockchainAddress: walletAddress,
-                subscribeToNewsletter: true,
+                phoneNumber: phoneNumber,
+                userCategory: userCategory,
+                subscribeToNewsletter: subscribeToNewsletter,
+                referralCode: referralCode,
               );
             },
             onSuccess: (skyTradeUserEntity) => skyTradeUserEntity,
@@ -283,4 +294,7 @@ final class AuthRepositoryImplementation
               _ => CheckSkyTradeUserUnknownFailure(),
             },
           );
+
+  @override
+  Future<String?> get userEmail => computeUserEmail();
 }

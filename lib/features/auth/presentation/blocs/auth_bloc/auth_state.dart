@@ -22,10 +22,6 @@ class AuthState with _$AuthState {
     required CheckSkyTradeUserFailure checkSkyTradeUserFailure,
   }) = _FailedToCheckSkyTradeUser;
 
-  const factory AuthState.failedToCreateSkyTradeUser({
-    required CreateSkyTradeUserFailure createSkyTradeUserFailure,
-  }) = _FailedToCreateSkyTradeUser;
-
   const factory AuthState.failedToAuthenticateUserWithAuth0() =
       _FailedToAuthenticateUserWithAuth0;
 

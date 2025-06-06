@@ -13,12 +13,14 @@ import 'package:flutter/material.dart'
         SafeArea,
         Scaffold,
         SingleChildScrollView,
+        Size,
         SizedBox,
         StatelessWidget,
         Text,
         TextAlign,
         Theme,
-        Widget;
+        Widget,
+        WidgetStatePropertyAll;
 import 'package:flutter_bloc/flutter_bloc.dart'
     show
         BlocBuilder,
@@ -31,19 +33,13 @@ import 'package:sky_trade/core/assets/generated/assets.gen.dart' show Assets;
 import 'package:sky_trade/core/errors/failures/auth_failure.dart'
     show
         CheckSkyTradeUserUnknownFailure,
-        CreateSkyTradeUserUnknownFailure,
-        EmailReuseNotAllowedFailure,
-        InvalidEmailFailure,
-        InvalidSignatureFailure,
-        UnauthorizedFailure,
         UserDeletedFailure,
-        UserMismatchFailure,
-        UserNotFoundFailure,
-        WalletAlreadyExistsFailure;
+        UserNotFoundFailure;
 import 'package:sky_trade/core/resources/colors.dart' show hexFFFFFF;
 import 'package:sky_trade/core/resources/numbers/ui.dart'
     show
         fifteenDotNil,
+        fiftyFiveDotNil,
         fortyDotNil,
         sixteenDotNil,
         tenDotNil,
@@ -53,7 +49,7 @@ import 'package:sky_trade/core/resources/numbers/ui.dart'
 import 'package:sky_trade/core/resources/strings/networking.dart'
     show skyTradePrivacyPolicyUrl, skyTradeTermsOfServiceUrl;
 import 'package:sky_trade/core/resources/strings/routes.dart'
-    show homeRoutePath;
+    show homeRoutePath, onboardingRoutePath;
 import 'package:sky_trade/core/resources/strings/special_characters.dart'
     show fullStop, whiteSpace;
 import 'package:sky_trade/core/utils/extensions/build_context_extensions.dart';
@@ -187,13 +183,44 @@ class GetStartedView extends StatelessWidget {
                   );
                 },
                 failedToCheckSkyTradeUser: (checkSkyTradeUserFailure) {
-                  if (checkSkyTradeUserFailure is UserDeletedFailure) {
+                  if (checkSkyTradeUserFailure is UserNotFoundFailure) {
+                    Navigator.of(
+                      context,
+                    ).pushReplacementNamed(
+                      onboardingRoutePath,
+                    );
+                  } else {
                     ActionDialog.show(
                       context,
-                      content: context.localize
-                          .accountDoesNotExistIfItPreviouslyDidItMayHaveBeenDeletedHoweverWeNeedYourInputToFinishOff,
+                      content: switch (checkSkyTradeUserFailure) {
+                        UserDeletedFailure() => context.localize
+                            .accountDoesNotExistIfItPreviouslyDidItMayHaveBeenDeletedHoweverWeNeedYourInputToFinishOff,
+                        CheckSkyTradeUserUnknownFailure() => context.localize
+                            .anUnknownErrorOccurredKindlyRetryOrInvalidateYourSession,
+                        _ => context.localize
+                            .oopsSomethingWentWrongKindlyRetryOrInvalidateYourSession,
+                      },
                       dismissible: false,
-                      actionConfirmedText: context.localize.proceed,
+                      actionDismissedText: switch (checkSkyTradeUserFailure) {
+                        UserDeletedFailure() => null,
+                        _ => context.localize.retry,
+                      },
+                      onActionDismissed: switch (checkSkyTradeUserFailure) {
+                        UserDeletedFailure() => null,
+                        _ => () {
+                            Navigator.of(
+                              context,
+                            ).pop();
+
+                            context.read<AuthBloc>().add(
+                                  const AuthEvent.authenticate(),
+                                );
+                          },
+                      },
+                      actionConfirmedText: switch (checkSkyTradeUserFailure) {
+                        UserDeletedFailure() => context.localize.proceed,
+                        _ => context.localize.invalidate,
+                      },
                       onActionConfirmed: () {
                         Navigator.of(
                           context,
@@ -204,40 +231,7 @@ class GetStartedView extends StatelessWidget {
                             );
                       },
                     );
-                  } else {
-                    AlertSnackBar.show(
-                      context,
-                      message: switch (checkSkyTradeUserFailure) {
-                        UserNotFoundFailure() => context
-                            .localize.accountDoesNotExistPleaseRegisterInstead,
-                        UnauthorizedFailure() =>
-                          context.localize.oopsSomethingWentWrongPleaseTryAgain,
-                        InvalidSignatureFailure() =>
-                          context.localize.oopsSomethingWentWrongPleaseTryAgain,
-                        UserMismatchFailure() => context.localize
-                            .loginMethodMismatchKindlySignInWithTheSameMethodYouUsedToRegister,
-                        UserDeletedFailure() => context.localize
-                            .accountDoesNotExistIfItPreviouslyDidItMayHaveBeenDeleted,
-                        CheckSkyTradeUserUnknownFailure() =>
-                          context.localize.anUnknownErrorOccurredPleaseTryAgain,
-                      },
-                    );
                   }
-                },
-                failedToCreateSkyTradeUser: (createSkyTradeUserFailure) {
-                  AlertSnackBar.show(
-                    context,
-                    message: switch (createSkyTradeUserFailure) {
-                      InvalidEmailFailure() =>
-                        context.localize.pleaseEnterAValidEmail,
-                      WalletAlreadyExistsFailure() => context
-                          .localize.thisEmailIsAlreadyLinkedToAnExistingAccount,
-                      EmailReuseNotAllowedFailure() => context.localize
-                          .thisEmailCannotBeUsedToCreateANewAccountPleaseUseADifferentEmail,
-                      CreateSkyTradeUserUnknownFailure() =>
-                        context.localize.anUnknownErrorOccurredPleaseTryAgain,
-                    },
-                  );
                 },
                 failedToAuthenticateUserWithAuth0: () {
                   AlertSnackBar.show(
@@ -317,7 +311,7 @@ class GetStartedView extends StatelessWidget {
                     const SizedBox(
                       height: tenDotNil,
                     ),
-                    Assets.svgs.skyTradeLogo.svg(),
+                    Assets.svgs.skyTradeRadarLogo.svg(),
                     const SizedBox(
                       height: fortyDotNil,
                     ),
@@ -359,6 +353,15 @@ class GetStartedView extends StatelessWidget {
                                   ),
                             ),
                           ),
+                          style: Theme.of(
+                            context,
+                          ).elevatedButtonTheme.style?.copyWith(
+                                fixedSize: const WidgetStatePropertyAll<Size>(
+                                  Size.fromHeight(
+                                    fiftyFiveDotNil,
+                                  ),
+                                ),
+                              ),
                           child: Center(
                             child: authState.maybeWhen(
                               authenticating: () => const SizedBox(

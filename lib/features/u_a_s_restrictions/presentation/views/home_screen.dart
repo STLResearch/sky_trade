@@ -7,16 +7,22 @@ import 'package:flutter/material.dart'
         AlignmentDirectional,
         BuildContext,
         Column,
+        CrossAxisAlignment,
+        EdgeInsetsDirectional,
+        MainAxisAlignment,
         MainAxisSize,
         Navigator,
+        Padding,
         Scaffold,
+        SizedBox,
         Stack,
         State,
         StatefulWidget,
         StatelessWidget,
         ValueListenableBuilder,
         ValueNotifier,
-        Widget;
+        Widget,
+        showModalBottomSheet;
 import 'package:flutter_bloc/flutter_bloc.dart'
     show
         BlocListener,
@@ -26,9 +32,16 @@ import 'package:flutter_bloc/flutter_bloc.dart'
         ReadContext;
 import 'package:flutter_dotenv/flutter_dotenv.dart' show dotenv;
 import 'package:mapbox_maps_flutter/mapbox_maps_flutter.dart'
-    show CompassSettings, MapboxMap, MapboxOptions, ScaleBarSettings;
+    show
+        AttributionSettings,
+        CompassSettings,
+        LogoSettings,
+        MapboxMap,
+        MapboxOptions,
+        ScaleBarSettings;
 import 'package:sky_trade/core/resources/colors.dart' show hexB3FFFFFF;
-import 'package:sky_trade/core/resources/numbers/ui.dart' show twelveDotFive;
+import 'package:sky_trade/core/resources/numbers/ui.dart'
+    show fiveDotNil, fourteenDotNil, six, zero;
 import 'package:sky_trade/core/resources/strings/routes.dart'
     show getStartedRoutePath;
 import 'package:sky_trade/core/resources/strings/secret_keys.dart'
@@ -39,12 +52,10 @@ import 'package:sky_trade/core/resources/strings/secret_keys.dart'
 import 'package:sky_trade/core/resources/strings/special_characters.dart'
     show emptyString;
 import 'package:sky_trade/core/resources/strings/ui.dart'
-    show bridDronesSourceId, nridDronesSourceId;
+    show bridDronesSourceId, layerId;
 import 'package:sky_trade/core/utils/enums/ui.dart' show MapStyle;
 import 'package:sky_trade/core/utils/extensions/build_context_extensions.dart';
 import 'package:sky_trade/core/utils/extensions/mapbox_map_extensions.dart';
-import 'package:sky_trade/core/utils/typedefs/ui.dart'
-    show PointAnnotationManagerPointAnnotationTuple;
 import 'package:sky_trade/features/auth/presentation/blocs/auth_0_logout_bloc/auth_0_logout_bloc.dart'
     show Auth0LogoutBloc, Auth0LogoutState;
 import 'package:sky_trade/features/bluetooth/presentation/blocs/bluetooth_permissions_bloc/bluetooth_permissions_bloc.dart'
@@ -78,6 +89,9 @@ import 'package:sky_trade/features/remote_i_d_receiver/presentation/blocs/networ
         NetworkRemoteIDReceiverState;
 import 'package:sky_trade/features/remote_i_d_transmitter/presentation/blocs/remote_i_d_transmitter_bloc/remote_i_d_transmitter_bloc.dart'
     show RemoteIDTransmitterBloc, RemoteIDTransmitterEvent;
+import 'package:sky_trade/features/rewards/presentation/blocs/drone_rush_zones_bloc/drone_rush_zones_bloc.dart'
+    show DroneRushZonesBloc, DroneRushZonesEvent, DroneRushZonesState;
+import 'package:sky_trade/features/rewards/presentation/widgets/event_details.dart';
 import 'package:sky_trade/features/search_autocomplete/presentation/blocs/retrieve_geometric_coordinates_bloc/retrieve_geometric_coordinates_bloc.dart'
     show RetrieveGeometricCoordinatesBloc, RetrieveGeometricCoordinatesState;
 import 'package:sky_trade/features/u_a_s_restrictions/domain/entities/restriction_entity.dart'
@@ -85,12 +99,12 @@ import 'package:sky_trade/features/u_a_s_restrictions/domain/entities/restrictio
 import 'package:sky_trade/features/u_a_s_restrictions/presentation/blocs/u_a_s_restrictions_bloc/u_a_s_restrictions_bloc.dart'
     show UASRestrictionsBloc, UASRestrictionsEvent, UASRestrictionsState;
 import 'package:sky_trade/features/u_a_s_restrictions/presentation/widgets/alert_snack_bar.dart';
+import 'package:sky_trade/features/u_a_s_restrictions/presentation/widgets/drones_indicator.dart';
 import 'package:sky_trade/features/u_a_s_restrictions/presentation/widgets/map_overlay.dart'
     show MapOverlay;
 import 'package:sky_trade/features/u_a_s_restrictions/presentation/widgets/map_view.dart';
 import 'package:sky_trade/features/u_a_s_restrictions/presentation/widgets/progress_dialog.dart';
 import 'package:sky_trade/features/u_a_s_restrictions/presentation/widgets/restriction_indicator.dart';
-import 'package:sky_trade/features/u_a_s_restrictions/presentation/widgets/u_a_s_list.dart';
 import 'package:sky_trade/features/weather/presentation/weather_bloc/weather_bloc.dart'
     show WeatherBloc, WeatherEvent;
 import 'package:sky_trade/features/wifi/presentation/blocs/wifi_permission_bloc/wifi_permission_bloc.dart'
@@ -142,6 +156,9 @@ class HomeScreen extends StatelessWidget {
           BlocProvider<RetrieveGeometricCoordinatesBloc>(
             create: (_) => serviceLocator(),
           ),
+          BlocProvider<DroneRushZonesBloc>(
+            create: (_) => serviceLocator(),
+          ),
         ],
         child: const HomeView(),
       );
@@ -156,12 +173,25 @@ class HomeView extends StatefulWidget {
 
 class _HomeViewState extends State<HomeView> {
   MapboxMap? _mapboxMap;
-  PointAnnotationManagerPointAnnotationTuple? _marker;
+
   late final ValueNotifier<RestrictionEntity?> _clickedRestriction;
   late final ValueNotifier<bool> _centerLocationNotifier;
   late final ValueNotifier<MapStyle> _mapStyleNotifier;
-  String previousBridGeoJsonData = emptyString;
-  String previousNridGeoJsonData = emptyString;
+  late final List<String> _restrictionLayerIds;
+  late final ValueNotifier<int> _newBridDronesCountNotifier;
+
+  late int _previousBridDronesCount;
+  late String _previousBridGeoJsonData;
+  late String _previousNridGeoJsonData;
+
+  String? _currentlySelectedRestrictionFeatureId;
+  String? _currentlySelectedRestrictionSourceId;
+
+  late final ValueNotifier<
+      ({
+        List<String> list,
+        int index,
+      })> _droneRushZonesIdsAndIndexNotifier;
 
   @override
   void initState() {
@@ -177,11 +207,40 @@ class _HomeViewState extends State<HomeView> {
       false,
     );
 
+    _newBridDronesCountNotifier = ValueNotifier<int>(
+      zero,
+    );
+
     _mapStyleNotifier = ValueNotifier<MapStyle>(
       MapStyle.dark,
     );
 
+    _restrictionLayerIds = List<String>.empty(
+      growable: true,
+    );
+
+    _previousBridGeoJsonData = emptyString;
+
+    _previousNridGeoJsonData = emptyString;
+
+    _previousBridDronesCount = zero;
+
+    _droneRushZonesIdsAndIndexNotifier = ValueNotifier<
+        ({
+          List<String> list,
+          int index,
+        })>(
+      (
+        list: List.empty(
+          growable: true,
+        ),
+        index: zero,
+      ),
+    );
+
     _startTransmitter();
+
+    _listenDroneRushZones();
 
     _listenNetworkRemoteIDs();
 
@@ -192,6 +251,10 @@ class _HomeViewState extends State<HomeView> {
 
   void _startTransmitter() => context.read<RemoteIDTransmitterBloc>().add(
         const RemoteIDTransmitterEvent.startTransmitter(),
+      );
+
+  void _listenDroneRushZones() => context.read<DroneRushZonesBloc>().add(
+        const DroneRushZonesEvent.listenDroneRushZones(),
       );
 
   void _listenNetworkRemoteIDs() =>
@@ -224,7 +287,9 @@ class _HomeViewState extends State<HomeView> {
   void dispose() {
     _clickedRestriction.dispose();
     _centerLocationNotifier.dispose();
+    _newBridDronesCountNotifier.dispose();
     _mapStyleNotifier.dispose();
+    _droneRushZonesIdsAndIndexNotifier.dispose();
 
     super.dispose();
   }
@@ -359,6 +424,13 @@ class _HomeViewState extends State<HomeView> {
             listener: (_, broadcastRemoteIDReceiverState) {
               broadcastRemoteIDReceiverState.whenOrNull(
                 gotRemoteIDs: (bridEntities) async {
+                  if (bridEntities.length > _previousBridDronesCount) {
+                    _newBridDronesCountNotifier.value =
+                        bridEntities.length - _previousBridDronesCount;
+                  }
+
+                  _previousBridDronesCount = bridEntities.length;
+
                   final latLng =
                       context.read<LocationPositionBloc>().state.whenOrNull(
                             gotLocationPosition: (locationPositionEntity) => (
@@ -376,7 +448,7 @@ class _HomeViewState extends State<HomeView> {
                       );
 
                   if (_mapboxMap != null) {
-                    previousBridGeoJsonData =
+                    _previousBridGeoJsonData =
                         await _mapboxMap!.addOrUpdateDronesOnMap(
                       remoteIDEntities: bridEntities,
                       geoJsonSourceId: bridDronesSourceId,
@@ -404,65 +476,42 @@ class _HomeViewState extends State<HomeView> {
           BlocListener<UASRestrictionsBloc, UASRestrictionsState>(
             listener: (_, uASRestrictionsState) {
               uASRestrictionsState.whenOrNull(
-                gotRestrictions: (restrictionEntities) async {
-                  await _mapboxMap?.drawRestrictionsPolygonsConsidering(
+                gotRestrictions: (geoHash, restrictionEntities) async {
+                  if (restrictionEntities.isEmpty) {
+                    return;
+                  }
+                  await _mapboxMap?.addRestrictionsOnMap(
+                    geoHash: geoHash,
                     restrictionEntities: restrictionEntities,
-                    onPolygonClick: (
-                      polygonAnnotation,
-                      clickedRestrictionEntity,
-                    ) async {
-                      _clickedRestriction.value = clickedRestrictionEntity;
-
-                      // final a = clickedRestrictionEntity;
-                      // final b = iosMultiplePolygonClickIssueWorkAround;
-                      //
-                      // final c = a == b;
-                      //
-                      // if (clickedRestrictionEntity ==
-                      //     iosMultiplePolygonClickIssueWorkAround) {
-                      //   return;
-                      // }
-
-                      // iosMultiplePolygonClickIssueWorkAround =
-                      //     clickedRestrictionEntity;
-                      await _mapboxMap?.removePreviousMarker(
-                        _marker,
-                      );
-
-                      await _mapboxMap
-                          ?.addMarkerWithTextOnTopRestrictionPolygonUsing(
-                            polygonAnnotation: polygonAnnotation,
-                            clickedRestrictionEntity: clickedRestrictionEntity,
-                          )
-                          .then(
-                            (marker) => _marker = marker,
-                          );
-                    },
+                  );
+                  _restrictionLayerIds.add(
+                    geoHash + layerId,
                   );
                 },
+                selectedRestriction: (restrictionEntity) =>
+                    _clickedRestriction.value = restrictionEntity,
               );
             },
           ),
           BlocListener<GeoHashBloc, GeoHashState>(
             listener: (_, geoHashState) {
               geoHashState.whenOrNull(
-                computedGeoHashOfPrecision3: (geoHashOfPrecision3) {
+                computedGeoHashOfPrecision3: (geoHash) {
                   context.read<NetworkRemoteIDReceiverBloc>().add(
                         NetworkRemoteIDReceiverEvent.requestRemoteIDsAround(
-                          geoHash: geoHashOfPrecision3,
+                          geoHash: geoHash,
                         ),
                       );
 
                   context.read<WeatherBloc>().add(
                         WeatherEvent.getWeather(
-                          geoHash: geoHashOfPrecision3,
+                          geoHash: geoHash,
                         ),
                       );
-                },
-                computedGeoHashOfPrecision4: (geoHashOfPrecision4) {
+
                   context.read<UASRestrictionsBloc>().add(
                         UASRestrictionsEvent.getRestrictions(
-                          geoHash: geoHashOfPrecision4,
+                          geoHash: geoHash,
                         ),
                       );
                 },
@@ -484,6 +533,23 @@ class _HomeViewState extends State<HomeView> {
               );
             },
           ),
+          BlocListener<DroneRushZonesBloc, DroneRushZonesState>(
+            listener: (_, droneRushZonesState) {
+              droneRushZonesState.whenOrNull(
+                gotOngoingDroneRushZones: (droneRushZoneEntities) {
+                  _mapboxMap?.addOrUpdateDroneRushZonesOnMap(
+                    droneRushZoneEntities: droneRushZoneEntities,
+                  );
+                },
+                noLatestDroneRushZone: () {
+                  _mapboxMap?.maybeRemoveDroneRushZonesFromMap();
+                },
+                noOngoingDroneRushZone: () {
+                  _mapboxMap?.maybeRemoveDroneRushZonesFromMap();
+                },
+              );
+            },
+          ),
         ],
         child: Scaffold(
           resizeToAvoidBottomInset: false,
@@ -492,7 +558,50 @@ class _HomeViewState extends State<HomeView> {
             children: [
               MapView(
                 mapStyleUri: dotenv.env[mapboxMapsDarkStyleUri]!,
-                onTap: (_) => _clickedRestriction.value = null,
+                onTap: (mapContentGestureContext) async {
+                  if (_mapboxMap == null) {
+                    return;
+                  }
+
+                  _centerLocationNotifier.value = false;
+
+                  await _mapboxMap!.handleDroneRushZoneTapUsing(
+                    touchPosition: mapContentGestureContext.touchPosition,
+                    previousDroneRushZonesIdsAndIndexNotifier:
+                        _droneRushZonesIdsAndIndexNotifier,
+                    onTap: (_) => showModalBottomSheet<void>(
+                      context: context,
+                      builder: (_) => const EventDetails(),
+                    ),
+                  );
+
+                  if (_restrictionLayerIds.isEmpty) {
+                    return;
+                  }
+
+                  final featureAndSourceId =
+                      await _mapboxMap!.handleRestrictionSelection(
+                    touchPosition: mapContentGestureContext.touchPosition,
+                    restrictionLayerIds: _restrictionLayerIds,
+                    previousRestrictionFeatureId:
+                        _currentlySelectedRestrictionFeatureId,
+                    previousRestrictionSourceId:
+                        _currentlySelectedRestrictionSourceId,
+                  );
+
+                  if (context.mounted) {
+                    context.read<UASRestrictionsBloc>().add(
+                          UASRestrictionsEvent.selectRestriction(
+                            restrictionId: featureAndSourceId.featureId,
+                          ),
+                        );
+                  }
+
+                  _currentlySelectedRestrictionFeatureId =
+                      featureAndSourceId.featureId;
+                  _currentlySelectedRestrictionSourceId =
+                      featureAndSourceId.sourceId;
+                },
                 onScroll: (_) => _centerLocationNotifier.value = false,
                 onCreated: (mapboxMap) {
                   mapboxMap
@@ -505,40 +614,47 @@ class _HomeViewState extends State<HomeView> {
                       ScaleBarSettings(
                         enabled: false,
                       ),
+                    )
+                    ..logo.updateSettings(
+                      LogoSettings(
+                        enabled: false,
+                      ),
+                    )
+                    ..attribution.updateSettings(
+                      AttributionSettings(
+                        enabled: false,
+                      ),
                     );
 
                   _mapboxMap = mapboxMap;
                 },
-                onCameraChanged: (_) {
+                onCameraChanged: (cameraEventData) {
                   context.read<LocationPermissionBloc>().state.whenOrNull(
                     maybeGrantedPermission: (locationPermissionEntity) {
                       if (locationPermissionEntity.granted) {
-                        _mapboxMap?.getCameraState().then(
-                          (cameraState) {
-                            if (cameraState.zoom >= twelveDotFive) {
-                              context.read<GeoHashBloc>().add(
-                                    GeoHashEvent.computeGeoHash(
-                                      coordinates: (
-                                        latitude: cameraState
-                                            .center.coordinates.lat
-                                            .toDouble(),
-                                        longitude: cameraState
-                                            .center.coordinates.lng
-                                            .toDouble(),
-                                      ),
-                                    ),
-                                  );
-                            }
-                          },
-                        );
+                        final cameraState = cameraEventData.cameraState;
+                        if (cameraState.zoom < six) {
+                          return;
+                        }
+
+                        context.read<GeoHashBloc>().add(
+                              GeoHashEvent.computeGeoHash(
+                                coordinates: (
+                                  latitude: cameraState.center.coordinates.lat
+                                      .toDouble(),
+                                  longitude: cameraState.center.coordinates.lng
+                                      .toDouble(),
+                                ),
+                              ),
+                            );
                       }
                     },
                   );
                 },
                 onStyleLoaded: (_) async {
                   await _mapboxMap?.setUpLayersForDrones(
-                    bridGeoJsonData: previousBridGeoJsonData,
-                    nridGeoJsonData: previousNridGeoJsonData,
+                    bridGeoJsonData: _previousBridGeoJsonData,
+                    nridGeoJsonData: _previousNridGeoJsonData,
                   );
                 },
               ),
@@ -603,14 +719,26 @@ class _HomeViewState extends State<HomeView> {
               ),
             ],
           ),
-          bottomSheet: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              RestrictionIndicator(
-                clickedRestriction: _clickedRestriction,
-              ),
-              const UASList(),
-            ],
+          floatingActionButton: Padding(
+            padding: const EdgeInsetsDirectional.symmetric(
+              horizontal: fiveDotNil,
+            ),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.end,
+              children: [
+                RestrictionIndicator(
+                  clickedRestriction: _clickedRestriction,
+                ),
+                const SizedBox(
+                  height: fourteenDotNil,
+                ),
+                DronesIndicator(
+                  newDronesCount: _newBridDronesCountNotifier,
+                ),
+              ],
+            ),
           ),
         ),
       );

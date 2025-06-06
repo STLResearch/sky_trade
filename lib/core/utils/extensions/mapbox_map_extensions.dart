@@ -1,30 +1,35 @@
 import 'dart:convert' show json;
 import 'dart:ui' show instantiateImageCodec;
-import 'package:dartz/dartz.dart' show Function1, Function2;
+
+import 'package:dartz/dartz.dart' show Function1;
+import 'package:flutter/material.dart' show Color, ValueNotifier;
 import 'package:flutter/services.dart' show rootBundle;
-import 'package:geodart/geometries.dart' as geo_dart
-    show Coordinate, LinearRing, Polygon;
 import 'package:mapbox_maps_flutter/mapbox_maps_flutter.dart'
     show
         CameraOptions,
+        CircleLayer,
+        CoordinateBounds,
         Feature,
         FeatureCollection,
+        FillLayer,
         GeoJsonSource,
         GeometryObject,
+        LineCap,
+        LineLayer,
         LocationComponentSettings,
         LocationPuck,
         LocationPuck2D,
         MapAnimationOptions,
         MapboxMap,
+        MbxEdgeInsets,
         MbxImage,
-        OnPolygonAnnotationClickListener,
         Point,
-        PointAnnotationOptions,
-        Polygon,
-        PolygonAnnotation,
-        PolygonAnnotationManager,
-        PolygonAnnotationOptions,
         Position,
+        QueriedFeature,
+        RenderedQueryGeometry,
+        RenderedQueryOptions,
+        ScreenCoordinate,
+        Source,
         StyleLayer,
         StyleSource,
         SymbolLayer;
@@ -35,167 +40,76 @@ import 'package:sky_trade/core/resources/numbers/ui.dart'
     show
         fiftyDotNil,
         fourteenDotNil,
+        nilDotThree,
         one,
         oneDotFive,
+        oneDotNil,
+        oneDotThree,
         oneThousand,
-        threeDotNil,
+        oneThousandThreeHundred,
+        sixDotNil,
+        tenDotNil,
+        twoDotNil,
         zero;
 import 'package:sky_trade/core/resources/strings/special_characters.dart'
-    show emptyString;
+    show closingParenthesis, comma, emptyString, hyphen, openingParenthesis;
 import 'package:sky_trade/core/resources/strings/ui.dart'
     show
+        booleanExpression,
+        boundaryId,
+        boundingBoxKey,
         bridDronesLayerId,
         bridDronesSourceId,
+        caseExpression,
+        colorKey,
         coordinatesKey,
+        createdAtKey,
+        delayKey,
         directionKey,
-        getKey,
+        droneRushZonesLayerId,
+        droneRushZonesSourceId,
+        durationKey,
+        endTimeKey,
+        featureStateExpression,
+        fillOpacityTransitionProperty,
+        getExpression,
         iconDroneValue,
+        idKey,
+        isSelectedKey,
+        latitudeKey,
+        layerId,
+        lineStringGeometry,
+        longitudeKey,
+        maxLatitudeKey,
+        maxLongitudeKey,
+        minLatitudeKey,
+        minLongitudeKey,
+        northEastKey,
         nridDronesLayerId,
         nridDronesSourceId,
-        pointValue,
-        typeKey;
+        pointGeometry,
+        polygonGeometry,
+        propertiesKey,
+        radiusKey,
+        rgba,
+        sourceId,
+        southWestKey,
+        startTimeKey,
+        strokeColorKey,
+        typeKey,
+        updateAtKey;
+import 'package:sky_trade/core/utils/extensions/drone_rush_zone_entity_extensions.dart';
 import 'package:sky_trade/core/utils/extensions/restriction_entity_extensions.dart';
 import 'package:sky_trade/core/utils/typedefs/ui.dart'
-    show
-        PointAnnotationManagerPointAnnotationTuple,
-        PolygonAnnotationManagerPolygonAnnotationTuple;
+    show Bounds, FeatureIdSourceIdTuple;
 import 'package:sky_trade/features/remote_i_d_receiver/domain/entities/remote_i_d_entity.dart'
     show RemoteIDEntity;
+import 'package:sky_trade/features/rewards/domain/entities/rewards_entity.dart'
+    show BoundingBoxEntity, DroneRushZoneEntity;
 import 'package:sky_trade/features/u_a_s_restrictions/domain/entities/restriction_entity.dart'
     show RestrictionEntity;
 
 extension MapboxMapExtensions on MapboxMap {
-  Future<void> removeAllPolygons(
-    List<PolygonAnnotationManagerPolygonAnnotationTuple>? polygons,
-  ) async {
-    if (polygons == null || polygons.isEmpty) return;
-
-    await Future.forEach(
-      polygons,
-      (polygon) => polygon.polygonAnnotationManager.deleteAll(),
-    );
-  }
-
-  Future<List<PolygonAnnotationManagerPolygonAnnotationTuple>>
-      drawRestrictionsPolygonsConsidering({
-    required List<RestrictionEntity> restrictionEntities,
-    required Function2<PolygonAnnotation, RestrictionEntity, void>
-        onPolygonClick,
-  }) async {
-    final polygons = List<PolygonAnnotationManagerPolygonAnnotationTuple>.empty(
-      growable: true,
-    );
-
-    await Future.forEach(
-      restrictionEntities,
-      (restrictionEntity) async {
-        final polygonAnnotationManager =
-            await annotations.createPolygonAnnotationManager();
-
-        final polygonAnnotation = await polygonAnnotationManager.create(
-          PolygonAnnotationOptions(
-            geometry: Polygon(
-              coordinates: restrictionEntity.region.coordinates
-                  .map(
-                    (vertex) => vertex
-                        .map(
-                          (positions) => Position(
-                            positions[zero],
-                            positions[one],
-                          ),
-                        )
-                        .toList(),
-                  )
-                  .toList(),
-            ),
-            fillColor: restrictionEntity.polygonFillColor,
-            fillOutlineColor: restrictionEntity.polygonFillOutlineColor,
-          ),
-        );
-
-        _setPolygonClickListener(
-          polygonAnnotationManager: polygonAnnotationManager,
-          onClick: (polygonAnnotation) => onPolygonClick(
-            polygonAnnotation,
-            restrictionEntity,
-          ),
-        );
-
-        polygons.add(
-          (
-            polygonAnnotationManager: polygonAnnotationManager,
-            polygonAnnotation: polygonAnnotation,
-          ),
-        );
-      },
-    );
-
-    return polygons;
-  }
-
-  void _setPolygonClickListener({
-    required PolygonAnnotationManager polygonAnnotationManager,
-    required Function1<PolygonAnnotation, void> onClick,
-  }) {
-    polygonAnnotationManager.addOnPolygonAnnotationClickListener(
-      _AnnotationClickListener(
-        onClick,
-      ),
-    );
-  }
-
-  Future<PointAnnotationManagerPointAnnotationTuple>
-      addMarkerWithTextOnTopRestrictionPolygonUsing({
-    required PolygonAnnotation polygonAnnotation,
-    required RestrictionEntity clickedRestrictionEntity,
-  }) async {
-    final pointAnnotationManager =
-        await annotations.createPointAnnotationManager();
-
-    final geoDartPolygon = geo_dart.Polygon(
-      polygonAnnotation.geometry.coordinates
-          .map(
-            (vertex) => geo_dart.LinearRing(
-              vertex
-                  .map(
-                    (position) => geo_dart.Coordinate(
-                      position.lat.toDouble(),
-                      position.lng.toDouble(),
-                    ),
-                  )
-                  .toList(),
-            ),
-          )
-          .toList(),
-    );
-
-    final pointAnnotation = await pointAnnotationManager.create(
-      PointAnnotationOptions(
-        geometry: Point(
-          coordinates: Position(
-            geoDartPolygon.center.lng,
-            geoDartPolygon.center.lat,
-          ),
-        ),
-        image: await clickedRestrictionEntity.polygonMarkerImage,
-        iconSize: threeDotNil,
-      ),
-    );
-
-    return (
-      pointAnnotationManager: pointAnnotationManager,
-      pointAnnotation: pointAnnotation,
-    );
-  }
-
-  Future<void> removePreviousMarker(
-    PointAnnotationManagerPointAnnotationTuple? marker,
-  ) async {
-    if (marker == null) return;
-
-    await marker.pointAnnotationManager.deleteAll();
-  }
-
   Future<void> followUser({
     required double latitude,
     required double longitude,
@@ -259,6 +173,211 @@ extension MapboxMapExtensions on MapboxMap {
         ),
       );
 
+  Future<void> addOrUpdateDroneRushZonesOnMap({
+    required List<DroneRushZoneEntity> droneRushZoneEntities,
+  }) async {
+    final geoJsonData = _getGeoJsonData<DroneRushZoneEntity>(
+      entities: droneRushZoneEntities,
+      featureGeometryType: pointGeometry,
+    );
+
+    if (geoJsonData == null) {
+      return;
+    }
+
+    final geoJsonDataString = json.encode(
+      geoJsonData.toJson(),
+    );
+
+    late final Source? geoJsonSource;
+
+    try {
+      geoJsonSource = await style.getSource(
+        droneRushZonesSourceId,
+      );
+    } catch (_) {
+      geoJsonSource = null;
+    }
+
+    if (geoJsonSource == null) {
+      await style.addSource(
+        GeoJsonSource(
+          id: droneRushZonesSourceId,
+          data: geoJsonDataString,
+        ),
+      );
+
+      await style.addLayer(
+        CircleLayer(
+          id: droneRushZonesLayerId,
+          sourceId: droneRushZonesSourceId,
+          circleColorExpression: [
+            getExpression,
+            colorKey,
+          ],
+          circleRadiusExpression: [
+            getExpression,
+            radiusKey,
+          ],
+          circleStrokeWidth: oneDotThree,
+          circleStrokeColorExpression: [
+            getExpression,
+            strokeColorKey,
+          ],
+        ),
+      );
+
+      return;
+    }
+
+    if (geoJsonSource is GeoJsonSource) {
+      await geoJsonSource.updateGeoJSON(
+        geoJsonDataString,
+      );
+
+      await style.updateLayer(
+        CircleLayer(
+          id: droneRushZonesLayerId,
+          sourceId: droneRushZonesSourceId,
+          circleColorExpression: [
+            getExpression,
+            colorKey,
+          ],
+          circleRadiusExpression: [
+            getExpression,
+            radiusKey,
+          ],
+          circleStrokeWidth: oneDotThree,
+          circleStrokeColorExpression: [
+            getExpression,
+            strokeColorKey,
+          ],
+        ),
+      );
+    }
+  }
+
+  Future<void> maybeRemoveDroneRushZonesFromMap() async {
+    late final Source? geoJsonSource;
+
+    try {
+      geoJsonSource = await style.getSource(
+        droneRushZonesSourceId,
+      );
+    } catch (_) {
+      geoJsonSource = null;
+    }
+
+    if (geoJsonSource == null) {
+      return;
+    }
+
+    if (geoJsonSource is GeoJsonSource) {
+      await style.removeStyleLayer(
+        droneRushZonesLayerId,
+      );
+
+      await style.removeStyleSource(
+        droneRushZonesSourceId,
+      );
+    }
+  }
+
+  Future<void> addRestrictionsOnMap({
+    required String geoHash,
+    required List<RestrictionEntity> restrictionEntities,
+  }) async {
+    final geoJsonDataForRestrictions = _getGeoJsonData<RestrictionEntity>(
+      entities: restrictionEntities,
+      featureGeometryType: polygonGeometry,
+    );
+
+    if (geoJsonDataForRestrictions == null) {
+      return;
+    }
+
+    final geoJsonDataForBoundaries = _getGeoJsonData<RestrictionEntity>(
+      entities: restrictionEntities,
+      featureGeometryType: lineStringGeometry,
+    );
+
+    if (geoJsonDataForBoundaries == null) {
+      return;
+    }
+
+    final geoJsonDataStringForRestrictions = json.encode(
+      geoJsonDataForRestrictions.toJson(),
+    );
+
+    final geoJsonDataStringForBoundaries = json.encode(
+      geoJsonDataForBoundaries.toJson(),
+    );
+
+    await style.addSource(
+      GeoJsonSource(
+        id: geoHash + sourceId,
+        data: geoJsonDataStringForRestrictions,
+      ),
+    );
+
+    await style.addSource(
+      GeoJsonSource(
+        id: geoHash + boundaryId + sourceId,
+        data: geoJsonDataStringForBoundaries,
+      ),
+    );
+
+    await style.addLayer(
+      FillLayer(
+        id: geoHash + layerId,
+        sourceId: geoHash + sourceId,
+        fillColorExpression: [
+          getExpression,
+          colorKey,
+        ],
+      ),
+    );
+
+    await style.addLayer(
+      LineLayer(
+        id: geoHash + boundaryId + layerId,
+        sourceId: geoHash + boundaryId + sourceId,
+        lineDasharray: [
+          nilDotThree,
+          twoDotNil,
+        ],
+        lineWidth: oneDotThree,
+        lineCap: LineCap.ROUND,
+        lineColorExpression: [
+          getExpression,
+          colorKey,
+        ],
+        lineOpacityExpression: [
+          caseExpression,
+          [
+            booleanExpression,
+            [
+              featureStateExpression,
+              isSelectedKey,
+            ],
+            false,
+          ],
+          one,
+          zero,
+        ],
+      ),
+    );
+
+    await style.setStyleLayerProperty(
+      geoHash + layerId,
+      fillOpacityTransitionProperty,
+      json.encode({
+        durationKey: oneThousand,
+        delayKey: zero,
+      }),
+    );
+  }
+
   Future<void> setUpLayersForDrones({
     required String bridGeoJsonData,
     required String nridGeoJsonData,
@@ -274,30 +393,33 @@ extension MapboxMapExtensions on MapboxMap {
         data: bridGeoJsonData,
       ),
     );
+
     await style.addSource(
       GeoJsonSource(
         id: nridDronesSourceId,
         data: nridGeoJsonData,
       ),
     );
+
     await style.addLayer(
       SymbolLayer(
         id: bridDronesLayerId,
         sourceId: bridDronesSourceId,
         iconImage: droneStyleImage,
         iconRotateExpression: [
-          getKey,
+          getExpression,
           directionKey,
         ],
       ),
     );
+
     await style.addLayer(
       SymbolLayer(
         id: nridDronesLayerId,
         sourceId: nridDronesSourceId,
         iconImage: droneStyleImage,
         iconRotateExpression: [
-          getKey,
+          getExpression,
           directionKey,
         ],
       ),
@@ -308,8 +430,9 @@ extension MapboxMapExtensions on MapboxMap {
     required List<RemoteIDEntity> remoteIDEntities,
     required String geoJsonSourceId,
   }) async {
-    final geoJsonData = _getGeoJsonData(
-      remoteIDEntities,
+    final geoJsonData = _getGeoJsonData<RemoteIDEntity>(
+      entities: remoteIDEntities,
+      featureGeometryType: pointGeometry,
     );
 
     if (geoJsonData == null) {
@@ -319,6 +442,7 @@ extension MapboxMapExtensions on MapboxMap {
     final geoJsonSource = await style.getSource(
       geoJsonSourceId,
     );
+
     final geoJsonDataString = json.encode(
       geoJsonData.toJson(),
     );
@@ -329,32 +453,128 @@ extension MapboxMapExtensions on MapboxMap {
       );
       return geoJsonDataString;
     }
+
     return emptyString;
   }
 
-  FeatureCollection? _getGeoJsonData(
-    List<RemoteIDEntity> remoteIDEntities,
-  ) {
-    final geoJsonFeatures = remoteIDEntities
+  FeatureCollection? _getGeoJsonData<T>({
+    required List<T> entities,
+    required String featureGeometryType,
+  }) {
+    final geoJsonFeatures = entities
         .map(
-          (remoteIDEntity) {
-            if (remoteIDEntity.location != null &&
-                remoteIDEntity.location!.location != null) {
-              return Feature(
-                id: remoteIDEntity.connection.macAddress,
-                properties: {
-                  directionKey: remoteIDEntity.location?.direction ?? zero,
-                },
-                geometry: GeometryObject.deserialize(
-                  {
-                    typeKey: pointValue,
-                    coordinatesKey: [
-                      remoteIDEntity.location!.longitude,
-                      remoteIDEntity.location!.latitude,
-                    ],
+          (entity) {
+            switch (T) {
+              case const (RemoteIDEntity):
+                final remoteIDEntity = entity as RemoteIDEntity;
+                if (remoteIDEntity.location != null &&
+                    remoteIDEntity.location!.location != null) {
+                  return Feature(
+                    id: remoteIDEntity.connection.macAddress,
+                    properties: {
+                      directionKey: remoteIDEntity.location?.direction ?? zero,
+                    },
+                    geometry: GeometryObject.deserialize(
+                      {
+                        typeKey: featureGeometryType,
+                        coordinatesKey: [
+                          remoteIDEntity.location?.longitude ??
+                              remoteIDEntity.location?.location?.longitude,
+                          remoteIDEntity.location?.latitude ??
+                              remoteIDEntity.location?.location?.latitude,
+                        ],
+                      },
+                    ),
+                  );
+                }
+
+              case const (RestrictionEntity):
+                final restrictionEntity = entity as RestrictionEntity;
+                final alpha = switch (featureGeometryType == polygonGeometry) {
+                  true => nilDotThree,
+                  false => oneDotNil,
+                };
+                final geometryCoordinates =
+                    restrictionEntity.geometry.coordinates;
+                final bounds = _getBoundsFromCoordinates(
+                  geometryCoordinates[zero],
+                );
+                final properties = <String, dynamic>{
+                  colorKey: _getRGBAColorString(
+                    color: restrictionEntity.polygonFillColor,
+                    alpha: alpha,
+                  ),
+                };
+
+                if (featureGeometryType == polygonGeometry) {
+                  properties[northEastKey] = [
+                    bounds.northEast.longitude,
+                    bounds.northEast.latitude,
+                  ];
+                  properties[southWestKey] = [
+                    bounds.southWest.longitude,
+                    bounds.southWest.latitude,
+                  ];
+                }
+
+                return Feature(
+                  id: restrictionEntity.id,
+                  properties: properties,
+                  geometry: GeometryObject.deserialize(
+                    {
+                      typeKey: featureGeometryType,
+                      coordinatesKey: switch (
+                          featureGeometryType == polygonGeometry) {
+                        true => geometryCoordinates,
+                        false => geometryCoordinates[zero],
+                      },
+                    },
+                  ),
+                );
+
+              case const (DroneRushZoneEntity):
+                final droneRushZoneEntity = entity as DroneRushZoneEntity;
+
+                final properties = <String, dynamic>{
+                  colorKey: _getRGBAColorString(
+                    color: droneRushZoneEntity.circleFillColor,
+                    alpha: nilDotThree,
+                  ),
+                  strokeColorKey: _getRGBAColorString(
+                    color: droneRushZoneEntity.circleOutlineColor,
+                    alpha: oneDotNil,
+                  ),
+                  idKey: droneRushZoneEntity.id,
+                  createdAtKey: droneRushZoneEntity.createdAt.toIso8601String(),
+                  updateAtKey: droneRushZoneEntity.updateAt.toIso8601String(),
+                  startTimeKey: droneRushZoneEntity.startTime.toIso8601String(),
+                  endTimeKey: droneRushZoneEntity.endTime.toIso8601String(),
+                  latitudeKey: droneRushZoneEntity.latitude,
+                  longitudeKey: droneRushZoneEntity.longitude,
+                  radiusKey: droneRushZoneEntity.radius,
+                  boundingBoxKey: <String, double>{
+                    minLatitudeKey: droneRushZoneEntity.boundingBox.minLatitude,
+                    maxLatitudeKey: droneRushZoneEntity.boundingBox.maxLatitude,
+                    minLongitudeKey:
+                        droneRushZoneEntity.boundingBox.minLongitude,
+                    maxLongitudeKey:
+                        droneRushZoneEntity.boundingBox.maxLongitude,
                   },
-                ),
-              );
+                };
+
+                return Feature(
+                  id: droneRushZoneEntity.id,
+                  properties: properties,
+                  geometry: GeometryObject.deserialize(
+                    {
+                      typeKey: featureGeometryType,
+                      coordinatesKey: [
+                        droneRushZoneEntity.longitude,
+                        droneRushZoneEntity.latitude,
+                      ],
+                    },
+                  ),
+                );
             }
           },
         )
@@ -367,6 +587,21 @@ extension MapboxMapExtensions on MapboxMap {
       features: geoJsonFeatures,
     );
   }
+
+  String _getRGBAColorString({
+    required Color color,
+    required double alpha,
+  }) =>
+      rgba +
+      openingParenthesis +
+      color.red.toString() +
+      comma +
+      color.green.toString() +
+      comma +
+      color.blue.toString() +
+      comma +
+      alpha.toString() +
+      closingParenthesis;
 
   Future<String> _addStyleImageUsing({
     required String styleImageName,
@@ -398,18 +633,433 @@ extension MapboxMapExtensions on MapboxMap {
 
     return styleImageName;
   }
-}
 
-final class _AnnotationClickListener extends OnPolygonAnnotationClickListener {
-  _AnnotationClickListener(
-    Function1<PolygonAnnotation, void> onAnnotationClick,
-  ) : _onAnnotationClick = onAnnotationClick;
+  Future<void> handleDroneRushZoneTapUsing({
+    required ScreenCoordinate touchPosition,
+    required ValueNotifier<
+            ({
+              List<String> list,
+              int index,
+            })>
+        previousDroneRushZonesIdsAndIndexNotifier,
+    required Function1<DroneRushZoneEntity, void> onTap,
+  }) async {
+    final queriedFeatures = await _getQueriedFeatures(
+      screenCoordinate: touchPosition,
+      layerIds: [
+        droneRushZonesLayerId,
+      ],
+    );
 
-  final Function1<PolygonAnnotation, void> _onAnnotationClick;
+    Map<dynamic, dynamic>? featurePropertiesMap;
 
-  @override
-  void onPolygonAnnotationClick(PolygonAnnotation annotation) =>
-      _onAnnotationClick(
-        annotation,
+    if (queriedFeatures.length == one) {
+      featurePropertiesMap =
+          queriedFeatures.first.feature[propertiesKey] as Map?;
+    } else if (queriedFeatures.length > one) {
+      final feature = _cycleThroughQueriedFeaturesUsing(
+        queriedFeatures: queriedFeatures,
+        previousDroneRushZonesIdsAndIndexNotifier:
+            previousDroneRushZonesIdsAndIndexNotifier,
       );
+
+      featurePropertiesMap = feature.feature[propertiesKey] as Map?;
+    }
+
+    if (featurePropertiesMap != null) {
+      final id = featurePropertiesMap[idKey] as String;
+      final createdAt = DateTime.parse(
+        featurePropertiesMap[createdAtKey] as String,
+      );
+      final updateAt = DateTime.parse(
+        featurePropertiesMap[updateAtKey] as String,
+      );
+      final startTime = DateTime.parse(
+        featurePropertiesMap[startTimeKey] as String,
+      );
+      final endTime = DateTime.parse(
+        featurePropertiesMap[endTimeKey] as String,
+      );
+      final latitude = featurePropertiesMap[latitudeKey] as double;
+      final longitude = featurePropertiesMap[longitudeKey] as double;
+      final radius = (featurePropertiesMap[radiusKey] as num).toDouble();
+
+      final boundingBox = featurePropertiesMap[boundingBoxKey] as Map;
+
+      final minLatitude = boundingBox[minLatitudeKey] as double;
+      final maxLatitude = boundingBox[maxLatitudeKey] as double;
+      final minLongitude = boundingBox[minLongitudeKey] as double;
+      final maxLongitude = boundingBox[maxLongitudeKey] as double;
+
+      final coordinateBounds = CoordinateBounds(
+        northeast: Point(
+          coordinates: Position(
+            maxLongitude,
+            maxLatitude,
+          ),
+        ),
+        southwest: Point(
+          coordinates: Position(
+            minLongitude,
+            minLatitude,
+          ),
+        ),
+        infiniteBounds: false,
+      );
+
+      final cameraOptions = await cameraForCoordinateBounds(
+        coordinateBounds,
+        MbxEdgeInsets(
+          top: tenDotNil,
+          left: tenDotNil,
+          bottom: tenDotNil,
+          right: tenDotNil,
+        ),
+        null,
+        null,
+        null,
+        null,
+      );
+
+      if (cameraOptions.zoom! < sixDotNil) {
+        cameraOptions.zoom = sixDotNil;
+      } else {
+        cameraOptions.zoom = cameraOptions.zoom! - oneDotNil;
+      }
+
+      await easeTo(
+        cameraOptions,
+        MapAnimationOptions(
+          duration: oneThousandThreeHundred,
+        ),
+      );
+
+      final droneRushZoneEntity = DroneRushZoneEntity(
+        id: id,
+        createdAt: createdAt,
+        updateAt: updateAt,
+        startTime: startTime,
+        endTime: endTime,
+        latitude: latitude,
+        longitude: longitude,
+        radius: radius,
+        boundingBox: BoundingBoxEntity(
+          minLatitude: minLatitude,
+          maxLatitude: maxLatitude,
+          minLongitude: minLongitude,
+          maxLongitude: maxLongitude,
+        ),
+      );
+
+      onTap(
+        droneRushZoneEntity,
+      );
+    }
+  }
+
+  Future<FeatureIdSourceIdTuple> handleRestrictionSelection({
+    required ScreenCoordinate touchPosition,
+    required List<String> restrictionLayerIds,
+    required String? previousRestrictionFeatureId,
+    required String? previousRestrictionSourceId,
+  }) async {
+    final queriedFeatures = await _getQueriedFeatures(
+      screenCoordinate: touchPosition,
+      layerIds: restrictionLayerIds,
+    );
+
+    String? featureId;
+
+    String? sourceId;
+
+    Map<dynamic, dynamic>? featurePropertiesMap;
+
+    if (queriedFeatures.length == one) {
+      featureId = queriedFeatures.first.feature[idKey]?.toString();
+      sourceId = queriedFeatures.firstOrNull?.source;
+      featurePropertiesMap =
+          queriedFeatures.first.feature[propertiesKey] as Map?;
+    } else if (queriedFeatures.length > one) {
+      final feature = _getAppropriateFeatureFrom(
+        queriedFeatures: queriedFeatures,
+      );
+
+      featureId = feature.feature[idKey]?.toString();
+      sourceId = feature.source;
+      featurePropertiesMap = feature.feature[propertiesKey] as Map?;
+    }
+
+    await _selectAndUnselectRestrictions(
+      selectedRestrictionFeatureId: featureId,
+      selectedRestrictionSourceId: sourceId,
+      previousRestrictionFeatureId: previousRestrictionFeatureId,
+      previousRestrictionSourceId: previousRestrictionSourceId,
+    );
+
+    if (featurePropertiesMap != null) {
+      final northEast =
+          (featurePropertiesMap[northEastKey]! as List).cast<num>();
+      final southWest =
+          (featurePropertiesMap[southWestKey]! as List).cast<num>();
+
+      final coordinateBounds = CoordinateBounds(
+        southwest: Point(
+          coordinates: Position(
+            southWest[zero],
+            southWest[one],
+          ),
+        ),
+        northeast: Point(
+          coordinates: Position(
+            northEast[zero],
+            northEast[one],
+          ),
+        ),
+        infiniteBounds: false,
+      );
+
+      final cameraOptions = await cameraForCoordinateBounds(
+        coordinateBounds,
+        MbxEdgeInsets(
+          top: tenDotNil,
+          left: tenDotNil,
+          bottom: tenDotNil,
+          right: tenDotNil,
+        ),
+        null,
+        null,
+        null,
+        null,
+      );
+
+      if (cameraOptions.zoom! < sixDotNil) {
+        cameraOptions.zoom = sixDotNil;
+      } else {
+        cameraOptions.zoom = cameraOptions.zoom! - oneDotNil;
+      }
+
+      await easeTo(
+        cameraOptions,
+        MapAnimationOptions(
+          duration: oneThousandThreeHundred,
+        ),
+      );
+    }
+
+    return (
+      featureId: featureId,
+      sourceId: sourceId,
+    );
+  }
+
+  Future<List<QueriedFeature>> _getQueriedFeatures({
+    required ScreenCoordinate screenCoordinate,
+    required List<String> layerIds,
+  }) async {
+    final renderedFeatures = await queryRenderedFeatures(
+      RenderedQueryGeometry.fromScreenCoordinate(
+        screenCoordinate,
+      ),
+      RenderedQueryOptions(
+        layerIds: layerIds,
+      ),
+    );
+
+    return renderedFeatures
+        .map(
+          (
+            queryRenderedFeature,
+          ) =>
+              queryRenderedFeature?.queriedFeature,
+        )
+        .whereType<QueriedFeature>()
+        .toList();
+  }
+
+  Future<void> _selectAndUnselectRestrictions({
+    required String? selectedRestrictionFeatureId,
+    required String? selectedRestrictionSourceId,
+    required String? previousRestrictionFeatureId,
+    required String? previousRestrictionSourceId,
+  }) async {
+    if (selectedRestrictionFeatureId == previousRestrictionFeatureId) {
+      return;
+    }
+
+    await _updateRestrictionFeatureState(
+      restrictionFeatureId: selectedRestrictionFeatureId,
+      restrictionSourceId: selectedRestrictionSourceId,
+      isSelectedKeyValue: true,
+    );
+
+    await _updateRestrictionFeatureState(
+      restrictionFeatureId: previousRestrictionFeatureId,
+      restrictionSourceId: previousRestrictionSourceId,
+      isSelectedKeyValue: false,
+    );
+  }
+
+  Future<void> _updateRestrictionFeatureState({
+    required String? restrictionFeatureId,
+    required String? restrictionSourceId,
+    required bool isSelectedKeyValue,
+  }) async {
+    if (restrictionFeatureId == null || restrictionSourceId == null) return;
+
+    final geoHash = restrictionSourceId
+        .split(
+          hyphen,
+        )
+        .first;
+
+    final boundarySourceId = geoHash + boundaryId + sourceId;
+
+    await setFeatureState(
+      boundarySourceId,
+      null,
+      restrictionFeatureId,
+      json.encode(
+        {
+          isSelectedKey: isSelectedKeyValue,
+        },
+      ),
+    );
+
+    await setFeatureState(
+      restrictionSourceId,
+      null,
+      restrictionFeatureId,
+      json.encode(
+        {
+          isSelectedKey: isSelectedKeyValue,
+        },
+      ),
+    );
+  }
+
+  QueriedFeature _cycleThroughQueriedFeaturesUsing({
+    required List<QueriedFeature> queriedFeatures,
+    required ValueNotifier<
+            ({
+              List<String> list,
+              int index,
+            })>
+        previousDroneRushZonesIdsAndIndexNotifier,
+  }) {
+    final droneRushZonesIdsAndIndex =
+        previousDroneRushZonesIdsAndIndexNotifier.value;
+
+    final droneRushZonesIds = queriedFeatures
+        .map(
+          (queriedFeature) => queriedFeature.feature[idKey].toString(),
+        )
+        .toList();
+
+    final list = droneRushZonesIdsAndIndex.list;
+
+    if (list.isEmpty) {
+      final index = droneRushZonesIdsAndIndex.index;
+
+      previousDroneRushZonesIdsAndIndexNotifier.value = (
+        list: droneRushZonesIds,
+        index: switch (index + one < droneRushZonesIds.length) {
+          true => index + one,
+          false => zero,
+        },
+      );
+
+      return queriedFeatures[index];
+    }
+
+    if (droneRushZonesIds.length == list.length) {
+      for (var index = zero; index < droneRushZonesIds.length; index += one) {
+        final currentDroneRushZonesIds = list[index];
+
+        if (droneRushZonesIds[index] != currentDroneRushZonesIds) {
+          previousDroneRushZonesIdsAndIndexNotifier.value = (
+            list: droneRushZonesIds,
+            index: one,
+          );
+
+          return queriedFeatures[zero];
+        }
+      }
+
+      final index = droneRushZonesIdsAndIndex.index;
+
+      previousDroneRushZonesIdsAndIndexNotifier.value = (
+        list: droneRushZonesIds,
+        index: switch (index + one < droneRushZonesIds.length) {
+          true => index + one,
+          false => zero,
+        },
+      );
+
+      return queriedFeatures[index];
+    }
+
+    previousDroneRushZonesIdsAndIndexNotifier.value = (
+      list: droneRushZonesIds,
+      index: one,
+    );
+
+    return queriedFeatures[zero];
+  }
+
+  QueriedFeature _getAppropriateFeatureFrom({
+    required List<QueriedFeature> queriedFeatures,
+  }) {
+    final selectedFeature = queriedFeatures
+        .where(
+          (queriedFeature) =>
+              (json.decode(
+                queriedFeature.state,
+              ) as Map<String, dynamic>)[isSelectedKey] ==
+              true,
+        )
+        .toList()
+        .firstOrNull;
+
+    if (selectedFeature == null) {
+      return queriedFeatures.first;
+    }
+
+    final index = queriedFeatures.indexOf(
+      selectedFeature,
+    );
+
+    final nextIndex = (index + one) % queriedFeatures.length;
+
+    return queriedFeatures[nextIndex];
+  }
+
+  Bounds _getBoundsFromCoordinates(
+    List<List<double>> coordinates,
+  ) {
+    var minLng = coordinates[zero][zero];
+    var maxLng = coordinates[zero][zero];
+    var minLat = coordinates[zero][one];
+    var maxLat = coordinates[zero][one];
+
+    for (final point in coordinates) {
+      final lng = point[zero];
+      final lat = point[one];
+
+      if (lat < minLat) minLat = lat;
+      if (lat > maxLat) maxLat = lat;
+      if (lng < minLng) minLng = lng;
+      if (lng > maxLng) maxLng = lng;
+    }
+
+    return (
+      northEast: (
+        longitude: maxLng,
+        latitude: maxLat,
+      ),
+      southWest: (
+        longitude: minLng,
+        latitude: minLat,
+      ),
+    );
+  }
 }

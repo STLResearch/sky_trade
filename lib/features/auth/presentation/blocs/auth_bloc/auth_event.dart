@@ -21,6 +21,4 @@ class AuthEvent with _$AuthEvent {
   }) = _ReAuthenticateFailedSFAUserAuthenticationWithAuth0;
 
   const factory AuthEvent.checkSkyTradeUserExists() = _CheckSkyTradeUserExists;
-
-  const factory AuthEvent.createSkyTradeUser() = _CreateSkyTradeUser;
 }

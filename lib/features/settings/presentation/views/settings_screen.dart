@@ -1,18 +1,22 @@
 // ignore_for_file: lines_longer_than_80_chars
 
+import 'dart:io' show Platform;
+
 import 'package:flutter/material.dart'
     show
         AppBar,
         BuildContext,
-        ButtonStyle,
         Center,
+        CircularProgressIndicator,
         Color,
         Column,
         CrossAxisAlignment,
         Divider,
         EdgeInsetsDirectional,
+        EdgeInsetsGeometry,
         ElevatedButton,
         Expanded,
+        FontWeight,
         IconButton,
         Navigator,
         Padding,
@@ -44,21 +48,40 @@ import 'package:sky_trade/core/assets/generated/fonts.gen.dart';
 import 'package:sky_trade/core/errors/failures/settings_failure.dart'
     show TrackingRequestFailure, TrackingRequestNotRequiredFailure;
 import 'package:sky_trade/core/resources/colors.dart'
-    show hex4285F4, hex65C466, hex838187, hexE04F64;
+    show
+        hex0653EA,
+        hex4285F4,
+        hex65C466,
+        hex838187,
+        hexE04F64,
+        hexE9F5FE,
+        hexEBEBEB,
+        hexFFFFFF;
 import 'package:sky_trade/core/resources/numbers/ui.dart'
     show
+        eightDotNil,
         eighteenDotNil,
+        fortyNineDotNil,
         fourteenDotNil,
-        nilDotNil,
         oneDotNil,
         seventyThreeDotNil,
         sixteenDotNil,
         sixteenDotOne,
         tenDotNil,
-        twentyOneDotNil;
+        twentyOneDotNil,
+        twoDotNil;
+import 'package:sky_trade/core/resources/strings/networking.dart'
+    show
+        appleAppStorePageLink,
+        googlePlayStorePageLink,
+        solanaDAppStorePageLink;
+import 'package:sky_trade/core/resources/strings/special_characters.dart'
+    show colon, comma, whiteSpace;
 import 'package:sky_trade/core/utils/enums/networking.dart'
     show TrackingTransparencyRequestStatus;
 import 'package:sky_trade/core/utils/extensions/build_context_extensions.dart';
+import 'package:sky_trade/features/link_handler/presentation/blocs/check_link_bloc/check_link_bloc.dart'
+    show CheckLinkBloc, CheckLinkEvent, CheckLinkState;
 import 'package:sky_trade/features/settings/presentation/blocs/analytics_bloc/analytics_bloc.dart'
     show AnalyticsBloc, AnalyticsEvent, AnalyticsState;
 import 'package:sky_trade/features/settings/presentation/blocs/request_delete_account_bloc/request_delete_account_bloc.dart'
@@ -68,6 +91,8 @@ import 'package:sky_trade/features/settings/presentation/blocs/request_tracking_
         RequestTrackingAuthorizationBloc,
         RequestTrackingAuthorizationEvent,
         RequestTrackingAuthorizationState;
+import 'package:sky_trade/features/settings/presentation/blocs/share_bloc/share_bloc.dart'
+    show ShareBloc, ShareEvent, ShareState;
 import 'package:sky_trade/features/settings/presentation/blocs/tracking_authorization_status_bloc/tracking_authorization_status_bloc.dart'
     show
         TrackingAuthorizationStatusBloc,
@@ -95,6 +120,12 @@ class SettingsScreen extends StatelessWidget {
           BlocProvider<TrackingAuthorizationStatusBloc>(
             create: (_) => serviceLocator(),
           ),
+          BlocProvider<ShareBloc>(
+            create: (_) => serviceLocator(),
+          ),
+          BlocProvider<CheckLinkBloc>(
+            create: (_) => serviceLocator(),
+          ),
         ],
         child: const SettingsView(),
       );
@@ -118,6 +149,8 @@ class _SettingsViewState extends State<SettingsView> {
 
     _checkTrackingAuthorizationStatus();
 
+    _checkAppCanOpenSolanaDAppStorePageLink();
+
     super.initState();
   }
 
@@ -128,6 +161,13 @@ class _SettingsViewState extends State<SettingsView> {
   void _checkTrackingAuthorizationStatus() =>
       context.read<TrackingAuthorizationStatusBloc>().add(
             const TrackingAuthorizationStatusEvent.check(),
+          );
+
+  void _checkAppCanOpenSolanaDAppStorePageLink() =>
+      context.read<CheckLinkBloc>().add(
+            const CheckLinkEvent.check(
+              link: solanaDAppStorePageLink,
+            ),
           );
 
   void _toggleAnalyticsCollection() => context.read<AnalyticsBloc>().add(
@@ -270,6 +310,111 @@ class _SettingsViewState extends State<SettingsView> {
                           ),
                         ],
                       ),
+                      if (Platform.isIOS || Platform.isAndroid)
+                        const SizedBox(
+                          height: tenDotNil,
+                        ),
+                      if (Platform.isIOS || Platform.isAndroid)
+                        BlocBuilder<CheckLinkBloc, CheckLinkState>(
+                          builder: (_, checkLinkState) =>
+                              BlocBuilder<ShareBloc, ShareState>(
+                            builder: (_, shareState) => ElevatedButton(
+                              onPressed: checkLinkState.maybeWhen(
+                                checking: () => null,
+                                orElse: () => shareState.maybeWhen(
+                                  sharing: () => null,
+                                  orElse: () => () => context
+                                      .read<ShareBloc>()
+                                      .add(
+                                        ShareEvent.share(
+                                          subject: context
+                                              .localize.tryOutSkyTradeRadar,
+                                          title: context.localize.skyTradeRadar,
+                                          message: switch (Platform.isIOS) {
+                                            true => context.localize
+                                                    .heyImUsingSkyTradeRadarAndThoughtYoudLikeItCheckItOutHere +
+                                                colon +
+                                                whiteSpace +
+                                                appleAppStorePageLink,
+                                            _ => checkLinkState.maybeWhen(
+                                                checked: (linkEntity) =>
+                                                    switch (linkEntity.link) {
+                                                  solanaDAppStorePageLink
+                                                      when linkEntity.handled =>
+                                                    context.localize
+                                                            .heyImUsingSkyTradeRadarAndThoughtYoudLikeItCheckItOutOnPlaystoreHere +
+                                                        colon +
+                                                        whiteSpace +
+                                                        googlePlayStorePageLink +
+                                                        comma +
+                                                        whiteSpace +
+                                                        context.localize
+                                                            .orOnTheDAppStoreHere +
+                                                        colon +
+                                                        whiteSpace +
+                                                        linkEntity.link,
+                                                  _ => context.localize
+                                                          .heyImUsingSkyTradeRadarAndThoughtYoudLikeItCheckItOutHere +
+                                                      colon +
+                                                      whiteSpace +
+                                                      googlePlayStorePageLink,
+                                                },
+                                                orElse: () =>
+                                                    context.localize
+                                                        .heyImUsingSkyTradeRadarAndThoughtYoudLikeItCheckItOutHere +
+                                                    colon +
+                                                    whiteSpace +
+                                                    googlePlayStorePageLink,
+                                              ),
+                                          },
+                                        ),
+                                      ),
+                                ),
+                              ),
+                              style: Theme.of(
+                                context,
+                              ).elevatedButtonTheme.style?.copyWith(
+                                    backgroundColor:
+                                        WidgetStatePropertyAll<Color>(
+                                      checkLinkState.maybeWhen(
+                                        checking: () => hexEBEBEB,
+                                        orElse: () => shareState.maybeWhen(
+                                          sharing: () => hexEBEBEB,
+                                          orElse: () => hexE9F5FE,
+                                        ),
+                                      ),
+                                    ),
+                                    fixedSize:
+                                        const WidgetStatePropertyAll<Size>(
+                                      Size.fromHeight(
+                                        fortyNineDotNil,
+                                      ),
+                                    ),
+                                  ),
+                              child: Center(
+                                child: checkLinkState.maybeWhen(
+                                  checking: () => const SizedBox(
+                                    width: sixteenDotNil,
+                                    height: sixteenDotNil,
+                                    child: CircularProgressIndicator(
+                                      color: hexFFFFFF,
+                                      strokeWidth: twoDotNil,
+                                    ),
+                                  ),
+                                  orElse: () => Text(
+                                    context.localize.shareRadarApp,
+                                    style: Theme.of(
+                                      context,
+                                    ).textTheme.bodySmall?.copyWith(
+                                          fontWeight: FontWeight.w600,
+                                          color: hex0653EA,
+                                        ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
                       const SizedBox(
                         height: eighteenDotNil,
                       ),
@@ -310,16 +455,20 @@ class _SettingsViewState extends State<SettingsView> {
                     },
                     actionConfirmText: context.localize.proceed,
                   ),
-                  style: const ButtonStyle(
-                    backgroundColor: WidgetStatePropertyAll<Color>(
-                      hexE04F64,
-                    ),
-                    fixedSize: WidgetStatePropertyAll<Size>(
-                      Size.fromHeight(
-                        nilDotNil,
+                  style: Theme.of(
+                    context,
+                  ).elevatedButtonTheme.style?.copyWith(
+                        backgroundColor: const WidgetStatePropertyAll<Color>(
+                          hexE04F64,
+                        ),
+                        padding:
+                            const WidgetStatePropertyAll<EdgeInsetsGeometry>(
+                          EdgeInsetsDirectional.symmetric(
+                            horizontal: sixteenDotNil,
+                            vertical: eightDotNil,
+                          ),
+                        ),
                       ),
-                    ),
-                  ),
                   child: Center(
                     child: Text(
                       context.localize.deleteAccount,

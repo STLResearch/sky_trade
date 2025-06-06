@@ -17,6 +17,10 @@ import 'package:sky_trade/features/auth/presentation/blocs/auth_bloc/auth_bloc.d
     show AuthBloc;
 import 'package:sky_trade/features/auth/presentation/blocs/check_sky_trade_user_exists_bloc/check_sky_trade_user_exists_bloc.dart'
     show CheckSkyTradeUserExistsBloc;
+import 'package:sky_trade/features/auth/presentation/blocs/create_sky_trade_user_bloc/create_sky_trade_user_bloc.dart'
+    show CreateSkyTradeUserBloc;
+import 'package:sky_trade/features/auth/presentation/blocs/email_bloc/email_bloc.dart'
+    show EmailBloc;
 import 'package:sky_trade/features/auth/presentation/blocs/s_f_a_configuration_bloc/s_f_a_configuration_bloc.dart'
     show SFAConfigurationBloc;
 import 'package:sky_trade/features/auth/presentation/blocs/s_f_a_user_session_bloc/s_f_a_user_session_bloc.dart'
@@ -59,6 +63,16 @@ Future<void> registerAuthServices() async {
     )
     ..registerFactory<CheckSkyTradeUserExistsBloc>(
       () => CheckSkyTradeUserExistsBloc(
+        _sl(),
+      ),
+    )
+    ..registerFactory<CreateSkyTradeUserBloc>(
+      () => CreateSkyTradeUserBloc(
+        _sl(),
+      ),
+    )
+    ..registerFactory<EmailBloc>(
+      () => EmailBloc(
         _sl(),
       ),
     )

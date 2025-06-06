@@ -10,7 +10,6 @@ import 'package:flutter/material.dart'
         BoxConstraints,
         BoxDecoration,
         BuildContext,
-        ButtonStyle,
         Center,
         CircularProgressIndicator,
         Color,
@@ -19,6 +18,7 @@ import 'package:flutter/material.dart'
         Container,
         Divider,
         EdgeInsetsDirectional,
+        EdgeInsetsGeometry,
         ElevatedButton,
         FontWeight,
         Form,
@@ -33,7 +33,6 @@ import 'package:flutter/material.dart'
         Radius,
         RichText,
         SingleChildScrollView,
-        Size,
         SizedBox,
         State,
         StatefulWidget,
@@ -62,10 +61,10 @@ import 'package:sky_trade/core/resources/colors.dart'
     show hex0653EA, hexE04F64, hexFFFFFF;
 import 'package:sky_trade/core/resources/numbers/ui.dart'
     show
+        eightDotNil,
         eighteenDotNil,
         fifteenDotNil,
         fourteenDotNil,
-        nilDotNil,
         oneDotNil,
         six,
         sixteenDotNil,
@@ -347,16 +346,21 @@ class _DeleteAccountViewState extends State<DeleteAccountView> {
                           }
                         },
                       ),
-                      style: const ButtonStyle(
-                        backgroundColor: WidgetStatePropertyAll<Color>(
-                          hexE04F64,
-                        ),
-                        fixedSize: WidgetStatePropertyAll<Size>(
-                          Size.fromHeight(
-                            nilDotNil,
+                      style: Theme.of(
+                        context,
+                      ).elevatedButtonTheme.style?.copyWith(
+                            backgroundColor:
+                                const WidgetStatePropertyAll<Color>(
+                              hexE04F64,
+                            ),
+                            padding: const WidgetStatePropertyAll<
+                                EdgeInsetsGeometry>(
+                              EdgeInsetsDirectional.symmetric(
+                                horizontal: sixteenDotNil,
+                                vertical: eightDotNil,
+                              ),
+                            ),
                           ),
-                        ),
-                      ),
                       child: Center(
                         child: deleteAccountState.maybeWhen(
                           deletingAccount: () => const SizedBox(

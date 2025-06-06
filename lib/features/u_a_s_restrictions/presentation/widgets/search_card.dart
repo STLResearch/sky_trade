@@ -1,6 +1,6 @@
 import 'dart:io' show Platform;
 
-import 'package:dartz/dartz.dart' show Function0;
+import 'package:dartz/dartz.dart' show Function0, Function1;
 import 'package:flutter/material.dart'
     show
         AlwaysStoppedAnimation,
@@ -69,6 +69,7 @@ class SearchCard extends StatelessWidget {
   const SearchCard({
     required this.onSearchFieldTap,
     required this.onSearchFieldCleared,
+    required this.onSearchFieldTextChanged,
     required this.tappedSearchResultPlaceName,
     super.key,
   });
@@ -76,6 +77,8 @@ class SearchCard extends StatelessWidget {
   final Function0<void> onSearchFieldTap;
 
   final Function0<void> onSearchFieldCleared;
+
+  final Function1<String, void> onSearchFieldTextChanged;
 
   final String? tappedSearchResultPlaceName;
 
@@ -92,6 +95,7 @@ class SearchCard extends StatelessWidget {
         child: SearchCardView(
           onSearchFieldTap: onSearchFieldTap,
           onSearchFieldCleared: onSearchFieldCleared,
+          onSearchFieldTextChanged: onSearchFieldTextChanged,
           tappedSearchResultPlaceName: tappedSearchResultPlaceName,
         ),
       );
@@ -101,6 +105,7 @@ class SearchCardView extends StatefulWidget {
   const SearchCardView({
     required this.onSearchFieldTap,
     required this.onSearchFieldCleared,
+    required this.onSearchFieldTextChanged,
     required this.tappedSearchResultPlaceName,
     super.key,
   });
@@ -108,6 +113,8 @@ class SearchCardView extends StatefulWidget {
   final Function0<void> onSearchFieldTap;
 
   final Function0<void> onSearchFieldCleared;
+
+  final Function1<String, void> onSearchFieldTextChanged;
 
   final String? tappedSearchResultPlaceName;
 
@@ -244,12 +251,17 @@ class _SearchCardViewState extends State<SearchCardView> {
                     },
                   ),
                 ),
-                onChanged: (value) =>
-                    context.read<SearchAutocompleteBloc>().add(
-                          SearchAutocompleteEvent.autocompleteSearch(
-                            query: value,
-                          ),
+                onChanged: (value) {
+                  widget.onSearchFieldTextChanged(
+                    value,
+                  );
+
+                  context.read<SearchAutocompleteBloc>().add(
+                        SearchAutocompleteEvent.autocompleteSearch(
+                          query: value,
                         ),
+                      );
+                },
                 onTap: widget.onSearchFieldTap,
               ),
             ),
