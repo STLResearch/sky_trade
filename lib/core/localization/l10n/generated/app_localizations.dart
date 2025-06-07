@@ -1788,24 +1788,23 @@ abstract class AppLocalizations {
   /// **'Try out SkyTrade Radar'**
   String get tryOutSkyTradeRadar;
 
-  /// No description provided for @heyImUsingSkyTradeRadarAndThoughtYoudLikeItCheckItOutHere.
+  /// No description provided for @heyImUsingSkyTradeRadarAndThoughtYoudLikeItCheckItOutOnPlaystore.
   ///
   /// In en, this message translates to:
-  /// **'Hey! I\'m using SkyTrade Radar and thought you\'d like it. Check it out here'**
-  String get heyImUsingSkyTradeRadarAndThoughtYoudLikeItCheckItOutHere;
+  /// **'Hey! I\'m using SkyTrade Radar and thought you\'d like it. Check it out on Playstore'**
+  String get heyImUsingSkyTradeRadarAndThoughtYoudLikeItCheckItOutOnPlaystore;
 
-  /// No description provided for @heyImUsingSkyTradeRadarAndThoughtYoudLikeItCheckItOutOnPlaystoreHere.
+  /// No description provided for @onTheAppStore.
   ///
   /// In en, this message translates to:
-  /// **'Hey! I\'m using SkyTrade Radar and thought you\'d like it. Check it out on Playstore here'**
-  String
-      get heyImUsingSkyTradeRadarAndThoughtYoudLikeItCheckItOutOnPlaystoreHere;
+  /// **'on the App Store'**
+  String get onTheAppStore;
 
-  /// No description provided for @orOnTheDAppStoreHere.
+  /// No description provided for @orOnTheSolanaDappStore.
   ///
   /// In en, this message translates to:
-  /// **'or on the dApp Store here'**
-  String get orOnTheDAppStoreHere;
+  /// **'or on the Solana dApp Store'**
+  String get orOnTheSolanaDappStore;
 
   /// No description provided for @shareRadarApp.
   ///
@@ -2095,24 +2094,6 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'The list of active rush zones place names cannot be shown at the moment'**
   String get theListOfActiveRushZonesPlaceNamesCannotBeShownAtTheMoment;
-
-  /// No description provided for @appStore.
-  ///
-  /// In en, this message translates to:
-  /// **'App Store'**
-  String get appStore;
-
-  /// No description provided for @playStore.
-  ///
-  /// In en, this message translates to:
-  /// **'Play Store'**
-  String get playStore;
-
-  /// No description provided for @solanaDappStore.
-  ///
-  /// In en, this message translates to:
-  /// **'Solana dApp Store'**
-  String get solanaDappStore;
 }
 
 class _AppLocalizationsDelegate

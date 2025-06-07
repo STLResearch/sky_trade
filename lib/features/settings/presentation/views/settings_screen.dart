@@ -76,7 +76,7 @@ import 'package:sky_trade/core/resources/strings/networking.dart'
         googlePlayStorePageLink,
         solanaDAppStorePageLink;
 import 'package:sky_trade/core/resources/strings/special_characters.dart'
-    show colon, comma, newLine, whiteSpace;
+    show comma, whiteSpace;
 import 'package:sky_trade/core/utils/enums/networking.dart'
     show TrackingTransparencyRequestStatus;
 import 'package:sky_trade/core/utils/extensions/build_context_extensions.dart';
@@ -331,29 +331,21 @@ class _SettingsViewState extends State<SettingsView> {
                                               .localize.tryOutSkyTradeRadar,
                                           title: context.localize.skyTradeRadar,
                                           message: context.localize
-                                              .heyImUsingSkyTradeRadarAndThoughtYoudLikeItCheckItOutHere +
-                                              colon +
-                                              newLine +
-                                              context.localize.appStore +
-                                              colon +
-                                              whiteSpace +
-                                              appleAppStorePageLink +
-                                              comma +
-                                              whiteSpace +
-                                              newLine +
-                                              context.localize.playStore +
-                                              colon +
+                                                  .heyImUsingSkyTradeRadarAndThoughtYoudLikeItCheckItOutOnPlaystore +
                                               whiteSpace +
                                               googlePlayStorePageLink +
                                               comma +
                                               whiteSpace +
-                                              newLine +
-                                              context.localize.solanaDappStore +
-                                              colon +
+                                              context.localize.onTheAppStore +
+                                              whiteSpace +
+                                              appleAppStorePageLink +
+                                              whiteSpace +
+                                              context.localize
+                                                  .orOnTheSolanaDappStore +
                                               whiteSpace +
                                               solanaDAppStorePageLink,
                                         ),
-                                  ),
+                                      ),
                                 ),
                               ),
                               style: Theme.of(
