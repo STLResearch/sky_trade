@@ -921,15 +921,14 @@ class AppLocalizationsEn extends AppLocalizations {
   String get tryOutSkyTradeRadar => 'Try out SkyTrade Radar';
 
   @override
-  String get heyImUsingSkyTradeRadarAndThoughtYoudLikeItCheckItOutHere =>
-      'Hey! I\'m using SkyTrade Radar and thought you\'d like it. Check it out here';
+  String get heyImUsingSkyTradeRadarAndThoughtYoudLikeItCheckItOutOnPlaystore =>
+      'Hey! I\'m using SkyTrade Radar and thought you\'d like it. Check it out on Playstore';
 
   @override
-  String get heyImUsingSkyTradeRadarAndThoughtYoudLikeItCheckItOutOnPlaystoreHere =>
-      'Hey! I\'m using SkyTrade Radar and thought you\'d like it. Check it out on Playstore here';
+  String get onTheAppStore => 'on the App Store';
 
   @override
-  String get orOnTheDAppStoreHere => 'or on the dApp Store here';
+  String get orOnTheSolanaDappStore => 'or on the Solana dApp Store';
 
   @override
   String get shareRadarApp => 'Share Radar App';
