@@ -16,7 +16,8 @@ import 'package:flutter/material.dart'
         TextSpan,
         Theme,
         Widget;
-import 'package:flutter_bloc/flutter_bloc.dart' show BlocBuilder, ReadContext;
+import 'package:flutter_bloc/flutter_bloc.dart'
+    show BlocBuilder, BlocListener, ReadContext;
 import 'package:skeletonizer/skeletonizer.dart'
     show BoneMock, ShimmerEffect, Skeletonizer, SoldColorEffect;
 import 'package:sky_trade/core/resources/colors.dart' show hex838187, hexEBEBF4;
@@ -32,6 +33,7 @@ import 'package:sky_trade/features/referral/domain/entities/referral_entity.dart
     show EarningsReportEntity;
 import 'package:sky_trade/features/referral/presentation/blocs/earnings_report_bloc/earnings_report_bloc.dart'
     show EarningsReportBloc, EarningsReportEvent, EarningsReportState;
+import 'package:sky_trade/features/referral/presentation/widgets/alert_snack_bar.dart';
 
 class QuarterlyReportsSection extends StatefulWidget {
   const QuarterlyReportsSection({super.key});
@@ -59,96 +61,110 @@ class _QuarterlyReportsSectionState extends State<QuarterlyReportsSection> {
       );
 
   @override
-  Widget build(BuildContext context) => Column(
-        children: List<Widget>.generate(
-          Quarter.values.length,
-          (index) => Padding(
-            padding: EdgeInsetsDirectional.only(
-              bottom: switch (Quarter.values[index]) {
-                Quarter.q4 => nilDotNil,
-                _ => fifteenDotNil,
-              },
-            ),
-            child: Row(
-              children: [
-                Expanded(
-                  child: RichText(
-                    text: TextSpan(
-                      children: [
-                        TextSpan(
-                          text: _computeQuarterTitleUsing(
-                            context,
-                            index: index,
+  Widget build(BuildContext context) =>
+      BlocListener<EarningsReportBloc, EarningsReportState>(
+        listener: (_, earningsReportState) {
+          earningsReportState.whenOrNull(
+            failedToGetEarningsReport: (_) {
+              AlertSnackBar.show(
+                context,
+                message: context.localize
+                    .couldNotGetEarningsReportSwipeDownToRefreshThePage,
+              );
+            },
+          );
+        },
+        child: Column(
+          children: List<Widget>.generate(
+            Quarter.values.length,
+            (index) => Padding(
+              padding: EdgeInsetsDirectional.only(
+                bottom: switch (Quarter.values[index]) {
+                  Quarter.q4 => nilDotNil,
+                  _ => fifteenDotNil,
+                },
+              ),
+              child: Row(
+                children: [
+                  Expanded(
+                    child: RichText(
+                      text: TextSpan(
+                        children: [
+                          TextSpan(
+                            text: _computeQuarterTitleUsing(
+                              context,
+                              index: index,
+                            ),
                           ),
-                        ),
-                        const TextSpan(
-                          text: whiteSpace,
-                        ),
-                        TextSpan(
-                          text: switch (Quarter.values[index]) {
-                            Quarter.q4 =>
-                              (DateTime.now().year - one).toString(),
-                            _ => DateTime.now().year.toString(),
-                          },
-                        ),
-                        const TextSpan(
-                          text: whiteSpace,
-                        ),
-                        TextSpan(
-                          text: context.localize.earnings,
-                        ),
-                      ],
-                      style: Theme.of(
-                        context,
-                      ).textTheme.bodyMedium?.copyWith(
-                            fontSize: fifteenDotNil,
-                            height: twentyTwoDotFive / fifteenDotNil,
-                            color: hex838187,
+                          const TextSpan(
+                            text: whiteSpace,
                           ),
-                    ),
-                  ),
-                ),
-                const SizedBox(
-                  width: tenDotNil,
-                ),
-                BlocBuilder<EarningsReportBloc, EarningsReportState>(
-                  builder: (_, earningsReportState) => Skeletonizer(
-                    effect: earningsReportState.maybeWhen(
-                      failedToGetEarningsReport: (_) => const SoldColorEffect(
-                        color: hexEBEBF4,
-                      ),
-                      orElse: () => ShimmerEffect(
-                        highlightColor: Theme.of(
+                          TextSpan(
+                            text: switch (Quarter.values[index]) {
+                              Quarter.q4 =>
+                                (DateTime.now().year - one).toString(),
+                              _ => DateTime.now().year.toString(),
+                            },
+                          ),
+                          const TextSpan(
+                            text: whiteSpace,
+                          ),
+                          TextSpan(
+                            text: context.localize.earnings,
+                          ),
+                        ],
+                        style: Theme.of(
                           context,
-                        ).scaffoldBackgroundColor,
+                        ).textTheme.bodyMedium?.copyWith(
+                              fontSize: fifteenDotNil,
+                              height: twentyTwoDotFive / fifteenDotNil,
+                              color: hex838187,
+                            ),
                       ),
-                    ),
-                    enabled: earningsReportState.maybeWhen(
-                      gotEarningsReport: (_) => false,
-                      orElse: () => true,
-                    ),
-                    child: Text(
-                      earningsReportState.maybeWhen(
-                        gotEarningsReport: (earningsReportEntity) =>
-                            _computeQuarterEarningsReportUsing(
-                          index: index,
-                          earningsReportEntity: earningsReportEntity,
-                        ),
-                        orElse: () => BoneMock.chars(
-                          two,
-                        ),
-                      ),
-                      textAlign: TextAlign.center,
-                      style: Theme.of(
-                        context,
-                      ).textTheme.bodyMedium?.copyWith(
-                            fontWeight: FontWeight.w600,
-                            color: hex838187,
-                          ),
                     ),
                   ),
-                ),
-              ],
+                  const SizedBox(
+                    width: tenDotNil,
+                  ),
+                  BlocBuilder<EarningsReportBloc, EarningsReportState>(
+                    builder: (_, earningsReportState) => Skeletonizer(
+                      effect: earningsReportState.maybeWhen(
+                        failedToGetEarningsReport: (_) => const SoldColorEffect(
+                          color: hexEBEBF4,
+                        ),
+                        orElse: () => ShimmerEffect(
+                          highlightColor: Theme.of(
+                            context,
+                          ).scaffoldBackgroundColor,
+                        ),
+                      ),
+                      enabled: earningsReportState.maybeWhen(
+                        gotEarningsReport: (_) => false,
+                        orElse: () => true,
+                      ),
+                      child: Text(
+                        earningsReportState.maybeWhen(
+                          gotEarningsReport: (earningsReportEntity) =>
+                              _computeQuarterEarningsReportUsing(
+                            index: index,
+                            earningsReportEntity: earningsReportEntity,
+                          ),
+                          orElse: () => BoneMock.chars(
+                            two,
+                          ),
+                        ),
+                        textAlign: TextAlign.center,
+                        style: Theme.of(
+                          context,
+                        ).textTheme.bodyMedium?.copyWith(
+                              fontWeight: FontWeight.w600,
+                              color: hex838187,
+                            ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
         ),

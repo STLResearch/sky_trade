@@ -1,7 +1,7 @@
 // ignore_for_file: lines_longer_than_80_chars
 
 import 'dart:io' show Platform;
-
+import 'package:flutter/cupertino.dart' show CupertinoSliverRefreshControl;
 import 'package:flutter/material.dart'
     show
         Align,
@@ -18,6 +18,7 @@ import 'package:flutter/material.dart'
         Column,
         Container,
         CrossAxisAlignment,
+        CustomScrollView,
         EdgeInsetsDirectional,
         Expanded,
         Flexible,
@@ -36,8 +37,9 @@ import 'package:flutter/material.dart'
         Row,
         SafeArea,
         Scaffold,
-        SingleChildScrollView,
         SizedBox,
+        SliverPadding,
+        SliverToBoxAdapter,
         Stack,
         State,
         StatefulWidget,
@@ -213,6 +215,11 @@ class _RewardsScreenViewState extends State<RewardsScreenView> {
         const DailyQuestsEvent.getQuests(),
       );
 
+  Future<void> _onRefresh() => Future.wait<void>([
+        _getRewardPoints(),
+        _getDailyQuests(),
+      ]);
+
   @override
   void dispose() {
     _showDroneRushCardNotifier.dispose();
@@ -320,490 +327,519 @@ class _RewardsScreenViewState extends State<RewardsScreenView> {
               ),
             ),
             child: SafeArea(
-              child: RefreshIndicator(
-                onRefresh: () => Future.wait<void>([
-                  _getRewardPoints(),
-                  _getDailyQuests(),
-                ]),
-                child: SingleChildScrollView(
-                  physics: const AlwaysScrollableScrollPhysics(),
+              child: _buildScrollView(),
+            ),
+          ),
+        ),
+      );
+
+  Widget _buildScrollView() => switch (Platform.isIOS) {
+        true => CustomScrollView(
+            physics: const AlwaysScrollableScrollPhysics(),
+            slivers: [
+              CupertinoSliverRefreshControl(
+                onRefresh: _onRefresh,
+              ),
+              _buildRestOfSliverContent(),
+            ],
+          ),
+        false => RefreshIndicator(
+            onRefresh: _onRefresh,
+            child: CustomScrollView(
+              physics: const AlwaysScrollableScrollPhysics(),
+              slivers: [
+                _buildRestOfSliverContent(),
+              ],
+            ),
+          ),
+      };
+
+  Widget _buildRestOfSliverContent() => SliverPadding(
+        padding: const EdgeInsetsDirectional.symmetric(
+          horizontal: twentyFourDotNil,
+        ),
+        sliver: SliverToBoxAdapter(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Align(
+                alignment: AlignmentDirectional.center,
+                child: Text(
+                  context.localize.completeTasksToEarnSkyPoints,
+                  style: Theme.of(
+                    context,
+                  ).textTheme.bodySmall?.copyWith(
+                        fontWeight: FontWeight.w300,
+                        fontSize: fourteenDotNil,
+                        height: twentyTwoDotNil / fourteenDotNil,
+                        color: hexFFFFFF,
+                        letterSpacing: nilDotNil,
+                      ),
+                ),
+              ),
+              const SizedBox(
+                height: fortyDotNil,
+              ),
+              Align(
+                alignment: AlignmentDirectional.center,
+                child: Container(
                   padding: const EdgeInsetsDirectional.symmetric(
+                    vertical: eightDotFive,
                     horizontal: twentyFourDotNil,
                   ),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadiusDirectional.circular(
+                      fiftyDotNil,
+                    ),
+                    gradient: const LinearGradient(
+                      colors: [
+                        hex40FFFFFF,
+                        hex29FFFFFF,
+                      ],
+                    ),
+                    boxShadow: const [
+                      BoxShadow(
+                        color: hex0D000000,
+                        blurRadius: twentyDotNil,
+                      ),
+                    ],
+                  ),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Align(
-                        alignment: AlignmentDirectional.center,
-                        child: Text(
-                          context.localize.completeTasksToEarnSkyPoints,
-                          style: Theme.of(
-                            context,
-                          ).textTheme.bodySmall?.copyWith(
-                                fontWeight: FontWeight.w300,
-                                fontSize: fourteenDotNil,
-                                height: twentyTwoDotNil / fourteenDotNil,
-                                color: hexFFFFFF,
-                                letterSpacing: nilDotNil,
+                      Assets.svgs.totalPoints.svg(),
+                      const SizedBox(
+                        width: eightDotNil,
+                      ),
+                      Flexible(
+                        child: BlocBuilder<RewardPointsBloc, RewardPointsState>(
+                          builder: (_, rewardPointsState) => Skeletonizer(
+                            effect: rewardPointsState.maybeWhen(
+                              failedToGetPoints: (_) => const SoldColorEffect(
+                                color: hexEBEBF4,
                               ),
+                              orElse: () => ShimmerEffect(
+                                highlightColor: Theme.of(
+                                  context,
+                                ).scaffoldBackgroundColor,
+                              ),
+                            ),
+                            enabled: rewardPointsState.maybeWhen(
+                              gotPoints: (_) => false,
+                              orElse: () => true,
+                            ),
+                            child: Text(
+                              rewardPointsState.maybeWhen(
+                                gotPoints: (rewardPointsEntity) =>
+                                    rewardPointsEntity.stats.sum.point
+                                        ?.toString() ??
+                                    zero.toString(),
+                                orElse: () => BoneMock.chars(
+                                  two,
+                                ),
+                              ),
+                              maxLines: one,
+                              overflow: TextOverflow.ellipsis,
+                              style: Theme.of(
+                                context,
+                              ).textTheme.bodyLarge?.copyWith(
+                                    fontSize: twentyFourDotNil,
+                                    height: oneDotNil,
+                                    letterSpacing: nilDotNil,
+                                  ),
+                            ),
+                          ),
                         ),
                       ),
-                      const SizedBox(
-                        height: fortyDotNil,
-                      ),
-                      Align(
-                        alignment: AlignmentDirectional.center,
-                        child: Container(
-                          padding: const EdgeInsetsDirectional.symmetric(
-                            vertical: eightDotFive,
-                            horizontal: twentyFourDotNil,
-                          ),
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadiusDirectional.circular(
-                              fiftyDotNil,
-                            ),
-                            gradient: const LinearGradient(
-                              colors: [
-                                hex40FFFFFF,
-                                hex29FFFFFF,
-                              ],
-                            ),
-                            boxShadow: const [
-                              BoxShadow(
-                                color: hex0D000000,
-                                blurRadius: twentyDotNil,
-                              ),
-                            ],
-                          ),
+                    ],
+                  ),
+                ),
+              ),
+              const SizedBox(
+                height: fortyDotNil,
+              ),
+              ValueListenableBuilder<bool>(
+                valueListenable: _showDroneRushCardNotifier,
+                builder: (_, showDroneRushCardNotifierValue, __) =>
+                    switch (showDroneRushCardNotifierValue) {
+                  true => Stack(
+                      clipBehavior: Clip.none,
+                      children: [
+                        Card(
+                          hasBorder: false,
+                          backgroundColor: hexFFFFFF,
+                          cornerRadius: twentyDotNil,
+                          verticalPadding: nilDotNil,
+                          horizontalPadding: fourteenDotNil,
                           child: Row(
-                            mainAxisSize: MainAxisSize.min,
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              Assets.svgs.totalPoints.svg(),
+                              Expanded(
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      context.localize.droneRush,
+                                      style: Theme.of(
+                                        context,
+                                      ).textTheme.bodyLarge?.copyWith(
+                                            fontFamily: FontFamily.chakraPetch,
+                                            fontWeight: FontWeight.w600,
+                                            fontSize: twentyDotNil,
+                                            height: oneDotNil,
+                                            letterSpacing: minusNilDotOne,
+                                            color: hex161616,
+                                          ),
+                                    ),
+                                    const SizedBox(
+                                      height: fourDotNil,
+                                    ),
+                                    RichText(
+                                      text: TextSpan(
+                                        children: [
+                                          TextSpan(
+                                            text: context.localize.earn +
+                                                whiteSpace,
+                                            style: Theme.of(
+                                              context,
+                                            ).textTheme.bodySmall?.copyWith(
+                                                  fontWeight: FontWeight.w300,
+                                                  fontSize: twelveDotNil,
+                                                  height: oneDotNil,
+                                                  letterSpacing: nilDotNil,
+                                                  color: hex626262,
+                                                ),
+                                          ),
+                                          TextSpan(
+                                            text: context.localize.morePoints,
+                                            style: Theme.of(
+                                              context,
+                                            ).textTheme.bodySmall?.copyWith(
+                                                  fontWeight: FontWeight.w600,
+                                                  fontSize: twelveDotNil,
+                                                  height: oneDotNil,
+                                                  letterSpacing: nilDotNil,
+                                                  color: hex626262,
+                                                ),
+                                          ),
+                                          TextSpan(
+                                            text: whiteSpace +
+                                                context.localize
+                                                    .forTrackingDronesInHighlightedZonesDuringThisLimitedTimeEvent +
+                                                exclamationMark,
+                                            style: Theme.of(
+                                              context,
+                                            ).textTheme.bodySmall?.copyWith(
+                                                  fontWeight: FontWeight.w300,
+                                                  fontSize: twelveDotNil,
+                                                  height: oneDotNil,
+                                                  letterSpacing: nilDotNil,
+                                                  color: hex626262,
+                                                ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
                               const SizedBox(
                                 width: eightDotNil,
                               ),
-                              Flexible(
-                                child: BlocBuilder<RewardPointsBloc,
-                                    RewardPointsState>(
-                                  builder: (_, rewardPointsState) =>
-                                      Skeletonizer(
-                                    effect: rewardPointsState.maybeWhen(
-                                      failedToGetPoints: (_) =>
-                                          const SoldColorEffect(
-                                        color: hexEBEBF4,
-                                      ),
-                                      orElse: () => ShimmerEffect(
-                                        highlightColor: Theme.of(
-                                          context,
-                                        ).scaffoldBackgroundColor,
-                                      ),
-                                    ),
-                                    enabled: rewardPointsState.maybeWhen(
-                                      gotPoints: (_) => false,
-                                      orElse: () => true,
-                                    ),
-                                    child: Text(
-                                      rewardPointsState.maybeWhen(
-                                        gotPoints: (rewardPointsEntity) =>
-                                            rewardPointsEntity.stats.sum.point
-                                                ?.toString() ??
-                                            zero.toString(),
-                                        orElse: () => BoneMock.chars(
-                                          two,
+                              Assets.pngs.droneRush.image(),
+                            ],
+                          ),
+                          onTap: () => Navigator.of(
+                            context,
+                          ).pushNamed(
+                            rewardsDroneRushDetailsRoutePath,
+                            arguments: rewardsRoutePath,
+                          ),
+                        ),
+                        Positioned(
+                          top: minusTenDotNil,
+                          child: Container(
+                            padding: const EdgeInsetsDirectional.symmetric(
+                              horizontal: eightDotNil,
+                              vertical: fourDotNil,
+                            ),
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadiusDirectional.circular(
+                                sixDotNil,
+                              ),
+                              gradient: const LinearGradient(
+                                begin: AlignmentDirectional.topEnd,
+                                end: AlignmentDirectional.bottomEnd,
+                                colors: [
+                                  hex7583FF,
+                                  hex68DEFF,
+                                ],
+                              ),
+                            ),
+                            child: Text(
+                              context.localize.specialEvent,
+                              style: Theme.of(
+                                context,
+                              ).textTheme.bodyLarge?.copyWith(
+                                    fontWeight: FontWeight.w600,
+                                    fontSize: tenDotNil,
+                                    height: oneDotNil,
+                                    letterSpacing: nilDotOne,
+                                    color: hexFFFFFF,
+                                  ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  false => const SizedBox.shrink(),
+                },
+              ),
+              const SizedBox(
+                height: twentyDotNil,
+              ),
+              Text(
+                context.localize.dailyQuests,
+                style: Theme.of(
+                  context,
+                ).textTheme.bodyLarge?.copyWith(
+                      fontWeight: FontWeight.w600,
+                      fontSize: twentyDotNil,
+                      height: oneDotNil,
+                      letterSpacing: minusNilDotOne,
+                      color: hex161616,
+                    ),
+              ),
+              const SizedBox(
+                height: twentyDotNil,
+              ),
+              BlocBuilder<DailyQuestsBloc, DailyQuestsState>(
+                builder: (_, dailyQuestsState) => dailyQuestsState.maybeWhen(
+                  gotQuests: (questEntities) => switch (questEntities.isEmpty) {
+                    true => SizedBox(
+                        height: switch (Platform.isIOS) {
+                          true => fourFiftyTwoDotNil,
+                          false => fourSeventySixDotNil,
+                        },
+                        child: Center(
+                          child: Text(
+                            context.localize.thereAreNoQuestsAtThisTime,
+                            style: Theme.of(
+                              context,
+                            ).textTheme.bodyLarge?.copyWith(
+                                  fontSize: sixteenDotEight,
+                                  height: oneDotNil,
+                                  letterSpacing: minusNilDotOne,
+                                  color: hex161616,
+                                ),
+                          ),
+                        ),
+                      ),
+                    false => const SizedBox.shrink(),
+                  },
+                  orElse: () => const SizedBox.shrink(),
+                ),
+              ),
+              BlocBuilder<DailyQuestsBloc, DailyQuestsState>(
+                builder: (_, dailyQuestsState) => ListView.separated(
+                  physics: const NeverScrollableScrollPhysics(),
+                  shrinkWrap: true,
+                  itemCount: dailyQuestsState.maybeWhen(
+                    gotQuests: (questEntities) => questEntities.length,
+                    orElse: () => five,
+                  ),
+                  itemBuilder: (_, index) => Card(
+                    hasBorder: dailyQuestsState.maybeWhen(
+                      gotQuests: (questEntities) =>
+                          !questEntities[index].completed,
+                      orElse: () =>
+                          index == zero || index == two || index == three,
+                    ),
+                    gradient: dailyQuestsState.maybeWhen(
+                      gotQuests: (questEntities) =>
+                          switch (questEntities[index].completed) {
+                        true => const LinearGradient(
+                            colors: [
+                              hexD0EBFF,
+                              hex00FFFFFF,
+                            ],
+                          ),
+                        false => null,
+                      },
+                      orElse: () => null,
+                    ),
+                    child: Row(
+                      children: [
+                        Expanded(
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Skeletonizer(
+                                effect: dailyQuestsState.maybeWhen(
+                                  failedToGetQuests: (_) =>
+                                      const SoldColorEffect(
+                                    color: hexEBEBF4,
+                                  ),
+                                  orElse: () => ShimmerEffect(
+                                    highlightColor: Theme.of(
+                                      context,
+                                    ).scaffoldBackgroundColor,
+                                  ),
+                                ),
+                                enabled: dailyQuestsState.maybeWhen(
+                                  gotQuests: (_) => false,
+                                  orElse: () => true,
+                                ),
+                                child: Text(
+                                  dailyQuestsState.maybeWhen(
+                                    gotQuests: (questEntities) =>
+                                        questEntities[index].title,
+                                    orElse: () => switch (index == one) {
+                                      true => BoneMock.words(
+                                          five,
                                         ),
+                                      false when index == three =>
+                                        BoneMock.words(
+                                          four,
+                                        ),
+                                      false => BoneMock.words(
+                                          three,
+                                        ),
+                                    },
+                                  ),
+                                  maxLines: one,
+                                  overflow: TextOverflow.ellipsis,
+                                  style: Theme.of(
+                                    context,
+                                  ).textTheme.bodyLarge?.copyWith(
+                                        fontSize: fourteenDotNil,
+                                        height:
+                                            thirtyTwoDotNil / fourteenDotNil,
+                                        letterSpacing: nilDotNil,
                                       ),
+                                ),
+                              ),
+                              const SizedBox(
+                                height: fourDotNil,
+                              ),
+                              dailyQuestsState.maybeWhen(
+                                gotQuests: (questEntities) =>
+                                    switch (questEntities[index].completed) {
+                                  true => Text(
+                                      context.localize.claim +
+                                          whiteSpace +
+                                          plus +
+                                          (questEntities[index]
+                                                  .points
+                                                  ?.toString() ??
+                                              zero.toString()) +
+                                          whiteSpace +
+                                          context.localize.points,
                                       maxLines: one,
                                       overflow: TextOverflow.ellipsis,
                                       style: Theme.of(
                                         context,
-                                      ).textTheme.bodyLarge?.copyWith(
-                                            fontSize: twentyFourDotNil,
-                                            height: oneDotNil,
+                                      ).textTheme.bodyMedium?.copyWith(
+                                            fontSize: tenDotNil,
+                                            height: twentyTwoDotNil / tenDotNil,
                                             letterSpacing: nilDotNil,
                                           ),
                                     ),
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                      const SizedBox(
-                        height: fortyDotNil,
-                      ),
-                      ValueListenableBuilder<bool>(
-                        valueListenable: _showDroneRushCardNotifier,
-                        builder: (_, showDroneRushCardNotifierValue, __) =>
-                            switch (showDroneRushCardNotifierValue) {
-                          true => Stack(
-                              clipBehavior: Clip.none,
-                              children: [
-                                Card(
-                                  hasBorder: false,
-                                  backgroundColor: hexFFFFFF,
-                                  cornerRadius: twentyDotNil,
-                                  verticalPadding: nilDotNil,
-                                  horizontalPadding: fourteenDotNil,
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Expanded(
-                                        child: Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          children: [
-                                            Text(
-                                              context.localize.droneRush,
-                                              style: Theme.of(
-                                                context,
-                                              ).textTheme.bodyLarge?.copyWith(
-                                                    fontFamily:
-                                                        FontFamily.chakraPetch,
-                                                    fontWeight: FontWeight.w600,
-                                                    fontSize: twentyDotNil,
-                                                    height: oneDotNil,
-                                                    letterSpacing:
-                                                        minusNilDotOne,
-                                                    color: hex161616,
-                                                  ),
+                                  false => RichText(
+                                      maxLines: one,
+                                      text: TextSpan(
+                                        children: [
+                                          WidgetSpan(
+                                            child:
+                                                Assets.svgs.questPoints.svg(),
+                                            alignment:
+                                                PlaceholderAlignment.middle,
+                                          ),
+                                          const WidgetSpan(
+                                            child: SizedBox(
+                                              width: fourDotNil,
                                             ),
-                                            const SizedBox(
-                                              height: fourDotNil,
-                                            ),
-                                            RichText(
-                                              text: TextSpan(
-                                                children: [
-                                                  TextSpan(
-                                                    text:
-                                                        context.localize.earn +
-                                                            whiteSpace,
-                                                    style: Theme.of(
-                                                      context,
-                                                    )
-                                                        .textTheme
-                                                        .bodySmall
-                                                        ?.copyWith(
-                                                          fontWeight:
-                                                              FontWeight.w300,
-                                                          fontSize:
-                                                              twelveDotNil,
-                                                          height: oneDotNil,
-                                                          letterSpacing:
-                                                              nilDotNil,
-                                                          color: hex626262,
-                                                        ),
-                                                  ),
-                                                  TextSpan(
-                                                    text: context
-                                                        .localize.morePoints,
-                                                    style: Theme.of(
-                                                      context,
-                                                    )
-                                                        .textTheme
-                                                        .bodySmall
-                                                        ?.copyWith(
-                                                          fontWeight:
-                                                              FontWeight.w600,
-                                                          fontSize:
-                                                              twelveDotNil,
-                                                          height: oneDotNil,
-                                                          letterSpacing:
-                                                              nilDotNil,
-                                                          color: hex626262,
-                                                        ),
-                                                  ),
-                                                  TextSpan(
-                                                    text: whiteSpace +
-                                                        context.localize
-                                                            .forTrackingDronesInHighlightedZonesDuringThisLimitedTimeEvent +
-                                                        exclamationMark,
-                                                    style: Theme.of(
-                                                      context,
-                                                    )
-                                                        .textTheme
-                                                        .bodySmall
-                                                        ?.copyWith(
-                                                          fontWeight:
-                                                              FontWeight.w300,
-                                                          fontSize:
-                                                              twelveDotNil,
-                                                          height: oneDotNil,
-                                                          letterSpacing:
-                                                              nilDotNil,
-                                                          color: hex626262,
-                                                        ),
-                                                  ),
-                                                ],
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                      const SizedBox(
-                                        width: eightDotNil,
-                                      ),
-                                      Assets.pngs.droneRush.image(),
-                                    ],
-                                  ),
-                                  onTap: () => Navigator.of(
-                                    context,
-                                  ).pushNamed(
-                                    rewardsDroneRushDetailsRoutePath,
-                                    arguments: rewardsRoutePath,
-                                  ),
-                                ),
-                                Positioned(
-                                  top: minusTenDotNil,
-                                  child: Container(
-                                    padding:
-                                        const EdgeInsetsDirectional.symmetric(
-                                      horizontal: eightDotNil,
-                                      vertical: fourDotNil,
-                                    ),
-                                    decoration: BoxDecoration(
-                                      borderRadius:
-                                          BorderRadiusDirectional.circular(
-                                        sixDotNil,
-                                      ),
-                                      gradient: const LinearGradient(
-                                        begin: AlignmentDirectional.topEnd,
-                                        end: AlignmentDirectional.bottomEnd,
-                                        colors: [
-                                          hex7583FF,
-                                          hex68DEFF,
+                                            alignment:
+                                                PlaceholderAlignment.middle,
+                                          ),
+                                          TextSpan(
+                                            text: plus +
+                                                (questEntities[index]
+                                                        .points
+                                                        ?.toString() ??
+                                                    zero.toString()) +
+                                                whiteSpace +
+                                                context.localize.points,
+                                            style: Theme.of(
+                                              context,
+                                            ).textTheme.bodyMedium?.copyWith(
+                                                  overflow:
+                                                      TextOverflow.ellipsis,
+                                                  fontSize: tenDotNil,
+                                                  height: twentyTwoDotNil /
+                                                      tenDotNil,
+                                                  letterSpacing: nilDotNil,
+                                                ),
+                                          ),
                                         ],
                                       ),
                                     ),
-                                    child: Text(
-                                      context.localize.specialEvent,
-                                      style: Theme.of(
-                                        context,
-                                      ).textTheme.bodyLarge?.copyWith(
-                                            fontWeight: FontWeight.w600,
-                                            fontSize: tenDotNil,
-                                            height: oneDotNil,
-                                            letterSpacing: nilDotOne,
-                                            color: hexFFFFFF,
-                                          ),
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          false => const SizedBox.shrink(),
-                        },
-                      ),
-                      const SizedBox(
-                        height: twentyDotNil,
-                      ),
-                      Text(
-                        context.localize.dailyQuests,
-                        style: Theme.of(
-                          context,
-                        ).textTheme.bodyLarge?.copyWith(
-                              fontWeight: FontWeight.w600,
-                              fontSize: twentyDotNil,
-                              height: oneDotNil,
-                              letterSpacing: minusNilDotOne,
-                              color: hex161616,
-                            ),
-                      ),
-                      const SizedBox(
-                        height: twentyDotNil,
-                      ),
-                      BlocBuilder<DailyQuestsBloc, DailyQuestsState>(
-                        builder: (_, dailyQuestsState) =>
-                            dailyQuestsState.maybeWhen(
-                          gotQuests: (questEntities) =>
-                              switch (questEntities.isEmpty) {
-                            true => SizedBox(
-                                height: switch (Platform.isIOS) {
-                                  true => fourFiftyTwoDotNil,
-                                  false => fourSeventySixDotNil,
                                 },
-                                child: Center(
-                                  child: Text(
-                                    context.localize.thereAreNoQuestsAtThisTime,
-                                    style: Theme.of(
-                                      context,
-                                    ).textTheme.bodyLarge?.copyWith(
-                                          fontSize: sixteenDotEight,
-                                          height: oneDotNil,
-                                          letterSpacing: minusNilDotOne,
-                                          color: hex161616,
+                                orElse: () =>
+                                    switch (index == one || index == four) {
+                                  true => Skeletonizer(
+                                      effect: dailyQuestsState.maybeWhen(
+                                        failedToGetQuests: (_) =>
+                                            const SoldColorEffect(
+                                          color: hexEBEBF4,
                                         ),
-                                  ),
-                                ),
-                              ),
-                            false => const SizedBox.shrink(),
-                          },
-                          orElse: () => const SizedBox.shrink(),
-                        ),
-                      ),
-                      BlocBuilder<DailyQuestsBloc, DailyQuestsState>(
-                        builder: (_, dailyQuestsState) => ListView.separated(
-                          physics: const NeverScrollableScrollPhysics(),
-                          shrinkWrap: true,
-                          itemCount: dailyQuestsState.maybeWhen(
-                            gotQuests: (questEntities) => questEntities.length,
-                            orElse: () => five,
-                          ),
-                          itemBuilder: (_, index) => Card(
-                            hasBorder: dailyQuestsState.maybeWhen(
-                              gotQuests: (questEntities) =>
-                                  !questEntities[index].completed,
-                              orElse: () =>
-                                  index == zero ||
-                                  index == two ||
-                                  index == three,
-                            ),
-                            gradient: dailyQuestsState.maybeWhen(
-                              gotQuests: (questEntities) =>
-                                  switch (questEntities[index].completed) {
-                                true => const LinearGradient(
-                                    colors: [
-                                      hexD0EBFF,
-                                      hex00FFFFFF,
-                                    ],
-                                  ),
-                                false => null,
-                              },
-                              orElse: () => null,
-                            ),
-                            child: Row(
-                              children: [
-                                Expanded(
-                                  child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Skeletonizer(
-                                        effect: dailyQuestsState.maybeWhen(
-                                          failedToGetQuests: (_) =>
-                                              const SoldColorEffect(
-                                            color: hexEBEBF4,
-                                          ),
-                                          orElse: () => ShimmerEffect(
-                                            highlightColor: Theme.of(
-                                              context,
-                                            ).scaffoldBackgroundColor,
-                                          ),
-                                        ),
-                                        enabled: dailyQuestsState.maybeWhen(
-                                          gotQuests: (_) => false,
-                                          orElse: () => true,
-                                        ),
-                                        child: Text(
-                                          dailyQuestsState.maybeWhen(
-                                            gotQuests: (questEntities) =>
-                                                questEntities[index].title,
-                                            orElse: () =>
-                                                switch (index == one) {
-                                              true => BoneMock.words(
-                                                  five,
-                                                ),
-                                              false when index == three =>
-                                                BoneMock.words(
-                                                  four,
-                                                ),
-                                              false => BoneMock.words(
-                                                  three,
-                                                ),
-                                            },
-                                          ),
-                                          maxLines: one,
-                                          overflow: TextOverflow.ellipsis,
-                                          style: Theme.of(
+                                        orElse: () => ShimmerEffect(
+                                          highlightColor: Theme.of(
                                             context,
-                                          ).textTheme.bodyLarge?.copyWith(
-                                                fontSize: fourteenDotNil,
-                                                height: thirtyTwoDotNil /
-                                                    fourteenDotNil,
-                                                letterSpacing: nilDotNil,
-                                              ),
+                                          ).scaffoldBackgroundColor,
                                         ),
                                       ),
-                                      const SizedBox(
-                                        height: fourDotNil,
+                                      enabled: dailyQuestsState.maybeWhen(
+                                        gotQuests: (_) => false,
+                                        orElse: () => true,
                                       ),
-                                      dailyQuestsState.maybeWhen(
-                                        gotQuests: (questEntities) => switch (
-                                            questEntities[index].completed) {
-                                          true => Text(
-                                              context.localize.claim +
-                                                  whiteSpace +
-                                                  plus +
-                                                  (questEntities[index]
-                                                          .points
-                                                          ?.toString() ??
-                                                      zero.toString()) +
-                                                  whiteSpace +
-                                                  context.localize.points,
-                                              maxLines: one,
-                                              overflow: TextOverflow.ellipsis,
-                                              style: Theme.of(
-                                                context,
-                                              ).textTheme.bodyMedium?.copyWith(
-                                                    fontSize: tenDotNil,
-                                                    height: twentyTwoDotNil /
-                                                        tenDotNil,
-                                                    letterSpacing: nilDotNil,
-                                                  ),
+                                      child: Text(
+                                        BoneMock.words(
+                                          three,
+                                        ),
+                                        maxLines: one,
+                                        overflow: TextOverflow.ellipsis,
+                                        style: Theme.of(
+                                          context,
+                                        ).textTheme.bodyMedium?.copyWith(
+                                              fontSize: tenDotNil,
+                                              height:
+                                                  twentyTwoDotNil / tenDotNil,
+                                              letterSpacing: nilDotNil,
                                             ),
-                                          false => RichText(
-                                              maxLines: one,
-                                              text: TextSpan(
-                                                children: [
-                                                  WidgetSpan(
-                                                    child: Assets
-                                                        .svgs.questPoints
-                                                        .svg(),
-                                                    alignment:
-                                                        PlaceholderAlignment
-                                                            .middle,
-                                                  ),
-                                                  const WidgetSpan(
-                                                    child: SizedBox(
-                                                      width: fourDotNil,
-                                                    ),
-                                                    alignment:
-                                                        PlaceholderAlignment
-                                                            .middle,
-                                                  ),
-                                                  TextSpan(
-                                                    text: plus +
-                                                        (questEntities[index]
-                                                                .points
-                                                                ?.toString() ??
-                                                            zero.toString()) +
-                                                        whiteSpace +
-                                                        context.localize.points,
-                                                    style: Theme.of(
-                                                      context,
-                                                    )
-                                                        .textTheme
-                                                        .bodyMedium
-                                                        ?.copyWith(
-                                                          overflow: TextOverflow
-                                                              .ellipsis,
-                                                          fontSize: tenDotNil,
-                                                          height:
-                                                              twentyTwoDotNil /
-                                                                  tenDotNil,
-                                                          letterSpacing:
-                                                              nilDotNil,
-                                                        ),
-                                                  ),
-                                                ],
-                                              ),
+                                      ),
+                                    ),
+                                  false => RichText(
+                                      maxLines: one,
+                                      text: TextSpan(
+                                        children: [
+                                          WidgetSpan(
+                                            child:
+                                                Assets.svgs.questPoints.svg(),
+                                            alignment:
+                                                PlaceholderAlignment.middle,
+                                          ),
+                                          const WidgetSpan(
+                                            child: SizedBox(
+                                              width: fourDotNil,
                                             ),
-                                        },
-                                        orElse: () => switch (
-                                            index == one || index == four) {
-                                          true => Skeletonizer(
+                                            alignment:
+                                                PlaceholderAlignment.middle,
+                                          ),
+                                          WidgetSpan(
+                                            child: Skeletonizer(
                                               effect:
                                                   dailyQuestsState.maybeWhen(
                                                 failedToGetQuests: (_) =>
@@ -823,16 +859,16 @@ class _RewardsScreenViewState extends State<RewardsScreenView> {
                                               ),
                                               child: Text(
                                                 BoneMock.words(
-                                                  three,
+                                                  two,
                                                 ),
-                                                maxLines: one,
-                                                overflow: TextOverflow.ellipsis,
                                                 style: Theme.of(
                                                   context,
                                                 )
                                                     .textTheme
                                                     .bodyMedium
                                                     ?.copyWith(
+                                                      overflow:
+                                                          TextOverflow.ellipsis,
                                                       fontSize: tenDotNil,
                                                       height: twentyTwoDotNil /
                                                           tenDotNil,
@@ -840,249 +876,175 @@ class _RewardsScreenViewState extends State<RewardsScreenView> {
                                                     ),
                                               ),
                                             ),
-                                          false => RichText(
-                                              maxLines: one,
-                                              text: TextSpan(
-                                                children: [
-                                                  WidgetSpan(
-                                                    child: Assets
-                                                        .svgs.questPoints
-                                                        .svg(),
-                                                    alignment:
-                                                        PlaceholderAlignment
-                                                            .middle,
-                                                  ),
-                                                  const WidgetSpan(
-                                                    child: SizedBox(
-                                                      width: fourDotNil,
-                                                    ),
-                                                    alignment:
-                                                        PlaceholderAlignment
-                                                            .middle,
-                                                  ),
-                                                  WidgetSpan(
-                                                    child: Skeletonizer(
-                                                      effect: dailyQuestsState
-                                                          .maybeWhen(
-                                                        failedToGetQuests: (_) =>
-                                                            const SoldColorEffect(
-                                                          color: hexEBEBF4,
-                                                        ),
-                                                        orElse: () =>
-                                                            ShimmerEffect(
-                                                          highlightColor:
-                                                              Theme.of(
-                                                            context,
-                                                          ).scaffoldBackgroundColor,
-                                                        ),
-                                                      ),
-                                                      enabled: dailyQuestsState
-                                                          .maybeWhen(
-                                                        gotQuests: (_) => false,
-                                                        orElse: () => true,
-                                                      ),
-                                                      child: Text(
-                                                        BoneMock.words(
-                                                          two,
-                                                        ),
-                                                        style: Theme.of(
-                                                          context,
-                                                        )
-                                                            .textTheme
-                                                            .bodyMedium
-                                                            ?.copyWith(
-                                                              overflow:
-                                                                  TextOverflow
-                                                                      .ellipsis,
-                                                              fontSize:
-                                                                  tenDotNil,
-                                                              height:
-                                                                  twentyTwoDotNil /
-                                                                      tenDotNil,
-                                                              letterSpacing:
-                                                                  nilDotNil,
-                                                            ),
-                                                      ),
-                                                    ),
-                                                    alignment:
-                                                        PlaceholderAlignment
-                                                            .middle,
-                                                  ),
-                                                ],
-                                              ),
-                                            ),
-                                        },
+                                            alignment:
+                                                PlaceholderAlignment.middle,
+                                          ),
+                                        ],
                                       ),
-                                    ],
+                                    ),
+                                },
+                              ),
+                            ],
+                          ),
+                        ),
+                        dailyQuestsState.maybeWhen(
+                          gotQuests: (questEntities) =>
+                              switch (questEntities[index].completed) {
+                            true => const SizedBox(
+                                width: eightDotNil,
+                              ),
+                            false => const SizedBox.shrink(),
+                          },
+                          orElse: () => switch (index == one || index == four) {
+                            true => const SizedBox(
+                                width: eightDotNil,
+                              ),
+                            false => const SizedBox.shrink(),
+                          },
+                        ),
+                        dailyQuestsState.maybeWhen(
+                          gotQuests: (questEntities) =>
+                              switch (questEntities[index].completed) {
+                            true => Container(
+                                decoration: BoxDecoration(
+                                  color: hex0653EA,
+                                  borderRadius:
+                                      BorderRadiusDirectional.circular(
+                                    nineDotNil,
                                   ),
                                 ),
-                                dailyQuestsState.maybeWhen(
-                                  gotQuests: (questEntities) =>
-                                      switch (questEntities[index].completed) {
-                                    true => const SizedBox(
-                                        width: eightDotNil,
-                                      ),
-                                    false => const SizedBox.shrink(),
-                                  },
-                                  orElse: () =>
-                                      switch (index == one || index == four) {
-                                    true => const SizedBox(
-                                        width: eightDotNil,
-                                      ),
-                                    false => const SizedBox.shrink(),
-                                  },
+                                padding: const EdgeInsetsDirectional.all(
+                                  fourDotNil,
                                 ),
-                                dailyQuestsState.maybeWhen(
-                                  gotQuests: (questEntities) =>
-                                      switch (questEntities[index].completed) {
-                                    true => Container(
-                                        decoration: BoxDecoration(
-                                          color: hex0653EA,
-                                          borderRadius:
-                                              BorderRadiusDirectional.circular(
-                                            nineDotNil,
-                                          ),
-                                        ),
-                                        padding:
-                                            const EdgeInsetsDirectional.all(
-                                          fourDotNil,
-                                        ),
-                                        child: Assets.svgs.check.svg(),
-                                      ),
-                                    false => const SizedBox.shrink(),
-                                  },
-                                  orElse: () =>
-                                      switch (index == one || index == four) {
-                                    true => Skeletonizer(
-                                        effect: dailyQuestsState.maybeWhen(
-                                          failedToGetQuests: (_) =>
-                                              const SoldColorEffect(
-                                            color: hexEBEBF4,
-                                          ),
-                                          orElse: () => ShimmerEffect(
-                                            highlightColor: Theme.of(
-                                              context,
-                                            ).scaffoldBackgroundColor,
-                                          ),
-                                        ),
-                                        enabled: dailyQuestsState.maybeWhen(
-                                          gotQuests: (_) => false,
-                                          orElse: () => true,
-                                        ),
-                                        child: Skeleton.leaf(
-                                          child: Container(
-                                            decoration: BoxDecoration(
-                                              color: hex0653EA,
-                                              borderRadius:
-                                                  BorderRadiusDirectional
-                                                      .circular(
-                                                nineDotNil,
-                                              ),
-                                            ),
-                                            padding:
-                                                const EdgeInsetsDirectional.all(
-                                              fourDotNil,
-                                            ),
-                                            child: Assets.svgs.check.svg(),
-                                          ),
-                                        ),
-                                      ),
-                                    false => const SizedBox.shrink(),
-                                  },
+                                child: Assets.svgs.check.svg(),
+                              ),
+                            false => const SizedBox.shrink(),
+                          },
+                          orElse: () => switch (index == one || index == four) {
+                            true => Skeletonizer(
+                                effect: dailyQuestsState.maybeWhen(
+                                  failedToGetQuests: (_) =>
+                                      const SoldColorEffect(
+                                    color: hexEBEBF4,
+                                  ),
+                                  orElse: () => ShimmerEffect(
+                                    highlightColor: Theme.of(
+                                      context,
+                                    ).scaffoldBackgroundColor,
+                                  ),
                                 ),
-                              ],
-                            ),
-                          ),
-                          separatorBuilder: (_, __) => const SizedBox(
-                            height: twentyFourDotNil,
-                          ),
-                        ),
-                      ),
-                      const SizedBox(
-                        height: twentyDotNil,
-                      ),
-                      Text(
-                        context.localize.howItWorks,
-                        style: Theme.of(
-                          context,
-                        ).textTheme.bodyLarge?.copyWith(
-                              fontWeight: FontWeight.w600,
-                              fontSize: twentyDotNil,
-                              height: oneDotNil,
-                              letterSpacing: minusNilDotOne,
-                              color: hex161616,
-                            ),
-                      ),
-                      const SizedBox(
-                        height: eightDotNil,
-                      ),
-                      Text(
-                        context.localize
-                            .earn25PointsForEveryVerifiedDroneObservationCompleteDailyQuestsToEarnBonusPointsAndClimbTheRanksTheMoreYouContributeTheMoreTouLevelUp,
-                        style: Theme.of(
-                          context,
-                        ).textTheme.bodySmall?.copyWith(
-                              fontWeight: FontWeight.w300,
-                              fontSize: fourteenDotNil,
-                              height: twentyTwoDotNil / fourteenDotNil,
-                              letterSpacing: nilDotNil,
-                              color: hex626262,
-                            ),
-                      ),
-                      const SizedBox(
-                        height: twentyDotNil,
-                      ),
-                      Card(
-                        hasBorder: true,
-                        cornerRadius: twentyDotNil,
-                        verticalPadding: eighteenDotFive,
-                        child: Row(
-                          children: [
-                            Expanded(
-                              child: Text(
-                                context.localize.viewLeaderboard,
-                                maxLines: one,
-                                overflow: TextOverflow.ellipsis,
-                                style: Theme.of(
-                                  context,
-                                ).textTheme.bodyLarge?.copyWith(
-                                      fontSize: fourteenDotNil,
-                                      height: thirtyTwoDotNil / fourteenDotNil,
-                                      letterSpacing: nilDotNil,
+                                enabled: dailyQuestsState.maybeWhen(
+                                  gotQuests: (_) => false,
+                                  orElse: () => true,
+                                ),
+                                child: Skeleton.leaf(
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                      color: hex0653EA,
+                                      borderRadius:
+                                          BorderRadiusDirectional.circular(
+                                        nineDotNil,
+                                      ),
                                     ),
-                              ),
-                            ),
-                            const SizedBox(
-                              width: eightDotNil,
-                            ),
-                            Container(
-                              decoration: BoxDecoration(
-                                color: hex1E1E1E,
-                                borderRadius: BorderRadiusDirectional.circular(
-                                  nineDotNil,
+                                    padding: const EdgeInsetsDirectional.all(
+                                      fourDotNil,
+                                    ),
+                                    child: Assets.svgs.check.svg(),
+                                  ),
                                 ),
                               ),
-                              padding: const EdgeInsetsDirectional.all(
-                                fourDotNil,
-                              ),
-                              child: Assets.svgs.arrowRightWhite.svg(),
-                            ),
-                          ],
+                            false => const SizedBox.shrink(),
+                          },
                         ),
-                        onTap: () => Navigator.of(
-                          context,
-                        ).pushNamed(
-                          rewardsLeaderboardRoutePath,
-                        ),
-                      ),
-                      const SizedBox(
-                        height: fortyThreeDotNil,
-                      ),
-                    ],
+                      ],
+                    ),
+                  ),
+                  separatorBuilder: (_, __) => const SizedBox(
+                    height: twentyFourDotNil,
                   ),
                 ),
               ),
-            ),
+              const SizedBox(
+                height: twentyDotNil,
+              ),
+              Text(
+                context.localize.howItWorks,
+                style: Theme.of(
+                  context,
+                ).textTheme.bodyLarge?.copyWith(
+                      fontWeight: FontWeight.w600,
+                      fontSize: twentyDotNil,
+                      height: oneDotNil,
+                      letterSpacing: minusNilDotOne,
+                      color: hex161616,
+                    ),
+              ),
+              const SizedBox(
+                height: eightDotNil,
+              ),
+              Text(
+                context.localize
+                    .earn25PointsForEveryVerifiedDroneObservationCompleteDailyQuestsToEarnBonusPointsAndClimbTheRanksTheMoreYouContributeTheMoreTouLevelUp,
+                style: Theme.of(
+                  context,
+                ).textTheme.bodySmall?.copyWith(
+                      fontWeight: FontWeight.w300,
+                      fontSize: fourteenDotNil,
+                      height: twentyTwoDotNil / fourteenDotNil,
+                      letterSpacing: nilDotNil,
+                      color: hex626262,
+                    ),
+              ),
+              const SizedBox(
+                height: twentyDotNil,
+              ),
+              Card(
+                hasBorder: true,
+                cornerRadius: twentyDotNil,
+                verticalPadding: eighteenDotFive,
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: Text(
+                        context.localize.viewLeaderboard,
+                        maxLines: one,
+                        overflow: TextOverflow.ellipsis,
+                        style: Theme.of(
+                          context,
+                        ).textTheme.bodyLarge?.copyWith(
+                              fontSize: fourteenDotNil,
+                              height: thirtyTwoDotNil / fourteenDotNil,
+                              letterSpacing: nilDotNil,
+                            ),
+                      ),
+                    ),
+                    const SizedBox(
+                      width: eightDotNil,
+                    ),
+                    Container(
+                      decoration: BoxDecoration(
+                        color: hex1E1E1E,
+                        borderRadius: BorderRadiusDirectional.circular(
+                          nineDotNil,
+                        ),
+                      ),
+                      padding: const EdgeInsetsDirectional.all(
+                        fourDotNil,
+                      ),
+                      child: Assets.svgs.arrowRightWhite.svg(),
+                    ),
+                  ],
+                ),
+                onTap: () => Navigator.of(
+                  context,
+                ).pushNamed(
+                  rewardsLeaderboardRoutePath,
+                ),
+              ),
+              const SizedBox(
+                height: fortyThreeDotNil,
+              ),
+            ],
           ),
         ),
       );

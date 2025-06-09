@@ -29,7 +29,8 @@ import 'package:flutter/material.dart'
         Theme,
         ValueNotifier,
         Widget;
-import 'package:flutter_bloc/flutter_bloc.dart' show BlocBuilder, ReadContext;
+import 'package:flutter_bloc/flutter_bloc.dart'
+    show BlocBuilder, BlocListener, ReadContext;
 import 'package:skeletonizer/skeletonizer.dart'
     show BoneMock, ShimmerEffect, Skeletonizer, SoldColorEffect;
 import 'package:sky_trade/core/resources/colors.dart'
@@ -65,6 +66,7 @@ import 'package:sky_trade/core/utils/enums/ui.dart' show ReferralsHistory;
 import 'package:sky_trade/core/utils/extensions/build_context_extensions.dart';
 import 'package:sky_trade/features/referral/presentation/blocs/referral_history_bloc/referral_history_bloc.dart'
     show ReferralHistoryBloc, ReferralHistoryEvent, ReferralHistoryState;
+import 'package:sky_trade/features/referral/presentation/widgets/alert_snack_bar.dart';
 
 class ReferralsTable extends StatefulWidget {
   const ReferralsTable({
@@ -108,328 +110,74 @@ class _ReferralsTableState extends State<ReferralsTable> {
   }
 
   @override
-  Widget build(BuildContext context) => RawScrollbar(
-        controller: _scrollController,
-        interactive: true,
-        thumbVisibility: true,
-        trackVisibility: false,
-        thickness: eightDotNil,
-        thumbColor: hexB8CCE3,
-        radius: const Radius.circular(
-          thirtyDotNil,
-        ),
-        child: SingleChildScrollView(
-          scrollDirection: Axis.horizontal,
+  Widget build(BuildContext context) =>
+      BlocListener<ReferralHistoryBloc, ReferralHistoryState>(
+        listener: (_, referralHistoryState) {
+          referralHistoryState.whenOrNull(
+            failedToGetReferralHistory: (_) {
+              AlertSnackBar.show(
+                context,
+                message: context.localize
+                    .couldNotGetReferralHistorySwipeDownToRefreshThePage,
+              );
+            },
+          );
+        },
+        child: RawScrollbar(
           controller: _scrollController,
-          child: Column(
-            children: [
-              Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: List<Widget>.generate(
-                  ReferralsHistory.values.length,
-                  (index) =>
-                      BlocBuilder<ReferralHistoryBloc, ReferralHistoryState>(
-                    builder: (_, referralHistoryState) => Padding(
-                      padding: EdgeInsetsDirectional.only(
-                        end: switch (ReferralsHistory.values[index]) {
-                          ReferralsHistory.date ||
-                          ReferralsHistory.amount ||
-                          ReferralsHistory.description =>
-                            sixteenDotNil,
-                          ReferralsHistory.balance => nilDotNil,
-                        },
-                      ),
-                      child: SizedBox(
-                        width: switch (ReferralsHistory.values[index]) {
-                          ReferralsHistory.date => oneHundredDotNil,
-                          ReferralsHistory.amount => sixtySixDotNil,
-                          ReferralsHistory.description => twoHundredDotNil,
-                          ReferralsHistory.balance => sixtySixDotNil,
-                        },
-                        child: Text(
-                          switch (ReferralsHistory.values[index]) {
-                            ReferralsHistory.date => context.localize.date,
-                            ReferralsHistory.amount => context.localize.amount,
-                            ReferralsHistory.description =>
-                              context.localize.description,
-                            ReferralsHistory.balance =>
-                              context.localize.balance,
-                          },
-                          textAlign: switch (ReferralsHistory.values[index]) {
+          interactive: true,
+          thumbVisibility: true,
+          trackVisibility: false,
+          thickness: eightDotNil,
+          thumbColor: hexB8CCE3,
+          radius: const Radius.circular(
+            thirtyDotNil,
+          ),
+          child: SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            controller: _scrollController,
+            child: Column(
+              children: [
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: List<Widget>.generate(
+                    ReferralsHistory.values.length,
+                    (index) =>
+                        BlocBuilder<ReferralHistoryBloc, ReferralHistoryState>(
+                      builder: (_, referralHistoryState) => Padding(
+                        padding: EdgeInsetsDirectional.only(
+                          end: switch (ReferralsHistory.values[index]) {
                             ReferralsHistory.date ||
                             ReferralsHistory.amount ||
                             ReferralsHistory.description =>
-                              TextAlign.start,
-                            ReferralsHistory.balance => TextAlign.end,
+                              sixteenDotNil,
+                            ReferralsHistory.balance => nilDotNil,
                           },
-                          style: Theme.of(
-                            context,
-                          ).textTheme.bodyLarge?.copyWith(
-                                fontSize: fifteenDotNil,
-                                height: twentyTwoDotFive / fifteenDotNil,
-                              ),
                         ),
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-              const SizedBox(
-                height: twentySixDotNil,
-              ),
-              Stack(
-                alignment: AlignmentDirectional.center,
-                children: [
-                  Column(
-                    children: [
-                      ...List<Widget>.generate(
-                        eight,
-                        (index) => Column(
-                          children: [
-                            if (index != zero)
-                              const SizedBox(
-                                height: twelveDotNil,
-                              ),
-                            BlocBuilder<ReferralHistoryBloc,
-                                ReferralHistoryState>(
-                              builder: (_, referralHistoryState) => Container(
-                                padding: const EdgeInsetsDirectional.all(
-                                  tenDotNil,
-                                ),
-                                decoration: switch (index % two == zero) {
-                                  true => null,
-                                  false => BoxDecoration(
-                                      color: referralHistoryState.maybeWhen(
-                                        gotReferralHistory:
-                                            (referralHistoryEntity) => switch (
-                                                referralHistoryEntity
-                                                    .histories.isEmpty) {
-                                          true => Theme.of(
-                                              context,
-                                            ).scaffoldBackgroundColor,
-                                          false => hexF0F4FA,
-                                        },
-                                        orElse: () => hexF0F4FA,
-                                      ),
-                                      borderRadius:
-                                          BorderRadiusDirectional.circular(
-                                        eightDotNil,
-                                      ),
-                                    ),
-                                },
-                                child: Row(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: List<Widget>.generate(
-                                    ReferralsHistory.values.length,
-                                    (rowIndex) => Padding(
-                                      padding: EdgeInsetsDirectional.only(
-                                        end: switch (
-                                            ReferralsHistory.values[rowIndex]) {
-                                          ReferralsHistory.date ||
-                                          ReferralsHistory.amount ||
-                                          ReferralsHistory.description =>
-                                            sixteenDotNil,
-                                          ReferralsHistory.balance => nilDotNil,
-                                        },
-                                      ),
-                                      child: SizedBox(
-                                        width: switch (
-                                            ReferralsHistory.values[rowIndex]) {
-                                          ReferralsHistory.date =>
-                                            oneHundredDotNil,
-                                          ReferralsHistory.amount =>
-                                            sixtySixDotNil,
-                                          ReferralsHistory.description =>
-                                            twoHundredDotNil,
-                                          ReferralsHistory.balance =>
-                                            sixtySixDotNil,
-                                        },
-                                        child: Skeletonizer(
-                                          effect:
-                                              referralHistoryState.maybeWhen(
-                                            failedToGetReferralHistory: (_) =>
-                                                const SoldColorEffect(
-                                              color: hexEBEBF4,
-                                            ),
-                                            orElse: () => ShimmerEffect(
-                                              highlightColor: Theme.of(
-                                                context,
-                                              ).scaffoldBackgroundColor,
-                                            ),
-                                          ),
-                                          enabled:
-                                              referralHistoryState.maybeWhen(
-                                            gotReferralHistory: (_) => false,
-                                            orElse: () => true,
-                                          ),
-                                          child: Text(
-                                            referralHistoryState.maybeWhen(
-                                              gotReferralHistory:
-                                                  (referralHistoryEntity) =>
-                                                      switch (
-                                                          referralHistoryEntity
-                                                              .histories
-                                                              .isEmpty) {
-                                                false
-                                                    when index <
-                                                        referralHistoryEntity
-                                                            .histories.length =>
-                                                  switch (ReferralsHistory
-                                                      .values[rowIndex]) {
-                                                    ReferralsHistory.date =>
-                                                      referralHistoryEntity
-                                                          .histories[index]
-                                                          .date,
-                                                    ReferralsHistory.amount =>
-                                                      referralHistoryEntity
-                                                          .histories[index]
-                                                          .amount,
-                                                    ReferralsHistory
-                                                          .description =>
-                                                      referralHistoryEntity
-                                                          .histories[index]
-                                                          .description,
-                                                    ReferralsHistory.balance =>
-                                                      referralHistoryEntity
-                                                          .histories[index]
-                                                          .balance
-                                                          .toString(),
-                                                  },
-                                                _ => switch (ReferralsHistory
-                                                      .values[rowIndex]) {
-                                                    ReferralsHistory.date =>
-                                                      context.localize.date,
-                                                    ReferralsHistory.amount =>
-                                                      context.localize.amount,
-                                                    ReferralsHistory
-                                                          .description =>
-                                                      context
-                                                          .localize.description,
-                                                    ReferralsHistory.balance =>
-                                                      context.localize.balance,
-                                                  },
-                                              },
-                                              orElse: () => BoneMock.chars(
-                                                switch (ReferralsHistory
-                                                    .values[rowIndex]) {
-                                                  ReferralsHistory.date =>
-                                                    switch (
-                                                        index % two == zero) {
-                                                      true => seven,
-                                                      false => six,
-                                                    },
-                                                  ReferralsHistory.amount =>
-                                                    switch (
-                                                        index % two == zero) {
-                                                      true => one,
-                                                      false => two,
-                                                    },
-                                                  ReferralsHistory
-                                                        .description =>
-                                                    switch (
-                                                        index % two == zero) {
-                                                      true => fourteen,
-                                                      false => fifteen,
-                                                    },
-                                                  ReferralsHistory.balance =>
-                                                    switch (
-                                                        index % two == zero) {
-                                                      true => three,
-                                                      false => two,
-                                                    },
-                                                },
-                                              ),
-                                            ),
-                                            maxLines: one,
-                                            overflow: TextOverflow.ellipsis,
-                                            textAlign: switch (ReferralsHistory
-                                                .values[rowIndex]) {
-                                              ReferralsHistory.date ||
-                                              ReferralsHistory.description =>
-                                                TextAlign.start,
-                                              ReferralsHistory.amount ||
-                                              ReferralsHistory.balance =>
-                                                TextAlign.end,
-                                            },
-                                            style: Theme.of(
-                                              context,
-                                            ).textTheme.bodySmall?.copyWith(
-                                                  fontSize: fifteenDotNil,
-                                                  height: twentyTwoDotFive /
-                                                      fifteenDotNil,
-                                                  color: referralHistoryState
-                                                      .maybeWhen(
-                                                    gotReferralHistory:
-                                                        (referralHistoryEntity) =>
-                                                            switch (
-                                                                referralHistoryEntity
-                                                                    .histories
-                                                                    .isEmpty) {
-                                                      true => Theme.of(
-                                                          context,
-                                                        ).scaffoldBackgroundColor,
-                                                      false
-                                                          when index >=
-                                                                  referralHistoryEntity
-                                                                      .histories
-                                                                      .length &&
-                                                              index % two ==
-                                                                  zero =>
-                                                        Theme.of(
-                                                          context,
-                                                        ).scaffoldBackgroundColor,
-                                                      false
-                                                          when index >=
-                                                              referralHistoryEntity
-                                                                  .histories
-                                                                  .length =>
-                                                        hexF0F4FA,
-                                                      _
-                                                          when ReferralsHistory
-                                                                          .values[
-                                                                      rowIndex] ==
-                                                                  ReferralsHistory
-                                                                      .amount &&
-                                                              referralHistoryEntity
-                                                                  .histories[
-                                                                      index]
-                                                                  .amount
-                                                                  .startsWith(
-                                                                hyphen,
-                                                              ) =>
-                                                        hexFF9D65,
-                                                      _
-                                                          when ReferralsHistory
-                                                                      .values[
-                                                                  rowIndex] ==
-                                                              ReferralsHistory
-                                                                  .amount =>
-                                                        hex419918,
-                                                      _ => null,
-                                                    },
-                                                    orElse: () => null,
-                                                  ),
-                                                ),
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
-                  BlocBuilder<ReferralHistoryBloc, ReferralHistoryState>(
-                    builder: (_, referralHistoryState) =>
-                        referralHistoryState.maybeWhen(
-                      gotReferralHistory: (referralHistoryEntity) =>
-                          switch (referralHistoryEntity.histories.isEmpty) {
-                        true => Text(
-                            context.localize.thereIsNothingToShowHere,
+                        child: SizedBox(
+                          width: switch (ReferralsHistory.values[index]) {
+                            ReferralsHistory.date => oneHundredDotNil,
+                            ReferralsHistory.amount => sixtySixDotNil,
+                            ReferralsHistory.description => twoHundredDotNil,
+                            ReferralsHistory.balance => sixtySixDotNil,
+                          },
+                          child: Text(
+                            switch (ReferralsHistory.values[index]) {
+                              ReferralsHistory.date => context.localize.date,
+                              ReferralsHistory.amount =>
+                                context.localize.amount,
+                              ReferralsHistory.description =>
+                                context.localize.description,
+                              ReferralsHistory.balance =>
+                                context.localize.balance,
+                            },
+                            textAlign: switch (ReferralsHistory.values[index]) {
+                              ReferralsHistory.date ||
+                              ReferralsHistory.amount ||
+                              ReferralsHistory.description =>
+                                TextAlign.start,
+                              ReferralsHistory.balance => TextAlign.end,
+                            },
                             style: Theme.of(
                               context,
                             ).textTheme.bodyLarge?.copyWith(
@@ -437,20 +185,296 @@ class _ReferralsTableState extends State<ReferralsTable> {
                                   height: twentyTwoDotFive / fifteenDotNil,
                                 ),
                           ),
-                        false => const SizedBox.shrink(),
-                      },
-                      orElse: () => const SizedBox.shrink(),
+                        ),
+                      ),
                     ),
                   ),
-                ],
-              ),
-              SizedBox(
-                height: switch (Platform.isIOS) {
-                  true => sixtyDotNil,
-                  false => twentySevenDotNil,
-                },
-              ),
-            ],
+                ),
+                const SizedBox(
+                  height: twentySixDotNil,
+                ),
+                Stack(
+                  alignment: AlignmentDirectional.center,
+                  children: [
+                    Column(
+                      children: [
+                        ...List<Widget>.generate(
+                          eight,
+                          (index) => Column(
+                            children: [
+                              if (index != zero)
+                                const SizedBox(
+                                  height: twelveDotNil,
+                                ),
+                              BlocBuilder<ReferralHistoryBloc,
+                                  ReferralHistoryState>(
+                                builder: (_, referralHistoryState) => Container(
+                                  padding: const EdgeInsetsDirectional.all(
+                                    tenDotNil,
+                                  ),
+                                  decoration: switch (index % two == zero) {
+                                    true => null,
+                                    false => BoxDecoration(
+                                        color: referralHistoryState.maybeWhen(
+                                          gotReferralHistory:
+                                              (referralHistoryEntity) =>
+                                                  switch (referralHistoryEntity
+                                                      .histories.isEmpty) {
+                                            true => Theme.of(
+                                                context,
+                                              ).scaffoldBackgroundColor,
+                                            false => hexF0F4FA,
+                                          },
+                                          orElse: () => hexF0F4FA,
+                                        ),
+                                        borderRadius:
+                                            BorderRadiusDirectional.circular(
+                                          eightDotNil,
+                                        ),
+                                      ),
+                                  },
+                                  child: Row(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: List<Widget>.generate(
+                                      ReferralsHistory.values.length,
+                                      (rowIndex) => Padding(
+                                        padding: EdgeInsetsDirectional.only(
+                                          end: switch (ReferralsHistory
+                                              .values[rowIndex]) {
+                                            ReferralsHistory.date ||
+                                            ReferralsHistory.amount ||
+                                            ReferralsHistory.description =>
+                                              sixteenDotNil,
+                                            ReferralsHistory.balance =>
+                                              nilDotNil,
+                                          },
+                                        ),
+                                        child: SizedBox(
+                                          width: switch (ReferralsHistory
+                                              .values[rowIndex]) {
+                                            ReferralsHistory.date =>
+                                              oneHundredDotNil,
+                                            ReferralsHistory.amount =>
+                                              sixtySixDotNil,
+                                            ReferralsHistory.description =>
+                                              twoHundredDotNil,
+                                            ReferralsHistory.balance =>
+                                              sixtySixDotNil,
+                                          },
+                                          child: Skeletonizer(
+                                            effect:
+                                                referralHistoryState.maybeWhen(
+                                              failedToGetReferralHistory: (_) =>
+                                                  const SoldColorEffect(
+                                                color: hexEBEBF4,
+                                              ),
+                                              orElse: () => ShimmerEffect(
+                                                highlightColor: Theme.of(
+                                                  context,
+                                                ).scaffoldBackgroundColor,
+                                              ),
+                                            ),
+                                            enabled:
+                                                referralHistoryState.maybeWhen(
+                                              gotReferralHistory: (_) => false,
+                                              orElse: () => true,
+                                            ),
+                                            child: Text(
+                                              referralHistoryState.maybeWhen(
+                                                gotReferralHistory:
+                                                    (referralHistoryEntity) =>
+                                                        switch (
+                                                            referralHistoryEntity
+                                                                .histories
+                                                                .isEmpty) {
+                                                  false
+                                                      when index <
+                                                          referralHistoryEntity
+                                                              .histories
+                                                              .length =>
+                                                    switch (ReferralsHistory
+                                                        .values[rowIndex]) {
+                                                      ReferralsHistory.date =>
+                                                        referralHistoryEntity
+                                                            .histories[index]
+                                                            .date,
+                                                      ReferralsHistory.amount =>
+                                                        referralHistoryEntity
+                                                            .histories[index]
+                                                            .amount,
+                                                      ReferralsHistory
+                                                            .description =>
+                                                        referralHistoryEntity
+                                                            .histories[index]
+                                                            .description,
+                                                      ReferralsHistory
+                                                            .balance =>
+                                                        referralHistoryEntity
+                                                            .histories[index]
+                                                            .balance
+                                                            .toString(),
+                                                    },
+                                                  _ => switch (ReferralsHistory
+                                                        .values[rowIndex]) {
+                                                      ReferralsHistory.date =>
+                                                        context.localize.date,
+                                                      ReferralsHistory.amount =>
+                                                        context.localize.amount,
+                                                      ReferralsHistory
+                                                            .description =>
+                                                        context.localize
+                                                            .description,
+                                                      ReferralsHistory
+                                                            .balance =>
+                                                        context
+                                                            .localize.balance,
+                                                    },
+                                                },
+                                                orElse: () => BoneMock.chars(
+                                                  switch (ReferralsHistory
+                                                      .values[rowIndex]) {
+                                                    ReferralsHistory.date =>
+                                                      switch (
+                                                          index % two == zero) {
+                                                        true => seven,
+                                                        false => six,
+                                                      },
+                                                    ReferralsHistory.amount =>
+                                                      switch (
+                                                          index % two == zero) {
+                                                        true => one,
+                                                        false => two,
+                                                      },
+                                                    ReferralsHistory
+                                                          .description =>
+                                                      switch (
+                                                          index % two == zero) {
+                                                        true => fourteen,
+                                                        false => fifteen,
+                                                      },
+                                                    ReferralsHistory.balance =>
+                                                      switch (
+                                                          index % two == zero) {
+                                                        true => three,
+                                                        false => two,
+                                                      },
+                                                  },
+                                                ),
+                                              ),
+                                              maxLines: one,
+                                              overflow: TextOverflow.ellipsis,
+                                              textAlign: switch (
+                                                  ReferralsHistory
+                                                      .values[rowIndex]) {
+                                                ReferralsHistory.date ||
+                                                ReferralsHistory.description =>
+                                                  TextAlign.start,
+                                                ReferralsHistory.amount ||
+                                                ReferralsHistory.balance =>
+                                                  TextAlign.end,
+                                              },
+                                              style: Theme.of(
+                                                context,
+                                              ).textTheme.bodySmall?.copyWith(
+                                                    fontSize: fifteenDotNil,
+                                                    height: twentyTwoDotFive /
+                                                        fifteenDotNil,
+                                                    color: referralHistoryState
+                                                        .maybeWhen(
+                                                      gotReferralHistory:
+                                                          (referralHistoryEntity) =>
+                                                              switch (
+                                                                  referralHistoryEntity
+                                                                      .histories
+                                                                      .isEmpty) {
+                                                        true => Theme.of(
+                                                            context,
+                                                          ).scaffoldBackgroundColor,
+                                                        false
+                                                            when index >=
+                                                                    referralHistoryEntity
+                                                                        .histories
+                                                                        .length &&
+                                                                index % two ==
+                                                                    zero =>
+                                                          Theme.of(
+                                                            context,
+                                                          ).scaffoldBackgroundColor,
+                                                        false
+                                                            when index >=
+                                                                referralHistoryEntity
+                                                                    .histories
+                                                                    .length =>
+                                                          hexF0F4FA,
+                                                        _
+                                                            when ReferralsHistory
+                                                                            .values[
+                                                                        rowIndex] ==
+                                                                    ReferralsHistory
+                                                                        .amount &&
+                                                                referralHistoryEntity
+                                                                    .histories[
+                                                                        index]
+                                                                    .amount
+                                                                    .startsWith(
+                                                                  hyphen,
+                                                                ) =>
+                                                          hexFF9D65,
+                                                        _
+                                                            when ReferralsHistory
+                                                                        .values[
+                                                                    rowIndex] ==
+                                                                ReferralsHistory
+                                                                    .amount =>
+                                                          hex419918,
+                                                        _ => null,
+                                                      },
+                                                      orElse: () => null,
+                                                    ),
+                                                  ),
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                    BlocBuilder<ReferralHistoryBloc, ReferralHistoryState>(
+                      builder: (_, referralHistoryState) =>
+                          referralHistoryState.maybeWhen(
+                        gotReferralHistory: (referralHistoryEntity) =>
+                            switch (referralHistoryEntity.histories.isEmpty) {
+                          true => Text(
+                              context.localize.thereIsNothingToShowHere,
+                              style: Theme.of(
+                                context,
+                              ).textTheme.bodyLarge?.copyWith(
+                                    fontSize: fifteenDotNil,
+                                    height: twentyTwoDotFive / fifteenDotNil,
+                                  ),
+                            ),
+                          false => const SizedBox.shrink(),
+                        },
+                        orElse: () => const SizedBox.shrink(),
+                      ),
+                    ),
+                  ],
+                ),
+                SizedBox(
+                  height: switch (Platform.isIOS) {
+                    true => sixtyDotNil,
+                    false => twentySevenDotNil,
+                  },
+                ),
+              ],
+            ),
           ),
         ),
       );

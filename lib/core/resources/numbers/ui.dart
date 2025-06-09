@@ -141,6 +141,7 @@ const oneFiftyTwoDotNil = 152.0;
 const oneSeventyNineDotNil = 179.0;
 const twoHundredDotNil = 200.0;
 const twoEightyDotNil = 280.0;
+const threeNilSevenDotFourSeven = 307.47;
 const threeFifteenDotFourSeven = 315.47;
 const fourFiftyTwoDotNil = 452.0;
 const fourSeventySixDotNil = 476.0;
