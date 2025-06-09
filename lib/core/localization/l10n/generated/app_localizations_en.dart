@@ -468,14 +468,16 @@ class AppLocalizationsEn extends AppLocalizations {
       'There is not enough data to display your total tracked drones';
 
   @override
-  String get weCouldNotLoadYourData => 'We could not load your data';
+  String get weCouldNotLoadYourTrackedDronesDataSwipeDownToRefresh =>
+      'We could not load your tracked drones data. Swipe down to refresh';
 
   @override
   String get thereIsNotEnoughDataToPlotTheGraph =>
       'There is not enough data to plot the graph';
 
   @override
-  String get weCouldNotLoadTheGraph => 'We could not load the graph';
+  String get weCouldNotLoadTheGraphTapOnAnyOfTheFiltersAgainToRefreshTheGraph =>
+      'We could not load the graph. Tap on any of the filters again to refresh the graph';
 
   @override
   String get thereIsNotEnoughDataToPlotTheGraphForTheSelectedPeriod =>
@@ -1063,10 +1065,6 @@ class AppLocalizationsEn extends AppLocalizations {
   String get whatAreasAreEligible => 'What areas are eligible?';
 
   @override
-  String get oopsSomethingWentWrongSwipeDownToRefreshThePage =>
-      'Oops! Something Went Wrong. Swipe down to refresh the page';
-
-  @override
   String get couldNotGetDailyQuestsSwipeDownToRefreshThePage =>
       'Could not get daily quests. Swipe down to refresh the page';
 
@@ -1087,4 +1085,24 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get theListOfActiveRushZonesPlaceNamesCannotBeShownAtTheMoment =>
       'The list of active rush zones place names cannot be shown at the moment';
+
+  @override
+  String get couldNotGetSkyPointsBalanceSwipeDownToRefreshThePage =>
+      'Could not get SKY Points balance. Swipe down to refresh the page';
+
+  @override
+  String get couldNotGetHighlightsSwipeDownToRefreshThePage =>
+      'Could not get highlights. Swipe down to refresh the page';
+
+  @override
+  String get couldNotGetReferralHistorySwipeDownToRefreshThePage =>
+      'Could not get referral history. Swipe down to refresh the page';
+
+  @override
+  String get couldNotGetLeaderboardStatisticsSwipeDownToRefreshThePage =>
+      'Could not get leaderboard statistics. Swipe down to refresh the page';
+
+  @override
+  String get couldNotGetEarningsReportSwipeDownToRefreshThePage =>
+      'Could not get earnings report. Swipe down to refresh the page';
 }

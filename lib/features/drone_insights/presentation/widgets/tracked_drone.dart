@@ -33,7 +33,9 @@ class TrackedDrone extends StatelessWidget {
           Expanded(
             child: Text(
               givenName ?? macAddress,
-              style: Theme.of(context).textTheme.bodySmall?.copyWith(
+              style: Theme.of(
+                context,
+              ).textTheme.bodySmall?.copyWith(
                     color: hex838187,
                   ),
             ),
@@ -47,7 +49,9 @@ class TrackedDrone extends StatelessWidget {
             ).format(
               lastUpdate,
             ),
-            style: Theme.of(context).textTheme.bodySmall?.copyWith(
+            style: Theme.of(
+              context,
+            ).textTheme.bodySmall?.copyWith(
                   color: hex838187,
                 ),
           ),

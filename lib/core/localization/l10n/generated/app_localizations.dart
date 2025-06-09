@@ -960,11 +960,11 @@ abstract class AppLocalizations {
   /// **'There is not enough data to display your total tracked drones'**
   String get thereIsNotEnoughDataToDisplayYourTotalTrackedDrones;
 
-  /// No description provided for @weCouldNotLoadYourData.
+  /// No description provided for @weCouldNotLoadYourTrackedDronesDataSwipeDownToRefresh.
   ///
   /// In en, this message translates to:
-  /// **'We could not load your data'**
-  String get weCouldNotLoadYourData;
+  /// **'We could not load your tracked drones data. Swipe down to refresh'**
+  String get weCouldNotLoadYourTrackedDronesDataSwipeDownToRefresh;
 
   /// No description provided for @thereIsNotEnoughDataToPlotTheGraph.
   ///
@@ -972,11 +972,11 @@ abstract class AppLocalizations {
   /// **'There is not enough data to plot the graph'**
   String get thereIsNotEnoughDataToPlotTheGraph;
 
-  /// No description provided for @weCouldNotLoadTheGraph.
+  /// No description provided for @weCouldNotLoadTheGraphTapOnAnyOfTheFiltersAgainToRefreshTheGraph.
   ///
   /// In en, this message translates to:
-  /// **'We could not load the graph'**
-  String get weCouldNotLoadTheGraph;
+  /// **'We could not load the graph. Tap on any of the filters again to refresh the graph'**
+  String get weCouldNotLoadTheGraphTapOnAnyOfTheFiltersAgainToRefreshTheGraph;
 
   /// No description provided for @thereIsNotEnoughDataToPlotTheGraphForTheSelectedPeriod.
   ///
@@ -2053,12 +2053,6 @@ abstract class AppLocalizations {
   /// **'What areas are eligible?'**
   String get whatAreasAreEligible;
 
-  /// No description provided for @oopsSomethingWentWrongSwipeDownToRefreshThePage.
-  ///
-  /// In en, this message translates to:
-  /// **'Oops! Something Went Wrong. Swipe down to refresh the page'**
-  String get oopsSomethingWentWrongSwipeDownToRefreshThePage;
-
   /// No description provided for @couldNotGetDailyQuestsSwipeDownToRefreshThePage.
   ///
   /// In en, this message translates to:
@@ -2094,6 +2088,36 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'The list of active rush zones place names cannot be shown at the moment'**
   String get theListOfActiveRushZonesPlaceNamesCannotBeShownAtTheMoment;
+
+  /// No description provided for @couldNotGetSkyPointsBalanceSwipeDownToRefreshThePage.
+  ///
+  /// In en, this message translates to:
+  /// **'Could not get SKY Points balance. Swipe down to refresh the page'**
+  String get couldNotGetSkyPointsBalanceSwipeDownToRefreshThePage;
+
+  /// No description provided for @couldNotGetHighlightsSwipeDownToRefreshThePage.
+  ///
+  /// In en, this message translates to:
+  /// **'Could not get highlights. Swipe down to refresh the page'**
+  String get couldNotGetHighlightsSwipeDownToRefreshThePage;
+
+  /// No description provided for @couldNotGetReferralHistorySwipeDownToRefreshThePage.
+  ///
+  /// In en, this message translates to:
+  /// **'Could not get referral history. Swipe down to refresh the page'**
+  String get couldNotGetReferralHistorySwipeDownToRefreshThePage;
+
+  /// No description provided for @couldNotGetLeaderboardStatisticsSwipeDownToRefreshThePage.
+  ///
+  /// In en, this message translates to:
+  /// **'Could not get leaderboard statistics. Swipe down to refresh the page'**
+  String get couldNotGetLeaderboardStatisticsSwipeDownToRefreshThePage;
+
+  /// No description provided for @couldNotGetEarningsReportSwipeDownToRefreshThePage.
+  ///
+  /// In en, this message translates to:
+  /// **'Could not get earnings report. Swipe down to refresh the page'**
+  String get couldNotGetEarningsReportSwipeDownToRefreshThePage;
 }
 
 class _AppLocalizationsDelegate

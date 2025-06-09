@@ -12,7 +12,8 @@ import 'package:flutter/material.dart'
         Text,
         Theme,
         Widget;
-import 'package:flutter_bloc/flutter_bloc.dart' show BlocBuilder, ReadContext;
+import 'package:flutter_bloc/flutter_bloc.dart'
+    show BlocBuilder, BlocListener, ReadContext;
 import 'package:qr_flutter/qr_flutter.dart' show QrImageView;
 import 'package:skeletonizer/skeletonizer.dart'
     show BoneMock, ShimmerEffect, Skeleton, Skeletonizer, SoldColorEffect;
@@ -37,6 +38,7 @@ import 'package:sky_trade/core/utils/extensions/referral_entity_extensions.dart'
     show HighlightsEntityExtensions;
 import 'package:sky_trade/features/referral/presentation/blocs/highlights_bloc/highlights_bloc.dart'
     show HighlightsBloc, HighlightsEvent, HighlightsState;
+import 'package:sky_trade/features/referral/presentation/widgets/alert_snack_bar.dart';
 import 'package:sky_trade/features/referral/presentation/widgets/email_field.dart'
     show EmailField;
 import 'package:sky_trade/features/referral/presentation/widgets/shareable_content_card.dart'
@@ -66,114 +68,128 @@ class _ShareState extends State<Share> {
       );
 
   @override
-  Widget build(BuildContext context) => Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const SizedBox(
-            height: twentyDotNil,
-          ),
-          Text(
-            context.localize.shareTheReferralLinkOrCode,
-            style: Theme.of(
-              context,
-            ).textTheme.bodyLarge?.copyWith(
-                  fontWeight: FontWeight.w400,
-                ),
-          ),
-          const SizedBox(
-            height: tenDotNil,
-          ),
-          Text(
-            context.localize.code,
-            style: Theme.of(
-              context,
-            ).textTheme.bodyMedium?.copyWith(
-                  fontWeight: FontWeight.w400,
-                  fontSize: twelveDotNil,
-                  height: eighteenDotNil / twelveDotNil,
-                  color: hexB8B8B8,
-                ),
-          ),
-          const SizedBox(
-            height: tenDotNil,
-          ),
-          const ShareableContentCard(),
-          const SizedBox(
-            height: twentyFourDotNil,
-          ),
-          Text(
-            context.localize.inviteYourFriends + comma,
-            style: Theme.of(
-              context,
-            ).textTheme.bodyLarge?.copyWith(
-                  fontWeight: FontWeight.w400,
-                ),
-          ),
-          const SizedBox(
-            height: elevenDotNil,
-          ),
-          const EmailField(),
-          const SizedBox(
-            height: thirtyFiveDotNil,
-          ),
-          Text(
-            context.localize.shareYourUniqueQrCode,
-            style: Theme.of(
-              context,
-            ).textTheme.bodyLarge?.copyWith(
-                  fontWeight: FontWeight.w400,
-                ),
-          ),
-          const SizedBox(
-            height: elevenDotNil,
-          ),
-          BlocBuilder<HighlightsBloc, HighlightsState>(
-            builder: (_, highlightsState) => Skeletonizer(
-              effect: highlightsState.maybeWhen(
-                failedToGetHighlights: (_) => const SoldColorEffect(
-                  color: hexEBEBF4,
-                ),
-                orElse: () => ShimmerEffect(
-                  highlightColor: Theme.of(
-                    context,
-                  ).scaffoldBackgroundColor,
-                ),
-              ),
-              enabled: highlightsState.maybeWhen(
-                gotHighlights: (_) => false,
-                orElse: () => true,
-              ),
-              child: highlightsState.maybeWhen(
-                gotHighlights: (_) => SizedBox(
-                  width: oneFortyDotNil,
-                  height: oneFortyDotNil,
-                  child: QrImageView(
-                    padding: EdgeInsets.zero,
-                    data: highlightsState.maybeWhen(
-                      gotHighlights: (highlightsEntity) =>
-                          highlightsEntity.referralLink,
-                      orElse: () => BoneMock.words(
-                        four,
-                      ),
-                    ),
-                    size: oneThirtyNineDotSixEight,
+  Widget build(BuildContext context) =>
+      BlocListener<HighlightsBloc, HighlightsState>(
+        listener: (_, highlightsState) {
+          highlightsState.whenOrNull(
+            failedToGetHighlights: (_) {
+              AlertSnackBar.show(
+                context,
+                message: context
+                    .localize.couldNotGetHighlightsSwipeDownToRefreshThePage,
+              );
+            },
+          );
+        },
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const SizedBox(
+              height: twentyDotNil,
+            ),
+            Text(
+              context.localize.shareTheReferralLinkOrCode,
+              style: Theme.of(
+                context,
+              ).textTheme.bodyLarge?.copyWith(
+                    fontWeight: FontWeight.w400,
+                  ),
+            ),
+            const SizedBox(
+              height: tenDotNil,
+            ),
+            Text(
+              context.localize.code,
+              style: Theme.of(
+                context,
+              ).textTheme.bodyMedium?.copyWith(
+                    fontWeight: FontWeight.w400,
+                    fontSize: twelveDotNil,
+                    height: eighteenDotNil / twelveDotNil,
+                    color: hexB8B8B8,
+                  ),
+            ),
+            const SizedBox(
+              height: tenDotNil,
+            ),
+            const ShareableContentCard(),
+            const SizedBox(
+              height: twentyFourDotNil,
+            ),
+            Text(
+              context.localize.inviteYourFriends + comma,
+              style: Theme.of(
+                context,
+              ).textTheme.bodyLarge?.copyWith(
+                    fontWeight: FontWeight.w400,
+                  ),
+            ),
+            const SizedBox(
+              height: elevenDotNil,
+            ),
+            const EmailField(),
+            const SizedBox(
+              height: thirtyFiveDotNil,
+            ),
+            Text(
+              context.localize.shareYourUniqueQrCode,
+              style: Theme.of(
+                context,
+              ).textTheme.bodyLarge?.copyWith(
+                    fontWeight: FontWeight.w400,
+                  ),
+            ),
+            const SizedBox(
+              height: elevenDotNil,
+            ),
+            BlocBuilder<HighlightsBloc, HighlightsState>(
+              builder: (_, highlightsState) => Skeletonizer(
+                effect: highlightsState.maybeWhen(
+                  failedToGetHighlights: (_) => const SoldColorEffect(
+                    color: hexEBEBF4,
+                  ),
+                  orElse: () => ShimmerEffect(
+                    highlightColor: Theme.of(
+                      context,
+                    ).scaffoldBackgroundColor,
                   ),
                 ),
-                orElse: () => const Skeleton.leaf(
-                  child: SizedBox(
+                enabled: highlightsState.maybeWhen(
+                  gotHighlights: (_) => false,
+                  orElse: () => true,
+                ),
+                child: highlightsState.maybeWhen(
+                  gotHighlights: (_) => SizedBox(
                     width: oneFortyDotNil,
                     height: oneFortyDotNil,
-                    child: ColoredBox(
-                      color: hexEBEBF4,
+                    child: QrImageView(
+                      padding: EdgeInsets.zero,
+                      data: highlightsState.maybeWhen(
+                        gotHighlights: (highlightsEntity) =>
+                            highlightsEntity.referralLink,
+                        orElse: () => BoneMock.words(
+                          four,
+                        ),
+                      ),
+                      size: oneThirtyNineDotSixEight,
+                    ),
+                  ),
+                  orElse: () => const Skeleton.leaf(
+                    child: SizedBox(
+                      width: oneFortyDotNil,
+                      height: oneFortyDotNil,
+                      child: ColoredBox(
+                        color: hexEBEBF4,
+                      ),
                     ),
                   ),
                 ),
               ),
             ),
-          ),
-          const SizedBox(
-            height: fortyNineDotNil,
-          ),
-        ],
+            const SizedBox(
+              height: fortyNineDotNil,
+            ),
+          ],
+        ),
       );
 }

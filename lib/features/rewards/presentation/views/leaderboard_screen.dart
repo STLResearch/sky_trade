@@ -1,7 +1,7 @@
 // ignore_for_file: lines_longer_than_80_chars
 
 import 'dart:io' show Platform;
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/cupertino.dart' show CupertinoSliverRefreshControl;
 import 'package:flutter/material.dart'
     show
         Align,
@@ -17,6 +17,7 @@ import 'package:flutter/material.dart'
         Column,
         Container,
         CrossAxisAlignment,
+        CustomScrollView,
         DateUtils,
         EdgeInsetsDirectional,
         Expanded,
@@ -33,6 +34,8 @@ import 'package:flutter/material.dart'
         Scaffold,
         SingleChildScrollView,
         SizedBox,
+        SliverPadding,
+        SliverToBoxAdapter,
         State,
         StatefulWidget,
         StatelessWidget,
@@ -103,7 +106,6 @@ import 'package:sky_trade/features/rewards/presentation/blocs/leaderboard_statis
         LeaderboardStatisticsEvent,
         LeaderboardStatisticsState;
 import 'package:sky_trade/features/rewards/presentation/widgets/alert_snack_bar.dart';
-
 import 'package:sky_trade/features/rewards/presentation/widgets/card.dart';
 import 'package:sky_trade/features/rewards/presentation/widgets/leaderboard_info.dart';
 import 'package:sky_trade/features/rewards/presentation/widgets/leaderboard_table_actions.dart';
@@ -140,12 +142,13 @@ class _LeaderboardViewState extends State<LeaderboardView> {
     super.initState();
   }
 
-  Future<void> _getLeaderboardStatistics() async =>
-      context.read<LeaderboardStatisticsBloc>().add(
-            LeaderboardStatisticsEvent.getLeaderboardStatistics(
-              page: _pageNumberNotifier.value,
-            ),
-          );
+  Future<void> _getLeaderboardStatistics() async {
+    context.read<LeaderboardStatisticsBloc>().add(
+          LeaderboardStatisticsEvent.getLeaderboardStatistics(
+            page: _pageNumberNotifier.value,
+          ),
+        );
+  }
 
   int _computeUserPositionOnLeaderboardUsing({
     required int page,
@@ -182,8 +185,8 @@ class _LeaderboardViewState extends State<LeaderboardView> {
             failedToGetLeaderboardStatistics: (_) {
               AlertSnackBar.show(
                 context,
-                message: context
-                    .localize.oopsSomethingWentWrongSwipeDownToRefreshThePage,
+                message: context.localize
+                    .couldNotGetLeaderboardStatisticsSwipeDownToRefreshThePage,
               );
             },
           );
@@ -224,12 +227,6 @@ class _LeaderboardViewState extends State<LeaderboardView> {
             elevation: nilDotNil,
           ),
           extendBodyBehindAppBar: true,
-          bottomNavigationBar: SafeArea(
-            top: false,
-            child: LeaderboardTableActions(
-              pageNumberNotifier: _pageNumberNotifier,
-            ),
-          ),
           body: Container(
             decoration: const BoxDecoration(
               gradient: LinearGradient(
@@ -258,300 +255,225 @@ class _LeaderboardViewState extends State<LeaderboardView> {
                 ),
               ),
               child: SafeArea(
-                child: Platform.isIOS
-                    ? CustomScrollView(
-                        physics: const AlwaysScrollableScrollPhysics(),
-                        slivers: [
-                          CupertinoSliverRefreshControl(
-                            onRefresh: () async => _getLeaderboardStatistics(),
-                          ),
-                          SliverPadding(
-                            padding: const EdgeInsetsDirectional.symmetric(
-                              horizontal: twentyFourDotNil,
-                            ),
-                            sliver: SliverToBoxAdapter(
-                              child: _buildMainContent(context),
-                            ),
-                          ),
-                        ],
-                      )
-                    : RefreshIndicator(
-                        onRefresh: () async => _getLeaderboardStatistics(),
-                        child: CustomScrollView(
-                          physics: const AlwaysScrollableScrollPhysics(),
-                          slivers: [
-                            SliverPadding(
-                              padding: const EdgeInsetsDirectional.symmetric(
-                                horizontal: twentyFourDotNil,
-                              ),
-                              sliver: SliverToBoxAdapter(
-                                child: _buildMainContent(context),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Expanded(
+                      child: _buildScrollView(),
+                    ),
+                    LeaderboardTableActions(
+                      pageNumberNotifier: _pageNumberNotifier,
+                    ),
+                  ],
+                ),
               ),
             ),
           ),
         ),
       );
 
-  Widget _buildMainContent(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Align(
-          alignment: AlignmentDirectional.center,
-          child: Text(
-            context.localize.topTrackersThisPeriod,
-            style: Theme.of(
-              context,
-            ).textTheme.bodyMedium?.copyWith(
-                  fontWeight: FontWeight.w300,
-                  fontSize: fourteenDotNil,
-                  height: twentyTwoDotNil / fourteenDotNil,
-                  letterSpacing: nilDotNil,
-                ),
+  Widget _buildScrollView() => switch (Platform.isIOS) {
+        true => CustomScrollView(
+            physics: const AlwaysScrollableScrollPhysics(),
+            slivers: [
+              CupertinoSliverRefreshControl(
+                onRefresh: _getLeaderboardStatistics,
+              ),
+              _buildRestOfSliverContent(),
+            ],
           ),
-        ),
-        const SizedBox(
-          height: sixteenDotNil,
-        ),
-        Align(
-          alignment: AlignmentDirectional.center,
-          child: Container(
-            padding: const EdgeInsetsDirectional.symmetric(
-              vertical: eightDotNil,
-              horizontal: sixteenDotNil,
-            ),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadiusDirectional.circular(
-                fiftyDotNil,
-              ),
-              gradient: const LinearGradient(
-                colors: [
-                  hex80FFFFFF,
-                  hex40FFFFFF,
-                ],
-              ),
-              boxShadow: const [
-                BoxShadow(
-                  color: hex0D000000,
-                  blurRadius: twentyDotNil,
-                ),
+        false => RefreshIndicator(
+            onRefresh: _getLeaderboardStatistics,
+            child: CustomScrollView(
+              physics: const AlwaysScrollableScrollPhysics(),
+              slivers: [
+                _buildRestOfSliverContent(),
               ],
             ),
-            child: Text(
-              (DateUtils.getDaysInMonth(
-                            DateTime.now().year,
-                            DateTime.now().month,
-                          ) -
-                          DateTime.now().day)
-                      .toString() +
-                  whiteSpace +
-                  context.localize.daysLeft,
-              maxLines: one,
-              overflow: TextOverflow.ellipsis,
-              style: Theme.of(
-                context,
-              ).textTheme.bodyLarge?.copyWith(
-                    fontSize: tenDotNil,
-                    height: oneDotNil,
-                    letterSpacing: nilDotNil,
-                  ),
-            ),
           ),
+      };
+
+  Widget _buildRestOfSliverContent() => SliverPadding(
+        padding: const EdgeInsetsDirectional.symmetric(
+          horizontal: twentyFourDotNil,
         ),
-        const SizedBox(
-          height: fortyFiveDotFive,
-        ),
-        BlocBuilder<LeaderboardStatisticsBloc, LeaderboardStatisticsState>(
-          builder: (_, leaderboardStatisticsState) =>
-              leaderboardStatisticsState.maybeWhen(
-            gotLeaderboardStatistics: (leaderboardStatisticsEntity, __) =>
-                switch (
-                    leaderboardStatisticsEntity.currentPeriodPoints.isEmpty) {
-              true => SingleChildScrollView(
-                  child: SizedBox(
-                    height: MediaQuery.sizeOf(
-                      context,
-                    ).width,
-                    child: Center(
-                      child: Text(
-                        context.localize.thereIsNothingToShowHere,
-                        style: Theme.of(
-                          context,
-                        ).textTheme.bodyLarge?.copyWith(
-                              fontSize: sixteenDotEight,
-                              height: oneDotNil,
-                              letterSpacing: minusNilDotOne,
-                              color: hex161616,
-                            ),
+        sliver: SliverToBoxAdapter(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Align(
+                alignment: AlignmentDirectional.center,
+                child: Text(
+                  context.localize.topTrackersThisPeriod,
+                  style: Theme.of(
+                    context,
+                  ).textTheme.bodyMedium?.copyWith(
+                        fontWeight: FontWeight.w300,
+                        fontSize: fourteenDotNil,
+                        height: twentyTwoDotNil / fourteenDotNil,
+                        letterSpacing: nilDotNil,
                       ),
+                ),
+              ),
+              const SizedBox(
+                height: sixteenDotNil,
+              ),
+              Align(
+                alignment: AlignmentDirectional.center,
+                child: Container(
+                  padding: const EdgeInsetsDirectional.symmetric(
+                    vertical: eightDotNil,
+                    horizontal: sixteenDotNil,
+                  ),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadiusDirectional.circular(
+                      fiftyDotNil,
                     ),
+                    gradient: const LinearGradient(
+                      colors: [
+                        hex80FFFFFF,
+                        hex40FFFFFF,
+                      ],
+                    ),
+                    boxShadow: const [
+                      BoxShadow(
+                        color: hex0D000000,
+                        blurRadius: twentyDotNil,
+                      ),
+                    ],
+                  ),
+                  child: Text(
+                    (DateUtils.getDaysInMonth(
+                                  DateTime.now().year,
+                                  DateTime.now().month,
+                                ) -
+                                DateTime.now().day)
+                            .toString() +
+                        whiteSpace +
+                        context.localize.daysLeft,
+                    maxLines: one,
+                    overflow: TextOverflow.ellipsis,
+                    style: Theme.of(
+                      context,
+                    ).textTheme.bodyLarge?.copyWith(
+                          fontSize: tenDotNil,
+                          height: oneDotNil,
+                          letterSpacing: nilDotNil,
+                        ),
                   ),
                 ),
-              false => const SizedBox.shrink(),
-            },
-            orElse: () => const SizedBox.shrink(),
-          ),
-        ),
-        BlocBuilder<LeaderboardStatisticsBloc, LeaderboardStatisticsState>(
-          builder: (_, leaderboardStatisticsState) => ListView.builder(
-            physics: const NeverScrollableScrollPhysics(),
-            shrinkWrap: true,
-            itemCount: leaderboardStatisticsState.maybeWhen(
-              gotLeaderboardStatistics: (leaderboardStatisticsEntity, __) =>
-                  leaderboardStatisticsEntity.currentPeriodPoints.length,
-              orElse: () => fifteen,
-            ),
-            itemBuilder: (_, index) => ValueListenableBuilder(
-              valueListenable: _pageNumberNotifier,
-              builder: (
-                _,
-                pageNumberNotifierValue,
-                __,
-              ) =>
-                  Card(
-                hasBorder: false,
-                backgroundColor: leaderboardStatisticsState.maybeWhen(
-                  gotLeaderboardStatistics: (
-                    leaderboardStatisticsEntity,
-                    leaderboardPositionEntity,
-                  ) =>
-                      switch (leaderboardPositionEntity != null &&
-                          leaderboardPositionEntity.position != null &&
-                          leaderboardPositionEntity.page != null &&
-                          _computeUserPositionOnLeaderboardUsing(
-                                page: leaderboardPositionEntity.page!,
-                                position: leaderboardPositionEntity.position!,
-                                returnIndexPositionInstead: false,
-                              ) >=
-                              one &&
-                          _computeUserPositionOnLeaderboardUsing(
-                                page: leaderboardPositionEntity.page!,
-                                position: leaderboardPositionEntity.position!,
-                                returnIndexPositionInstead: false,
-                              ) <=
-                              fifteen) {
-                    true
-                        when pageNumberNotifierValue ==
-                                leaderboardPositionEntity!.page &&
-                            index ==
-                                _computeUserPositionOnLeaderboardUsing(
-                                  page: leaderboardPositionEntity.page!,
-                                  position: leaderboardPositionEntity.position!,
-                                  returnIndexPositionInstead: true,
-                                ) &&
-                            _computeUserPositionOnLeaderboardUsing(
-                                  page: leaderboardPositionEntity.page!,
-                                  position: leaderboardPositionEntity.position!,
-                                  returnIndexPositionInstead: true,
-                                ) <
-                                leaderboardStatisticsEntity
-                                    .currentPeriodPoints.length =>
-                      hexFFFFFF,
-                    _ => null,
+              ),
+              const SizedBox(
+                height: fortyFiveDotFive,
+              ),
+              BlocBuilder<LeaderboardStatisticsBloc,
+                  LeaderboardStatisticsState>(
+                builder: (_, leaderboardStatisticsState) =>
+                    leaderboardStatisticsState.maybeWhen(
+                  gotLeaderboardStatistics: (leaderboardStatisticsEntity, __) =>
+                      switch (leaderboardStatisticsEntity
+                          .currentPeriodPoints.isEmpty) {
+                    true => SingleChildScrollView(
+                        child: SizedBox(
+                          height: MediaQuery.sizeOf(
+                            context,
+                          ).width,
+                          child: Center(
+                            child: Text(
+                              context.localize.thereIsNothingToShowHere,
+                              style: Theme.of(
+                                context,
+                              ).textTheme.bodyLarge?.copyWith(
+                                    fontSize: sixteenDotEight,
+                                    height: oneDotNil,
+                                    letterSpacing: minusNilDotOne,
+                                    color: hex161616,
+                                  ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    false => const SizedBox.shrink(),
                   },
-                  orElse: () => null,
+                  orElse: () => const SizedBox.shrink(),
                 ),
-                cornerRadius: fifteenDotNil,
-                verticalPadding: sixteenDotNil,
-                child: Row(
-                  children: [
-                    Expanded(
-                      child: Align(
-                        alignment: AlignmentDirectional.centerStart,
-                        child: Container(
-                          decoration: BoxDecoration(
-                            color: leaderboardStatisticsState.maybeWhen(
-                              gotLeaderboardStatistics: (
-                                leaderboardStatisticsEntity,
-                                leaderboardPositionEntity,
-                              ) =>
-                                  switch (leaderboardPositionEntity != null &&
-                                      leaderboardPositionEntity.position !=
-                                          null &&
-                                      leaderboardPositionEntity.page != null &&
+              ),
+              BlocBuilder<LeaderboardStatisticsBloc,
+                  LeaderboardStatisticsState>(
+                builder: (_, leaderboardStatisticsState) => ListView.builder(
+                  physics: const NeverScrollableScrollPhysics(),
+                  shrinkWrap: true,
+                  itemCount: leaderboardStatisticsState.maybeWhen(
+                    gotLeaderboardStatistics: (
+                      leaderboardStatisticsEntity,
+                      __,
+                    ) =>
+                        leaderboardStatisticsEntity.currentPeriodPoints.length,
+                    orElse: () => fifteen,
+                  ),
+                  itemBuilder: (_, index) => ValueListenableBuilder(
+                    valueListenable: _pageNumberNotifier,
+                    builder: (
+                      _,
+                      pageNumberNotifierValue,
+                      __,
+                    ) =>
+                        Card(
+                      hasBorder: false,
+                      backgroundColor: leaderboardStatisticsState.maybeWhen(
+                        gotLeaderboardStatistics: (
+                          leaderboardStatisticsEntity,
+                          leaderboardPositionEntity,
+                        ) =>
+                            switch (leaderboardPositionEntity != null &&
+                                leaderboardPositionEntity.position != null &&
+                                leaderboardPositionEntity.page != null &&
+                                _computeUserPositionOnLeaderboardUsing(
+                                      page: leaderboardPositionEntity.page!,
+                                      position:
+                                          leaderboardPositionEntity.position!,
+                                      returnIndexPositionInstead: false,
+                                    ) >=
+                                    one &&
+                                _computeUserPositionOnLeaderboardUsing(
+                                      page: leaderboardPositionEntity.page!,
+                                      position:
+                                          leaderboardPositionEntity.position!,
+                                      returnIndexPositionInstead: false,
+                                    ) <=
+                                    fifteen) {
+                          true
+                              when pageNumberNotifierValue ==
+                                      leaderboardPositionEntity!.page &&
+                                  index ==
                                       _computeUserPositionOnLeaderboardUsing(
-                                            page:
-                                                leaderboardPositionEntity.page!,
-                                            position: leaderboardPositionEntity
-                                                .position!,
-                                            returnIndexPositionInstead: false,
-                                          ) >=
-                                          one &&
-                                      _computeUserPositionOnLeaderboardUsing(
-                                            page:
-                                                leaderboardPositionEntity.page!,
-                                            position: leaderboardPositionEntity
-                                                .position!,
-                                            returnIndexPositionInstead: false,
-                                          ) <=
-                                          fifteen) {
-                                true
-                                    when pageNumberNotifierValue ==
-                                            leaderboardPositionEntity!.page &&
-                                        index ==
-                                            _computeUserPositionOnLeaderboardUsing(
-                                              page: leaderboardPositionEntity
-                                                  .page!,
-                                              position:
-                                                  leaderboardPositionEntity
-                                                      .position!,
-                                              returnIndexPositionInstead: true,
-                                            ) &&
-                                        _computeUserPositionOnLeaderboardUsing(
-                                              page: leaderboardPositionEntity
-                                                  .page!,
-                                              position:
-                                                  leaderboardPositionEntity
-                                                      .position!,
-                                              returnIndexPositionInstead: true,
-                                            ) <
-                                            leaderboardStatisticsEntity
-                                                .currentPeriodPoints.length =>
-                                  hexDAE7FF,
-                                _ => switch (pageNumberNotifierValue == one &&
-                                      (index == zero ||
-                                          index == one ||
-                                          index == two)) {
-                                    true => hex3478F5,
-                                    false => hexDEDEDE,
-                                  },
-                              },
-                              orElse: () => switch (
-                                  pageNumberNotifierValue == one &&
-                                      (index == zero ||
-                                          index == one ||
-                                          index == two)) {
-                                true => hex3478F5,
-                                false => hexDEDEDE,
-                              },
-                            ),
-                            borderRadius: BorderRadiusDirectional.circular(
-                              eightDotNil,
-                            ),
-                          ),
-                          padding: const EdgeInsetsDirectional.symmetric(
-                            horizontal: eightDotNil,
-                            vertical: oneDotNil,
-                          ),
-                          child: Text(
-                            _computeLeaderboardEntryPositionUsing(
-                              currentPageNumber: pageNumberNotifierValue,
-                              currentEntryIndex: index,
-                            ).toString(),
-                            maxLines: one,
-                            overflow: TextOverflow.ellipsis,
-                            style: Theme.of(
-                              context,
-                            ).textTheme.bodyMedium?.copyWith(
-                                  fontFamily: FontFamily.urbanist,
-                                  fontWeight: FontWeight.w600,
-                                  fontSize: fourteenDotNil,
-                                  height: twentyTwoDotNil / fourteenDotNil,
+                                        page: leaderboardPositionEntity.page!,
+                                        position:
+                                            leaderboardPositionEntity.position!,
+                                        returnIndexPositionInstead: true,
+                                      ) &&
+                                  _computeUserPositionOnLeaderboardUsing(
+                                        page: leaderboardPositionEntity.page!,
+                                        position:
+                                            leaderboardPositionEntity.position!,
+                                        returnIndexPositionInstead: true,
+                                      ) <
+                                      leaderboardStatisticsEntity
+                                          .currentPeriodPoints.length =>
+                            hexFFFFFF,
+                          _ => null,
+                        },
+                        orElse: () => null,
+                      ),
+                      cornerRadius: fifteenDotNil,
+                      verticalPadding: sixteenDotNil,
+                      child: Row(
+                        children: [
+                          Expanded(
+                            child: Align(
+                              alignment: AlignmentDirectional.centerStart,
+                              child: Container(
+                                decoration: BoxDecoration(
                                   color: leaderboardStatisticsState.maybeWhen(
                                     gotLeaderboardStatistics: (
                                       leaderboardStatisticsEntity,
@@ -614,14 +536,14 @@ class _LeaderboardViewState extends State<LeaderboardView> {
                                                   leaderboardStatisticsEntity
                                                       .currentPeriodPoints
                                                       .length =>
-                                        hex3478F5,
+                                        hexDAE7FF,
                                       _ => switch (
                                             pageNumberNotifierValue == one &&
                                                 (index == zero ||
                                                     index == one ||
                                                     index == two)) {
-                                          true => hexFFFFFF,
-                                          false => hex989898,
+                                          true => hex3478F5,
+                                          false => hexDEDEDE,
                                         },
                                     },
                                     orElse: () => switch (
@@ -629,331 +551,457 @@ class _LeaderboardViewState extends State<LeaderboardView> {
                                             (index == zero ||
                                                 index == one ||
                                                 index == two)) {
-                                      true => hexFFFFFF,
-                                      false => hex989898,
+                                      true => hex3478F5,
+                                      false => hexDEDEDE,
                                     },
                                   ),
-                                  letterSpacing: nilDotNil,
+                                  borderRadius:
+                                      BorderRadiusDirectional.circular(
+                                    eightDotNil,
+                                  ),
                                 ),
-                          ),
-                        ),
-                      ),
-                    ),
-                    const SizedBox(
-                      width: eightDotNil,
-                    ),
-                    Expanded(
-                      flex: five,
-                      child: Skeletonizer(
-                        effect: leaderboardStatisticsState.maybeWhen(
-                          failedToGetLeaderboardStatistics: (_) =>
-                              const SoldColorEffect(
-                            color: hexEBEBF4,
-                          ),
-                          orElse: () => ShimmerEffect(
-                            highlightColor: Theme.of(
-                              context,
-                            ).scaffoldBackgroundColor,
-                          ),
-                        ),
-                        enabled: leaderboardStatisticsState.maybeWhen(
-                          gotLeaderboardStatistics: (_, __) => false,
-                          orElse: () => true,
-                        ),
-                        child: Text(
-                          leaderboardStatisticsState.maybeWhen(
-                            gotLeaderboardStatistics: (
-                              leaderboardStatisticsEntity,
-                              _,
-                            ) =>
-                                leaderboardStatisticsEntity
-                                    .currentPeriodPoints[index]
-                                    .blockchainAddress ??
-                                threeDots,
-                            orElse: () => BoneMock.chars(
-                              switch (index) {
-                                zero => fourteen,
-                                five => sixteen,
-                                _ => switch (index % two == zero) {
-                                    true => fifteen,
-                                    false => seventeen,
-                                  },
-                              },
-                            ),
-                          ),
-                          maxLines: one,
-                          overflow: TextOverflow.ellipsis,
-                          style: Theme.of(
-                            context,
-                          ).textTheme.bodyLarge?.copyWith(
-                                fontSize: fourteenDotNil,
-                                height: thirtyTwoDotNil / fourteenDotNil,
-                                letterSpacing: nilDotNil,
-                                color: leaderboardStatisticsState.maybeWhen(
-                                  gotLeaderboardStatistics: (
-                                    leaderboardStatisticsEntity,
-                                    leaderboardPositionEntity,
-                                  ) =>
-                                      switch (leaderboardPositionEntity !=
-                                              null &&
-                                          leaderboardPositionEntity.position !=
-                                              null &&
-                                          leaderboardPositionEntity.page !=
-                                              null &&
-                                          _computeUserPositionOnLeaderboardUsing(
-                                                page: leaderboardPositionEntity
-                                                    .page!,
-                                                position:
-                                                    leaderboardPositionEntity
-                                                        .position!,
-                                                returnIndexPositionInstead:
-                                                    false,
-                                              ) >=
-                                              one &&
-                                          _computeUserPositionOnLeaderboardUsing(
-                                                page: leaderboardPositionEntity
-                                                    .page!,
-                                                position:
-                                                    leaderboardPositionEntity
-                                                        .position!,
-                                                returnIndexPositionInstead:
-                                                    false,
-                                              ) <=
-                                              fifteen) {
-                                    true
-                                        when pageNumberNotifierValue ==
-                                                leaderboardPositionEntity!
-                                                    .page &&
-                                            index ==
-                                                _computeUserPositionOnLeaderboardUsing(
-                                                  page:
-                                                      leaderboardPositionEntity
-                                                          .page!,
-                                                  position:
-                                                      leaderboardPositionEntity
-                                                          .position!,
-                                                  returnIndexPositionInstead:
-                                                      true,
-                                                ) &&
-                                            _computeUserPositionOnLeaderboardUsing(
-                                                  page:
-                                                      leaderboardPositionEntity
-                                                          .page!,
-                                                  position:
-                                                      leaderboardPositionEntity
-                                                          .position!,
-                                                  returnIndexPositionInstead:
-                                                      true,
-                                                ) <
-                                                leaderboardStatisticsEntity
-                                                    .currentPeriodPoints
-                                                    .length =>
-                                      hex3478F5,
-                                    _ => null,
-                                  },
-                                  orElse: () => null,
+                                padding: const EdgeInsetsDirectional.symmetric(
+                                  horizontal: eightDotNil,
+                                  vertical: oneDotNil,
+                                ),
+                                child: Text(
+                                  _computeLeaderboardEntryPositionUsing(
+                                    currentPageNumber: pageNumberNotifierValue,
+                                    currentEntryIndex: index,
+                                  ).toString(),
+                                  maxLines: one,
+                                  overflow: TextOverflow.ellipsis,
+                                  style: Theme.of(
+                                    context,
+                                  ).textTheme.bodyMedium?.copyWith(
+                                        fontFamily: FontFamily.urbanist,
+                                        fontWeight: FontWeight.w600,
+                                        fontSize: fourteenDotNil,
+                                        height:
+                                            twentyTwoDotNil / fourteenDotNil,
+                                        color: leaderboardStatisticsState
+                                            .maybeWhen(
+                                          gotLeaderboardStatistics: (
+                                            leaderboardStatisticsEntity,
+                                            leaderboardPositionEntity,
+                                          ) =>
+                                              switch (leaderboardPositionEntity !=
+                                                      null &&
+                                                  leaderboardPositionEntity
+                                                          .position !=
+                                                      null &&
+                                                  leaderboardPositionEntity
+                                                          .page !=
+                                                      null &&
+                                                  _computeUserPositionOnLeaderboardUsing(
+                                                        page:
+                                                            leaderboardPositionEntity
+                                                                .page!,
+                                                        position:
+                                                            leaderboardPositionEntity
+                                                                .position!,
+                                                        returnIndexPositionInstead:
+                                                            false,
+                                                      ) >=
+                                                      one &&
+                                                  _computeUserPositionOnLeaderboardUsing(
+                                                        page:
+                                                            leaderboardPositionEntity
+                                                                .page!,
+                                                        position:
+                                                            leaderboardPositionEntity
+                                                                .position!,
+                                                        returnIndexPositionInstead:
+                                                            false,
+                                                      ) <=
+                                                      fifteen) {
+                                            true
+                                                when pageNumberNotifierValue ==
+                                                        leaderboardPositionEntity!
+                                                            .page &&
+                                                    index ==
+                                                        _computeUserPositionOnLeaderboardUsing(
+                                                          page:
+                                                              leaderboardPositionEntity
+                                                                  .page!,
+                                                          position:
+                                                              leaderboardPositionEntity
+                                                                  .position!,
+                                                          returnIndexPositionInstead:
+                                                              true,
+                                                        ) &&
+                                                    _computeUserPositionOnLeaderboardUsing(
+                                                          page:
+                                                              leaderboardPositionEntity
+                                                                  .page!,
+                                                          position:
+                                                              leaderboardPositionEntity
+                                                                  .position!,
+                                                          returnIndexPositionInstead:
+                                                              true,
+                                                        ) <
+                                                        leaderboardStatisticsEntity
+                                                            .currentPeriodPoints
+                                                            .length =>
+                                              hex3478F5,
+                                            _ => switch (
+                                                  pageNumberNotifierValue ==
+                                                          one &&
+                                                      (index == zero ||
+                                                          index == one ||
+                                                          index == two)) {
+                                                true => hexFFFFFF,
+                                                false => hex989898,
+                                              },
+                                          },
+                                          orElse: () => switch (
+                                              pageNumberNotifierValue == one &&
+                                                  (index == zero ||
+                                                      index == one ||
+                                                      index == two)) {
+                                            true => hexFFFFFF,
+                                            false => hex989898,
+                                          },
+                                        ),
+                                        letterSpacing: nilDotNil,
+                                      ),
                                 ),
                               ),
-                        ),
-                      ),
-                    ),
-                    const SizedBox(
-                      width: eightDotNil,
-                    ),
-                    Expanded(
-                      flex: two,
-                      child: Skeletonizer(
-                        effect: leaderboardStatisticsState.maybeWhen(
-                          failedToGetLeaderboardStatistics: (_) =>
-                              const SoldColorEffect(
-                            color: hexEBEBF4,
-                          ),
-                          orElse: () => ShimmerEffect(
-                            highlightColor: Theme.of(
-                              context,
-                            ).scaffoldBackgroundColor,
-                          ),
-                        ),
-                        enabled: leaderboardStatisticsState.maybeWhen(
-                          gotLeaderboardStatistics: (_, __) => false,
-                          orElse: () => true,
-                        ),
-                        child: Text(
-                          leaderboardStatisticsState.maybeWhen(
-                            gotLeaderboardStatistics: (
-                              leaderboardStatisticsEntity,
-                              _,
-                            ) =>
-                                switch (pageNumberNotifierValue == one &&
-                                    index == zero) {
-                                  true =>
-                                    context.localize.crownEmoji + whiteSpace,
-                                  false => emptyString,
-                                } +
-                                leaderboardStatisticsEntity
-                                    .currentPeriodPoints[index].totalPoints
-                                    .toString(),
-                            orElse: () => BoneMock.chars(
-                              switch (index) {
-                                zero => five,
-                                five => three,
-                                _ => switch (index % two == zero) {
-                                    true => four,
-                                    false => two,
-                                  },
-                              },
                             ),
                           ),
-                          maxLines: one,
-                          overflow: TextOverflow.ellipsis,
-                          textAlign: TextAlign.end,
-                          style: Theme.of(
-                            context,
-                          ).textTheme.bodyMedium?.copyWith(
-                                fontFamily: FontFamily.lato,
-                                fontWeight:
-                                    leaderboardStatisticsState.maybeWhen(
-                                  gotLeaderboardStatistics: (
-                                    leaderboardStatisticsEntity,
-                                    leaderboardPositionEntity,
-                                  ) =>
-                                      switch (leaderboardPositionEntity !=
-                                              null &&
-                                          leaderboardPositionEntity.position !=
-                                              null &&
-                                          leaderboardPositionEntity.page !=
-                                              null &&
-                                          _computeUserPositionOnLeaderboardUsing(
-                                                page: leaderboardPositionEntity
-                                                    .page!,
-                                                position:
-                                                    leaderboardPositionEntity
-                                                        .position!,
-                                                returnIndexPositionInstead:
-                                                    false,
-                                              ) >=
-                                              one &&
-                                          _computeUserPositionOnLeaderboardUsing(
-                                                page: leaderboardPositionEntity
-                                                    .page!,
-                                                position:
-                                                    leaderboardPositionEntity
-                                                        .position!,
-                                                returnIndexPositionInstead:
-                                                    false,
-                                              ) <=
-                                              fifteen) {
-                                    true
-                                        when pageNumberNotifierValue ==
-                                                leaderboardPositionEntity!
-                                                    .page &&
-                                            index ==
-                                                _computeUserPositionOnLeaderboardUsing(
-                                                  page:
-                                                      leaderboardPositionEntity
-                                                          .page!,
-                                                  position:
-                                                      leaderboardPositionEntity
-                                                          .position!,
-                                                  returnIndexPositionInstead:
-                                                      true,
-                                                ) &&
-                                            _computeUserPositionOnLeaderboardUsing(
-                                                  page:
-                                                      leaderboardPositionEntity
-                                                          .page!,
-                                                  position:
-                                                      leaderboardPositionEntity
-                                                          .position!,
-                                                  returnIndexPositionInstead:
-                                                      true,
-                                                ) <
-                                                leaderboardStatisticsEntity
-                                                    .currentPeriodPoints
-                                                    .length =>
-                                      FontWeight.w400,
-                                    _ => FontWeight.w700,
-                                  },
-                                  orElse: () => FontWeight.w700,
+                          const SizedBox(
+                            width: eightDotNil,
+                          ),
+                          Expanded(
+                            flex: five,
+                            child: Skeletonizer(
+                              effect: leaderboardStatisticsState.maybeWhen(
+                                failedToGetLeaderboardStatistics: (_) =>
+                                    const SoldColorEffect(
+                                  color: hexEBEBF4,
                                 ),
-                                height: oneDotNil,
-                                letterSpacing: nilDotNil,
-                                color: leaderboardStatisticsState.maybeWhen(
-                                  gotLeaderboardStatistics: (
-                                    leaderboardStatisticsEntity,
-                                    leaderboardPositionEntity,
-                                  ) =>
-                                      switch (leaderboardPositionEntity !=
-                                              null &&
-                                          leaderboardPositionEntity.position !=
-                                              null &&
-                                          leaderboardPositionEntity.page !=
-                                              null &&
-                                          _computeUserPositionOnLeaderboardUsing(
-                                                page: leaderboardPositionEntity
-                                                    .page!,
-                                                position:
-                                                    leaderboardPositionEntity
-                                                        .position!,
-                                                returnIndexPositionInstead:
-                                                    false,
-                                              ) >=
-                                              one &&
-                                          _computeUserPositionOnLeaderboardUsing(
-                                                page: leaderboardPositionEntity
-                                                    .page!,
-                                                position:
-                                                    leaderboardPositionEntity
-                                                        .position!,
-                                                returnIndexPositionInstead:
-                                                    false,
-                                              ) <=
-                                              fifteen) {
-                                    true
-                                        when pageNumberNotifierValue ==
-                                                leaderboardPositionEntity!
-                                                    .page &&
-                                            index ==
-                                                _computeUserPositionOnLeaderboardUsing(
-                                                  page:
-                                                      leaderboardPositionEntity
-                                                          .page!,
-                                                  position:
-                                                      leaderboardPositionEntity
-                                                          .position!,
-                                                  returnIndexPositionInstead:
-                                                      true,
-                                                ) &&
-                                            _computeUserPositionOnLeaderboardUsing(
-                                                  page:
-                                                      leaderboardPositionEntity
-                                                          .page!,
-                                                  position:
-                                                      leaderboardPositionEntity
-                                                          .position!,
-                                                  returnIndexPositionInstead:
-                                                      true,
-                                                ) <
-                                                leaderboardStatisticsEntity
-                                                    .currentPeriodPoints
-                                                    .length =>
-                                      hex3478F5,
-                                    _ => null,
-                                  },
-                                  orElse: () => null,
+                                orElse: () => ShimmerEffect(
+                                  highlightColor: Theme.of(
+                                    context,
+                                  ).scaffoldBackgroundColor,
                                 ),
                               ),
-                        ),
+                              enabled: leaderboardStatisticsState.maybeWhen(
+                                gotLeaderboardStatistics: (_, __) => false,
+                                orElse: () => true,
+                              ),
+                              child: Text(
+                                leaderboardStatisticsState.maybeWhen(
+                                  gotLeaderboardStatistics: (
+                                    leaderboardStatisticsEntity,
+                                    _,
+                                  ) =>
+                                      leaderboardStatisticsEntity
+                                          .currentPeriodPoints[index]
+                                          .blockchainAddress ??
+                                      threeDots,
+                                  orElse: () => BoneMock.chars(
+                                    switch (index) {
+                                      zero => fourteen,
+                                      five => sixteen,
+                                      _ => switch (index % two == zero) {
+                                          true => fifteen,
+                                          false => seventeen,
+                                        },
+                                    },
+                                  ),
+                                ),
+                                maxLines: one,
+                                overflow: TextOverflow.ellipsis,
+                                style: Theme.of(
+                                  context,
+                                ).textTheme.bodyLarge?.copyWith(
+                                      fontSize: fourteenDotNil,
+                                      height: thirtyTwoDotNil / fourteenDotNil,
+                                      letterSpacing: nilDotNil,
+                                      color:
+                                          leaderboardStatisticsState.maybeWhen(
+                                        gotLeaderboardStatistics: (
+                                          leaderboardStatisticsEntity,
+                                          leaderboardPositionEntity,
+                                        ) =>
+                                            switch (leaderboardPositionEntity !=
+                                                    null &&
+                                                leaderboardPositionEntity
+                                                        .position !=
+                                                    null &&
+                                                leaderboardPositionEntity
+                                                        .page !=
+                                                    null &&
+                                                _computeUserPositionOnLeaderboardUsing(
+                                                      page:
+                                                          leaderboardPositionEntity
+                                                              .page!,
+                                                      position:
+                                                          leaderboardPositionEntity
+                                                              .position!,
+                                                      returnIndexPositionInstead:
+                                                          false,
+                                                    ) >=
+                                                    one &&
+                                                _computeUserPositionOnLeaderboardUsing(
+                                                      page:
+                                                          leaderboardPositionEntity
+                                                              .page!,
+                                                      position:
+                                                          leaderboardPositionEntity
+                                                              .position!,
+                                                      returnIndexPositionInstead:
+                                                          false,
+                                                    ) <=
+                                                    fifteen) {
+                                          true
+                                              when pageNumberNotifierValue ==
+                                                      leaderboardPositionEntity!
+                                                          .page &&
+                                                  index ==
+                                                      _computeUserPositionOnLeaderboardUsing(
+                                                        page:
+                                                            leaderboardPositionEntity
+                                                                .page!,
+                                                        position:
+                                                            leaderboardPositionEntity
+                                                                .position!,
+                                                        returnIndexPositionInstead:
+                                                            true,
+                                                      ) &&
+                                                  _computeUserPositionOnLeaderboardUsing(
+                                                        page:
+                                                            leaderboardPositionEntity
+                                                                .page!,
+                                                        position:
+                                                            leaderboardPositionEntity
+                                                                .position!,
+                                                        returnIndexPositionInstead:
+                                                            true,
+                                                      ) <
+                                                      leaderboardStatisticsEntity
+                                                          .currentPeriodPoints
+                                                          .length =>
+                                            hex3478F5,
+                                          _ => null,
+                                        },
+                                        orElse: () => null,
+                                      ),
+                                    ),
+                              ),
+                            ),
+                          ),
+                          const SizedBox(
+                            width: eightDotNil,
+                          ),
+                          Expanded(
+                            flex: two,
+                            child: Skeletonizer(
+                              effect: leaderboardStatisticsState.maybeWhen(
+                                failedToGetLeaderboardStatistics: (_) =>
+                                    const SoldColorEffect(
+                                  color: hexEBEBF4,
+                                ),
+                                orElse: () => ShimmerEffect(
+                                  highlightColor: Theme.of(
+                                    context,
+                                  ).scaffoldBackgroundColor,
+                                ),
+                              ),
+                              enabled: leaderboardStatisticsState.maybeWhen(
+                                gotLeaderboardStatistics: (_, __) => false,
+                                orElse: () => true,
+                              ),
+                              child: Text(
+                                leaderboardStatisticsState.maybeWhen(
+                                  gotLeaderboardStatistics: (
+                                    leaderboardStatisticsEntity,
+                                    _,
+                                  ) =>
+                                      switch (pageNumberNotifierValue == one &&
+                                          index == zero) {
+                                        true => context.localize.crownEmoji +
+                                            whiteSpace,
+                                        false => emptyString,
+                                      } +
+                                      leaderboardStatisticsEntity
+                                          .currentPeriodPoints[index]
+                                          .totalPoints
+                                          .toString(),
+                                  orElse: () => BoneMock.chars(
+                                    switch (index) {
+                                      zero => five,
+                                      five => three,
+                                      _ => switch (index % two == zero) {
+                                          true => four,
+                                          false => two,
+                                        },
+                                    },
+                                  ),
+                                ),
+                                maxLines: one,
+                                overflow: TextOverflow.ellipsis,
+                                textAlign: TextAlign.end,
+                                style: Theme.of(
+                                  context,
+                                ).textTheme.bodyMedium?.copyWith(
+                                      fontFamily: FontFamily.lato,
+                                      fontWeight:
+                                          leaderboardStatisticsState.maybeWhen(
+                                        gotLeaderboardStatistics: (
+                                          leaderboardStatisticsEntity,
+                                          leaderboardPositionEntity,
+                                        ) =>
+                                            switch (leaderboardPositionEntity !=
+                                                    null &&
+                                                leaderboardPositionEntity
+                                                        .position !=
+                                                    null &&
+                                                leaderboardPositionEntity
+                                                        .page !=
+                                                    null &&
+                                                _computeUserPositionOnLeaderboardUsing(
+                                                      page:
+                                                          leaderboardPositionEntity
+                                                              .page!,
+                                                      position:
+                                                          leaderboardPositionEntity
+                                                              .position!,
+                                                      returnIndexPositionInstead:
+                                                          false,
+                                                    ) >=
+                                                    one &&
+                                                _computeUserPositionOnLeaderboardUsing(
+                                                      page:
+                                                          leaderboardPositionEntity
+                                                              .page!,
+                                                      position:
+                                                          leaderboardPositionEntity
+                                                              .position!,
+                                                      returnIndexPositionInstead:
+                                                          false,
+                                                    ) <=
+                                                    fifteen) {
+                                          true
+                                              when pageNumberNotifierValue ==
+                                                      leaderboardPositionEntity!
+                                                          .page &&
+                                                  index ==
+                                                      _computeUserPositionOnLeaderboardUsing(
+                                                        page:
+                                                            leaderboardPositionEntity
+                                                                .page!,
+                                                        position:
+                                                            leaderboardPositionEntity
+                                                                .position!,
+                                                        returnIndexPositionInstead:
+                                                            true,
+                                                      ) &&
+                                                  _computeUserPositionOnLeaderboardUsing(
+                                                        page:
+                                                            leaderboardPositionEntity
+                                                                .page!,
+                                                        position:
+                                                            leaderboardPositionEntity
+                                                                .position!,
+                                                        returnIndexPositionInstead:
+                                                            true,
+                                                      ) <
+                                                      leaderboardStatisticsEntity
+                                                          .currentPeriodPoints
+                                                          .length =>
+                                            FontWeight.w400,
+                                          _ => FontWeight.w700,
+                                        },
+                                        orElse: () => FontWeight.w700,
+                                      ),
+                                      height: oneDotNil,
+                                      letterSpacing: nilDotNil,
+                                      color:
+                                          leaderboardStatisticsState.maybeWhen(
+                                        gotLeaderboardStatistics: (
+                                          leaderboardStatisticsEntity,
+                                          leaderboardPositionEntity,
+                                        ) =>
+                                            switch (leaderboardPositionEntity !=
+                                                    null &&
+                                                leaderboardPositionEntity
+                                                        .position !=
+                                                    null &&
+                                                leaderboardPositionEntity
+                                                        .page !=
+                                                    null &&
+                                                _computeUserPositionOnLeaderboardUsing(
+                                                      page:
+                                                          leaderboardPositionEntity
+                                                              .page!,
+                                                      position:
+                                                          leaderboardPositionEntity
+                                                              .position!,
+                                                      returnIndexPositionInstead:
+                                                          false,
+                                                    ) >=
+                                                    one &&
+                                                _computeUserPositionOnLeaderboardUsing(
+                                                      page:
+                                                          leaderboardPositionEntity
+                                                              .page!,
+                                                      position:
+                                                          leaderboardPositionEntity
+                                                              .position!,
+                                                      returnIndexPositionInstead:
+                                                          false,
+                                                    ) <=
+                                                    fifteen) {
+                                          true
+                                              when pageNumberNotifierValue ==
+                                                      leaderboardPositionEntity!
+                                                          .page &&
+                                                  index ==
+                                                      _computeUserPositionOnLeaderboardUsing(
+                                                        page:
+                                                            leaderboardPositionEntity
+                                                                .page!,
+                                                        position:
+                                                            leaderboardPositionEntity
+                                                                .position!,
+                                                        returnIndexPositionInstead:
+                                                            true,
+                                                      ) &&
+                                                  _computeUserPositionOnLeaderboardUsing(
+                                                        page:
+                                                            leaderboardPositionEntity
+                                                                .page!,
+                                                        position:
+                                                            leaderboardPositionEntity
+                                                                .position!,
+                                                        returnIndexPositionInstead:
+                                                            true,
+                                                      ) <
+                                                      leaderboardStatisticsEntity
+                                                          .currentPeriodPoints
+                                                          .length =>
+                                            hex3478F5,
+                                          _ => null,
+                                        },
+                                        orElse: () => null,
+                                      ),
+                                    ),
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
                     ),
-                  ],
+                  ),
                 ),
               ),
-            ),
+              const SizedBox(
+                height: fourteenDotNil,
+              ),
+            ],
           ),
         ),
-        const SizedBox(height: fourteenDotNil),
-      ],
-    );
-  }
+      );
 }
