@@ -102,6 +102,7 @@ flutter:
     - .env.dev
     - .env.stage
     - .env.live
+    - shorebird.yaml
 
   fonts:
     - family: Poppins
