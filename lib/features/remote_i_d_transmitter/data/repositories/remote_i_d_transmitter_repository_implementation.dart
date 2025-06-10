@@ -1,5 +1,3 @@
-import 'dart:typed_data' show Uint8List;
-
 import 'package:dartz/dartz.dart' show Function0, Function1;
 import 'package:sky_trade/core/utils/enums/networking.dart'
     show ConnectionState;
@@ -34,13 +32,11 @@ final class RemoteIDTransmitterRepositoryImplementation
   @override
   void transmit({
     required List<RemoteIDEntity> remoteIDEntities,
-    required DeviceEntity deviceEntity,
-    required Uint8List rawData,
+    required DeviceEntity? deviceEntity,
   }) =>
       _remoteIDTransmitterRemoteDataSource.transmit(
         remoteIDEntities: remoteIDEntities,
         deviceEntity: deviceEntity,
-        rawData: rawData,
       );
 
   @override

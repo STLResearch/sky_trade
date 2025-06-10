@@ -216,6 +216,7 @@ const codeChangedKey = 'codeChanged';
 const usedByBonusEarnedKey = 'usedByBonusEarned';
 const ownedByBonusEarnedKey = 'ownedByBonusEarned';
 const isTestKey = 'isTest';
+const versionKey = 'version';
 const deviceKey = 'device';
 const rawDataKey = 'rawData';
 const messageSourceKey = 'messageSource';

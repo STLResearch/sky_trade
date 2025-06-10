@@ -34,5 +34,6 @@ const clarityProjectId = 'CLARITY_PROJECT_ID';
 const skyTradeAppLinkHost1 = 'SKYTRADE_APP_LINK_HOST_1';
 const skyTradeAppLinkHost2 = 'SKYTRADE_APP_LINK_HOST_2';
 
-// Compatible backend API version
+// Backend API version
 const compatibleBackendApiVersion = 'COMPATIBLE_BACKEND_API_VERSION';
+const remoteIDDataVersion = 'REMOTE_ID_DATA_VERSION';

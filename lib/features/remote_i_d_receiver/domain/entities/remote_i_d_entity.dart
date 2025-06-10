@@ -247,6 +247,7 @@ base class BasicIDEntity extends Equatable {
     required this.serialNumber,
     required this.registrationID,
     required this.iD,
+    required this.rawData,
   });
 
   factory BasicIDEntity.fromOpenDroneID(
@@ -293,6 +294,7 @@ base class BasicIDEntity extends Equatable {
           SpecificSessionID(:final id) => id,
           _ => null,
         },
+        rawData: basicIDMessage.rawContent,
       );
 
   final UnmannedAircraftType type;
@@ -305,6 +307,8 @@ base class BasicIDEntity extends Equatable {
 
   final Uint8List? iD;
 
+  final Uint8List? rawData;
+
   BasicIDEntity merge(
     BasicIDEntity? newBasicIDEntity,
   ) =>
@@ -314,6 +318,7 @@ base class BasicIDEntity extends Equatable {
         serialNumber: newBasicIDEntity?.serialNumber ?? serialNumber,
         registrationID: newBasicIDEntity?.registrationID ?? registrationID,
         iD: newBasicIDEntity?.iD ?? iD,
+        rawData: newBasicIDEntity?.rawData ?? rawData,
       );
 
   @override
@@ -323,6 +328,7 @@ base class BasicIDEntity extends Equatable {
         serialNumber,
         registrationID,
         iD,
+        rawData,
       ];
 }
 
@@ -345,6 +351,7 @@ base class LocationEntity extends Equatable {
     required this.height,
     required this.timestamp,
     required this.timestampAccuracy,
+    required this.rawData,
   });
 
   factory LocationEntity.fromOpenDroneID(
@@ -453,6 +460,7 @@ base class LocationEntity extends Equatable {
         height: locationMessage.height,
         timestamp: locationMessage.timestamp,
         timestampAccuracy: locationMessage.timestampAccuracy,
+        rawData: locationMessage.rawContent,
       );
 
   final UnmannedAircraftOperationalStatus operationalStatus;
@@ -489,6 +497,8 @@ base class LocationEntity extends Equatable {
 
   final Duration? timestampAccuracy;
 
+  final Uint8List? rawData;
+
   LocationEntity merge(
     LocationEntity? newLocationEntity,
   ) =>
@@ -519,6 +529,7 @@ base class LocationEntity extends Equatable {
         timestamp: newLocationEntity?.timestamp ?? timestamp,
         timestampAccuracy:
             newLocationEntity?.timestampAccuracy ?? timestampAccuracy,
+        rawData: newLocationEntity?.rawData ?? rawData,
       );
 
   @override
@@ -540,6 +551,7 @@ base class LocationEntity extends Equatable {
         height,
         timestamp,
         timestampAccuracy,
+        rawData,
       ];
 }
 
@@ -558,6 +570,7 @@ base class SystemEntity extends Equatable {
     required this.areaFloor,
     required this.category,
     required this.classValue,
+    required this.rawData,
   });
 
   factory SystemEntity.fromOpenDroneID(
@@ -630,6 +643,7 @@ base class SystemEntity extends Equatable {
         operatorAltitude: systemMessage.operatorAltitude,
         areaCeiling: systemMessage.areaCeiling,
         areaFloor: systemMessage.areaFloor,
+        rawData: systemMessage.rawContent,
       );
 
   final UnmannedAircraftOperatorLocationType operatorLocationType;
@@ -658,6 +672,8 @@ base class SystemEntity extends Equatable {
 
   final double? areaFloor;
 
+  final Uint8List? rawData;
+
   SystemEntity merge(
     SystemEntity? newSystemEntity,
   ) =>
@@ -678,6 +694,7 @@ base class SystemEntity extends Equatable {
         operatorAltitude: newSystemEntity?.operatorAltitude ?? operatorAltitude,
         areaCeiling: newSystemEntity?.areaCeiling ?? areaCeiling,
         areaFloor: newSystemEntity?.areaFloor ?? areaFloor,
+        rawData: newSystemEntity?.rawData ?? rawData,
       );
 
   @override
@@ -695,6 +712,7 @@ base class SystemEntity extends Equatable {
         operatorAltitude,
         areaCeiling,
         areaFloor,
+        rawData,
       ];
 }
 
@@ -736,6 +754,7 @@ base class SelfIDEntity extends Equatable {
     required this.descriptionType,
     required this.operationDescription,
     required this.description,
+    required this.rawData,
   });
 
   factory SelfIDEntity.fromOpenDroneID(
@@ -753,6 +772,7 @@ base class SelfIDEntity extends Equatable {
         },
         operationDescription: null,
         description: selfIDMessage.description,
+        rawData: selfIDMessage.rawContent,
       );
 
   final UnmannedAircraftSelfIDDescriptionType descriptionType;
@@ -760,6 +780,8 @@ base class SelfIDEntity extends Equatable {
   final Uint8List? operationDescription;
 
   final String? description;
+
+  final Uint8List? rawData;
 
   SelfIDEntity merge(
     SelfIDEntity? newSelfIDEntity,
@@ -769,6 +791,7 @@ base class SelfIDEntity extends Equatable {
         operationDescription:
             newSelfIDEntity?.operationDescription ?? operationDescription,
         description: newSelfIDEntity?.description ?? description,
+        rawData: newSelfIDEntity?.rawData ?? rawData,
       );
 
   @override
@@ -776,6 +799,7 @@ base class SelfIDEntity extends Equatable {
         descriptionType,
         operationDescription,
         description,
+        rawData,
       ];
 }
 
@@ -785,6 +809,7 @@ base class OperatorIDEntity extends Equatable {
     required this.operatorIDClassification,
     required this.operatorID,
     required this.iD,
+    required this.rawData,
   });
 
   factory OperatorIDEntity.fromOpenDroneID(
@@ -799,6 +824,7 @@ base class OperatorIDEntity extends Equatable {
         },
         operatorID: null,
         iD: operatorIDMessage.operatorID,
+        rawData: operatorIDMessage.rawContent,
       );
 
   final int? operatorIDType;
@@ -808,6 +834,8 @@ base class OperatorIDEntity extends Equatable {
   final Uint8List? operatorID;
 
   final String? iD;
+
+  final Uint8List? rawData;
 
   OperatorIDEntity merge(
     OperatorIDEntity? newOperatorIDEntity,
@@ -819,6 +847,7 @@ base class OperatorIDEntity extends Equatable {
                 operatorIDClassification,
         operatorID: newOperatorIDEntity?.operatorID ?? operatorID,
         iD: newOperatorIDEntity?.iD ?? iD,
+        rawData: newOperatorIDEntity?.rawData ?? rawData,
       );
 
   @override
@@ -827,6 +856,7 @@ base class OperatorIDEntity extends Equatable {
         operatorIDClassification,
         operatorID,
         iD,
+        rawData,
       ];
 }
 
@@ -838,6 +868,7 @@ base class AuthenticationEntity extends Equatable {
     required this.lastAuthenticationPageIndex,
     required this.authenticationLength,
     required this.timestamp,
+    required this.rawData,
   });
 
   factory AuthenticationEntity.fromOpenDroneID(
@@ -874,6 +905,7 @@ base class AuthenticationEntity extends Equatable {
         lastAuthenticationPageIndex: authMessage.lastAuthPageIndex,
         authenticationLength: authMessage.authLength,
         timestamp: authMessage.timestamp,
+        rawData: authMessage.rawContent,
       );
 
   final UnmannedAircraftAuthenticationType authenticationType;
@@ -887,6 +919,8 @@ base class AuthenticationEntity extends Equatable {
   final int? authenticationLength;
 
   final DateTime? timestamp;
+
+  final Uint8List? rawData;
 
   AuthenticationEntity merge(
     AuthenticationEntity? newAuthenticationEntity,
@@ -905,6 +939,7 @@ base class AuthenticationEntity extends Equatable {
         authenticationLength: newAuthenticationEntity?.authenticationLength ??
             authenticationLength,
         timestamp: newAuthenticationEntity?.timestamp ?? timestamp,
+        rawData: newAuthenticationEntity?.rawData ?? rawData,
       );
 
   @override
@@ -915,5 +950,6 @@ base class AuthenticationEntity extends Equatable {
         lastAuthenticationPageIndex,
         authenticationLength,
         timestamp,
+        rawData,
       ];
 }
