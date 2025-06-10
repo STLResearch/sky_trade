@@ -36,4 +36,4 @@ const skyTradeAppLinkHost2 = 'SKYTRADE_APP_LINK_HOST_2';
 
 // Backend API version
 const compatibleBackendApiVersion = 'COMPATIBLE_BACKEND_API_VERSION';
-const remoteIDTransmissionApiVersion = 'REMOTE_ID_TRANSMISSION_API_VERSION';
+const remoteIDDataVersion = 'REMOTE_ID_DATA_VERSION';

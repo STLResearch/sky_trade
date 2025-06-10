@@ -14,7 +14,7 @@ abstract interface class RemoteIDTransmitterRepository {
 
   void transmit({
     required List<RemoteIDEntity> remoteIDEntities,
-    required DeviceEntity deviceEntity,
+    required DeviceEntity? deviceEntity,
   });
 
   void stopTransmitter();

@@ -32,7 +32,7 @@ final class RemoteIDTransmitterRepositoryImplementation
   @override
   void transmit({
     required List<RemoteIDEntity> remoteIDEntities,
-    required DeviceEntity deviceEntity,
+    required DeviceEntity? deviceEntity,
   }) =>
       _remoteIDTransmitterRemoteDataSource.transmit(
         remoteIDEntities: remoteIDEntities,

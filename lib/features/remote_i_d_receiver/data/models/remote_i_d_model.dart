@@ -1,5 +1,3 @@
-// ignore_for_file: depend_on_referenced_packages, implementation_imports
-
 import 'dart:typed_data' show Uint8List;
 
 import 'package:json_annotation/json_annotation.dart';
@@ -65,8 +63,7 @@ import 'package:sky_trade/core/resources/strings/networking.dart'
         verticalAccuracyKey;
 import 'package:sky_trade/core/utils/converters/date_time_converter.dart'
     show DateTimeConverter, NullableDateTimeConverter;
-import 'package:sky_trade/core/utils/converters/duration_converter.dart'
-    show NullableDurationConverter;
+import 'package:sky_trade/core/utils/converters/duration_converter.dart';
 import 'package:sky_trade/core/utils/converters/uint8_list_converter.dart'
     show NullableUint8ListConverter, Uint8ListConverter;
 import 'package:sky_trade/core/utils/enums/networking.dart'

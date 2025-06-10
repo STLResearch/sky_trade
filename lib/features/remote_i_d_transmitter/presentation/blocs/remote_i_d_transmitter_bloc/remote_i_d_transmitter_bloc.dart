@@ -2,8 +2,6 @@ import 'dart:async' show StreamController, StreamSubscription;
 
 import 'package:bloc/bloc.dart' show Bloc, Emitter;
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:sky_trade/core/resources/numbers/networking.dart'
-    show nilDotNil;
 import 'package:sky_trade/core/utils/enums/networking.dart'
     show ConnectionState;
 import 'package:sky_trade/core/utils/typedefs/networking.dart'
@@ -15,7 +13,9 @@ import 'package:sky_trade/features/remote_i_d_transmitter/domain/entities/remote
 import 'package:sky_trade/features/remote_i_d_transmitter/domain/repositories/remote_i_d_transmitter_repository.dart';
 
 part 'remote_i_d_transmitter_bloc.freezed.dart';
+
 part 'remote_i_d_transmitter_event.dart';
+
 part 'remote_i_d_transmitter_state.dart';
 
 class RemoteIDTransmitterBloc
@@ -156,10 +156,14 @@ class RemoteIDTransmitterBloc
       _remoteIDStreamController?.add(
         (
           remoteIDEntities: event.remoteIDEntities,
-          deviceEntity: DeviceEntity(
-            latitude: event.deviceLatitude ?? nilDotNil,
-            longitude: event.deviceLongitude ?? nilDotNil,
-          ),
+          deviceEntity: switch (
+              event.deviceLatitude != null && event.deviceLongitude != null) {
+            true => DeviceEntity(
+                latitude: event.deviceLatitude!,
+                longitude: event.deviceLongitude!,
+              ),
+            false => null,
+          },
         ),
       );
 
