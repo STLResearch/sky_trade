@@ -114,3 +114,21 @@ p-sds: ## Builds new live release apk, mints a new release NFT and publishes app
 
 r-sdp: ## Runs sentry dart plugin to upload debug symbols to Sentry. Should be run after building an apk or ipa
 	dart run sentry_dart_plugin
+
+s-rad: ## Runs the shorebird release command to build and release for Android (dev)
+	shorebird release android --target ./lib/main_dev.dart --flavor dev
+
+s-ras: ## Runs the shorebird release command to build and release for Android (stage)
+	shorebird release android --target ./lib/main_stage.dart --flavor stage
+
+s-ral: ## Runs the shorebird release command to build and release for Android (live)
+	shorebird release android --target ./lib/main_live.dart --flavor live
+
+s-rid: ## Runs the shorebird release command to build and release for iOS (dev)
+	shorebird release ios --target ./lib/main_dev.dart --flavor dev
+
+s-ris: ## Runs the shorebird release command to build and release for iOS (stage)
+	shorebird release ios --target ./lib/main_stage.dart --flavor stage
+
+s-ril: ## Runs the shorebird release command to build and release for iOS (live)
+	shorebird release ios --target ./lib/main_live.dart --flavor live
