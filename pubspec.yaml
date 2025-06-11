@@ -3,7 +3,7 @@ description: "The SkyTrade Air Management app"
 
 publish_to: 'none'
 
-version: 0.2.2+11
+version: 0.2.3+12
 
 environment:
   sdk: '>=3.3.4 <4.0.0'
@@ -92,6 +92,7 @@ flutter_gen:
   assets:
     exclude:
       - .env.*
+      - shorebird.yaml
 
 flutter:
   generate: true
@@ -102,6 +103,7 @@ flutter:
     - .env.dev
     - .env.stage
     - .env.live
+    - shorebird.yaml
 
   fonts:
     - family: Poppins

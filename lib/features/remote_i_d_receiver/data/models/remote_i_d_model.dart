@@ -1,5 +1,3 @@
-// ignore_for_file: depend_on_referenced_packages, implementation_imports
-
 import 'dart:typed_data' show Uint8List;
 
 import 'package:json_annotation/json_annotation.dart';
@@ -48,6 +46,7 @@ import 'package:sky_trade/core/resources/strings/networking.dart'
         operatorLatitudeKey,
         operatorLocationTypeKey,
         operatorLongitudeKey,
+        rawDataKey,
         registrationIdKey,
         rssiKey,
         selfIdKey,
@@ -62,9 +61,11 @@ import 'package:sky_trade/core/resources/strings/networking.dart'
         uaTypeKey,
         uasIdKey,
         verticalAccuracyKey;
-import 'package:sky_trade/core/utils/converters/date_time_converter.dart';
+import 'package:sky_trade/core/utils/converters/date_time_converter.dart'
+    show DateTimeConverter, NullableDateTimeConverter;
 import 'package:sky_trade/core/utils/converters/duration_converter.dart';
-import 'package:sky_trade/core/utils/converters/uint8_list_converter.dart';
+import 'package:sky_trade/core/utils/converters/uint8_list_converter.dart'
+    show NullableUint8ListConverter, Uint8ListConverter;
 import 'package:sky_trade/core/utils/enums/networking.dart'
     show
         RemoteIDMessageSource,
@@ -177,12 +178,14 @@ final class BasicIDModel extends BasicIDEntity {
     required this.mSerialNumber,
     required this.mRegistrationID,
     required this.mID,
+    required this.mRawData,
   }) : super(
           type: mType,
           iDType: mIDType,
           serialNumber: mSerialNumber,
           registrationID: mRegistrationID,
           iD: mID,
+          rawData: mRawData,
         );
 
   factory BasicIDModel.fromJson(Map<String, dynamic> json) =>
@@ -210,6 +213,10 @@ final class BasicIDModel extends BasicIDEntity {
   @NullableUint8ListConverter()
   final Uint8List? mID;
 
+  @JsonKey(name: rawDataKey)
+  @NullableUint8ListConverter()
+  final Uint8List? mRawData;
+
   Map<String, dynamic> toJson() => _$BasicIDModelToJson(this);
 }
 
@@ -233,6 +240,7 @@ final class LocationModel extends LocationEntity {
     required this.mHeight,
     required this.mTimestamp,
     required this.mTimestampAccuracy,
+    required this.mRawData,
   }) : super(
           operationalStatus: mOperationalStatus,
           heightType: mHeightType,
@@ -251,6 +259,7 @@ final class LocationModel extends LocationEntity {
           height: mHeight,
           timestamp: mTimestamp,
           timestampAccuracy: mTimestampAccuracy,
+          rawData: mRawData,
         );
 
   factory LocationModel.fromJson(Map<String, dynamic> json) =>
@@ -327,6 +336,10 @@ final class LocationModel extends LocationEntity {
   @NullableDurationConverter()
   final Duration? mTimestampAccuracy;
 
+  @JsonKey(name: rawDataKey)
+  @NullableUint8ListConverter()
+  final Uint8List? mRawData;
+
   Map<String, dynamic> toJson() => _$LocationModelToJson(this);
 }
 
@@ -346,6 +359,7 @@ final class SystemModel extends SystemEntity {
     required this.mAreaFloor,
     required this.mCategory,
     required this.mClassValue,
+    required this.mRawData,
   }) : super(
           operatorLocationType: mOperatorLocationType,
           classificationType: mClassificationType,
@@ -360,6 +374,7 @@ final class SystemModel extends SystemEntity {
           areaFloor: mAreaFloor,
           category: mCategory,
           classValue: mClassValue,
+          rawData: mRawData,
         );
 
   factory SystemModel.fromJson(Map<String, dynamic> json) =>
@@ -417,6 +432,10 @@ final class SystemModel extends SystemEntity {
   @JsonKey(name: areaFloorKey)
   final double? mAreaFloor;
 
+  @JsonKey(name: rawDataKey)
+  @NullableUint8ListConverter()
+  final Uint8List? mRawData;
+
   Map<String, dynamic> toJson() => _$SystemModelToJson(this);
 }
 
@@ -448,10 +467,12 @@ final class SelfIDModel extends SelfIDEntity {
     required this.mDescriptionType,
     required this.mOperationDescription,
     required this.mDescription,
+    required this.mRawData,
   }) : super(
           descriptionType: mDescriptionType,
           operationDescription: mOperationDescription,
           description: mDescription,
+          rawData: mRawData,
         );
 
   factory SelfIDModel.fromJson(Map<String, dynamic> json) =>
@@ -470,6 +491,10 @@ final class SelfIDModel extends SelfIDEntity {
   @JsonKey(name: descriptionKey)
   final String? mDescription;
 
+  @JsonKey(name: rawDataKey)
+  @NullableUint8ListConverter()
+  final Uint8List? mRawData;
+
   Map<String, dynamic> toJson() => _$SelfIDModelToJson(this);
 }
 
@@ -480,11 +505,13 @@ final class OperatorIDModel extends OperatorIDEntity {
     required this.mOperatorIDClassification,
     required this.mOperatorID,
     required this.mID,
+    required this.mRawData,
   }) : super(
           operatorIDType: mOperatorIDType,
           operatorIDClassification: mOperatorIDClassification,
           operatorID: mOperatorID,
           iD: mID,
+          rawData: mRawData,
         );
 
   factory OperatorIDModel.fromJson(Map<String, dynamic> json) =>
@@ -503,6 +530,10 @@ final class OperatorIDModel extends OperatorIDEntity {
   @JsonKey(name: idKey)
   final String? mID;
 
+  @JsonKey(name: rawDataKey)
+  @NullableUint8ListConverter()
+  final Uint8List? mRawData;
+
   Map<String, dynamic> toJson() => _$OperatorIDModelToJson(this);
 }
 
@@ -515,6 +546,7 @@ final class AuthenticationModel extends AuthenticationEntity {
     required this.mLastAuthenticationPageIndex,
     required this.mAuthenticationLength,
     required this.mTimestamp,
+    required this.mRawData,
   }) : super(
           authenticationType: mAuthenticationType,
           authenticationPageNumber: mAuthenticationPageNumber,
@@ -522,6 +554,7 @@ final class AuthenticationModel extends AuthenticationEntity {
           lastAuthenticationPageIndex: mLastAuthenticationPageIndex,
           authenticationLength: mAuthenticationLength,
           timestamp: mTimestamp,
+          rawData: mRawData,
         );
 
   factory AuthenticationModel.fromJson(Map<String, dynamic> json) =>
@@ -549,6 +582,10 @@ final class AuthenticationModel extends AuthenticationEntity {
   @JsonKey(name: authTimestampKey)
   @NullableDateTimeConverter()
   final DateTime? mTimestamp;
+
+  @JsonKey(name: rawDataKey)
+  @NullableUint8ListConverter()
+  final Uint8List? mRawData;
 
   Map<String, dynamic> toJson() => _$AuthenticationModelToJson(this);
 }

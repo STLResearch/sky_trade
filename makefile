@@ -1,4 +1,4 @@
-.PHONY: f-np, c-p, br-b, br-w, t, gcr-t, ocr-t, t-got, d-d-r, d-s-r, d-l-r-o, d-l-r-p, loc, u-d-s-l, c-f-d, c-f-s, c-f-l, o-i, p-sds, r-sdp
+.PHONY: f-np, c-p, br-b, br-w, t, gcr-t, ocr-t, t-got, d-d-r, d-s-r, d-l-r-o, d-l-r-p, loc, u-d-s-l, c-f-d, c-f-s, c-f-l, o-i, p-sds, r-sdp, s-rad, s-ras, s-ral, s-rid, s-ris, s-ril, s-pad, s-pas, s-pal, s-pid, s-pis, s-pil
 
 include .env.makefile
 
@@ -114,3 +114,39 @@ p-sds: ## Builds new live release apk, mints a new release NFT and publishes app
 
 r-sdp: ## Runs sentry dart plugin to upload debug symbols to Sentry. Should be run after building an apk or ipa
 	dart run sentry_dart_plugin
+
+s-rad: ## Runs the shorebird release command to build and release for Android (dev)
+	shorebird release android --target ./lib/main_dev.dart --flavor dev
+
+s-ras: ## Runs the shorebird release command to build and release for Android (stage)
+	shorebird release android --target ./lib/main_stage.dart --flavor stage
+
+s-ral: ## Runs the shorebird release command to build and release for Android (live)
+	shorebird release android --target ./lib/main_live.dart --flavor live
+
+s-rid: ## Runs the shorebird release command to build and release for iOS (dev)
+	shorebird release ios --target ./lib/main_dev.dart --flavor dev
+
+s-ris: ## Runs the shorebird release command to build and release for iOS (stage)
+	shorebird release ios --target ./lib/main_stage.dart --flavor stage
+
+s-ril: ## Runs the shorebird release command to build and release for iOS (live)
+	shorebird release ios --target ./lib/main_live.dart --flavor live
+
+s-pad: ## Runs the shorebird patch command for latest Android release (dev)
+	shorebird patch android --target lib/main_dev.dart --flavor dev
+
+s-pas: ## Runs the shorebird patch command for latest Android release (stage)
+	shorebird patch android --target lib/main_stage.dart --flavor stage
+
+s-pal: ## Runs the shorebird patch command for latest Android release (live)
+	shorebird patch android --target lib/main_live.dart --flavor live
+
+s-pid: ## Runs the shorebird patch command for latest iOS release (dev)
+	shorebird patch ios --target lib/main_dev.dart --flavor dev
+
+s-pis: ## Runs the shorebird patch command for latest iOS release (stage)
+	shorebird patch ios --target lib/main_stage.dart --flavor stage
+
+s-pil: ## Runs the shorebird patch command for latest iOS release (live)
+	shorebird patch ios --target lib/main_live.dart --flavor live

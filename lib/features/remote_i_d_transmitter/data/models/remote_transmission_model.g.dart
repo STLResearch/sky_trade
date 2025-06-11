@@ -11,19 +11,20 @@ RemoteTransmissionModel _$RemoteTransmissionModelFromJson(
     RemoteTransmissionModel(
       mRemoteData:
           RemoteIDModel.fromJson(json['remoteData'] as Map<String, dynamic>),
+      mDevice: json['device'] == null
+          ? null
+          : DeviceModel.fromJson(json['device'] as Map<String, dynamic>),
       mIsTest: json['isTest'] as bool,
-      mDevice: DeviceModel.fromJson(json['device'] as Map<String, dynamic>),
-      mRawData:
-          const Uint8ListConverter().fromJson(json['rawData'] as List<int>),
+      mVersion: json['version'] as String,
     );
 
 Map<String, dynamic> _$RemoteTransmissionModelToJson(
         RemoteTransmissionModel instance) =>
     <String, dynamic>{
       'remoteData': instance.mRemoteData.toJson(),
+      'device': instance.mDevice?.toJson(),
       'isTest': instance.mIsTest,
-      'device': instance.mDevice.toJson(),
-      'rawData': const Uint8ListConverter().toJson(instance.mRawData),
+      'version': instance.mVersion,
     };
 
 DeviceModel _$DeviceModelFromJson(Map<String, dynamic> json) => DeviceModel(

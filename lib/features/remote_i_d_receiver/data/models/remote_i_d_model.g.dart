@@ -82,6 +82,8 @@ BasicIDModel _$BasicIDModelFromJson(Map<String, dynamic> json) => BasicIDModel(
       mRegistrationID: json['registrationId'] as String?,
       mID: const NullableUint8ListConverter()
           .fromJson(json['uasId'] as List<int>?),
+      mRawData: const NullableUint8ListConverter()
+          .fromJson(json['rawData'] as List<int>?),
     );
 
 Map<String, dynamic> _$BasicIDModelToJson(BasicIDModel instance) =>
@@ -91,6 +93,7 @@ Map<String, dynamic> _$BasicIDModelToJson(BasicIDModel instance) =>
       'serialNumber': instance.mSerialNumber,
       'registrationId': instance.mRegistrationID,
       'uasId': const NullableUint8ListConverter().toJson(instance.mID),
+      'rawData': const NullableUint8ListConverter().toJson(instance.mRawData),
     };
 
 const _$UnmannedAircraftTypeEnumMap = {
@@ -158,6 +161,8 @@ LocationModel _$LocationModelFromJson(Map<String, dynamic> json) =>
           .fromJson((json['locationTimestamp'] as num?)?.toDouble()),
       mTimestampAccuracy: const NullableDurationConverter()
           .fromJson((json['timeAccuracy'] as num?)?.toDouble()),
+      mRawData: const NullableUint8ListConverter()
+          .fromJson(json['rawData'] as List<int>?),
     );
 
 Map<String, dynamic> _$LocationModelToJson(LocationModel instance) =>
@@ -186,6 +191,7 @@ Map<String, dynamic> _$LocationModelToJson(LocationModel instance) =>
           const NullableDurationConverter().toJson(instance.mTimestamp),
       'timeAccuracy':
           const NullableDurationConverter().toJson(instance.mTimestampAccuracy),
+      'rawData': const NullableUint8ListConverter().toJson(instance.mRawData),
     };
 
 const _$UnmannedAircraftOperationalStatusEnumMap = {
@@ -264,6 +270,8 @@ SystemModel _$SystemModelFromJson(Map<String, dynamic> json) => SystemModel(
       mClassValue: $enumDecodeNullable(
               _$UnmannedAircraftClassValueEnumMap, json['classValue']) ??
           UnmannedAircraftClassValue.undefined,
+      mRawData: const NullableUint8ListConverter()
+          .fromJson(json['rawData'] as List<int>?),
     );
 
 Map<String, dynamic> _$SystemModelToJson(SystemModel instance) =>
@@ -283,6 +291,7 @@ Map<String, dynamic> _$SystemModelToJson(SystemModel instance) =>
       'operatorAltitudeGeo': instance.mOperatorAltitude,
       'areaCeiling': instance.mAreaCeiling,
       'areaFloor': instance.mAreaFloor,
+      'rawData': const NullableUint8ListConverter().toJson(instance.mRawData),
     };
 
 const _$UnmannedAircraftOperatorLocationTypeEnumMap = {
@@ -336,6 +345,8 @@ SelfIDModel _$SelfIDModelFromJson(Map<String, dynamic> json) => SelfIDModel(
       mOperationDescription: const NullableUint8ListConverter()
           .fromJson(json['operationDescription'] as List<int>?),
       mDescription: json['description'] as String?,
+      mRawData: const NullableUint8ListConverter()
+          .fromJson(json['rawData'] as List<int>?),
     );
 
 Map<String, dynamic> _$SelfIDModelToJson(SelfIDModel instance) =>
@@ -345,6 +356,7 @@ Map<String, dynamic> _$SelfIDModelToJson(SelfIDModel instance) =>
       'operationDescription': const NullableUint8ListConverter()
           .toJson(instance.mOperationDescription),
       'description': instance.mDescription,
+      'rawData': const NullableUint8ListConverter().toJson(instance.mRawData),
     };
 
 const _$UnmannedAircraftSelfIDDescriptionTypeEnumMap = {
@@ -364,6 +376,8 @@ OperatorIDModel _$OperatorIDModelFromJson(Map<String, dynamic> json) =>
       mOperatorID: const NullableUint8ListConverter()
           .fromJson(json['operatorId'] as List<int>?),
       mID: json['id'] as String?,
+      mRawData: const NullableUint8ListConverter()
+          .fromJson(json['rawData'] as List<int>?),
     );
 
 Map<String, dynamic> _$OperatorIDModelToJson(OperatorIDModel instance) =>
@@ -374,6 +388,7 @@ Map<String, dynamic> _$OperatorIDModelToJson(OperatorIDModel instance) =>
       'operatorId':
           const NullableUint8ListConverter().toJson(instance.mOperatorID),
       'id': instance.mID,
+      'rawData': const NullableUint8ListConverter().toJson(instance.mRawData),
     };
 
 const _$UnmannedAircraftOperatorIDTypeEnumMap = {
@@ -394,6 +409,8 @@ AuthenticationModel _$AuthenticationModelFromJson(Map<String, dynamic> json) =>
       mAuthenticationLength: (json['authLength'] as num?)?.toInt(),
       mTimestamp: const NullableDateTimeConverter()
           .fromJson((json['authTimestamp'] as num?)?.toInt()),
+      mRawData: const NullableUint8ListConverter()
+          .fromJson(json['rawData'] as List<int>?),
     );
 
 Map<String, dynamic> _$AuthenticationModelToJson(
@@ -408,6 +425,7 @@ Map<String, dynamic> _$AuthenticationModelToJson(
       'authLength': instance.mAuthenticationLength,
       'authTimestamp':
           const NullableDateTimeConverter().toJson(instance.mTimestamp),
+      'rawData': const NullableUint8ListConverter().toJson(instance.mRawData),
     };
 
 const _$UnmannedAircraftAuthenticationTypeEnumMap = {

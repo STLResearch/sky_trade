@@ -26,7 +26,12 @@ import 'package:flutter/material.dart'
         ValueNotifier,
         Widget;
 import 'package:flutter_bloc/flutter_bloc.dart'
-    show BlocBuilder, BlocListener, BlocProvider, ReadContext;
+    show
+        BlocBuilder,
+        BlocListener,
+        BlocProvider,
+        MultiBlocProvider,
+        ReadContext;
 import 'package:sky_trade/core/assets/generated/assets.gen.dart' show Assets;
 import 'package:sky_trade/core/resources/colors.dart'
     show hex0653EA, hex222222, hex87878D, hexD6D6D6, hexE04F64;
@@ -52,6 +57,7 @@ import 'package:sky_trade/features/referral/presentation/blocs/email_bloc/email_
     show EmailBloc, EmailEvent, EmailState;
 import 'package:sky_trade/features/referral/presentation/blocs/invite_bloc/invite_bloc.dart'
     show InviteBloc, InviteEvent, InviteState;
+import 'package:sky_trade/features/referral/presentation/widgets/alert_snack_bar.dart';
 import 'package:sky_trade/features/referral/presentation/widgets/card.dart';
 import 'package:sky_trade/injection_container.dart' show serviceLocator;
 
@@ -59,8 +65,15 @@ class EmailField extends StatelessWidget {
   const EmailField({super.key});
 
   @override
-  Widget build(BuildContext context) => BlocProvider<EmailBloc>(
-        create: (_) => serviceLocator(),
+  Widget build(BuildContext context) => MultiBlocProvider(
+        providers: [
+          BlocProvider<InviteBloc>(
+            create: (_) => serviceLocator(),
+          ),
+          BlocProvider<EmailBloc>(
+            create: (_) => serviceLocator(),
+          ),
+        ],
         child: const EmailFieldView(),
       );
 }
@@ -110,6 +123,11 @@ class _EmailFieldViewState extends State<EmailFieldView> {
               if (_showInviteFailureMessageNotifier.value) {
                 _showInviteFailureMessageNotifier.value = false;
               }
+
+              AlertSnackBar.show(
+                context,
+                message: context.localize.inviteSent,
+              );
             },
             failedToSendInvite: (_) {
               if (!_showInviteFailureMessageNotifier.value) {

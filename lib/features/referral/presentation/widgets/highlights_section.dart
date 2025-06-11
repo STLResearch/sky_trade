@@ -13,7 +13,8 @@ import 'package:flutter/material.dart'
         Text,
         Theme,
         Widget;
-import 'package:flutter_bloc/flutter_bloc.dart' show BlocBuilder, ReadContext;
+import 'package:flutter_bloc/flutter_bloc.dart'
+    show BlocBuilder, BlocListener, ReadContext;
 import 'package:skeletonizer/skeletonizer.dart'
     show BoneMock, ShimmerEffect, Skeletonizer, SoldColorEffect;
 import 'package:sky_trade/core/assets/generated/assets.gen.dart' show Assets;
@@ -34,6 +35,7 @@ import 'package:sky_trade/core/utils/enums/ui.dart' show Highlights;
 import 'package:sky_trade/core/utils/extensions/build_context_extensions.dart';
 import 'package:sky_trade/features/referral/presentation/blocs/highlights_bloc/highlights_bloc.dart'
     show HighlightsBloc, HighlightsEvent, HighlightsState;
+import 'package:sky_trade/features/referral/presentation/widgets/alert_snack_bar.dart';
 
 class HighlightsSection extends StatefulWidget {
   const HighlightsSection({super.key});
@@ -59,123 +61,139 @@ class _HighlightsSectionState extends State<HighlightsSection> {
       );
 
   @override
-  Widget build(BuildContext context) => Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: List<Widget>.generate(
-          Highlights.values.length,
-          (index) => BlocBuilder<HighlightsBloc, HighlightsState>(
-            builder: (_, highlightsState) => Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Row(
-                  children: [
-                    switch (Highlights.values[index]) {
-                      Highlights.registeredFriends =>
-                        Assets.svgs.userGroup.svg(),
-                      Highlights.registeredAirspaces => Assets.svgs.earth.svg(),
-                      Highlights.validatedProperties => Assets.svgs.home.svg(),
-                    },
-                    const SizedBox(
-                      width: seventeenDotNil,
-                    ),
-                    Skeletonizer(
-                      effect: highlightsState.maybeWhen(
-                        failedToGetHighlights: (_) => const SoldColorEffect(
-                          color: hexEBEBF4,
-                        ),
-                        orElse: () => ShimmerEffect(
-                          highlightColor: Theme.of(
-                            context,
-                          ).scaffoldBackgroundColor,
-                        ),
+  Widget build(BuildContext context) =>
+      BlocListener<HighlightsBloc, HighlightsState>(
+        listener: (_, highlightsState) {
+          highlightsState.whenOrNull(
+            failedToGetHighlights: (_) {
+              AlertSnackBar.show(
+                context,
+                message: context
+                    .localize.couldNotGetHighlightsSwipeDownToRefreshThePage,
+              );
+            },
+          );
+        },
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: List<Widget>.generate(
+            Highlights.values.length,
+            (index) => BlocBuilder<HighlightsBloc, HighlightsState>(
+              builder: (_, highlightsState) => Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    children: [
+                      switch (Highlights.values[index]) {
+                        Highlights.registeredFriends =>
+                          Assets.svgs.userGroup.svg(),
+                        Highlights.registeredAirspaces =>
+                          Assets.svgs.earth.svg(),
+                        Highlights.validatedProperties =>
+                          Assets.svgs.home.svg(),
+                      },
+                      const SizedBox(
+                        width: seventeenDotNil,
                       ),
-                      enabled: highlightsState.maybeWhen(
-                        gotHighlights: (_) => false,
-                        orElse: () => true,
-                      ),
-                      child: Text(
-                        highlightsState.maybeWhen(
-                          gotHighlights: (highlightsEntity) =>
-                              switch (Highlights.values[index]) {
-                            Highlights.registeredFriends =>
-                              highlightsEntity.registeredFriends,
-                            Highlights.registeredAirspaces =>
-                              highlightsEntity.registeredAirspaces,
-                            Highlights.validatedProperties =>
-                              highlightsEntity.validatedProperties,
-                          }
-                                  .toString(),
-                          orElse: () => BoneMock.chars(
-                            two,
+                      Skeletonizer(
+                        effect: highlightsState.maybeWhen(
+                          failedToGetHighlights: (_) => const SoldColorEffect(
+                            color: hexEBEBF4,
+                          ),
+                          orElse: () => ShimmerEffect(
+                            highlightColor: Theme.of(
+                              context,
+                            ).scaffoldBackgroundColor,
                           ),
                         ),
-                        style: Theme.of(
-                          context,
-                        ).textTheme.bodyLarge?.copyWith(
-                              fontWeight: FontWeight.w600,
-                              fontSize: fortyDotNil,
-                              height: sixtyDotNil / fortyDotNil,
-                              color: hex4285F4,
+                        enabled: highlightsState.maybeWhen(
+                          gotHighlights: (_) => false,
+                          orElse: () => true,
+                        ),
+                        child: Text(
+                          highlightsState.maybeWhen(
+                            gotHighlights: (highlightsEntity) =>
+                                switch (Highlights.values[index]) {
+                              Highlights.registeredFriends =>
+                                highlightsEntity.registeredFriends,
+                              Highlights.registeredAirspaces =>
+                                highlightsEntity.registeredAirspaces,
+                              Highlights.validatedProperties =>
+                                highlightsEntity.validatedProperties,
+                            }
+                                    .toString(),
+                            orElse: () => BoneMock.chars(
+                              two,
                             ),
+                          ),
+                          style: Theme.of(
+                            context,
+                          ).textTheme.bodyLarge?.copyWith(
+                                fontWeight: FontWeight.w600,
+                                fontSize: fortyDotNil,
+                                height: sixtyDotNil / fortyDotNil,
+                                color: hex4285F4,
+                              ),
+                        ),
                       ),
-                    ),
-                    const SizedBox(
-                      width: seventeenDotNil,
-                    ),
-                    Expanded(
-                      child: Text(
-                        switch (Highlights.values[index]) {
-                          Highlights.registeredFriends =>
-                            context.localize.registeredFriends,
-                          Highlights.registeredAirspaces =>
-                            context.localize.registeredAirspaces,
-                          Highlights.validatedProperties =>
-                            context.localize.validatedProperties,
-                        },
-                        style: Theme.of(
-                          context,
-                        ).textTheme.bodySmall?.copyWith(
-                              fontSize: fifteenDotNil,
-                              height: twentyTwoDotFive / fifteenDotNil,
-                              color: hex868686,
-                            ),
+                      const SizedBox(
+                        width: seventeenDotNil,
                       ),
-                    ),
-                  ],
-                ),
-                switch (
-                    Highlights.values[index] == Highlights.registeredFriends ||
-                        Highlights.values[index] ==
-                            Highlights.registeredAirspaces) {
-                  true => const SizedBox(
-                      height: tenDotNil,
-                    ),
-                  false => const SizedBox.shrink(),
-                },
-                switch (
-                    Highlights.values[index] == Highlights.registeredFriends ||
-                        Highlights.values[index] ==
-                            Highlights.registeredAirspaces) {
-                  true => const SizedBox(
-                      width: thirtyFourDotNil,
-                      child: Divider(
-                        height: oneDotNil,
-                        thickness: oneDotNil,
-                        color: hexD9D9D9,
+                      Expanded(
+                        child: Text(
+                          switch (Highlights.values[index]) {
+                            Highlights.registeredFriends =>
+                              context.localize.registeredFriends,
+                            Highlights.registeredAirspaces =>
+                              context.localize.registeredAirspaces,
+                            Highlights.validatedProperties =>
+                              context.localize.validatedProperties,
+                          },
+                          style: Theme.of(
+                            context,
+                          ).textTheme.bodySmall?.copyWith(
+                                fontSize: fifteenDotNil,
+                                height: twentyTwoDotFive / fifteenDotNil,
+                                color: hex868686,
+                              ),
+                        ),
                       ),
-                    ),
-                  false => const SizedBox.shrink(),
-                },
-                switch (
-                    Highlights.values[index] == Highlights.registeredFriends ||
-                        Highlights.values[index] ==
-                            Highlights.registeredAirspaces) {
-                  true => const SizedBox(
-                      height: tenDotNil,
-                    ),
-                  false => const SizedBox.shrink(),
-                },
-              ],
+                    ],
+                  ),
+                  switch (Highlights.values[index] ==
+                          Highlights.registeredFriends ||
+                      Highlights.values[index] ==
+                          Highlights.registeredAirspaces) {
+                    true => const SizedBox(
+                        height: tenDotNil,
+                      ),
+                    false => const SizedBox.shrink(),
+                  },
+                  switch (Highlights.values[index] ==
+                          Highlights.registeredFriends ||
+                      Highlights.values[index] ==
+                          Highlights.registeredAirspaces) {
+                    true => const SizedBox(
+                        width: thirtyFourDotNil,
+                        child: Divider(
+                          height: oneDotNil,
+                          thickness: oneDotNil,
+                          color: hexD9D9D9,
+                        ),
+                      ),
+                    false => const SizedBox.shrink(),
+                  },
+                  switch (Highlights.values[index] ==
+                          Highlights.registeredFriends ||
+                      Highlights.values[index] ==
+                          Highlights.registeredAirspaces) {
+                    true => const SizedBox(
+                        height: tenDotNil,
+                      ),
+                    false => const SizedBox.shrink(),
+                  },
+                ],
+              ),
             ),
           ),
         ),

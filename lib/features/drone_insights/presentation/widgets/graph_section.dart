@@ -1,17 +1,18 @@
+// ignore_for_file: lines_longer_than_80_chars
+
 import 'package:flutter/material.dart'
     show
         Align,
         AlignmentDirectional,
         BuildContext,
-        Center,
-        CircularProgressIndicator,
         Column,
-        SizedBox,
+        Container,
+        EdgeInsetsDirectional,
+        MediaQuery,
+        Padding,
         State,
         StatefulWidget,
         StatelessWidget,
-        Text,
-        TextAlign,
         Theme,
         ValueListenableBuilder,
         ValueNotifier,
@@ -20,10 +21,12 @@ import 'package:flutter/material.dart'
         WrapAlignment,
         WrapCrossAlignment;
 import 'package:flutter_bloc/flutter_bloc.dart'
-    show BlocBuilder, BlocProvider, ReadContext;
-import 'package:sky_trade/core/resources/colors.dart' show hex838187;
+    show BlocBuilder, BlocListener, BlocProvider, ReadContext;
+import 'package:skeletonizer/skeletonizer.dart'
+    show ShimmerEffect, Skeleton, Skeletonizer, SoldColorEffect;
+import 'package:sky_trade/core/resources/colors.dart' show hexEBEBF4;
 import 'package:sky_trade/core/resources/numbers/ui.dart'
-    show threeDotEightNine, threeFifteenDotFourSeven, twentyFourDotNil;
+    show eightDotNil, threeDotEightNine, threeNilSevenDotFourSeven;
 import 'package:sky_trade/core/utils/enums/networking.dart' show RangeFilter;
 import 'package:sky_trade/core/utils/extensions/build_context_extensions.dart';
 import 'package:sky_trade/features/drone_insights/presentation/blocs/filter_drone_insights_bloc/filter_drone_insights_bloc.dart'
@@ -31,6 +34,7 @@ import 'package:sky_trade/features/drone_insights/presentation/blocs/filter_dron
         FilterDroneInsightsBloc,
         FilterDroneInsightsEvent,
         FilterDroneInsightsState;
+import 'package:sky_trade/features/drone_insights/presentation/widgets/alert_snack_bar.dart';
 import 'package:sky_trade/features/drone_insights/presentation/widgets/filter_card.dart';
 import 'package:sky_trade/features/drone_insights/presentation/widgets/graph.dart';
 import 'package:sky_trade/injection_container.dart' show serviceLocator;
@@ -85,85 +89,103 @@ class _GraphSectionViewState extends State<GraphSectionView> {
   }
 
   @override
-  Widget build(BuildContext context) => Column(
-        children: [
-          Align(
-            alignment: AlignmentDirectional.topEnd,
-            child: Wrap(
-              alignment: WrapAlignment.end,
-              runAlignment: WrapAlignment.end,
-              crossAxisAlignment: WrapCrossAlignment.end,
-              spacing: threeDotEightNine,
-              runSpacing: threeDotEightNine,
-              children: List<Widget>.generate(
-                RangeFilter.values.length,
-                (index) => ValueListenableBuilder<RangeFilter>(
-                  valueListenable: _rangeFilterNotifier,
-                  builder: (_, rangeFilterNotifierValue, __) => BlocBuilder<
-                      FilterDroneInsightsBloc, FilterDroneInsightsState>(
-                    builder: (_, filterDroneInsightsState) => FilterCard(
-                      text: _computeFilterTextUsing(
-                        index,
-                      ),
-                      selected:
-                          rangeFilterNotifierValue == RangeFilter.values[index],
-                      disabled: filterDroneInsightsState.maybeWhen(
-                        filteringInsights: () => true,
-                        orElse: () => false,
-                      ),
-                      onTap: () {
-                        _rangeFilterNotifier.value = RangeFilter.values[index];
+  Widget build(BuildContext context) =>
+      BlocListener<FilterDroneInsightsBloc, FilterDroneInsightsState>(
+        listener: (_, filterDroneInsightsState) {
+          filterDroneInsightsState.whenOrNull(
+            failedToFilterInsights: (_) {
+              AlertSnackBar.show(
+                context,
+                message: context.localize
+                    .weCouldNotLoadTheGraphTapOnAnyOfTheFiltersAgainToRefreshTheGraph,
+              );
+            },
+          );
+        },
+        child: Column(
+          children: [
+            Align(
+              alignment: AlignmentDirectional.topEnd,
+              child: Wrap(
+                alignment: WrapAlignment.end,
+                runAlignment: WrapAlignment.end,
+                crossAxisAlignment: WrapCrossAlignment.end,
+                spacing: threeDotEightNine,
+                runSpacing: threeDotEightNine,
+                children: List<Widget>.generate(
+                  RangeFilter.values.length,
+                  (index) => ValueListenableBuilder<RangeFilter>(
+                    valueListenable: _rangeFilterNotifier,
+                    builder: (_, rangeFilterNotifierValue, __) => BlocBuilder<
+                        FilterDroneInsightsBloc, FilterDroneInsightsState>(
+                      builder: (_, filterDroneInsightsState) => FilterCard(
+                        text: _computeFilterTextUsing(
+                          index,
+                        ),
+                        selected: rangeFilterNotifierValue ==
+                            RangeFilter.values[index],
+                        disabled: filterDroneInsightsState.maybeWhen(
+                          filteringInsights: () => true,
+                          orElse: () => false,
+                        ),
+                        onTap: () {
+                          _rangeFilterNotifier.value =
+                              RangeFilter.values[index];
 
-                        _filterDroneInsightsBy(
-                          _rangeFilterNotifier.value,
-                        );
-                      },
-                    ),
-                  ),
-                ),
-              ),
-            ),
-          ),
-          ValueListenableBuilder<RangeFilter>(
-            valueListenable: _rangeFilterNotifier,
-            builder: (_, rangeFilterNotifierValue, __) =>
-                BlocBuilder<FilterDroneInsightsBloc, FilterDroneInsightsState>(
-              builder: (_, filterDroneInsightsState) =>
-                  filterDroneInsightsState.maybeWhen(
-                filteredInsights: (filteredDroneInsightsEntity) => Graph(
-                  rangeFilter: rangeFilterNotifierValue,
-                  filteredDroneInsightsEntity: filteredDroneInsightsEntity,
-                ),
-                failedToFilterInsights: (_) => SizedBox(
-                  height: threeFifteenDotFourSeven,
-                  child: Center(
-                    child: Text(
-                      context.localize.weCouldNotLoadTheGraph,
-                      textAlign: TextAlign.center,
-                      style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                            color: hex838187,
-                          ),
-                    ),
-                  ),
-                ),
-                orElse: () => SizedBox(
-                  height: threeFifteenDotFourSeven,
-                  child: Center(
-                    child: SizedBox(
-                      width: twentyFourDotNil,
-                      height: twentyFourDotNil,
-                      child: CircularProgressIndicator(
-                        color: Theme.of(
-                          context,
-                        ).scaffoldBackgroundColor,
+                          _filterDroneInsightsBy(
+                            _rangeFilterNotifier.value,
+                          );
+                        },
                       ),
                     ),
                   ),
                 ),
               ),
             ),
-          ),
-        ],
+            ValueListenableBuilder<RangeFilter>(
+              valueListenable: _rangeFilterNotifier,
+              builder: (_, rangeFilterNotifierValue, __) => BlocBuilder<
+                  FilterDroneInsightsBloc, FilterDroneInsightsState>(
+                builder: (_, filterDroneInsightsState) => Skeletonizer(
+                  effect: filterDroneInsightsState.maybeWhen(
+                    failedToFilterInsights: (_) => const SoldColorEffect(
+                      color: hexEBEBF4,
+                    ),
+                    orElse: () => ShimmerEffect(
+                      highlightColor: Theme.of(
+                        context,
+                      ).scaffoldBackgroundColor,
+                    ),
+                  ),
+                  enabled: filterDroneInsightsState.maybeWhen(
+                    filteredInsights: (_) => false,
+                    orElse: () => true,
+                  ),
+                  child: filterDroneInsightsState.maybeWhen(
+                    filteredInsights: (filteredDroneInsightsEntity) => Graph(
+                      rangeFilter: rangeFilterNotifierValue,
+                      filteredDroneInsightsEntity: filteredDroneInsightsEntity,
+                    ),
+                    orElse: () => Skeleton.leaf(
+                      child: Padding(
+                        padding: const EdgeInsetsDirectional.only(
+                          top: eightDotNil,
+                        ),
+                        child: Container(
+                          color: hexEBEBF4,
+                          width: MediaQuery.sizeOf(
+                            context,
+                          ).width,
+                          height: threeNilSevenDotFourSeven,
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
       );
 
   String _computeFilterTextUsing(int index) =>

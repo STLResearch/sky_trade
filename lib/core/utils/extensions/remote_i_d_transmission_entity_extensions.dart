@@ -6,16 +6,20 @@ import 'package:sky_trade/features/remote_i_d_transmitter/domain/entities/remote
 
 extension RemoteTransmissionEntityExtensions on RemoteTransmissionEntity {
   RemoteTransmissionModel toRemoteTransmissionModel() {
-    final deviceModel = DeviceModel(
-      mLatitude: device.latitude,
-      mLongitude: device.longitude,
-    );
+    DeviceModel? deviceModel;
+
+    if (device != null) {
+      deviceModel = DeviceModel(
+        mLatitude: device!.latitude,
+        mLongitude: device!.longitude,
+      );
+    }
 
     return RemoteTransmissionModel(
       mRemoteData: remoteData.toRemoteIDModel(),
-      mIsTest: false,
       mDevice: deviceModel,
-      mRawData: rawData,
+      mIsTest: false,
+      mVersion: version,
     );
   }
 }

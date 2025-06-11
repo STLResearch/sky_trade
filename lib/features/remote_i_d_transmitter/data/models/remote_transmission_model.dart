@@ -1,5 +1,3 @@
-import 'dart:typed_data' show Uint8List;
-
 import 'package:json_annotation/json_annotation.dart';
 import 'package:sky_trade/core/resources/strings/networking.dart'
     show
@@ -7,9 +5,8 @@ import 'package:sky_trade/core/resources/strings/networking.dart'
         isTestKey,
         latitudeKey,
         longitudeKey,
-        rawDataKey,
-        remoteDataKey;
-import 'package:sky_trade/core/utils/converters/uint8_list_converter.dart';
+        remoteDataKey,
+        versionKey;
 import 'package:sky_trade/features/remote_i_d_receiver/data/models/remote_i_d_model.dart'
     show RemoteIDModel;
 import 'package:sky_trade/features/remote_i_d_transmitter/domain/entities/remote_transmission_entity.dart';
@@ -20,14 +17,14 @@ part 'remote_transmission_model.g.dart';
 final class RemoteTransmissionModel extends RemoteTransmissionEntity {
   const RemoteTransmissionModel({
     required this.mRemoteData,
-    required this.mIsTest,
     required this.mDevice,
-    required this.mRawData,
+    required this.mIsTest,
+    required this.mVersion,
   }) : super(
           remoteData: mRemoteData,
-          isTest: mIsTest,
           device: mDevice,
-          rawData: mRawData,
+          isTest: mIsTest,
+          version: mVersion,
         );
 
   factory RemoteTransmissionModel.fromJson(
@@ -38,15 +35,14 @@ final class RemoteTransmissionModel extends RemoteTransmissionEntity {
   @JsonKey(name: remoteDataKey)
   final RemoteIDModel mRemoteData;
 
+  @JsonKey(name: deviceKey)
+  final DeviceModel? mDevice;
+
   @JsonKey(name: isTestKey)
   final bool mIsTest;
 
-  @JsonKey(name: deviceKey)
-  final DeviceModel mDevice;
-
-  @JsonKey(name: rawDataKey)
-  @Uint8ListConverter()
-  final Uint8List mRawData;
+  @JsonKey(name: versionKey)
+  final String mVersion;
 
   Map<String, dynamic> toJson() => _$RemoteTransmissionModelToJson(this);
 }

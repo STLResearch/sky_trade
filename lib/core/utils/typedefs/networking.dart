@@ -12,7 +12,7 @@ typedef SocketIOClientMessage = ({
 
 typedef RemoteIDSetDeviceCoordinatesTuple = ({
   List<RemoteIDEntity> remoteIDEntities,
-  DeviceEntity deviceEntity,
+  DeviceEntity? deviceEntity,
 });
 
 typedef LngLat = ({

@@ -1,13 +1,10 @@
 // ignore_for_file: lines_longer_than_80_chars
 
-import 'dart:io' show Platform;
-
 import 'package:flutter/material.dart'
     show
         AppBar,
         BuildContext,
         Center,
-        CircularProgressIndicator,
         Color,
         Column,
         CrossAxisAlignment,
@@ -55,8 +52,7 @@ import 'package:sky_trade/core/resources/colors.dart'
         hex838187,
         hexE04F64,
         hexE9F5FE,
-        hexEBEBEB,
-        hexFFFFFF;
+        hexEBEBEB;
 import 'package:sky_trade/core/resources/numbers/ui.dart'
     show
         eightDotNil,
@@ -68,20 +64,17 @@ import 'package:sky_trade/core/resources/numbers/ui.dart'
         sixteenDotNil,
         sixteenDotOne,
         tenDotNil,
-        twentyOneDotNil,
-        twoDotNil;
+        twentyOneDotNil;
 import 'package:sky_trade/core/resources/strings/networking.dart'
     show
         appleAppStorePageLink,
         googlePlayStorePageLink,
         solanaDAppStorePageLink;
 import 'package:sky_trade/core/resources/strings/special_characters.dart'
-    show colon, comma, whiteSpace;
+    show comma, whiteSpace;
 import 'package:sky_trade/core/utils/enums/networking.dart'
     show TrackingTransparencyRequestStatus;
 import 'package:sky_trade/core/utils/extensions/build_context_extensions.dart';
-import 'package:sky_trade/features/link_handler/presentation/blocs/check_link_bloc/check_link_bloc.dart'
-    show CheckLinkBloc, CheckLinkEvent, CheckLinkState;
 import 'package:sky_trade/features/settings/presentation/blocs/analytics_bloc/analytics_bloc.dart'
     show AnalyticsBloc, AnalyticsEvent, AnalyticsState;
 import 'package:sky_trade/features/settings/presentation/blocs/request_delete_account_bloc/request_delete_account_bloc.dart'
@@ -123,9 +116,6 @@ class SettingsScreen extends StatelessWidget {
           BlocProvider<ShareBloc>(
             create: (_) => serviceLocator(),
           ),
-          BlocProvider<CheckLinkBloc>(
-            create: (_) => serviceLocator(),
-          ),
         ],
         child: const SettingsView(),
       );
@@ -149,8 +139,6 @@ class _SettingsViewState extends State<SettingsView> {
 
     _checkTrackingAuthorizationStatus();
 
-    _checkAppCanOpenSolanaDAppStorePageLink();
-
     super.initState();
   }
 
@@ -161,13 +149,6 @@ class _SettingsViewState extends State<SettingsView> {
   void _checkTrackingAuthorizationStatus() =>
       context.read<TrackingAuthorizationStatusBloc>().add(
             const TrackingAuthorizationStatusEvent.check(),
-          );
-
-  void _checkAppCanOpenSolanaDAppStorePageLink() =>
-      context.read<CheckLinkBloc>().add(
-            const CheckLinkEvent.check(
-              link: solanaDAppStorePageLink,
-            ),
           );
 
   void _toggleAnalyticsCollection() => context.read<AnalyticsBloc>().add(
@@ -310,111 +291,63 @@ class _SettingsViewState extends State<SettingsView> {
                           ),
                         ],
                       ),
-                      if (Platform.isIOS || Platform.isAndroid)
-                        const SizedBox(
-                          height: tenDotNil,
-                        ),
-                      if (Platform.isIOS || Platform.isAndroid)
-                        BlocBuilder<CheckLinkBloc, CheckLinkState>(
-                          builder: (_, checkLinkState) =>
-                              BlocBuilder<ShareBloc, ShareState>(
-                            builder: (_, shareState) => ElevatedButton(
-                              onPressed: checkLinkState.maybeWhen(
-                                checking: () => null,
-                                orElse: () => shareState.maybeWhen(
-                                  sharing: () => null,
-                                  orElse: () => () => context
-                                      .read<ShareBloc>()
-                                      .add(
-                                        ShareEvent.share(
-                                          subject: context
-                                              .localize.tryOutSkyTradeRadar,
-                                          title: context.localize.skyTradeRadar,
-                                          message: switch (Platform.isIOS) {
-                                            true => context.localize
-                                                    .heyImUsingSkyTradeRadarAndThoughtYoudLikeItCheckItOutHere +
-                                                colon +
-                                                whiteSpace +
-                                                appleAppStorePageLink,
-                                            _ => checkLinkState.maybeWhen(
-                                                checked: (linkEntity) =>
-                                                    switch (linkEntity.link) {
-                                                  solanaDAppStorePageLink
-                                                      when linkEntity.handled =>
-                                                    context.localize
-                                                            .heyImUsingSkyTradeRadarAndThoughtYoudLikeItCheckItOutOnPlaystoreHere +
-                                                        colon +
-                                                        whiteSpace +
-                                                        googlePlayStorePageLink +
-                                                        comma +
-                                                        whiteSpace +
-                                                        context.localize
-                                                            .orOnTheDAppStoreHere +
-                                                        colon +
-                                                        whiteSpace +
-                                                        linkEntity.link,
-                                                  _ => context.localize
-                                                          .heyImUsingSkyTradeRadarAndThoughtYoudLikeItCheckItOutHere +
-                                                      colon +
-                                                      whiteSpace +
-                                                      googlePlayStorePageLink,
-                                                },
-                                                orElse: () =>
-                                                    context.localize
-                                                        .heyImUsingSkyTradeRadarAndThoughtYoudLikeItCheckItOutHere +
-                                                    colon +
-                                                    whiteSpace +
-                                                    googlePlayStorePageLink,
-                                              ),
-                                          },
-                                        ),
-                                      ),
+                      const SizedBox(
+                        height: tenDotNil,
+                      ),
+                      BlocBuilder<ShareBloc, ShareState>(
+                        builder: (_, shareState) => ElevatedButton(
+                          onPressed: shareState.maybeWhen(
+                            sharing: () => null,
+                            orElse: () => () => context.read<ShareBloc>().add(
+                                  ShareEvent.share(
+                                    subject:
+                                        context.localize.tryOutSkyTradeRadar,
+                                    title: context.localize.skyTradeRadar,
+                                    message: context.localize
+                                            .heyImUsingSkyTradeRadarAndThoughtYoudLikeItCheckItOutOnPlaystore +
+                                        whiteSpace +
+                                        googlePlayStorePageLink +
+                                        comma +
+                                        whiteSpace +
+                                        context.localize.onTheAppStore +
+                                        whiteSpace +
+                                        appleAppStorePageLink +
+                                        whiteSpace +
+                                        context
+                                            .localize.orOnTheSolanaDappStore +
+                                        whiteSpace +
+                                        solanaDAppStorePageLink,
+                                  ),
+                                ),
+                          ),
+                          style: Theme.of(
+                            context,
+                          ).elevatedButtonTheme.style?.copyWith(
+                                backgroundColor: WidgetStatePropertyAll<Color>(
+                                  shareState.maybeWhen(
+                                    sharing: () => hexEBEBEB,
+                                    orElse: () => hexE9F5FE,
+                                  ),
+                                ),
+                                fixedSize: const WidgetStatePropertyAll<Size>(
+                                  Size.fromHeight(
+                                    fortyNineDotNil,
+                                  ),
                                 ),
                               ),
+                          child: Center(
+                            child: Text(
+                              context.localize.shareRadarApp,
                               style: Theme.of(
                                 context,
-                              ).elevatedButtonTheme.style?.copyWith(
-                                    backgroundColor:
-                                        WidgetStatePropertyAll<Color>(
-                                      checkLinkState.maybeWhen(
-                                        checking: () => hexEBEBEB,
-                                        orElse: () => shareState.maybeWhen(
-                                          sharing: () => hexEBEBEB,
-                                          orElse: () => hexE9F5FE,
-                                        ),
-                                      ),
-                                    ),
-                                    fixedSize:
-                                        const WidgetStatePropertyAll<Size>(
-                                      Size.fromHeight(
-                                        fortyNineDotNil,
-                                      ),
-                                    ),
+                              ).textTheme.bodySmall?.copyWith(
+                                    fontWeight: FontWeight.w600,
+                                    color: hex0653EA,
                                   ),
-                              child: Center(
-                                child: checkLinkState.maybeWhen(
-                                  checking: () => const SizedBox(
-                                    width: sixteenDotNil,
-                                    height: sixteenDotNil,
-                                    child: CircularProgressIndicator(
-                                      color: hexFFFFFF,
-                                      strokeWidth: twoDotNil,
-                                    ),
-                                  ),
-                                  orElse: () => Text(
-                                    context.localize.shareRadarApp,
-                                    style: Theme.of(
-                                      context,
-                                    ).textTheme.bodySmall?.copyWith(
-                                          fontWeight: FontWeight.w600,
-                                          color: hex0653EA,
-                                        ),
-                                  ),
-                                ),
-                              ),
                             ),
                           ),
                         ),
+                      ),
                       const SizedBox(
                         height: eighteenDotNil,
                       ),
