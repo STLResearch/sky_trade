@@ -71,9 +71,11 @@ import 'package:sky_trade/core/resources/colors.dart'
         hex0D000000,
         hex161616,
         hex1E1E1E,
+        hex222222,
         hex29FFFFFF,
         hex4040FF,
         hex40FFFFFF,
+        hex4285F4,
         hex626262,
         hex68DEFF,
         hex7583FF,
@@ -85,6 +87,8 @@ import 'package:sky_trade/core/resources/numbers/ui.dart'
         eightDotFive,
         eightDotNil,
         eighteenDotFive,
+        eighteenDotNil,
+        fifteenDotSix,
         fiftyDotNil,
         five,
         fortyDotNil,
@@ -106,6 +110,7 @@ import 'package:sky_trade/core/resources/numbers/ui.dart'
         oneDotNil,
         sixDotNil,
         sixteenDotEight,
+        sixteenDotNil,
         tenDotNil,
         thirtyTwoDotNil,
         three,
@@ -982,18 +987,98 @@ class _RewardsScreenViewState extends State<RewardsScreenView> {
               const SizedBox(
                 height: eightDotNil,
               ),
-              Text(
-                context.localize
-                    .earn25PointsForEveryVerifiedDroneObservationCompleteDailyQuestsToEarnBonusPointsAndClimbTheRanksTheMoreYouContributeTheMoreTouLevelUp,
-                style: Theme.of(
-                  context,
-                ).textTheme.bodySmall?.copyWith(
-                      fontWeight: FontWeight.w300,
-                      fontSize: fourteenDotNil,
-                      height: twentyTwoDotNil / fourteenDotNil,
-                      letterSpacing: nilDotNil,
-                      color: hex626262,
-                    ),
+              Card(
+                hasBorder: true,
+                cornerRadius: sixteenDotNil,
+                horizontalPadding: sixteenDotNil,
+                verticalPadding: tenDotNil,
+                child: SizedBox(
+                  width: double.infinity,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        context.localize.trackADroneWithTheRadarApp,
+                        style: Theme.of(
+                          context,
+                        ).textTheme.bodySmall?.copyWith(
+                              fontWeight: FontWeight.w500,
+                              height: eighteenDotNil / twelveDotNil,
+                              letterSpacing: nilDotNil,
+                              color: hex222222,
+                            ),
+                      ),
+                      const SizedBox(
+                        height: fourDotNil,
+                      ),
+                      Text(
+                        context.localize.fiveSkyPointsPerDrone,
+                        style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                              color: hex4285F4,
+                              height: fifteenDotSix / twelveDotNil,
+                              fontWeight: FontWeight.w600,
+                              letterSpacing: nilDotNil,
+                            ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              const SizedBox(
+                height: eightDotNil,
+              ),
+              Card(
+                hasBorder: true,
+                cornerRadius: sixteenDotNil,
+                horizontalPadding: sixteenDotNil,
+                verticalPadding: tenDotNil,
+                child: SizedBox(
+                  width: double.infinity,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        context
+                            .localize.trackADroneWithTheRadarAppInASpecificArea,
+                        style: Theme.of(
+                          context,
+                        ).textTheme.bodySmall?.copyWith(
+                              fontWeight: FontWeight.w500,
+                              fontSize: twelveDotNil,
+                              height: eighteenDotNil / twelveDotNil,
+                              letterSpacing: nilDotNil,
+                              color: hex222222,
+                            ),
+                      ),
+                      const SizedBox(
+                        height: fourDotNil,
+                      ),
+                      Text(
+                        context.localize
+                            .texasGarlandMurphyPlanoRichardsonMesquiteDallasRowlettColonyCollegeStationFloridaClermontNewPortRicheyValricoWinterHavenTampaBrandonRiverviewSeffnerArizonaPhoenixGlendalePeoriaArkansasFarmingtonBentonvilleRogersPeaRidgeVirginiaVirginiaBeachUtahLindonHerrimanNorthCarolinaRaeford,
+                        style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                              color: hex626262,
+                              fontSize: tenDotNil,
+                              height: eighteenDotNil / tenDotNil,
+                              fontWeight: FontWeight.w300,
+                              letterSpacing: nilDotNil,
+                            ),
+                      ),
+                      const SizedBox(
+                        height: sixDotNil,
+                      ),
+                      Text(
+                        context.localize.boostingSkyPointsEgXThree,
+                        style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                              color: hex4285F4,
+                              height: fifteenDotSix / twelveDotNil,
+                              fontWeight: FontWeight.w600,
+                              letterSpacing: nilDotNil,
+                            ),
+                      ),
+                    ],
+                  ),
+                ),
               ),
               const SizedBox(
                 height: twentyDotNil,
