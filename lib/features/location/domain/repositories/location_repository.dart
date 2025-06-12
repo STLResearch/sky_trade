@@ -16,7 +16,7 @@ abstract interface class LocationRepository {
   Future<Either<LocationPermissionFailure, LocationPermissionEntity>>
       requestLocationPermission();
 
-  Future<void> openLocationSettings();
-
   Future<void> openAppSettings();
+
+  Future<void> openLocationSettings();
 }

@@ -15,6 +15,7 @@ import 'package:flutter/material.dart'
         Colors,
         DialogThemeData,
         DividerThemeData,
+        EdgeInsets,
         EdgeInsetsDirectional,
         ElevatedButtonThemeData,
         FontStyle,
@@ -46,6 +47,7 @@ import 'package:sky_trade/core/resources/colors.dart'
         hex222222,
         hex4285F4,
         hex5D7285,
+        hex686868,
         hex87878D,
         hexB8B8B8,
         hexCCCCCC,
@@ -68,6 +70,7 @@ import 'package:sky_trade/core/resources/numbers/ui.dart'
         oneDotNil,
         sixteenDotFive,
         sixteenDotNil,
+        thirteenDotNil,
         thirtyDotNil,
         thirtySixDotNil,
         twelveDotNil,
@@ -183,7 +186,7 @@ ThemeData get lightTheme => ThemeData(
           hexFFFFFF,
         ),
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(
+          borderRadius: BorderRadiusDirectional.circular(
             twoDotNil,
           ),
           side: const BorderSide(
@@ -212,7 +215,7 @@ ThemeData get lightTheme => ThemeData(
           ),
           shape: WidgetStatePropertyAll<OutlinedBorder>(
             RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(
+              borderRadius: BorderRadiusDirectional.circular(
                 eightDotNil,
               ),
             ),
@@ -235,7 +238,7 @@ ThemeData get lightTheme => ThemeData(
           ),
           shape: WidgetStatePropertyAll<OutlinedBorder>(
             RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(
+              borderRadius: BorderRadiusDirectional.circular(
                 eightDotNil,
               ),
             ),
@@ -320,11 +323,30 @@ ThemeData get lightTheme => ThemeData(
         ),
       ),
       dialogTheme: DialogThemeData(
+        backgroundColor: hexFFFFFF,
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(
-            twentyDotNil,
+          borderRadius: BorderRadiusDirectional.circular(
+            eightDotNil,
           ),
         ),
+        titleTextStyle: const TextStyle(
+          fontFamily: FontFamily.roboto,
+          fontWeight: FontWeight.w400,
+          fontSize: fifteenDotNil,
+          height: twentyDotNil / fifteenDotNil,
+          letterSpacing: nilDotNil,
+          color: hex222222,
+        ),
+        contentTextStyle: const TextStyle(
+          fontFamily: FontFamily.roboto,
+          fontWeight: FontWeight.w400,
+          fontSize: thirteenDotNil,
+          height: twentyDotNil / thirteenDotNil,
+          letterSpacing: nilDotNil,
+          color: hex686868,
+        ),
+        actionsPadding: EdgeInsetsDirectional.zero,
+        insetPadding: EdgeInsets.zero,
       ),
       appBarTheme: const AppBarTheme(
         backgroundColor: hex00375A,

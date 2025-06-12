@@ -1121,23 +1121,24 @@ class AppLocalizationsEn extends AppLocalizations {
   String get openSettings => 'Open Settings';
 
   @override
-  String get locationAccessNeeded => 'Location access needed';
+  String get locationAccessNeeded => 'Location Access Needed';
 
   @override
-  String get skyTradeNeedsYourLocationToShowRelevantInvestmentZonesAroundYou =>
-      'SkyTrade needs your location to show relevant investment zones around you';
+  String get skyTradeNeedsYourLocationToShowRelevantInvestmentZonesNearYou =>
+      'SkyTrade needs your location to show relevant investment zones near you';
 
   @override
-  String get enableLocationInSettings => 'Enable location in settings';
+  String get enableLocationPermissionInSettings =>
+      'Enable Location Permission in Settings';
 
   @override
   String get youveDeniedLocationAccessPleaseEnableItInYourAppSettingsSoSkyTradeCanShowYouRelevantInvestmentZonesNearYou =>
       'You\'ve denied location access. Please enable it in your app settings so SkyTrade can show you relevant investment zones near you';
 
   @override
-  String get turnOnLocationServices => 'Turn on location services';
+  String get turnOnLocationServices => 'Turn On Location Services';
 
   @override
-  String get skyTradeNeedsGpsToFindYourLocationAndShowYouRelevantInvestmentZonesAroundYouPleaseEnableItInYourDeviceSettings =>
-      'SkyTrade needs GPS to find your location and show you relevant investment zones around you. Please enable it in your device settings';
+  String get skyTradeNeedsGpsToFindYourLocationAndShowYouRelevantInvestmentAroundYouPleaseEnableItInYourDeviceSettings =>
+      'SkyTrade needs GPS to find your location and show you relevant investment around you. Please enable it in your device settings';
 }

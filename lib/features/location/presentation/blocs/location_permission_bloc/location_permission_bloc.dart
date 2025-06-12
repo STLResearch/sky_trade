@@ -23,10 +23,6 @@ class LocationPermissionBloc
     on<_RequestPermission>(
       _requestPermission,
     );
-
-    on<_OpenAppSettings>(
-      _openAppSettings,
-    );
   }
 
   final LocationRepository _locationRepository;
@@ -53,12 +49,5 @@ class LocationPermissionBloc
         ),
       ),
     );
-  }
-
-  Future<void> _openAppSettings(
-      _OpenAppSettings event,
-      Emitter<LocationPermissionState> emit,
-      ) async {
-    await _locationRepository.openAppSettings();
   }
 }

@@ -2147,20 +2147,20 @@ abstract class AppLocalizations {
   /// No description provided for @locationAccessNeeded.
   ///
   /// In en, this message translates to:
-  /// **'Location access needed'**
+  /// **'Location Access Needed'**
   String get locationAccessNeeded;
 
-  /// No description provided for @skyTradeNeedsYourLocationToShowRelevantInvestmentZonesAroundYou.
+  /// No description provided for @skyTradeNeedsYourLocationToShowRelevantInvestmentZonesNearYou.
   ///
   /// In en, this message translates to:
-  /// **'SkyTrade needs your location to show relevant investment zones around you'**
-  String get skyTradeNeedsYourLocationToShowRelevantInvestmentZonesAroundYou;
+  /// **'SkyTrade needs your location to show relevant investment zones near you'**
+  String get skyTradeNeedsYourLocationToShowRelevantInvestmentZonesNearYou;
 
-  /// No description provided for @enableLocationInSettings.
+  /// No description provided for @enableLocationPermissionInSettings.
   ///
   /// In en, this message translates to:
-  /// **'Enable location in settings'**
-  String get enableLocationInSettings;
+  /// **'Enable Location Permission in Settings'**
+  String get enableLocationPermissionInSettings;
 
   /// No description provided for @youveDeniedLocationAccessPleaseEnableItInYourAppSettingsSoSkyTradeCanShowYouRelevantInvestmentZonesNearYou.
   ///
@@ -2172,15 +2172,15 @@ abstract class AppLocalizations {
   /// No description provided for @turnOnLocationServices.
   ///
   /// In en, this message translates to:
-  /// **'Turn on location services'**
+  /// **'Turn On Location Services'**
   String get turnOnLocationServices;
 
-  /// No description provided for @skyTradeNeedsGpsToFindYourLocationAndShowYouRelevantInvestmentZonesAroundYouPleaseEnableItInYourDeviceSettings.
+  /// No description provided for @skyTradeNeedsGpsToFindYourLocationAndShowYouRelevantInvestmentAroundYouPleaseEnableItInYourDeviceSettings.
   ///
   /// In en, this message translates to:
-  /// **'SkyTrade needs GPS to find your location and show you relevant investment zones around you. Please enable it in your device settings'**
+  /// **'SkyTrade needs GPS to find your location and show you relevant investment around you. Please enable it in your device settings'**
   String
-      get skyTradeNeedsGpsToFindYourLocationAndShowYouRelevantInvestmentZonesAroundYouPleaseEnableItInYourDeviceSettings;
+      get skyTradeNeedsGpsToFindYourLocationAndShowYouRelevantInvestmentAroundYouPleaseEnableItInYourDeviceSettings;
 }
 
 class _AppLocalizationsDelegate

@@ -53,12 +53,13 @@ final class LocationRepositoryImplementation
           );
 
   @override
-  Future<LocationServiceStatusEntity> get locationServiceStatus =>
-      Geolocator.isLocationServiceEnabled().then(
-        (enabled) => LocationServiceStatusEntity(
-          enabled: enabled,
-        ),
-      );
+  Future<LocationServiceStatusEntity> get locationServiceStatus async {
+    final locationServiceEnabled = await Geolocator.isLocationServiceEnabled();
+
+    return LocationServiceStatusEntity(
+      enabled: locationServiceEnabled,
+    );
+  }
 
   @override
   Stream<Either<LocationServiceStatusFailure, LocationServiceStatusEntity>>
@@ -78,12 +79,13 @@ final class LocationRepositoryImplementation
       requestLocationPermission() async {
     final currentPermission = await Geolocator.checkPermission();
 
-    // If permission is permanently denied, return failure
-    if (currentPermission == LocationPermission.deniedForever) {
-      return Left(LocationPermissionFailure());
+    if (currentPermission == LocationPermission.deniedForever ||
+        currentPermission == LocationPermission.unableToDetermine) {
+      return Left(
+        LocationPermissionFailure(),
+      );
     }
 
-    // If permission is already granted, return success
     if (currentPermission == LocationPermission.always ||
         currentPermission == LocationPermission.whileInUse) {
       return const Right(
@@ -113,12 +115,8 @@ final class LocationRepositoryImplementation
   }
 
   @override
-  Future<void> openLocationSettings() async {
-    await Geolocator.openLocationSettings();
-  }
+  Future<void> openAppSettings() => Geolocator.openAppSettings();
 
   @override
-  Future<void> openAppSettings() async {
-    await Geolocator.openAppSettings();
-  }
+  Future<void> openLocationSettings() => Geolocator.openLocationSettings();
 }

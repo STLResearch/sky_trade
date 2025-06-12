@@ -2,6 +2,7 @@
 
 import 'dart:io' show Platform;
 
+import 'package:dartz/dartz.dart' show Function0;
 import 'package:flutter/material.dart'
     show
         AlignmentDirectional,
@@ -53,6 +54,7 @@ import 'package:sky_trade/core/resources/strings/special_characters.dart'
     show emptyString;
 import 'package:sky_trade/core/resources/strings/ui.dart'
     show bridDronesSourceId, layerId;
+import 'package:sky_trade/core/utils/enums/environment.dart' show Settings;
 import 'package:sky_trade/core/utils/enums/ui.dart' show MapStyle;
 import 'package:sky_trade/core/utils/extensions/build_context_extensions.dart';
 import 'package:sky_trade/core/utils/extensions/mapbox_map_extensions.dart';
@@ -77,6 +79,8 @@ import 'package:sky_trade/features/location/presentation/blocs/location_service_
         LocationServiceStatusBloc,
         LocationServiceStatusEvent,
         LocationServiceStatusState;
+import 'package:sky_trade/features/location/presentation/blocs/location_settings_bloc/location_settings_bloc.dart'
+    show LocationSettingsBloc, LocationSettingsEvent;
 import 'package:sky_trade/features/remote_i_d_receiver/presentation/blocs/broadcast_remote_i_d_receiver_bloc/broadcast_remote_i_d_receiver_bloc.dart'
     show
         BroadcastRemoteIDReceiverBloc,
@@ -98,9 +102,9 @@ import 'package:sky_trade/features/u_a_s_restrictions/domain/entities/restrictio
     show RestrictionEntity;
 import 'package:sky_trade/features/u_a_s_restrictions/presentation/blocs/u_a_s_restrictions_bloc/u_a_s_restrictions_bloc.dart'
     show UASRestrictionsBloc, UASRestrictionsEvent, UASRestrictionsState;
+import 'package:sky_trade/features/u_a_s_restrictions/presentation/widgets/action_dialog.dart';
 import 'package:sky_trade/features/u_a_s_restrictions/presentation/widgets/alert_snack_bar.dart';
 import 'package:sky_trade/features/u_a_s_restrictions/presentation/widgets/drones_indicator.dart';
-import 'package:sky_trade/features/u_a_s_restrictions/presentation/widgets/location_action_dialog.dart';
 import 'package:sky_trade/features/u_a_s_restrictions/presentation/widgets/map_overlay.dart'
     show MapOverlay;
 import 'package:sky_trade/features/u_a_s_restrictions/presentation/widgets/map_view.dart';
@@ -134,6 +138,9 @@ class HomeScreen extends StatelessWidget {
             create: (_) => serviceLocator(),
           ),
           BlocProvider<LocationServiceStatusBloc>(
+            create: (_) => serviceLocator(),
+          ),
+          BlocProvider<LocationSettingsBloc>(
             create: (_) => serviceLocator(),
           ),
           BlocProvider<BroadcastRemoteIDReceiverBloc>(
@@ -268,6 +275,10 @@ class _HomeViewState extends State<HomeView> {
             const LocationPermissionEvent.requestPermission(),
           );
 
+  void _requestWifiPermission() => context.read<WifiPermissionBloc>().add(
+        const WifiPermissionEvent.requestPermission(),
+      );
+
   void _requestBluetoothPermissions() =>
       context.read<BluetoothPermissionsBloc>().add(
             const BluetoothPermissionsEvent.requestPermissions(),
@@ -284,67 +295,60 @@ class _HomeViewState extends State<HomeView> {
         const LocationServiceStatusEvent.stopListeningLocationServiceStatus(),
       );
 
-  void _showLocationPermissionRequestDialog(BuildContext context) {
-    LocationActionDialog.show(
-      context,
-      title: context.localize.locationAccessNeeded,
-      content: context.localize.skyTradeNeedsYourLocationToShowRelevantInvestmentZonesAroundYou,
-      allowButtonText: context.localize.allow,
-      onAllowPressed: () {
-        Navigator.of(context).pop();
-        context.read<LocationPermissionBloc>().add(
-          const LocationPermissionEvent.requestPermission(),
-        );
-      },
+  void _showLocationRelatedAlertDialogUsing({
+    required String title,
+    required String content,
+    required String actionText,
+    required Function0<void> action,
+  }) =>
+      ActionDialog.show(
+        context,
+        title: title,
+        content: content,
+        onActionConfirmed: () {
+          Navigator.of(
+            context,
+          ).pop();
 
-      // title: context.localize.locationAccessRequired, // You'll need to add this localization
-      // content: context.localize.skyTradeNeedsLocationAccess, // You'll need to add this localization
-      // onActionDismissed: () {
-      //   Navigator.of(context).pop();
-      // },
-      // onActionConfirmed: () {
-      //   Navigator.of(context).pop();
-      //   // Request location permission
-      //   context.read<LocationPermissionBloc>().add(
-      //     const LocationPermissionEvent.requestPermission(),
-      //   );
-      // },
-    );
-  }
+          action();
+        },
+        actionConfirmText: actionText,
+      );
 
-  void _showLocationPermissionPermanentlyDeniedDialog(BuildContext context) {
-    LocationActionDialog.show(
-      context,
-      title: context.localize.enableLocationInSettings,
-      content: context.localize.youveDeniedLocationAccessPleaseEnableItInYourAppSettingsSoSkyTradeCanShowYouRelevantInvestmentZonesNearYou,
-      showAllowButton: false,
-      showSettingsButton: true,
-      settingsButtonText: context.localize.openSettings,
-      onSettingsPressed: () {
-        Navigator.of(context).pop();
-        context.read<LocationPermissionBloc>().add(
-          const LocationPermissionEvent.openAppSettings(),
-        );
-      },
-    );
-  }
+  void _showLocationPermissionDeniedDialog() =>
+      _showLocationRelatedAlertDialogUsing(
+        title: context.localize.locationAccessNeeded,
+        content: context.localize
+            .skyTradeNeedsYourLocationToShowRelevantInvestmentZonesNearYou,
+        actionText: context.localize.allow,
+        action: _requestLocationPermission,
+      );
 
-  void _showLocationServicesDisabledDialog(BuildContext context) {
-    LocationActionDialog.show(
-      context,
-      title: context.localize.turnOnLocationServices,
-      content: context.localize.skyTradeNeedsGpsToFindYourLocationAndShowYouRelevantInvestmentZonesAroundYouPleaseEnableItInYourDeviceSettings,
-      showAllowButton: false,
-      showSettingsButton: true,
-      settingsButtonText: context.localize.openSettings,
-      onSettingsPressed: () {
-        Navigator.of(context).pop();
-        context.read<LocationServiceStatusBloc>().add(
-          const LocationServiceStatusEvent.openLocationSettings(),
-        );
-      },
-    );
-  }
+  void _showLocationPermissionPermanentlyDeniedDialog() =>
+      _showLocationRelatedAlertDialogUsing(
+        title: context.localize.enableLocationPermissionInSettings,
+        content: context.localize
+            .youveDeniedLocationAccessPleaseEnableItInYourAppSettingsSoSkyTradeCanShowYouRelevantInvestmentZonesNearYou,
+        actionText: context.localize.openSettings,
+        action: () => context.read<LocationSettingsBloc>().add(
+              const LocationSettingsEvent.openSettings(
+                settings: Settings.app,
+              ),
+            ),
+      );
+
+  void _showLocationServiceStatusDisabledDialog() =>
+      _showLocationRelatedAlertDialogUsing(
+        title: context.localize.turnOnLocationServices,
+        content: context.localize
+            .skyTradeNeedsGpsToFindYourLocationAndShowYouRelevantInvestmentAroundYouPleaseEnableItInYourDeviceSettings,
+        actionText: context.localize.openSettings,
+        action: () => context.read<LocationSettingsBloc>().add(
+              const LocationSettingsEvent.openSettings(
+                settings: Settings.locationServices,
+              ),
+            ),
+      );
 
   @override
   void dispose() {
@@ -404,7 +408,14 @@ class _HomeViewState extends State<HomeView> {
                         );
                   } else {
                     _stopListeningLocationServiceStatus();
+
+                    _showLocationPermissionDeniedDialog();
                   }
+                },
+                cannotRequestPermission: (_) {
+                  _stopListeningLocationServiceStatus();
+
+                  _showLocationPermissionPermanentlyDeniedDialog();
                 },
                 orElse: _stopListeningLocationServiceStatus,
               );
@@ -415,9 +426,7 @@ class _HomeViewState extends State<HomeView> {
               locationServiceStatusState.maybeWhen(
                 gotLocationServiceStatus: (locationServiceStatusEntity) {
                   if (locationServiceStatusEntity.enabled) {
-                    context.read<WifiPermissionBloc>().add(
-                          const WifiPermissionEvent.requestPermission(),
-                        );
+                    _requestWifiPermission();
 
                     context.read<LocationPositionBloc>().add(
                           const LocationPositionEvent.listenLocationPosition(),
@@ -428,6 +437,8 @@ class _HomeViewState extends State<HomeView> {
                     _stopListeningLocationPosition();
 
                     _centerLocationNotifier.value = false;
+
+                    _showLocationServiceStatusDisabledDialog();
                   }
                 },
                 orElse: () {
@@ -729,49 +740,45 @@ class _HomeViewState extends State<HomeView> {
                   builder: (_, mapStyleNotifierValue, __) => MapOverlay(
                     myLocationFollowed: centerLocationNotifierValue,
                     mapStyle: mapStyleNotifierValue,
-                    onGiftTap: () {},
                     onMyLocationIconTap: () {
                       context.read<LocationPermissionBloc>().state.whenOrNull(
                         maybeGrantedPermission: (
                           locationPermissionEntity,
                         ) {
-                          if (locationPermissionEntity.granted) {
-                            context
-                                .read<LocationServiceStatusBloc>()
-                                .state
-                                .whenOrNull(
-                              gotLocationServiceStatus:
-                                  (locationServiceStatusEntity) {
-                                if (locationServiceStatusEntity.enabled) {
-                                  _centerLocationNotifier.value =
-                                      !_centerLocationNotifier.value;
+                          if (!locationPermissionEntity.granted) {
+                            _showLocationPermissionDeniedDialog();
 
-                                  if (_centerLocationNotifier.value) {
-                                    context.read<LocationPositionBloc>().add(
-                                          const LocationPositionEvent
-                                              .getLocationPosition(),
-                                        );
-                                  }
-                                }
-                                else {
-                                  _showLocationServicesDisabledDialog(context);
-                                }
-                              },
-                            );
-                          } else {
-                            // Case 1: Location Permission Not Granted (Can Still Request)
-                            _showLocationPermissionRequestDialog(context);
+                            return;
                           }
+
+                          context
+                              .read<LocationServiceStatusBloc>()
+                              .state
+                              .whenOrNull(
+                            gotLocationServiceStatus:
+                                (locationServiceStatusEntity) {
+                              if (!locationServiceStatusEntity.enabled) {
+                                _showLocationServiceStatusDisabledDialog();
+
+                                return;
+                              }
+
+                              _requestWifiPermission();
+
+                              _centerLocationNotifier.value =
+                                  !_centerLocationNotifier.value;
+
+                              if (_centerLocationNotifier.value) {
+                                context.read<LocationPositionBloc>().add(
+                                      const LocationPositionEvent
+                                          .getLocationPosition(),
+                                    );
+                              }
+                            },
+                          );
                         },
                         cannotRequestPermission: (_) {
-                          // Case 2: Location Permission Permanently Denied
-                          _showLocationPermissionPermanentlyDeniedDialog(context);
-                        },
-                        initial: () {
-                          // First time - request permission
-                          context.read<LocationPermissionBloc>().add(
-                            const LocationPermissionEvent.requestPermission(),
-                          );
+                          _showLocationPermissionPermanentlyDeniedDialog();
                         },
                       );
                     },

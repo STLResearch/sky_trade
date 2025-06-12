@@ -7,6 +7,8 @@ import 'package:sky_trade/features/location/presentation/blocs/location_position
     show LocationPositionBloc;
 import 'package:sky_trade/features/location/presentation/blocs/location_service_status_bloc/location_service_status_bloc.dart'
     show LocationServiceStatusBloc;
+import 'package:sky_trade/features/location/presentation/blocs/location_settings_bloc/location_settings_bloc.dart'
+    show LocationSettingsBloc;
 
 final _sl = GetIt.I;
 
@@ -25,6 +27,11 @@ Future<void> registerLocationServices() async {
     )
     ..registerFactory<LocationServiceStatusBloc>(
       () => LocationServiceStatusBloc(
+        _sl(),
+      ),
+    )
+    ..registerFactory<LocationSettingsBloc>(
+      () => LocationSettingsBloc(
         _sl(),
       ),
     )
