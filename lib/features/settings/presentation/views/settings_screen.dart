@@ -362,7 +362,7 @@ class _SettingsViewState extends State<SettingsView> {
                   bottom: eighteenDotNil,
                 ),
                 child: ElevatedButton(
-                  onPressed: () => ActionDialog.show(
+                  onPressed: () =>  ActionDialog.show(
                     context,
                     content: context.localize
                         .aCodeWillBeSentToYourEmailAreYouSureYouWantToProceedWithThisAction,

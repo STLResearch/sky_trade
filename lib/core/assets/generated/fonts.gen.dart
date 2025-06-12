@@ -25,6 +25,9 @@ class FontFamily {
   /// Font family: Poppins
   static const String poppins = 'Poppins';
 
+  /// Font family: Roboto
+  static const String roboto = 'Roboto';
+
   /// Font family: Urbanist
   static const String urbanist = 'Urbanist';
 }
