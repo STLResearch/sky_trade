@@ -182,3 +182,8 @@ flutter:
           weight: 400
         - asset: assets/fonts/urbanist/Urbanist-SemiBold-600.ttf
           weight: 600
+
+    - family: Roboto
+      fonts:
+        - asset: assets/fonts/roboto/Roboto-Regular-400.ttf
+          weight: 400

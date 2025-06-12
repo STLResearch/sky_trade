@@ -116,7 +116,7 @@ class GetStartedView extends StatelessWidget {
                         context.localize
                             .clickOnTheLinkToProceedWithTheAuthenticationProcess,
                     dismissible: false,
-                    actionConfirmedText: context.localize.okay,
+                    actionConfirmText: context.localize.okay,
                     onActionConfirmed: () => Navigator.of(
                       context,
                     ).pop(),
@@ -134,7 +134,7 @@ class GetStartedView extends StatelessWidget {
                         context.localize
                             .thereIsNoOtherWayToProceedUnlessYouCompleteTheLogoutProcessYouWillBeAbleToLogBackInAfterwards,
                     dismissible: false,
-                    actionConfirmedText: context.localize.logout,
+                    actionConfirmText: context.localize.logout,
                     onActionConfirmed: () {
                       Navigator.of(
                         context,
@@ -157,13 +157,13 @@ class GetStartedView extends StatelessWidget {
                         context.localize
                             .howeverThisEmailHasNotBeenVerifiedClickOnTheLinkSentToTheEmailToProceedOrLogoutInstead,
                     dismissible: false,
-                    actionDismissedText: context.localize.cancel,
+                    actionDismissText: context.localize.cancel,
                     onActionDismissed: () {
                       Navigator.of(
                         context,
                       ).pop();
                     },
-                    actionConfirmedText: context.localize.logout,
+                    actionConfirmText: context.localize.logout,
                     onActionConfirmed: () {
                       Navigator.of(
                         context,
@@ -201,7 +201,7 @@ class GetStartedView extends StatelessWidget {
                             .oopsSomethingWentWrongKindlyRetryOrInvalidateYourSession,
                       },
                       dismissible: false,
-                      actionDismissedText: switch (checkSkyTradeUserFailure) {
+                      actionDismissText: switch (checkSkyTradeUserFailure) {
                         UserDeletedFailure() => null,
                         _ => context.localize.retry,
                       },
@@ -217,7 +217,7 @@ class GetStartedView extends StatelessWidget {
                                 );
                           },
                       },
-                      actionConfirmedText: switch (checkSkyTradeUserFailure) {
+                      actionConfirmText: switch (checkSkyTradeUserFailure) {
                         UserDeletedFailure() => context.localize.proceed,
                         _ => context.localize.invalidate,
                       },
