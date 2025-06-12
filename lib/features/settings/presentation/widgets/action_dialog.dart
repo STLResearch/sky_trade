@@ -1,32 +1,29 @@
 import 'package:flutter/material.dart'
     show
-        AlertDialog,
+        Align,
+        AlignmentDirectional,
         BuildContext,
+        Column,
+        CrossAxisAlignment,
+        Dialog,
         EdgeInsets,
         EdgeInsetsDirectional,
-        FontWeight,
-        MainAxisAlignment,
+        Flexible,
+        MainAxisSize,
+        MediaQuery,
         Padding,
         Row,
+        Size,
         SizedBox,
         Text,
         TextButton,
         Theme,
         VoidCallback,
+        WidgetStatePropertyAll,
         showDialog;
-import 'package:sky_trade/core/assets/generated/fonts.gen.dart';
-import 'package:sky_trade/core/resources/colors.dart'
-    show hex0072F0, hex222222, hex686868;
+import 'package:sky_trade/core/resources/colors.dart' show hex0072F0;
 import 'package:sky_trade/core/resources/numbers/ui.dart'
-    show
-        fifteenDotNil,
-        fourteenDotNil,
-        nilDotNil,
-        sixteenDotNil,
-        tenDotNil,
-        thirteenDotNil,
-        twelveDotNil,
-        twentyDotNil;
+    show eight, fourDotNil, nilDotNil, sixteenDotNil, tenDotNil, twelveDotNil;
 import 'package:sky_trade/core/utils/extensions/build_context_extensions.dart';
 
 final class ActionDialog {
@@ -41,97 +38,107 @@ final class ActionDialog {
   }) {
     showDialog<void>(
       context: context,
-      builder: (_) => AlertDialog.adaptive(
-        contentPadding: const EdgeInsetsDirectional.only(
-          start: sixteenDotNil,
-          top: twelveDotNil,
-          end: sixteenDotNil,
-          bottom: tenDotNil,
+      builder: (_) => Dialog(
+        insetPadding: EdgeInsets.symmetric(
+          horizontal: MediaQuery.sizeOf(
+                context,
+              ).width /
+              eight,
         ),
-        title: switch (title != null) {
-          true => Padding(
-              padding: const EdgeInsets.only(
-                bottom: tenDotNil,
-              ),
-              child: Text(
-                title!,
+        child: Padding(
+          padding: const EdgeInsetsDirectional.symmetric(
+            horizontal: sixteenDotNil,
+            vertical: twelveDotNil,
+          ),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              if (title != null)
+                Text(
+                  title,
+                  style: Theme.of(
+                    context,
+                  ).dialogTheme.titleTextStyle,
+                ),
+              if (title != null)
+                const SizedBox(
+                  height: fourDotNil,
+                ),
+              Text(
+                content,
                 style: Theme.of(
                   context,
-                ).textTheme.bodySmall?.copyWith(
-                      fontFamily: FontFamily.roboto,
-                      fontSize: fifteenDotNil,
-                      fontWeight: FontWeight.w400,
-                      height: twentyDotNil / fourteenDotNil,
-                      letterSpacing: nilDotNil,
-                      color: hex222222,
-                    ),
+                ).dialogTheme.contentTextStyle,
               ),
-            ),
-          false => null,
-        },
-        content: Text(
-          content,
-          style: Theme.of(
-            context,
-          ).textTheme.bodySmall?.copyWith(
-                fontFamily: FontFamily.roboto,
-                fontSize: thirteenDotNil,
-                fontWeight: FontWeight.w400,
-                height: twentyDotNil / fourteenDotNil,
-                letterSpacing: nilDotNil,
-                color: hex686868,
-              ),
-        ),
-        actions: [
-          Padding(
-            padding: const EdgeInsetsDirectional.only(
-              start: sixteenDotNil,
-              end: sixteenDotNil,
-            ),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                if (onActionDismissed != null) ...[
-                  TextButton(
-                    onPressed: onActionDismissed,
-                    child: Text(
-                      context.localize.no,
-                      style: Theme.of(
-                        context,
-                      ).textTheme.bodySmall?.copyWith(
-                            fontFamily: FontFamily.poppins,
-                            fontWeight: FontWeight.w500,
-                            height: sixteenDotNil / twelveDotNil,
-                            letterSpacing: nilDotNil,
-                            color: hex0072F0,
+              if (onActionDismissed != null || onActionConfirmed != null)
+                const SizedBox(
+                  height: tenDotNil,
+                ),
+              if (onActionDismissed != null || onActionConfirmed != null)
+                Align(
+                  alignment: AlignmentDirectional.centerEnd,
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      if (onActionDismissed != null)
+                        Flexible(
+                          child: TextButton(
+                            style: Theme.of(
+                              context,
+                            ).textButtonTheme.style?.copyWith(
+                                  fixedSize: const WidgetStatePropertyAll<Size>(
+                                    Size.fromHeight(
+                                      sixteenDotNil,
+                                    ),
+                                  ),
+                                ),
+                            onPressed: onActionDismissed,
+                            child: Text(
+                              actionDismissText ?? context.localize.no,
+                              style: Theme.of(
+                                context,
+                              ).textTheme.bodyLarge?.copyWith(
+                                    fontSize: twelveDotNil,
+                                    height: sixteenDotNil / twelveDotNil,
+                                    letterSpacing: nilDotNil,
+                                    color: hex0072F0,
+                                  ),
+                            ),
                           ),
-                    ),
-                  ),
-                  const SizedBox(
-                    width: tenDotNil,
-                  ),
-                ],
-                if (onActionConfirmed != null)
-                  TextButton(
-                    onPressed: onActionConfirmed,
-                    child: Text(
-                      context.localize.yes,
-                      style: Theme.of(
-                        context,
-                      ).textTheme.bodySmall?.copyWith(
-                            fontFamily: FontFamily.poppins,
-                            fontWeight: FontWeight.w500,
-                            height: sixteenDotNil / twelveDotNil,
-                            letterSpacing: nilDotNil,
-                            color: hex0072F0,
+                        ),
+                      if (onActionConfirmed != null)
+                        Flexible(
+                          child: TextButton(
+                            style: Theme.of(
+                              context,
+                            ).textButtonTheme.style?.copyWith(
+                                  fixedSize: const WidgetStatePropertyAll<Size>(
+                                    Size.fromHeight(
+                                      sixteenDotNil,
+                                    ),
+                                  ),
+                                ),
+                            onPressed: onActionConfirmed,
+                            child: Text(
+                              actionConfirmText ?? context.localize.yes,
+                              style: Theme.of(
+                                context,
+                              ).textTheme.bodyLarge?.copyWith(
+                                    fontSize: twelveDotNil,
+                                    height: sixteenDotNil / twelveDotNil,
+                                    letterSpacing: nilDotNil,
+                                    color: hex0072F0,
+                                  ),
+                            ),
                           ),
-                    ),
+                        ),
+                    ],
                   ),
-              ],
-            ),
+                ),
+            ],
           ),
-        ],
-        actionsPadding: EdgeInsetsDirectional.zero,
+        ),
       ),
     );
   }
