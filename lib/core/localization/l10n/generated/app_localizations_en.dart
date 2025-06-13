@@ -1108,7 +1108,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get trackADroneWithTheRadarAppInASpecificArea =>
-      'Track a drone with the radar app in a specific area: ';
+      'Track a drone with the radar app in a specific area';
 
   @override
   String get texasGarlandMurphyPlanoRichardsonMesquiteDallasRowlettColonyCollegeStationFloridaClermontNewPortRicheyValricoWinterHavenTampaBrandonRiverviewSeffnerArizonaPhoenixGlendalePeoriaArkansasFarmingtonBentonvilleRogersPeaRidgeVirginiaVirginiaBeachUtahLindonHerrimanNorthCarolinaRaeford =>

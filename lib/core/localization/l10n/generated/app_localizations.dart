@@ -2122,7 +2122,7 @@ abstract class AppLocalizations {
   /// No description provided for @trackADroneWithTheRadarAppInASpecificArea.
   ///
   /// In en, this message translates to:
-  /// **'Track a drone with the radar app in a specific area: '**
+  /// **'Track a drone with the radar app in a specific area'**
   String get trackADroneWithTheRadarAppInASpecificArea;
 
   /// No description provided for @texasGarlandMurphyPlanoRichardsonMesquiteDallasRowlettColonyCollegeStationFloridaClermontNewPortRicheyValricoWinterHavenTampaBrandonRiverviewSeffnerArizonaPhoenixGlendalePeoriaArkansasFarmingtonBentonvilleRogersPeaRidgeVirginiaVirginiaBeachUtahLindonHerrimanNorthCarolinaRaeford.

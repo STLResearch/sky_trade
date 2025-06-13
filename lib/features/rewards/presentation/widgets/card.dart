@@ -21,6 +21,7 @@ class Card extends StatelessWidget {
   const Card({
     required this.child,
     required this.hasBorder,
+    this.borderColor,
     this.gradient,
     this.backgroundColor,
     this.cornerRadius,
@@ -32,6 +33,7 @@ class Card extends StatelessWidget {
 
   final Widget child;
   final bool hasBorder;
+  final Color? borderColor;
   final Gradient? gradient;
   final Color? backgroundColor;
   final double? cornerRadius;
@@ -56,7 +58,7 @@ class Card extends StatelessWidget {
             ),
             border: switch (hasBorder) {
               true => Border.all(
-                  color: hex1A000000,
+                  color: borderColor ?? hex1A000000,
                 ),
               false => null,
             },
