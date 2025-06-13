@@ -1105,4 +1105,12 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get couldNotGetEarningsReportSwipeDownToRefreshThePage =>
       'Could not get earnings report. Swipe down to refresh the page';
+
+  @override
+  String get trackADroneWithTheRadarAppInASpecificArea =>
+      'Track a drone with the radar app in a specific area';
+
+  @override
+  String get texasGarlandMurphyPlanoRichardsonMesquiteDallasRowlettColonyCollegeStationFloridaClermontNewPortRicheyValricoWinterHavenTampaBrandonRiverviewSeffnerArizonaPhoenixGlendalePeoriaArkansasFarmingtonBentonvilleRogersPeaRidgeVirginiaVirginiaBeachUtahLindonHerrimanNorthCarolinaRaeford =>
+      'Texas: Garland, Murphy, Plano, Richardson, Mesquite, Dallas, Rowlett, Colony, College Station Florida: Clermont, New Port Richey, Valrico, Winter Haven, Tampa, Brandon, Riverview, Seffner Arizona: Phoenix, Glendale, Peoria Arkansas: Farmington, Bentonville, Rogers, Pea Ridge Virginia: Virginia Beach Utah: Lindon, Herriman North Carolina: Raeford';
 }
