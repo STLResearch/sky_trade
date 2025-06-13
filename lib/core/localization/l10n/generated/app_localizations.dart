@@ -2181,6 +2181,12 @@ abstract class AppLocalizations {
   /// **'SkyTrade needs GPS to find your location and show relevant features around you. Please enable it in your device settings'**
   String
   get skyTradeNeedsGpsToFindYourLocationAndShowRelevantFeaturesAroundYouPleaseEnableItInYourDeviceSettings;
+
+  /// No description provided for @termsOfService.
+  ///
+  /// In en, this message translates to:
+  /// **'Terms of Service'**
+  String get termsOfService;
 }
 
 class _AppLocalizationsDelegate
