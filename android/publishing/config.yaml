@@ -19,7 +19,7 @@ app:
     - purpose: icon
       uri: ../fastlane/metadata/android/en-GB/images/icon.png
 release:
-  address: 8y2PdB68YZmBn2fAJm6eMXxTggzEy2QrcyTmQzYjSbJ5
+  address: Fcy8f4vaKL1JiuSqV7gu8YR1j4AtPunNKH4C3mmr95gK
   media:
     - purpose: icon
       uri: ../fastlane/metadata/android/en-GB/images/icon.png
@@ -39,14 +39,14 @@ release:
       name: SkyTrade
       short_description: Navigate the skies
       long_description: Navigate the skies with confidence using SkyTrade Air Management. Instantly access maps of restricted, controlled, and ready-to-fly zones with real-time updates. Plan your flights efficiently with detailed airspace information and stay compliant with aviation regulations. Download now for smarter, safer flying
-      new_in_version: We made a couple of bug fixes and improvements
+      new_in_version: View and manage your referrals in one place. Share your referral code with friends and earn $SKY points when they sign up with your referral code. Earn $SKY points by completing daily quests. Earn even more rewards in limited time events when you track drones in specific locations. We also made several bug fixes and improvements
       saga_features: ''
 solana_mobile_dapp_publisher_portal:
   google_store_package: mobile.trade.sky
-  testing_instructions: We refined our authentication flow. The new flow simplifies authentication for users making it easy for both new and existing users to sign up or sign in. We created a test account for the Solana dApp store review team to test this new flow easily. On the new authentication screen, click Get started -> Use password -> then enter the following credentials we specially created for the Solana dApp store review team to test with. Email is testrestrictionsapp+solanadappstorereview@gmail.com and password is Shivam##%27
+  testing_instructions: We added a new rewards feature. After login, on the home screen click on the gift icon to access information on activities that can earn you rewards. We also added a new referral program feature. Click Menu -> Referral program to view your referral details. We have a test account for the Solana dApp store review team to easily test the app with. On the authentication screen, click Get started -> Use password -> then enter the following credentials we specially created for the Solana dApp store review team to test with. Email is testrestrictionsapp+solanadappstorereview@gmail.com and password is Shivam##%27
 lastSubmittedVersionOnChain:
-  address: 8y2PdB68YZmBn2fAJm6eMXxTggzEy2QrcyTmQzYjSbJ5
-  version_code: 9
-  apk_hash: fxlPhxBM0wIExISqvPNyzg5gbYbS9lxr5iqxiPDH/Ow=
+  address: Fcy8f4vaKL1JiuSqV7gu8YR1j4AtPunNKH4C3mmr95gK
+  version_code: 12
+  apk_hash: A2YNbqYWcPYrYGNgTRbO8eTTkLKTTLCE80JnLpj6lKU=
 lastUpdatedVersionOnStore:
-  address: 8y2PdB68YZmBn2fAJm6eMXxTggzEy2QrcyTmQzYjSbJ5
+  address: Fcy8f4vaKL1JiuSqV7gu8YR1j4AtPunNKH4C3mmr95gK
