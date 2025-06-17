@@ -1,6 +1,8 @@
 import 'dart:io' show Platform;
 
 import 'package:app_tracking_transparency/app_tracking_transparency.dart';
+import 'package:clarity_flutter/clarity_flutter.dart'
+    show ClarityConfig, ClarityWidget, LogLevel;
 import 'package:firebase_analytics/firebase_analytics.dart'
     show FirebaseAnalytics;
 import 'package:firebase_core/firebase_core.dart'
@@ -8,7 +10,8 @@ import 'package:firebase_core/firebase_core.dart'
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/foundation.dart'
     show FlutterError, PlatformDispatcher, kIsWeb;
-import 'package:flutter/material.dart' show WidgetsFlutterBinding, runApp;
+import 'package:flutter/material.dart'
+    show Widget, WidgetsFlutterBinding, runApp;
 import 'package:flutter_dotenv/flutter_dotenv.dart' show dotenv;
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:hive_ce_flutter/adapters.dart' show Hive, HiveX;
@@ -24,6 +27,8 @@ import 'package:sky_trade/core/resources/strings/environments.dart'
     show devEnvironment, environmentVariablesFileName;
 import 'package:sky_trade/core/resources/strings/local.dart'
     show analyticsStateKey;
+import 'package:sky_trade/core/resources/strings/secret_keys.dart'
+    show clarityProjectId;
 import 'package:sky_trade/core/resources/strings/special_characters.dart'
     show fullStop;
 import 'package:sky_trade/core/utils/adapters/hive/hive_registrar.g.dart';
@@ -33,7 +38,7 @@ import 'package:sky_trade/injection_container.dart';
 void main() => _loadEnv().then(
       (_) => _initializeImportantResources().then(
         (_) => runApp(
-          const App(),
+          _app,
         ),
       ),
     );
@@ -117,3 +122,13 @@ Future<bool> _shouldCollectAnalyticsData() async {
           TrackingStatus.authorized &&
       (analyticsState ?? false);
 }
+
+Widget get _app => ClarityWidget(
+      app: const App(),
+      clarityConfig: _clarityConfig,
+    );
+
+ClarityConfig get _clarityConfig => ClarityConfig(
+      projectId: dotenv.env[clarityProjectId]!,
+      logLevel: LogLevel.Verbose,
+    );

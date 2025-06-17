@@ -1,7 +1,8 @@
 import 'dart:io' show Platform;
-import 'dart:math' show Random;
 
 import 'package:app_tracking_transparency/app_tracking_transparency.dart';
+import 'package:clarity_flutter/clarity_flutter.dart'
+    show ClarityConfig, ClarityWidget, LogLevel;
 import 'package:firebase_analytics/firebase_analytics.dart'
     show FirebaseAnalytics;
 import 'package:firebase_core/firebase_core.dart'
@@ -17,8 +18,6 @@ import 'package:flutter/foundation.dart'
         kProfileMode;
 import 'package:flutter/material.dart'
     show Widget, WidgetsFlutterBinding, runApp;
-import 'package:flutter_clarity/clarity.dart'
-    show Clarity, ClarityConfig, LogLevel;
 import 'package:flutter_dotenv/flutter_dotenv.dart' show dotenv;
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:hive_ce_flutter/adapters.dart' show Hive, HiveX;
@@ -31,13 +30,11 @@ import 'package:shared_preferences/shared_preferences.dart'
     show SharedPreferencesWithCache;
 import 'package:sky_trade/app.dart' show App;
 import 'package:sky_trade/app_bloc_observer.dart';
-import 'package:sky_trade/core/resources/numbers/local.dart'
-    show one, thirtySix;
 import 'package:sky_trade/core/resources/numbers/ui.dart' show oneDotNil;
 import 'package:sky_trade/core/resources/strings/environments.dart'
     show environmentVariablesFileName, stageEnvironment;
 import 'package:sky_trade/core/resources/strings/local.dart'
-    show analyticsStateKey, base36UpperBound;
+    show analyticsStateKey;
 import 'package:sky_trade/core/resources/strings/secret_keys.dart'
     show clarityProjectId, sentryDsn;
 import 'package:sky_trade/core/resources/strings/special_characters.dart'
@@ -157,34 +154,12 @@ Future<bool> _shouldCollectAnalyticsData() async {
       (analyticsState ?? false);
 }
 
-Widget get _app => switch (kDebugMode || kProfileMode) {
-      true => const App(),
-      false => Clarity(
-          app: const App(),
-          clarityConfig: _clarityConfig,
-        ),
-    };
+Widget get _app => ClarityWidget(
+      app: const App(),
+      clarityConfig: _clarityConfig,
+    );
 
 ClarityConfig get _clarityConfig => ClarityConfig(
       projectId: dotenv.env[clarityProjectId]!,
-      userId: _clarityBase36UserId,
       logLevel: LogLevel.Verbose,
     );
-
-String get _clarityBase36UserId {
-  final upperBoundDecimal = int.parse(
-    base36UpperBound,
-    radix: thirtySix,
-  );
-
-  final randomNumber = Random().nextInt(
-        upperBoundDecimal - one,
-      ) +
-      one;
-
-  final base36Value = randomNumber.toRadixString(
-    thirtySix,
-  );
-
-  return base36Value;
-}
