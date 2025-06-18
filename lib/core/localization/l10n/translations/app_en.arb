@@ -335,9 +335,9 @@
   "allow": "Allow",
   "openSettings": "Open Settings",
   "locationAccessNeeded": "Location Access Needed",
-  "skyTradeNeedsYourLocationToShowRelevantInvestmentZonesNearYou": "SkyTrade needs your location to show relevant investment zones near you",
+  "skyTradeNeedsYourLocationToShowRelevantFeaturesNearYou": "SkyTrade needs your location to show relevant features near you",
   "enableLocationPermissionInSettings": "Enable Location Permission in Settings",
-  "youveDeniedLocationAccessPleaseEnableItInYourAppSettingsSoSkyTradeCanShowYouRelevantInvestmentZonesNearYou": "You've denied location access. Please enable it in your app settings so SkyTrade can show you relevant investment zones near you",
+  "youveDeniedLocationAccessPleaseEnableItInYourAppSettingsSoSkyTradeCanShowRelevantFeaturesNearYou": "You've denied location access. Please enable it in your app settings so SkyTrade can show relevant features near you",
   "turnOnLocationServices": "Turn On Location Services",
-  "skyTradeNeedsGpsToFindYourLocationAndShowYouRelevantInvestmentAroundYouPleaseEnableItInYourDeviceSettings": "SkyTrade needs GPS to find your location and show you relevant investment around you. Please enable it in your device settings"
+  "skyTradeNeedsGpsToFindYourLocationAndShowRelevantFeaturesAroundYouPleaseEnableItInYourDeviceSettings": "SkyTrade needs GPS to find your location and show relevant features around you. Please enable it in your device settings"
 }

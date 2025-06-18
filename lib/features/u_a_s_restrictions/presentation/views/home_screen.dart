@@ -318,8 +318,8 @@ class _HomeViewState extends State<HomeView> {
   void _showLocationPermissionDeniedDialog() =>
       _showLocationRelatedAlertDialogUsing(
         title: context.localize.locationAccessNeeded,
-        content: context.localize
-            .skyTradeNeedsYourLocationToShowRelevantInvestmentZonesNearYou,
+        content: context
+            .localize.skyTradeNeedsYourLocationToShowRelevantFeaturesNearYou,
         actionText: context.localize.allow,
         action: _requestLocationPermission,
       );
@@ -328,7 +328,7 @@ class _HomeViewState extends State<HomeView> {
       _showLocationRelatedAlertDialogUsing(
         title: context.localize.enableLocationPermissionInSettings,
         content: context.localize
-            .youveDeniedLocationAccessPleaseEnableItInYourAppSettingsSoSkyTradeCanShowYouRelevantInvestmentZonesNearYou,
+            .youveDeniedLocationAccessPleaseEnableItInYourAppSettingsSoSkyTradeCanShowRelevantFeaturesNearYou,
         actionText: context.localize.openSettings,
         action: () => context.read<LocationSettingsBloc>().add(
               const LocationSettingsEvent.openSettings(
@@ -341,7 +341,7 @@ class _HomeViewState extends State<HomeView> {
       _showLocationRelatedAlertDialogUsing(
         title: context.localize.turnOnLocationServices,
         content: context.localize
-            .skyTradeNeedsGpsToFindYourLocationAndShowYouRelevantInvestmentAroundYouPleaseEnableItInYourDeviceSettings,
+            .skyTradeNeedsGpsToFindYourLocationAndShowRelevantFeaturesAroundYouPleaseEnableItInYourDeviceSettings,
         actionText: context.localize.openSettings,
         action: () => context.read<LocationSettingsBloc>().add(
               const LocationSettingsEvent.openSettings(
