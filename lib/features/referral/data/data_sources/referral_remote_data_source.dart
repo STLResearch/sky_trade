@@ -7,6 +7,7 @@ import 'package:sky_trade/core/resources/strings/networking.dart'
         findReferralHistoryPath,
         getRewardInfoPath,
         limitKey,
+        orderByPointsDescKey,
         overralLeaderboardInfoPath,
         pageKey,
         privatePath,
@@ -157,6 +158,7 @@ final class ReferralRemoteDataSourceImplementation
           queryParameters: {
             pageKey: page,
             limitKey: limit,
+            orderByPointsDescKey: true,
           },
         ),
         onSuccess: LeaderboardStatisticsModel.fromJson,
