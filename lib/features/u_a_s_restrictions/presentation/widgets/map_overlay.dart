@@ -68,7 +68,6 @@ class MapOverlay extends StatelessWidget {
   const MapOverlay({
     required this.myLocationFollowed,
     required this.mapStyle,
-    required this.onGiftTap,
     required this.onMyLocationIconTap,
     required this.onMapLayerIconTap,
     required this.onDroneTap,
@@ -77,7 +76,6 @@ class MapOverlay extends StatelessWidget {
 
   final bool myLocationFollowed;
   final MapStyle mapStyle;
-  final Function0<void> onGiftTap;
   final Function0<void> onMyLocationIconTap;
   final Function0<void> onMapLayerIconTap;
   final Function0<void> onDroneTap;
@@ -88,7 +86,6 @@ class MapOverlay extends StatelessWidget {
         child: MapOverlayView(
           myLocationFollowed: myLocationFollowed,
           mapStyle: mapStyle,
-          onGiftTap: onGiftTap,
           onMyLocationIconTap: onMyLocationIconTap,
           onMapLayerIconTap: onMapLayerIconTap,
           onDroneTap: onDroneTap,
@@ -100,7 +97,6 @@ class MapOverlayView extends StatefulWidget {
   const MapOverlayView({
     required this.myLocationFollowed,
     required this.mapStyle,
-    required this.onGiftTap,
     required this.onMyLocationIconTap,
     required this.onMapLayerIconTap,
     required this.onDroneTap,
@@ -109,7 +105,6 @@ class MapOverlayView extends StatefulWidget {
 
   final bool myLocationFollowed;
   final MapStyle mapStyle;
-  final Function0<void> onGiftTap;
   final Function0<void> onMyLocationIconTap;
   final Function0<void> onMapLayerIconTap;
   final Function0<void> onDroneTap;

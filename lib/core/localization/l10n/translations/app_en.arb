@@ -331,5 +331,13 @@
   "couldNotGetLeaderboardStatisticsSwipeDownToRefreshThePage": "Could not get leaderboard statistics. Swipe down to refresh the page",
   "couldNotGetEarningsReportSwipeDownToRefreshThePage": "Could not get earnings report. Swipe down to refresh the page",
   "trackADroneWithTheRadarAppInASpecificArea": "Track a drone with the radar app in a specific area",
-  "texasGarlandMurphyPlanoRichardsonMesquiteDallasRowlettColonyCollegeStationFloridaClermontNewPortRicheyValricoWinterHavenTampaBrandonRiverviewSeffnerArizonaPhoenixGlendalePeoriaArkansasFarmingtonBentonvilleRogersPeaRidgeVirginiaVirginiaBeachUtahLindonHerrimanNorthCarolinaRaeford": "Texas: Garland, Murphy, Plano, Richardson, Mesquite, Dallas, Rowlett, Colony, College Station Florida: Clermont, New Port Richey, Valrico, Winter Haven, Tampa, Brandon, Riverview, Seffner Arizona: Phoenix, Glendale, Peoria Arkansas: Farmington, Bentonville, Rogers, Pea Ridge Virginia: Virginia Beach Utah: Lindon, Herriman North Carolina: Raeford"
+  "texasGarlandMurphyPlanoRichardsonMesquiteDallasRowlettColonyCollegeStationFloridaClermontNewPortRicheyValricoWinterHavenTampaBrandonRiverviewSeffnerArizonaPhoenixGlendalePeoriaArkansasFarmingtonBentonvilleRogersPeaRidgeVirginiaVirginiaBeachUtahLindonHerrimanNorthCarolinaRaeford": "Texas: Garland, Murphy, Plano, Richardson, Mesquite, Dallas, Rowlett, Colony, College Station Florida: Clermont, New Port Richey, Valrico, Winter Haven, Tampa, Brandon, Riverview, Seffner Arizona: Phoenix, Glendale, Peoria Arkansas: Farmington, Bentonville, Rogers, Pea Ridge Virginia: Virginia Beach Utah: Lindon, Herriman North Carolina: Raeford",
+  "allow": "Allow",
+  "openSettings": "Open Settings",
+  "locationAccessNeeded": "Location Access Needed",
+  "skyTradeNeedsYourLocationToShowRelevantFeaturesNearYou": "SkyTrade needs your location to show relevant features near you",
+  "enableLocationPermissionInSettings": "Enable Location Permission in Settings",
+  "youveDeniedLocationAccessPleaseEnableItInYourAppSettingsSoSkyTradeCanShowRelevantFeaturesNearYou": "You've denied location access. Please enable it in your app settings so SkyTrade can show relevant features near you",
+  "turnOnLocationServices": "Turn On Location Services",
+  "skyTradeNeedsGpsToFindYourLocationAndShowRelevantFeaturesAroundYouPleaseEnableItInYourDeviceSettings": "SkyTrade needs GPS to find your location and show relevant features around you. Please enable it in your device settings"
 }
