@@ -54,7 +54,7 @@ class AppLocalizationsEn extends AppLocalizations {
       'By continuing with SkyTrade I agree with the';
 
   @override
-  String get termsAndConditions => 'Terms and Conditions';
+  String get termsOfService => 'Terms of Service';
 
   @override
   String get and => 'and';
@@ -1141,7 +1141,4 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get skyTradeNeedsGpsToFindYourLocationAndShowRelevantFeaturesAroundYouPleaseEnableItInYourDeviceSettings =>
       'SkyTrade needs GPS to find your location and show relevant features around you. Please enable it in your device settings';
-
-  @override
-  String get termsOfService => 'Terms of Service';
 }

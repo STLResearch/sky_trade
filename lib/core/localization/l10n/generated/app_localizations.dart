@@ -180,11 +180,11 @@ abstract class AppLocalizations {
   /// **'By continuing with SkyTrade I agree with the'**
   String get byContinuingWithSkyTradeIAgreeWithThe;
 
-  /// No description provided for @termsAndConditions.
+  /// No description provided for @termsOfService.
   ///
   /// In en, this message translates to:
-  /// **'Terms and Conditions'**
-  String get termsAndConditions;
+  /// **'Terms of Service'**
+  String get termsOfService;
 
   /// No description provided for @and.
   ///
@@ -2181,12 +2181,6 @@ abstract class AppLocalizations {
   /// **'SkyTrade needs GPS to find your location and show relevant features around you. Please enable it in your device settings'**
   String
       get skyTradeNeedsGpsToFindYourLocationAndShowRelevantFeaturesAroundYouPleaseEnableItInYourDeviceSettings;
-
-  /// No description provided for @termsOfService.
-  ///
-  /// In en, this message translates to:
-  /// **'Terms of Service'**
-  String get termsOfService;
 }
 
 class _AppLocalizationsDelegate

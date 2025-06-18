@@ -404,7 +404,7 @@ class GetStartedView extends StatelessWidget {
                     ),
                     BlocBuilder<AuthBloc, AuthState>(
                       builder: (_, authState) => AgreementSection(
-                        onTermsAndConditionsTap: () => authState.maybeWhen(
+                        onTermsOfServiceTap: () => authState.maybeWhen(
                           authenticating: () => null,
                           orElse: () => context.read<HandleLinkBloc>().add(
                                 const HandleLinkEvent.handle(
