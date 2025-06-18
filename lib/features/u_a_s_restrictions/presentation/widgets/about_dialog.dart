@@ -8,12 +8,14 @@ import 'package:flutter/material.dart'
         Column,
         Container,
         Dialog,
+        EdgeInsets,
         EdgeInsetsDirectional,
         Flexible,
         FontWeight,
         InkWell,
         MainAxisAlignment,
         MainAxisSize,
+        MediaQuery,
         Navigator,
         RichText,
         Row,
@@ -36,6 +38,7 @@ import 'package:sky_trade/core/resources/colors.dart'
     show hex00AEEF, hex222222, hex303478F5, hex74D9FF;
 import 'package:sky_trade/core/resources/numbers/ui.dart'
     show
+        eight,
         fifteenDotNil,
         fiveDotNil,
         sixDotFive,
@@ -55,8 +58,16 @@ final class AboutDialog {
   ) {
     showDialog<void>(
       context: context,
-      builder: (_) => About(
-        appVersionBloc: context.read<AppVersionBloc>(),
+      builder: (_) => Dialog(
+        insetPadding: EdgeInsets.symmetric(
+          horizontal: MediaQuery.sizeOf(
+                context,
+              ).width /
+              eight,
+        ),
+        child: About(
+          appVersionBloc: context.read<AppVersionBloc>(),
+        ),
       ),
     );
   }
@@ -97,178 +108,174 @@ class _AboutViewState extends State<AboutView> {
       );
 
   @override
-  Widget build(BuildContext context) => Dialog(
-        child: Container(
-          decoration: BoxDecoration(
-            color: Theme.of(context).scaffoldBackgroundColor,
-            borderRadius: BorderRadius.circular(
-              twentyDotNil,
-            ),
+  Widget build(BuildContext context) => Container(
+        decoration: BoxDecoration(
+          color: Theme.of(context).scaffoldBackgroundColor,
+          borderRadius: BorderRadius.circular(
+            twentyDotNil,
           ),
-          padding: const EdgeInsetsDirectional.symmetric(
-            horizontal: twentyDotNil,
-          ),
-          child: SingleChildScrollView(
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                const SizedBox(
-                  height: tenDotNil,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    BlocBuilder<AppVersionBloc, AppVersionState>(
-                      builder: (_, appVersionState) =>
-                          appVersionState.maybeWhen(
-                        gotVersion: (appVersionEntity) => Flexible(
-                          child: Container(
-                            padding: const EdgeInsetsDirectional.symmetric(
-                              horizontal: sixDotFive,
-                            ),
-                            decoration: BoxDecoration(
-                              color: hex74D9FF,
-                              borderRadius: BorderRadius.circular(
-                                threeDotNil,
-                              ),
-                            ),
-                            child: Text(
-                              appVersionEntity.versionName,
-                              style: Theme.of(
-                                context,
-                              ).textTheme.bodySmall?.copyWith(
-                                    color: hex222222,
-                                  ),
+        ),
+        padding: const EdgeInsetsDirectional.symmetric(
+          horizontal: twentyDotNil,
+        ),
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              const SizedBox(
+                height: tenDotNil,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  BlocBuilder<AppVersionBloc, AppVersionState>(
+                    builder: (_, appVersionState) => appVersionState.maybeWhen(
+                      gotVersion: (appVersionEntity) => Flexible(
+                        child: Container(
+                          padding: const EdgeInsetsDirectional.symmetric(
+                            horizontal: sixDotFive,
+                          ),
+                          decoration: BoxDecoration(
+                            color: hex74D9FF,
+                            borderRadius: BorderRadius.circular(
+                              threeDotNil,
                             ),
                           ),
+                          child: Text(
+                            appVersionEntity.versionName,
+                            style: Theme.of(
+                              context,
+                            ).textTheme.bodySmall?.copyWith(
+                                  color: hex222222,
+                                ),
+                          ),
                         ),
-                        orElse: () => const SizedBox.shrink(),
                       ),
+                      orElse: () => const SizedBox.shrink(),
                     ),
-                    BlocBuilder<AppVersionBloc, AppVersionState>(
-                      builder: (_, appVersionState) =>
-                          appVersionState.maybeWhen(
-                        gotVersion: (_) => const SizedBox(
-                          width: twentyDotNil,
-                        ),
-                        orElse: () => const SizedBox.shrink(),
+                  ),
+                  BlocBuilder<AppVersionBloc, AppVersionState>(
+                    builder: (_, appVersionState) => appVersionState.maybeWhen(
+                      gotVersion: (_) => const SizedBox(
+                        width: twentyDotNil,
                       ),
+                      orElse: () => const SizedBox.shrink(),
                     ),
-                    InkWell(
-                      onTap: () => Navigator.of(
+                  ),
+                  InkWell(
+                    onTap: () => Navigator.of(
+                      context,
+                    ).pop(),
+                    child: Assets.svgs.clear.svg(),
+                  ),
+                ],
+              ),
+              Assets.svgs.skyTradeRadarLogo.svg(),
+              const SizedBox(
+                height: twentyDotNil,
+              ),
+              InkWell(
+                onTap: () {
+                  Navigator.of(
+                    context,
+                  ).pop();
+
+                  showLicensePage(
+                    context: context,
+                    applicationVersion:
+                        context.read<AppVersionBloc>().state.whenOrNull(
+                              gotVersion: (appVersionEntity) =>
+                                  appVersionEntity.versionName,
+                            ),
+                    applicationIcon: Assets.svgs.skyTradeRadarLogo.svg(),
+                  );
+                },
+                child: Text(
+                  context.localize.view3rdPartyLicenses,
+                  style: Theme.of(
+                    context,
+                  ).textTheme.bodySmall?.copyWith(
+                        color: hex00AEEF,
+                      ),
+                ),
+              ),
+              const SizedBox(
+                height: fifteenDotNil,
+              ),
+              RichText(
+                text: TextSpan(
+                  children: [
+                    TextSpan(
+                      text: context.localize.developedBySkyTrade + newLine,
+                      style: Theme.of(
                         context,
-                      ).pop(),
-                      child: Assets.svgs.clear.svg(),
+                      ).textTheme.bodySmall?.copyWith(
+                            color: hex222222,
+                          ),
+                    ),
+                    TextSpan(
+                      text: context.localize.copyrightSkyTrade +
+                          whiteSpace +
+                          DateTime.now().year.toString(),
+                      style: Theme.of(
+                        context,
+                      ).textTheme.bodyMedium?.copyWith(
+                            fontWeight: FontWeight.w300,
+                            fontSize: tenDotNil,
+                            height: fifteenDotNil / tenDotNil,
+                          ),
                     ),
                   ],
                 ),
-                Assets.svgs.skyTradeRadarLogo.svg(),
-                const SizedBox(
-                  height: twentyDotNil,
+                textAlign: TextAlign.center,
+              ),
+              const SizedBox(
+                height: twentyDotNil,
+              ),
+              Container(
+                padding: const EdgeInsetsDirectional.all(
+                  tenDotNil,
                 ),
-                InkWell(
-                  onTap: () {
-                    Navigator.of(
-                      context,
-                    ).pop();
-
-                    showLicensePage(
-                      context: context,
-                      applicationVersion:
-                          context.read<AppVersionBloc>().state.whenOrNull(
-                                gotVersion: (appVersionEntity) =>
-                                    appVersionEntity.versionName,
-                              ),
-                      applicationIcon: Assets.svgs.skyTradeRadarLogo.svg(),
-                    );
-                  },
-                  child: Text(
-                    context.localize.view3rdPartyLicenses,
-                    style: Theme.of(
-                      context,
-                    ).textTheme.bodySmall?.copyWith(
-                          color: hex00AEEF,
-                        ),
-                  ),
-                ),
-                const SizedBox(
-                  height: fifteenDotNil,
-                ),
-                RichText(
-                  text: TextSpan(
-                    children: [
-                      TextSpan(
-                        text: context.localize.developedBySkyTrade + newLine,
-                        style: Theme.of(
-                          context,
-                        ).textTheme.bodySmall?.copyWith(
-                              color: hex222222,
-                            ),
-                      ),
-                      TextSpan(
-                        text: context.localize.copyrightSkyTrade +
-                            whiteSpace +
-                            DateTime.now().year.toString(),
-                        style: Theme.of(
-                          context,
-                        ).textTheme.bodyMedium?.copyWith(
-                              fontWeight: FontWeight.w300,
-                              fontSize: tenDotNil,
-                              height: fifteenDotNil / tenDotNil,
-                            ),
-                      ),
-                    ],
-                  ),
-                  textAlign: TextAlign.center,
-                ),
-                const SizedBox(
-                  height: twentyDotNil,
-                ),
-                Container(
-                  padding: const EdgeInsetsDirectional.all(
+                decoration: BoxDecoration(
+                  color: hex303478F5,
+                  borderRadius: BorderRadius.circular(
                     tenDotNil,
                   ),
-                  decoration: BoxDecoration(
-                    color: hex303478F5,
-                    borderRadius: BorderRadius.circular(
-                      tenDotNil,
+                ),
+                child: Column(
+                  children: [
+                    Text(
+                      context.localize.disclaimer,
+                      style: Theme.of(
+                        context,
+                      ).textTheme.bodySmall?.copyWith(
+                            fontWeight: FontWeight.w700,
+                            color: hex222222,
+                          ),
+                      textAlign: TextAlign.center,
                     ),
-                  ),
-                  child: Column(
-                    children: [
-                      Text(
-                        context.localize.disclaimer,
-                        style: Theme.of(
-                          context,
-                        ).textTheme.bodySmall?.copyWith(
-                              fontWeight: FontWeight.w700,
-                              color: hex222222,
-                            ),
-                        textAlign: TextAlign.center,
-                      ),
-                      const SizedBox(
-                        height: fiveDotNil,
-                      ),
-                      Text(
-                        context.localize
-                            .theDroneRestrictionsAndAirspaceDataProvidedByThisAppAreForInformationalPurposesOnlyWhileWeStriveToKeepThisInformationAccurateAndUpToDateWeCannotGuaranteeItsCompletenessOrAccuracyUsersAreResponsibleForEnsuringComplianceWithAllLocalLawsAndRegulationsTheAppProvidersAssumeNoLiabilityForAnyDecisionsOrActionsTakenBasedOnTheDataPresented,
-                        style: Theme.of(
-                          context,
-                        ).textTheme.bodyMedium?.copyWith(
-                              fontWeight: FontWeight.w400,
-                              fontSize: tenDotNil,
-                              height: fifteenDotNil / tenDotNil,
-                            ),
-                        textAlign: TextAlign.center,
-                      ),
-                    ],
-                  ),
+                    const SizedBox(
+                      height: fiveDotNil,
+                    ),
+                    Text(
+                      context.localize
+                          .theDroneRestrictionsAndAirspaceDataProvidedByThisAppAreForInformationalPurposesOnlyWhileWeStriveToKeepThisInformationAccurateAndUpToDateWeCannotGuaranteeItsCompletenessOrAccuracyUsersAreResponsibleForEnsuringComplianceWithAllLocalLawsAndRegulationsTheAppProvidersAssumeNoLiabilityForAnyDecisionsOrActionsTakenBasedOnTheDataPresented,
+                      style: Theme.of(
+                        context,
+                      ).textTheme.bodyMedium?.copyWith(
+                            fontWeight: FontWeight.w400,
+                            fontSize: tenDotNil,
+                            height: fifteenDotNil / tenDotNil,
+                          ),
+                      textAlign: TextAlign.center,
+                    ),
+                  ],
                 ),
-                const SizedBox(
-                  height: thirtyDotNil,
-                ),
-              ],
-            ),
+              ),
+              const SizedBox(
+                height: thirtyDotNil,
+              ),
+            ],
           ),
         ),
       );
