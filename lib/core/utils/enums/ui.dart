@@ -5,11 +5,16 @@ enum MapStyle {
 
 enum MenuItem {
   insights,
-  referral,
-  about,
+  referralProgram,
+  logout,
   settings,
   help,
-  logout,
+}
+
+enum BottomMenuItem {
+  about,
+  termsOfService,
+  privacyPolicy,
 }
 
 enum ErrorReason {

@@ -62,7 +62,7 @@ import 'app_localizations_en.dart';
 /// property.
 abstract class AppLocalizations {
   AppLocalizations(String locale)
-    : localeName = intl.Intl.canonicalizedLocale(locale.toString());
+      : localeName = intl.Intl.canonicalizedLocale(locale.toString());
 
   final String localeName;
 
@@ -85,11 +85,11 @@ abstract class AppLocalizations {
   /// of delegates is preferred or required.
   static const List<LocalizationsDelegate<dynamic>> localizationsDelegates =
       <LocalizationsDelegate<dynamic>>[
-        delegate,
-        GlobalMaterialLocalizations.delegate,
-        GlobalCupertinoLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate,
-      ];
+    delegate,
+    GlobalMaterialLocalizations.delegate,
+    GlobalCupertinoLocalizations.delegate,
+    GlobalWidgetsLocalizations.delegate,
+  ];
 
   /// A list of this localizations delegate's supported locales.
   static const List<Locale> supportedLocales = <Locale>[Locale('en')];
@@ -153,14 +153,14 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Sign in or sign up effortlessly. Use the authentication method you chose during sign up to sign in.'**
   String
-  get signInOrSignUpEffortlesslyUseTheAuthenticationMethodYouChoseDuringSignUpToSignIn;
+      get signInOrSignUpEffortlesslyUseTheAuthenticationMethodYouChoseDuringSignUpToSignIn;
 
   /// No description provided for @whitespacesAreNotAllowedPleaseRemoveAnyLeadingAndOrTrailingWhitespaces.
   ///
   /// In en, this message translates to:
   /// **'Whitespaces are not allowed. Please remove any leading and/or trailing whitespaces'**
   String
-  get whitespacesAreNotAllowedPleaseRemoveAnyLeadingAndOrTrailingWhitespaces;
+      get whitespacesAreNotAllowedPleaseRemoveAnyLeadingAndOrTrailingWhitespaces;
 
   /// No description provided for @getStarted.
   ///
@@ -263,7 +263,7 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Try clearing the app cache first and the app data second after closing the app. Restart the app afterwards. If the issue continues, feel free to contact our support team'**
   String
-  get tryClearingTheAppCacheFirstAndTheAppDataSecondAfterClosingTheAppRestartTheAppAfterwardsIfTheIssueContinuesFeelFreeToContactOurSupportTeam;
+      get tryClearingTheAppCacheFirstAndTheAppDataSecondAfterClosingTheAppRestartTheAppAfterwardsIfTheIssueContinuesFeelFreeToContactOurSupportTeam;
 
   /// No description provided for @itLooksLikeYouDontHaveAnActiveInternetConnection.
   ///
@@ -276,7 +276,7 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Your internet connection may be poor or you are probably just out of coverage. Please check your connection or try again'**
   String
-  get yourInternetConnectionMayBePoorOrYouAreProbablyJustOutOfCoveragePleaseCheckYourConnectionOrTryAgain;
+      get yourInternetConnectionMayBePoorOrYouAreProbablyJustOutOfCoveragePleaseCheckYourConnectionOrTryAgain;
 
   /// No description provided for @refreshPage.
   ///
@@ -409,14 +409,14 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Welcome to SkyTrade Radar Using our application, you can receive drone Remote ID data on your phone and see restricted areas for flying. The application can receive data transmitted over Bluetooth and Wi-Fi.'**
   String
-  get welcomeToSkyTradeRadarUsingOurApplicationYouCanReceiveDroneRemoteIdDataOnYourPhoneAndSeeRestrictedAreasForFlyingTheApplicationCanReceiveDataTransmittedOverBluetoothAndWiFi;
+      get welcomeToSkyTradeRadarUsingOurApplicationYouCanReceiveDroneRemoteIdDataOnYourPhoneAndSeeRestrictedAreasForFlyingTheApplicationCanReceiveDataTransmittedOverBluetoothAndWiFi;
 
   /// No description provided for @pleaseNoteThatTheFunctionalityOfThisApplicationIsEntirelyDependentOnTheOperationSystemOfYourMobileDeviceItsVersionAndAlsoTheHardwareComponentsAndFeaturesOfTheDroneYouWantToObserve.
   ///
   /// In en, this message translates to:
   /// **'Please note that the functionality of this application is entirely dependent on the operation system of your mobile device, its version and also the hardware components and features of the drone you want to observe.'**
   String
-  get pleaseNoteThatTheFunctionalityOfThisApplicationIsEntirelyDependentOnTheOperationSystemOfYourMobileDeviceItsVersionAndAlsoTheHardwareComponentsAndFeaturesOfTheDroneYouWantToObserve;
+      get pleaseNoteThatTheFunctionalityOfThisApplicationIsEntirelyDependentOnTheOperationSystemOfYourMobileDeviceItsVersionAndAlsoTheHardwareComponentsAndFeaturesOfTheDroneYouWantToObserve;
 
   /// No description provided for @howCanIFindOutWhatMyPhoneIsCapableOf.
   ///
@@ -429,7 +429,7 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'To find out what your phone is capable of, check the specifications on the manufacturer\'s website or the \"About Phone\" section in your settings. You can also use third-party apps like AIDA64 or CPU-Z for detailed hardware and software information. This will help you understand the sensors, connectivity options, and other features available on your device.'**
   String
-  get toFindOutWhatYourPhoneIsCapableOfCheckTheSpecificationsOnTheManufacturersWebsiteOrTheAboutPhoneSectionInYourSettingsYouCanAlsoUseThirdPartyAppsLikeAida64OrCpuZForDetailedHardwareAndSoftwareInformationThisWillHelpYouUnderstandTheSensorsConnectivityOptionsAndOtherFeaturesAvailableOnYourDevice;
+      get toFindOutWhatYourPhoneIsCapableOfCheckTheSpecificationsOnTheManufacturersWebsiteOrTheAboutPhoneSectionInYourSettingsYouCanAlsoUseThirdPartyAppsLikeAida64OrCpuZForDetailedHardwareAndSoftwareInformationThisWillHelpYouUnderstandTheSensorsConnectivityOptionsAndOtherFeaturesAvailableOnYourDevice;
 
   /// No description provided for @theresADroneFlyingNearbyButTheAppDoesntRecognizeIt.
   ///
@@ -442,7 +442,7 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Some drones cannot be tracked by our app because they lack the necessary transponder or Remote ID technology. Additionally, custom-built or older models might not have the standardized identification systems required for detection. If a nearby drone isn\'t recognized, check for signal interference or obstructions, and ensure the app is updated and has the necessary permissions enabled on your phone.'**
   String
-  get someDronesCannotBeTrackedByOurAppBecauseTheyLackTheNecessaryTransponderOrRemoteIdTechnologyAdditionallyCustomBuiltOrOlderModelsMightNotHaveTheStandardizedIdentificationSystemsRequiredForDetectionIfANearbyDroneIsntRecognizedCheckForSignalInterferenceOrObstructionsAndEnsureTheAppIsUpdatedAndHasTheNecessaryPermissionsEnabledOnYourPhone;
+      get someDronesCannotBeTrackedByOurAppBecauseTheyLackTheNecessaryTransponderOrRemoteIdTechnologyAdditionallyCustomBuiltOrOlderModelsMightNotHaveTheStandardizedIdentificationSystemsRequiredForDetectionIfANearbyDroneIsntRecognizedCheckForSignalInterferenceOrObstructionsAndEnsureTheAppIsUpdatedAndHasTheNecessaryPermissionsEnabledOnYourPhone;
 
   /// No description provided for @whatIsARemoteIdAndWhyDoINeedIt.
   ///
@@ -455,7 +455,7 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Remote ID is a system that allows drones to transmit identification and location information to others, similar to a digital license plate. It enhances airspace safety and security by enabling authorities to track and manage drones. Compliance with Remote ID regulations is necessary for legal drone operation in many countries.'**
   String
-  get remoteIdIsASystemThatAllowsDronesToTransmitIdentificationAndLocationInformationToOthersSimilarToADigitalLicensePlateItEnhancesAirspaceSafetyAndSecurityByEnablingAuthoritiesToTrackAndManageDronesComplianceWithRemoteIdRegulationsIsNecessaryForLegalDroneOperationInManyCountries;
+      get remoteIdIsASystemThatAllowsDronesToTransmitIdentificationAndLocationInformationToOthersSimilarToADigitalLicensePlateItEnhancesAirspaceSafetyAndSecurityByEnablingAuthoritiesToTrackAndManageDronesComplianceWithRemoteIdRegulationsIsNecessaryForLegalDroneOperationInManyCountries;
 
   /// No description provided for @areThereAnyRestrictionsOnWhereICanUseTheDroneRadarApp.
   ///
@@ -468,7 +468,7 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Yes, there may be restrictions on using the drone radar app in no-fly zones such as airports, military bases, and other sensitive areas. Local privacy laws may also limit the use of drone detection technology in certain regions. Always check local regulations and guidelines to ensure compliant usage.'**
   String
-  get yesThereMayBeRestrictionsOnUsingTheDroneRadarAppInNoFlyZonesSuchAsAirportsMilitaryBasesAndOtherSensitiveAreasLocalPrivacyLawsMayAlsoLimitTheUseOfDroneDetectionTechnologyInCertainRegionsAlwaysCheckLocalRegulationsAndGuidelinesToEnsureCompliantUsage;
+      get yesThereMayBeRestrictionsOnUsingTheDroneRadarAppInNoFlyZonesSuchAsAirportsMilitaryBasesAndOtherSensitiveAreasLocalPrivacyLawsMayAlsoLimitTheUseOfDroneDetectionTechnologyInCertainRegionsAlwaysCheckLocalRegulationsAndGuidelinesToEnsureCompliantUsage;
 
   /// No description provided for @whyDoesTheAppRequireAccessToMyLocationAndConnectivityServices.
   ///
@@ -481,7 +481,7 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'The app requires access to your location to accurately detect and track drones in your vicinity. Connectivity services like Wi-Fi and Bluetooth help the app communicate with drones and other devices for better detection. These permissions are essential for providing accurate and reliable functionality.'**
   String
-  get theAppRequiresAccessToYourLocationToAccuratelyDetectAndTrackDronesInYourVicinityConnectivityServicesLikeWiFiAndBluetoothHelpTheAppCommunicateWithDronesAndOtherDevicesForBetterDetectionThesePermissionsAreEssentialForProvidingAccurateAndReliableFunctionality;
+      get theAppRequiresAccessToYourLocationToAccuratelyDetectAndTrackDronesInYourVicinityConnectivityServicesLikeWiFiAndBluetoothHelpTheAppCommunicateWithDronesAndOtherDevicesForBetterDetectionThesePermissionsAreEssentialForProvidingAccurateAndReliableFunctionality;
 
   /// No description provided for @whatIsARestrictedArea.
   ///
@@ -494,7 +494,7 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'A restricted area is a designated airspace where drone flights are limited or prohibited to ensure safety, security, or environmental protection. These areas can include military zones, no-fly zones around airports and government buildings, and protected environmental areas like national parks. Flying in these areas without authorization is illegal and can result in penalties.'**
   String
-  get aRestrictedAreaIsADesignatedAirspaceWhereDroneFlightsAreLimitedOrProhibitedToEnsureSafetySecurityOrEnvironmentalProtectionTheseAreasCanIncludeMilitaryZonesNoFlyZonesAroundAirportsAndGovernmentBuildingsAndProtectedEnvironmentalAreasLikeNationalParksFlyingInTheseAreasWithoutAuthorizationIsIllegalAndCanResultInPenalties;
+      get aRestrictedAreaIsADesignatedAirspaceWhereDroneFlightsAreLimitedOrProhibitedToEnsureSafetySecurityOrEnvironmentalProtectionTheseAreasCanIncludeMilitaryZonesNoFlyZonesAroundAirportsAndGovernmentBuildingsAndProtectedEnvironmentalAreasLikeNationalParksFlyingInTheseAreasWithoutAuthorizationIsIllegalAndCanResultInPenalties;
 
   /// No description provided for @whatAreTheRedOrangeYellowAndGreenZones.
   ///
@@ -507,7 +507,7 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'In drone operations, different zones indicate varying levels of restriction. Red Zones are prohibited areas where flying is not allowed due to safety, security, or environmental concerns. Orange Zones require authorization from the FAA before you can fly. Yellow Zones are areas where flying is permitted but may be hazardous, so extra caution is advised. Green Zones are open for flying without any specific restrictions or additional permissions.'**
   String
-  get inDroneOperationsDifferentZonesIndicateVaryingLevelsOfRestrictionRedZonesAreProhibitedAreasWhereFlyingIsNotAllowedDueToSafetySecurityOrEnvironmentalConcernsOrangeZonesRequireAuthorizationFromTheFaaBeforeYouCanFlyYellowZonesAreAreasWhereFlyingIsPermittedButMayBeHazardousSoExtraCautionIsAdvisedGreenZonesAreOpenForFlyingWithoutAnySpecificRestrictionsOrAdditionalPermissions;
+      get inDroneOperationsDifferentZonesIndicateVaryingLevelsOfRestrictionRedZonesAreProhibitedAreasWhereFlyingIsNotAllowedDueToSafetySecurityOrEnvironmentalConcernsOrangeZonesRequireAuthorizationFromTheFaaBeforeYouCanFlyYellowZonesAreAreasWhereFlyingIsPermittedButMayBeHazardousSoExtraCautionIsAdvisedGreenZonesAreOpenForFlyingWithoutAnySpecificRestrictionsOrAdditionalPermissions;
 
   /// No description provided for @view3rdPartyLicenses.
   ///
@@ -544,7 +544,7 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'The drone restrictions and airspace data provided by this app are for informational purposes only. While we strive to keep this information accurate and up-to-date, we cannot guarantee its completeness or accuracy. Users are responsible for ensuring compliance with all local laws and regulations. The app providers assume no liability for any decisions or actions taken based on the data presented.'**
   String
-  get theDroneRestrictionsAndAirspaceDataProvidedByThisAppAreForInformationalPurposesOnlyWhileWeStriveToKeepThisInformationAccurateAndUpToDateWeCannotGuaranteeItsCompletenessOrAccuracyUsersAreResponsibleForEnsuringComplianceWithAllLocalLawsAndRegulationsTheAppProvidersAssumeNoLiabilityForAnyDecisionsOrActionsTakenBasedOnTheDataPresented;
+      get theDroneRestrictionsAndAirspaceDataProvidedByThisAppAreForInformationalPurposesOnlyWhileWeStriveToKeepThisInformationAccurateAndUpToDateWeCannotGuaranteeItsCompletenessOrAccuracyUsersAreResponsibleForEnsuringComplianceWithAllLocalLawsAndRegulationsTheAppProvidersAssumeNoLiabilityForAnyDecisionsOrActionsTakenBasedOnTheDataPresented;
 
   /// No description provided for @loadingPleaseWait.
   ///
@@ -1001,7 +1001,7 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Before we can enable analytics for you we need you to grant us tracking authorization'**
   String
-  get beforeWeCanEnableAnalyticsForYouWeNeedYouToGrantUsTrackingAuthorization;
+      get beforeWeCanEnableAnalyticsForYouWeNeedYouToGrantUsTrackingAuthorization;
 
   /// No description provided for @deleteAccount.
   ///
@@ -1044,7 +1044,7 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'You are about to delete your account. Please be certain that this is what you want as this action cannot be reversed'**
   String
-  get youAreAboutToDeleteYourAccountPleaseBeCertainThatThisIsWhatYouWantAsThisActionCannotBeReversed;
+      get youAreAboutToDeleteYourAccountPleaseBeCertainThatThisIsWhatYouWantAsThisActionCannotBeReversed;
 
   /// No description provided for @weCouldNotDeleteYourAccountPleaseTryAgainLater.
   ///
@@ -1063,7 +1063,7 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Account does not exist. If it previously did, it may have been deleted. However, we need your input to finish off'**
   String
-  get accountDoesNotExistIfItPreviouslyDidItMayHaveBeenDeletedHoweverWeNeedYourInputToFinishOff;
+      get accountDoesNotExistIfItPreviouslyDidItMayHaveBeenDeletedHoweverWeNeedYourInputToFinishOff;
 
   /// No description provided for @otp.
   ///
@@ -1166,7 +1166,7 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'however this email has not been verified. Click on the link sent to the email to proceed or logout instead'**
   String
-  get howeverThisEmailHasNotBeenVerifiedClickOnTheLinkSentToTheEmailToProceedOrLogoutInstead;
+      get howeverThisEmailHasNotBeenVerifiedClickOnTheLinkSentToTheEmailToProceedOrLogoutInstead;
 
   /// No description provided for @okay.
   ///
@@ -1179,7 +1179,7 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'We could not verify your email. Please ensure that you have clicked the correct link'**
   String
-  get weCouldNotVerifyYourEmailPleaseEnsureThatYouHaveClickedTheCorrectLink;
+      get weCouldNotVerifyYourEmailPleaseEnsureThatYouHaveClickedTheCorrectLink;
 
   /// No description provided for @ohMyThisIsOnUs.
   ///
@@ -1198,7 +1198,7 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'We must have done something wrong somewhere. We are really sorry about that. Regardless, refreshing this page will fix this'**
   String
-  get weMustHaveDoneSomethingWrongSomewhereWeAreReallySorryAboutThatRegardlessRefreshingThisPageWillFixThis;
+      get weMustHaveDoneSomethingWrongSomewhereWeAreReallySorryAboutThatRegardlessRefreshingThisPageWillFixThis;
 
   /// No description provided for @thereWasOneThingYouNeededToDo.
   ///
@@ -1217,7 +1217,7 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'You deleted an account at some point but declined our request for you to invalidate the session. In order to proceed, kindly accept the next dialog that shows up'**
   String
-  get youDeletedAnAccountAtSomePointButDeclinedOurRequestForYouToInvalidateTheSessionInOrderToProceedKindlyAcceptTheNextDialogThatShowsUp;
+      get youDeletedAnAccountAtSomePointButDeclinedOurRequestForYouToInvalidateTheSessionInOrderToProceedKindlyAcceptTheNextDialogThatShowsUp;
 
   /// No description provided for @youNeedToAcceptTheDialogInOrderToProceed.
   ///
@@ -1236,7 +1236,7 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'There is no other way to proceed unless you complete the logout process. You will be able to log back in afterwards'**
   String
-  get thereIsNoOtherWayToProceedUnlessYouCompleteTheLogoutProcessYouWillBeAbleToLogBackInAfterwards;
+      get thereIsNoOtherWayToProceedUnlessYouCompleteTheLogoutProcessYouWillBeAbleToLogBackInAfterwards;
 
   /// No description provided for @referralProgram.
   ///
@@ -1309,7 +1309,7 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Send your invite link or code to your friends and explain to them how cool SkyTrade is'**
   String
-  get sendYourInviteLinkOrCodeToYourFriendsAndExplainToThemHowCoolSkyTradeIs;
+      get sendYourInviteLinkOrCodeToYourFriendsAndExplainToThemHowCoolSkyTradeIs;
 
   /// No description provided for @letThemRegisterAndClaimTheirAirspacesUsingYourReferralLinkOrCode.
   ///
@@ -1448,7 +1448,7 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Claim your airspace (full claim/verified airspace). This is per every unique claimed airspace. KYC completed is a precondition for this allocation.'**
   String
-  get claimYourAirspaceFullClaimVerifiedAirspaceThisIsPerEveryUniqueClaimedAirspaceKycCompletedIsAPreconditionForThisAllocation;
+      get claimYourAirspaceFullClaimVerifiedAirspaceThisIsPerEveryUniqueClaimedAirspaceKycCompletedIsAPreconditionForThisAllocation;
 
   /// No description provided for @forClaimedAirSpaceWhichIsFullyValidatedDoneByTheReferredAccount.
   ///
@@ -1461,7 +1461,7 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Refer a friend (friend registers an account, but KYC on that friend’s account is not required for the introducing account to get their SKY points, fraudulent activity will be minimized by T&Cs where we say we will deduct points for fraudulent acts if discovered)'**
   String
-  get referAFriendFriendRegistersAnAccountButKycOnThatFriendsAccountIsNotRequiredForTheIntroducingAccountToGetTheirSkyPointsFraudulentActivityWillBeMinimizedByTAndCsWhereWeSayWeWillDeductPointsForFraudulentActsIfDiscovered;
+      get referAFriendFriendRegistersAnAccountButKycOnThatFriendsAccountIsNotRequiredForTheIntroducingAccountToGetTheirSkyPointsFraudulentActivityWillBeMinimizedByTAndCsWhereWeSayWeWillDeductPointsForFraudulentActsIfDiscovered;
 
   /// No description provided for @forMakingAFirstValidBidInTheAuctionHouse.
   ///
@@ -1474,7 +1474,7 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Claim or refer 1 airspaces in a specific area:  New York: Manhattan & Boroughs Texas: Garland, Murphy, Plano, Richardson, Mesquite, Dallas, Rowlett, Colony, College Station Florida: Clermont, New Port Richey, Valrico, Winter Haven, Tampa, Brandon, Riverview, Seffner Arizona: Phoenix, Glendale, Peoria Arkansas: Farmington, Bentonville, Rogers, Pea Ridge Virginia: Virginia Beach Utah: Lindon, Herriman North Carolina: Raeford'**
   String
-  get claimOrReferOneAirspacesInASpecificAreaNewYorkManhattanAndBoroughsTexasGarlandMurphyPlanoRichardsonMesquiteDallasRowlettColonyCollegeStationFloridaClermontNewPortRicheyValricoWinterHavenTampaBrandonRiverviewSeffnerArizonaPhoenixGlendalePeoriaArkansasFarmingtonBentonvilleRogersPeaRidgeVirginiaVirginiaBeachUtahLindonHerrimanNorthCarolinaRaeford;
+      get claimOrReferOneAirspacesInASpecificAreaNewYorkManhattanAndBoroughsTexasGarlandMurphyPlanoRichardsonMesquiteDallasRowlettColonyCollegeStationFloridaClermontNewPortRicheyValricoWinterHavenTampaBrandonRiverviewSeffnerArizonaPhoenixGlendalePeoriaArkansasFarmingtonBentonvilleRogersPeaRidgeVirginiaVirginiaBeachUtahLindonHerrimanNorthCarolinaRaeford;
 
   /// No description provided for @trackADroneWithTheRadarApp.
   ///
@@ -1487,7 +1487,7 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Track a drone with the radar app in a specific area:  Texas: Garland, Murphy, Plano, Richardson, Mesquite, Dallas, Rowlett, Colony, College Station Florida: Clermont, New Port Richey, Valrico, Winter Haven, Tampa, Brandon, Riverview, Seffner Arizona: Phoenix, Glendale, Peoria Arkansas: Farmington, Bentonville, Rogers, Pea Ridge Virginia: Virginia Beach Utah: Lindon, Herriman North Carolina: Raeford'**
   String
-  get trackADroneWithTheRadarAppInASpecificAreaTexasGarlandMurphyPlanoRichardsonMesquiteDallasRowlettColonyCollegeStationFloridaClermontNewPortRicheyValricoWinterHavenTampaBrandonRiverviewSeffnerArizonaPhoenixGlendalePeoriaArkansasFarmingtonBentonvilleRogersPeaRidgeVirginiaVirginiaBeachUtahLindonHerrimanNorthCarolinaRaeford;
+      get trackADroneWithTheRadarAppInASpecificAreaTexasGarlandMurphyPlanoRichardsonMesquiteDallasRowlettColonyCollegeStationFloridaClermontNewPortRicheyValricoWinterHavenTampaBrandonRiverviewSeffnerArizonaPhoenixGlendalePeoriaArkansasFarmingtonBentonvilleRogersPeaRidgeVirginiaVirginiaBeachUtahLindonHerrimanNorthCarolinaRaeford;
 
   /// No description provided for @fiveSkyPoints.
   ///
@@ -1512,7 +1512,7 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'100 SKY points to you and 100 SKY points to your friend (this is part of the points allocation 2) + 10% bonus on the referred income stream from air-right rental'**
   String
-  get hundredSkyPointsToYouAndHundredSkyPointsToYourFriendThisIsPartOfThePointsAllocationTwoPlusTenPercentBonusOnTheReferredIncomeStreamFromAirRightRental;
+      get hundredSkyPointsToYouAndHundredSkyPointsToYourFriendThisIsPartOfThePointsAllocationTwoPlusTenPercentBonusOnTheReferredIncomeStreamFromAirRightRental;
 
   /// No description provided for @fiveSkyPointsPerDrone.
   ///
@@ -1657,14 +1657,14 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Referral code too short. Referral code can either be six characters long or the email of the referer'**
   String
-  get referralCodeTooShortReferralCodeCanEitherBeSixCharactersLongOrTheEmailOfTheReferer;
+      get referralCodeTooShortReferralCodeCanEitherBeSixCharactersLongOrTheEmailOfTheReferer;
 
   /// No description provided for @referralCodeTooLongReferralCodeCanEitherBeSixCharactersLongOrTheEmailOfTheReferer.
   ///
   /// In en, this message translates to:
   /// **'Referral code too long. Referral code can either be six characters long or the email of the referer'**
   String
-  get referralCodeTooLongReferralCodeCanEitherBeSixCharactersLongOrTheEmailOfTheReferer;
+      get referralCodeTooLongReferralCodeCanEitherBeSixCharactersLongOrTheEmailOfTheReferer;
 
   /// No description provided for @submit.
   ///
@@ -1701,7 +1701,7 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'We could not get your position on the leaderboard. Try refreshing the leaderboard table or the entire page then try viewing your position again'**
   String
-  get weCouldNotGetYourPositionOnTheLeaderboardTryRefreshingTheLeaderboardTableOrTheEntirePageThenTryViewingYourPositionAgain;
+      get weCouldNotGetYourPositionOnTheLeaderboardTryRefreshingTheLeaderboardTableOrTheEntirePageThenTryViewingYourPositionAgain;
 
   /// No description provided for @thereWasAnErrorComputingYourPositionOnTheLeaderboard.
   ///
@@ -1780,7 +1780,7 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Try refreshing the page if the issue continues. You may want to check your connection or try again later'**
   String
-  get tryRefreshingThePageIfTheIssueContinuesYouMayWantToCheckYourConnectionOrTryAgainLater;
+      get tryRefreshingThePageIfTheIssueContinuesYouMayWantToCheckYourConnectionOrTryAgainLater;
 
   /// No description provided for @tryOutSkyTradeRadar.
   ///
@@ -1823,7 +1823,7 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Earn 25 points for every verified drone observation. Complete daily quests to earn even more points'**
   String
-  get earn25PointsForEveryVerifiedDroneObservationCompleteDailyQuestsToEarnEvenMorePoints;
+      get earn25PointsForEveryVerifiedDroneObservationCompleteDailyQuestsToEarnEvenMorePoints;
 
   /// No description provided for @pointsProgram.
   ///
@@ -1854,7 +1854,7 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Earn 25 points for every verified drone observation. Complete daily quests to earn bonus points and climb the ranks.\nThe more you contribute, the more you level up'**
   String
-  get earn25PointsForEveryVerifiedDroneObservationCompleteDailyQuestsToEarnBonusPointsAndClimbTheRanksTheMoreYouContributeTheMoreTouLevelUp;
+      get earn25PointsForEveryVerifiedDroneObservationCompleteDailyQuestsToEarnBonusPointsAndClimbTheRanksTheMoreYouContributeTheMoreTouLevelUp;
 
   /// No description provided for @viewLeaderboard.
   ///
@@ -1885,7 +1885,7 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'We could not get your position on the leaderboard. Try refreshing the page then try viewing your position again'**
   String
-  get weCouldNotGetYourPositionOnTheLeaderboardTryRefreshingThePageThenTryViewingYourPositionAgain;
+      get weCouldNotGetYourPositionOnTheLeaderboardTryRefreshingThePageThenTryViewingYourPositionAgain;
 
   /// No description provided for @daysLeft.
   ///
@@ -1904,7 +1904,7 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Compete with others to climb the ranks by earning points through drone observations and quests. \n\nPoints reset at the start of each new season, so stay active to maintain your position'**
   String
-  get competeWithOthersToClimbTheRanksByEarningPointsThroughDroneObservationsAndQuestsPointsResetAtTheStartOfEachNewSeasonSoStayActiveToMaintainYourPosition;
+      get competeWithOthersToClimbTheRanksByEarningPointsThroughDroneObservationsAndQuestsPointsResetAtTheStartOfEachNewSeasonSoStayActiveToMaintainYourPosition;
 
   /// No description provided for @close.
   ///
@@ -1929,7 +1929,7 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Keep an eye on the map for active Rush Zones and start tracking to maximize your rewards'**
   String
-  get keepAnEyeOnTheMapForActiveRushZonesAndStartTrackingToMaximizeYourRewards;
+      get keepAnEyeOnTheMapForActiveRushZonesAndStartTrackingToMaximizeYourRewards;
 
   /// No description provided for @activeRushZones.
   ///
@@ -1984,7 +1984,7 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Only specific locations are eligible for extra points. Rush zones will be marked clearly on your map'**
   String
-  get onlySpecificLocationsAreEligibleForExtraPointsRushZonesWillBeMarkedClearlyOnYourMap;
+      get onlySpecificLocationsAreEligibleForExtraPointsRushZonesWillBeMarkedClearlyOnYourMap;
 
   /// No description provided for @whichAreasAreEligible.
   ///
@@ -2027,7 +2027,7 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'All successful observations in Rush Zones will automatically earn boosted rewards'**
   String
-  get allSuccessfulObservationsInRushZonesWillAutomaticallyEarnBoostedRewards;
+      get allSuccessfulObservationsInRushZonesWillAutomaticallyEarnBoostedRewards;
 
   /// No description provided for @startEarning.
   ///
@@ -2130,7 +2130,7 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Texas: Garland, Murphy, Plano, Richardson, Mesquite, Dallas, Rowlett, Colony, College Station Florida: Clermont, New Port Richey, Valrico, Winter Haven, Tampa, Brandon, Riverview, Seffner Arizona: Phoenix, Glendale, Peoria Arkansas: Farmington, Bentonville, Rogers, Pea Ridge Virginia: Virginia Beach Utah: Lindon, Herriman North Carolina: Raeford'**
   String
-  get texasGarlandMurphyPlanoRichardsonMesquiteDallasRowlettColonyCollegeStationFloridaClermontNewPortRicheyValricoWinterHavenTampaBrandonRiverviewSeffnerArizonaPhoenixGlendalePeoriaArkansasFarmingtonBentonvilleRogersPeaRidgeVirginiaVirginiaBeachUtahLindonHerrimanNorthCarolinaRaeford;
+      get texasGarlandMurphyPlanoRichardsonMesquiteDallasRowlettColonyCollegeStationFloridaClermontNewPortRicheyValricoWinterHavenTampaBrandonRiverviewSeffnerArizonaPhoenixGlendalePeoriaArkansasFarmingtonBentonvilleRogersPeaRidgeVirginiaVirginiaBeachUtahLindonHerrimanNorthCarolinaRaeford;
 
   /// No description provided for @allow.
   ///
@@ -2167,7 +2167,7 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'You\'ve denied location access. Please enable it in your app settings so SkyTrade can show relevant features near you'**
   String
-  get youveDeniedLocationAccessPleaseEnableItInYourAppSettingsSoSkyTradeCanShowRelevantFeaturesNearYou;
+      get youveDeniedLocationAccessPleaseEnableItInYourAppSettingsSoSkyTradeCanShowRelevantFeaturesNearYou;
 
   /// No description provided for @turnOnLocationServices.
   ///
@@ -2180,7 +2180,7 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'SkyTrade needs GPS to find your location and show relevant features around you. Please enable it in your device settings'**
   String
-  get skyTradeNeedsGpsToFindYourLocationAndShowRelevantFeaturesAroundYouPleaseEnableItInYourDeviceSettings;
+      get skyTradeNeedsGpsToFindYourLocationAndShowRelevantFeaturesAroundYouPleaseEnableItInYourDeviceSettings;
 
   /// No description provided for @termsOfService.
   ///
@@ -2214,9 +2214,8 @@ AppLocalizations lookupAppLocalizations(Locale locale) {
   }
 
   throw FlutterError(
-    'AppLocalizations.delegate failed to load unsupported locale "$locale". This is likely '
-    'an issue with the localizations generation tool. Please file an issue '
-    'on GitHub with a reproducible sample app and the gen-l10n configuration '
-    'that was used.',
-  );
+      'AppLocalizations.delegate failed to load unsupported locale "$locale". This is likely '
+      'an issue with the localizations generation tool. Please file an issue '
+      'on GitHub with a reproducible sample app and the gen-l10n configuration '
+      'that was used.');
 }

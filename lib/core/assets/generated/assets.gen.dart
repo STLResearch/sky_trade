@@ -195,10 +195,6 @@ class $AssetsSvgsGen {
   /// File path: assets/svgs/home.svg
   SvgGenImage get home => const SvgGenImage('assets/svgs/home.svg');
 
-  /// File path: assets/svgs/icon_drone_about.svg
-  SvgGenImage get iconDroneAbout =>
-      const SvgGenImage('assets/svgs/icon_drone_about.svg');
-
   /// File path: assets/svgs/icon_drone_black.svg
   SvgGenImage get iconDroneBlack =>
       const SvgGenImage('assets/svgs/icon_drone_black.svg');
@@ -335,13 +331,13 @@ class $AssetsSvgsGen {
   SvgGenImage get shareReferral =>
       const SvgGenImage('assets/svgs/share_referral.svg');
 
-  /// File path: assets/svgs/sky_trade_menu_logo.svg
-  SvgGenImage get skyTradeMenuLogo =>
-      const SvgGenImage('assets/svgs/sky_trade_menu_logo.svg');
-
   /// File path: assets/svgs/sky_trade_radar_logo.svg
   SvgGenImage get skyTradeRadarLogo =>
       const SvgGenImage('assets/svgs/sky_trade_radar_logo.svg');
+
+  /// File path: assets/svgs/sky_trade_radar_menu_logo.svg
+  SvgGenImage get skyTradeRadarMenuLogo =>
+      const SvgGenImage('assets/svgs/sky_trade_radar_menu_logo.svg');
 
   /// File path: assets/svgs/storm.svg
   SvgGenImage get storm => const SvgGenImage('assets/svgs/storm.svg');
@@ -401,7 +397,6 @@ class $AssetsSvgsGen {
     helpCircleLarge,
     helpCircleSmall,
     home,
-    iconDroneAbout,
     iconDroneBlack,
     iconDroneBlue,
     indicator,
@@ -440,8 +435,8 @@ class $AssetsSvgsGen {
     share,
     shareInvite,
     shareReferral,
-    skyTradeMenuLogo,
     skyTradeRadarLogo,
+    skyTradeRadarMenuLogo,
     storm,
     sun,
     totalPoints,

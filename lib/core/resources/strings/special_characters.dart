@@ -17,4 +17,3 @@ const openingParenthesis = '(';
 const closingParenthesis = ')';
 const threeDots = '...';
 const exclamationMark = '!';
-const dot = '•';
