@@ -2,7 +2,6 @@ import 'package:flutter/material.dart'
     show
         AppBarTheme,
         BorderRadius,
-        BorderRadiusDirectional,
         BorderSide,
         BottomNavigationBarThemeData,
         BottomNavigationBarType,
@@ -186,7 +185,7 @@ ThemeData get lightTheme => ThemeData(
           hexFFFFFF,
         ),
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadiusDirectional.circular(
+          borderRadius: BorderRadius.circular(
             twoDotNil,
           ),
           side: const BorderSide(
@@ -215,7 +214,7 @@ ThemeData get lightTheme => ThemeData(
           ),
           shape: WidgetStatePropertyAll<OutlinedBorder>(
             RoundedRectangleBorder(
-              borderRadius: BorderRadiusDirectional.circular(
+              borderRadius: BorderRadius.circular(
                 eightDotNil,
               ),
             ),
@@ -238,7 +237,7 @@ ThemeData get lightTheme => ThemeData(
           ),
           shape: WidgetStatePropertyAll<OutlinedBorder>(
             RoundedRectangleBorder(
-              borderRadius: BorderRadiusDirectional.circular(
+              borderRadius: BorderRadius.circular(
                 eightDotNil,
               ),
             ),
@@ -304,7 +303,7 @@ ThemeData get lightTheme => ThemeData(
         showDragHandle: false,
         dragHandleColor: hexD9D9D9,
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadiusDirectional.vertical(
+          borderRadius: BorderRadius.vertical(
             top: Radius.circular(
               thirtyDotNil,
             ),
@@ -325,7 +324,7 @@ ThemeData get lightTheme => ThemeData(
       dialogTheme: DialogThemeData(
         backgroundColor: hexFFFFFF,
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadiusDirectional.circular(
+          borderRadius: BorderRadius.circular(
             eightDotNil,
           ),
         ),
