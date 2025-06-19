@@ -80,10 +80,9 @@ BasicIDModel _$BasicIDModelFromJson(Map<String, dynamic> json) => BasicIDModel(
           UnmannedAircraftIDType.none,
       mSerialNumber: json['serialNumber'] as String?,
       mRegistrationID: json['registrationId'] as String?,
-      mID: const NullableUint8ListConverter()
-          .fromJson(json['uasId'] as List<int>?),
-      mRawData: const NullableUint8ListConverter()
-          .fromJson(json['rawData'] as List<int>?),
+      mID: const NullableUint8ListConverter().fromJson(json['uasId'] as List?),
+      mRawData:
+          const NullableUint8ListConverter().fromJson(json['rawData'] as List?),
     );
 
 Map<String, dynamic> _$BasicIDModelToJson(BasicIDModel instance) =>
@@ -161,8 +160,8 @@ LocationModel _$LocationModelFromJson(Map<String, dynamic> json) =>
           .fromJson((json['locationTimestamp'] as num?)?.toDouble()),
       mTimestampAccuracy: const NullableDurationConverter()
           .fromJson((json['timeAccuracy'] as num?)?.toDouble()),
-      mRawData: const NullableUint8ListConverter()
-          .fromJson(json['rawData'] as List<int>?),
+      mRawData:
+          const NullableUint8ListConverter().fromJson(json['rawData'] as List?),
     );
 
 Map<String, dynamic> _$LocationModelToJson(LocationModel instance) =>
@@ -270,8 +269,8 @@ SystemModel _$SystemModelFromJson(Map<String, dynamic> json) => SystemModel(
       mClassValue: $enumDecodeNullable(
               _$UnmannedAircraftClassValueEnumMap, json['classValue']) ??
           UnmannedAircraftClassValue.undefined,
-      mRawData: const NullableUint8ListConverter()
-          .fromJson(json['rawData'] as List<int>?),
+      mRawData:
+          const NullableUint8ListConverter().fromJson(json['rawData'] as List?),
     );
 
 Map<String, dynamic> _$SystemModelToJson(SystemModel instance) =>
@@ -343,10 +342,10 @@ SelfIDModel _$SelfIDModelFromJson(Map<String, dynamic> json) => SelfIDModel(
               json['descriptionType']) ??
           UnmannedAircraftSelfIDDescriptionType.invalid,
       mOperationDescription: const NullableUint8ListConverter()
-          .fromJson(json['operationDescription'] as List<int>?),
+          .fromJson(json['operationDescription'] as List?),
       mDescription: json['description'] as String?,
-      mRawData: const NullableUint8ListConverter()
-          .fromJson(json['rawData'] as List<int>?),
+      mRawData:
+          const NullableUint8ListConverter().fromJson(json['rawData'] as List?),
     );
 
 Map<String, dynamic> _$SelfIDModelToJson(SelfIDModel instance) =>
@@ -374,10 +373,10 @@ OperatorIDModel _$OperatorIDModelFromJson(Map<String, dynamic> json) =>
           _$UnmannedAircraftOperatorIDTypeEnumMap,
           json['operatorIdClassification']),
       mOperatorID: const NullableUint8ListConverter()
-          .fromJson(json['operatorId'] as List<int>?),
+          .fromJson(json['operatorId'] as List?),
       mID: json['id'] as String?,
-      mRawData: const NullableUint8ListConverter()
-          .fromJson(json['rawData'] as List<int>?),
+      mRawData:
+          const NullableUint8ListConverter().fromJson(json['rawData'] as List?),
     );
 
 Map<String, dynamic> _$OperatorIDModelToJson(OperatorIDModel instance) =>
@@ -403,14 +402,14 @@ AuthenticationModel _$AuthenticationModelFromJson(Map<String, dynamic> json) =>
           UnmannedAircraftAuthenticationType.none,
       mAuthenticationPageNumber: (json['authDataPage'] as num).toInt(),
       mAuthenticationData:
-          const Uint8ListConverter().fromJson(json['authData'] as List<int>),
+          const Uint8ListConverter().fromJson(json['authData'] as List),
       mLastAuthenticationPageIndex:
           (json['authLastPageIndex'] as num?)?.toInt(),
       mAuthenticationLength: (json['authLength'] as num?)?.toInt(),
       mTimestamp: const NullableDateTimeConverter()
           .fromJson((json['authTimestamp'] as num?)?.toInt()),
-      mRawData: const NullableUint8ListConverter()
-          .fromJson(json['rawData'] as List<int>?),
+      mRawData:
+          const NullableUint8ListConverter().fromJson(json['rawData'] as List?),
     );
 
 Map<String, dynamic> _$AuthenticationModelToJson(
