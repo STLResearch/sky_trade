@@ -1,4 +1,6 @@
 import 'package:sky_trade/core/resources/numbers/ui.dart' show one, two, zero;
+import 'package:sky_trade/core/resources/strings/networking.dart'
+    show pirateKey;
 import 'package:sky_trade/core/resources/strings/special_characters.dart'
     show emptyString, whiteSpace;
 import 'package:sky_trade/features/auth/domain/entities/auth_entity.dart'
@@ -28,7 +30,7 @@ extension SkyTradeUserEntityExtensions on SkyTradeUserEntity {
   String get displayName =>
       username ??
       switch (name.isNotEmpty) {
-        true => name,
-        false => email,
+        true when name != pirateKey => name,
+        _ => email,
       };
 }
