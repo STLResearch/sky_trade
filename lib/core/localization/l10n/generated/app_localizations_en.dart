@@ -36,13 +36,11 @@ class AppLocalizationsEn extends AppLocalizations {
   String get emailFieldCannotBeEmpty => 'Email field cannot be empty';
 
   @override
-  String
-  get signInOrSignUpEffortlesslyUseTheAuthenticationMethodYouChoseDuringSignUpToSignIn =>
+  String get signInOrSignUpEffortlesslyUseTheAuthenticationMethodYouChoseDuringSignUpToSignIn =>
       'Sign in or sign up effortlessly. Use the authentication method you chose during sign up to sign in.';
 
   @override
-  String
-  get whitespacesAreNotAllowedPleaseRemoveAnyLeadingAndOrTrailingWhitespaces =>
+  String get whitespacesAreNotAllowedPleaseRemoveAnyLeadingAndOrTrailingWhitespaces =>
       'Whitespaces are not allowed. Please remove any leading and/or trailing whitespaces';
 
   @override
@@ -56,7 +54,7 @@ class AppLocalizationsEn extends AppLocalizations {
       'By continuing with SkyTrade I agree with the';
 
   @override
-  String get termsAndConditions => 'Terms and Conditions';
+  String get termsOfService => 'Terms of Service';
 
   @override
   String get and => 'and';
@@ -96,8 +94,7 @@ class AppLocalizationsEn extends AppLocalizations {
       'It looks like we are having trouble initializing your session.';
 
   @override
-  String
-  get tryClearingTheAppCacheFirstAndTheAppDataSecondAfterClosingTheAppRestartTheAppAfterwardsIfTheIssueContinuesFeelFreeToContactOurSupportTeam =>
+  String get tryClearingTheAppCacheFirstAndTheAppDataSecondAfterClosingTheAppRestartTheAppAfterwardsIfTheIssueContinuesFeelFreeToContactOurSupportTeam =>
       'Try clearing the app cache first and the app data second after closing the app. Restart the app afterwards. If the issue continues, feel free to contact our support team';
 
   @override
@@ -105,8 +102,7 @@ class AppLocalizationsEn extends AppLocalizations {
       'It looks like you don\'t have an active internet connection';
 
   @override
-  String
-  get yourInternetConnectionMayBePoorOrYouAreProbablyJustOutOfCoveragePleaseCheckYourConnectionOrTryAgain =>
+  String get yourInternetConnectionMayBePoorOrYouAreProbablyJustOutOfCoveragePleaseCheckYourConnectionOrTryAgain =>
       'Your internet connection may be poor or you are probably just out of coverage. Please check your connection or try again';
 
   @override
@@ -182,13 +178,11 @@ class AppLocalizationsEn extends AppLocalizations {
       'Your query did not yield any results';
 
   @override
-  String
-  get welcomeToSkyTradeRadarUsingOurApplicationYouCanReceiveDroneRemoteIdDataOnYourPhoneAndSeeRestrictedAreasForFlyingTheApplicationCanReceiveDataTransmittedOverBluetoothAndWiFi =>
+  String get welcomeToSkyTradeRadarUsingOurApplicationYouCanReceiveDroneRemoteIdDataOnYourPhoneAndSeeRestrictedAreasForFlyingTheApplicationCanReceiveDataTransmittedOverBluetoothAndWiFi =>
       'Welcome to SkyTrade Radar Using our application, you can receive drone Remote ID data on your phone and see restricted areas for flying. The application can receive data transmitted over Bluetooth and Wi-Fi.';
 
   @override
-  String
-  get pleaseNoteThatTheFunctionalityOfThisApplicationIsEntirelyDependentOnTheOperationSystemOfYourMobileDeviceItsVersionAndAlsoTheHardwareComponentsAndFeaturesOfTheDroneYouWantToObserve =>
+  String get pleaseNoteThatTheFunctionalityOfThisApplicationIsEntirelyDependentOnTheOperationSystemOfYourMobileDeviceItsVersionAndAlsoTheHardwareComponentsAndFeaturesOfTheDroneYouWantToObserve =>
       'Please note that the functionality of this application is entirely dependent on the operation system of your mobile device, its version and also the hardware components and features of the drone you want to observe.';
 
   @override
@@ -196,8 +190,7 @@ class AppLocalizationsEn extends AppLocalizations {
       'How can I find out what my phone is capable of?';
 
   @override
-  String
-  get toFindOutWhatYourPhoneIsCapableOfCheckTheSpecificationsOnTheManufacturersWebsiteOrTheAboutPhoneSectionInYourSettingsYouCanAlsoUseThirdPartyAppsLikeAida64OrCpuZForDetailedHardwareAndSoftwareInformationThisWillHelpYouUnderstandTheSensorsConnectivityOptionsAndOtherFeaturesAvailableOnYourDevice =>
+  String get toFindOutWhatYourPhoneIsCapableOfCheckTheSpecificationsOnTheManufacturersWebsiteOrTheAboutPhoneSectionInYourSettingsYouCanAlsoUseThirdPartyAppsLikeAida64OrCpuZForDetailedHardwareAndSoftwareInformationThisWillHelpYouUnderstandTheSensorsConnectivityOptionsAndOtherFeaturesAvailableOnYourDevice =>
       'To find out what your phone is capable of, check the specifications on the manufacturer\'s website or the \"About Phone\" section in your settings. You can also use third-party apps like AIDA64 or CPU-Z for detailed hardware and software information. This will help you understand the sensors, connectivity options, and other features available on your device.';
 
   @override
@@ -205,8 +198,7 @@ class AppLocalizationsEn extends AppLocalizations {
       'There\'s a drone flying nearby but the app doesn\'t recognize it';
 
   @override
-  String
-  get someDronesCannotBeTrackedByOurAppBecauseTheyLackTheNecessaryTransponderOrRemoteIdTechnologyAdditionallyCustomBuiltOrOlderModelsMightNotHaveTheStandardizedIdentificationSystemsRequiredForDetectionIfANearbyDroneIsntRecognizedCheckForSignalInterferenceOrObstructionsAndEnsureTheAppIsUpdatedAndHasTheNecessaryPermissionsEnabledOnYourPhone =>
+  String get someDronesCannotBeTrackedByOurAppBecauseTheyLackTheNecessaryTransponderOrRemoteIdTechnologyAdditionallyCustomBuiltOrOlderModelsMightNotHaveTheStandardizedIdentificationSystemsRequiredForDetectionIfANearbyDroneIsntRecognizedCheckForSignalInterferenceOrObstructionsAndEnsureTheAppIsUpdatedAndHasTheNecessaryPermissionsEnabledOnYourPhone =>
       'Some drones cannot be tracked by our app because they lack the necessary transponder or Remote ID technology. Additionally, custom-built or older models might not have the standardized identification systems required for detection. If a nearby drone isn\'t recognized, check for signal interference or obstructions, and ensure the app is updated and has the necessary permissions enabled on your phone.';
 
   @override
@@ -214,8 +206,7 @@ class AppLocalizationsEn extends AppLocalizations {
       'What is a Remote ID and why do I need it?';
 
   @override
-  String
-  get remoteIdIsASystemThatAllowsDronesToTransmitIdentificationAndLocationInformationToOthersSimilarToADigitalLicensePlateItEnhancesAirspaceSafetyAndSecurityByEnablingAuthoritiesToTrackAndManageDronesComplianceWithRemoteIdRegulationsIsNecessaryForLegalDroneOperationInManyCountries =>
+  String get remoteIdIsASystemThatAllowsDronesToTransmitIdentificationAndLocationInformationToOthersSimilarToADigitalLicensePlateItEnhancesAirspaceSafetyAndSecurityByEnablingAuthoritiesToTrackAndManageDronesComplianceWithRemoteIdRegulationsIsNecessaryForLegalDroneOperationInManyCountries =>
       'Remote ID is a system that allows drones to transmit identification and location information to others, similar to a digital license plate. It enhances airspace safety and security by enabling authorities to track and manage drones. Compliance with Remote ID regulations is necessary for legal drone operation in many countries.';
 
   @override
@@ -223,8 +214,7 @@ class AppLocalizationsEn extends AppLocalizations {
       'Are there any restrictions on where I can use the drone radar app?';
 
   @override
-  String
-  get yesThereMayBeRestrictionsOnUsingTheDroneRadarAppInNoFlyZonesSuchAsAirportsMilitaryBasesAndOtherSensitiveAreasLocalPrivacyLawsMayAlsoLimitTheUseOfDroneDetectionTechnologyInCertainRegionsAlwaysCheckLocalRegulationsAndGuidelinesToEnsureCompliantUsage =>
+  String get yesThereMayBeRestrictionsOnUsingTheDroneRadarAppInNoFlyZonesSuchAsAirportsMilitaryBasesAndOtherSensitiveAreasLocalPrivacyLawsMayAlsoLimitTheUseOfDroneDetectionTechnologyInCertainRegionsAlwaysCheckLocalRegulationsAndGuidelinesToEnsureCompliantUsage =>
       'Yes, there may be restrictions on using the drone radar app in no-fly zones such as airports, military bases, and other sensitive areas. Local privacy laws may also limit the use of drone detection technology in certain regions. Always check local regulations and guidelines to ensure compliant usage.';
 
   @override
@@ -232,16 +222,14 @@ class AppLocalizationsEn extends AppLocalizations {
       'Why does the app require access to my location and connectivity services?';
 
   @override
-  String
-  get theAppRequiresAccessToYourLocationToAccuratelyDetectAndTrackDronesInYourVicinityConnectivityServicesLikeWiFiAndBluetoothHelpTheAppCommunicateWithDronesAndOtherDevicesForBetterDetectionThesePermissionsAreEssentialForProvidingAccurateAndReliableFunctionality =>
+  String get theAppRequiresAccessToYourLocationToAccuratelyDetectAndTrackDronesInYourVicinityConnectivityServicesLikeWiFiAndBluetoothHelpTheAppCommunicateWithDronesAndOtherDevicesForBetterDetectionThesePermissionsAreEssentialForProvidingAccurateAndReliableFunctionality =>
       'The app requires access to your location to accurately detect and track drones in your vicinity. Connectivity services like Wi-Fi and Bluetooth help the app communicate with drones and other devices for better detection. These permissions are essential for providing accurate and reliable functionality.';
 
   @override
   String get whatIsARestrictedArea => 'What is a restricted area?';
 
   @override
-  String
-  get aRestrictedAreaIsADesignatedAirspaceWhereDroneFlightsAreLimitedOrProhibitedToEnsureSafetySecurityOrEnvironmentalProtectionTheseAreasCanIncludeMilitaryZonesNoFlyZonesAroundAirportsAndGovernmentBuildingsAndProtectedEnvironmentalAreasLikeNationalParksFlyingInTheseAreasWithoutAuthorizationIsIllegalAndCanResultInPenalties =>
+  String get aRestrictedAreaIsADesignatedAirspaceWhereDroneFlightsAreLimitedOrProhibitedToEnsureSafetySecurityOrEnvironmentalProtectionTheseAreasCanIncludeMilitaryZonesNoFlyZonesAroundAirportsAndGovernmentBuildingsAndProtectedEnvironmentalAreasLikeNationalParksFlyingInTheseAreasWithoutAuthorizationIsIllegalAndCanResultInPenalties =>
       'A restricted area is a designated airspace where drone flights are limited or prohibited to ensure safety, security, or environmental protection. These areas can include military zones, no-fly zones around airports and government buildings, and protected environmental areas like national parks. Flying in these areas without authorization is illegal and can result in penalties.';
 
   @override
@@ -249,8 +237,7 @@ class AppLocalizationsEn extends AppLocalizations {
       'What are the red, orange, yellow and green zones?';
 
   @override
-  String
-  get inDroneOperationsDifferentZonesIndicateVaryingLevelsOfRestrictionRedZonesAreProhibitedAreasWhereFlyingIsNotAllowedDueToSafetySecurityOrEnvironmentalConcernsOrangeZonesRequireAuthorizationFromTheFaaBeforeYouCanFlyYellowZonesAreAreasWhereFlyingIsPermittedButMayBeHazardousSoExtraCautionIsAdvisedGreenZonesAreOpenForFlyingWithoutAnySpecificRestrictionsOrAdditionalPermissions =>
+  String get inDroneOperationsDifferentZonesIndicateVaryingLevelsOfRestrictionRedZonesAreProhibitedAreasWhereFlyingIsNotAllowedDueToSafetySecurityOrEnvironmentalConcernsOrangeZonesRequireAuthorizationFromTheFaaBeforeYouCanFlyYellowZonesAreAreasWhereFlyingIsPermittedButMayBeHazardousSoExtraCautionIsAdvisedGreenZonesAreOpenForFlyingWithoutAnySpecificRestrictionsOrAdditionalPermissions =>
       'In drone operations, different zones indicate varying levels of restriction. Red Zones are prohibited areas where flying is not allowed due to safety, security, or environmental concerns. Orange Zones require authorization from the FAA before you can fly. Yellow Zones are areas where flying is permitted but may be hazardous, so extra caution is advised. Green Zones are open for flying without any specific restrictions or additional permissions.';
 
   @override
@@ -269,8 +256,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get skyTradeRadar => 'SkyTrade Radar';
 
   @override
-  String
-  get theDroneRestrictionsAndAirspaceDataProvidedByThisAppAreForInformationalPurposesOnlyWhileWeStriveToKeepThisInformationAccurateAndUpToDateWeCannotGuaranteeItsCompletenessOrAccuracyUsersAreResponsibleForEnsuringComplianceWithAllLocalLawsAndRegulationsTheAppProvidersAssumeNoLiabilityForAnyDecisionsOrActionsTakenBasedOnTheDataPresented =>
+  String get theDroneRestrictionsAndAirspaceDataProvidedByThisAppAreForInformationalPurposesOnlyWhileWeStriveToKeepThisInformationAccurateAndUpToDateWeCannotGuaranteeItsCompletenessOrAccuracyUsersAreResponsibleForEnsuringComplianceWithAllLocalLawsAndRegulationsTheAppProvidersAssumeNoLiabilityForAnyDecisionsOrActionsTakenBasedOnTheDataPresented =>
       'The drone restrictions and airspace data provided by this app are for informational purposes only. While we strive to keep this information accurate and up-to-date, we cannot guarantee its completeness or accuracy. Users are responsible for ensuring compliance with all local laws and regulations. The app providers assume no liability for any decisions or actions taken based on the data presented.';
 
   @override
@@ -504,16 +490,14 @@ class AppLocalizationsEn extends AppLocalizations {
   String get analytics => 'Analytics';
 
   @override
-  String
-  get beforeWeCanEnableAnalyticsForYouWeNeedYouToGrantUsTrackingAuthorization =>
+  String get beforeWeCanEnableAnalyticsForYouWeNeedYouToGrantUsTrackingAuthorization =>
       'Before we can enable analytics for you we need you to grant us tracking authorization';
 
   @override
   String get deleteAccount => 'Delete Account';
 
   @override
-  String
-  get aCodeWillBeSentToYourEmailAreYouSureYouWantToProceedWithThisAction =>
+  String get aCodeWillBeSentToYourEmailAreYouSureYouWantToProceedWithThisAction =>
       'A code will be sent to your email. Are you sure you want to proceed with this action';
 
   @override
@@ -529,8 +513,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get retry => 'Retry';
 
   @override
-  String
-  get youAreAboutToDeleteYourAccountPleaseBeCertainThatThisIsWhatYouWantAsThisActionCannotBeReversed =>
+  String get youAreAboutToDeleteYourAccountPleaseBeCertainThatThisIsWhatYouWantAsThisActionCannotBeReversed =>
       'You are about to delete your account. Please be certain that this is what you want as this action cannot be reversed';
 
   @override
@@ -542,8 +525,7 @@ class AppLocalizationsEn extends AppLocalizations {
       'This email cannot be used to create a new account. Please use a different email';
 
   @override
-  String
-  get accountDoesNotExistIfItPreviouslyDidItMayHaveBeenDeletedHoweverWeNeedYourInputToFinishOff =>
+  String get accountDoesNotExistIfItPreviouslyDidItMayHaveBeenDeletedHoweverWeNeedYourInputToFinishOff =>
       'Account does not exist. If it previously did, it may have been deleted. However, we need your input to finish off';
 
   @override
@@ -599,16 +581,14 @@ class AppLocalizationsEn extends AppLocalizations {
       'You have an existing session with the email';
 
   @override
-  String
-  get howeverThisEmailHasNotBeenVerifiedClickOnTheLinkSentToTheEmailToProceedOrLogoutInstead =>
+  String get howeverThisEmailHasNotBeenVerifiedClickOnTheLinkSentToTheEmailToProceedOrLogoutInstead =>
       'however this email has not been verified. Click on the link sent to the email to proceed or logout instead';
 
   @override
   String get okay => 'Okay';
 
   @override
-  String
-  get weCouldNotVerifyYourEmailPleaseEnsureThatYouHaveClickedTheCorrectLink =>
+  String get weCouldNotVerifyYourEmailPleaseEnsureThatYouHaveClickedTheCorrectLink =>
       'We could not verify your email. Please ensure that you have clicked the correct link';
 
   @override
@@ -618,8 +598,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get weTookYouToAnUnknownRoute => 'We took you to an unknown route';
 
   @override
-  String
-  get weMustHaveDoneSomethingWrongSomewhereWeAreReallySorryAboutThatRegardlessRefreshingThisPageWillFixThis =>
+  String get weMustHaveDoneSomethingWrongSomewhereWeAreReallySorryAboutThatRegardlessRefreshingThisPageWillFixThis =>
       'We must have done something wrong somewhere. We are really sorry about that. Regardless, refreshing this page will fix this';
 
   @override
@@ -631,8 +610,7 @@ class AppLocalizationsEn extends AppLocalizations {
       'You did not perform a required step necessary to complete an action';
 
   @override
-  String
-  get youDeletedAnAccountAtSomePointButDeclinedOurRequestForYouToInvalidateTheSessionInOrderToProceedKindlyAcceptTheNextDialogThatShowsUp =>
+  String get youDeletedAnAccountAtSomePointButDeclinedOurRequestForYouToInvalidateTheSessionInOrderToProceedKindlyAcceptTheNextDialogThatShowsUp =>
       'You deleted an account at some point but declined our request for you to invalidate the session. In order to proceed, kindly accept the next dialog that shows up';
 
   @override
@@ -644,8 +622,7 @@ class AppLocalizationsEn extends AppLocalizations {
       'An action requires your input. We need to finish logging you out of';
 
   @override
-  String
-  get thereIsNoOtherWayToProceedUnlessYouCompleteTheLogoutProcessYouWillBeAbleToLogBackInAfterwards =>
+  String get thereIsNoOtherWayToProceedUnlessYouCompleteTheLogoutProcessYouWillBeAbleToLogBackInAfterwards =>
       'There is no other way to proceed unless you complete the logout process. You will be able to log back in afterwards';
 
   @override
@@ -682,8 +659,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get earn => 'Earn';
 
   @override
-  String
-  get sendYourInviteLinkOrCodeToYourFriendsAndExplainToThemHowCoolSkyTradeIs =>
+  String get sendYourInviteLinkOrCodeToYourFriendsAndExplainToThemHowCoolSkyTradeIs =>
       'Send your invite link or code to your friends and explain to them how cool SkyTrade is';
 
   @override
@@ -757,8 +733,7 @@ class AppLocalizationsEn extends AppLocalizations {
       'Account Registration (no KYC required to get these points)';
 
   @override
-  String
-  get claimYourAirspaceFullClaimVerifiedAirspaceThisIsPerEveryUniqueClaimedAirspaceKycCompletedIsAPreconditionForThisAllocation =>
+  String get claimYourAirspaceFullClaimVerifiedAirspaceThisIsPerEveryUniqueClaimedAirspaceKycCompletedIsAPreconditionForThisAllocation =>
       'Claim your airspace (full claim/verified airspace). This is per every unique claimed airspace. KYC completed is a precondition for this allocation.';
 
   @override
@@ -766,8 +741,7 @@ class AppLocalizationsEn extends AppLocalizations {
       'For claimed air space which is fully validated done by the referred account.';
 
   @override
-  String
-  get referAFriendFriendRegistersAnAccountButKycOnThatFriendsAccountIsNotRequiredForTheIntroducingAccountToGetTheirSkyPointsFraudulentActivityWillBeMinimizedByTAndCsWhereWeSayWeWillDeductPointsForFraudulentActsIfDiscovered =>
+  String get referAFriendFriendRegistersAnAccountButKycOnThatFriendsAccountIsNotRequiredForTheIntroducingAccountToGetTheirSkyPointsFraudulentActivityWillBeMinimizedByTAndCsWhereWeSayWeWillDeductPointsForFraudulentActsIfDiscovered =>
       'Refer a friend (friend registers an account, but KYC on that friend’s account is not required for the introducing account to get their SKY points, fraudulent activity will be minimized by T&Cs where we say we will deduct points for fraudulent acts if discovered)';
 
   @override
@@ -775,16 +749,14 @@ class AppLocalizationsEn extends AppLocalizations {
       'For making a first valid bid in the Auction House';
 
   @override
-  String
-  get claimOrReferOneAirspacesInASpecificAreaNewYorkManhattanAndBoroughsTexasGarlandMurphyPlanoRichardsonMesquiteDallasRowlettColonyCollegeStationFloridaClermontNewPortRicheyValricoWinterHavenTampaBrandonRiverviewSeffnerArizonaPhoenixGlendalePeoriaArkansasFarmingtonBentonvilleRogersPeaRidgeVirginiaVirginiaBeachUtahLindonHerrimanNorthCarolinaRaeford =>
+  String get claimOrReferOneAirspacesInASpecificAreaNewYorkManhattanAndBoroughsTexasGarlandMurphyPlanoRichardsonMesquiteDallasRowlettColonyCollegeStationFloridaClermontNewPortRicheyValricoWinterHavenTampaBrandonRiverviewSeffnerArizonaPhoenixGlendalePeoriaArkansasFarmingtonBentonvilleRogersPeaRidgeVirginiaVirginiaBeachUtahLindonHerrimanNorthCarolinaRaeford =>
       'Claim or refer 1 airspaces in a specific area:  New York: Manhattan & Boroughs Texas: Garland, Murphy, Plano, Richardson, Mesquite, Dallas, Rowlett, Colony, College Station Florida: Clermont, New Port Richey, Valrico, Winter Haven, Tampa, Brandon, Riverview, Seffner Arizona: Phoenix, Glendale, Peoria Arkansas: Farmington, Bentonville, Rogers, Pea Ridge Virginia: Virginia Beach Utah: Lindon, Herriman North Carolina: Raeford';
 
   @override
   String get trackADroneWithTheRadarApp => 'Track a drone with the radar app';
 
   @override
-  String
-  get trackADroneWithTheRadarAppInASpecificAreaTexasGarlandMurphyPlanoRichardsonMesquiteDallasRowlettColonyCollegeStationFloridaClermontNewPortRicheyValricoWinterHavenTampaBrandonRiverviewSeffnerArizonaPhoenixGlendalePeoriaArkansasFarmingtonBentonvilleRogersPeaRidgeVirginiaVirginiaBeachUtahLindonHerrimanNorthCarolinaRaeford =>
+  String get trackADroneWithTheRadarAppInASpecificAreaTexasGarlandMurphyPlanoRichardsonMesquiteDallasRowlettColonyCollegeStationFloridaClermontNewPortRicheyValricoWinterHavenTampaBrandonRiverviewSeffnerArizonaPhoenixGlendalePeoriaArkansasFarmingtonBentonvilleRogersPeaRidgeVirginiaVirginiaBeachUtahLindonHerrimanNorthCarolinaRaeford =>
       'Track a drone with the radar app in a specific area:  Texas: Garland, Murphy, Plano, Richardson, Mesquite, Dallas, Rowlett, Colony, College Station Florida: Clermont, New Port Richey, Valrico, Winter Haven, Tampa, Brandon, Riverview, Seffner Arizona: Phoenix, Glendale, Peoria Arkansas: Farmington, Bentonville, Rogers, Pea Ridge Virginia: Virginia Beach Utah: Lindon, Herriman North Carolina: Raeford';
 
   @override
@@ -797,8 +769,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get boostingSkyPointsEgXThree => 'Boosting: SKY points eg x 3';
 
   @override
-  String
-  get hundredSkyPointsToYouAndHundredSkyPointsToYourFriendThisIsPartOfThePointsAllocationTwoPlusTenPercentBonusOnTheReferredIncomeStreamFromAirRightRental =>
+  String get hundredSkyPointsToYouAndHundredSkyPointsToYourFriendThisIsPartOfThePointsAllocationTwoPlusTenPercentBonusOnTheReferredIncomeStreamFromAirRightRental =>
       '100 SKY points to you and 100 SKY points to your friend (this is part of the points allocation 2) + 10% bonus on the referred income stream from air-right rental';
 
   @override
@@ -874,13 +845,11 @@ class AppLocalizationsEn extends AppLocalizations {
   String get removeWhitespaces => 'Remove whitespaces';
 
   @override
-  String
-  get referralCodeTooShortReferralCodeCanEitherBeSixCharactersLongOrTheEmailOfTheReferer =>
+  String get referralCodeTooShortReferralCodeCanEitherBeSixCharactersLongOrTheEmailOfTheReferer =>
       'Referral code too short. Referral code can either be six characters long or the email of the referer';
 
   @override
-  String
-  get referralCodeTooLongReferralCodeCanEitherBeSixCharactersLongOrTheEmailOfTheReferer =>
+  String get referralCodeTooLongReferralCodeCanEitherBeSixCharactersLongOrTheEmailOfTheReferer =>
       'Referral code too long. Referral code can either be six characters long or the email of the referer';
 
   @override
@@ -900,8 +869,7 @@ class AppLocalizationsEn extends AppLocalizations {
       'You have not earned any points within the current period';
 
   @override
-  String
-  get weCouldNotGetYourPositionOnTheLeaderboardTryRefreshingTheLeaderboardTableOrTheEntirePageThenTryViewingYourPositionAgain =>
+  String get weCouldNotGetYourPositionOnTheLeaderboardTryRefreshingTheLeaderboardTableOrTheEntirePageThenTryViewingYourPositionAgain =>
       'We could not get your position on the leaderboard. Try refreshing the leaderboard table or the entire page then try viewing your position again';
 
   @override
@@ -948,8 +916,7 @@ class AppLocalizationsEn extends AppLocalizations {
       'We are not sure what may have caused this';
 
   @override
-  String
-  get tryRefreshingThePageIfTheIssueContinuesYouMayWantToCheckYourConnectionOrTryAgainLater =>
+  String get tryRefreshingThePageIfTheIssueContinuesYouMayWantToCheckYourConnectionOrTryAgainLater =>
       'Try refreshing the page if the issue continues. You may want to check your connection or try again later';
 
   @override
@@ -973,8 +940,7 @@ class AppLocalizationsEn extends AppLocalizations {
       'Introducing SkyTrade Radar Rewards';
 
   @override
-  String
-  get earn25PointsForEveryVerifiedDroneObservationCompleteDailyQuestsToEarnEvenMorePoints =>
+  String get earn25PointsForEveryVerifiedDroneObservationCompleteDailyQuestsToEarnEvenMorePoints =>
       'Earn 25 points for every verified drone observation. Complete daily quests to earn even more points';
 
   @override
@@ -991,8 +957,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get howItWorks => 'How it works';
 
   @override
-  String
-  get earn25PointsForEveryVerifiedDroneObservationCompleteDailyQuestsToEarnBonusPointsAndClimbTheRanksTheMoreYouContributeTheMoreTouLevelUp =>
+  String get earn25PointsForEveryVerifiedDroneObservationCompleteDailyQuestsToEarnBonusPointsAndClimbTheRanksTheMoreYouContributeTheMoreTouLevelUp =>
       'Earn 25 points for every verified drone observation. Complete daily quests to earn bonus points and climb the ranks.\nThe more you contribute, the more you level up';
 
   @override
@@ -1008,8 +973,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get seeMyPosition => 'See my position';
 
   @override
-  String
-  get weCouldNotGetYourPositionOnTheLeaderboardTryRefreshingThePageThenTryViewingYourPositionAgain =>
+  String get weCouldNotGetYourPositionOnTheLeaderboardTryRefreshingThePageThenTryViewingYourPositionAgain =>
       'We could not get your position on the leaderboard. Try refreshing the page then try viewing your position again';
 
   @override
@@ -1019,8 +983,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get crownEmoji => '👑';
 
   @override
-  String
-  get competeWithOthersToClimbTheRanksByEarningPointsThroughDroneObservationsAndQuestsPointsResetAtTheStartOfEachNewSeasonSoStayActiveToMaintainYourPosition =>
+  String get competeWithOthersToClimbTheRanksByEarningPointsThroughDroneObservationsAndQuestsPointsResetAtTheStartOfEachNewSeasonSoStayActiveToMaintainYourPosition =>
       'Compete with others to climb the ranks by earning points through drone observations and quests. \n\nPoints reset at the start of each new season, so stay active to maintain your position';
 
   @override
@@ -1033,8 +996,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get droneRushZone => 'Drone Rush Zone';
 
   @override
-  String
-  get keepAnEyeOnTheMapForActiveRushZonesAndStartTrackingToMaximizeYourRewards =>
+  String get keepAnEyeOnTheMapForActiveRushZonesAndStartTrackingToMaximizeYourRewards =>
       'Keep an eye on the map for active Rush Zones and start tracking to maximize your rewards';
 
   @override
@@ -1063,8 +1025,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get watchForRushZones => 'Watch for Rush Zones';
 
   @override
-  String
-  get onlySpecificLocationsAreEligibleForExtraPointsRushZonesWillBeMarkedClearlyOnYourMap =>
+  String get onlySpecificLocationsAreEligibleForExtraPointsRushZonesWillBeMarkedClearlyOnYourMap =>
       'Only specific locations are eligible for extra points. Rush zones will be marked clearly on your map';
 
   @override
@@ -1088,8 +1049,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get earnMorePoints => 'Earn More Points';
 
   @override
-  String
-  get allSuccessfulObservationsInRushZonesWillAutomaticallyEarnBoostedRewards =>
+  String get allSuccessfulObservationsInRushZonesWillAutomaticallyEarnBoostedRewards =>
       'All successful observations in Rush Zones will automatically earn boosted rewards';
 
   @override
@@ -1151,8 +1111,7 @@ class AppLocalizationsEn extends AppLocalizations {
       'Track a drone with the radar app in a specific area';
 
   @override
-  String
-  get texasGarlandMurphyPlanoRichardsonMesquiteDallasRowlettColonyCollegeStationFloridaClermontNewPortRicheyValricoWinterHavenTampaBrandonRiverviewSeffnerArizonaPhoenixGlendalePeoriaArkansasFarmingtonBentonvilleRogersPeaRidgeVirginiaVirginiaBeachUtahLindonHerrimanNorthCarolinaRaeford =>
+  String get texasGarlandMurphyPlanoRichardsonMesquiteDallasRowlettColonyCollegeStationFloridaClermontNewPortRicheyValricoWinterHavenTampaBrandonRiverviewSeffnerArizonaPhoenixGlendalePeoriaArkansasFarmingtonBentonvilleRogersPeaRidgeVirginiaVirginiaBeachUtahLindonHerrimanNorthCarolinaRaeford =>
       'Texas: Garland, Murphy, Plano, Richardson, Mesquite, Dallas, Rowlett, Colony, College Station Florida: Clermont, New Port Richey, Valrico, Winter Haven, Tampa, Brandon, Riverview, Seffner Arizona: Phoenix, Glendale, Peoria Arkansas: Farmington, Bentonville, Rogers, Pea Ridge Virginia: Virginia Beach Utah: Lindon, Herriman North Carolina: Raeford';
 
   @override
@@ -1173,15 +1132,13 @@ class AppLocalizationsEn extends AppLocalizations {
       'Enable Location Permission in Settings';
 
   @override
-  String
-  get youveDeniedLocationAccessPleaseEnableItInYourAppSettingsSoSkyTradeCanShowRelevantFeaturesNearYou =>
+  String get youveDeniedLocationAccessPleaseEnableItInYourAppSettingsSoSkyTradeCanShowRelevantFeaturesNearYou =>
       'You\'ve denied location access. Please enable it in your app settings so SkyTrade can show relevant features near you';
 
   @override
   String get turnOnLocationServices => 'Turn On Location Services';
 
   @override
-  String
-  get skyTradeNeedsGpsToFindYourLocationAndShowRelevantFeaturesAroundYouPleaseEnableItInYourDeviceSettings =>
+  String get skyTradeNeedsGpsToFindYourLocationAndShowRelevantFeaturesAroundYouPleaseEnableItInYourDeviceSettings =>
       'SkyTrade needs GPS to find your location and show relevant features around you. Please enable it in your device settings';
 }

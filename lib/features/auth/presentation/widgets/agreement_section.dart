@@ -16,12 +16,12 @@ import 'package:sky_trade/features/auth/presentation/widgets/spannable_text.dart
 
 final class AgreementSection extends StatelessWidget {
   const AgreementSection({
-    required this.onTermsAndConditionsTap,
+    required this.onTermsOfServiceTap,
     required this.onPrivacyPolicyTap,
     super.key,
   });
 
-  final VoidCallback? onTermsAndConditionsTap;
+  final VoidCallback? onTermsOfServiceTap;
   final VoidCallback? onPrivacyPolicyTap;
 
   @override
@@ -35,9 +35,11 @@ final class AgreementSection extends StatelessWidget {
             ),
             SpannableText.buildWith(
               context,
-              text: context.localize.termsAndConditions,
-              onTap: onTermsAndConditionsTap,
-              textStyle: Theme.of(context).textTheme.bodySmall?.copyWith(
+              text: context.localize.termsOfService,
+              onTap: onTermsOfServiceTap,
+              textStyle: Theme.of(
+                context,
+              ).textTheme.bodySmall?.copyWith(
                     color: hex0653EA,
                   ),
             ),
@@ -49,7 +51,9 @@ final class AgreementSection extends StatelessWidget {
               context,
               text: context.localize.privacyPolicy,
               onTap: onPrivacyPolicyTap,
-              textStyle: Theme.of(context).textTheme.bodySmall?.copyWith(
+              textStyle: Theme.of(
+                context,
+              ).textTheme.bodySmall?.copyWith(
                     color: hex0754E9,
                   ),
             ),

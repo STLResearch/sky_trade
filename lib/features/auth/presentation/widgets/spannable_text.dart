@@ -11,7 +11,10 @@ final class SpannableText {
   }) =>
       TextSpan(
         text: text,
-        style: textStyle ?? Theme.of(context).textTheme.bodySmall,
+        style: textStyle ??
+            Theme.of(
+              context,
+            ).textTheme.bodySmall,
         recognizer: switch (onTap == null) {
           true => null,
           false => TapGestureRecognizer()..onTap = onTap,
