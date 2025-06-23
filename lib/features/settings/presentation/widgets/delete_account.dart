@@ -62,12 +62,12 @@ import 'package:sky_trade/core/resources/colors.dart'
 import 'package:sky_trade/core/resources/numbers/ui.dart'
     show
         eightDotNil,
-        eighteenDotNil,
         fifteenDotNil,
         fourteenDotNil,
         oneDotNil,
         six,
         sixteenDotNil,
+        tenDotNil,
         thirtyDotNil,
         twentyOneDotNil,
         twoDotNil,
@@ -91,7 +91,7 @@ import 'package:sky_trade/features/settings/presentation/blocs/otp_resend_timer_
     show OtpResendTimerBloc, OtpResendTimerEvent, OtpResendTimerState;
 import 'package:sky_trade/features/settings/presentation/blocs/request_delete_account_bloc/request_delete_account_bloc.dart'
     show RequestDeleteAccountBloc, RequestDeleteAccountEvent;
-import 'package:sky_trade/features/settings/presentation/widgets/action_dialog.dart';
+import 'package:sky_trade/features/settings/presentation/widgets/delete_action_dialog.dart';
 import 'package:sky_trade/features/settings/presentation/widgets/otp_field.dart';
 import 'package:sky_trade/injection_container.dart' show serviceLocator;
 
@@ -324,23 +324,25 @@ class _DeleteAccountViewState extends State<DeleteAccountView> {
                         deletingAccount: () => null,
                         orElse: () => () {
                           if (_formKey.currentState?.validate() ?? false) {
-                            ActionDialog.show(
-                              context,
-                              content: context.localize
-                                  .youAreAboutToDeleteYourAccountPleaseBeCertainThatThisIsWhatYouWantAsThisActionCannotBeReversed,
-                              onActionDismissed: () => Navigator.of(
-                                context,
-                              ).pop(),
-                              onActionConfirmed: () {
-                                Navigator.of(
+                            DeleteActionDialog.show(
+                              context: context,
+                              text: context.localize.deletingYourSkyTradeAccountIsPermanentAndIrreversiblePleaseConfirmYouWantToContinue,
+                              onDeletePressed: () {
+                                Navigator.pop(
                                   context,
-                                ).pop();
-
+                                );
                                 context.read<DeleteAccountBloc>().add(
                                       DeleteAccountEvent.deleteAccount(
                                         otp: _otpController.text,
                                       ),
                                     );
+                              },
+                              onCancelPressed: () {
+                                var count = 0;
+                                Navigator.popUntil(
+                                  context,
+                                  (_) => count++ == 2,
+                                );
                               },
                             );
                           }
@@ -405,7 +407,7 @@ class _DeleteAccountViewState extends State<DeleteAccountView> {
                           style: Theme.of(
                             context,
                           ).textTheme.bodySmall?.copyWith(
-                                fontSize: fourteenDotNil,
+                                fontSize: tenDotNil,
                                 height: twentyOneDotNil / fourteenDotNil,
                               ),
                         ),
@@ -446,7 +448,7 @@ class _DeleteAccountViewState extends State<DeleteAccountView> {
                                     ticked: (_, __) => Theme.of(
                                       context,
                                     ).textTheme.bodySmall?.copyWith(
-                                          fontSize: fourteenDotNil,
+                                          fontSize: tenDotNil,
                                           height:
                                               twentyOneDotNil / fourteenDotNil,
                                         ),
@@ -454,7 +456,7 @@ class _DeleteAccountViewState extends State<DeleteAccountView> {
                                       context,
                                     ).textTheme.bodySmall?.copyWith(
                                           fontWeight: FontWeight.w700,
-                                          fontSize: fourteenDotNil,
+                                          fontSize: tenDotNil,
                                           height:
                                               twentyOneDotNil / fourteenDotNil,
                                           color: hex0653EA,
@@ -493,7 +495,7 @@ class _DeleteAccountViewState extends State<DeleteAccountView> {
                     textAlign: TextAlign.center,
                   ),
                   const SizedBox(
-                    height: eighteenDotNil,
+                    height: thirtyDotNil,
                   ),
                 ],
               ),

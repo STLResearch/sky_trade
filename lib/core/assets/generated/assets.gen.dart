@@ -161,6 +161,9 @@ class $AssetsSvgsGen {
   /// File path: assets/svgs/danger.svg
   SvgGenImage get danger => const SvgGenImage('assets/svgs/danger.svg');
 
+  /// File path: assets/svgs/delete.svg
+  SvgGenImage get delete => const SvgGenImage('assets/svgs/delete.svg');
+
   /// File path: assets/svgs/dotted_line.svg
   SvgGenImage get dottedLine =>
       const SvgGenImage('assets/svgs/dotted_line.svg');
@@ -387,6 +390,7 @@ class $AssetsSvgsGen {
     cloudAlt,
     community,
     danger,
+    delete,
     dottedLine,
     droneRushPoints,
     earth,

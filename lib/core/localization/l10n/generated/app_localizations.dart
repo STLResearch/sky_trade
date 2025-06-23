@@ -1009,11 +1009,31 @@ abstract class AppLocalizations {
   /// **'Delete Account'**
   String get deleteAccount;
 
-  /// No description provided for @aCodeWillBeSentToYourEmailAreYouSureYouWantToProceedWithThisAction.
+  /// No description provided for @deleteYourAccount.
   ///
   /// In en, this message translates to:
-  /// **'A code will be sent to your email. Are you sure you want to proceed with this action'**
-  String get aCodeWillBeSentToYourEmailAreYouSureYouWantToProceedWithThisAction;
+  /// **'Delete Your Account?'**
+  String get deleteYourAccount;
+
+  /// No description provided for @delete.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete'**
+  String get delete;
+
+  /// No description provided for @deletingYourSkyTradeAccountPermanentlyErasesYourDataEndsAllActiveSessionsDisablesLoginAndMakesYourEmailIneligibleForFutureAccounts.
+  ///
+  /// In en, this message translates to:
+  /// **'Deleting your SkyTrade account permanently erases your data, ends all active sessions, disables login, and makes your email ineligible for future accounts'**
+  String
+      get deletingYourSkyTradeAccountPermanentlyErasesYourDataEndsAllActiveSessionsDisablesLoginAndMakesYourEmailIneligibleForFutureAccounts;
+
+  /// No description provided for @deletingYourSkyTradeAccountIsPermanentAndIrreversiblePleaseConfirmYouWantToContinue.
+  ///
+  /// In en, this message translates to:
+  /// **'Deleting your SkyTrade account is permanent and irreversible. Please confirm you want to continue'**
+  String
+      get deletingYourSkyTradeAccountIsPermanentAndIrreversiblePleaseConfirmYouWantToContinue;
 
   /// No description provided for @cancel.
   ///
