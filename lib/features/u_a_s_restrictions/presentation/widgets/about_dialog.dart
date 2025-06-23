@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart'
     show
         BorderRadius,
+        BorderRadiusDirectional,
         BoxDecoration,
         BuildContext,
         Column,
@@ -15,9 +16,9 @@ import 'package:flutter/material.dart'
         InkWell,
         MainAxisAlignment,
         MainAxisSize,
-        MediaQuery,
         Navigator,
         RichText,
+        RoundedRectangleBorder,
         Row,
         SingleChildScrollView,
         SizedBox,
@@ -38,8 +39,8 @@ import 'package:sky_trade/core/resources/colors.dart'
     show hex00AEEF, hex222222, hex303478F5, hex74D9FF;
 import 'package:sky_trade/core/resources/numbers/ui.dart'
     show
-        eight,
         fifteenDotNil,
+        fiftyDotNil,
         fiveDotNil,
         sixDotFive,
         tenDotNil,
@@ -59,11 +60,13 @@ final class AboutDialog {
     showDialog<void>(
       context: context,
       builder: (_) => Dialog(
-        insetPadding: EdgeInsets.symmetric(
-          horizontal: MediaQuery.sizeOf(
-                context,
-              ).width /
-              eight,
+        insetPadding: const EdgeInsets.symmetric(
+          horizontal: fiftyDotNil,
+        ),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadiusDirectional.circular(
+            twentyDotNil,
+          ),
         ),
         child: About(
           appVersionBloc: context.read<AppVersionBloc>(),
@@ -110,7 +113,9 @@ class _AboutViewState extends State<AboutView> {
   @override
   Widget build(BuildContext context) => Container(
         decoration: BoxDecoration(
-          color: Theme.of(context).scaffoldBackgroundColor,
+          color: Theme.of(
+            context,
+          ).scaffoldBackgroundColor,
           borderRadius: BorderRadius.circular(
             twentyDotNil,
           ),

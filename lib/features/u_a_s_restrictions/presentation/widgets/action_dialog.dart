@@ -10,9 +10,8 @@ import 'package:flutter/material.dart'
         EdgeInsetsDirectional,
         Flexible,
         MainAxisSize,
-        MediaQuery,
-        Padding,
         Row,
+        SingleChildScrollView,
         Size,
         SizedBox,
         Text,
@@ -23,7 +22,13 @@ import 'package:flutter/material.dart'
         showDialog;
 import 'package:sky_trade/core/resources/colors.dart' show hex0072F0;
 import 'package:sky_trade/core/resources/numbers/ui.dart'
-    show eight, fourDotNil, nilDotNil, sixteenDotNil, tenDotNil, twelveDotNil;
+    show
+        fiftyDotNil,
+        fourDotNil,
+        nilDotNil,
+        sixteenDotNil,
+        tenDotNil,
+        twelveDotNil;
 import 'package:sky_trade/core/utils/extensions/build_context_extensions.dart';
 
 final class ActionDialog {
@@ -39,13 +44,10 @@ final class ActionDialog {
     showDialog<void>(
       context: context,
       builder: (_) => Dialog(
-        insetPadding: EdgeInsets.symmetric(
-          horizontal: MediaQuery.sizeOf(
-                context,
-              ).width /
-              eight,
+        insetPadding: const EdgeInsets.symmetric(
+          horizontal: fiftyDotNil,
         ),
-        child: Padding(
+        child: SingleChildScrollView(
           padding: const EdgeInsetsDirectional.symmetric(
             horizontal: sixteenDotNil,
             vertical: twelveDotNil,

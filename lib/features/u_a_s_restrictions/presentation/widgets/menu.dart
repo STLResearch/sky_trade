@@ -2,6 +2,7 @@ import 'package:flutter/material.dart'
     show
         AlignmentDirectional,
         BorderRadius,
+        BorderRadiusDirectional,
         BoxDecoration,
         BoxShape,
         BuildContext,
@@ -16,9 +17,9 @@ import 'package:flutter/material.dart'
         InkWell,
         MainAxisAlignment,
         MainAxisSize,
-        MediaQuery,
         Navigator,
         Padding,
+        RoundedRectangleBorder,
         Row,
         SingleChildScrollView,
         SizedBox,
@@ -31,10 +32,11 @@ import 'package:sky_trade/core/assets/generated/assets.gen.dart' show Assets;
 import 'package:sky_trade/core/resources/colors.dart' show hexE2E2E2, hexEBEBF5;
 import 'package:sky_trade/core/resources/numbers/ui.dart'
     show
-        eight,
         eightDotNil,
+        fiftyDotNil,
         oneDotNil,
         tenDotNil,
+        thirtyDotNil,
         twelveDotNil,
         twentyDotNil,
         twentyFiveDotNil;
@@ -56,11 +58,13 @@ class Menu extends StatelessWidget {
         onTap: () => showDialog<void>(
           context: context,
           builder: (_) => Dialog(
-            insetPadding: EdgeInsets.symmetric(
-              horizontal: MediaQuery.sizeOf(
-                    context,
-                  ).width /
-                  eight,
+            insetPadding: const EdgeInsets.symmetric(
+              horizontal: fiftyDotNil,
+            ),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadiusDirectional.circular(
+                thirtyDotNil,
+              ),
             ),
             backgroundColor: hexEBEBF5,
             child: SingleChildScrollView(

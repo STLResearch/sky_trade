@@ -9,7 +9,6 @@ import 'package:flutter/material.dart'
         ElevatedButton,
         Expanded,
         MainAxisSize,
-        Padding,
         Row,
         SingleChildScrollView,
         SizedBox,
@@ -44,89 +43,87 @@ class DeleteActionDialog {
         insetPadding: const EdgeInsets.symmetric(
           horizontal: fiftyDotNil,
         ),
-        child: Padding(
+        child: SingleChildScrollView(
           padding: const EdgeInsetsDirectional.symmetric(
             horizontal: sixteenDotNil,
             vertical: twelveDotNil,
           ),
-          child: SingleChildScrollView(
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Assets.svgs.delete.svg(
-                  width: sixtyDotNil,
-                  height: sixtyDotNil,
-                ),
-                const SizedBox(
-                  height: fourDotNil,
-                ),
-                Text(
-                  context.localize.deleteYourAccount,
-                  textAlign: TextAlign.center,
-                  style: Theme.of(
-                    context,
-                  ).dialogTheme.titleTextStyle,
-                ),
-                const SizedBox(
-                  height: fourDotNil,
-                ),
-                Text(
-                  text,
-                  textAlign: TextAlign.center,
-                  style: Theme.of(
-                    context,
-                  ).dialogTheme.contentTextStyle,
-                ),
-                const SizedBox(
-                  height: tenDotNil,
-                ),
-                Row(
-                  children: [
-                    Expanded(
-                      child: ElevatedButton(
-                        onPressed: onCancelPressed,
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: hexB8B8B8,
-                        ),
-                        child: Text(
-                          context.localize.cancel,
-                          style: Theme.of(
-                            context,
-                          ).textTheme.bodyLarge?.copyWith(
-                                fontSize: twelveDotNil,
-                                height: sixteenDotNil / twelveDotNil,
-                                letterSpacing: nilDotNil,
-                                color: hexFFFFFF,
-                              ),
-                        ),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Assets.svgs.delete.svg(
+                width: sixtyDotNil,
+                height: sixtyDotNil,
+              ),
+              const SizedBox(
+                height: fourDotNil,
+              ),
+              Text(
+                context.localize.deleteYourAccount,
+                textAlign: TextAlign.center,
+                style: Theme.of(
+                  context,
+                ).dialogTheme.titleTextStyle,
+              ),
+              const SizedBox(
+                height: fourDotNil,
+              ),
+              Text(
+                text,
+                textAlign: TextAlign.center,
+                style: Theme.of(
+                  context,
+                ).dialogTheme.contentTextStyle,
+              ),
+              const SizedBox(
+                height: tenDotNil,
+              ),
+              Row(
+                children: [
+                  Expanded(
+                    child: ElevatedButton(
+                      onPressed: onCancelPressed,
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: hexB8B8B8,
+                      ),
+                      child: Text(
+                        context.localize.cancel,
+                        style: Theme.of(
+                          context,
+                        ).textTheme.bodyLarge?.copyWith(
+                              fontSize: twelveDotNil,
+                              height: sixteenDotNil / twelveDotNil,
+                              letterSpacing: nilDotNil,
+                              color: hexFFFFFF,
+                            ),
                       ),
                     ),
-                    const SizedBox(
-                      width: tenDotNil,
-                    ),
-                    Expanded(
-                      child: ElevatedButton(
-                        onPressed: onDeletePressed,
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: hexE04F64,
-                        ),
-                        child: Text(
-                          context.localize.delete,
-                          style: Theme.of(
-                            context,
-                          ).textTheme.bodyLarge?.copyWith(
-                                fontSize: twelveDotNil,
-                                height: sixteenDotNil / twelveDotNil,
-                                letterSpacing: nilDotNil,
-                                color: hexFFFFFF,
-                              ),
-                        ),
+                  ),
+                  const SizedBox(
+                    width: tenDotNil,
+                  ),
+                  Expanded(
+                    child: ElevatedButton(
+                      onPressed: onDeletePressed,
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: hexE04F64,
+                      ),
+                      child: Text(
+                        context.localize.delete,
+                        style: Theme.of(
+                          context,
+                        ).textTheme.bodyLarge?.copyWith(
+                              fontSize: twelveDotNil,
+                              height: sixteenDotNil / twelveDotNil,
+                              letterSpacing: nilDotNil,
+                              color: hexFFFFFF,
+                            ),
                       ),
                     ),
-                  ],
-                ),
-              ],
-            ),
+                  ),
+                ],
+              ),
+            ],
           ),
         ),
       ),
