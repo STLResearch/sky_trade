@@ -503,8 +503,8 @@ class AppLocalizationsEn extends AppLocalizations {
   String get delete => 'Delete';
 
   @override
-  String get deletingYourSkyTradeAccountPermanentlyErasesYourDataEndsAllActiveSessionsDisablesLoginAndMakesYourEmailIneligibleForFutureAccounts =>
-      'Deleting your SkyTrade account permanently erases your data, ends all active sessions, disables login, and makes your email ineligible for future accounts';
+  String get deletingYourSkyTradeAccountPermanentlyErasesYourDataEndsAllActiveSessionsAndMakesYourEmailIneligibleForUseInCreatingANewAccountAreYouSureYouWantToProceed =>
+      'Deleting your SkyTrade account permanently erases your data, ends all active sessions and makes your email ineligible for use in creating a new account. Are you sure you want to proceed?';
 
   @override
   String get deletingYourSkyTradeAccountIsPermanentAndIrreversiblePleaseConfirmYouWantToContinue =>

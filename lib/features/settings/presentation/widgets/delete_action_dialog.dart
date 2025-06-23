@@ -1,17 +1,15 @@
 import 'package:dartz/dartz.dart' show Function0;
 import 'package:flutter/material.dart'
     show
-        BorderRadius,
         BuildContext,
         Column,
         Dialog,
         EdgeInsets,
+        EdgeInsetsDirectional,
         ElevatedButton,
         Expanded,
-        FontWeight,
         MainAxisSize,
         Padding,
-        RoundedRectangleBorder,
         Row,
         SingleChildScrollView,
         SizedBox,
@@ -19,18 +17,18 @@ import 'package:flutter/material.dart'
         TextAlign,
         Theme,
         showDialog;
-import 'package:sky_trade/core/assets/generated/assets.gen.dart';
+import 'package:sky_trade/core/assets/generated/assets.gen.dart' show Assets;
 import 'package:sky_trade/core/resources/colors.dart'
-    show hex222222, hex87878D, hexB8B8B8, hexE04F64, hexFFFFFF;
+    show hexB8B8B8, hexE04F64, hexFFFFFF;
 import 'package:sky_trade/core/resources/numbers/ui.dart'
     show
-        fifteenDotNil,
+        fiftyDotNil,
+        fourDotNil,
+        nilDotNil,
         sixteenDotNil,
         sixtyDotNil,
         tenDotNil,
-        twelveDotNil,
-        twentyDotNil,
-        twentyFiveDotNil;
+        twelveDotNil;
 import 'package:sky_trade/core/utils/extensions/build_context_extensions.dart';
 
 class DeleteActionDialog {
@@ -44,17 +42,12 @@ class DeleteActionDialog {
       context: context,
       builder: (_) => Dialog(
         insetPadding: const EdgeInsets.symmetric(
-          horizontal: twentyDotNil,
-        ),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(
-            fifteenDotNil,
-          ),
+          horizontal: fiftyDotNil,
         ),
         child: Padding(
-          padding: const EdgeInsets.symmetric(
-            horizontal: twentyDotNil,
-            vertical: twentyFiveDotNil,
+          padding: const EdgeInsetsDirectional.symmetric(
+            horizontal: sixteenDotNil,
+            vertical: twelveDotNil,
           ),
           child: SingleChildScrollView(
             child: Column(
@@ -65,35 +58,27 @@ class DeleteActionDialog {
                   height: sixtyDotNil,
                 ),
                 const SizedBox(
-                  height: fifteenDotNil,
+                  height: fourDotNil,
                 ),
                 Text(
                   context.localize.deleteYourAccount,
                   textAlign: TextAlign.center,
                   style: Theme.of(
                     context,
-                  ).textTheme.bodyMedium?.copyWith(
-                        fontWeight: FontWeight.w400,
-                        fontSize: sixteenDotNil,
-                        color: hex222222,
-                      ),
+                  ).dialogTheme.titleTextStyle,
                 ),
                 const SizedBox(
-                  height: fifteenDotNil,
+                  height: fourDotNil,
                 ),
                 Text(
                   text,
                   textAlign: TextAlign.center,
                   style: Theme.of(
                     context,
-                  ).textTheme.bodyMedium?.copyWith(
-                        fontWeight: FontWeight.w400,
-                        fontSize: tenDotNil,
-                        color: hex87878D,
-                      ),
+                  ).dialogTheme.contentTextStyle,
                 ),
                 const SizedBox(
-                  height: fifteenDotNil,
+                  height: tenDotNil,
                 ),
                 Row(
                   children: [
@@ -107,9 +92,10 @@ class DeleteActionDialog {
                           context.localize.cancel,
                           style: Theme.of(
                             context,
-                          ).textTheme.bodyMedium?.copyWith(
-                                fontWeight: FontWeight.w400,
+                          ).textTheme.bodyLarge?.copyWith(
                                 fontSize: twelveDotNil,
+                                height: sixteenDotNil / twelveDotNil,
+                                letterSpacing: nilDotNil,
                                 color: hexFFFFFF,
                               ),
                         ),
@@ -128,9 +114,10 @@ class DeleteActionDialog {
                           context.localize.delete,
                           style: Theme.of(
                             context,
-                          ).textTheme.bodyMedium?.copyWith(
-                                fontWeight: FontWeight.w400,
+                          ).textTheme.bodyLarge?.copyWith(
                                 fontSize: twelveDotNil,
+                                height: sixteenDotNil / twelveDotNil,
+                                letterSpacing: nilDotNil,
                                 color: hexFFFFFF,
                               ),
                         ),

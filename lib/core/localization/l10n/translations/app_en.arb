@@ -151,7 +151,7 @@
   "deleteAccount": "Delete Account",
   "deleteYourAccount": "Delete Your Account?",
   "delete": "Delete",
-  "deletingYourSkyTradeAccountPermanentlyErasesYourDataEndsAllActiveSessionsDisablesLoginAndMakesYourEmailIneligibleForFutureAccounts": "Deleting your SkyTrade account permanently erases your data, ends all active sessions, disables login, and makes your email ineligible for future accounts",
+  "deletingYourSkyTradeAccountPermanentlyErasesYourDataEndsAllActiveSessionsAndMakesYourEmailIneligibleForUseInCreatingANewAccountAreYouSureYouWantToProceed": "Deleting your SkyTrade account permanently erases your data, ends all active sessions and makes your email ineligible for use in creating a new account. Are you sure you want to proceed?",
   "deletingYourSkyTradeAccountIsPermanentAndIrreversiblePleaseConfirmYouWantToContinue": "Deleting your SkyTrade account is permanent and irreversible. Please confirm you want to continue",
   "cancel": "Cancel",
   "proceed": "Proceed",

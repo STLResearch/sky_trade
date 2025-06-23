@@ -365,14 +365,16 @@ class _SettingsViewState extends State<SettingsView> {
                   onPressed: () => DeleteActionDialog.show(
                     context: context,
                     text: context.localize
-                        .deletingYourSkyTradeAccountPermanentlyErasesYourDataEndsAllActiveSessionsDisablesLoginAndMakesYourEmailIneligibleForFutureAccounts,
+                        .deletingYourSkyTradeAccountPermanentlyErasesYourDataEndsAllActiveSessionsAndMakesYourEmailIneligibleForUseInCreatingANewAccountAreYouSureYouWantToProceed,
                     onDeletePressed: () {
                       context.read<RequestDeleteAccountBloc>().add(
                             const RequestDeleteAccountEvent.sendOtp(),
                           );
+
                       Navigator.pop(
                         context,
                       );
+
                       showModalBottomSheet<void>(
                         context: context,
                         isDismissible: false,

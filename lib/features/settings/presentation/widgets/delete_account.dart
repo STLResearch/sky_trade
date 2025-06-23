@@ -29,7 +29,6 @@ import 'package:flutter/material.dart'
         MainAxisSize,
         MediaQuery,
         Navigator,
-        PlaceholderAlignment,
         Radius,
         RichText,
         SingleChildScrollView,
@@ -45,7 +44,6 @@ import 'package:flutter/material.dart'
         ValueListenableBuilder,
         ValueNotifier,
         Widget,
-        WidgetSpan,
         WidgetStatePropertyAll;
 import 'package:flutter_bloc/flutter_bloc.dart'
     show
@@ -63,13 +61,13 @@ import 'package:sky_trade/core/resources/numbers/ui.dart'
     show
         eightDotNil,
         fifteenDotNil,
-        fourteenDotNil,
         oneDotNil,
         six,
         sixteenDotNil,
         tenDotNil,
         thirtyDotNil,
         twentyOneDotNil,
+        two,
         twoDotNil,
         zero;
 import 'package:sky_trade/core/resources/strings/routes.dart'
@@ -326,7 +324,8 @@ class _DeleteAccountViewState extends State<DeleteAccountView> {
                           if (_formKey.currentState?.validate() ?? false) {
                             DeleteActionDialog.show(
                               context: context,
-                              text: context.localize.deletingYourSkyTradeAccountIsPermanentAndIrreversiblePleaseConfirmYouWantToContinue,
+                              text: context.localize
+                                  .deletingYourSkyTradeAccountIsPermanentAndIrreversiblePleaseConfirmYouWantToContinue,
                               onDeletePressed: () {
                                 Navigator.pop(
                                   context,
@@ -338,10 +337,11 @@ class _DeleteAccountViewState extends State<DeleteAccountView> {
                                     );
                               },
                               onCancelPressed: () {
-                                var count = 0;
+                                var count = zero;
+
                                 Navigator.popUntil(
                                   context,
-                                  (_) => count++ == 2,
+                                  (_) => count++ == two,
                                 );
                               },
                             );
@@ -399,100 +399,87 @@ class _DeleteAccountViewState extends State<DeleteAccountView> {
                   const SizedBox(
                     height: fifteenDotNil,
                   ),
-                  RichText(
-                    text: TextSpan(
-                      children: [
-                        TextSpan(
-                          text: context.localize.didNotReceiveAnyCode,
-                          style: Theme.of(
-                            context,
-                          ).textTheme.bodySmall?.copyWith(
-                                fontSize: tenDotNil,
-                                height: twentyOneDotNil / fourteenDotNil,
+                  BlocBuilder<DeleteAccountBloc, DeleteAccountState>(
+                    builder: (context, deleteAccountState) =>
+                        BlocBuilder<OtpResendTimerBloc, OtpResendTimerState>(
+                      builder: (context, otpResendTimerState) => RichText(
+                        textAlign: TextAlign.center,
+                        text: TextSpan(
+                          children: [
+                            TextSpan(
+                              text: context.localize.didNotReceiveAnyCode,
+                              style: Theme.of(
+                                context,
+                              ).textTheme.bodySmall?.copyWith(
+                                    fontSize: tenDotNil,
+                                    height: twentyOneDotNil / tenDotNil,
+                                  ),
+                            ),
+                            const TextSpan(
+                              text: whiteSpace,
+                            ),
+                            TextSpan(
+                              text: otpResendTimerState.maybeWhen(
+                                ticked: (
+                                  minutesLeft,
+                                  secondsLeft,
+                                ) =>
+                                    context.localize.resendOtpIn +
+                                    whiteSpace +
+                                    switch (minutesLeft == zero) {
+                                      true => emptyString,
+                                      false => minutesLeft.toString() +
+                                          context.localize.m +
+                                          whiteSpace,
+                                    } +
+                                    switch (secondsLeft == zero) {
+                                      true => emptyString,
+                                      false => secondsLeft.toString() +
+                                          context.localize.s,
+                                    },
+                                orElse: () => context.localize.resendOtp,
                               ),
-                        ),
-                        const TextSpan(
-                          text: whiteSpace,
-                        ),
-                        WidgetSpan(
-                          child: BlocBuilder<DeleteAccountBloc,
-                              DeleteAccountState>(
-                            builder: (context, deleteAccountState) =>
-                                BlocBuilder<OtpResendTimerBloc,
-                                    OtpResendTimerState>(
-                              builder: (context, otpResendTimerState) =>
-                                  RichText(
-                                textAlign: TextAlign.center,
-                                text: TextSpan(
-                                  text: otpResendTimerState.maybeWhen(
-                                    ticked: (
-                                      minutesLeft,
-                                      secondsLeft,
-                                    ) =>
-                                        context.localize.resendOtpIn +
-                                        whiteSpace +
-                                        switch (minutesLeft == zero) {
-                                          true => emptyString,
-                                          false => minutesLeft.toString() +
-                                              context.localize.m +
-                                              whiteSpace,
-                                        } +
-                                        switch (secondsLeft == zero) {
-                                          true => emptyString,
-                                          false => secondsLeft.toString() +
-                                              context.localize.s,
-                                        },
-                                    orElse: () => context.localize.resendOtp,
-                                  ),
-                                  style: otpResendTimerState.maybeWhen(
-                                    ticked: (_, __) => Theme.of(
-                                      context,
-                                    ).textTheme.bodySmall?.copyWith(
-                                          fontSize: tenDotNil,
-                                          height:
-                                              twentyOneDotNil / fourteenDotNil,
-                                        ),
-                                    orElse: () => Theme.of(
-                                      context,
-                                    ).textTheme.bodySmall?.copyWith(
-                                          fontWeight: FontWeight.w700,
-                                          fontSize: tenDotNil,
-                                          height:
-                                              twentyOneDotNil / fourteenDotNil,
-                                          color: hex0653EA,
-                                        ),
-                                  ),
-                                  recognizer: otpResendTimerState.maybeWhen(
-                                    ticked: (_, __) => null,
-                                    orElse: () => deleteAccountState.maybeWhen(
-                                      deletingAccount: () => null,
-                                      orElse: () => TapGestureRecognizer()
-                                        ..onTap = () {
-                                          context
-                                              .read<RequestDeleteAccountBloc>()
-                                              .add(
-                                                const RequestDeleteAccountEvent
-                                                    .sendOtp(),
-                                              );
-
-                                          context
-                                              .read<OtpResendTimerBloc>()
-                                              .add(
-                                                const OtpResendTimerEvent
-                                                    .countdown(),
-                                              );
-                                        },
+                              style: otpResendTimerState.maybeWhen(
+                                ticked: (_, __) => Theme.of(
+                                  context,
+                                ).textTheme.bodySmall?.copyWith(
+                                      fontSize: tenDotNil,
+                                      height: twentyOneDotNil / tenDotNil,
                                     ),
-                                  ),
+                                orElse: () => Theme.of(
+                                  context,
+                                ).textTheme.bodySmall?.copyWith(
+                                      fontWeight: FontWeight.w700,
+                                      fontSize: tenDotNil,
+                                      height: twentyOneDotNil / tenDotNil,
+                                      color: hex0653EA,
+                                    ),
+                              ),
+                              recognizer: otpResendTimerState.maybeWhen(
+                                ticked: (_, __) => null,
+                                orElse: () => deleteAccountState.maybeWhen(
+                                  deletingAccount: () => null,
+                                  orElse: () => TapGestureRecognizer()
+                                    ..onTap = () {
+                                      context
+                                          .read<RequestDeleteAccountBloc>()
+                                          .add(
+                                            const RequestDeleteAccountEvent
+                                                .sendOtp(),
+                                          );
+
+                                      context.read<OtpResendTimerBloc>().add(
+                                            const OtpResendTimerEvent
+                                                .countdown(),
+                                          );
+                                    },
                                 ),
                               ),
                             ),
-                          ),
-                          alignment: PlaceholderAlignment.middle,
+                          ],
                         ),
-                      ],
+                      ),
                     ),
-                    textAlign: TextAlign.center,
                   ),
                   const SizedBox(
                     height: thirtyDotNil,
