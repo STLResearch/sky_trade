@@ -91,8 +91,8 @@ import 'package:sky_trade/features/settings/presentation/blocs/tracking_authoriz
         TrackingAuthorizationStatusBloc,
         TrackingAuthorizationStatusEvent,
         TrackingAuthorizationStatusState;
-import 'package:sky_trade/features/settings/presentation/widgets/action_dialog.dart';
 import 'package:sky_trade/features/settings/presentation/widgets/delete_account.dart';
+import 'package:sky_trade/features/settings/presentation/widgets/delete_action_dialog.dart';
 import 'package:sky_trade/injection_container.dart' show serviceLocator;
 
 class SettingsScreen extends StatelessWidget {
@@ -362,31 +362,28 @@ class _SettingsViewState extends State<SettingsView> {
                   bottom: eighteenDotNil,
                 ),
                 child: ElevatedButton(
-                  onPressed: () => ActionDialog.show(
-                    context,
-                    content: context.localize
-                        .aCodeWillBeSentToYourEmailAreYouSureYouWantToProceedWithThisAction,
-                    onActionDismissed: () => Navigator.of(
-                      context,
-                    ).pop(),
-                    actionDismissText: context.localize.cancel,
-                    onActionConfirmed: () {
-                      Navigator.of(
-                        context,
-                      ).pop();
-
+                  onPressed: () => DeleteActionDialog.show(
+                    context: context,
+                    text: context.localize
+                        .deletingYourSkyTradeAccountPermanentlyErasesYourDataEndsAllActiveSessionsAndMakesYourEmailIneligibleForUseInCreatingANewAccountAreYouSureYouWantToProceed,
+                    onDeletePressed: () {
                       context.read<RequestDeleteAccountBloc>().add(
                             const RequestDeleteAccountEvent.sendOtp(),
                           );
 
+                      Navigator.pop(
+                        context,
+                      );
+
                       showModalBottomSheet<void>(
                         context: context,
-                        enableDrag: false,
                         isDismissible: false,
                         builder: (_) => const DeleteAccount(),
                       );
                     },
-                    actionConfirmText: context.localize.proceed,
+                    onCancelPressed: () => Navigator.pop(
+                      context,
+                    ),
                   ),
                   style: Theme.of(
                     context,

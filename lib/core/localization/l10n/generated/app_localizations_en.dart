@@ -497,8 +497,18 @@ class AppLocalizationsEn extends AppLocalizations {
   String get deleteAccount => 'Delete Account';
 
   @override
-  String get aCodeWillBeSentToYourEmailAreYouSureYouWantToProceedWithThisAction =>
-      'A code will be sent to your email. Are you sure you want to proceed with this action';
+  String get deleteYourAccount => 'Delete Your Account?';
+
+  @override
+  String get delete => 'Delete';
+
+  @override
+  String get deletingYourSkyTradeAccountPermanentlyErasesYourDataEndsAllActiveSessionsAndMakesYourEmailIneligibleForUseInCreatingANewAccountAreYouSureYouWantToProceed =>
+      'Deleting your SkyTrade account permanently erases your data, ends all active sessions and makes your email ineligible for use in creating a new account. Are you sure you want to proceed?';
+
+  @override
+  String get deletingYourSkyTradeAccountIsPermanentAndIrreversiblePleaseConfirmYouWantToContinue =>
+      'Deleting your SkyTrade account is permanent and irreversible. Please confirm you want to continue';
 
   @override
   String get cancel => 'Cancel';
