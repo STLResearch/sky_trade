@@ -4,6 +4,7 @@ import 'package:flutter/material.dart'
         BorderRadius,
         BuildContext,
         EdgeInsetsDirectional,
+        Expanded,
         FontWeight,
         InkWell,
         Navigator,
@@ -89,27 +90,29 @@ class MenuEntry extends StatelessWidget {
                 MenuItem.settings => Assets.svgs.settings.svg(),
                 MenuItem.help => Assets.svgs.help.svg(),
               },
-              Padding(
-                padding: const EdgeInsetsDirectional.symmetric(
-                  horizontal: fourteenDotNil,
-                  vertical: sixDotNil,
-                ),
-                child: Text(
-                  switch (MenuItem.values[index]) {
-                    MenuItem.insights => context.localize.insights,
-                    MenuItem.referralProgram =>
-                      context.localize.referralProgram,
-                    MenuItem.logout => context.localize.logout,
-                    MenuItem.settings => context.localize.settings,
-                    MenuItem.help => context.localize.help,
-                  },
-                  style: Theme.of(
-                    context,
-                  ).textTheme.bodySmall?.copyWith(
-                        fontWeight: FontWeight.w500,
-                        letterSpacing: nilDotNil,
-                        color: hex1E1E1E,
-                      ),
+              Expanded(
+                child: Padding(
+                  padding: const EdgeInsetsDirectional.symmetric(
+                    horizontal: fourteenDotNil,
+                    vertical: sixDotNil,
+                  ),
+                  child: Text(
+                    switch (MenuItem.values[index]) {
+                      MenuItem.insights => context.localize.insights,
+                      MenuItem.referralProgram =>
+                        context.localize.referralProgram,
+                      MenuItem.logout => context.localize.logout,
+                      MenuItem.settings => context.localize.settings,
+                      MenuItem.help => context.localize.help,
+                    },
+                    style: Theme.of(
+                      context,
+                    ).textTheme.bodySmall?.copyWith(
+                          fontWeight: FontWeight.w500,
+                          letterSpacing: nilDotNil,
+                          color: hex1E1E1E,
+                        ),
+                  ),
                 ),
               ),
             ],
