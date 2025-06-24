@@ -37,12 +37,12 @@ import 'package:syncfusion_flutter_charts/charts.dart'
 class Graph extends StatelessWidget {
   const Graph({
     required this.rangeFilter,
-    required this.filteredDroneInsightsEntity,
+    this.filteredDroneInsightsEntity,
     super.key,
   });
 
   final RangeFilter rangeFilter;
-  final FilteredDroneInsightsEntity filteredDroneInsightsEntity;
+  final FilteredDroneInsightsEntity? filteredDroneInsightsEntity;
 
   @override
   Widget build(BuildContext context) => Stack(
@@ -65,7 +65,8 @@ class Graph extends StatelessWidget {
                       color: hex030229,
                     ),
               ),
-              series: switch (filteredDroneInsightsEntity.intervals.isEmpty) {
+              series: switch (
+                  filteredDroneInsightsEntity?.intervals.isEmpty ?? true) {
                 true => [],
                 false => <CartesianSeries<Chart, String>>[
                     SplineSeries<Chart, String>(
@@ -79,7 +80,7 @@ class Graph extends StatelessWidget {
               },
             ),
           ),
-          if (filteredDroneInsightsEntity.intervals.isEmpty)
+          if (filteredDroneInsightsEntity?.intervals.isEmpty ?? false)
             ColoredBox(
               color: Theme.of(
                 context,
@@ -98,7 +99,11 @@ class Graph extends StatelessWidget {
   List<Chart> chartObservedDrones() {
     final observations = <Chart>[];
 
-    final intervals = filteredDroneInsightsEntity.intervals;
+    final intervals = filteredDroneInsightsEntity?.intervals;
+
+    if (intervals == null) {
+      return observations;
+    }
 
     for (var interval = zero; interval < intervals.length; interval++) {
       final label = switch (rangeFilter) {

@@ -6,14 +6,9 @@ import 'package:flutter/material.dart'
         AlignmentDirectional,
         BuildContext,
         Column,
-        Container,
-        EdgeInsetsDirectional,
-        MediaQuery,
-        Padding,
         State,
         StatefulWidget,
         StatelessWidget,
-        Theme,
         ValueListenableBuilder,
         ValueNotifier,
         Widget,
@@ -22,11 +17,8 @@ import 'package:flutter/material.dart'
         WrapCrossAlignment;
 import 'package:flutter_bloc/flutter_bloc.dart'
     show BlocBuilder, BlocListener, BlocProvider, ReadContext;
-import 'package:skeletonizer/skeletonizer.dart'
-    show ShimmerEffect, Skeleton, Skeletonizer, SoldColorEffect;
-import 'package:sky_trade/core/resources/colors.dart' show hexEBEBF4;
 import 'package:sky_trade/core/resources/numbers/ui.dart'
-    show eightDotNil, threeDotEightNine, threeNilSevenDotFourSeven;
+    show threeDotEightNine;
 import 'package:sky_trade/core/utils/enums/networking.dart' show RangeFilter;
 import 'package:sky_trade/core/utils/extensions/build_context_extensions.dart';
 import 'package:sky_trade/features/drone_insights/presentation/blocs/filter_drone_insights_bloc/filter_drone_insights_bloc.dart'
@@ -146,40 +138,12 @@ class _GraphSectionViewState extends State<GraphSectionView> {
               valueListenable: _rangeFilterNotifier,
               builder: (_, rangeFilterNotifierValue, __) => BlocBuilder<
                   FilterDroneInsightsBloc, FilterDroneInsightsState>(
-                builder: (_, filterDroneInsightsState) => Skeletonizer(
-                  effect: filterDroneInsightsState.maybeWhen(
-                    failedToFilterInsights: (_) => const SoldColorEffect(
-                      color: hexEBEBF4,
-                    ),
-                    orElse: () => ShimmerEffect(
-                      highlightColor: Theme.of(
-                        context,
-                      ).scaffoldBackgroundColor,
-                    ),
-                  ),
-                  enabled: filterDroneInsightsState.maybeWhen(
-                    filteredInsights: (_) => false,
-                    orElse: () => true,
-                  ),
-                  child: filterDroneInsightsState.maybeWhen(
-                    filteredInsights: (filteredDroneInsightsEntity) => Graph(
-                      rangeFilter: rangeFilterNotifierValue,
-                      filteredDroneInsightsEntity: filteredDroneInsightsEntity,
-                    ),
-                    orElse: () => Skeleton.leaf(
-                      child: Padding(
-                        padding: const EdgeInsetsDirectional.only(
-                          top: eightDotNil,
-                        ),
-                        child: Container(
-                          color: hexEBEBF4,
-                          width: MediaQuery.sizeOf(
-                            context,
-                          ).width,
-                          height: threeNilSevenDotFourSeven,
-                        ),
-                      ),
-                    ),
+                builder: (_, filterDroneInsightsState) => Graph(
+                  rangeFilter: rangeFilterNotifierValue,
+                  filteredDroneInsightsEntity:
+                      filterDroneInsightsState.whenOrNull(
+                    filteredInsights: (filteredDroneInsightsEntity) =>
+                        filteredDroneInsightsEntity,
                   ),
                 ),
               ),
