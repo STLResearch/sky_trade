@@ -33,13 +33,13 @@ import 'package:sky_trade/core/resources/colors.dart' show hexE2E2E2, hexEBEBF5;
 import 'package:sky_trade/core/resources/numbers/ui.dart'
     show
         eightDotNil,
-        fiftyDotNil,
         oneDotNil,
         tenDotNil,
         thirtyDotNil,
         twelveDotNil,
         twentyDotNil,
-        twentyFiveDotNil;
+        twentyFiveDotNil,
+        twentyTwoDotNil;
 import 'package:sky_trade/core/utils/extensions/build_context_extensions.dart';
 import 'package:sky_trade/features/auth/presentation/blocs/auth_0_logout_bloc/auth_0_logout_bloc.dart'
     show Auth0LogoutBloc, Auth0LogoutEvent;
@@ -59,7 +59,7 @@ class Menu extends StatelessWidget {
           context: context,
           builder: (_) => Dialog(
             insetPadding: const EdgeInsets.symmetric(
-              horizontal: fiftyDotNil,
+              horizontal: twentyTwoDotNil,
             ),
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadiusDirectional.circular(

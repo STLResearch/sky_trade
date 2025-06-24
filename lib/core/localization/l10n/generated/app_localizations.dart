@@ -1021,12 +1021,12 @@ abstract class AppLocalizations {
   /// **'Delete'**
   String get delete;
 
-  /// No description provided for @deletingYourSkyTradeAccountPermanentlyErasesYourDataEndsAllActiveSessionsAndMakesYourEmailIneligibleForUseInCreatingANewAccountAreYouSureYouWantToProceed.
+  /// No description provided for @deletingYourSkyTradeAccountPermanentlyErasesYourDataEndsAllActiveSessionsAndMakesYourEmailIneligibleInCreatingANewAccount.
   ///
   /// In en, this message translates to:
-  /// **'Deleting your SkyTrade account permanently erases your data, ends all active sessions and makes your email ineligible for use in creating a new account. Are you sure you want to proceed?'**
+  /// **'Deleting your SkyTrade account permanently erases your data, ends all active sessions and makes your email ineligible in creating a new account'**
   String
-      get deletingYourSkyTradeAccountPermanentlyErasesYourDataEndsAllActiveSessionsAndMakesYourEmailIneligibleForUseInCreatingANewAccountAreYouSureYouWantToProceed;
+      get deletingYourSkyTradeAccountPermanentlyErasesYourDataEndsAllActiveSessionsAndMakesYourEmailIneligibleInCreatingANewAccount;
 
   /// No description provided for @deletingYourSkyTradeAccountIsPermanentAndIrreversiblePleaseConfirmYouWantToContinue.
   ///
