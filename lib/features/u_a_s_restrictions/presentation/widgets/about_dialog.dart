@@ -40,13 +40,13 @@ import 'package:sky_trade/core/resources/colors.dart'
 import 'package:sky_trade/core/resources/numbers/ui.dart'
     show
         fifteenDotNil,
-        fiftyDotNil,
         fiveDotNil,
         sixDotFive,
         tenDotNil,
         thirtyDotNil,
         threeDotNil,
-        twentyDotNil;
+        twentyDotNil,
+        twentyTwoDotNil;
 import 'package:sky_trade/core/resources/strings/special_characters.dart'
     show newLine, whiteSpace;
 import 'package:sky_trade/core/utils/extensions/build_context_extensions.dart';
@@ -61,7 +61,7 @@ final class AboutDialog {
       context: context,
       builder: (_) => Dialog(
         insetPadding: const EdgeInsets.symmetric(
-          horizontal: fiftyDotNil,
+          horizontal: twentyTwoDotNil,
         ),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadiusDirectional.circular(

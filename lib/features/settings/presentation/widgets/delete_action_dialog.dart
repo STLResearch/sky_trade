@@ -1,6 +1,7 @@
 import 'package:dartz/dartz.dart' show Function0;
 import 'package:flutter/material.dart'
     show
+        BorderRadiusDirectional,
         BuildContext,
         Column,
         Dialog,
@@ -8,7 +9,9 @@ import 'package:flutter/material.dart'
         EdgeInsetsDirectional,
         ElevatedButton,
         Expanded,
+        FontWeight,
         MainAxisSize,
+        RoundedRectangleBorder,
         Row,
         SingleChildScrollView,
         SizedBox,
@@ -18,16 +21,15 @@ import 'package:flutter/material.dart'
         showDialog;
 import 'package:sky_trade/core/assets/generated/assets.gen.dart' show Assets;
 import 'package:sky_trade/core/resources/colors.dart'
-    show hexB8B8B8, hexE04F64, hexFFFFFF;
+    show hex222222, hex87878D, hexB8B8B8, hexE04F64, hexFFFFFF;
 import 'package:sky_trade/core/resources/numbers/ui.dart'
     show
-        fiftyDotNil,
-        fourDotNil,
-        nilDotNil,
+        fifteenDotNil,
         sixteenDotNil,
         sixtyDotNil,
         tenDotNil,
-        twelveDotNil;
+        twelveDotNil,
+        twentyTwoDotNil;
 import 'package:sky_trade/core/utils/extensions/build_context_extensions.dart';
 
 class DeleteActionDialog {
@@ -41,7 +43,12 @@ class DeleteActionDialog {
       context: context,
       builder: (_) => Dialog(
         insetPadding: const EdgeInsets.symmetric(
-          horizontal: fiftyDotNil,
+          horizontal: twentyTwoDotNil,
+        ),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadiusDirectional.circular(
+            fifteenDotNil,
+          ),
         ),
         child: SingleChildScrollView(
           padding: const EdgeInsetsDirectional.symmetric(
@@ -56,27 +63,35 @@ class DeleteActionDialog {
                 height: sixtyDotNil,
               ),
               const SizedBox(
-                height: fourDotNil,
+                height: fifteenDotNil,
               ),
               Text(
                 context.localize.deleteYourAccount,
                 textAlign: TextAlign.center,
                 style: Theme.of(
                   context,
-                ).dialogTheme.titleTextStyle,
+                ).textTheme.bodyMedium?.copyWith(
+                      fontWeight: FontWeight.w400,
+                      fontSize: sixteenDotNil,
+                      color: hex222222,
+                    ),
               ),
               const SizedBox(
-                height: fourDotNil,
+                height: fifteenDotNil,
               ),
               Text(
                 text,
                 textAlign: TextAlign.center,
                 style: Theme.of(
                   context,
-                ).dialogTheme.contentTextStyle,
+                ).textTheme.bodyMedium?.copyWith(
+                      fontWeight: FontWeight.w400,
+                      fontSize: tenDotNil,
+                      color: hex87878D,
+                    ),
               ),
               const SizedBox(
-                height: tenDotNil,
+                height: fifteenDotNil,
               ),
               Row(
                 children: [
@@ -90,10 +105,9 @@ class DeleteActionDialog {
                         context.localize.cancel,
                         style: Theme.of(
                           context,
-                        ).textTheme.bodyLarge?.copyWith(
+                        ).textTheme.bodyMedium?.copyWith(
+                              fontWeight: FontWeight.w400,
                               fontSize: twelveDotNil,
-                              height: sixteenDotNil / twelveDotNil,
-                              letterSpacing: nilDotNil,
                               color: hexFFFFFF,
                             ),
                       ),
@@ -112,10 +126,9 @@ class DeleteActionDialog {
                         context.localize.delete,
                         style: Theme.of(
                           context,
-                        ).textTheme.bodyLarge?.copyWith(
+                        ).textTheme.bodyMedium?.copyWith(
+                              fontWeight: FontWeight.w400,
                               fontSize: twelveDotNil,
-                              height: sixteenDotNil / twelveDotNil,
-                              letterSpacing: nilDotNil,
                               color: hexFFFFFF,
                             ),
                       ),

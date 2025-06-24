@@ -23,12 +23,12 @@ import 'package:flutter/material.dart'
 import 'package:sky_trade/core/resources/colors.dart' show hex0072F0;
 import 'package:sky_trade/core/resources/numbers/ui.dart'
     show
-        fiftyDotNil,
         fourDotNil,
         nilDotNil,
         sixteenDotNil,
         tenDotNil,
-        twelveDotNil;
+        twelveDotNil,
+        twentyTwoDotNil;
 import 'package:sky_trade/core/utils/extensions/build_context_extensions.dart';
 
 final class ActionDialog {
@@ -47,7 +47,7 @@ final class ActionDialog {
       barrierDismissible: dismissible ?? true,
       builder: (_) => Dialog(
         insetPadding: const EdgeInsets.symmetric(
-          horizontal: fiftyDotNil,
+          horizontal: twentyTwoDotNil,
         ),
         child: SingleChildScrollView(
           padding: const EdgeInsetsDirectional.symmetric(
