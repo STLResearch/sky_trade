@@ -43,6 +43,7 @@ import 'package:flutter/material.dart'
         WidgetSpan,
         WidgetStatePropertyAll,
         showModalBottomSheet;
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sky_trade/core/assets/generated/assets.gen.dart' show Assets;
 import 'package:sky_trade/core/assets/generated/fonts.gen.dart';
 import 'package:sky_trade/core/resources/colors.dart'
@@ -90,327 +91,364 @@ import 'package:sky_trade/core/resources/numbers/ui.dart'
 import 'package:sky_trade/core/resources/strings/routes.dart'
     show homeRoutePath, rewardsRoutePath;
 import 'package:sky_trade/core/utils/extensions/build_context_extensions.dart';
+import 'package:sky_trade/features/rewards/domain/entities/rewards_entity.dart';
+import 'package:sky_trade/features/rewards/presentation/blocs/drone_rush_zones_bloc/drone_rush_zones_bloc.dart';
 import 'package:sky_trade/features/rewards/presentation/widgets/eligible_areas.dart';
 
 class DroneRushDetailsScreen extends StatelessWidget {
   const DroneRushDetailsScreen({
     required this.openedFromRoute,
+    required this.droneRushZonesBloc,
     super.key,
   });
 
   final String openedFromRoute;
+  final DroneRushZonesBloc droneRushZonesBloc;
 
   @override
-  Widget build(BuildContext context) => Scaffold(
-        appBar: AppBar(
-          leading: IconButton(
-            icon: Assets.svgs.chevronLeftBlack.svg(),
-            onPressed: () => Navigator.of(
-              context,
-            ).pop(),
-          ),
-          backgroundColor: Colors.transparent,
-          elevation: nilDotNil,
-        ),
-        extendBodyBehindAppBar: true,
-        body: Container(
-          decoration: const BoxDecoration(
-            gradient: LinearGradient(
-              begin: AlignmentDirectional.centerStart,
-              end: AlignmentDirectional.centerEnd,
-              colors: [
-                hexFFFFFF,
-                hexCCA8FFFF,
-                hexCC4285F4,
-              ],
+  Widget build(BuildContext context) => BlocProvider.value(
+        value: droneRushZonesBloc,
+        child: Scaffold(
+          appBar: AppBar(
+            leading: IconButton(
+              icon: Assets.svgs.chevronLeftBlack.svg(),
+              onPressed: () => Navigator.of(
+                context,
+              ).pop(),
             ),
+            backgroundColor: Colors.transparent,
+            elevation: nilDotNil,
           ),
-          child: Container(
+          extendBodyBehindAppBar: true,
+          body: Container(
             decoration: const BoxDecoration(
               gradient: LinearGradient(
-                begin: AlignmentDirectional.topCenter,
-                end: AlignmentDirectional.bottomCenter,
+                begin: AlignmentDirectional.centerStart,
+                end: AlignmentDirectional.centerEnd,
                 colors: [
-                  hex00FFFFFF,
                   hexFFFFFF,
-                ],
-                stops: [
-                  nilDotOneSevenTwoTwo,
-                  nilDotThreeFiveFourEight,
+                  hexCCA8FFFF,
+                  hexCC4285F4,
                 ],
               ),
             ),
-            child: SafeArea(
-              child: SingleChildScrollView(
-                padding: const EdgeInsetsDirectional.symmetric(
-                  horizontal: twentyFourDotNil,
+            child: Container(
+              decoration: const BoxDecoration(
+                gradient: LinearGradient(
+                  begin: AlignmentDirectional.topCenter,
+                  end: AlignmentDirectional.bottomCenter,
+                  colors: [
+                    hex00FFFFFF,
+                    hexFFFFFF,
+                  ],
+                  stops: [
+                    nilDotOneSevenTwoTwo,
+                    nilDotThreeFiveFourEight,
+                  ],
                 ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    SizedBox(
-                      width: double.infinity,
-                      child: Stack(
-                        alignment: AlignmentDirectional.center,
-                        children: [
-                          Column(
-                            children: [
-                              Align(
-                                alignment: AlignmentDirectional.center,
-                                child: Container(
-                                  padding:
-                                      const EdgeInsetsDirectional.symmetric(
-                                    horizontal: eightDotNil,
-                                    vertical: fourDotNil,
-                                  ),
-                                  decoration: BoxDecoration(
-                                    borderRadius:
-                                        BorderRadiusDirectional.circular(
-                                      sixDotNil,
+              ),
+              child: SafeArea(
+                child: SingleChildScrollView(
+                  padding: const EdgeInsetsDirectional.symmetric(
+                    horizontal: twentyFourDotNil,
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      SizedBox(
+                        width: double.infinity,
+                        child: Stack(
+                          alignment: AlignmentDirectional.center,
+                          children: [
+                            Column(
+                              children: [
+                                Align(
+                                  alignment: AlignmentDirectional.center,
+                                  child: Container(
+                                    padding:
+                                        const EdgeInsetsDirectional.symmetric(
+                                      horizontal: eightDotNil,
+                                      vertical: fourDotNil,
                                     ),
-                                    gradient: const LinearGradient(
-                                      begin: AlignmentDirectional.topEnd,
-                                      end: AlignmentDirectional.bottomEnd,
-                                      colors: [
-                                        hex7583FF,
-                                        hex68DEFF,
-                                      ],
+                                    decoration: BoxDecoration(
+                                      borderRadius:
+                                          BorderRadiusDirectional.circular(
+                                        sixDotNil,
+                                      ),
+                                      gradient: const LinearGradient(
+                                        begin: AlignmentDirectional.topEnd,
+                                        end: AlignmentDirectional.bottomEnd,
+                                        colors: [
+                                          hex7583FF,
+                                          hex68DEFF,
+                                        ],
+                                      ),
                                     ),
-                                  ),
-                                  child: Text(
-                                    context.localize.specialEvent,
-                                    style: Theme.of(
-                                      context,
-                                    ).textTheme.bodyLarge?.copyWith(
-                                          fontWeight: FontWeight.w600,
-                                          fontSize: tenDotNil,
-                                          height: oneDotNil,
-                                          letterSpacing: nilDotOne,
-                                          color: hexFFFFFF,
-                                        ),
-                                  ),
-                                ),
-                              ),
-                              const SizedBox(
-                                height: twelveDotNil,
-                              ),
-                              Align(
-                                alignment: AlignmentDirectional.center,
-                                child: Text(
-                                  context.localize.droneRush,
-                                  style: Theme.of(
-                                    context,
-                                  ).textTheme.bodyLarge?.copyWith(
-                                        fontFamily: FontFamily.chakraPetch,
-                                        fontWeight: FontWeight.w600,
-                                        fontSize: thirtyTwoDotNil,
-                                        height: oneDotNil,
-                                        letterSpacing: minusNilDotOne,
-                                        color: hex161616,
-                                      ),
-                                ),
-                              ),
-                              const SizedBox(
-                                height: twelveDotNil,
-                              ),
-                              Align(
-                                alignment: AlignmentDirectional.center,
-                                child: Text(
-                                  context.localize.trackAndEarnFiveXPoints,
-                                  style: Theme.of(
-                                    context,
-                                  ).textTheme.bodyMedium?.copyWith(
-                                        fontSize: eighteenDotNil,
-                                        height: oneDotNil,
-                                        letterSpacing: minusNilDotOne,
-                                        color: hex161616,
-                                      ),
-                                ),
-                              ),
-                            ],
-                          ),
-                          Positioned(
-                            top: minusTenDotNil,
-                            right: twentyDotNil,
-                            child: Assets.pngs.droneRushZoneBack.image(),
-                          ),
-                        ],
-                      ),
-                    ),
-                    const SizedBox(
-                      height: sixtySixDotNil,
-                    ),
-                    Column(
-                      children: List<Widget>.generate(
-                        four,
-                        (index) => Padding(
-                          padding: EdgeInsetsDirectional.only(
-                            bottom: switch (index == three) {
-                              true => nilDotNil,
-                              false => twentyDotNil,
-                            },
-                          ),
-                          child: Row(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Assets.svgs.droneRushPoints.svg(),
-                              const SizedBox(
-                                width: sixteenDotNil,
-                              ),
-                              Expanded(
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      switch (index) {
-                                        zero =>
-                                          context.localize.watchForRushZones,
-                                        one => context.localize.enterARushZone,
-                                        two => context.localize.trackDrones,
-                                        _ => context.localize.earnMorePoints,
-                                      },
+                                    child: Text(
+                                      context.localize.specialEvent,
                                       style: Theme.of(
                                         context,
                                       ).textTheme.bodyLarge?.copyWith(
                                             fontWeight: FontWeight.w600,
-                                            fontSize: sixteenDotNil,
+                                            fontSize: tenDotNil,
                                             height: oneDotNil,
-                                            letterSpacing: minusNilDotOne,
-                                            color: hex161616,
+                                            letterSpacing: nilDotOne,
+                                            color: hexFFFFFF,
                                           ),
                                     ),
-                                    const SizedBox(
-                                      height: eightDotNil,
-                                    ),
-                                    Text(
-                                      switch (index) {
-                                        zero => context.localize
-                                            .onlySpecificLocationsAreEligibleForExtraPointsRushZonesWillBeMarkedClearlyOnYourMap,
-                                        one => context.localize
-                                            .youMustBePhysicallyLocatedWithinARushZoneToStartTracking,
-                                        two => context.localize
-                                            .observeAndConfirmDroneActivityAsUsual,
-                                        _ => context.localize
-                                            .allSuccessfulObservationsInRushZonesWillAutomaticallyEarnBoostedRewards,
-                                      },
-                                      style: Theme.of(
-                                        context,
-                                      ).textTheme.bodySmall?.copyWith(
-                                            fontWeight: FontWeight.w300,
-                                            fontSize: fourteenDotNil,
-                                            height: twentyTwoDotNil /
-                                                fourteenDotNil,
-                                            letterSpacing: nilDotNil,
-                                            color: hex626262,
-                                          ),
-                                    ),
-                                    if (index == zero)
+                                  ),
+                                ),
+                                const SizedBox(
+                                  height: twelveDotNil,
+                                ),
+                                Align(
+                                  alignment: AlignmentDirectional.center,
+                                  child: Text(
+                                    context.localize.droneRush,
+                                    style: Theme.of(
+                                      context,
+                                    ).textTheme.bodyLarge?.copyWith(
+                                          fontFamily: FontFamily.chakraPetch,
+                                          fontWeight: FontWeight.w600,
+                                          fontSize: thirtyTwoDotNil,
+                                          height: oneDotNil,
+                                          letterSpacing: minusNilDotOne,
+                                          color: hex161616,
+                                        ),
+                                  ),
+                                ),
+                                const SizedBox(
+                                  height: twelveDotNil,
+                                ),
+                                Align(
+                                  alignment: AlignmentDirectional.center,
+                                  child: Text(
+                                    context.localize.trackAndEarnFiveXPoints,
+                                    style: Theme.of(
+                                      context,
+                                    ).textTheme.bodyMedium?.copyWith(
+                                          fontSize: eighteenDotNil,
+                                          height: oneDotNil,
+                                          letterSpacing: minusNilDotOne,
+                                          color: hex161616,
+                                        ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                            Positioned(
+                              top: minusTenDotNil,
+                              right: twentyDotNil,
+                              child: Assets.pngs.droneRushZoneBack.image(),
+                            ),
+                          ],
+                        ),
+                      ),
+                      const SizedBox(
+                        height: sixtySixDotNil,
+                      ),
+                      Column(
+                        children: List<Widget>.generate(
+                          four,
+                          (index) => Padding(
+                            padding: EdgeInsetsDirectional.only(
+                              bottom: switch (index == three) {
+                                true => nilDotNil,
+                                false => twentyDotNil,
+                              },
+                            ),
+                            child: Row(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Assets.svgs.droneRushPoints.svg(),
+                                const SizedBox(
+                                  width: sixteenDotNil,
+                                ),
+                                Expanded(
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        switch (index) {
+                                          zero =>
+                                            context.localize.watchForRushZones,
+                                          one =>
+                                            context.localize.enterARushZone,
+                                          two => context.localize.trackDrones,
+                                          _ => context.localize.earnMorePoints,
+                                        },
+                                        style: Theme.of(
+                                          context,
+                                        ).textTheme.bodyLarge?.copyWith(
+                                              fontWeight: FontWeight.w600,
+                                              fontSize: sixteenDotNil,
+                                              height: oneDotNil,
+                                              letterSpacing: minusNilDotOne,
+                                              color: hex161616,
+                                            ),
+                                      ),
                                       const SizedBox(
                                         height: eightDotNil,
                                       ),
-                                    if (index == zero)
-                                      RichText(
-                                        text: TextSpan(
-                                          children: [
-                                            WidgetSpan(
-                                              child: Assets.svgs.helpCircleSmall
-                                                  .svg(),
-                                              alignment:
-                                                  PlaceholderAlignment.middle,
+                                      Text(
+                                        switch (index) {
+                                          zero => context.localize
+                                              .onlySpecificLocationsAreEligibleForExtraPointsRushZonesWillBeMarkedClearlyOnYourMap,
+                                          one => context.localize
+                                              .youMustBePhysicallyLocatedWithinARushZoneToStartTracking,
+                                          two => context.localize
+                                              .observeAndConfirmDroneActivityAsUsual,
+                                          _ => context.localize
+                                              .allSuccessfulObservationsInRushZonesWillAutomaticallyEarnBoostedRewards,
+                                        },
+                                        style: Theme.of(
+                                          context,
+                                        ).textTheme.bodySmall?.copyWith(
+                                              fontWeight: FontWeight.w300,
+                                              fontSize: fourteenDotNil,
+                                              height: twentyTwoDotNil /
+                                                  fourteenDotNil,
+                                              letterSpacing: nilDotNil,
+                                              color: hex626262,
                                             ),
-                                            const WidgetSpan(
-                                              child: SizedBox(
-                                                width: fourDotNil,
-                                              ),
-                                              alignment:
-                                                  PlaceholderAlignment.middle,
-                                            ),
-                                            TextSpan(
-                                              text: context.localize
-                                                  .whatAreasAreEligible,
-                                              style: Theme.of(
-                                                context,
-                                              ).textTheme.bodyLarge?.copyWith(
-                                                    fontSize: fourteenDotNil,
-                                                    height: oneDotNil,
-                                                    letterSpacing: nilDotNil,
-                                                    color: hex0653EA,
-                                                  ),
-                                              recognizer: TapGestureRecognizer()
-                                                ..onTap = () =>
-                                                    showModalBottomSheet<void>(
-                                                      context: context,
-                                                      builder: (_) =>
-                                                          const EligibleAreas(),
-                                                    ),
-                                            ),
-                                          ],
-                                        ),
                                       ),
-                                  ],
+                                      if (index == zero)
+                                        const SizedBox(
+                                          height: eightDotNil,
+                                        ),
+                                      if (index == zero)
+                                        BlocBuilder<DroneRushZonesBloc,
+                                            DroneRushZonesState>(
+                                          builder:
+                                              (context, droneRushZonesState) {
+                                            final activeRushZones =
+                                                droneRushZonesState.maybeWhen(
+                                              gotOngoingDroneRushZones:
+                                                  (rushZones) => rushZones,
+                                              orElse: () =>
+                                                  <DroneRushZoneEntity>[],
+                                            );
+                                            return RichText(
+                                              text: TextSpan(
+                                                children: [
+                                                  WidgetSpan(
+                                                    child: Assets
+                                                        .svgs.helpCircleSmall
+                                                        .svg(),
+                                                    alignment:
+                                                        PlaceholderAlignment
+                                                            .middle,
+                                                  ),
+                                                  const WidgetSpan(
+                                                    child: SizedBox(
+                                                      width: fourDotNil,
+                                                    ),
+                                                    alignment:
+                                                        PlaceholderAlignment
+                                                            .middle,
+                                                  ),
+                                                  TextSpan(
+                                                    text: context.localize
+                                                        .whatAreasAreEligible,
+                                                    style: Theme.of(
+                                                      context,
+                                                    )
+                                                        .textTheme
+                                                        .bodyLarge
+                                                        ?.copyWith(
+                                                          fontSize:
+                                                              fourteenDotNil,
+                                                          height: oneDotNil,
+                                                          letterSpacing:
+                                                              nilDotNil,
+                                                          color: hex0653EA,
+                                                        ),
+                                                    recognizer:
+                                                        TapGestureRecognizer()
+                                                          ..onTap = () =>
+                                                              showModalBottomSheet<
+                                                                  void>(
+                                                                context:
+                                                                    context,
+                                                                builder: (_) =>
+                                                                    EligibleAreas(
+                                                                  activeRushZones:
+                                                                      activeRushZones,
+                                                                ),
+                                                              ),
+                                                  ),
+                                                ],
+                                              ),
+                                            );
+                                          },
+                                        ),
+                                    ],
+                                  ),
                                 ),
-                              ),
-                            ],
+                              ],
+                            ),
                           ),
                         ),
                       ),
-                    ),
-                    const SizedBox(
-                      height: eightyNineDotNil,
-                    ),
-                    ElevatedButton(
-                      onPressed: () {
-                        if (openedFromRoute == homeRoutePath) {
-                          Navigator.of(
-                            context,
-                          ).pop();
-                        } else if (openedFromRoute == rewardsRoutePath) {
-                          Navigator.of(
-                            context,
-                          ).pop();
-                          Navigator.of(
-                            context,
-                          ).pop();
-                        }
-                      },
-                      style: Theme.of(
-                        context,
-                      ).elevatedButtonTheme.style?.copyWith(
-                            fixedSize: const WidgetStatePropertyAll<Size>(
-                              Size.fromHeight(
-                                fiftyDotNil,
-                              ),
-                            ),
-                            shape: WidgetStatePropertyAll<OutlinedBorder>(
-                              RoundedRectangleBorder(
-                                borderRadius: BorderRadiusDirectional.circular(
-                                  fifteenDotNil,
+                      const SizedBox(
+                        height: eightyNineDotNil,
+                      ),
+                      ElevatedButton(
+                        onPressed: () {
+                          if (openedFromRoute == homeRoutePath) {
+                            Navigator.of(
+                              context,
+                            ).pop();
+                          } else if (openedFromRoute == rewardsRoutePath) {
+                            Navigator.of(
+                              context,
+                            ).pop();
+                            Navigator.of(
+                              context,
+                            ).pop();
+                          }
+                        },
+                        style: Theme.of(
+                          context,
+                        ).elevatedButtonTheme.style?.copyWith(
+                              fixedSize: const WidgetStatePropertyAll<Size>(
+                                Size.fromHeight(
+                                  fiftyDotNil,
                                 ),
                               ),
-                            ),
-                            backgroundColor:
-                                const WidgetStatePropertyAll<Color>(
-                              hex0653EA,
-                            ),
-                          ),
-                      child: Center(
-                        child: Text(
-                          context.localize.startTracking,
-                          style: Theme.of(
-                            context,
-                          ).textTheme.bodyLarge?.copyWith(
-                                fontSize: sixteenDotNil,
-                                height: oneDotNil,
-                                letterSpacing: nilDotNil,
-                                color: hexFFFFFF,
+                              shape: WidgetStatePropertyAll<OutlinedBorder>(
+                                RoundedRectangleBorder(
+                                  borderRadius:
+                                      BorderRadiusDirectional.circular(
+                                    fifteenDotNil,
+                                  ),
+                                ),
                               ),
+                              backgroundColor:
+                                  const WidgetStatePropertyAll<Color>(
+                                hex0653EA,
+                              ),
+                            ),
+                        child: Center(
+                          child: Text(
+                            context.localize.startTracking,
+                            style: Theme.of(
+                              context,
+                            ).textTheme.bodyLarge?.copyWith(
+                                  fontSize: sixteenDotNil,
+                                  height: oneDotNil,
+                                  letterSpacing: nilDotNil,
+                                  color: hexFFFFFF,
+                                ),
+                          ),
                         ),
                       ),
-                    ),
-                    const SizedBox(
-                      height: fortyFiveDotNil,
-                    ),
-                  ],
+                      const SizedBox(
+                        height: fortyFiveDotNil,
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ),

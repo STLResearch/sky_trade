@@ -164,6 +164,7 @@ DroneRushZoneModel _$DroneRushZoneModelFromJson(Map<String, dynamic> json) =>
       mRadius: (json['radius'] as num).toDouble(),
       mBoundingBox: BoundingBoxModel.fromJson(
           json['boundingBox'] as Map<String, dynamic>),
+      mLocationName: json['locationName'] as String,
     );
 
 Map<String, dynamic> _$DroneRushZoneModelToJson(DroneRushZoneModel instance) =>
@@ -177,6 +178,7 @@ Map<String, dynamic> _$DroneRushZoneModelToJson(DroneRushZoneModel instance) =>
       'longitude': instance.mLongitude,
       'radius': instance.mRadius,
       'boundingBox': instance.mBoundingBox,
+      'locationName': instance.mLocationName,
     };
 
 BoundingBoxModel _$BoundingBoxModelFromJson(Map<String, dynamic> json) =>

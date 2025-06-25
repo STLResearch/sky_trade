@@ -36,6 +36,7 @@ const endTimeKey = 'endTime';
 const latitudeKey = 'latitude';
 const longitudeKey = 'longitude';
 const radiusKey = 'radius';
+const locationNameKey = 'locationName';
 const boundingBoxKey = 'boundingBox';
 const minLatitudeKey = 'minLatitude';
 const maxLatitudeKey = 'maxLatitude';

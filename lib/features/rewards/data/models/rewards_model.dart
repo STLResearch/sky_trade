@@ -11,6 +11,7 @@ import 'package:sky_trade/core/resources/strings/networking.dart'
         endTimeKey,
         idKey,
         latitudeKey,
+        locationNameKey,
         longitudeKey,
         maxLatitudeKey,
         maxLongitudeKey,
@@ -306,6 +307,7 @@ final class DroneRushZoneModel extends DroneRushZoneEntity {
     required this.mLongitude,
     required this.mRadius,
     required this.mBoundingBox,
+    required this.mLocationName,
   }) : super(
           id: mId,
           createdAt: mCreatedAt,
@@ -316,6 +318,7 @@ final class DroneRushZoneModel extends DroneRushZoneEntity {
           longitude: mLongitude,
           radius: mRadius,
           boundingBox: mBoundingBox,
+          locationName: mLocationName,
         );
 
   factory DroneRushZoneModel.fromJson(Map<String, dynamic> json) =>
@@ -351,6 +354,9 @@ final class DroneRushZoneModel extends DroneRushZoneEntity {
 
   @JsonKey(name: boundingBoxKey)
   final BoundingBoxModel mBoundingBox;
+
+  @JsonKey(name: locationNameKey)
+  final String mLocationName;
 
   Map<String, dynamic> toJson() => _$DroneRushZoneModelToJson(this);
 }

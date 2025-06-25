@@ -54,50 +54,7 @@ import 'package:sky_trade/core/resources/numbers/ui.dart'
 import 'package:sky_trade/core/resources/strings/special_characters.dart'
     show closingParenthesis, comma, emptyString, hyphen, openingParenthesis;
 import 'package:sky_trade/core/resources/strings/ui.dart'
-    show
-        booleanExpression,
-        boundaryId,
-        boundingBoxKey,
-        bridDronesLayerId,
-        bridDronesSourceId,
-        caseExpression,
-        colorKey,
-        coordinatesKey,
-        createdAtKey,
-        delayKey,
-        directionKey,
-        droneRushZonesLayerId,
-        droneRushZonesSourceId,
-        durationKey,
-        endTimeKey,
-        featureStateExpression,
-        fillOpacityTransitionProperty,
-        getExpression,
-        iconDroneValue,
-        idKey,
-        isSelectedKey,
-        latitudeKey,
-        layerId,
-        lineStringGeometry,
-        longitudeKey,
-        maxLatitudeKey,
-        maxLongitudeKey,
-        minLatitudeKey,
-        minLongitudeKey,
-        northEastKey,
-        nridDronesLayerId,
-        nridDronesSourceId,
-        pointGeometry,
-        polygonGeometry,
-        propertiesKey,
-        radiusKey,
-        rgba,
-        sourceId,
-        southWestKey,
-        startTimeKey,
-        strokeColorKey,
-        typeKey,
-        updateAtKey;
+    show booleanExpression, boundaryId, boundingBoxKey, bridDronesLayerId, bridDronesSourceId, caseExpression, colorKey, coordinatesKey, createdAtKey, delayKey, directionKey, droneRushZonesLayerId, droneRushZonesSourceId, durationKey, endTimeKey, featureStateExpression, fillOpacityTransitionProperty, getExpression, iconDroneValue, idKey, isSelectedKey, latitudeKey, layerId, lineStringGeometry, locationNameKey, longitudeKey, maxLatitudeKey, maxLongitudeKey, minLatitudeKey, minLongitudeKey, northEastKey, nridDronesLayerId, nridDronesSourceId, pointGeometry, polygonGeometry, propertiesKey, radiusKey, rgba, sourceId, southWestKey, startTimeKey, strokeColorKey, typeKey, updateAtKey;
 import 'package:sky_trade/core/utils/extensions/drone_rush_zone_entity_extensions.dart';
 import 'package:sky_trade/core/utils/extensions/restriction_entity_extensions.dart';
 import 'package:sky_trade/core/utils/typedefs/ui.dart'
@@ -552,6 +509,7 @@ extension MapboxMapExtensions on MapboxMap {
                   latitudeKey: droneRushZoneEntity.latitude,
                   longitudeKey: droneRushZoneEntity.longitude,
                   radiusKey: droneRushZoneEntity.radius,
+                  locationNameKey: droneRushZoneEntity.locationName,
                   boundingBoxKey: <String, double>{
                     minLatitudeKey: droneRushZoneEntity.boundingBox.minLatitude,
                     maxLatitudeKey: droneRushZoneEntity.boundingBox.maxLatitude,
@@ -683,6 +641,7 @@ extension MapboxMapExtensions on MapboxMap {
       final latitude = featurePropertiesMap[latitudeKey] as double;
       final longitude = featurePropertiesMap[longitudeKey] as double;
       final radius = (featurePropertiesMap[radiusKey] as num).toDouble();
+      final locationName = featurePropertiesMap[locationNameKey] as String;
 
       final boundingBox = featurePropertiesMap[boundingBoxKey] as Map;
 
@@ -743,6 +702,7 @@ extension MapboxMapExtensions on MapboxMap {
         latitude: latitude,
         longitude: longitude,
         radius: radius,
+        locationName: locationName,
         boundingBox: BoundingBoxEntity(
           minLatitude: minLatitude,
           maxLatitude: maxLatitude,

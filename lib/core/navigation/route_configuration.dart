@@ -52,7 +52,8 @@ Route routes(RouteSettings settings) => MaterialPageRoute(
           rewardsOnboardingRoutePath => const rewards.OnboardingScreen(),
           rewardsLeaderboardRoutePath => const rewards.LeaderboardScreen(),
           rewardsDroneRushDetailsRoutePath => rewards.DroneRushDetailsScreen(
-              openedFromRoute: settings.arguments! as String,
+            openedFromRoute: (settings.arguments! as Map)['openedFromRoute'] as String,
+            droneRushZonesBloc: (settings.arguments! as Map)['droneRushZonesBloc'] as DroneRushZonesBloc,
             ),
           rewardsRoutePath => RewardsScreen(
               droneRushZonesBloc: settings.arguments! as DroneRushZonesBloc,

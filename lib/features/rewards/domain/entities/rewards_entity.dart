@@ -205,6 +205,7 @@ base class DroneRushZoneEntity extends Equatable {
     required this.longitude,
     required this.radius,
     required this.boundingBox,
+    required this.locationName,
   });
 
   final String id;
@@ -225,6 +226,8 @@ base class DroneRushZoneEntity extends Equatable {
 
   final BoundingBoxEntity boundingBox;
 
+  final String locationName;
+
   @override
   List<Object?> get props => [
         id,
@@ -236,6 +239,7 @@ base class DroneRushZoneEntity extends Equatable {
         longitude,
         radius,
         boundingBox,
+        locationName,
       ];
 }
 
