@@ -4,13 +4,8 @@ import 'package:sky_trade/main_dev.dart' as dev;
 import 'package:sky_trade/main_live.dart' as live;
 import 'package:sky_trade/main_stage.dart' as stage;
 
-String get currentEnv => const String.fromEnvironment(
-      flavours,
-      defaultValue: devEnvironment,
-    );
-
 void main() {
-  switch (currentEnv) {
+  switch (_environment) {
     case devEnvironment:
       dev.main();
     case stageEnvironment:
@@ -19,3 +14,8 @@ void main() {
       live.main();
   }
 }
+
+String get _environment => const String.fromEnvironment(
+      flavours,
+      defaultValue: devEnvironment,
+    );
