@@ -65,6 +65,7 @@ import 'package:sky_trade/features/bluetooth/presentation/blocs/bluetooth_permis
         BluetoothPermissionsBloc,
         BluetoothPermissionsEvent,
         BluetoothPermissionsState;
+import 'package:sky_trade/features/drone_insights/presentation/blocs/track_drone_insights_bloc/track_drone_insights_bloc.dart';
 import 'package:sky_trade/features/geo_hash/presentation/blocs/geo_hash_bloc/geo_hash_bloc.dart'
     show GeoHashBloc, GeoHashEvent, GeoHashState;
 import 'package:sky_trade/features/location/presentation/blocs/location_permission_bloc/location_permission_bloc.dart'
@@ -166,6 +167,9 @@ class HomeScreen extends StatelessWidget {
             create: (_) => serviceLocator(),
           ),
           BlocProvider<DroneRushZonesBloc>(
+            create: (_) => serviceLocator(),
+          ),
+          BlocProvider<TrackDroneInsightsBloc>(
             create: (_) => serviceLocator(),
           ),
         ],
@@ -803,6 +807,8 @@ class _HomeViewState extends State<HomeView> {
                       );
                     },
                     onDroneTap: () {},
+                    trackDroneInsightsBloc:
+                        context.read<TrackDroneInsightsBloc>(),
                   ),
                 ),
               ),

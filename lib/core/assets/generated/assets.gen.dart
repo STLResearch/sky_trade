@@ -198,6 +198,10 @@ class $AssetsSvgsGen {
   /// File path: assets/svgs/home.svg
   SvgGenImage get home => const SvgGenImage('assets/svgs/home.svg');
 
+  /// File path: assets/svgs/icon _tracked_drone_black.svg
+  SvgGenImage get iconTrackedDroneBlack =>
+      const SvgGenImage('assets/svgs/icon _tracked_drone_black.svg');
+
   /// File path: assets/svgs/icon_drone_black.svg
   SvgGenImage get iconDroneBlack =>
       const SvgGenImage('assets/svgs/icon_drone_black.svg');
@@ -401,6 +405,7 @@ class $AssetsSvgsGen {
     helpCircleLarge,
     helpCircleSmall,
     home,
+    iconTrackedDroneBlack,
     iconDroneBlack,
     iconDroneBlue,
     indicator,

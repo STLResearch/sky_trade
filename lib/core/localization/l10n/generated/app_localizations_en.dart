@@ -1155,4 +1155,7 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get skyTradeNeedsGpsToFindYourLocationAndShowRelevantFeaturesAroundYouPleaseEnableItInYourDeviceSettings =>
       'SkyTrade needs GPS to find your location and show relevant features around you. Please enable it in your device settings';
+
+  @override
+  String get trackedDrones => 'Tracked Drones';
 }
