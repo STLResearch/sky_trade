@@ -9,5 +9,5 @@ abstract interface class UASRestrictionsRepository {
     required String geoHash,
   });
 
-  Future<void> cleanUpResources();
+  Future<void> closeUASRestrictionsLocalStorageBox();
 }

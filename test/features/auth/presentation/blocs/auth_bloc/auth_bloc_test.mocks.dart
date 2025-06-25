@@ -83,6 +83,28 @@ class MockAuthRepository extends _i1.Mock implements _i4.AuthRepository {
       ) as _i5.Future<bool>);
 
   @override
+  _i5.Future<
+      _i2.Either<_i6.GetSkyTradeUserFailure,
+          _i7.SkyTradeUserEntity>> get skyTradeUser => (super.noSuchMethod(
+        Invocation.getter(#skyTradeUser),
+        returnValue: _i5.Future<
+                _i2.Either<_i6.GetSkyTradeUserFailure,
+                    _i7.SkyTradeUserEntity>>.value(
+            _FakeEither_0<_i6.GetSkyTradeUserFailure, _i7.SkyTradeUserEntity>(
+          this,
+          Invocation.getter(#skyTradeUser),
+        )),
+        returnValueForMissingStub: _i5.Future<
+                _i2.Either<_i6.GetSkyTradeUserFailure,
+                    _i7.SkyTradeUserEntity>>.value(
+            _FakeEither_0<_i6.GetSkyTradeUserFailure, _i7.SkyTradeUserEntity>(
+          this,
+          Invocation.getter(#skyTradeUser),
+        )),
+      ) as _i5.Future<
+          _i2.Either<_i6.GetSkyTradeUserFailure, _i7.SkyTradeUserEntity>>);
+
+  @override
   _i5.Future<String?> get userEmail => (super.noSuchMethod(
         Invocation.getter(#userEmail),
         returnValue: _i5.Future<String?>.value(),
@@ -436,4 +458,14 @@ class MockAuthRepository extends _i1.Mock implements _i4.AuthRepository {
         )),
       ) as _i5.Future<
           _i2.Either<_i6.CheckSkyTradeUserFailure, _i7.SkyTradeUserEntity>>);
+
+  @override
+  _i5.Future<void> closeSkyTradeUserLocalStorageBox() => (super.noSuchMethod(
+        Invocation.method(
+          #closeSkyTradeUserLocalStorageBox,
+          [],
+        ),
+        returnValue: _i5.Future<void>.value(),
+        returnValueForMissingStub: _i5.Future<void>.value(),
+      ) as _i5.Future<void>);
 }

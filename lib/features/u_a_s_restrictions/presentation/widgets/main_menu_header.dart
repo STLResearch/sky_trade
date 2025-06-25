@@ -37,19 +37,15 @@ import 'package:sky_trade/core/resources/numbers/ui.dart'
         twentyFiveDotNil,
         two;
 import 'package:sky_trade/core/utils/extensions/sky_trade_user_entity_extensions.dart';
-import 'package:sky_trade/features/auth/presentation/blocs/check_sky_trade_user_exists_bloc/check_sky_trade_user_exists_bloc.dart'
-    show
-        CheckSkyTradeUserExistsBloc,
-        CheckSkyTradeUserExistsEvent,
-        CheckSkyTradeUserExistsState;
+import 'package:sky_trade/features/auth/presentation/blocs/get_sky_trade_user_bloc/get_sky_trade_user_bloc.dart'
+    show GetSkyTradeUserBloc, GetSkyTradeUserEvent, GetSkyTradeUserState;
 import 'package:sky_trade/injection_container.dart' show serviceLocator;
 
 class MainMenuHeader extends StatelessWidget {
   const MainMenuHeader({super.key});
 
   @override
-  Widget build(BuildContext context) =>
-      BlocProvider<CheckSkyTradeUserExistsBloc>(
+  Widget build(BuildContext context) => BlocProvider<GetSkyTradeUserBloc>(
         create: (_) => serviceLocator(),
         child: const MainMenuHeaderView(),
       );
@@ -65,13 +61,13 @@ class MainMenuHeaderView extends StatefulWidget {
 class _MainMenuHeaderViewState extends State<MainMenuHeaderView> {
   @override
   void initState() {
-    _getSkyTradeUser();
+    _getUser();
 
     super.initState();
   }
 
-  void _getSkyTradeUser() => context.read<CheckSkyTradeUserExistsBloc>().add(
-        const CheckSkyTradeUserExistsEvent.checkUserExists(),
+  void _getUser() => context.read<GetSkyTradeUserBloc>().add(
+        const GetSkyTradeUserEvent.getUser(),
       );
 
   @override
@@ -81,11 +77,10 @@ class _MainMenuHeaderViewState extends State<MainMenuHeaderView> {
         ),
         child: Row(
           children: [
-            BlocBuilder<CheckSkyTradeUserExistsBloc,
-                CheckSkyTradeUserExistsState>(
-              builder: (_, checkSkyTradeUserExistsState) => Skeletonizer(
-                effect: checkSkyTradeUserExistsState.maybeWhen(
-                  failedToCheckUser: (_) => const SoldColorEffect(
+            BlocBuilder<GetSkyTradeUserBloc, GetSkyTradeUserState>(
+              builder: (_, getSkyTradeUserState) => Skeletonizer(
+                effect: getSkyTradeUserState.maybeWhen(
+                  failedToGetUser: (_) => const SoldColorEffect(
                     color: hexEBEBF4,
                   ),
                   orElse: () => ShimmerEffect(
@@ -94,16 +89,16 @@ class _MainMenuHeaderViewState extends State<MainMenuHeaderView> {
                     ).scaffoldBackgroundColor,
                   ),
                 ),
-                enabled: checkSkyTradeUserExistsState.maybeWhen(
-                  userExists: (_) => false,
+                enabled: getSkyTradeUserState.maybeWhen(
+                  gotUser: (_) => false,
                   orElse: () => true,
                 ),
                 child: Skeleton.leaf(
                   child: CircleAvatar(
                     radius: twentyDotNil,
                     backgroundColor: hexEBEBF5,
-                    child: checkSkyTradeUserExistsState.whenOrNull(
-                      userExists: (skyTradeUserEntity) => Text(
+                    child: getSkyTradeUserState.whenOrNull(
+                      gotUser: (skyTradeUserEntity) => Text(
                         skyTradeUserEntity.initials,
                         style: Theme.of(
                           context,
@@ -128,11 +123,10 @@ class _MainMenuHeaderViewState extends State<MainMenuHeaderView> {
                 mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  BlocBuilder<CheckSkyTradeUserExistsBloc,
-                      CheckSkyTradeUserExistsState>(
-                    builder: (_, checkSkyTradeUserExistsState) => Skeletonizer(
-                      effect: checkSkyTradeUserExistsState.maybeWhen(
-                        failedToCheckUser: (_) => const SoldColorEffect(
+                  BlocBuilder<GetSkyTradeUserBloc, GetSkyTradeUserState>(
+                    builder: (_, getSkyTradeUserState) => Skeletonizer(
+                      effect: getSkyTradeUserState.maybeWhen(
+                        failedToGetUser: (_) => const SoldColorEffect(
                           color: hexEBEBF4,
                         ),
                         orElse: () => ShimmerEffect(
@@ -141,13 +135,13 @@ class _MainMenuHeaderViewState extends State<MainMenuHeaderView> {
                           ).scaffoldBackgroundColor,
                         ),
                       ),
-                      enabled: checkSkyTradeUserExistsState.maybeWhen(
-                        userExists: (_) => false,
+                      enabled: getSkyTradeUserState.maybeWhen(
+                        gotUser: (_) => false,
                         orElse: () => true,
                       ),
                       child: Text(
-                        checkSkyTradeUserExistsState.maybeWhen(
-                          userExists: (skyTradeUserEntity) =>
+                        getSkyTradeUserState.maybeWhen(
+                          gotUser: (skyTradeUserEntity) =>
                               skyTradeUserEntity.displayName,
                           orElse: () => BoneMock.words(
                             two,
@@ -167,11 +161,10 @@ class _MainMenuHeaderViewState extends State<MainMenuHeaderView> {
                       ),
                     ),
                   ),
-                  BlocBuilder<CheckSkyTradeUserExistsBloc,
-                      CheckSkyTradeUserExistsState>(
-                    builder: (_, checkSkyTradeUserExistsState) => Skeletonizer(
-                      effect: checkSkyTradeUserExistsState.maybeWhen(
-                        failedToCheckUser: (_) => const SoldColorEffect(
+                  BlocBuilder<GetSkyTradeUserBloc, GetSkyTradeUserState>(
+                    builder: (_, getSkyTradeUserState) => Skeletonizer(
+                      effect: getSkyTradeUserState.maybeWhen(
+                        failedToGetUser: (_) => const SoldColorEffect(
                           color: hexEBEBF4,
                         ),
                         orElse: () => ShimmerEffect(
@@ -180,13 +173,13 @@ class _MainMenuHeaderViewState extends State<MainMenuHeaderView> {
                           ).scaffoldBackgroundColor,
                         ),
                       ),
-                      enabled: checkSkyTradeUserExistsState.maybeWhen(
-                        userExists: (_) => false,
+                      enabled: getSkyTradeUserState.maybeWhen(
+                        gotUser: (_) => false,
                         orElse: () => true,
                       ),
                       child: Text(
-                        checkSkyTradeUserExistsState.maybeWhen(
-                          userExists: (skyTradeUserEntity) =>
+                        getSkyTradeUserState.maybeWhen(
+                          gotUser: (skyTradeUserEntity) =>
                               skyTradeUserEntity.blockchainAddress,
                           orElse: () => BoneMock.words(
                             four,

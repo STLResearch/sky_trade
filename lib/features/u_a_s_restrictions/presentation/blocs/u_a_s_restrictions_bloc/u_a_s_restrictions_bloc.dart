@@ -113,5 +113,5 @@ class UASRestrictionsBloc
   }
 
   Future<void> _cleanUpResources() =>
-      _uASRestrictionsRepository.cleanUpResources();
+      _uASRestrictionsRepository.closeUASRestrictionsLocalStorageBox();
 }

@@ -10,9 +10,11 @@ extension HiveRegistrar on HiveInterface {
     registerAdapter(AdditionalLinkModelAdapter());
     registerAdapter(GeometryModelAdapter());
     registerAdapter(GeometryTypeAdapter());
+    registerAdapter(OwnedReferralCodeModelAdapter());
     registerAdapter(PropertiesModelAdapter());
     registerAdapter(RestrictionModelAdapter());
     registerAdapter(RestrictionTypeAdapter());
+    registerAdapter(SkyTradeUserModelAdapter());
   }
 }
 
@@ -21,8 +23,10 @@ extension IsolatedHiveRegistrar on IsolatedHiveInterface {
     registerAdapter(AdditionalLinkModelAdapter());
     registerAdapter(GeometryModelAdapter());
     registerAdapter(GeometryTypeAdapter());
+    registerAdapter(OwnedReferralCodeModelAdapter());
     registerAdapter(PropertiesModelAdapter());
     registerAdapter(RestrictionModelAdapter());
     registerAdapter(RestrictionTypeAdapter());
+    registerAdapter(SkyTradeUserModelAdapter());
   }
 }

@@ -258,7 +258,8 @@ final class AuthRepositoryImplementation
 
               final walletAddress = await computeWalletAddress();
 
-              return _authRemoteDataSource.createSkyTradeUserUsing(
+              final skyTradeUser =
+                  await _authRemoteDataSource.createSkyTradeUserUsing(
                 email: email!,
                 blockchainAddress: walletAddress,
                 phoneNumber: phoneNumber,
@@ -266,6 +267,12 @@ final class AuthRepositoryImplementation
                 subscribeToNewsletter: subscribeToNewsletter,
                 referralCode: referralCode,
               );
+
+              await _authLocalDataSource.cacheSkyTradeUser(
+                skyTradeUser: skyTradeUser,
+              );
+
+              return skyTradeUser;
             },
             onSuccess: (skyTradeUserEntity) => skyTradeUserEntity,
             onFailure: (e) => switch (e is CreateSkyTradeUserException) {
@@ -282,7 +289,7 @@ final class AuthRepositoryImplementation
   Future<Either<CheckSkyTradeUserFailure, SkyTradeUserEntity>>
       checkSkyTradeUserExists() =>
           handleData<CheckSkyTradeUserFailure, SkyTradeUserEntity>(
-            dataSourceOperation: _authRemoteDataSource.checkSkyTradeUserExists,
+            dataSourceOperation: _checkAndCacheSkyTradeUser,
             onSuccess: (skyTradeUserEntity) => skyTradeUserEntity,
             onFailure: (e) => switch (e is CheckSkyTradeUserException) {
               true when e is UnauthorizedException => UnauthorizedFailure(),
@@ -294,6 +301,37 @@ final class AuthRepositoryImplementation
               _ => CheckSkyTradeUserUnknownFailure(),
             },
           );
+
+  @override
+  Future<Either<GetSkyTradeUserFailure, SkyTradeUserEntity>> get skyTradeUser =>
+      handleData<GetSkyTradeUserFailure, SkyTradeUserEntity>(
+        dataSourceOperation: () async {
+          final cachedSkyTradeUser =
+              await _authLocalDataSource.cachedSkyTradeUser;
+
+          return cachedSkyTradeUser ?? await _checkAndCacheSkyTradeUser();
+        },
+        onSuccess: (skyTradeUserEntity) => skyTradeUserEntity,
+        onFailure: (_) => GetSkyTradeUserFailure(),
+      );
+
+  Future<SkyTradeUserEntity> _checkAndCacheSkyTradeUser() async {
+    final skyTradeUser = await _authRemoteDataSource.checkSkyTradeUserExists();
+
+    await _authLocalDataSource.cacheSkyTradeUser(
+      skyTradeUser: skyTradeUser,
+    );
+
+    return skyTradeUser;
+  }
+
+  @override
+  Future<void> deleteCachedSkyTradeUser() =>
+      _authLocalDataSource.deleteCachedSkyTradeUser();
+
+  @override
+  Future<void> closeSkyTradeUserLocalStorageBox() =>
+      _authLocalDataSource.closeSkyTradeUserLocalStorageBox();
 
   @override
   Future<String?> get userEmail => computeUserEmail();
