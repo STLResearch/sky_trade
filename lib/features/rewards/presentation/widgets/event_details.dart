@@ -28,6 +28,7 @@ import 'package:flutter/material.dart'
         Theme,
         Widget,
         WidgetStatePropertyAll;
+import 'package:flutter_bloc/flutter_bloc.dart' show BlocProvider, ReadContext;
 import 'package:sky_trade/core/resources/colors.dart'
     show
         hex0653EA,
@@ -65,9 +66,26 @@ import 'package:sky_trade/core/resources/strings/routes.dart'
     show homeRoutePath, rewardsDroneRushDetailsRoutePath;
 import 'package:sky_trade/core/resources/strings/special_characters.dart';
 import 'package:sky_trade/core/utils/extensions/build_context_extensions.dart';
+import 'package:sky_trade/features/rewards/presentation/blocs/drone_rush_zones_bloc/drone_rush_zones_bloc.dart'
+    show DroneRushZonesBloc;
 
 class EventDetails extends StatelessWidget {
-  const EventDetails({super.key});
+  const EventDetails({
+    required this.droneRushZonesBloc,
+    super.key,
+  });
+
+  final DroneRushZonesBloc droneRushZonesBloc;
+
+  @override
+  Widget build(BuildContext context) => BlocProvider<DroneRushZonesBloc>.value(
+        value: droneRushZonesBloc,
+        child: const EventDetailsView(),
+      );
+}
+
+class EventDetailsView extends StatelessWidget {
+  const EventDetailsView({super.key});
 
   @override
   Widget build(BuildContext context) => Container(
@@ -211,7 +229,10 @@ class EventDetails extends StatelessWidget {
                     context,
                   ).pushNamed(
                     rewardsDroneRushDetailsRoutePath,
-                    arguments: homeRoutePath,
+                    arguments: {
+                      homeRoutePath,
+                      context.read<DroneRushZonesBloc>(),
+                    },
                   );
                 },
                 style: Theme.of(

@@ -306,8 +306,8 @@ final class DroneRushZoneModel extends DroneRushZoneEntity {
     required this.mLatitude,
     required this.mLongitude,
     required this.mRadius,
-    required this.mBoundingBox,
     required this.mLocationName,
+    required this.mBoundingBox,
   }) : super(
           id: mId,
           createdAt: mCreatedAt,
@@ -317,8 +317,8 @@ final class DroneRushZoneModel extends DroneRushZoneEntity {
           latitude: mLatitude,
           longitude: mLongitude,
           radius: mRadius,
-          boundingBox: mBoundingBox,
           locationName: mLocationName,
+          boundingBox: mBoundingBox,
         );
 
   factory DroneRushZoneModel.fromJson(Map<String, dynamic> json) =>
@@ -352,11 +352,11 @@ final class DroneRushZoneModel extends DroneRushZoneEntity {
   @JsonKey(name: radiusKey)
   final double mRadius;
 
-  @JsonKey(name: boundingBoxKey)
-  final BoundingBoxModel mBoundingBox;
-
   @JsonKey(name: locationNameKey)
   final String mLocationName;
+
+  @JsonKey(name: boundingBoxKey)
+  final BoundingBoxModel mBoundingBox;
 
   Map<String, dynamic> toJson() => _$DroneRushZoneModelToJson(this);
 }
