@@ -95,7 +95,8 @@ import 'package:sky_trade/features/remote_i_d_transmitter/presentation/blocs/rem
     show RemoteIDTransmitterBloc, RemoteIDTransmitterEvent;
 import 'package:sky_trade/features/rewards/presentation/blocs/drone_rush_zones_bloc/drone_rush_zones_bloc.dart'
     show DroneRushZonesBloc, DroneRushZonesEvent, DroneRushZonesState;
-import 'package:sky_trade/features/rewards/presentation/widgets/event_details.dart';
+import 'package:sky_trade/features/rewards/presentation/widgets/event_details.dart'
+    show EventDetails;
 import 'package:sky_trade/features/search_autocomplete/presentation/blocs/retrieve_geometric_coordinates_bloc/retrieve_geometric_coordinates_bloc.dart'
     show RetrieveGeometricCoordinatesBloc, RetrieveGeometricCoordinatesState;
 import 'package:sky_trade/features/u_a_s_restrictions/domain/entities/restriction_entity.dart'
@@ -645,7 +646,9 @@ class _HomeViewState extends State<HomeView> {
                         _droneRushZonesIdsAndIndexNotifier,
                     onTap: (_) => showModalBottomSheet<void>(
                       context: context,
-                      builder: (_) => const EventDetails(),
+                      builder: (_) => EventDetails(
+                        droneRushZonesBloc: context.read<DroneRushZonesBloc>(),
+                      ),
                     ),
                   );
 

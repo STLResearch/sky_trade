@@ -2103,11 +2103,17 @@ abstract class AppLocalizations {
   /// **'for tracking drones in highlighted zones during this limited-time event'**
   String get forTrackingDronesInHighlightedZonesDuringThisLimitedTimeEvent;
 
-  /// No description provided for @theListOfActiveRushZonesPlaceNamesCannotBeShownAtTheMoment.
+  /// No description provided for @thereIsNoNewDroneRushEventAtTheMoment.
   ///
   /// In en, this message translates to:
-  /// **'The list of active rush zones place names cannot be shown at the moment'**
-  String get theListOfActiveRushZonesPlaceNamesCannotBeShownAtTheMoment;
+  /// **'There is no new drone rush event at the moment'**
+  String get thereIsNoNewDroneRushEventAtTheMoment;
+
+  /// No description provided for @thereIsNoOnGoingDroneRushEventAtTheMoment.
+  ///
+  /// In en, this message translates to:
+  /// **'There is no on-going drone rush event at the moment'**
+  String get thereIsNoOnGoingDroneRushEventAtTheMoment;
 
   /// No description provided for @couldNotGetSkyPointsBalanceSwipeDownToRefreshThePage.
   ///

@@ -1093,8 +1093,12 @@ class AppLocalizationsEn extends AppLocalizations {
       'for tracking drones in highlighted zones during this limited-time event';
 
   @override
-  String get theListOfActiveRushZonesPlaceNamesCannotBeShownAtTheMoment =>
-      'The list of active rush zones place names cannot be shown at the moment';
+  String get thereIsNoNewDroneRushEventAtTheMoment =>
+      'There is no new drone rush event at the moment';
+
+  @override
+  String get thereIsNoOnGoingDroneRushEventAtTheMoment =>
+      'There is no on-going drone rush event at the moment';
 
   @override
   String get couldNotGetSkyPointsBalanceSwipeDownToRefreshThePage =>

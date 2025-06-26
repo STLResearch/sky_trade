@@ -185,7 +185,9 @@ class _MapOverlayViewState extends State<MapOverlayView> {
                           borderRadius: BorderRadius.circular(
                             eightDotNil,
                           ),
-                          onTap: () => Navigator.of(context).pushNamed(
+                          onTap: () => Navigator.of(
+                            context,
+                          ).pushNamed(
                             rewardsRoutePath,
                             arguments: context.read<DroneRushZonesBloc>(),
                           ),

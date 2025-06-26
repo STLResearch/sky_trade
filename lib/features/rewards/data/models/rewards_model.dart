@@ -11,6 +11,7 @@ import 'package:sky_trade/core/resources/strings/networking.dart'
         endTimeKey,
         idKey,
         latitudeKey,
+        locationNameKey,
         longitudeKey,
         maxLatitudeKey,
         maxLongitudeKey,
@@ -305,6 +306,7 @@ final class DroneRushZoneModel extends DroneRushZoneEntity {
     required this.mLatitude,
     required this.mLongitude,
     required this.mRadius,
+    required this.mLocationName,
     required this.mBoundingBox,
   }) : super(
           id: mId,
@@ -315,6 +317,7 @@ final class DroneRushZoneModel extends DroneRushZoneEntity {
           latitude: mLatitude,
           longitude: mLongitude,
           radius: mRadius,
+          locationName: mLocationName,
           boundingBox: mBoundingBox,
         );
 
@@ -348,6 +351,9 @@ final class DroneRushZoneModel extends DroneRushZoneEntity {
 
   @JsonKey(name: radiusKey)
   final double mRadius;
+
+  @JsonKey(name: locationNameKey)
+  final String mLocationName;
 
   @JsonKey(name: boundingBoxKey)
   final BoundingBoxModel mBoundingBox;

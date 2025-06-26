@@ -485,6 +485,7 @@ const typesKey = 'types';
 const boundingBoxKey = 'boundingBox';
 const orderByPointsDescKey = 'orderByPointsDesc';
 const pirateKey = 'pirate';
+const locationNameKey = 'locationName';
 // Error response data message
 const unauthorizedCode = 'UNAUTHORIZED';
 const invalidSignatureCode = 'INVALID_SIGNATURE';

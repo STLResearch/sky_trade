@@ -43,6 +43,7 @@ import 'package:flutter/material.dart'
         WidgetSpan,
         WidgetStatePropertyAll,
         showModalBottomSheet;
+import 'package:flutter_bloc/flutter_bloc.dart' show BlocProvider, ReadContext;
 import 'package:sky_trade/core/assets/generated/assets.gen.dart' show Assets;
 import 'package:sky_trade/core/assets/generated/fonts.gen.dart';
 import 'package:sky_trade/core/resources/colors.dart'
@@ -90,10 +91,32 @@ import 'package:sky_trade/core/resources/numbers/ui.dart'
 import 'package:sky_trade/core/resources/strings/routes.dart'
     show homeRoutePath, rewardsRoutePath;
 import 'package:sky_trade/core/utils/extensions/build_context_extensions.dart';
-import 'package:sky_trade/features/rewards/presentation/widgets/eligible_areas.dart';
+import 'package:sky_trade/features/rewards/presentation/blocs/drone_rush_zones_bloc/drone_rush_zones_bloc.dart'
+    show DroneRushZonesBloc;
+import 'package:sky_trade/features/rewards/presentation/widgets/eligible_areas.dart'
+    show EligibleAreas;
 
 class DroneRushDetailsScreen extends StatelessWidget {
   const DroneRushDetailsScreen({
+    required this.openedFromRoute,
+    required this.droneRushZonesBloc,
+    super.key,
+  });
+
+  final String openedFromRoute;
+  final DroneRushZonesBloc droneRushZonesBloc;
+
+  @override
+  Widget build(BuildContext context) => BlocProvider<DroneRushZonesBloc>.value(
+        value: droneRushZonesBloc,
+        child: DroneRushDetailsScreenView(
+          openedFromRoute: openedFromRoute,
+        ),
+      );
+}
+
+class DroneRushDetailsScreenView extends StatelessWidget {
+  const DroneRushDetailsScreenView({
     required this.openedFromRoute,
     super.key,
   });
@@ -341,7 +364,11 @@ class DroneRushDetailsScreen extends StatelessWidget {
                                                     showModalBottomSheet<void>(
                                                       context: context,
                                                       builder: (_) =>
-                                                          const EligibleAreas(),
+                                                          EligibleAreas(
+                                                        droneRushZonesBloc:
+                                                            context.read<
+                                                                DroneRushZonesBloc>(),
+                                                      ),
                                                     ),
                                             ),
                                           ],

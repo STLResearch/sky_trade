@@ -22,7 +22,7 @@ import 'package:sky_trade/features/referral/presentation/views/referral_screen.d
 import 'package:sky_trade/features/rewards/presentation/blocs/drone_rush_zones_bloc/drone_rush_zones_bloc.dart'
     show DroneRushZonesBloc;
 import 'package:sky_trade/features/rewards/presentation/views/drone_rush_details_screen.dart'
-    as rewards;
+    as rewards show DroneRushDetailsScreen;
 import 'package:sky_trade/features/rewards/presentation/views/leaderboard_screen.dart'
     as rewards show LeaderboardScreen;
 import 'package:sky_trade/features/rewards/presentation/views/onboarding_screen.dart'
@@ -52,7 +52,9 @@ Route routes(RouteSettings settings) => MaterialPageRoute(
           rewardsOnboardingRoutePath => const rewards.OnboardingScreen(),
           rewardsLeaderboardRoutePath => const rewards.LeaderboardScreen(),
           rewardsDroneRushDetailsRoutePath => rewards.DroneRushDetailsScreen(
-              openedFromRoute: settings.arguments! as String,
+              openedFromRoute: (settings.arguments! as Set).first as String,
+              droneRushZonesBloc:
+                  (settings.arguments! as Set).last as DroneRushZonesBloc,
             ),
           rewardsRoutePath => RewardsScreen(
               droneRushZonesBloc: settings.arguments! as DroneRushZonesBloc,

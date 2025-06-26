@@ -79,6 +79,7 @@ import 'package:sky_trade/core/resources/strings/ui.dart'
         latitudeKey,
         layerId,
         lineStringGeometry,
+        locationNameKey,
         longitudeKey,
         maxLatitudeKey,
         maxLongitudeKey,
@@ -552,6 +553,7 @@ extension MapboxMapExtensions on MapboxMap {
                   latitudeKey: droneRushZoneEntity.latitude,
                   longitudeKey: droneRushZoneEntity.longitude,
                   radiusKey: droneRushZoneEntity.radius,
+                  locationNameKey: droneRushZoneEntity.locationName,
                   boundingBoxKey: <String, double>{
                     minLatitudeKey: droneRushZoneEntity.boundingBox.minLatitude,
                     maxLatitudeKey: droneRushZoneEntity.boundingBox.maxLatitude,
@@ -683,6 +685,7 @@ extension MapboxMapExtensions on MapboxMap {
       final latitude = featurePropertiesMap[latitudeKey] as double;
       final longitude = featurePropertiesMap[longitudeKey] as double;
       final radius = (featurePropertiesMap[radiusKey] as num).toDouble();
+      final locationName = featurePropertiesMap[locationNameKey] as String;
 
       final boundingBox = featurePropertiesMap[boundingBoxKey] as Map;
 
@@ -743,6 +746,7 @@ extension MapboxMapExtensions on MapboxMap {
         latitude: latitude,
         longitude: longitude,
         radius: radius,
+        locationName: locationName,
         boundingBox: BoundingBoxEntity(
           minLatitude: minLatitude,
           maxLatitude: maxLatitude,

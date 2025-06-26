@@ -539,7 +539,10 @@ class _RewardsScreenViewState extends State<RewardsScreenView> {
                             context,
                           ).pushNamed(
                             rewardsDroneRushDetailsRoutePath,
-                            arguments: rewardsRoutePath,
+                            arguments: {
+                              rewardsRoutePath,
+                              context.read<DroneRushZonesBloc>(),
+                            },
                           ),
                         ),
                         Positioned(
