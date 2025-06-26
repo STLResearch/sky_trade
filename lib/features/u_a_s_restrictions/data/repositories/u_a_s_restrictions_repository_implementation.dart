@@ -61,6 +61,6 @@ final class UASRestrictionsRepositoryImplementation
   }
 
   @override
-  Future<void> cleanUpResources() =>
-      _uASRestrictionsLocalDataSource.cleanUpResources();
+  Future<void> closeUASRestrictionsLocalStorageBox() =>
+      _uASRestrictionsLocalDataSource.closeUASRestrictionsLocalStorageBox();
 }

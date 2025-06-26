@@ -265,3 +265,135 @@ class GeometryTypeAdapter extends TypeAdapter<GeometryType> {
           runtimeType == other.runtimeType &&
           typeId == other.typeId;
 }
+
+class SkyTradeUserModelAdapter extends TypeAdapter<SkyTradeUserModel> {
+  @override
+  final typeId = 6;
+
+  @override
+  SkyTradeUserModel read(BinaryReader reader) {
+    final numOfFields = reader.readByte();
+    final fields = <int, dynamic>{
+      for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
+    };
+    return SkyTradeUserModel(
+      mId: fields[0] as dynamic,
+      mCreatedAt: fields[1] as DateTime,
+      mUpdateAt: fields[2] as DateTime,
+      mUsername: fields[3] as String?,
+      mPassword: fields[4] as String?,
+      mName: fields[5] as String,
+      mEmail: fields[6] as String,
+      mBlockchainAddress: fields[7] as String,
+      mIsAdmin: fields[8] as bool,
+      mNewsletter: fields[9] as bool,
+      mCategoryId: (fields[10] as num).toInt(),
+      mPhoneNumber: fields[11] as String,
+      mKYCStatusId: (fields[12] as num).toInt(),
+      mIsActive: fields[13] as bool,
+      mUsedReferralCodeId: fields[14] as dynamic,
+      mOwnedReferralCodeId: fields[15] as dynamic,
+      mIsUserRewardClaimed: fields[16] as bool,
+      mOwnedReferralCode: fields[17] as OwnedReferralCodeModel,
+    );
+  }
+
+  @override
+  void write(BinaryWriter writer, SkyTradeUserModel obj) {
+    writer
+      ..writeByte(18)
+      ..writeByte(0)
+      ..write(obj.mId)
+      ..writeByte(1)
+      ..write(obj.mCreatedAt)
+      ..writeByte(2)
+      ..write(obj.mUpdateAt)
+      ..writeByte(3)
+      ..write(obj.mUsername)
+      ..writeByte(4)
+      ..write(obj.mPassword)
+      ..writeByte(5)
+      ..write(obj.mName)
+      ..writeByte(6)
+      ..write(obj.mEmail)
+      ..writeByte(7)
+      ..write(obj.mBlockchainAddress)
+      ..writeByte(8)
+      ..write(obj.mIsAdmin)
+      ..writeByte(9)
+      ..write(obj.mNewsletter)
+      ..writeByte(10)
+      ..write(obj.mCategoryId)
+      ..writeByte(11)
+      ..write(obj.mPhoneNumber)
+      ..writeByte(12)
+      ..write(obj.mKYCStatusId)
+      ..writeByte(13)
+      ..write(obj.mIsActive)
+      ..writeByte(14)
+      ..write(obj.mUsedReferralCodeId)
+      ..writeByte(15)
+      ..write(obj.mOwnedReferralCodeId)
+      ..writeByte(16)
+      ..write(obj.mIsUserRewardClaimed)
+      ..writeByte(17)
+      ..write(obj.mOwnedReferralCode);
+  }
+
+  @override
+  int get hashCode => typeId.hashCode;
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is SkyTradeUserModelAdapter &&
+          runtimeType == other.runtimeType &&
+          typeId == other.typeId;
+}
+
+class OwnedReferralCodeModelAdapter
+    extends TypeAdapter<OwnedReferralCodeModel> {
+  @override
+  final typeId = 7;
+
+  @override
+  OwnedReferralCodeModel read(BinaryReader reader) {
+    final numOfFields = reader.readByte();
+    final fields = <int, dynamic>{
+      for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
+    };
+    return OwnedReferralCodeModel(
+      mId: fields[0] as dynamic,
+      mCode: fields[1] as String,
+      mCodeChanged: fields[2] as bool,
+      mUsedByBonusEarned: fields[3] as bool,
+      mOwnedByBonusEarned: fields[4] as bool,
+    );
+  }
+
+  @override
+  void write(BinaryWriter writer, OwnedReferralCodeModel obj) {
+    writer
+      ..writeByte(5)
+      ..writeByte(0)
+      ..write(obj.mId)
+      ..writeByte(1)
+      ..write(obj.mCode)
+      ..writeByte(2)
+      ..write(obj.mCodeChanged)
+      ..writeByte(3)
+      ..write(obj.mUsedByBonusEarned)
+      ..writeByte(4)
+      ..write(obj.mOwnedByBonusEarned);
+  }
+
+  @override
+  int get hashCode => typeId.hashCode;
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is OwnedReferralCodeModelAdapter &&
+          runtimeType == other.runtimeType &&
+          typeId == other.typeId;
+}

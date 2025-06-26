@@ -104,3 +104,8 @@ final class CheckSkyTradeUserUnknownFailure extends CheckSkyTradeUserFailure {
   @override
   List<Object?> get props => [];
 }
+
+final class GetSkyTradeUserFailure extends Equatable {
+  @override
+  List<Object?> get props => [];
+}

@@ -54,5 +54,11 @@ abstract interface class AuthRepository {
   Future<Either<CheckSkyTradeUserFailure, SkyTradeUserEntity>>
       checkSkyTradeUserExists();
 
+  Future<Either<GetSkyTradeUserFailure, SkyTradeUserEntity>> get skyTradeUser;
+
+  Future<void> deleteCachedSkyTradeUser();
+
+  Future<void> closeSkyTradeUserLocalStorageBox();
+
   Future<String?> get userEmail;
 }

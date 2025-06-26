@@ -79,9 +79,9 @@ class MockUASRestrictionsRepository extends _i1.Mock
                   List<_i6.RestrictionEntity>>>);
 
   @override
-  _i4.Future<void> cleanUpResources() => (super.noSuchMethod(
+  _i4.Future<void> closeUASRestrictionsLocalStorageBox() => (super.noSuchMethod(
         Invocation.method(
-          #cleanUpResources,
+          #closeUASRestrictionsLocalStorageBox,
           [],
         ),
         returnValue: _i4.Future<void>.value(),

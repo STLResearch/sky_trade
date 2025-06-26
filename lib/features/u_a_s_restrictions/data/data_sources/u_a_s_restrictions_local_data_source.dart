@@ -17,7 +17,7 @@ abstract interface class UASRestrictionsLocalDataSource {
     required List<RestrictionModel> restrictions,
   });
 
-  Future<void> cleanUpResources();
+  Future<void> closeUASRestrictionsLocalStorageBox();
 }
 
 final class UASRestrictionsLocalDataSourceImplementation
@@ -62,7 +62,7 @@ final class UASRestrictionsLocalDataSourceImplementation
   }
 
   @override
-  Future<void> cleanUpResources() async {
+  Future<void> closeUASRestrictionsLocalStorageBox() async {
     final box = await _getBoxForStoringRestrictionsData();
 
     await box.close();

@@ -26,6 +26,13 @@ class Auth0LogoutBloc extends Bloc<Auth0LogoutEvent, Auth0LogoutState> {
     );
   }
 
+  @override
+  Future<void> close() async {
+    await _cleanUpResources();
+
+    return super.close();
+  }
+
   final AuthRepository _authRepository;
 
   Future<void> _logout(
@@ -54,10 +61,15 @@ class Auth0LogoutBloc extends Bloc<Auth0LogoutEvent, Auth0LogoutState> {
     _LogoutSFAUser _,
     Emitter<Auth0LogoutState> emit,
   ) async {
+    await _authRepository.deleteCachedSkyTradeUser();
+
     await _authRepository.logoutCurrentSFAUser();
 
     emit(
       const Auth0LogoutState.loggedOut(),
     );
   }
+
+  Future<void> _cleanUpResources() =>
+      _authRepository.closeSkyTradeUserLocalStorageBox();
 }

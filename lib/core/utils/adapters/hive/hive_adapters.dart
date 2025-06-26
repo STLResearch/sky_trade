@@ -2,6 +2,7 @@ import 'package:hive_ce/hive.dart'
     show AdapterSpec, BinaryReader, BinaryWriter, GenerateAdapters, TypeAdapter;
 import 'package:sky_trade/core/utils/enums/networking.dart'
     show GeometryType, RestrictionType;
+import 'package:sky_trade/features/auth/data/models/auth_model.dart';
 import 'package:sky_trade/features/u_a_s_restrictions/data/models/restriction_model.dart';
 
 part 'hive_adapters.g.dart';
@@ -13,5 +14,7 @@ part 'hive_adapters.g.dart';
   AdapterSpec<AdditionalLinkModel>(),
   AdapterSpec<GeometryModel>(),
   AdapterSpec<GeometryType>(),
+  AdapterSpec<SkyTradeUserModel>(),
+  AdapterSpec<OwnedReferralCodeModel>(),
 ])
 class HiveAdapters {}

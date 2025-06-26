@@ -1,7 +1,13 @@
+import 'package:hive_ce/hive.dart' show Box, Hive;
 import 'package:shared_preferences/shared_preferences.dart'
     show SharedPreferencesWithCache;
 import 'package:sky_trade/core/resources/strings/local.dart'
-    show auth0SessionForDeletedUserExistsKey;
+    show
+        auth0SessionForDeletedUserExistsKey,
+        skyTradeUserBoxKey,
+        skyTradeUserKey;
+import 'package:sky_trade/features/auth/data/models/auth_model.dart'
+    show SkyTradeUserModel;
 
 abstract interface class AuthLocalDataSource {
   Future<bool> get auth0SessionForDeletedUserExists;
@@ -9,6 +15,16 @@ abstract interface class AuthLocalDataSource {
   Future<void> setAuth0SessionForDeletedUserExists({
     required bool value,
   });
+
+  Future<SkyTradeUserModel?> get cachedSkyTradeUser;
+
+  Future<void> cacheSkyTradeUser({
+    required SkyTradeUserModel skyTradeUser,
+  });
+
+  Future<void> deleteCachedSkyTradeUser();
+
+  Future<void> closeSkyTradeUserLocalStorageBox();
 }
 
 final class AuthLocalDataSourceImplementation implements AuthLocalDataSource {
@@ -40,4 +56,46 @@ final class AuthLocalDataSourceImplementation implements AuthLocalDataSource {
       value,
     );
   }
+
+  @override
+  Future<SkyTradeUserModel?> get cachedSkyTradeUser async {
+    final box = await _getBoxForStoringSkyTradeUserData();
+
+    return box.get(
+      skyTradeUserKey,
+    ) as SkyTradeUserModel?;
+  }
+
+  @override
+  Future<void> cacheSkyTradeUser({
+    required SkyTradeUserModel skyTradeUser,
+  }) async {
+    final box = await _getBoxForStoringSkyTradeUserData();
+
+    await box.put(
+      skyTradeUserKey,
+      skyTradeUser,
+    );
+  }
+
+  @override
+  Future<void> deleteCachedSkyTradeUser() async {
+    final box = await _getBoxForStoringSkyTradeUserData();
+
+    await box.delete(
+      skyTradeUserKey,
+    );
+  }
+
+  @override
+  Future<void> closeSkyTradeUserLocalStorageBox() async {
+    final box = await _getBoxForStoringSkyTradeUserData();
+
+    await box.close();
+  }
+
+  Future<Box<dynamic>> _getBoxForStoringSkyTradeUserData() =>
+      Hive.openBox<dynamic>(
+        skyTradeUserBoxKey,
+      );
 }

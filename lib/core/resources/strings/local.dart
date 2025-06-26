@@ -15,3 +15,5 @@ const auth0SessionForDeletedUserExistsKey = 'auth0SessionForDeletedUserExists';
 
 // Hive
 const restrictionsBoxKey = 'restrictions_box';
+const skyTradeUserKey = 'sky_trade_user';
+const skyTradeUserBoxKey = 'sky_trade_user_box';
