@@ -344,5 +344,6 @@
   "youveDeniedLocationAccessPleaseEnableItInYourAppSettingsSoSkyTradeCanShowRelevantFeaturesNearYou": "You've denied location access. Please enable it in your app settings so SkyTrade can show relevant features near you",
   "turnOnLocationServices": "Turn On Location Services",
   "skyTradeNeedsGpsToFindYourLocationAndShowRelevantFeaturesAroundYouPleaseEnableItInYourDeviceSettings": "SkyTrade needs GPS to find your location and show relevant features around you. Please enable it in your device settings",
+  "trackedDrone": "Tracked Drone",
   "trackedDrones": "Tracked Drones"
 }

@@ -198,10 +198,6 @@ class $AssetsSvgsGen {
   /// File path: assets/svgs/home.svg
   SvgGenImage get home => const SvgGenImage('assets/svgs/home.svg');
 
-  /// File path: assets/svgs/icon _tracked_drone_black.svg
-  SvgGenImage get iconTrackedDroneBlack =>
-      const SvgGenImage('assets/svgs/icon _tracked_drone_black.svg');
-
   /// File path: assets/svgs/icon_drone_black.svg
   SvgGenImage get iconDroneBlack =>
       const SvgGenImage('assets/svgs/icon_drone_black.svg');
@@ -209,6 +205,10 @@ class $AssetsSvgsGen {
   /// File path: assets/svgs/icon_drone_blue.svg
   SvgGenImage get iconDroneBlue =>
       const SvgGenImage('assets/svgs/icon_drone_blue.svg');
+
+  /// File path: assets/svgs/icon_tracked_drone_black.svg
+  SvgGenImage get iconTrackedDroneBlack =>
+      const SvgGenImage('assets/svgs/icon_tracked_drone_black.svg');
 
   /// File path: assets/svgs/indicator.svg
   SvgGenImage get indicator => const SvgGenImage('assets/svgs/indicator.svg');
@@ -405,9 +405,9 @@ class $AssetsSvgsGen {
     helpCircleLarge,
     helpCircleSmall,
     home,
-    iconTrackedDroneBlack,
     iconDroneBlack,
     iconDroneBlue,
+    iconTrackedDroneBlack,
     indicator,
     infoDanger,
     infoLeaderboard,

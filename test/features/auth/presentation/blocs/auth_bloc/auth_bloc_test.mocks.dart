@@ -460,6 +460,16 @@ class MockAuthRepository extends _i1.Mock implements _i4.AuthRepository {
           _i2.Either<_i6.CheckSkyTradeUserFailure, _i7.SkyTradeUserEntity>>);
 
   @override
+  _i5.Future<void> deleteCachedSkyTradeUser() => (super.noSuchMethod(
+        Invocation.method(
+          #deleteCachedSkyTradeUser,
+          [],
+        ),
+        returnValue: _i5.Future<void>.value(),
+        returnValueForMissingStub: _i5.Future<void>.value(),
+      ) as _i5.Future<void>);
+
+  @override
   _i5.Future<void> closeSkyTradeUserLocalStorageBox() => (super.noSuchMethod(
         Invocation.method(
           #closeSkyTradeUserLocalStorageBox,

@@ -2,8 +2,6 @@ import 'package:cached_network_image/cached_network_image.dart'
     show CachedNetworkImage;
 import 'package:flutter/material.dart'
     show
-        Align,
-        AlignmentDirectional,
         BuildContext,
         Column,
         MainAxisAlignment,
@@ -37,74 +35,71 @@ class WeatherCard extends StatelessWidget {
   const WeatherCard({super.key});
 
   @override
-  Widget build(BuildContext context) => Align(
-        alignment: AlignmentDirectional.topEnd,
-        child: OptionsCard(
-          width: fiftyFourDotNil,
-          height: sixtySixDotNil,
-          backgroundColor: hexE6FFFFFF,
-          child: BlocBuilder<WeatherBloc, WeatherState>(
-            builder: (_, weatherState) => Skeletonizer(
-              effect: weatherState.maybeWhen(
-                failedToGetWeather: (_) => const SoldColorEffect(
-                  color: hexEBEBF4,
-                ),
-                orElse: () => ShimmerEffect(
-                  highlightColor: Theme.of(
-                    context,
-                  ).scaffoldBackgroundColor,
-                ),
+  Widget build(BuildContext context) => OptionsCard(
+        width: fiftyFourDotNil,
+        height: sixtySixDotNil,
+        backgroundColor: hexE6FFFFFF,
+        child: BlocBuilder<WeatherBloc, WeatherState>(
+          builder: (_, weatherState) => Skeletonizer(
+            effect: weatherState.maybeWhen(
+              failedToGetWeather: (_) => const SoldColorEffect(
+                color: hexEBEBF4,
               ),
-              enabled: weatherState.maybeWhen(
-                gotWeather: (_) => false,
-                orElse: () => true,
+              orElse: () => ShimmerEffect(
+                highlightColor: Theme.of(
+                  context,
+                ).scaffoldBackgroundColor,
               ),
-              child: weatherState.maybeWhen(
-                gotWeather: (weatherEntity) => Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    CachedNetworkImage(
-                      imageUrl: weatherEntity.weatherConditions[zero].iconUrl,
-                      width: twentyFourDotNil,
-                      height: twentyFourDotNil,
-                      placeholder: (_, __) => Assets.svgs.weather.svg(),
-                      errorWidget: (_, __, ___) => Assets.svgs.weather.svg(),
-                    ),
-                    Text(
-                      weatherEntity.main.temperature.round().toString() +
-                          context.localize.degrees,
-                      style: Theme.of(
-                        context,
-                      ).textTheme.bodySmall?.copyWith(
-                            fontSize: elevenDotNil,
-                            height: twentyOneDotThreeSeven / elevenDotNil,
-                            color: hex222222,
-                          ),
-                    ),
-                  ],
-                ),
-                orElse: () => Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Skeleton.shade(
-                      child: Assets.svgs.weather.svg(),
-                    ),
-                    Text(
-                      BoneMock.chars(
-                            two,
-                            two.toString(),
-                          ) +
-                          context.localize.degrees,
-                      style: Theme.of(
-                        context,
-                      ).textTheme.bodySmall?.copyWith(
-                            fontSize: elevenDotNil,
-                            height: twentyOneDotThreeSeven / elevenDotNil,
-                            color: hex222222,
-                          ),
-                    ),
-                  ],
-                ),
+            ),
+            enabled: weatherState.maybeWhen(
+              gotWeather: (_) => false,
+              orElse: () => true,
+            ),
+            child: weatherState.maybeWhen(
+              gotWeather: (weatherEntity) => Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  CachedNetworkImage(
+                    imageUrl: weatherEntity.weatherConditions[zero].iconUrl,
+                    width: twentyFourDotNil,
+                    height: twentyFourDotNil,
+                    placeholder: (_, __) => Assets.svgs.weather.svg(),
+                    errorWidget: (_, __, ___) => Assets.svgs.weather.svg(),
+                  ),
+                  Text(
+                    weatherEntity.main.temperature.round().toString() +
+                        context.localize.degrees,
+                    style: Theme.of(
+                      context,
+                    ).textTheme.bodySmall?.copyWith(
+                          fontSize: elevenDotNil,
+                          height: twentyOneDotThreeSeven / elevenDotNil,
+                          color: hex222222,
+                        ),
+                  ),
+                ],
+              ),
+              orElse: () => Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Skeleton.shade(
+                    child: Assets.svgs.weather.svg(),
+                  ),
+                  Text(
+                    BoneMock.chars(
+                          two,
+                          two.toString(),
+                        ) +
+                        context.localize.degrees,
+                    style: Theme.of(
+                      context,
+                    ).textTheme.bodySmall?.copyWith(
+                          fontSize: elevenDotNil,
+                          height: twentyOneDotThreeSeven / elevenDotNil,
+                          color: hex222222,
+                        ),
+                  ),
+                ],
               ),
             ),
           ),
