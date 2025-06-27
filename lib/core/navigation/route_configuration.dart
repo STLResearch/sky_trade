@@ -13,6 +13,8 @@ import 'package:sky_trade/features/auth/presentation/views/loading_screen.dart'
     show LoadingScreen;
 import 'package:sky_trade/features/auth/presentation/views/onboarding_screen.dart'
     as auth show OnboardingScreen;
+import 'package:sky_trade/features/drone_insights/presentation/blocs/track_drone_insights_bloc/track_drone_insights_bloc.dart'
+    show TrackDroneInsightsBloc;
 import 'package:sky_trade/features/drone_insights/presentation/views/insights_screen.dart'
     show InsightsScreen;
 import 'package:sky_trade/features/help/presentation/views/help_screen.dart';
@@ -45,7 +47,10 @@ Route routes(RouteSettings settings) => MaterialPageRoute(
           getStartedRoutePath => const GetStartedScreen(),
           homeRoutePath => const HomeScreen(),
           helpRoutePath => const HelpScreen(),
-          insightsRoutePath => const InsightsScreen(),
+          insightsRoutePath => InsightsScreen(
+              trackDroneInsightsBloc:
+                  settings.arguments! as TrackDroneInsightsBloc,
+            ),
           settingsRoutePath => const SettingsScreen(),
           referralRoutePath => const ReferralScreen(),
           onboardingRoutePath => const auth.OnboardingScreen(),

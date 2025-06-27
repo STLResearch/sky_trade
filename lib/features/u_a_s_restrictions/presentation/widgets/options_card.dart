@@ -13,19 +13,21 @@ import 'package:sky_trade/core/resources/numbers/ui.dart' show eightDotNil;
 
 class OptionsCard extends StatelessWidget {
   const OptionsCard({
-    required this.width,
-    required this.height,
     required this.child,
+    this.width,
+    this.height,
     this.backgroundColor,
+    this.borderRadius,
     this.gradient,
     this.boxShadow,
     super.key,
   });
 
-  final double width;
-  final double height;
   final Widget child;
+  final double? width;
+  final double? height;
   final Color? backgroundColor;
+  final double? borderRadius;
   final Gradient? gradient;
   final List<BoxShadow>? boxShadow;
 
@@ -36,7 +38,7 @@ class OptionsCard extends StatelessWidget {
         decoration: BoxDecoration(
           color: backgroundColor,
           borderRadius: BorderRadiusDirectional.circular(
-            eightDotNil,
+            borderRadius ?? eightDotNil,
           ),
           gradient: gradient,
           boxShadow: boxShadow,

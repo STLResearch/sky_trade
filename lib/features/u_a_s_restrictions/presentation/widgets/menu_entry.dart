@@ -14,6 +14,7 @@ import 'package:flutter/material.dart'
         Text,
         Theme,
         Widget;
+import 'package:flutter_bloc/flutter_bloc.dart' show ReadContext;
 import 'package:sky_trade/core/assets/generated/assets.gen.dart' show Assets;
 import 'package:sky_trade/core/resources/colors.dart' show hex1E1E1E;
 import 'package:sky_trade/core/resources/numbers/ui.dart'
@@ -22,6 +23,8 @@ import 'package:sky_trade/core/resources/strings/routes.dart'
     show helpRoutePath, insightsRoutePath, referralRoutePath, settingsRoutePath;
 import 'package:sky_trade/core/utils/enums/ui.dart' show MenuItem;
 import 'package:sky_trade/core/utils/extensions/build_context_extensions.dart';
+import 'package:sky_trade/features/drone_insights/presentation/blocs/track_drone_insights_bloc/track_drone_insights_bloc.dart'
+    show TrackDroneInsightsBloc;
 
 class MenuEntry extends StatelessWidget {
   const MenuEntry({
@@ -48,6 +51,7 @@ class MenuEntry extends StatelessWidget {
                 context,
               ).pushNamed(
                 insightsRoutePath,
+                arguments: context.read<TrackDroneInsightsBloc>(),
               );
             case MenuItem.referralProgram:
               Navigator.of(

@@ -802,7 +802,6 @@ class _HomeViewState extends State<HomeView> {
                         dotenv.env[newMapStyleUri]!,
                       );
                     },
-                    onDroneTap: () {},
                   ),
                 ),
               ),

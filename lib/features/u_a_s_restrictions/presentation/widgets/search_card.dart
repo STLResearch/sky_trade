@@ -8,7 +8,9 @@ import 'package:flutter/material.dart'
         BorderSide,
         BoxConstraints,
         BoxDecoration,
+        BoxShape,
         BuildContext,
+        Center,
         CircularProgressIndicator,
         Color,
         Colors,
@@ -16,6 +18,7 @@ import 'package:flutter/material.dart'
         EdgeInsetsDirectional,
         Expanded,
         GestureDetector,
+        InkWell,
         InputDecoration,
         OutlineInputBorder,
         Row,
@@ -60,7 +63,8 @@ import 'package:sky_trade/features/search_autocomplete/presentation/blocs/retrie
     show RetrieveGeometricCoordinatesBloc, RetrieveGeometricCoordinatesState;
 import 'package:sky_trade/features/search_autocomplete/presentation/blocs/search_autocomplete_bloc/search_autocomplete_bloc.dart'
     show SearchAutocompleteBloc, SearchAutocompleteEvent;
-import 'package:sky_trade/features/u_a_s_restrictions/presentation/widgets/menu.dart';
+import 'package:sky_trade/features/u_a_s_restrictions/presentation/widgets/menu_dialog.dart'
+    show MenuDialog;
 import 'package:sky_trade/features/wifi/presentation/blocs/wifi_adapter_state_bloc/wifi_adapter_state_bloc.dart'
     show WifiAdapterStateBloc, WifiAdapterStateEvent, WifiAdapterStateState;
 import 'package:sky_trade/injection_container.dart' show serviceLocator;
@@ -320,7 +324,22 @@ class _SearchCardViewState extends State<SearchCardView> {
             const SizedBox(
               width: tenDotNil,
             ),
-            const Menu(),
+            InkWell(
+              onTap: () => MenuDialog.show(
+                context,
+              ),
+              child: Container(
+                padding: const EdgeInsetsDirectional.symmetric(
+                  vertical: twentyDotNil,
+                ),
+                decoration: const BoxDecoration(
+                  shape: BoxShape.circle,
+                ),
+                child: Center(
+                  child: Assets.svgs.meatballsMenu.svg(),
+                ),
+              ),
+            ),
             const SizedBox(
               width: eighteenDotNil,
             ),

@@ -27,8 +27,6 @@ import 'package:flutter/material.dart'
         SizedBox,
         SliverPadding,
         SliverToBoxAdapter,
-        State,
-        StatefulWidget,
         StatelessWidget,
         Text,
         TextAlign,
@@ -70,34 +68,29 @@ import 'package:sky_trade/features/drone_insights/presentation/widgets/alert_sna
 import 'package:sky_trade/features/drone_insights/presentation/widgets/graph_section.dart'
     show GraphSection;
 import 'package:sky_trade/features/drone_insights/presentation/widgets/tracked_drone.dart';
-import 'package:sky_trade/injection_container.dart' show serviceLocator;
 
 class InsightsScreen extends StatelessWidget {
-  const InsightsScreen({super.key});
+  const InsightsScreen({
+    required this.trackDroneInsightsBloc,
+    super.key,
+  });
+
+  final TrackDroneInsightsBloc trackDroneInsightsBloc;
 
   @override
-  Widget build(BuildContext context) => BlocProvider<TrackDroneInsightsBloc>(
-        create: (_) => serviceLocator(),
+  Widget build(BuildContext context) =>
+      BlocProvider<TrackDroneInsightsBloc>.value(
+        value: trackDroneInsightsBloc,
         child: const InsightsScreenView(),
       );
 }
 
-class InsightsScreenView extends StatefulWidget {
+class InsightsScreenView extends StatelessWidget {
   const InsightsScreenView({super.key});
 
-  @override
-  State<InsightsScreenView> createState() => _InsightsScreenViewState();
-}
-
-class _InsightsScreenViewState extends State<InsightsScreenView> {
-  @override
-  void initState() {
-    _trackDroneInsights();
-
-    super.initState();
-  }
-
-  Future<void> _trackDroneInsights() async {
+  Future<void> _trackDroneInsightsUsing(
+    BuildContext context,
+  ) async {
     context.read<TrackDroneInsightsBloc>().add(
           const TrackDroneInsightsEvent.trackInsights(),
         );
@@ -129,32 +122,48 @@ class _InsightsScreenViewState extends State<InsightsScreenView> {
               context.localize.insights,
             ),
           ),
-          body: _buildScrollView(),
+          body: _buildScrollViewUsing(
+            context,
+          ),
         ),
       );
 
-  Widget _buildScrollView() => switch (Platform.isIOS) {
+  Widget _buildScrollViewUsing(
+    BuildContext context,
+  ) =>
+      switch (Platform.isIOS) {
         true => CustomScrollView(
             physics: const AlwaysScrollableScrollPhysics(),
             slivers: [
               CupertinoSliverRefreshControl(
-                onRefresh: _trackDroneInsights,
+                onRefresh: () => _trackDroneInsightsUsing(
+                  context,
+                ),
               ),
-              _buildRestOfSliverContent(),
+              _buildRestOfSliverContentUsing(
+                context,
+              ),
             ],
           ),
         false => RefreshIndicator(
-            onRefresh: _trackDroneInsights,
+            onRefresh: () => _trackDroneInsightsUsing(
+              context,
+            ),
             child: CustomScrollView(
               physics: const AlwaysScrollableScrollPhysics(),
               slivers: [
-                _buildRestOfSliverContent(),
+                _buildRestOfSliverContentUsing(
+                  context,
+                ),
               ],
             ),
           ),
       };
 
-  Widget _buildRestOfSliverContent() => SliverPadding(
+  Widget _buildRestOfSliverContentUsing(
+    BuildContext context,
+  ) =>
+      SliverPadding(
         padding: const EdgeInsetsDirectional.symmetric(
           horizontal: twentySixDotNil,
         ),

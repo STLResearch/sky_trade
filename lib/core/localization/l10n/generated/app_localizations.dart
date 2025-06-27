@@ -2207,6 +2207,18 @@ abstract class AppLocalizations {
   /// **'SkyTrade needs GPS to find your location and show relevant features around you. Please enable it in your device settings'**
   String
       get skyTradeNeedsGpsToFindYourLocationAndShowRelevantFeaturesAroundYouPleaseEnableItInYourDeviceSettings;
+
+  /// No description provided for @trackedDrone.
+  ///
+  /// In en, this message translates to:
+  /// **'Tracked Drone'**
+  String get trackedDrone;
+
+  /// No description provided for @trackedDrones.
+  ///
+  /// In en, this message translates to:
+  /// **'Tracked Drones'**
+  String get trackedDrones;
 }
 
 class _AppLocalizationsDelegate
