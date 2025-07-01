@@ -26,7 +26,6 @@ enum ErrorReason {
 }
 
 enum ReferralTab {
-  theProgram,
   share,
   history,
   leaderboard,

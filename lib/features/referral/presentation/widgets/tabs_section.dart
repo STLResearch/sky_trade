@@ -53,14 +53,12 @@ class TabsSection extends StatelessWidget {
               key: tabKeys[index],
               padding: EdgeInsetsDirectional.only(
                 start: switch (ReferralTab.values[index]) {
-                  ReferralTab.theProgram => twentySixDotNil,
                   ReferralTab.share ||
                   ReferralTab.history ||
                   ReferralTab.leaderboard =>
                     seventeenDotNil,
                 },
                 end: switch (ReferralTab.values[index]) {
-                  ReferralTab.theProgram ||
                   ReferralTab.share ||
                   ReferralTab.history =>
                     nilDotNil,
@@ -84,7 +82,6 @@ class TabsSection extends StatelessWidget {
                     ),
                     child: Text(
                       switch (ReferralTab.values[index]) {
-                        ReferralTab.theProgram => context.localize.theProgram,
                         ReferralTab.share => context.localize.share,
                         ReferralTab.history => context.localize.history,
                         ReferralTab.leaderboard => context.localize.leaderboard,

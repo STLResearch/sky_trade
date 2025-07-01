@@ -92,7 +92,6 @@ import 'package:sky_trade/features/referral/presentation/widgets/leaderboard.dar
 import 'package:sky_trade/features/referral/presentation/widgets/share.dart';
 import 'package:sky_trade/features/referral/presentation/widgets/sky_points_reward_details.dart';
 import 'package:sky_trade/features/referral/presentation/widgets/tabs_section.dart';
-import 'package:sky_trade/features/referral/presentation/widgets/the_program.dart';
 import 'package:sky_trade/injection_container.dart' show serviceLocator;
 
 class ReferralScreen extends StatelessWidget {
@@ -156,7 +155,7 @@ class _ReferralScreenViewState extends State<ReferralScreenView> {
     _tabsScrollController = ScrollController();
 
     _selectedTabNotifier = ValueNotifier<ReferralTab>(
-      ReferralTab.theProgram,
+      ReferralTab.share,
     );
     _referralHistoryTablePageNumberNotifier = ValueNotifier<int>(
       one,
@@ -240,7 +239,6 @@ class _ReferralScreenViewState extends State<ReferralScreenView> {
           );
 
   Future<void> _onRefresh() => switch (_selectedTabNotifier.value) {
-        ReferralTab.theProgram => _getSkyPoints(),
         ReferralTab.share => Future.wait<void>([
             _getSkyPoints(),
             _getHighlights(),
@@ -473,7 +471,6 @@ class _ReferralScreenViewState extends State<ReferralScreenView> {
               horizontal: twentySixDotNil,
             ),
             child: switch (ReferralTab.values[index]) {
-              ReferralTab.theProgram => const TheProgram(),
               ReferralTab.share => const Share(),
               ReferralTab.history => History(
                   tablePageNumberNotifier:
