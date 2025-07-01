@@ -31,12 +31,6 @@ enum ReferralTab {
   leaderboard,
 }
 
-enum Tips {
-  share,
-  registerAndClaim,
-  earn,
-}
-
 enum ShareResult {
   success,
   dismissed,

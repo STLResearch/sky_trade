@@ -663,22 +663,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get shareAndEarn => 'Share And Earn! 🚀✨';
 
   @override
-  String get registerAndClaim => 'Register & Claim';
-
-  @override
   String get earn => 'Earn';
-
-  @override
-  String get sendYourInviteLinkOrCodeToYourFriendsAndExplainToThemHowCoolSkyTradeIs =>
-      'Send your invite link or code to your friends and explain to them how cool SkyTrade is';
-
-  @override
-  String get letThemRegisterAndClaimTheirAirspacesUsingYourReferralLinkOrCode =>
-      'Let them register and claim their airspaces using your referral link or code';
-
-  @override
-  String get youAndYourFriendsAreRewardedWith50CreditsAndMore =>
-      'You and your friends are rewarded with 50 credits and more';
 
   @override
   String get shareTheReferralLinkOrCode => 'Share the referral link or code';
