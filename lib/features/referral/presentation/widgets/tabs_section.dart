@@ -1,19 +1,6 @@
 import 'package:dartz/dartz.dart' show Function1;
 import 'package:flutter/material.dart'
-    show
-        Axis,
-        BuildContext,
-        Center,
-        EdgeInsetsDirectional,
-        GlobalKey,
-        Padding,
-        Row,
-        ScrollController,
-        SingleChildScrollView,
-        StatelessWidget,
-        Text,
-        Theme,
-        Widget;
+    show Axis, BuildContext, Center, EdgeInsetsDirectional, GlobalKey, MainAxisAlignment, MainAxisSize, Padding, Row, ScrollController, SingleChildScrollView, StatelessWidget, Text, Theme, Widget;
 import 'package:sky_trade/core/resources/colors.dart'
     show hex1A222222, hex222222, hexFFFFFF;
 import 'package:sky_trade/core/resources/numbers/ui.dart'
@@ -47,6 +34,8 @@ class TabsSection extends StatelessWidget {
         controller: scrollController,
         scrollDirection: Axis.horizontal,
         child: Row(
+          mainAxisSize: MainAxisSize.min,
+          mainAxisAlignment: MainAxisAlignment.center,
           children: List<Widget>.generate(
             ReferralTab.values.length,
             (index) => Padding(

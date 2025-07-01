@@ -1,6 +1,8 @@
 import 'package:flutter/gestures.dart' show TapGestureRecognizer;
 import 'package:flutter/material.dart'
     show
+        Align,
+        AlignmentDirectional,
         AlwaysScrollableScrollPhysics,
         AppBar,
         BuildContext,
@@ -303,30 +305,33 @@ class _ReferralScreenViewState extends State<ReferralScreenView> {
               const SizedBox(
                 height: eighteenDotNil,
               ),
-              ValueListenableBuilder<ReferralTab>(
-                valueListenable: _selectedTabNotifier,
-                builder: (_, selectedTabNotifierValue, __) => TabsSection(
-                  scrollController: _tabsScrollController,
-                  tabKeys: _tabKeys,
-                  selectedTab: selectedTabNotifierValue,
-                  onTabItemSelected: (referralTab) {
-                    _isPageAnimatingDueToTabSelection = true;
-                    _selectedTabNotifier.value = referralTab;
-                    _pageController
-                        .animateToPage(
-                          referralTab.index,
-                          duration: const Duration(
-                            milliseconds: fiveHundred,
-                          ),
-                          curve: Curves.easeIn,
-                        )
-                        .then(
-                          (_) => _isPageAnimatingDueToTabSelection = false,
-                        );
-                    _scrollToTabAt(
-                      index: referralTab.index,
-                    );
-                  },
+              Align(
+                alignment: AlignmentDirectional.center,
+                child: ValueListenableBuilder<ReferralTab>(
+                  valueListenable: _selectedTabNotifier,
+                  builder: (_, selectedTabNotifierValue, __) => TabsSection(
+                    scrollController: _tabsScrollController,
+                    tabKeys: _tabKeys,
+                    selectedTab: selectedTabNotifierValue,
+                    onTabItemSelected: (referralTab) {
+                      _isPageAnimatingDueToTabSelection = true;
+                      _selectedTabNotifier.value = referralTab;
+                      _pageController
+                          .animateToPage(
+                            referralTab.index,
+                            duration: const Duration(
+                              milliseconds: fiveHundred,
+                            ),
+                            curve: Curves.easeIn,
+                          )
+                          .then(
+                            (_) => _isPageAnimatingDueToTabSelection = false,
+                          );
+                      _scrollToTabAt(
+                        index: referralTab.index,
+                      );
+                    },
+                  ),
                 ),
               ),
               Expanded(
