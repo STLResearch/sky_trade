@@ -164,10 +164,6 @@ class $AssetsSvgsGen {
   /// File path: assets/svgs/delete.svg
   SvgGenImage get delete => const SvgGenImage('assets/svgs/delete.svg');
 
-  /// File path: assets/svgs/dotted_line.svg
-  SvgGenImage get dottedLine =>
-      const SvgGenImage('assets/svgs/dotted_line.svg');
-
   /// File path: assets/svgs/drone_rush_points.svg
   SvgGenImage get droneRushPoints =>
       const SvgGenImage('assets/svgs/drone_rush_points.svg');
@@ -303,10 +299,6 @@ class $AssetsSvgsGen {
   SvgGenImage get referralFacebook =>
       const SvgGenImage('assets/svgs/referral_facebook.svg');
 
-  /// File path: assets/svgs/referral_gift.svg
-  SvgGenImage get referralGift =>
-      const SvgGenImage('assets/svgs/referral_gift.svg');
-
   /// File path: assets/svgs/referral_google.svg
   SvgGenImage get referralGoogle =>
       const SvgGenImage('assets/svgs/referral_google.svg');
@@ -326,9 +318,6 @@ class $AssetsSvgsGen {
 
   /// File path: assets/svgs/settings.svg
   SvgGenImage get settings => const SvgGenImage('assets/svgs/settings.svg');
-
-  /// File path: assets/svgs/share.svg
-  SvgGenImage get share => const SvgGenImage('assets/svgs/share.svg');
 
   /// File path: assets/svgs/share_invite.svg
   SvgGenImage get shareInvite =>
@@ -395,7 +384,6 @@ class $AssetsSvgsGen {
     community,
     danger,
     delete,
-    dottedLine,
     droneRushPoints,
     earth,
     flight,
@@ -434,14 +422,12 @@ class $AssetsSvgsGen {
     questPoints,
     rain,
     referralFacebook,
-    referralGift,
     referralGoogle,
     referralLinkedIn,
     referralX,
     restricted,
     search,
     settings,
-    share,
     shareInvite,
     shareReferral,
     skyTradeRadarLogo,

@@ -1312,36 +1312,11 @@ abstract class AppLocalizations {
   /// **'Share And Earn! 🚀✨'**
   String get shareAndEarn;
 
-  /// No description provided for @registerAndClaim.
-  ///
-  /// In en, this message translates to:
-  /// **'Register & Claim'**
-  String get registerAndClaim;
-
   /// No description provided for @earn.
   ///
   /// In en, this message translates to:
   /// **'Earn'**
   String get earn;
-
-  /// No description provided for @sendYourInviteLinkOrCodeToYourFriendsAndExplainToThemHowCoolSkyTradeIs.
-  ///
-  /// In en, this message translates to:
-  /// **'Send your invite link or code to your friends and explain to them how cool SkyTrade is'**
-  String
-      get sendYourInviteLinkOrCodeToYourFriendsAndExplainToThemHowCoolSkyTradeIs;
-
-  /// No description provided for @letThemRegisterAndClaimTheirAirspacesUsingYourReferralLinkOrCode.
-  ///
-  /// In en, this message translates to:
-  /// **'Let them register and claim their airspaces using your referral link or code'**
-  String get letThemRegisterAndClaimTheirAirspacesUsingYourReferralLinkOrCode;
-
-  /// No description provided for @youAndYourFriendsAreRewardedWith50CreditsAndMore.
-  ///
-  /// In en, this message translates to:
-  /// **'You and your friends are rewarded with 50 credits and more'**
-  String get youAndYourFriendsAreRewardedWith50CreditsAndMore;
 
   /// No description provided for @shareTheReferralLinkOrCode.
   ///

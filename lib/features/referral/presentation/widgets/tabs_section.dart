@@ -1,19 +1,6 @@
 import 'package:dartz/dartz.dart' show Function1;
 import 'package:flutter/material.dart'
-    show
-        Axis,
-        BuildContext,
-        Center,
-        EdgeInsetsDirectional,
-        GlobalKey,
-        Padding,
-        Row,
-        ScrollController,
-        SingleChildScrollView,
-        StatelessWidget,
-        Text,
-        Theme,
-        Widget;
+    show Axis, BuildContext, Center, EdgeInsetsDirectional, GlobalKey, MainAxisAlignment, MainAxisSize, Padding, Row, ScrollController, SingleChildScrollView, StatelessWidget, Text, Theme, Widget;
 import 'package:sky_trade/core/resources/colors.dart'
     show hex1A222222, hex222222, hexFFFFFF;
 import 'package:sky_trade/core/resources/numbers/ui.dart'
@@ -47,20 +34,20 @@ class TabsSection extends StatelessWidget {
         controller: scrollController,
         scrollDirection: Axis.horizontal,
         child: Row(
+          mainAxisSize: MainAxisSize.min,
+          mainAxisAlignment: MainAxisAlignment.center,
           children: List<Widget>.generate(
             ReferralTab.values.length,
             (index) => Padding(
               key: tabKeys[index],
               padding: EdgeInsetsDirectional.only(
                 start: switch (ReferralTab.values[index]) {
-                  ReferralTab.theProgram => twentySixDotNil,
                   ReferralTab.share ||
                   ReferralTab.history ||
                   ReferralTab.leaderboard =>
                     seventeenDotNil,
                 },
                 end: switch (ReferralTab.values[index]) {
-                  ReferralTab.theProgram ||
                   ReferralTab.share ||
                   ReferralTab.history =>
                     nilDotNil,
@@ -84,7 +71,6 @@ class TabsSection extends StatelessWidget {
                     ),
                     child: Text(
                       switch (ReferralTab.values[index]) {
-                        ReferralTab.theProgram => context.localize.theProgram,
                         ReferralTab.share => context.localize.share,
                         ReferralTab.history => context.localize.history,
                         ReferralTab.leaderboard => context.localize.leaderboard,

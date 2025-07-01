@@ -26,16 +26,9 @@ enum ErrorReason {
 }
 
 enum ReferralTab {
-  theProgram,
   share,
   history,
   leaderboard,
-}
-
-enum Tips {
-  share,
-  registerAndClaim,
-  earn,
 }
 
 enum ShareResult {
