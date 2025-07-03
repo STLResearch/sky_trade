@@ -184,25 +184,17 @@ extension MapboxMapExtensions on MapboxMap {
       return;
     }
 
-    final geoJsonDataStringForRestrictions = json.encode(
-      geoJsonDataForRestrictions.toJson(),
-    );
-
-    final geoJsonDataStringForBoundaries = json.encode(
-      geoJsonDataForRestrictionBoundaries.toJson(),
-    );
-
     await style.addSource(
       GeoJsonSource(
         id: geoHash + sourceId,
-        data: geoJsonDataStringForRestrictions,
+        data: geoJsonDataForRestrictions,
       ),
     );
 
     await style.addSource(
       GeoJsonSource(
         id: geoHash + boundaryId + sourceId,
-        data: geoJsonDataStringForBoundaries,
+        data: geoJsonDataForRestrictionBoundaries,
       ),
     );
 
@@ -372,13 +364,9 @@ extension MapboxMapExtensions on MapboxMap {
       geoJsonSourceId,
     );
 
-    final geoJsonDataString = json.encode(
-      geoJsonData.toJson(),
-    );
-
     if (geoJsonSource is GeoJsonSource) {
       await geoJsonSource.updateGeoJSON(
-        geoJsonDataString,
+        geoJsonData,
       );
     }
   }
@@ -400,13 +388,6 @@ extension MapboxMapExtensions on MapboxMap {
       return;
     }
 
-    final geoJsonDataStringForRushZones = json.encode(
-      geoJsonDataForRushZones.toJson(),
-    );
-    final geoJsonDataStringForRushZoneBorders = json.encode(
-      geoJsonDataForRushZoneBorders.toJson(),
-    );
-
     final geoJsonSourceForRushZones = await style.getSource(
       droneRushZonesSourceId,
     );
@@ -417,15 +398,15 @@ extension MapboxMapExtensions on MapboxMap {
     if (geoJsonSourceForRushZones is GeoJsonSource &&
         geoJsonSourceForRushZoneBorders is GeoJsonSource) {
       await geoJsonSourceForRushZones.updateGeoJSON(
-        geoJsonDataStringForRushZones,
+        geoJsonDataForRushZones,
       );
       await geoJsonSourceForRushZoneBorders.updateGeoJSON(
-        geoJsonDataStringForRushZoneBorders,
+        geoJsonDataForRushZoneBorders,
       );
     }
   }
 
-  FeatureCollection? _getGeoJsonData<T>({
+  String? _getGeoJsonData<T>({
     required List<T> entities,
     required String featureGeometryType,
   }) {
@@ -559,8 +540,12 @@ extension MapboxMapExtensions on MapboxMap {
 
     if (geoJsonFeatures.isEmpty) return null;
 
-    return FeatureCollection(
+    final geoJsonData =  FeatureCollection(
       features: geoJsonFeatures,
+    );
+
+    return json.encode(
+      geoJsonData.toJson(),
     );
   }
 
