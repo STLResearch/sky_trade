@@ -1,13 +1,12 @@
 import 'dart:convert' show json;
 import 'dart:ui' show instantiateImageCodec;
 
-import 'package:dartz/dartz.dart' show Function1;
-import 'package:flutter/material.dart' show Color, ValueNotifier;
+import 'package:dartz/dartz.dart' show Function4;
+import 'package:flutter/material.dart' show Color;
 import 'package:flutter/services.dart' show rootBundle;
 import 'package:mapbox_maps_flutter/mapbox_maps_flutter.dart'
     show
         CameraOptions,
-        CircleLayer,
         CoordinateBounds,
         Feature,
         FeatureCollection,
@@ -29,7 +28,6 @@ import 'package:mapbox_maps_flutter/mapbox_maps_flutter.dart'
         RenderedQueryGeometry,
         RenderedQueryOptions,
         ScreenCoordinate,
-        Source,
         StyleLayer,
         StyleSource,
         SymbolLayer;
@@ -52,61 +50,53 @@ import 'package:sky_trade/core/resources/numbers/ui.dart'
         twoDotNil,
         zero;
 import 'package:sky_trade/core/resources/strings/special_characters.dart'
-    show closingParenthesis, comma, emptyString, hyphen, openingParenthesis;
+    show closingParenthesis, comma, openingParenthesis;
 import 'package:sky_trade/core/resources/strings/ui.dart'
     show
         booleanExpression,
         boundaryId,
-        boundingBoxKey,
         bridDronesLayerId,
         bridDronesSourceId,
         caseExpression,
         colorKey,
         coordinatesKey,
-        createdAtKey,
         delayKey,
         directionKey,
+        droneRushZonesBoundaryLayerId,
+        droneRushZonesBoundarySourceId,
         droneRushZonesLayerId,
         droneRushZonesSourceId,
         durationKey,
         endTimeKey,
         featureStateExpression,
+        featureTypeKey,
         fillOpacityTransitionProperty,
         getExpression,
         iconDroneValue,
         idKey,
         isSelectedKey,
-        latitudeKey,
         layerId,
         lineStringGeometry,
         locationNameKey,
-        longitudeKey,
-        maxLatitudeKey,
-        maxLongitudeKey,
-        minLatitudeKey,
-        minLongitudeKey,
         northEastKey,
         nridDronesLayerId,
         nridDronesSourceId,
         pointGeometry,
         polygonGeometry,
         propertiesKey,
-        radiusKey,
         rgba,
         sourceId,
         southWestKey,
         startTimeKey,
-        strokeColorKey,
-        typeKey,
-        updateAtKey;
+        typeKey;
+import 'package:sky_trade/core/utils/enums/ui.dart';
 import 'package:sky_trade/core/utils/extensions/drone_rush_zone_entity_extensions.dart';
 import 'package:sky_trade/core/utils/extensions/restriction_entity_extensions.dart';
-import 'package:sky_trade/core/utils/typedefs/ui.dart'
-    show Bounds, FeatureIdSourceIdTuple;
+import 'package:sky_trade/core/utils/typedefs/ui.dart' show Bounds;
 import 'package:sky_trade/features/remote_i_d_receiver/domain/entities/remote_i_d_entity.dart'
     show RemoteIDEntity;
 import 'package:sky_trade/features/rewards/domain/entities/rewards_entity.dart'
-    show BoundingBoxEntity, DroneRushZoneEntity;
+    show DroneRushZoneEntity;
 import 'package:sky_trade/features/u_a_s_restrictions/domain/entities/restriction_entity.dart'
     show RestrictionEntity;
 
@@ -174,116 +164,6 @@ extension MapboxMapExtensions on MapboxMap {
         ),
       );
 
-  Future<void> addOrUpdateDroneRushZonesOnMap({
-    required List<DroneRushZoneEntity> droneRushZoneEntities,
-  }) async {
-    final geoJsonData = _getGeoJsonData<DroneRushZoneEntity>(
-      entities: droneRushZoneEntities,
-      featureGeometryType: pointGeometry,
-    );
-
-    if (geoJsonData == null) {
-      return;
-    }
-
-    final geoJsonDataString = json.encode(
-      geoJsonData.toJson(),
-    );
-
-    late final Source? geoJsonSource;
-
-    try {
-      geoJsonSource = await style.getSource(
-        droneRushZonesSourceId,
-      );
-    } catch (_) {
-      geoJsonSource = null;
-    }
-
-    if (geoJsonSource == null) {
-      await style.addSource(
-        GeoJsonSource(
-          id: droneRushZonesSourceId,
-          data: geoJsonDataString,
-        ),
-      );
-
-      await style.addLayer(
-        CircleLayer(
-          id: droneRushZonesLayerId,
-          sourceId: droneRushZonesSourceId,
-          circleColorExpression: [
-            getExpression,
-            colorKey,
-          ],
-          circleRadiusExpression: [
-            getExpression,
-            radiusKey,
-          ],
-          circleStrokeWidth: oneDotThree,
-          circleStrokeColorExpression: [
-            getExpression,
-            strokeColorKey,
-          ],
-        ),
-      );
-
-      return;
-    }
-
-    if (geoJsonSource is GeoJsonSource) {
-      await geoJsonSource.updateGeoJSON(
-        geoJsonDataString,
-      );
-
-      await style.updateLayer(
-        CircleLayer(
-          id: droneRushZonesLayerId,
-          sourceId: droneRushZonesSourceId,
-          circleColorExpression: [
-            getExpression,
-            colorKey,
-          ],
-          circleRadiusExpression: [
-            getExpression,
-            radiusKey,
-          ],
-          circleStrokeWidth: oneDotThree,
-          circleStrokeColorExpression: [
-            getExpression,
-            strokeColorKey,
-          ],
-        ),
-      );
-    }
-  }
-
-  Future<void> maybeRemoveDroneRushZonesFromMap() async {
-    late final Source? geoJsonSource;
-
-    try {
-      geoJsonSource = await style.getSource(
-        droneRushZonesSourceId,
-      );
-    } catch (_) {
-      geoJsonSource = null;
-    }
-
-    if (geoJsonSource == null) {
-      return;
-    }
-
-    if (geoJsonSource is GeoJsonSource) {
-      await style.removeStyleLayer(
-        droneRushZonesLayerId,
-      );
-
-      await style.removeStyleSource(
-        droneRushZonesSourceId,
-      );
-    }
-  }
-
   Future<void> addRestrictionsOnMap({
     required String geoHash,
     required List<RestrictionEntity> restrictionEntities,
@@ -293,16 +173,14 @@ extension MapboxMapExtensions on MapboxMap {
       featureGeometryType: polygonGeometry,
     );
 
-    if (geoJsonDataForRestrictions == null) {
-      return;
-    }
-
-    final geoJsonDataForBoundaries = _getGeoJsonData<RestrictionEntity>(
+    final geoJsonDataForRestrictionBoundaries =
+        _getGeoJsonData<RestrictionEntity>(
       entities: restrictionEntities,
       featureGeometryType: lineStringGeometry,
     );
 
-    if (geoJsonDataForBoundaries == null) {
+    if (geoJsonDataForRestrictions == null ||
+        geoJsonDataForRestrictionBoundaries == null) {
       return;
     }
 
@@ -311,7 +189,7 @@ extension MapboxMapExtensions on MapboxMap {
     );
 
     final geoJsonDataStringForBoundaries = json.encode(
-      geoJsonDataForBoundaries.toJson(),
+      geoJsonDataForRestrictionBoundaries.toJson(),
     );
 
     await style.addSource(
@@ -379,10 +257,7 @@ extension MapboxMapExtensions on MapboxMap {
     );
   }
 
-  Future<void> setUpLayersForDrones({
-    required String bridGeoJsonData,
-    String? nridGeoJsonData,
-  }) async {
+  Future<void> setUpLayersForDrones() async {
     final droneStyleImage = await _addStyleImageUsing(
       styleImageName: iconDroneValue,
       imageAsset: Assets.pngs.iconDrone,
@@ -391,7 +266,12 @@ extension MapboxMapExtensions on MapboxMap {
     await style.addSource(
       GeoJsonSource(
         id: bridDronesSourceId,
-        data: bridGeoJsonData,
+      ),
+    );
+
+    await style.addSource(
+      GeoJsonSource(
+        id: nridDronesSourceId,
       ),
     );
 
@@ -407,29 +287,75 @@ extension MapboxMapExtensions on MapboxMap {
       ),
     );
 
-    if(nridGeoJsonData != null) {
-      await style.addSource(
-        GeoJsonSource(
-          id: nridDronesSourceId,
-          data: nridGeoJsonData,
-        ),
-      );
-
-      await style.addLayer(
-        SymbolLayer(
-          id: nridDronesLayerId,
-          sourceId: nridDronesSourceId,
-          iconImage: droneStyleImage,
-          iconRotateExpression: [
-            getExpression,
-            directionKey,
-          ],
-        ),
-      );
-    }
+    await style.addLayer(
+      SymbolLayer(
+        id: nridDronesLayerId,
+        sourceId: nridDronesSourceId,
+        iconImage: droneStyleImage,
+        iconRotateExpression: [
+          getExpression,
+          directionKey,
+        ],
+      ),
+    );
   }
 
-  Future<String> addOrUpdateDronesOnMap({
+  Future<void> setUpLayersForDroneRushZones() async {
+    await style.addSource(
+      GeoJsonSource(
+        id: droneRushZonesSourceId,
+      ),
+    );
+
+    await style.addSource(
+      GeoJsonSource(
+        id: droneRushZonesBoundarySourceId,
+      ),
+    );
+
+    await style.addLayer(
+      FillLayer(
+        id: droneRushZonesLayerId,
+        sourceId: droneRushZonesSourceId,
+        fillColorExpression: [
+          getExpression,
+          colorKey,
+        ],
+      ),
+    );
+
+    await style.addLayer(
+      LineLayer(
+        id: droneRushZonesBoundaryLayerId,
+        sourceId: droneRushZonesBoundarySourceId,
+        lineDasharray: [
+          nilDotThree,
+          twoDotNil,
+        ],
+        lineWidth: oneDotThree,
+        lineCap: LineCap.ROUND,
+        lineColorExpression: [
+          getExpression,
+          colorKey,
+        ],
+        lineOpacityExpression: [
+          caseExpression,
+          [
+            booleanExpression,
+            [
+              featureStateExpression,
+              isSelectedKey,
+            ],
+            false,
+          ],
+          one,
+          zero,
+        ],
+      ),
+    );
+  }
+
+  Future<void> updateDronesOnMap({
     required List<RemoteIDEntity> remoteIDEntities,
     required String geoJsonSourceId,
   }) async {
@@ -439,7 +365,7 @@ extension MapboxMapExtensions on MapboxMap {
     );
 
     if (geoJsonData == null) {
-      return emptyString;
+      return;
     }
 
     final geoJsonSource = await style.getSource(
@@ -454,10 +380,49 @@ extension MapboxMapExtensions on MapboxMap {
       await geoJsonSource.updateGeoJSON(
         geoJsonDataString,
       );
-      return geoJsonDataString;
+    }
+  }
+
+  Future<void> updateDroneRushZonesOnMap({
+    required List<DroneRushZoneEntity> droneRushZoneEntities,
+  }) async {
+    final geoJsonDataForRushZones = _getGeoJsonData<DroneRushZoneEntity>(
+      entities: droneRushZoneEntities,
+      featureGeometryType: polygonGeometry,
+    );
+    final geoJsonDataForRushZoneBorders = _getGeoJsonData<DroneRushZoneEntity>(
+      entities: droneRushZoneEntities,
+      featureGeometryType: lineStringGeometry,
+    );
+
+    if (geoJsonDataForRushZones == null ||
+        geoJsonDataForRushZoneBorders == null) {
+      return;
     }
 
-    return emptyString;
+    final geoJsonDataStringForRushZones = json.encode(
+      geoJsonDataForRushZones.toJson(),
+    );
+    final geoJsonDataStringForRushZoneBorders = json.encode(
+      geoJsonDataForRushZoneBorders.toJson(),
+    );
+
+    final geoJsonSourceForRushZones = await style.getSource(
+      droneRushZonesSourceId,
+    );
+    final geoJsonSourceForRushZoneBorders = await style.getSource(
+      droneRushZonesBoundarySourceId,
+    );
+
+    if (geoJsonSourceForRushZones is GeoJsonSource &&
+        geoJsonSourceForRushZoneBorders is GeoJsonSource) {
+      await geoJsonSourceForRushZones.updateGeoJSON(
+        geoJsonDataStringForRushZones,
+      );
+      await geoJsonSourceForRushZoneBorders.updateGeoJSON(
+        geoJsonDataStringForRushZoneBorders,
+      );
+    }
   }
 
   FeatureCollection? _getGeoJsonData<T>({
@@ -503,6 +468,7 @@ extension MapboxMapExtensions on MapboxMap {
                   geometryCoordinates[zero],
                 );
                 final properties = <String, dynamic>{
+                  featureTypeKey: FeatureType.uasRestriction.name,
                   colorKey: _getRGBAColorString(
                     color: restrictionEntity.polygonFillColor,
                     alpha: alpha,
@@ -537,34 +503,39 @@ extension MapboxMapExtensions on MapboxMap {
 
               case const (DroneRushZoneEntity):
                 final droneRushZoneEntity = entity as DroneRushZoneEntity;
-
+                final geometryCoordinates =
+                    droneRushZoneEntity.generateCirclePolygon();
+                final bounds = _getBoundsFromCoordinates(
+                  geometryCoordinates[zero],
+                );
+                final alpha = switch (featureGeometryType == polygonGeometry) {
+                  true => nilDotThree,
+                  false => oneDotNil,
+                };
                 final properties = <String, dynamic>{
+                  featureTypeKey: FeatureType.droneRush.name,
                   colorKey: _getRGBAColorString(
                     color: droneRushZoneEntity.circleFillColor,
-                    alpha: nilDotThree,
+                    alpha: alpha,
                   ),
-                  strokeColorKey: _getRGBAColorString(
-                    color: droneRushZoneEntity.circleOutlineColor,
-                    alpha: oneDotNil,
-                  ),
-                  idKey: droneRushZoneEntity.id,
-                  createdAtKey: droneRushZoneEntity.createdAt.toIso8601String(),
-                  updateAtKey: droneRushZoneEntity.updateAt.toIso8601String(),
-                  startTimeKey: droneRushZoneEntity.startTime.toIso8601String(),
-                  endTimeKey: droneRushZoneEntity.endTime.toIso8601String(),
-                  latitudeKey: droneRushZoneEntity.latitude,
-                  longitudeKey: droneRushZoneEntity.longitude,
-                  radiusKey: droneRushZoneEntity.radius,
-                  locationNameKey: droneRushZoneEntity.locationName,
-                  boundingBoxKey: <String, double>{
-                    minLatitudeKey: droneRushZoneEntity.boundingBox.minLatitude,
-                    maxLatitudeKey: droneRushZoneEntity.boundingBox.maxLatitude,
-                    minLongitudeKey:
-                        droneRushZoneEntity.boundingBox.minLongitude,
-                    maxLongitudeKey:
-                        droneRushZoneEntity.boundingBox.maxLongitude,
-                  },
                 };
+
+                if (featureGeometryType == polygonGeometry) {
+                  properties[startTimeKey] =
+                      droneRushZoneEntity.startTime.toIso8601String();
+                  properties[endTimeKey] =
+                      droneRushZoneEntity.endTime.toIso8601String();
+                  properties[locationNameKey] =
+                      droneRushZoneEntity.locationName;
+                  properties[northEastKey] = [
+                    bounds.northEast.longitude,
+                    bounds.northEast.latitude,
+                  ];
+                  properties[southWestKey] = [
+                    bounds.southWest.longitude,
+                    bounds.southWest.latitude,
+                  ];
+                }
 
                 return Feature(
                   id: droneRushZoneEntity.id,
@@ -572,10 +543,11 @@ extension MapboxMapExtensions on MapboxMap {
                   geometry: GeometryObject.deserialize(
                     {
                       typeKey: featureGeometryType,
-                      coordinatesKey: [
-                        droneRushZoneEntity.longitude,
-                        droneRushZoneEntity.latitude,
-                      ],
+                      coordinatesKey: switch (
+                          featureGeometryType == polygonGeometry) {
+                        true => geometryCoordinates,
+                        false => geometryCoordinates[zero],
+                      },
                     },
                   ),
                 );
@@ -598,11 +570,11 @@ extension MapboxMapExtensions on MapboxMap {
   }) =>
       rgba +
       openingParenthesis +
-      color.red.toString() +
+      ((color.r * 255.0).round() & 0xff).toString() +
       comma +
-      color.green.toString() +
+      ((color.g * 255.0).round() & 0xff).toString() +
       comma +
-      color.blue.toString() +
+      ((color.b * 255.0).round() & 0xff).toString() +
       comma +
       alpha.toString() +
       closingParenthesis;
@@ -638,146 +610,25 @@ extension MapboxMapExtensions on MapboxMap {
     return styleImageName;
   }
 
-  Future<void> handleDroneRushZoneTapUsing({
+  Future<void> maybeHandleFeatureTap({
     required ScreenCoordinate touchPosition,
-    required ValueNotifier<
-            ({
-              List<String> list,
-              int index,
-            })>
-        previousDroneRushZonesIdsAndIndexNotifier,
-    required Function1<DroneRushZoneEntity, void> onTap,
+    required List<String> layerIds,
+    required Function4<FeatureType, String?, String?, Map<String, dynamic>?,
+            void>
+        onFeatureTap,
   }) async {
     final queriedFeatures = await _getQueriedFeatures(
       screenCoordinate: touchPosition,
-      layerIds: [
-        droneRushZonesLayerId,
-      ],
+      layerIds: layerIds,
     );
 
-    Map<dynamic, dynamic>? featurePropertiesMap;
-
-    if (queriedFeatures.length == one) {
-      featurePropertiesMap =
-          queriedFeatures.first.feature[propertiesKey] as Map?;
-    } else if (queriedFeatures.length > one) {
-      final feature = _cycleThroughQueriedFeaturesUsing(
-        queriedFeatures: queriedFeatures,
-        previousDroneRushZonesIdsAndIndexNotifier:
-            previousDroneRushZonesIdsAndIndexNotifier,
-      );
-
-      featurePropertiesMap = feature.feature[propertiesKey] as Map?;
+    if (queriedFeatures.isEmpty) {
+      return;
     }
-
-    if (featurePropertiesMap != null) {
-      final id = featurePropertiesMap[idKey] as String;
-      final createdAt = DateTime.parse(
-        featurePropertiesMap[createdAtKey] as String,
-      );
-      final updateAt = DateTime.parse(
-        featurePropertiesMap[updateAtKey] as String,
-      );
-      final startTime = DateTime.parse(
-        featurePropertiesMap[startTimeKey] as String,
-      );
-      final endTime = DateTime.parse(
-        featurePropertiesMap[endTimeKey] as String,
-      );
-      final latitude = featurePropertiesMap[latitudeKey] as double;
-      final longitude = featurePropertiesMap[longitudeKey] as double;
-      final radius = (featurePropertiesMap[radiusKey] as num).toDouble();
-      final locationName = featurePropertiesMap[locationNameKey] as String;
-
-      final boundingBox = featurePropertiesMap[boundingBoxKey] as Map;
-
-      final minLatitude = boundingBox[minLatitudeKey] as double;
-      final maxLatitude = boundingBox[maxLatitudeKey] as double;
-      final minLongitude = boundingBox[minLongitudeKey] as double;
-      final maxLongitude = boundingBox[maxLongitudeKey] as double;
-
-      final coordinateBounds = CoordinateBounds(
-        northeast: Point(
-          coordinates: Position(
-            maxLongitude,
-            maxLatitude,
-          ),
-        ),
-        southwest: Point(
-          coordinates: Position(
-            minLongitude,
-            minLatitude,
-          ),
-        ),
-        infiniteBounds: false,
-      );
-
-      final cameraOptions = await cameraForCoordinateBounds(
-        coordinateBounds,
-        MbxEdgeInsets(
-          top: tenDotNil,
-          left: tenDotNil,
-          bottom: tenDotNil,
-          right: tenDotNil,
-        ),
-        null,
-        null,
-        null,
-        null,
-      );
-
-      if (cameraOptions.zoom! < sixDotNil) {
-        cameraOptions.zoom = sixDotNil;
-      } else {
-        cameraOptions.zoom = cameraOptions.zoom! - oneDotNil;
-      }
-
-      await easeTo(
-        cameraOptions,
-        MapAnimationOptions(
-          duration: oneThousandThreeHundred,
-        ),
-      );
-
-      final droneRushZoneEntity = DroneRushZoneEntity(
-        id: id,
-        createdAt: createdAt,
-        updateAt: updateAt,
-        startTime: startTime,
-        endTime: endTime,
-        latitude: latitude,
-        longitude: longitude,
-        radius: radius,
-        locationName: locationName,
-        boundingBox: BoundingBoxEntity(
-          minLatitude: minLatitude,
-          maxLatitude: maxLatitude,
-          minLongitude: minLongitude,
-          maxLongitude: maxLongitude,
-        ),
-      );
-
-      onTap(
-        droneRushZoneEntity,
-      );
-    }
-  }
-
-  Future<FeatureIdSourceIdTuple> handleRestrictionSelection({
-    required ScreenCoordinate touchPosition,
-    required List<String> restrictionLayerIds,
-    required String? previousRestrictionFeatureId,
-    required String? previousRestrictionSourceId,
-  }) async {
-    final queriedFeatures = await _getQueriedFeatures(
-      screenCoordinate: touchPosition,
-      layerIds: restrictionLayerIds,
-    );
 
     String? featureId;
-
     String? sourceId;
-
+    Map<String, dynamic>? data;
     Map<dynamic, dynamic>? featurePropertiesMap;
 
     if (queriedFeatures.length == one) {
@@ -789,25 +640,19 @@ extension MapboxMapExtensions on MapboxMap {
       final feature = _getAppropriateFeatureFrom(
         queriedFeatures: queriedFeatures,
       );
-
       featureId = feature.feature[idKey]?.toString();
       sourceId = feature.source;
       featurePropertiesMap = feature.feature[propertiesKey] as Map?;
     }
 
-    await _selectAndUnselectRestrictions(
-      selectedRestrictionFeatureId: featureId,
-      selectedRestrictionSourceId: sourceId,
-      previousRestrictionFeatureId: previousRestrictionFeatureId,
-      previousRestrictionSourceId: previousRestrictionSourceId,
-    );
-
     if (featurePropertiesMap != null) {
+      final featureType = FeatureType.fromString(
+        featurePropertiesMap[featureTypeKey] as String,
+      );
       final northEast =
           (featurePropertiesMap[northEastKey]! as List).cast<num>();
       final southWest =
           (featurePropertiesMap[southWestKey]! as List).cast<num>();
-
       final coordinateBounds = CoordinateBounds(
         southwest: Point(
           coordinates: Position(
@@ -823,7 +668,6 @@ extension MapboxMapExtensions on MapboxMap {
         ),
         infiniteBounds: false,
       );
-
       final cameraOptions = await cameraForCoordinateBounds(
         coordinateBounds,
         MbxEdgeInsets(
@@ -837,6 +681,18 @@ extension MapboxMapExtensions on MapboxMap {
         null,
         null,
       );
+      data = switch (featureType) {
+        FeatureType.uasRestriction => null,
+        FeatureType.droneRush => <String, dynamic>{
+            locationNameKey: featurePropertiesMap[locationNameKey] as String,
+            startTimeKey: DateTime.parse(
+              featurePropertiesMap[startTimeKey] as String,
+            ),
+            endTimeKey: DateTime.parse(
+              featurePropertiesMap[endTimeKey] as String,
+            ),
+          },
+      };
 
       if (cameraOptions.zoom! < sixDotNil) {
         cameraOptions.zoom = sixDotNil;
@@ -850,12 +706,13 @@ extension MapboxMapExtensions on MapboxMap {
           duration: oneThousandThreeHundred,
         ),
       );
+      onFeatureTap(
+        featureType,
+        featureId,
+        sourceId,
+        data,
+      );
     }
-
-    return (
-      featureId: featureId,
-      sourceId: sourceId,
-    );
   }
 
   Future<List<QueriedFeature>> _getQueriedFeatures({
@@ -873,143 +730,10 @@ extension MapboxMapExtensions on MapboxMap {
 
     return renderedFeatures
         .map(
-          (
-            queryRenderedFeature,
-          ) =>
-              queryRenderedFeature?.queriedFeature,
+          (queryRenderedFeature) => queryRenderedFeature?.queriedFeature,
         )
         .whereType<QueriedFeature>()
         .toList();
-  }
-
-  Future<void> _selectAndUnselectRestrictions({
-    required String? selectedRestrictionFeatureId,
-    required String? selectedRestrictionSourceId,
-    required String? previousRestrictionFeatureId,
-    required String? previousRestrictionSourceId,
-  }) async {
-    if (selectedRestrictionFeatureId == previousRestrictionFeatureId) {
-      return;
-    }
-
-    await _updateRestrictionFeatureState(
-      restrictionFeatureId: selectedRestrictionFeatureId,
-      restrictionSourceId: selectedRestrictionSourceId,
-      isSelectedKeyValue: true,
-    );
-
-    await _updateRestrictionFeatureState(
-      restrictionFeatureId: previousRestrictionFeatureId,
-      restrictionSourceId: previousRestrictionSourceId,
-      isSelectedKeyValue: false,
-    );
-  }
-
-  Future<void> _updateRestrictionFeatureState({
-    required String? restrictionFeatureId,
-    required String? restrictionSourceId,
-    required bool isSelectedKeyValue,
-  }) async {
-    if (restrictionFeatureId == null || restrictionSourceId == null) return;
-
-    final geoHash = restrictionSourceId
-        .split(
-          hyphen,
-        )
-        .first;
-
-    final boundarySourceId = geoHash + boundaryId + sourceId;
-
-    await setFeatureState(
-      boundarySourceId,
-      null,
-      restrictionFeatureId,
-      json.encode(
-        {
-          isSelectedKey: isSelectedKeyValue,
-        },
-      ),
-    );
-
-    await setFeatureState(
-      restrictionSourceId,
-      null,
-      restrictionFeatureId,
-      json.encode(
-        {
-          isSelectedKey: isSelectedKeyValue,
-        },
-      ),
-    );
-  }
-
-  QueriedFeature _cycleThroughQueriedFeaturesUsing({
-    required List<QueriedFeature> queriedFeatures,
-    required ValueNotifier<
-            ({
-              List<String> list,
-              int index,
-            })>
-        previousDroneRushZonesIdsAndIndexNotifier,
-  }) {
-    final droneRushZonesIdsAndIndex =
-        previousDroneRushZonesIdsAndIndexNotifier.value;
-
-    final droneRushZonesIds = queriedFeatures
-        .map(
-          (queriedFeature) => queriedFeature.feature[idKey].toString(),
-        )
-        .toList();
-
-    final list = droneRushZonesIdsAndIndex.list;
-
-    if (list.isEmpty) {
-      final index = droneRushZonesIdsAndIndex.index;
-
-      previousDroneRushZonesIdsAndIndexNotifier.value = (
-        list: droneRushZonesIds,
-        index: switch (index + one < droneRushZonesIds.length) {
-          true => index + one,
-          false => zero,
-        },
-      );
-
-      return queriedFeatures[index];
-    }
-
-    if (droneRushZonesIds.length == list.length) {
-      for (var index = zero; index < droneRushZonesIds.length; index += one) {
-        final currentDroneRushZonesIds = list[index];
-
-        if (droneRushZonesIds[index] != currentDroneRushZonesIds) {
-          previousDroneRushZonesIdsAndIndexNotifier.value = (
-            list: droneRushZonesIds,
-            index: one,
-          );
-
-          return queriedFeatures[zero];
-        }
-      }
-
-      final index = droneRushZonesIdsAndIndex.index;
-
-      previousDroneRushZonesIdsAndIndexNotifier.value = (
-        list: droneRushZonesIds,
-        index: switch (index + one < droneRushZonesIds.length) {
-          true => index + one,
-          false => zero,
-        },
-      );
-
-      return queriedFeatures[index];
-    }
-
-    previousDroneRushZonesIdsAndIndexNotifier.value = (
-      list: droneRushZonesIds,
-      index: one,
-    );
-
-    return queriedFeatures[zero];
   }
 
   QueriedFeature _getAppropriateFeatureFrom({
@@ -1037,6 +761,70 @@ extension MapboxMapExtensions on MapboxMap {
     final nextIndex = (index + one) % queriedFeatures.length;
 
     return queriedFeatures[nextIndex];
+  }
+
+  Future<void> selectAndUnselectFeature({
+    required String? selectFeatureId,
+    required String? selectFeatureSourceId,
+    required String? unselectFeatureId,
+    required String? unselectFeatureSourceId,
+  }) async {
+    if (selectFeatureId == unselectFeatureId) {
+      return;
+    }
+
+    await _updateFeatureState(
+      featureId: selectFeatureId,
+      featureSourceId: selectFeatureSourceId,
+      featureBoundarySourceId: _getFeatureBoundaryIdFrom(
+        selectFeatureSourceId,
+      ),
+      isSelectedKeyValue: true,
+    );
+
+    await _updateFeatureState(
+      featureId: unselectFeatureId,
+      featureSourceId: unselectFeatureSourceId,
+      featureBoundarySourceId: _getFeatureBoundaryIdFrom(
+        unselectFeatureSourceId,
+      ),
+      isSelectedKeyValue: false,
+    );
+  }
+
+  Future<void> _updateFeatureState({
+    required String? featureId,
+    required String? featureSourceId,
+    required String? featureBoundarySourceId,
+    required bool isSelectedKeyValue,
+  }) async {
+    if (featureId == null ||
+        featureSourceId == null ||
+        featureBoundarySourceId == null) {
+      return;
+    }
+
+    await setFeatureState(
+      featureBoundarySourceId,
+      null,
+      featureId,
+      json.encode(
+        {
+          isSelectedKey: isSelectedKeyValue,
+        },
+      ),
+    );
+
+    await setFeatureState(
+      featureSourceId,
+      null,
+      featureId,
+      json.encode(
+        {
+          isSelectedKey: isSelectedKeyValue,
+        },
+      ),
+    );
   }
 
   Bounds _getBoundsFromCoordinates(
@@ -1067,5 +855,22 @@ extension MapboxMapExtensions on MapboxMap {
         latitude: minLat,
       ),
     );
+  }
+
+  String? _getFeatureBoundaryIdFrom(String? featureSourceId) {
+    if (featureSourceId == null || !featureSourceId.endsWith(sourceId)) {
+      return null;
+    }
+
+    final subString = featureSourceId.substring(
+      0,
+      featureSourceId.length - sourceId.length,
+    );
+
+    if (subString.length == 3) {
+      return subString + boundaryId + sourceId;
+    }
+
+    return droneRushZonesBoundarySourceId;
   }
 }

@@ -29,12 +29,6 @@ extension RestrictionEntityExtensions on RestrictionEntity {
         RestrictionType.restricted => hexB3F68351,
       };
 
-  Color get polygonOutlineColor => switch (properties.type) {
-        RestrictionType.danger => hexBBBD48,
-        RestrictionType.prohibited => hexA9143A,
-        RestrictionType.restricted => hexF68351,
-      };
-
   Color get indicatorFillColor => switch (properties.type) {
         RestrictionType.danger => hexECEE75,
         RestrictionType.prohibited => hexE04F64,

@@ -6,9 +6,7 @@ import 'package:sky_trade/features/u_a_s_restrictions/domain/entities/restrictio
 import 'package:sky_trade/features/u_a_s_restrictions/domain/repositories/u_a_s_restrictions_repository.dart';
 
 part 'u_a_s_restrictions_bloc.freezed.dart';
-
 part 'u_a_s_restrictions_event.dart';
-
 part 'u_a_s_restrictions_state.dart';
 
 class UASRestrictionsBloc
@@ -109,6 +107,9 @@ class UASRestrictionsBloc
             ),
         },
       ),
+    );
+    emit(
+      const UASRestrictionsState.initial(),
     );
   }
 

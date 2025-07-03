@@ -72,10 +72,16 @@ import 'package:sky_trade/features/rewards/presentation/blocs/drone_rush_zones_b
 class EventDetails extends StatelessWidget {
   const EventDetails({
     required this.droneRushZonesBloc,
+    required this.locationName,
+    required this.startDateTime,
+    required this.endDateTime,
     super.key,
   });
 
   final DroneRushZonesBloc droneRushZonesBloc;
+  final String locationName;
+  final DateTime startDateTime;
+  final DateTime endDateTime;
 
   @override
   Widget build(BuildContext context) => BlocProvider<DroneRushZonesBloc>.value(

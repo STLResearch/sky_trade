@@ -1,3 +1,6 @@
+import 'package:sky_trade/core/resources/strings/ui.dart'
+    show droneRushValue, uasRestrictionValue;
+
 enum AuthButtonType {
   getStarted,
   continueAsGuest,
@@ -75,4 +78,20 @@ enum InputFieldType {
 enum UserCategory {
   individual,
   corporateEntity;
+}
+
+enum FeatureType {
+  uasRestriction,
+  droneRush;
+
+  static FeatureType fromString(String value) {
+    switch (value) {
+      case uasRestrictionValue:
+        return FeatureType.uasRestriction;
+      case droneRushValue:
+        return FeatureType.droneRush;
+      default:
+        throw Exception('Unknown feature type: $value');
+    }
+  }
 }
