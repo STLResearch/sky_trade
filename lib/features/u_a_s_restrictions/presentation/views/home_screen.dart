@@ -44,7 +44,7 @@ import 'package:sky_trade/core/resources/colors.dart' show hexB3FFFFFF;
 import 'package:sky_trade/core/resources/numbers/ui.dart'
     show fiveDotNil, fourteenDotNil, six, zero;
 import 'package:sky_trade/core/resources/strings/routes.dart'
-    show guestRoutePath;
+    show getStartedRoutePath;
 import 'package:sky_trade/core/resources/strings/secret_keys.dart'
     show
         mapboxMapsDarkStyleUri,
@@ -86,11 +86,15 @@ import 'package:sky_trade/features/remote_i_d_receiver/presentation/blocs/broadc
         BroadcastRemoteIDReceiverBloc,
         BroadcastRemoteIDReceiverEvent,
         BroadcastRemoteIDReceiverState;
+import 'package:sky_trade/features/remote_i_d_receiver/presentation/blocs/cached_remote_i_d_bloc/cached_remote_i_d_bloc.dart'
+    show CachedRemoteIDBloc, CachedRemoteIDEvent, CachedRemoteIDState;
 import 'package:sky_trade/features/remote_i_d_receiver/presentation/blocs/network_remote_i_d_receiver_bloc/network_remote_i_d_receiver_bloc.dart'
     show
         NetworkRemoteIDReceiverBloc,
         NetworkRemoteIDReceiverEvent,
         NetworkRemoteIDReceiverState;
+import 'package:sky_trade/features/remote_i_d_transmitter/presentation/blocs/cached_remote_i_d_transmitter_bloc/cached_remote_i_d_transmitter_bloc.dart'
+    show CachedRemoteIDTransmitterBloc, CachedRemoteIDTransmitterState;
 import 'package:sky_trade/features/remote_i_d_transmitter/presentation/blocs/remote_i_d_transmitter_bloc/remote_i_d_transmitter_bloc.dart'
     show RemoteIDTransmitterBloc, RemoteIDTransmitterEvent;
 import 'package:sky_trade/features/rewards/presentation/blocs/drone_rush_zones_bloc/drone_rush_zones_bloc.dart'
@@ -105,6 +109,8 @@ import 'package:sky_trade/features/u_a_s_restrictions/presentation/blocs/u_a_s_r
     show UASRestrictionsBloc, UASRestrictionsEvent, UASRestrictionsState;
 import 'package:sky_trade/features/u_a_s_restrictions/presentation/widgets/action_dialog.dart';
 import 'package:sky_trade/features/u_a_s_restrictions/presentation/widgets/alert_snack_bar.dart';
+import 'package:sky_trade/features/u_a_s_restrictions/presentation/widgets/cached_drone_data_info.dart'
+    show CachedDroneDataInfo;
 import 'package:sky_trade/features/u_a_s_restrictions/presentation/widgets/drones_indicator.dart';
 import 'package:sky_trade/features/u_a_s_restrictions/presentation/widgets/map_overlay.dart'
     show MapOverlay;
@@ -166,6 +172,12 @@ class HomeScreen extends StatelessWidget {
             create: (_) => serviceLocator(),
           ),
           BlocProvider<DroneRushZonesBloc>(
+            create: (_) => serviceLocator(),
+          ),
+          BlocProvider<CachedRemoteIDBloc>(
+            create: (_) => serviceLocator(),
+          ),
+          BlocProvider<CachedRemoteIDTransmitterBloc>(
             create: (_) => serviceLocator(),
           ),
         ],
@@ -249,6 +261,8 @@ class _HomeViewState extends State<HomeView> {
 
     _startTransmitter();
 
+    _checkCachedRemoteIDs();
+
     _listenDroneRushZones();
 
     _listenNetworkRemoteIDs();
@@ -260,6 +274,10 @@ class _HomeViewState extends State<HomeView> {
 
   void _startTransmitter() => context.read<RemoteIDTransmitterBloc>().add(
         const RemoteIDTransmitterEvent.startTransmitter(),
+      );
+
+  void _checkCachedRemoteIDs() => context.read<CachedRemoteIDBloc>().add(
+        const CachedRemoteIDEvent.getCachedRemoteIDs(),
       );
 
   void _listenDroneRushZones() => context.read<DroneRushZonesBloc>().add(
@@ -382,7 +400,7 @@ class _HomeViewState extends State<HomeView> {
                   Navigator.of(
                     context,
                   ).pushReplacementNamed(
-                    guestRoutePath,
+                    getStartedRoutePath,
                   );
                 },
                 failedToLogOut: (_) {
@@ -621,6 +639,34 @@ class _HomeViewState extends State<HomeView> {
                 },
                 noOngoingDroneRushZone: () {
                   _mapboxMap?.maybeRemoveDroneRushZonesFromMap();
+                },
+              );
+            },
+          ),
+          BlocListener<CachedRemoteIDBloc, CachedRemoteIDState>(
+            listener: (_, cachedRemoteIDState) {
+              cachedRemoteIDState.whenOrNull(
+                gotCachedRemoteIDs: (geolocatedRemoteIDCollectionEntities) {
+                  showModalBottomSheet<void>(
+                    context: context,
+                    builder: (_) => CachedDroneDataInfo(
+                      cachedRemoteIDTransmitterBloc:
+                          context.read<CachedRemoteIDTransmitterBloc>(),
+                      dronesDataToSend: geolocatedRemoteIDCollectionEntities,
+                    ),
+                  );
+                },
+              );
+            },
+          ),
+          BlocListener<CachedRemoteIDTransmitterBloc,
+              CachedRemoteIDTransmitterState>(
+            listener: (_, cachedRemoteIDTransmitterState) {
+              cachedRemoteIDTransmitterState.whenOrNull(
+                transmittedRemoteID: () {
+                  context.read<CachedRemoteIDBloc>().add(
+                        const CachedRemoteIDEvent.clearCachedRemoteIDs(),
+                      );
                 },
               );
             },

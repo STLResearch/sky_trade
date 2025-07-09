@@ -444,3 +444,32 @@ const _$UnmannedAircraftAuthenticationTypeEnumMap = {
   UnmannedAircraftAuthenticationType.privateUse0xE: 'Private_Use_0xE',
   UnmannedAircraftAuthenticationType.privateUse0xF: 'Private_Use_0xF',
 };
+
+GeolocatedRemoteIDCollectionModel _$GeolocatedRemoteIDCollectionModelFromJson(
+        Map<String, dynamic> json) =>
+    GeolocatedRemoteIDCollectionModel(
+      mRemoteIDs: (json['remoteIDs'] as List<dynamic>)
+          .map((e) => RemoteIDModel.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      mDevice: json['device'] == null
+          ? null
+          : DeviceModel.fromJson(json['device'] as Map<String, dynamic>),
+    );
+
+Map<String, dynamic> _$GeolocatedRemoteIDCollectionModelToJson(
+        GeolocatedRemoteIDCollectionModel instance) =>
+    <String, dynamic>{
+      'remoteIDs': instance.mRemoteIDs.map((e) => e.toJson()).toList(),
+      'device': instance.mDevice?.toJson(),
+    };
+
+DeviceModel _$DeviceModelFromJson(Map<String, dynamic> json) => DeviceModel(
+      mLatitude: (json['latitude'] as num).toDouble(),
+      mLongitude: (json['longitude'] as num).toDouble(),
+    );
+
+Map<String, dynamic> _$DeviceModelToJson(DeviceModel instance) =>
+    <String, dynamic>{
+      'latitude': instance.mLatitude,
+      'longitude': instance.mLongitude,
+    };

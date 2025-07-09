@@ -4,23 +4,21 @@ import 'package:flutter/material.dart'
     show
         BuildContext,
         Center,
-        CircularProgressIndicator,
         Column,
         EdgeInsetsDirectional,
-        ElevatedButton,
         MainAxisAlignment,
         Navigator,
         SafeArea,
         Scaffold,
         SingleChildScrollView,
-        Size,
         SizedBox,
+        State,
+        StatefulWidget,
         StatelessWidget,
         Text,
         TextAlign,
         Theme,
-        Widget,
-        WidgetStatePropertyAll;
+        Widget;
 import 'package:flutter_bloc/flutter_bloc.dart'
     show
         BlocBuilder,
@@ -35,23 +33,15 @@ import 'package:sky_trade/core/errors/failures/auth_failure.dart'
         CheckSkyTradeUserUnknownFailure,
         UserDeletedFailure,
         UserNotFoundFailure;
-import 'package:sky_trade/core/resources/colors.dart' show hexFFFFFF;
 import 'package:sky_trade/core/resources/numbers/ui.dart'
-    show
-        fifteenDotNil,
-        fiftyFiveDotNil,
-        fortyDotNil,
-        sixteenDotNil,
-        tenDotNil,
-        thirtyDotNil,
-        twentyTwoDotFive,
-        twoDotNil;
+    show fifteenDotNil, fortyDotNil, tenDotNil, thirtyDotNil;
 import 'package:sky_trade/core/resources/strings/networking.dart'
     show skyTradePrivacyPolicyUrl, skyTradeTermsOfServiceUrl;
 import 'package:sky_trade/core/resources/strings/routes.dart'
-    show homeRoutePath, onboardingRoutePath;
+    show guestRoutePath, homeRoutePath, onboardingRoutePath;
 import 'package:sky_trade/core/resources/strings/special_characters.dart'
     show fullStop, whiteSpace;
+import 'package:sky_trade/core/utils/enums/ui.dart' show AuthButtonType;
 import 'package:sky_trade/core/utils/extensions/build_context_extensions.dart';
 import 'package:sky_trade/features/auth/presentation/blocs/auth_0_credentials_bloc/auth_0_credentials_bloc.dart'
     show Auth0CredentialsBloc, Auth0CredentialsEvent, Auth0CredentialsState;
@@ -61,9 +51,14 @@ import 'package:sky_trade/features/auth/presentation/blocs/auth_0_user_session_b
     show Auth0UserSessionBloc, Auth0UserSessionEvent, Auth0UserSessionState;
 import 'package:sky_trade/features/auth/presentation/blocs/auth_bloc/auth_bloc.dart'
     show AuthBloc, AuthEvent, AuthState;
+import 'package:sky_trade/features/auth/presentation/blocs/guest_user_bloc/guest_user_bloc.dart'
+    show GuestUserBloc, GuestUserEvent;
 import 'package:sky_trade/features/auth/presentation/widgets/action_dialog.dart';
 import 'package:sky_trade/features/auth/presentation/widgets/agreement_section.dart';
 import 'package:sky_trade/features/auth/presentation/widgets/alert_snack_bar.dart';
+import 'package:sky_trade/features/auth/presentation/widgets/auth_button.dart';
+import 'package:sky_trade/features/auth/presentation/widgets/or_section.dart'
+    show OrSection;
 import 'package:sky_trade/features/link_handler/presentation/blocs/app_link_bloc/app_link_bloc.dart'
     show AppLinkBloc, AppLinkState;
 import 'package:sky_trade/features/link_handler/presentation/blocs/handle_link_bloc/handle_link_bloc.dart'
@@ -71,7 +66,12 @@ import 'package:sky_trade/features/link_handler/presentation/blocs/handle_link_b
 import 'package:sky_trade/injection_container.dart' show serviceLocator;
 
 class GetStartedScreen extends StatelessWidget {
-  const GetStartedScreen({super.key});
+  const GetStartedScreen({
+    this.automaticallyGetStarted,
+    super.key,
+  });
+
+  final bool? automaticallyGetStarted;
 
   @override
   Widget build(BuildContext context) => MultiBlocProvider(
@@ -91,13 +91,41 @@ class GetStartedScreen extends StatelessWidget {
           BlocProvider<Auth0CredentialsBloc>(
             create: (_) => serviceLocator(),
           ),
+          BlocProvider<GuestUserBloc>(
+            create: (_) => serviceLocator(),
+          ),
         ],
-        child: const GetStartedView(),
+        child: GetStartedView(
+          automaticallyGetStarted: automaticallyGetStarted ?? false,
+        ),
       );
 }
 
-class GetStartedView extends StatelessWidget {
-  const GetStartedView({super.key});
+class GetStartedView extends StatefulWidget {
+  const GetStartedView({
+    required this.automaticallyGetStarted,
+    super.key,
+  });
+
+  final bool automaticallyGetStarted;
+
+  @override
+  State<GetStartedView> createState() => _GetStartedViewState();
+}
+
+class _GetStartedViewState extends State<GetStartedView> {
+  @override
+  void initState() {
+    if (widget.automaticallyGetStarted) {
+      _authenticate();
+    }
+
+    super.initState();
+  }
+
+  void _authenticate() => context.read<AuthBloc>().add(
+        const AuthEvent.authenticate(),
+      );
 
   @override
   Widget build(BuildContext context) => MultiBlocListener(
@@ -343,59 +371,57 @@ class GetStartedView extends StatelessWidget {
                     BlocBuilder<AuthBloc, AuthState>(
                       builder: (_, authState) =>
                           BlocBuilder<Auth0LogoutBloc, Auth0LogoutState>(
-                        builder: (_, auth0LogoutState) => ElevatedButton(
+                        builder: (_, auth0LogoutState) => AuthButton(
+                          type: AuthButtonType.getStarted,
                           onPressed: authState.maybeWhen(
                             authenticating: () => null,
                             orElse: () => auth0LogoutState.maybeWhen(
                               loggingOut: () => null,
-                              orElse: () => () => context.read<AuthBloc>().add(
-                                    const AuthEvent.authenticate(),
-                                  ),
+                              orElse: () => _authenticate,
                             ),
                           ),
-                          style: Theme.of(
-                            context,
-                          ).elevatedButtonTheme.style?.copyWith(
-                                fixedSize: const WidgetStatePropertyAll<Size>(
-                                  Size.fromHeight(
-                                    fiftyFiveDotNil,
-                                  ),
-                                ),
-                              ),
-                          child: Center(
-                            child: authState.maybeWhen(
-                              authenticating: () => const SizedBox(
-                                width: sixteenDotNil,
-                                height: sixteenDotNil,
-                                child: CircularProgressIndicator(
-                                  color: hexFFFFFF,
-                                  strokeWidth: twoDotNil,
-                                ),
-                              ),
-                              orElse: () => auth0LogoutState.maybeWhen(
-                                loggingOut: () => const SizedBox(
-                                  width: sixteenDotNil,
-                                  height: sixteenDotNil,
-                                  child: CircularProgressIndicator(
-                                    color: hexFFFFFF,
-                                    strokeWidth: twoDotNil,
-                                  ),
-                                ),
-                                orElse: () => Text(
-                                  context.localize.getStarted,
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .bodyMedium
-                                      ?.copyWith(
-                                        fontSize: fifteenDotNil,
-                                        height:
-                                            twentyTwoDotFive / fifteenDotNil,
-                                        color: hexFFFFFF,
+                          indicateProgress: authState.maybeWhen(
+                            authenticating: () => true,
+                            orElse: () => auth0LogoutState.maybeWhen(
+                              loggingOut: () => true,
+                              orElse: () => false,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                    const SizedBox(
+                      height: fifteenDotNil,
+                    ),
+                    const OrSection(),
+                    const SizedBox(
+                      height: fifteenDotNil,
+                    ),
+                    BlocBuilder<AuthBloc, AuthState>(
+                      builder: (_, authState) =>
+                          BlocBuilder<Auth0LogoutBloc, Auth0LogoutState>(
+                        builder: (_, auth0LogoutState) => AuthButton(
+                          type: AuthButtonType.continueAsGuest,
+                          onPressed: authState.maybeWhen(
+                            authenticating: () => null,
+                            orElse: () => auth0LogoutState.maybeWhen(
+                              loggingOut: () => null,
+                              orElse: () => () {
+                                context.read<GuestUserBloc>().add(
+                                      const GuestUserEvent.setUserIsGuest(
+                                        isGuest: true,
                                       ),
-                                ),
-                              ),
+                                    );
+
+                                Navigator.of(
+                                  context,
+                                ).pushReplacementNamed(
+                                  guestRoutePath,
+                                );
+                              },
                             ),
                           ),
+                          indicateProgress: false,
                         ),
                       ),
                     ),

@@ -1,3 +1,8 @@
+enum AuthButtonType {
+  getStarted,
+  continueAsGuest,
+}
+
 enum MapStyle {
   dark,
   satellite;

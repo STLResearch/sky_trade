@@ -1,18 +1,30 @@
 // ignore_for_file: lines_longer_than_80_chars
 
 import 'dart:io' show Platform;
-import 'package:flutter/cupertino.dart';
+
+import 'package:dartz/dartz.dart' show Function0;
 import 'package:flutter/material.dart'
     show
         AlignmentDirectional,
+        BorderRadius,
         BuildContext,
-        Center,
-        CircularProgressIndicator,
         Column,
+        CrossAxisAlignment,
+        EdgeInsetsDirectional,
         ElevatedButton,
+        Expanded,
+        FontWeight,
+        MainAxisAlignment,
         MainAxisSize,
+        MediaQuery,
         Navigator,
+        Orientation,
+        OutlinedBorder,
+        Padding,
+        RoundedRectangleBorder,
+        Row,
         Scaffold,
+        Size,
         SizedBox,
         Stack,
         State,
@@ -23,10 +35,10 @@ import 'package:flutter/material.dart'
         ValueListenableBuilder,
         ValueNotifier,
         Widget,
+        WidgetStatePropertyAll,
         showModalBottomSheet;
 import 'package:flutter_bloc/flutter_bloc.dart'
     show
-        BlocBuilder,
         BlocListener,
         BlocProvider,
         MultiBlocListener,
@@ -34,42 +46,51 @@ import 'package:flutter_bloc/flutter_bloc.dart'
         ReadContext;
 import 'package:flutter_dotenv/flutter_dotenv.dart' show dotenv;
 import 'package:mapbox_maps_flutter/mapbox_maps_flutter.dart'
-    show CompassSettings, MapboxMap, MapboxOptions, ScaleBarSettings;
-import 'package:sky_trade/core/errors/failures/auth_failure.dart';
-import 'package:sky_trade/core/resources/colors.dart';
+    show
+        AttributionSettings,
+        CompassSettings,
+        LogoSettings,
+        MapboxMap,
+        MapboxOptions,
+        ScaleBarSettings;
+import 'package:sky_trade/core/assets/generated/assets.gen.dart' show Assets;
+import 'package:sky_trade/core/resources/colors.dart' show hexFFFFFF;
 import 'package:sky_trade/core/resources/numbers/ui.dart'
     show
-        fifteenDotNil,
+        fiftyDotNil,
+        fiveDotFive,
+        fiveDotNil,
+        fourteenDotNil,
+        nilDotNil,
+        oneDotNil,
         six,
-        sixteenDotNil,
-        twentyDotNil,
-        twentyTwoDotFive,
-        twoDotNil;
-import 'package:sky_trade/core/resources/strings/routes.dart';
+        tenDotNil,
+        twelveDotNil,
+        zero;
+import 'package:sky_trade/core/resources/strings/routes.dart'
+    show getStartedRoutePath;
 import 'package:sky_trade/core/resources/strings/secret_keys.dart'
     show
         mapboxMapsDarkStyleUri,
         mapboxMapsPublicKey,
         mapboxMapsSatelliteStyleUri;
 import 'package:sky_trade/core/resources/strings/special_characters.dart'
-    show emptyString, fullStop, whiteSpace;
+    show emptyString;
 import 'package:sky_trade/core/resources/strings/ui.dart'
-    show bridDronesSourceId;
+    show bridDronesSourceId, layerId;
+import 'package:sky_trade/core/utils/enums/environment.dart' show Settings;
 import 'package:sky_trade/core/utils/enums/ui.dart' show MapStyle;
 import 'package:sky_trade/core/utils/extensions/build_context_extensions.dart';
 import 'package:sky_trade/core/utils/extensions/mapbox_map_extensions.dart';
-import 'package:sky_trade/features/auth/presentation/blocs/auth_0_credentials_bloc/auth_0_credentials_bloc.dart';
-import 'package:sky_trade/features/auth/presentation/blocs/auth_0_logout_bloc/auth_0_logout_bloc.dart';
-import 'package:sky_trade/features/auth/presentation/blocs/auth_0_user_session_bloc/auth_0_user_session_bloc.dart';
-import 'package:sky_trade/features/auth/presentation/blocs/auth_bloc/auth_bloc.dart';
-import 'package:sky_trade/features/auth/presentation/widgets/action_dialog.dart';
-import 'package:sky_trade/features/auth/presentation/widgets/alert_snack_bar.dart';
+import 'package:sky_trade/features/auth/presentation/blocs/guest_user_bloc/guest_user_bloc.dart'
+    show GuestUserBloc, GuestUserEvent;
 import 'package:sky_trade/features/bluetooth/presentation/blocs/bluetooth_permissions_bloc/bluetooth_permissions_bloc.dart'
     show
         BluetoothPermissionsBloc,
         BluetoothPermissionsEvent,
         BluetoothPermissionsState;
-import 'package:sky_trade/features/link_handler/presentation/blocs/app_link_bloc/app_link_bloc.dart';
+import 'package:sky_trade/features/geo_hash/presentation/blocs/geo_hash_bloc/geo_hash_bloc.dart'
+    show GeoHashBloc, GeoHashEvent, GeoHashState;
 import 'package:sky_trade/features/location/presentation/blocs/location_permission_bloc/location_permission_bloc.dart'
     show
         LocationPermissionBloc,
@@ -82,18 +103,33 @@ import 'package:sky_trade/features/location/presentation/blocs/location_service_
         LocationServiceStatusBloc,
         LocationServiceStatusEvent,
         LocationServiceStatusState;
+import 'package:sky_trade/features/location/presentation/blocs/location_settings_bloc/location_settings_bloc.dart'
+    show LocationSettingsBloc, LocationSettingsEvent;
 import 'package:sky_trade/features/remote_i_d_receiver/presentation/blocs/broadcast_remote_i_d_receiver_bloc/broadcast_remote_i_d_receiver_bloc.dart'
     show
         BroadcastRemoteIDReceiverBloc,
         BroadcastRemoteIDReceiverEvent,
         BroadcastRemoteIDReceiverState;
+import 'package:sky_trade/features/remote_i_d_receiver/presentation/blocs/cached_remote_i_d_bloc/cached_remote_i_d_bloc.dart'
+    show CachedRemoteIDBloc, CachedRemoteIDEvent;
+import 'package:sky_trade/features/rewards/presentation/blocs/drone_rush_zones_bloc/drone_rush_zones_bloc.dart'
+    show DroneRushZonesBloc;
 import 'package:sky_trade/features/search_autocomplete/presentation/blocs/retrieve_geometric_coordinates_bloc/retrieve_geometric_coordinates_bloc.dart'
     show RetrieveGeometricCoordinatesBloc, RetrieveGeometricCoordinatesState;
+import 'package:sky_trade/features/u_a_s_restrictions/domain/entities/restriction_entity.dart'
+    show RestrictionEntity;
+import 'package:sky_trade/features/u_a_s_restrictions/presentation/blocs/u_a_s_restrictions_bloc/u_a_s_restrictions_bloc.dart'
+    show UASRestrictionsBloc, UASRestrictionsEvent, UASRestrictionsState;
+import 'package:sky_trade/features/u_a_s_restrictions/presentation/widgets/action_dialog.dart';
+import 'package:sky_trade/features/u_a_s_restrictions/presentation/widgets/drones_indicator.dart';
 import 'package:sky_trade/features/u_a_s_restrictions/presentation/widgets/map_overlay.dart'
     show MapOverlay;
 import 'package:sky_trade/features/u_a_s_restrictions/presentation/widgets/map_view.dart';
-import 'package:sky_trade/features/u_a_s_restrictions/presentation/widgets/restricted_feature_sheet.dart';
-import 'package:sky_trade/features/u_a_s_restrictions/presentation/widgets/u_a_s_list.dart';
+import 'package:sky_trade/features/u_a_s_restrictions/presentation/widgets/restricted_feature.dart'
+    show RestrictedFeature;
+import 'package:sky_trade/features/u_a_s_restrictions/presentation/widgets/restriction_indicator.dart';
+import 'package:sky_trade/features/weather/presentation/weather_bloc/weather_bloc.dart'
+    show WeatherBloc, WeatherEvent;
 import 'package:sky_trade/features/wifi/presentation/blocs/wifi_permission_bloc/wifi_permission_bloc.dart'
     show WifiPermissionBloc, WifiPermissionEvent, WifiPermissionState;
 import 'package:sky_trade/injection_container.dart' show serviceLocator;
@@ -104,19 +140,10 @@ class GuestHomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) => MultiBlocProvider(
         providers: [
-          BlocProvider<Auth0LogoutBloc>(
-            create: (_) => serviceLocator(),
-          ),
-          BlocProvider<AuthBloc>(
-            create: (_) => serviceLocator(),
-          ),
-          BlocProvider<Auth0UserSessionBloc>(
-            create: (_) => serviceLocator(),
-          ),
-          BlocProvider<Auth0CredentialsBloc>(
-            create: (_) => serviceLocator(),
-          ),
           BlocProvider<BluetoothPermissionsBloc>(
+            create: (_) => serviceLocator(),
+          ),
+          BlocProvider<GeoHashBloc>(
             create: (_) => serviceLocator(),
           ),
           BlocProvider<LocationPermissionBloc>(
@@ -128,13 +155,31 @@ class GuestHomeScreen extends StatelessWidget {
           BlocProvider<LocationServiceStatusBloc>(
             create: (_) => serviceLocator(),
           ),
+          BlocProvider<LocationSettingsBloc>(
+            create: (_) => serviceLocator(),
+          ),
           BlocProvider<BroadcastRemoteIDReceiverBloc>(
+            create: (_) => serviceLocator(),
+          ),
+          BlocProvider<UASRestrictionsBloc>(
+            create: (_) => serviceLocator(),
+          ),
+          BlocProvider<WeatherBloc>(
             create: (_) => serviceLocator(),
           ),
           BlocProvider<WifiPermissionBloc>(
             create: (_) => serviceLocator(),
           ),
           BlocProvider<RetrieveGeometricCoordinatesBloc>(
+            create: (_) => serviceLocator(),
+          ),
+          BlocProvider<DroneRushZonesBloc>(
+            create: (_) => serviceLocator(),
+          ),
+          BlocProvider<GuestUserBloc>(
+            create: (_) => serviceLocator(),
+          ),
+          BlocProvider<CachedRemoteIDBloc>(
             create: (_) => serviceLocator(),
           ),
         ],
@@ -152,11 +197,19 @@ class GuestHomeView extends StatefulWidget {
 class _GuestHomeViewState extends State<GuestHomeView> {
   MapboxMap? _mapboxMap;
 
+  late final ValueNotifier<RestrictionEntity?> _clickedRestriction;
   late final ValueNotifier<bool> _centerLocationNotifier;
   late final ValueNotifier<MapStyle> _mapStyleNotifier;
+  late final List<String> _restrictionLayerIds;
+  late final ValueNotifier<int> _newBridDronesCountNotifier;
 
+  late int _previousBridDronesCount;
   late String _previousBridGeoJsonData;
-  int _currentDroneLimit = 5;
+
+  late bool _hasShownAccumulatedDronesBottomSheetBefore;
+
+  String? _currentlySelectedRestrictionFeatureId;
+  String? _currentlySelectedRestrictionSourceId;
 
   @override
   void initState() {
@@ -164,15 +217,31 @@ class _GuestHomeViewState extends State<GuestHomeView> {
       dotenv.env[mapboxMapsPublicKey]!,
     );
 
+    _clickedRestriction = ValueNotifier<RestrictionEntity?>(
+      null,
+    );
+
     _centerLocationNotifier = ValueNotifier<bool>(
       false,
+    );
+
+    _newBridDronesCountNotifier = ValueNotifier<int>(
+      zero,
     );
 
     _mapStyleNotifier = ValueNotifier<MapStyle>(
       MapStyle.dark,
     );
 
+    _restrictionLayerIds = List<String>.empty(
+      growable: true,
+    );
+
     _previousBridGeoJsonData = emptyString;
+
+    _previousBridDronesCount = zero;
+
+    _hasShownAccumulatedDronesBottomSheetBefore = false;
 
     _requestLocationPermission();
 
@@ -183,6 +252,10 @@ class _GuestHomeViewState extends State<GuestHomeView> {
       context.read<LocationPermissionBloc>().add(
             const LocationPermissionEvent.requestPermission(),
           );
+
+  void _requestWifiPermission() => context.read<WifiPermissionBloc>().add(
+        const WifiPermissionEvent.requestPermission(),
+      );
 
   void _requestBluetoothPermissions() =>
       context.read<BluetoothPermissionsBloc>().add(
@@ -200,9 +273,66 @@ class _GuestHomeViewState extends State<GuestHomeView> {
         const LocationServiceStatusEvent.stopListeningLocationServiceStatus(),
       );
 
+  void _showLocationRelatedAlertDialogUsing({
+    required String title,
+    required String content,
+    required String actionText,
+    required Function0<void> action,
+  }) =>
+      ActionDialog.show(
+        context,
+        title: title,
+        content: content,
+        onActionConfirmed: () {
+          Navigator.of(
+            context,
+          ).pop();
+
+          action();
+        },
+        actionConfirmText: actionText,
+      );
+
+  void _showLocationPermissionDeniedDialog() =>
+      _showLocationRelatedAlertDialogUsing(
+        title: context.localize.locationAccessNeeded,
+        content: context
+            .localize.skyTradeNeedsYourLocationToShowRelevantFeaturesNearYou,
+        actionText: context.localize.allow,
+        action: _requestLocationPermission,
+      );
+
+  void _showLocationPermissionPermanentlyDeniedDialog() =>
+      _showLocationRelatedAlertDialogUsing(
+        title: context.localize.enableLocationPermissionInSettings,
+        content: context.localize
+            .youveDeniedLocationAccessPleaseEnableItInYourAppSettingsSoSkyTradeCanShowRelevantFeaturesNearYou,
+        actionText: context.localize.openSettings,
+        action: () => context.read<LocationSettingsBloc>().add(
+              const LocationSettingsEvent.openSettings(
+                settings: Settings.app,
+              ),
+            ),
+      );
+
+  void _showLocationServiceStatusDisabledDialog() =>
+      _showLocationRelatedAlertDialogUsing(
+        title: context.localize.turnOnLocationServices,
+        content: context.localize
+            .skyTradeNeedsGpsToFindYourLocationAndShowRelevantFeaturesAroundYouPleaseEnableItInYourDeviceSettings,
+        actionText: context.localize.openSettings,
+        action: () => context.read<LocationSettingsBloc>().add(
+              const LocationSettingsEvent.openSettings(
+                settings: Settings.locationServices,
+              ),
+            ),
+      );
+
   @override
   void dispose() {
+    _clickedRestriction.dispose();
     _centerLocationNotifier.dispose();
+    _newBridDronesCountNotifier.dispose();
     _mapStyleNotifier.dispose();
 
     super.dispose();
@@ -211,203 +341,6 @@ class _GuestHomeViewState extends State<GuestHomeView> {
   @override
   Widget build(BuildContext context) => MultiBlocListener(
         listeners: [
-          BlocListener<AuthBloc, AuthState>(
-            listener: (context, authState) {
-              authState.whenOrNull(
-                emailVerificationSent: (email) {
-                  ActionDialog.show(
-                    context,
-                    content: context.localize.aVerificationLinkWasSentTo +
-                        whiteSpace +
-                        email! +
-                        fullStop +
-                        whiteSpace +
-                        context.localize
-                            .clickOnTheLinkToProceedWithTheAuthenticationProcess,
-                    dismissible: false,
-                    actionConfirmedText: context.localize.okay,
-                    onActionConfirmed: () => Navigator.of(
-                      context,
-                    ).pop(),
-                  );
-                },
-                sFAUserShouldLogout: (email) {
-                  ActionDialog.show(
-                    context,
-                    content: context.localize
-                            .anActionRequiresYourInputWeNeedToFinishLoggingYouOutOf +
-                        whiteSpace +
-                        email! +
-                        fullStop +
-                        whiteSpace +
-                        context.localize
-                            .thereIsNoOtherWayToProceedUnlessYouCompleteTheLogoutProcessYouWillBeAbleToLogBackInAfterwards,
-                    dismissible: false,
-                    actionConfirmedText: context.localize.logout,
-                    onActionConfirmed: () {
-                      Navigator.of(
-                        context,
-                      ).pop();
-
-                      context.read<Auth0LogoutBloc>().add(
-                            const Auth0LogoutEvent.logout(),
-                          );
-                    },
-                  );
-                },
-                unverifiedAuth0UserExists: (email) {
-                  ActionDialog.show(
-                    context,
-                    content: context
-                            .localize.youHaveAnExistingSessionWithTheEmail +
-                        whiteSpace +
-                        email! +
-                        whiteSpace +
-                        context.localize
-                            .howeverThisEmailHasNotBeenVerifiedClickOnTheLinkSentToTheEmailToProceedOrLogoutInstead,
-                    dismissible: false,
-                    actionDismissedText: context.localize.cancel,
-                    onActionDismissed: () {
-                      Navigator.of(
-                        context,
-                      ).pop();
-                    },
-                    actionConfirmedText: context.localize.logout,
-                    onActionConfirmed: () {
-                      Navigator.of(
-                        context,
-                      ).pop();
-
-                      context.read<Auth0LogoutBloc>().add(
-                            const Auth0LogoutEvent.logout(),
-                          );
-                    },
-                  );
-                },
-                authenticated: () {
-                  Navigator.of(
-                    context,
-                  ).pushReplacementNamed(
-                    homeRoutePath,
-                  );
-                },
-                failedToCheckSkyTradeUser: (checkSkyTradeUserFailure) {
-                  if (checkSkyTradeUserFailure is UserDeletedFailure) {
-                    ActionDialog.show(
-                      context,
-                      content: context.localize
-                          .accountDoesNotExistIfItPreviouslyDidItMayHaveBeenDeletedHoweverWeNeedYourInputToFinishOff,
-                      dismissible: false,
-                      actionConfirmedText: context.localize.proceed,
-                      onActionConfirmed: () {
-                        Navigator.of(
-                          context,
-                        ).pop();
-
-                        context.read<Auth0LogoutBloc>().add(
-                              const Auth0LogoutEvent.logout(),
-                            );
-                      },
-                    );
-                  } else {
-                    AlertSnackBar.show(
-                      context,
-                      message: switch (checkSkyTradeUserFailure) {
-                        UserNotFoundFailure() => context
-                            .localize.accountDoesNotExistPleaseRegisterInstead,
-                        UnauthorizedFailure() =>
-                          context.localize.oopsSomethingWentWrongPleaseTryAgain,
-                        InvalidSignatureFailure() =>
-                          context.localize.oopsSomethingWentWrongPleaseTryAgain,
-                        UserMismatchFailure() => context.localize
-                            .loginMethodMismatchKindlySignInWithTheSameMethodYouUsedToRegister,
-                        UserDeletedFailure() => context.localize
-                            .accountDoesNotExistIfItPreviouslyDidItMayHaveBeenDeleted,
-                        CheckSkyTradeUserUnknownFailure() =>
-                          context.localize.anUnknownErrorOccurredPleaseTryAgain,
-                      },
-                    );
-                  }
-                },
-                failedToCreateSkyTradeUser: (createSkyTradeUserFailure) {
-                  AlertSnackBar.show(
-                    context,
-                    message: switch (createSkyTradeUserFailure) {
-                      InvalidEmailFailure() =>
-                        context.localize.pleaseEnterAValidEmail,
-                      WalletAlreadyExistsFailure() => context
-                          .localize.thisEmailIsAlreadyLinkedToAnExistingAccount,
-                      EmailReuseNotAllowedFailure() => context.localize
-                          .thisEmailCannotBeUsedToCreateANewAccountPleaseUseADifferentEmail,
-                      CreateSkyTradeUserUnknownFailure() =>
-                        context.localize.anUnknownErrorOccurredPleaseTryAgain,
-                    },
-                  );
-                },
-                failedToAuthenticateUserWithAuth0: () {
-                  AlertSnackBar.show(
-                    context,
-                    message: context
-                        .localize.oopsWeCouldNotAuthenticateYouPleaseTryAgain,
-                  );
-                },
-              );
-            },
-          ),
-          BlocListener<AppLinkBloc, AppLinkState>(
-            listener: (context, appLinkState) {
-              appLinkState.whenOrNull(
-                emailVerificationLink: () {
-                  context.read<Auth0UserSessionBloc>().add(
-                        const Auth0UserSessionEvent.checkUserSession(),
-                      );
-                },
-              );
-            },
-          ),
-          BlocListener<Auth0UserSessionBloc, Auth0UserSessionState>(
-            listener: (_, auth0UserSessionState) {
-              auth0UserSessionState.whenOrNull(
-                existingUserSession: (auth0UserEntity) {
-                  context.read<Auth0CredentialsBloc>().add(
-                        Auth0CredentialsEvent.renewCredentials(
-                          refreshToken: auth0UserEntity.refreshToken,
-                        ),
-                      );
-                },
-              );
-            },
-          ),
-          BlocListener<Auth0CredentialsBloc, Auth0CredentialsState>(
-            listener: (_, auth0CredentialsState) {
-              auth0CredentialsState.whenOrNull(
-                renewedCredentials: () {
-                  context.read<AuthBloc>().add(
-                        const AuthEvent.authenticate(),
-                      );
-                },
-                failedToRenewCredentials: () {
-                  AlertSnackBar.show(
-                    context,
-                    message: context.localize
-                        .weCouldNotVerifyYourEmailPleaseEnsureThatYouHaveClickedTheCorrectLink,
-                  );
-                },
-              );
-            },
-          ),
-          BlocListener<Auth0LogoutBloc, Auth0LogoutState>(
-            listener: (context, auth0LogoutState) {
-              auth0LogoutState.whenOrNull(
-                failedToLogOut: (_) {
-                  AlertSnackBar.show(
-                    context,
-                    message: context.localize.weCouldNotLogYouOut,
-                  );
-                },
-              );
-            },
-          ),
           BlocListener<LocationPermissionBloc, LocationPermissionState>(
             listener: (_, locationPermissionState) {
               locationPermissionState.maybeWhen(
@@ -419,7 +352,14 @@ class _GuestHomeViewState extends State<GuestHomeView> {
                         );
                   } else {
                     _stopListeningLocationServiceStatus();
+
+                    _showLocationPermissionDeniedDialog();
                   }
+                },
+                cannotRequestPermission: (_) {
+                  _stopListeningLocationServiceStatus();
+
+                  _showLocationPermissionPermanentlyDeniedDialog();
                 },
                 orElse: _stopListeningLocationServiceStatus,
               );
@@ -430,9 +370,7 @@ class _GuestHomeViewState extends State<GuestHomeView> {
               locationServiceStatusState.maybeWhen(
                 gotLocationServiceStatus: (locationServiceStatusEntity) {
                   if (locationServiceStatusEntity.enabled) {
-                    context.read<WifiPermissionBloc>().add(
-                          const WifiPermissionEvent.requestPermission(),
-                        );
+                    _requestWifiPermission();
 
                     context.read<LocationPositionBloc>().add(
                           const LocationPositionEvent.listenLocationPosition(),
@@ -443,6 +381,8 @@ class _GuestHomeViewState extends State<GuestHomeView> {
                     _stopListeningLocationPosition();
 
                     _centerLocationNotifier.value = false;
+
+                    _showLocationServiceStatusDisabledDialog();
                   }
                 },
                 orElse: () {
@@ -502,22 +442,52 @@ class _GuestHomeViewState extends State<GuestHomeView> {
             listener: (_, broadcastRemoteIDReceiverState) {
               broadcastRemoteIDReceiverState.whenOrNull(
                 gotRemoteIDs: (bridEntities) async {
-                  if (bridEntities.length > _currentDroneLimit) {
-                    await showModalBottomSheet<RestrictedFeatureSheet>(
+                  final latLng =
+                      context.read<LocationPositionBloc>().state.whenOrNull(
+                            gotLocationPosition: (locationPositionEntity) => (
+                              latitude: locationPositionEntity.latitude,
+                              longitude: locationPositionEntity.longitude,
+                            ),
+                          );
+
+                  context.read<CachedRemoteIDBloc>().add(
+                        CachedRemoteIDEvent.cacheRemoteIDs(
+                          remoteIDEntities: bridEntities,
+                          latitude: latLng?.latitude,
+                          longitude: latLng?.longitude,
+                        ),
+                      );
+
+                  if (bridEntities.length > _previousBridDronesCount) {
+                    _newBridDronesCountNotifier.value =
+                        bridEntities.length - _previousBridDronesCount;
+                  }
+
+                  _previousBridDronesCount = bridEntities.length;
+
+                  if (bridEntities.length == six &&
+                      !_hasShownAccumulatedDronesBottomSheetBefore) {
+                    _hasShownAccumulatedDronesBottomSheetBefore = true;
+
+                    await showModalBottomSheet<void>(
                       context: context,
-                      builder: (bottomSheetContext) => RestrictedFeatureSheet(
-                        isDroneInsightsFeature: false,
-                        onGetStartedPressed: () {
-                          Navigator.pop(bottomSheetContext);
-                          context.read<AuthBloc>().add(
-                                const AuthEvent.authenticate(),
-                              );
-                        },
+                      builder: (bottomSheetContext) => RestrictedFeature(
+                        guestUserBloc: context.read<GuestUserBloc>(),
+                        highlightImage: Assets.pngs.droneInsightsEye.image(),
+                        highlight: context.localize
+                            .youveTrackedFivePlusDronesReadyToUnlockMore,
+                        description: context.localize
+                            .createYourProfileToSaveProgressGetAlertsAndExploreDeeperInsights,
+                        onGetStartedPressed: () => Navigator.of(
+                          context,
+                        ).pushReplacementNamed(
+                          getStartedRoutePath,
+                          arguments: true,
+                        ),
                       ),
                     );
-                    _currentDroneLimit += 1;
-                    return;
                   }
+
                   if (_mapboxMap != null) {
                     _previousBridGeoJsonData =
                         await _mapboxMap!.addOrUpdateDronesOnMap(
@@ -525,6 +495,45 @@ class _GuestHomeViewState extends State<GuestHomeView> {
                       geoJsonSourceId: bridDronesSourceId,
                     );
                   }
+                },
+              );
+            },
+          ),
+          BlocListener<UASRestrictionsBloc, UASRestrictionsState>(
+            listener: (_, uASRestrictionsState) {
+              uASRestrictionsState.whenOrNull(
+                gotRestrictions: (geoHash, restrictionEntities) async {
+                  if (restrictionEntities.isEmpty) {
+                    return;
+                  }
+                  await _mapboxMap?.addRestrictionsOnMap(
+                    geoHash: geoHash,
+                    restrictionEntities: restrictionEntities,
+                  );
+                  _restrictionLayerIds.add(
+                    geoHash + layerId,
+                  );
+                },
+                selectedRestriction: (restrictionEntity) =>
+                    _clickedRestriction.value = restrictionEntity,
+              );
+            },
+          ),
+          BlocListener<GeoHashBloc, GeoHashState>(
+            listener: (_, geoHashState) {
+              geoHashState.whenOrNull(
+                computedGeoHashOfPrecision3: (geoHash) {
+                  context.read<WeatherBloc>().add(
+                        WeatherEvent.getWeather(
+                          geoHash: geoHash,
+                        ),
+                      );
+
+                  context.read<UASRestrictionsBloc>().add(
+                        UASRestrictionsEvent.getRestrictions(
+                          geoHash: geoHash,
+                        ),
+                      );
                 },
               );
             },
@@ -552,7 +561,40 @@ class _GuestHomeViewState extends State<GuestHomeView> {
             children: [
               MapView(
                 mapStyleUri: dotenv.env[mapboxMapsDarkStyleUri]!,
-                onTap: (_) {},
+                onTap: (mapContentGestureContext) async {
+                  if (_mapboxMap == null) {
+                    return;
+                  }
+
+                  _centerLocationNotifier.value = false;
+
+                  if (_restrictionLayerIds.isEmpty) {
+                    return;
+                  }
+
+                  final featureAndSourceId =
+                      await _mapboxMap!.handleRestrictionSelection(
+                    touchPosition: mapContentGestureContext.touchPosition,
+                    restrictionLayerIds: _restrictionLayerIds,
+                    previousRestrictionFeatureId:
+                        _currentlySelectedRestrictionFeatureId,
+                    previousRestrictionSourceId:
+                        _currentlySelectedRestrictionSourceId,
+                  );
+
+                  if (context.mounted) {
+                    context.read<UASRestrictionsBloc>().add(
+                          UASRestrictionsEvent.selectRestriction(
+                            restrictionId: featureAndSourceId.featureId,
+                          ),
+                        );
+                  }
+
+                  _currentlySelectedRestrictionFeatureId =
+                      featureAndSourceId.featureId;
+                  _currentlySelectedRestrictionSourceId =
+                      featureAndSourceId.sourceId;
+                },
                 onScroll: (_) => _centerLocationNotifier.value = false,
                 onCreated: (mapboxMap) {
                   mapboxMap
@@ -563,6 +605,16 @@ class _GuestHomeViewState extends State<GuestHomeView> {
                     )
                     ..scaleBar.updateSettings(
                       ScaleBarSettings(
+                        enabled: false,
+                      ),
+                    )
+                    ..logo.updateSettings(
+                      LogoSettings(
+                        enabled: false,
+                      ),
+                    )
+                    ..attribution.updateSettings(
+                      AttributionSettings(
                         enabled: false,
                       ),
                     );
@@ -577,6 +629,17 @@ class _GuestHomeViewState extends State<GuestHomeView> {
                         if (cameraState.zoom < six) {
                           return;
                         }
+
+                        context.read<GeoHashBloc>().add(
+                              GeoHashEvent.computeGeoHash(
+                                coordinates: (
+                                  latitude: cameraState.center.coordinates.lat
+                                      .toDouble(),
+                                  longitude: cameraState.center.coordinates.lng
+                                      .toDouble(),
+                                ),
+                              ),
+                            );
                       }
                     },
                   );
@@ -584,7 +647,6 @@ class _GuestHomeViewState extends State<GuestHomeView> {
                 onStyleLoaded: (_) async {
                   await _mapboxMap?.setUpLayersForDrones(
                     bridGeoJsonData: _previousBridGeoJsonData,
-                    nridGeoJsonData: null,
                   );
                 },
               ),
@@ -597,33 +659,45 @@ class _GuestHomeViewState extends State<GuestHomeView> {
                     myLocationFollowed: centerLocationNotifierValue,
                     isGuestUser: true,
                     mapStyle: mapStyleNotifierValue,
-                    onGiftTap: () {},
                     onMyLocationIconTap: () {
                       context.read<LocationPermissionBloc>().state.whenOrNull(
                         maybeGrantedPermission: (
                           locationPermissionEntity,
                         ) {
-                          if (locationPermissionEntity.granted) {
-                            context
-                                .read<LocationServiceStatusBloc>()
-                                .state
-                                .whenOrNull(
-                              gotLocationServiceStatus:
-                                  (locationServiceStatusEntity) {
-                                if (locationServiceStatusEntity.enabled) {
-                                  _centerLocationNotifier.value =
-                                      !_centerLocationNotifier.value;
+                          if (!locationPermissionEntity.granted) {
+                            _showLocationPermissionDeniedDialog();
 
-                                  if (_centerLocationNotifier.value) {
-                                    context.read<LocationPositionBloc>().add(
-                                          const LocationPositionEvent
-                                              .getLocationPosition(),
-                                        );
-                                  }
-                                }
-                              },
-                            );
+                            return;
                           }
+
+                          context
+                              .read<LocationServiceStatusBloc>()
+                              .state
+                              .whenOrNull(
+                            gotLocationServiceStatus:
+                                (locationServiceStatusEntity) {
+                              if (!locationServiceStatusEntity.enabled) {
+                                _showLocationServiceStatusDisabledDialog();
+
+                                return;
+                              }
+
+                              _requestWifiPermission();
+
+                              _centerLocationNotifier.value =
+                                  !_centerLocationNotifier.value;
+
+                              if (_centerLocationNotifier.value) {
+                                context.read<LocationPositionBloc>().add(
+                                      const LocationPositionEvent
+                                          .getLocationPosition(),
+                                    );
+                              }
+                            },
+                          );
+                        },
+                        cannotRequestPermission: (_) {
+                          _showLocationPermissionPermanentlyDeniedDialog();
                         },
                       );
                     },
@@ -644,76 +718,94 @@ class _GuestHomeViewState extends State<GuestHomeView> {
                         dotenv.env[newMapStyleUri]!,
                       );
                     },
-                    onDroneTap: () {},
                   ),
                 ),
               ),
             ],
           ),
-          bottomSheet: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              BlocBuilder<AuthBloc, AuthState>(
-                builder: (_, authState) =>
-                    BlocBuilder<Auth0LogoutBloc, Auth0LogoutState>(
-                  builder: (_, auth0LogoutState) => Padding(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: twentyDotNil,
-                    ),
-                    child: ElevatedButton(
-                      onPressed: authState.maybeWhen(
-                        authenticating: () => null,
-                        orElse: () => auth0LogoutState.maybeWhen(
-                          loggingOut: () => null,
-                          orElse: () => () => context.read<AuthBloc>().add(
-                                const AuthEvent.authenticate(),
-                              ),
-                        ),
-                      ),
-                      child: Center(
-                        child: authState.maybeWhen(
-                          authenticating: () => const SizedBox(
-                            width: sixteenDotNil,
-                            height: sixteenDotNil,
-                            child: CircularProgressIndicator(
-                              color: hexFFFFFF,
-                              strokeWidth: twoDotNil,
-                            ),
-                          ),
-                          orElse: () => auth0LogoutState.maybeWhen(
-                            loggingOut: () => const SizedBox(
-                              width: sixteenDotNil,
-                              height: sixteenDotNil,
-                              child: CircularProgressIndicator(
-                                color: hexFFFFFF,
-                                strokeWidth: twoDotNil,
-                              ),
-                            ),
-                            orElse: () => Text(
-                              context.localize.getStarted,
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .bodyMedium
-                                  ?.copyWith(
-                                    fontSize: fifteenDotNil,
-                                    height: twentyTwoDotFive / fifteenDotNil,
-                                    color: hexFFFFFF,
-                                  ),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
+          floatingActionButton: Padding(
+            padding: const EdgeInsetsDirectional.symmetric(
+              horizontal: fiveDotNil,
+            ),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.end,
+              children: [
+                RestrictionIndicator(
+                  clickedRestriction: _clickedRestriction,
                 ),
-              ),
-              const SizedBox(
-                height: twentyDotNil,
-              ),
-              const UASList(
-                isGuestUser: true,
-              ),
-            ],
+                const SizedBox(
+                  height: fourteenDotNil,
+                ),
+                Row(
+                  children: [
+                    SizedBox(
+                      width: MediaQuery.sizeOf(
+                            context,
+                          ).width /
+                          switch (MediaQuery.orientationOf(
+                            context,
+                          )) {
+                            Orientation.portrait => twelveDotNil,
+                            Orientation.landscape => fiveDotFive,
+                          },
+                    ),
+                    Expanded(
+                      child: ElevatedButton(
+                        onPressed: () {
+                          context.read<GuestUserBloc>().add(
+                                const GuestUserEvent.setUserIsGuest(
+                                  isGuest: false,
+                                ),
+                              );
+
+                          Navigator.of(
+                            context,
+                          ).pushReplacementNamed(
+                            getStartedRoutePath,
+                            arguments: true,
+                          );
+                        },
+                        style: Theme.of(
+                          context,
+                        ).elevatedButtonTheme.style?.copyWith(
+                              shape: WidgetStatePropertyAll<OutlinedBorder>(
+                                RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(
+                                    tenDotNil,
+                                  ),
+                                ),
+                              ),
+                              fixedSize: const WidgetStatePropertyAll<Size>(
+                                Size.fromHeight(
+                                  fiftyDotNil,
+                                ),
+                              ),
+                            ),
+                        child: Text(
+                          context.localize.getStartedAlt,
+                          style: Theme.of(
+                            context,
+                          ).textTheme.bodyMedium?.copyWith(
+                                fontWeight: FontWeight.w500,
+                                height: oneDotNil,
+                                letterSpacing: nilDotNil,
+                                color: hexFFFFFF,
+                              ),
+                        ),
+                      ),
+                    ),
+                    const SizedBox(
+                      width: fourteenDotNil,
+                    ),
+                    DronesIndicator(
+                      newDronesCount: _newBridDronesCountNotifier,
+                    ),
+                  ],
+                ),
+              ],
+            ),
           ),
         ),
       );

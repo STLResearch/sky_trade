@@ -129,6 +129,17 @@ final class AuthRepositoryImplementation
       );
 
   @override
+  Future<bool> get userIsGuest => _authLocalDataSource.userIsGuest;
+
+  @override
+  Future<void> setUserIsGuest({
+    required bool value,
+  }) =>
+      _authLocalDataSource.setUserIsGuest(
+        value: value,
+      );
+
+  @override
   Future<Either<Auth0LogoutFailure, Unit>> logoutCurrentAuth0User() =>
       handleData<Auth0LogoutFailure, Unit>(
         dataSourceOperation: () async {

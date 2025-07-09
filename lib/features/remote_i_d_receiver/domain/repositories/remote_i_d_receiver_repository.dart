@@ -4,7 +4,7 @@ import 'package:sky_trade/core/errors/failures/remote_i_d_receiver_failure.dart'
 import 'package:sky_trade/core/utils/enums/networking.dart'
     show ConnectionState;
 import 'package:sky_trade/features/remote_i_d_receiver/domain/entities/remote_i_d_entity.dart'
-    show RemoteIDEntity;
+    show DeviceEntity, GeolocatedRemoteIDCollectionEntity, RemoteIDEntity;
 
 abstract interface class RemoteIDReceiverRepository {
   Stream<Either<BroadcastRemoteIDReceiverFailure, List<RemoteIDEntity>>>
@@ -18,6 +18,18 @@ abstract interface class RemoteIDReceiverRepository {
   void requestNetworkRemoteIDsAround({
     required String geoHash,
   });
+
+  Future<List<GeolocatedRemoteIDCollectionEntity>?>
+      get cachedGeolocatedRemoteIDCollections;
+
+  Future<void> cacheGeolocatedRemoteIDCollection({
+    required List<RemoteIDEntity> remoteIDs,
+    required DeviceEntity? device,
+  });
+
+  Future<void> deleteCachedGeolocatedRemoteIDCollections();
+
+  Future<void> closeGeolocatedRemoteIDCollectionsLocalStorageBox();
 
   void stopListeningNetworkRemoteIDs();
 }

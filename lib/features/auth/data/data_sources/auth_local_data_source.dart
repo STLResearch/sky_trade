@@ -4,6 +4,7 @@ import 'package:shared_preferences/shared_preferences.dart'
 import 'package:sky_trade/core/resources/strings/local.dart'
     show
         auth0SessionForDeletedUserExistsKey,
+        isGuestUserKey,
         skyTradeUserBoxKey,
         skyTradeUserKey;
 import 'package:sky_trade/features/auth/data/models/auth_model.dart'
@@ -13,6 +14,12 @@ abstract interface class AuthLocalDataSource {
   Future<bool> get auth0SessionForDeletedUserExists;
 
   Future<void> setAuth0SessionForDeletedUserExists({
+    required bool value,
+  });
+
+  Future<bool> get userIsGuest;
+
+  Future<void> setUserIsGuest({
     required bool value,
   });
 
@@ -53,6 +60,29 @@ final class AuthLocalDataSourceImplementation implements AuthLocalDataSource {
 
     await preferences.setBool(
       auth0SessionForDeletedUserExistsKey,
+      value,
+    );
+  }
+
+  @override
+  Future<bool> get userIsGuest async {
+    final preferences = await _sharedPreferencesWithCache;
+
+    final isGuestUser = preferences.getBool(
+      isGuestUserKey,
+    );
+
+    return isGuestUser ?? false;
+  }
+
+  @override
+  Future<void> setUserIsGuest({
+    required bool value,
+  }) async {
+    final preferences = await _sharedPreferencesWithCache;
+
+    await preferences.setBool(
+      isGuestUserKey,
       value,
     );
   }

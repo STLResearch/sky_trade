@@ -9,13 +9,14 @@ import 'package:sky_trade/features/remote_i_d_receiver/data/models/remote_i_d_mo
         BasicIDModel,
         ConnectionModel,
         CoordinatesModel,
+        DeviceModel,
         LocationModel,
         OperatorIDModel,
         RemoteIDModel,
         SelfIDModel,
         SystemModel;
 import 'package:sky_trade/features/remote_i_d_receiver/domain/entities/remote_i_d_entity.dart'
-    show RemoteIDEntity;
+    show DeviceEntity, RemoteIDEntity;
 
 extension RemoteIDEntityExtensions on RemoteIDEntity {
   RemoteIDModel toRemoteIDModel() {
@@ -293,4 +294,11 @@ extension RemoteIDEntityExtensions on RemoteIDEntity {
         context.localize.index:
             authentication?.lastAuthenticationPageIndex?.toString() ?? hyphen,
       };
+}
+
+extension DeviceEntityExtensions on DeviceEntity {
+  DeviceModel toDeviceModel() => DeviceModel(
+        mLatitude: latitude,
+        mLongitude: longitude,
+      );
 }

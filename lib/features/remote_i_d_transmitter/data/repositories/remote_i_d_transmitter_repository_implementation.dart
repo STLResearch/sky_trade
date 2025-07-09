@@ -2,7 +2,7 @@ import 'package:dartz/dartz.dart' show Function0, Function1;
 import 'package:sky_trade/core/utils/enums/networking.dart'
     show ConnectionState;
 import 'package:sky_trade/features/remote_i_d_receiver/domain/entities/remote_i_d_entity.dart'
-    show RemoteIDEntity;
+    show GeolocatedRemoteIDCollectionEntity, RemoteIDEntity;
 import 'package:sky_trade/features/remote_i_d_transmitter/data/data_sources/remote_i_d_transmitter_remote_data_source.dart'
     show RemoteIDTransmitterRemoteDataSource;
 import 'package:sky_trade/features/remote_i_d_transmitter/domain/entities/remote_transmission_entity.dart'
@@ -27,6 +27,28 @@ final class RemoteIDTransmitterRepositoryImplementation
       _remoteIDTransmitterRemoteDataSource.startTransmitter(
         onRemoteIDSent: onRemoteIDSent,
         onConnectionChanged: onConnectionChanged,
+      );
+
+  @override
+  void transmitGeolocatedRemoteIDCollections({
+    required List<GeolocatedRemoteIDCollectionEntity>
+        geolocatedRemoteIDCollectionEntities,
+  }) =>
+      Future.forEach(
+        List<GeolocatedRemoteIDCollectionEntity>.from(
+          geolocatedRemoteIDCollectionEntities,
+        ),
+        (geolocatedRemoteIDCollectionEntity) => transmit(
+          remoteIDEntities: geolocatedRemoteIDCollectionEntity.remoteIDs,
+          deviceEntity: switch (
+              geolocatedRemoteIDCollectionEntity.device != null) {
+            true => DeviceEntity(
+                latitude: geolocatedRemoteIDCollectionEntity.device!.latitude,
+                longitude: geolocatedRemoteIDCollectionEntity.device!.longitude,
+              ),
+            false => null,
+          },
+        ),
       );
 
   @override

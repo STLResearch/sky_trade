@@ -44,6 +44,7 @@ import 'package:sky_trade/core/resources/numbers/ui.dart'
 import 'package:sky_trade/core/resources/strings/routes.dart'
     show
         errorRoutePath,
+        getStartedRoutePath,
         guestRoutePath,
         homeRoutePath,
         noInternetConnectionRoutePath,
@@ -64,6 +65,8 @@ import 'package:sky_trade/features/auth/presentation/blocs/check_sky_trade_user_
         CheckSkyTradeUserExistsBloc,
         CheckSkyTradeUserExistsEvent,
         CheckSkyTradeUserExistsState;
+import 'package:sky_trade/features/auth/presentation/blocs/guest_user_bloc/guest_user_bloc.dart'
+    show GuestUserBloc, GuestUserEvent, GuestUserState;
 import 'package:sky_trade/features/auth/presentation/blocs/s_f_a_configuration_bloc/s_f_a_configuration_bloc.dart'
     show SFAConfigurationBloc, SFAConfigurationEvent, SFAConfigurationState;
 import 'package:sky_trade/features/auth/presentation/blocs/s_f_a_user_session_bloc/s_f_a_user_session_bloc.dart'
@@ -110,6 +113,9 @@ class LoadingScreen extends StatelessWidget {
             create: (_) => serviceLocator(),
           ),
           BlocProvider<CompatibleBackendApiVersionBloc>(
+            create: (_) => serviceLocator(),
+          ),
+          BlocProvider<GuestUserBloc>(
             create: (_) => serviceLocator(),
           ),
         ],
@@ -207,6 +213,22 @@ class _LoadingViewState extends State<LoadingView> {
                   );
                 },
                 nonExistentAuth0Session: () {
+                  context.read<GuestUserBloc>().add(
+                        const GuestUserEvent.checkUserIsGuest(),
+                      );
+                },
+              );
+            },
+          ),
+          BlocListener<GuestUserBloc, GuestUserState>(
+            listener: (_, guestUserState) {
+              guestUserState.whenOrNull(
+                isGuestUser: () {
+                  _removeSplashScreenAndNavigateTo(
+                    route: guestRoutePath,
+                  );
+                },
+                notGuestUser: () {
                   context.read<Auth0UserSessionBloc>().add(
                         const Auth0UserSessionEvent.checkUserSession(),
                       );
@@ -242,7 +264,7 @@ class _LoadingViewState extends State<LoadingView> {
                 },
                 nonExistentUserSession: () {
                   _removeSplashScreenAndNavigateTo(
-                    route: guestRoutePath,
+                    route: getStartedRoutePath,
                   );
                 },
               );
@@ -259,7 +281,7 @@ class _LoadingViewState extends State<LoadingView> {
                 },
                 failedToRenewCredentials: () {
                   _removeSplashScreenAndNavigateTo(
-                    route: guestRoutePath,
+                    route: getStartedRoutePath,
                   );
                 },
               );
@@ -292,7 +314,7 @@ class _LoadingViewState extends State<LoadingView> {
                 },
                 sessionNotExist: () {
                   _removeSplashScreenAndNavigateTo(
-                    route: guestRoutePath,
+                    route: getStartedRoutePath,
                   );
                 },
               );
@@ -311,7 +333,7 @@ class _LoadingViewState extends State<LoadingView> {
                   _removeSplashScreenAndNavigateTo(
                     route: switch (checkSkyTradeUserFailure) {
                       UserNotFoundFailure() => onboardingRoutePath,
-                      _ => guestRoutePath,
+                      _ => getStartedRoutePath,
                     },
                   );
                 },

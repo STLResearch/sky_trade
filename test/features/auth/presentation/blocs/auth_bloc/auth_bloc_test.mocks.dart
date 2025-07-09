@@ -83,6 +83,13 @@ class MockAuthRepository extends _i1.Mock implements _i4.AuthRepository {
       ) as _i5.Future<bool>);
 
   @override
+  _i5.Future<bool> get userIsGuest => (super.noSuchMethod(
+        Invocation.getter(#userIsGuest),
+        returnValue: _i5.Future<bool>.value(false),
+        returnValueForMissingStub: _i5.Future<bool>.value(false),
+      ) as _i5.Future<bool>);
+
+  @override
   _i5.Future<
       _i2.Either<_i6.GetSkyTradeUserFailure,
           _i7.SkyTradeUserEntity>> get skyTradeUser => (super.noSuchMethod(
@@ -200,6 +207,18 @@ class MockAuthRepository extends _i1.Mock implements _i4.AuthRepository {
       (super.noSuchMethod(
         Invocation.method(
           #setAuth0SessionForDeletedUserExists,
+          [],
+          {#value: value},
+        ),
+        returnValue: _i5.Future<void>.value(),
+        returnValueForMissingStub: _i5.Future<void>.value(),
+      ) as _i5.Future<void>);
+
+  @override
+  _i5.Future<void> setUserIsGuest({required bool? value}) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #setUserIsGuest,
           [],
           {#value: value},
         ),

@@ -46,7 +46,9 @@ Route routes(RouteSettings settings) => MaterialPageRoute(
           errorRoutePath => ErrorScreen(
               reason: settings.arguments! as ErrorReason,
             ),
-          getStartedRoutePath => const GetStartedScreen(),
+          getStartedRoutePath => GetStartedScreen(
+              automaticallyGetStarted: settings.arguments as bool?,
+            ),
           guestRoutePath => const GuestHomeScreen(),
           homeRoutePath => const HomeScreen(),
           helpRoutePath => const HelpScreen(),

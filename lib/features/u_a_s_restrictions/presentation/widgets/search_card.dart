@@ -75,6 +75,7 @@ class SearchCard extends StatelessWidget {
     required this.onSearchFieldCleared,
     required this.onSearchFieldTextChanged,
     required this.tappedSearchResultPlaceName,
+    this.onMenuButtonPressed,
     super.key,
   });
 
@@ -85,6 +86,8 @@ class SearchCard extends StatelessWidget {
   final Function1<String, void> onSearchFieldTextChanged;
 
   final String? tappedSearchResultPlaceName;
+
+  final Function0<void>? onMenuButtonPressed;
 
   @override
   Widget build(BuildContext context) => MultiBlocProvider(
@@ -101,6 +104,7 @@ class SearchCard extends StatelessWidget {
           onSearchFieldCleared: onSearchFieldCleared,
           onSearchFieldTextChanged: onSearchFieldTextChanged,
           tappedSearchResultPlaceName: tappedSearchResultPlaceName,
+          onMenuButtonPressed: onMenuButtonPressed,
         ),
       );
 }
@@ -111,6 +115,7 @@ class SearchCardView extends StatefulWidget {
     required this.onSearchFieldCleared,
     required this.onSearchFieldTextChanged,
     required this.tappedSearchResultPlaceName,
+    this.onMenuButtonPressed,
     super.key,
   });
 
@@ -121,6 +126,8 @@ class SearchCardView extends StatefulWidget {
   final Function1<String, void> onSearchFieldTextChanged;
 
   final String? tappedSearchResultPlaceName;
+
+  final Function0<void>? onMenuButtonPressed;
 
   @override
   State<SearchCardView> createState() => _SearchCardViewState();
@@ -325,9 +332,10 @@ class _SearchCardViewState extends State<SearchCardView> {
               width: tenDotNil,
             ),
             InkWell(
-              onTap: () => MenuDialog.show(
-                context,
-              ),
+              onTap: widget.onMenuButtonPressed ??
+                  () => MenuDialog.show(
+                        context,
+                      ),
               child: Container(
                 padding: const EdgeInsetsDirectional.symmetric(
                   vertical: twentyDotNil,

@@ -953,3 +953,37 @@ base class AuthenticationEntity extends Equatable {
         rawData,
       ];
 }
+
+base class GeolocatedRemoteIDCollectionEntity extends Equatable {
+  const GeolocatedRemoteIDCollectionEntity({
+    required this.remoteIDs,
+    required this.device,
+  });
+
+  final List<RemoteIDEntity> remoteIDs;
+
+  final DeviceEntity? device;
+
+  @override
+  List<Object?> get props => [
+        remoteIDs,
+        device,
+      ];
+}
+
+base class DeviceEntity extends Equatable {
+  const DeviceEntity({
+    required this.latitude,
+    required this.longitude,
+  });
+
+  final double latitude;
+
+  final double longitude;
+
+  @override
+  List<Object?> get props => [
+        latitude,
+        longitude,
+      ];
+}

@@ -12,17 +12,24 @@ import 'package:sky_trade/core/errors/failures/remote_i_d_receiver_failure.dart'
 import 'package:sky_trade/core/resources/numbers/networking.dart' show zero;
 import 'package:sky_trade/core/utils/enums/networking.dart'
     show ConnectionState;
+import 'package:sky_trade/core/utils/extensions/remote_i_d_entity_extensions.dart';
+import 'package:sky_trade/features/remote_i_d_receiver/data/data_sources/remote_i_d_receiver_local_data_source.dart'
+    show RemoteIDReceiverLocalDataSource;
 import 'package:sky_trade/features/remote_i_d_receiver/data/data_sources/remote_i_d_receiver_remote_data_source.dart'
     show RemoteIDReceiverRemoteDataSource;
 import 'package:sky_trade/features/remote_i_d_receiver/domain/entities/remote_i_d_entity.dart'
-    show RemoteIDEntity;
+    show DeviceEntity, GeolocatedRemoteIDCollectionEntity, RemoteIDEntity;
 import 'package:sky_trade/features/remote_i_d_receiver/domain/repositories/remote_i_d_receiver_repository.dart';
 
 final class RemoteIDReceiverRepositoryImplementation
     implements RemoteIDReceiverRepository {
-  const RemoteIDReceiverRepositoryImplementation(
-    RemoteIDReceiverRemoteDataSource remoteIDReceiverRemoteDataSource,
-  ) : _remoteIDReceiverRemoteDataSource = remoteIDReceiverRemoteDataSource;
+  const RemoteIDReceiverRepositoryImplementation({
+    required RemoteIDReceiverLocalDataSource remoteIDReceiverLocalDataSource,
+    required RemoteIDReceiverRemoteDataSource remoteIDReceiverRemoteDataSource,
+  })  : _remoteIDReceiverLocalDataSource = remoteIDReceiverLocalDataSource,
+        _remoteIDReceiverRemoteDataSource = remoteIDReceiverRemoteDataSource;
+
+  final RemoteIDReceiverLocalDataSource _remoteIDReceiverLocalDataSource;
 
   final RemoteIDReceiverRemoteDataSource _remoteIDReceiverRemoteDataSource;
 
@@ -149,6 +156,35 @@ final class RemoteIDReceiverRepositoryImplementation
       _remoteIDReceiverRemoteDataSource.requestNetworkRemoteIDsAround(
         geoHash: geoHash,
       );
+
+  @override
+  Future<List<GeolocatedRemoteIDCollectionEntity>?>
+      get cachedGeolocatedRemoteIDCollections =>
+          _remoteIDReceiverLocalDataSource.cachedGeolocatedRemoteIDCollections;
+
+  @override
+  Future<void> cacheGeolocatedRemoteIDCollection({
+    required List<RemoteIDEntity> remoteIDs,
+    required DeviceEntity? device,
+  }) =>
+      _remoteIDReceiverLocalDataSource.cacheGeolocatedRemoteIDCollection(
+        remoteIDs: remoteIDs
+            .map(
+              (remoteID) => remoteID.toRemoteIDModel(),
+            )
+            .toList(),
+        device: device?.toDeviceModel(),
+      );
+
+  @override
+  Future<void> deleteCachedGeolocatedRemoteIDCollections() =>
+      _remoteIDReceiverLocalDataSource
+          .deleteCachedGeolocatedRemoteIDCollections();
+
+  @override
+  Future<void> closeGeolocatedRemoteIDCollectionsLocalStorageBox() =>
+      _remoteIDReceiverLocalDataSource
+          .closeGeolocatedRemoteIDCollectionsLocalStorageBox();
 
   @override
   void stopListeningNetworkRemoteIDs() =>

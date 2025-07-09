@@ -27,6 +27,12 @@ abstract interface class AuthRepository {
     required bool value,
   });
 
+  Future<bool> get userIsGuest;
+
+  Future<void> setUserIsGuest({
+    required bool value,
+  });
+
   Future<Either<Auth0LogoutFailure, Unit>> logoutCurrentAuth0User();
 
   Future<Either<SFAConfigurationFailure, Unit>> configureSFA();

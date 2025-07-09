@@ -381,7 +381,7 @@ extension MapboxMapExtensions on MapboxMap {
 
   Future<void> setUpLayersForDrones({
     required String bridGeoJsonData,
-    required String? nridGeoJsonData,
+    String? nridGeoJsonData,
   }) async {
     final droneStyleImage = await _addStyleImageUsing(
       styleImageName: iconDroneValue,
@@ -598,11 +598,11 @@ extension MapboxMapExtensions on MapboxMap {
   }) =>
       rgba +
       openingParenthesis +
-      color.r.toString() +
+      color.red.toString() +
       comma +
-      color.g.toString() +
+      color.green.toString() +
       comma +
-      color.b.toString() +
+      color.blue.toString() +
       comma +
       alpha.toString() +
       closingParenthesis;
