@@ -138,6 +138,7 @@ final class ReferralRemoteDataSourceImplementation
           includeSignature: true,
           queryParameters: {
             currentLimitKey: currentLimit,
+            orderByPointsDescKey: true,
           },
         ),
         onSuccess: LeaderboardPositionModel.fromJson,
