@@ -13,24 +13,9 @@ import 'package:sky_trade/core/resources/numbers/networking.dart'
         requestReceiveTimeoutSeconds,
         requestSendTimeoutSeconds,
         zero;
+import 'package:sky_trade/core/resources/strings/local.dart' show deviceUUIDKey;
 import 'package:sky_trade/core/resources/strings/networking.dart'
-    show
-        acceptAllHeaderValue,
-        acceptHeaderKey,
-        anErrorOccurredWhileProcessingTheEventLogMessage,
-        applicationJsonHeaderValue,
-        bodyKey,
-        contentTypeHeaderKey,
-        emailAddressHeaderKey,
-        expectedTypeLogMessage,
-        radarPath,
-        signAddressHeaderKey,
-        signHeaderKey,
-        signIssueAtHeaderKey,
-        signNonceHeaderKey,
-        socketExceptionLogMessage,
-        unexpectedResponseTypeReceivedLogMessage,
-        websocketTransport;
+    show acceptAllHeaderValue, acceptHeaderKey, anErrorOccurredWhileProcessingTheEventLogMessage, applicationJsonHeaderValue, bodyKey, contentTypeHeaderKey, emailAddressHeaderKey, expectedTypeLogMessage, radarPath, signAddressHeaderKey, signHeaderKey, signIssueAtHeaderKey, signNonceHeaderKey, socketExceptionLogMessage, unexpectedResponseTypeReceivedLogMessage, websocketTransport;
 import 'package:sky_trade/core/resources/strings/secret_keys.dart'
     show skyTradeServerHttpBaseUrl, skyTradeServerSocketIOBaseUrl;
 import 'package:sky_trade/core/resources/strings/special_characters.dart'
@@ -464,6 +449,7 @@ final class HttpClient with SignatureHandler {
       queryParameters: queryParameters,
     );
     final email = await computeUserEmail();
+    final deviceUUID = await getDeviceUUID();
     final sign = await signMessage(
       message,
     );
@@ -475,6 +461,7 @@ final class HttpClient with SignatureHandler {
         signNonceHeaderKey: nonce,
         signAddressHeaderKey: walletAddress,
         if (email != null) emailAddressHeaderKey: email,
+        if (deviceUUID != null) deviceUUIDKey: deviceUUID,
         if (headers != null) ...headers,
       },
       sendTimeout: overrideSendTimeout,

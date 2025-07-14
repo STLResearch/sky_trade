@@ -5,6 +5,7 @@ import 'package:sky_trade/core/injection_container/auth.dart';
 import 'package:sky_trade/core/injection_container/bluetooth.dart';
 import 'package:sky_trade/core/injection_container/buy_air_rights.dart';
 import 'package:sky_trade/core/injection_container/core.dart';
+import 'package:sky_trade/core/injection_container/device_profile.dart';
 import 'package:sky_trade/core/injection_container/drone_flight_path.dart';
 import 'package:sky_trade/core/injection_container/drone_insights.dart';
 import 'package:sky_trade/core/injection_container/external.dart';
@@ -34,6 +35,7 @@ Future<void> registerServices() => Future.wait<void>([
       registerBuyAirRightsServices(),
       registerDroneFlightPathServices(),
       registerDroneInsightsServices(),
+      registerDeviceProfileServices(),
       registerGeoHashServices(),
       registerInternetConnectionCheckerServices(),
       registerLinkHandlerServices(),

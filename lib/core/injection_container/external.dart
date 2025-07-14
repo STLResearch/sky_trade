@@ -16,6 +16,7 @@ import 'package:sky_trade/core/resources/strings/local.dart'
     show
         analyticsStateKey,
         auth0SessionForDeletedUserExistsKey,
+        deviceUUIDKey,
         isGuestUserKey,
         shouldShowRewardsOnboardingKey;
 import 'package:sky_trade/core/resources/strings/secret_keys.dart'
@@ -48,6 +49,7 @@ Future<void> registerExternalServices() async {
         cacheOptions: const SharedPreferencesWithCacheOptions(
           allowList: {
             analyticsStateKey,
+            deviceUUIDKey,
             auth0SessionForDeletedUserExistsKey,
             shouldShowRewardsOnboardingKey,
             isGuestUserKey,
