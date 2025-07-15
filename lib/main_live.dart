@@ -161,5 +161,5 @@ Widget get _app => ClarityWidget(
 
 ClarityConfig get _clarityConfig => ClarityConfig(
       projectId: dotenv.env[clarityProjectId]!,
-      logLevel: LogLevel.Verbose,
+      logLevel: LogLevel.None,
     );
