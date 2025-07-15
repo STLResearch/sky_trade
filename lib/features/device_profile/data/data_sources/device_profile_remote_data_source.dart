@@ -1,7 +1,7 @@
 import 'package:sky_trade/core/errors/exceptions/device_profile_exception.dart'
     show DeviceProfileException;
 import 'package:sky_trade/core/resources/strings/networking.dart'
-    show privatePath, sendDeviceMetadataPath;
+    show privatePath, sendDeviceMetadataPath, usersPath;
 import 'package:sky_trade/core/utils/clients/network_client.dart'
     show HttpClient;
 import 'package:sky_trade/core/utils/clients/response_handler.dart'
@@ -29,8 +29,8 @@ final class DeviceUUIDRemoteDataSourceImplementation
   }) async =>
       handleResponse<DeviceProfileException, int, int>(
         requestInitiator: _httpClient.request(
-          requestMethod: RequestMethod.get,
-          path: privatePath + sendDeviceMetadataPath,
+          requestMethod: RequestMethod.post,
+          path: privatePath + usersPath + sendDeviceMetadataPath,
           includeSignature: true,
           data: deviceMetadata,
         ),

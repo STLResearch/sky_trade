@@ -113,6 +113,7 @@ const signIssueAtHeaderKey = 'sign_issue_at';
 const signNonceHeaderKey = 'sign_nonce';
 const signAddressHeaderKey = 'sign_address';
 const emailAddressHeaderKey = 'email_address';
+const deviceUUIDKey = 'device_uuid';
 // Body
 const additionalLinksKey = 'additional_links';
 const countryKey = 'country';
