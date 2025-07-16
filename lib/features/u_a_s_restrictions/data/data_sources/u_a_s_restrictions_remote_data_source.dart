@@ -33,7 +33,7 @@ final class UASRestrictionsRemoteDataSourceImplementation
         requestInitiator: _httpClient.request(
           requestMethod: RequestMethod.get,
           path: restrictionsPath,
-          includeSignature: true,
+          includeSignature: false,
           queryParameters: {
             geoHashKey: geoHash,
           },
