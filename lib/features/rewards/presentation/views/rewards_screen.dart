@@ -19,6 +19,7 @@ import 'package:flutter/material.dart'
         Container,
         CrossAxisAlignment,
         CustomScrollView,
+        DateUtils,
         EdgeInsetsDirectional,
         Expanded,
         Flexible,
@@ -389,53 +390,80 @@ class _RewardsScreenViewState extends State<RewardsScreenView> {
                       ),
                     ],
                   ),
-                  child: Row(
+                  child: Column(
                     mainAxisSize: MainAxisSize.min,
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Assets.svgs.totalPoints.svg(),
-                      const SizedBox(
-                        width: eightDotNil,
-                      ),
-                      Flexible(
-                        child: BlocBuilder<RewardPointsBloc, RewardPointsState>(
-                          builder: (_, rewardPointsState) => Skeletonizer(
-                            effect: rewardPointsState.maybeWhen(
-                              failedToGetPoints: (_) => const SoldColorEffect(
-                                color: hexEBEBF4,
-                              ),
-                              orElse: () => ShimmerEffect(
-                                highlightColor: Theme.of(
-                                  context,
-                                ).scaffoldBackgroundColor,
-                              ),
-                            ),
-                            enabled: rewardPointsState.maybeWhen(
-                              gotPoints: (_) => false,
-                              orElse: () => true,
-                            ),
-                            child: Text(
-                              rewardPointsState.maybeWhen(
-                                gotPoints: (rewardPointsEntity) =>
-                                    rewardPointsEntity.stats.sum.point
-                                        ?.toString() ??
-                                    zero.toString(),
-                                orElse: () => BoneMock.chars(
-                                  two,
+                      Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Assets.svgs.totalPoints.svg(),
+                          const SizedBox(
+                            width: eightDotNil,
+                          ),
+                          Flexible(
+                            child: BlocBuilder<RewardPointsBloc,
+                                RewardPointsState>(
+                              builder: (_, rewardPointsState) => Skeletonizer(
+                                effect: rewardPointsState.maybeWhen(
+                                  failedToGetPoints: (_) =>
+                                      const SoldColorEffect(
+                                    color: hexEBEBF4,
+                                  ),
+                                  orElse: () => ShimmerEffect(
+                                    highlightColor: Theme.of(
+                                      context,
+                                    ).scaffoldBackgroundColor,
+                                  ),
+                                ),
+                                enabled: rewardPointsState.maybeWhen(
+                                  gotPoints: (_) => false,
+                                  orElse: () => true,
+                                ),
+                                child: Text(
+                                  rewardPointsState.maybeWhen(
+                                    gotPoints: (rewardPointsEntity) =>
+                                        rewardPointsEntity.stats.sum.point
+                                            ?.toString() ??
+                                        zero.toString(),
+                                    orElse: () => BoneMock.chars(
+                                      two,
+                                    ),
+                                  ),
+                                  maxLines: one,
+                                  overflow: TextOverflow.ellipsis,
+                                  style: Theme.of(
+                                    context,
+                                  ).textTheme.bodyLarge?.copyWith(
+                                        fontSize: twentyFourDotNil,
+                                        height: oneDotNil,
+                                        letterSpacing: nilDotNil,
+                                      ),
                                 ),
                               ),
-                              maxLines: one,
-                              overflow: TextOverflow.ellipsis,
-                              style: Theme.of(
-                                context,
-                              ).textTheme.bodyLarge?.copyWith(
-                                    fontSize: twentyFourDotNil,
-                                    height: oneDotNil,
-                                    letterSpacing: nilDotNil,
-                                  ),
                             ),
                           ),
-                        ),
+                        ],
+                      ),
+                      const SizedBox(height: fourDotNil),
+                      Text(
+                        (DateUtils.getDaysInMonth(
+                                      DateTime.now().year,
+                                      DateTime.now().month,
+                                    ) -
+                                    DateTime.now().day)
+                                .toString() +
+                            whiteSpace +
+                            context.localize.daysLeft,
+                        maxLines: one,
+                        overflow: TextOverflow.ellipsis,
+                        style: Theme.of(
+                          context,
+                        ).textTheme.bodyLarge?.copyWith(
+                              fontSize: tenDotNil,
+                              height: oneDotNil,
+                              letterSpacing: nilDotNil,
+                            ),
                       ),
                     ],
                   ),
