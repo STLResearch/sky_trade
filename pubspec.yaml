@@ -15,7 +15,7 @@ dependencies:
   bloc: ^9.0.0
   bloc_test: ^10.0.0
   cached_network_image: ^3.4.1
-  clarity_flutter: ^1.0.0
+  clarity_flutter: ^1.2.0
   cupertino_icons: ^1.0.8
   dart_geohash: ^2.1.0
   dartz: ^0.10.1
