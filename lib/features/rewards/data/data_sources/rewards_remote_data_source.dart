@@ -5,7 +5,7 @@ import 'package:sky_trade/core/resources/strings/networking.dart'
         currentLeaderboardInfoPath,
         currentLeaderboardPositionPath,
         currentLimitKey,
-        droneObservationValue,
+        dronePointsProgramValue,
         droneRadarPath,
         endTimeKey,
         getDailyQuestPath,
@@ -71,7 +71,7 @@ final class RewardsRemoteDataSourceImplementation
           path: privatePath + rewardPath + getRewardInfoPath,
           includeSignature: true,
           queryParameters: {
-            taskTypeKey: droneObservationValue,
+            taskTypeKey: dronePointsProgramValue,
           },
         ),
         onSuccess: RewardPointsModel.fromJson,
@@ -107,8 +107,8 @@ final class RewardsRemoteDataSourceImplementation
           path: privatePath + rewardPath + currentLeaderboardPositionPath,
           includeSignature: true,
           queryParameters: {
-            taskTypeKey: droneObservationValue,
             currentLimitKey: currentLimit,
+            taskTypeKey: dronePointsProgramValue,
           },
         ),
         onSuccess: LeaderboardPositionModel.fromJson,
@@ -127,9 +127,9 @@ final class RewardsRemoteDataSourceImplementation
           path: publicPath + rewardPath + currentLeaderboardInfoPath,
           includeSignature: false,
           queryParameters: {
-            taskTypeKey: droneObservationValue,
             pageKey: page,
             limitKey: limit,
+            taskTypeKey: dronePointsProgramValue,
           },
         ),
         onSuccess: LeaderboardStatisticsModel.fromJson,

@@ -353,6 +353,7 @@ class _LeaderboardViewState extends State<LeaderboardView> {
                         context.localize.daysLeft,
                     maxLines: one,
                     overflow: TextOverflow.ellipsis,
+                    textAlign: TextAlign.center,
                     style: Theme.of(
                       context,
                     ).textTheme.bodyLarge?.copyWith(

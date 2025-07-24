@@ -473,6 +473,7 @@ const imperialValue = 'imperial';
 const currentAPIVersionKey = 'currentAPIVersion';
 const taskTypeKey = 'taskType';
 const droneObservationValue = 'drone-observation';
+const dronePointsProgramValue = 'drone-points-program';
 const pointsKey = 'points';
 const questDateKey = 'questDate';
 const questTypeKey = 'questType';
