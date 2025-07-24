@@ -43,6 +43,7 @@ import 'package:flutter/material.dart'
         StatefulWidget,
         StatelessWidget,
         Text,
+        TextAlign,
         TextOverflow,
         TextSpan,
         Theme,
@@ -445,7 +446,9 @@ class _RewardsScreenViewState extends State<RewardsScreenView> {
                           ),
                         ],
                       ),
-                      const SizedBox(height: fourDotNil),
+                      const SizedBox(
+                        height: fourDotNil,
+                      ),
                       Text(
                         (DateUtils.getDaysInMonth(
                                       DateTime.now().year,
@@ -457,6 +460,7 @@ class _RewardsScreenViewState extends State<RewardsScreenView> {
                             context.localize.daysLeft,
                         maxLines: one,
                         overflow: TextOverflow.ellipsis,
+                        textAlign: TextAlign.center,
                         style: Theme.of(
                           context,
                         ).textTheme.bodyLarge?.copyWith(
