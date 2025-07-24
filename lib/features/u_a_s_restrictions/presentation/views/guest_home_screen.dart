@@ -6,23 +6,36 @@ import 'package:dartz/dartz.dart' show Function0;
 import 'package:flutter/material.dart'
     show
         AlignmentDirectional,
+        BorderRadius,
         BuildContext,
         Column,
         CrossAxisAlignment,
         EdgeInsetsDirectional,
+        ElevatedButton,
+        Expanded,
+        FontWeight,
         MainAxisAlignment,
         MainAxisSize,
+        MediaQuery,
         Navigator,
+        Orientation,
+        OutlinedBorder,
         Padding,
+        RoundedRectangleBorder,
+        Row,
         Scaffold,
+        Size,
         SizedBox,
         Stack,
         State,
         StatefulWidget,
         StatelessWidget,
+        Text,
+        Theme,
         ValueListenableBuilder,
         ValueNotifier,
         Widget,
+        WidgetStatePropertyAll,
         showModalBottomSheet;
 import 'package:flutter_bloc/flutter_bloc.dart'
     show
@@ -40,9 +53,20 @@ import 'package:mapbox_maps_flutter/mapbox_maps_flutter.dart'
         MapboxMap,
         MapboxOptions,
         ScaleBarSettings;
-import 'package:sky_trade/core/resources/colors.dart' show hexB3FFFFFF;
+import 'package:sky_trade/core/assets/generated/assets.gen.dart' show Assets;
+import 'package:sky_trade/core/resources/colors.dart' show hexFFFFFF;
 import 'package:sky_trade/core/resources/numbers/ui.dart'
-    show fiveDotNil, fourteenDotNil, six, zero;
+    show
+        fiftyDotNil,
+        fiveDotFive,
+        fiveDotNil,
+        fourteenDotNil,
+        nilDotNil,
+        oneDotNil,
+        six,
+        tenDotNil,
+        twelveDotNil,
+        zero;
 import 'package:sky_trade/core/resources/strings/routes.dart'
     show getStartedRoutePath;
 import 'package:sky_trade/core/resources/strings/secret_keys.dart'
@@ -58,8 +82,8 @@ import 'package:sky_trade/core/utils/enums/environment.dart' show Settings;
 import 'package:sky_trade/core/utils/enums/ui.dart' show MapStyle;
 import 'package:sky_trade/core/utils/extensions/build_context_extensions.dart';
 import 'package:sky_trade/core/utils/extensions/mapbox_map_extensions.dart';
-import 'package:sky_trade/features/auth/presentation/blocs/auth_0_logout_bloc/auth_0_logout_bloc.dart'
-    show Auth0LogoutBloc, Auth0LogoutState;
+import 'package:sky_trade/features/auth/presentation/blocs/guest_user_bloc/guest_user_bloc.dart'
+    show GuestUserBloc, GuestUserEvent;
 import 'package:sky_trade/features/bluetooth/presentation/blocs/bluetooth_permissions_bloc/bluetooth_permissions_bloc.dart'
     show
         BluetoothPermissionsBloc,
@@ -87,20 +111,9 @@ import 'package:sky_trade/features/remote_i_d_receiver/presentation/blocs/broadc
         BroadcastRemoteIDReceiverEvent,
         BroadcastRemoteIDReceiverState;
 import 'package:sky_trade/features/remote_i_d_receiver/presentation/blocs/cached_remote_i_d_bloc/cached_remote_i_d_bloc.dart'
-    show CachedRemoteIDBloc, CachedRemoteIDEvent, CachedRemoteIDState;
-import 'package:sky_trade/features/remote_i_d_receiver/presentation/blocs/network_remote_i_d_receiver_bloc/network_remote_i_d_receiver_bloc.dart'
-    show
-        NetworkRemoteIDReceiverBloc,
-        NetworkRemoteIDReceiverEvent,
-        NetworkRemoteIDReceiverState;
-import 'package:sky_trade/features/remote_i_d_transmitter/presentation/blocs/cached_remote_i_d_transmitter_bloc/cached_remote_i_d_transmitter_bloc.dart'
-    show CachedRemoteIDTransmitterBloc, CachedRemoteIDTransmitterState;
-import 'package:sky_trade/features/remote_i_d_transmitter/presentation/blocs/remote_i_d_transmitter_bloc/remote_i_d_transmitter_bloc.dart'
-    show RemoteIDTransmitterBloc, RemoteIDTransmitterEvent;
+    show CachedRemoteIDBloc, CachedRemoteIDEvent;
 import 'package:sky_trade/features/rewards/presentation/blocs/drone_rush_zones_bloc/drone_rush_zones_bloc.dart'
-    show DroneRushZonesBloc, DroneRushZonesEvent, DroneRushZonesState;
-import 'package:sky_trade/features/rewards/presentation/widgets/event_details.dart'
-    show EventDetails;
+    show DroneRushZonesBloc;
 import 'package:sky_trade/features/search_autocomplete/presentation/blocs/retrieve_geometric_coordinates_bloc/retrieve_geometric_coordinates_bloc.dart'
     show RetrieveGeometricCoordinatesBloc, RetrieveGeometricCoordinatesState;
 import 'package:sky_trade/features/u_a_s_restrictions/domain/entities/restriction_entity.dart'
@@ -108,14 +121,12 @@ import 'package:sky_trade/features/u_a_s_restrictions/domain/entities/restrictio
 import 'package:sky_trade/features/u_a_s_restrictions/presentation/blocs/u_a_s_restrictions_bloc/u_a_s_restrictions_bloc.dart'
     show UASRestrictionsBloc, UASRestrictionsEvent, UASRestrictionsState;
 import 'package:sky_trade/features/u_a_s_restrictions/presentation/widgets/action_dialog.dart';
-import 'package:sky_trade/features/u_a_s_restrictions/presentation/widgets/alert_snack_bar.dart';
-import 'package:sky_trade/features/u_a_s_restrictions/presentation/widgets/cached_drone_data_info.dart'
-    show CachedDroneDataInfo;
 import 'package:sky_trade/features/u_a_s_restrictions/presentation/widgets/drones_indicator.dart';
 import 'package:sky_trade/features/u_a_s_restrictions/presentation/widgets/map_overlay.dart'
     show MapOverlay;
 import 'package:sky_trade/features/u_a_s_restrictions/presentation/widgets/map_view.dart';
-import 'package:sky_trade/features/u_a_s_restrictions/presentation/widgets/progress_dialog.dart';
+import 'package:sky_trade/features/u_a_s_restrictions/presentation/widgets/restricted_feature.dart'
+    show RestrictedFeature;
 import 'package:sky_trade/features/u_a_s_restrictions/presentation/widgets/restriction_indicator.dart';
 import 'package:sky_trade/features/weather/presentation/weather_bloc/weather_bloc.dart'
     show WeatherBloc, WeatherEvent;
@@ -123,15 +134,12 @@ import 'package:sky_trade/features/wifi/presentation/blocs/wifi_permission_bloc/
     show WifiPermissionBloc, WifiPermissionEvent, WifiPermissionState;
 import 'package:sky_trade/injection_container.dart' show serviceLocator;
 
-class HomeScreen extends StatelessWidget {
-  const HomeScreen({super.key});
+class GuestHomeScreen extends StatelessWidget {
+  const GuestHomeScreen({super.key});
 
   @override
   Widget build(BuildContext context) => MultiBlocProvider(
         providers: [
-          BlocProvider<Auth0LogoutBloc>(
-            create: (_) => serviceLocator(),
-          ),
           BlocProvider<BluetoothPermissionsBloc>(
             create: (_) => serviceLocator(),
           ),
@@ -153,12 +161,6 @@ class HomeScreen extends StatelessWidget {
           BlocProvider<BroadcastRemoteIDReceiverBloc>(
             create: (_) => serviceLocator(),
           ),
-          BlocProvider<NetworkRemoteIDReceiverBloc>(
-            create: (_) => serviceLocator(),
-          ),
-          BlocProvider<RemoteIDTransmitterBloc>(
-            create: (_) => serviceLocator(),
-          ),
           BlocProvider<UASRestrictionsBloc>(
             create: (_) => serviceLocator(),
           ),
@@ -174,25 +176,25 @@ class HomeScreen extends StatelessWidget {
           BlocProvider<DroneRushZonesBloc>(
             create: (_) => serviceLocator(),
           ),
+          BlocProvider<GuestUserBloc>(
+            create: (_) => serviceLocator(),
+          ),
           BlocProvider<CachedRemoteIDBloc>(
             create: (_) => serviceLocator(),
           ),
-          BlocProvider<CachedRemoteIDTransmitterBloc>(
-            create: (_) => serviceLocator(),
-          ),
         ],
-        child: const HomeView(),
+        child: const GuestHomeView(),
       );
 }
 
-class HomeView extends StatefulWidget {
-  const HomeView({super.key});
+class GuestHomeView extends StatefulWidget {
+  const GuestHomeView({super.key});
 
   @override
-  State<HomeView> createState() => _HomeViewState();
+  State<GuestHomeView> createState() => _GuestHomeViewState();
 }
 
-class _HomeViewState extends State<HomeView> {
+class _GuestHomeViewState extends State<GuestHomeView> {
   MapboxMap? _mapboxMap;
 
   late final ValueNotifier<RestrictionEntity?> _clickedRestriction;
@@ -203,16 +205,11 @@ class _HomeViewState extends State<HomeView> {
 
   late int _previousBridDronesCount;
   late String _previousBridGeoJsonData;
-  late String _previousNridGeoJsonData;
+
+  late bool _hasShownAccumulatedDronesBottomSheetBefore;
 
   String? _currentlySelectedRestrictionFeatureId;
   String? _currentlySelectedRestrictionSourceId;
-
-  late final ValueNotifier<
-      ({
-        List<String> list,
-        int index,
-      })> _droneRushZonesIdsAndIndexNotifier;
 
   @override
   void initState() {
@@ -242,52 +239,14 @@ class _HomeViewState extends State<HomeView> {
 
     _previousBridGeoJsonData = emptyString;
 
-    _previousNridGeoJsonData = emptyString;
-
     _previousBridDronesCount = zero;
 
-    _droneRushZonesIdsAndIndexNotifier = ValueNotifier<
-        ({
-          List<String> list,
-          int index,
-        })>(
-      (
-        list: List.empty(
-          growable: true,
-        ),
-        index: zero,
-      ),
-    );
-
-    _startTransmitter();
-
-    _checkCachedRemoteIDs();
-
-    _listenDroneRushZones();
-
-    _listenNetworkRemoteIDs();
+    _hasShownAccumulatedDronesBottomSheetBefore = false;
 
     _requestLocationPermission();
 
     super.initState();
   }
-
-  void _startTransmitter() => context.read<RemoteIDTransmitterBloc>().add(
-        const RemoteIDTransmitterEvent.startTransmitter(),
-      );
-
-  void _checkCachedRemoteIDs() => context.read<CachedRemoteIDBloc>().add(
-        const CachedRemoteIDEvent.getCachedRemoteIDs(),
-      );
-
-  void _listenDroneRushZones() => context.read<DroneRushZonesBloc>().add(
-        const DroneRushZonesEvent.listenDroneRushZones(),
-      );
-
-  void _listenNetworkRemoteIDs() =>
-      context.read<NetworkRemoteIDReceiverBloc>().add(
-            const NetworkRemoteIDReceiverEvent.listenRemoteIDs(),
-          );
 
   void _requestLocationPermission() =>
       context.read<LocationPermissionBloc>().add(
@@ -375,7 +334,6 @@ class _HomeViewState extends State<HomeView> {
     _centerLocationNotifier.dispose();
     _newBridDronesCountNotifier.dispose();
     _mapStyleNotifier.dispose();
-    _droneRushZonesIdsAndIndexNotifier.dispose();
 
     super.dispose();
   }
@@ -383,39 +341,6 @@ class _HomeViewState extends State<HomeView> {
   @override
   Widget build(BuildContext context) => MultiBlocListener(
         listeners: [
-          BlocListener<Auth0LogoutBloc, Auth0LogoutState>(
-            listener: (context, auth0LogoutState) {
-              auth0LogoutState.whenOrNull(
-                loggingOut: () {
-                  ProgressDialog.show(
-                    context,
-                    progressIndicatorColor: hexB3FFFFFF,
-                  );
-                },
-                loggedOut: () {
-                  Navigator.of(
-                    context,
-                  ).pop();
-
-                  Navigator.of(
-                    context,
-                  ).pushReplacementNamed(
-                    getStartedRoutePath,
-                  );
-                },
-                failedToLogOut: (_) {
-                  Navigator.of(
-                    context,
-                  ).pop();
-
-                  AlertSnackBar.show(
-                    context,
-                    message: context.localize.weCouldNotLogYouOut,
-                  );
-                },
-              );
-            },
-          ),
           BlocListener<LocationPermissionBloc, LocationPermissionState>(
             listener: (_, locationPermissionState) {
               locationPermissionState.maybeWhen(
@@ -517,13 +442,6 @@ class _HomeViewState extends State<HomeView> {
             listener: (_, broadcastRemoteIDReceiverState) {
               broadcastRemoteIDReceiverState.whenOrNull(
                 gotRemoteIDs: (bridEntities) async {
-                  if (bridEntities.length > _previousBridDronesCount) {
-                    _newBridDronesCountNotifier.value =
-                        bridEntities.length - _previousBridDronesCount;
-                  }
-
-                  _previousBridDronesCount = bridEntities.length;
-
                   final latLng =
                       context.read<LocationPositionBloc>().state.whenOrNull(
                             gotLocationPosition: (locationPositionEntity) => (
@@ -532,13 +450,43 @@ class _HomeViewState extends State<HomeView> {
                             ),
                           );
 
-                  context.read<RemoteIDTransmitterBloc>().add(
-                        RemoteIDTransmitterEvent.transmitRemoteID(
+                  context.read<CachedRemoteIDBloc>().add(
+                        CachedRemoteIDEvent.cacheRemoteIDs(
                           remoteIDEntities: bridEntities,
-                          deviceLatitude: latLng?.latitude,
-                          deviceLongitude: latLng?.longitude,
+                          latitude: latLng?.latitude,
+                          longitude: latLng?.longitude,
                         ),
                       );
+
+                  if (bridEntities.length > _previousBridDronesCount) {
+                    _newBridDronesCountNotifier.value =
+                        bridEntities.length - _previousBridDronesCount;
+                  }
+
+                  _previousBridDronesCount = bridEntities.length;
+
+                  if (bridEntities.length == six &&
+                      !_hasShownAccumulatedDronesBottomSheetBefore) {
+                    _hasShownAccumulatedDronesBottomSheetBefore = true;
+
+                    await showModalBottomSheet<void>(
+                      context: context,
+                      builder: (bottomSheetContext) => RestrictedFeature(
+                        guestUserBloc: context.read<GuestUserBloc>(),
+                        highlightImage: Assets.pngs.droneInsightsEye.image(),
+                        highlight: context.localize
+                            .youveTrackedFivePlusDronesReadyToUnlockMore,
+                        description: context.localize
+                            .createYourProfileToSaveProgressGetAlertsAndExploreDeeperInsights,
+                        onGetStartedPressed: () => Navigator.of(
+                          context,
+                        ).pushReplacementNamed(
+                          getStartedRoutePath,
+                          arguments: true,
+                        ),
+                      ),
+                    );
+                  }
 
                   if (_mapboxMap != null) {
                     _previousBridGeoJsonData =
@@ -547,21 +495,6 @@ class _HomeViewState extends State<HomeView> {
                       geoJsonSourceId: bridDronesSourceId,
                     );
                   }
-                },
-              );
-            },
-          ),
-          BlocListener<NetworkRemoteIDReceiverBloc,
-              NetworkRemoteIDReceiverState>(
-            listener: (_, networkRemoteIDReceiverState) {
-              networkRemoteIDReceiverState.whenOrNull(
-                gotRemoteIDs: (nridEntities) async {
-                  // if (_mapboxMap != null) {
-                  //   previousNridGeoJsonData = await _mapboxMap!.addOrUpdateDronesOnMap(
-                  //     remoteIDEntities: nridEntities,
-                  //     geoJsonSourceId: nridDronesSourceId,
-                  //   );
-                  // }
                 },
               );
             },
@@ -590,12 +523,6 @@ class _HomeViewState extends State<HomeView> {
             listener: (_, geoHashState) {
               geoHashState.whenOrNull(
                 computedGeoHashOfPrecision3: (geoHash) {
-                  context.read<NetworkRemoteIDReceiverBloc>().add(
-                        NetworkRemoteIDReceiverEvent.requestRemoteIDsAround(
-                          geoHash: geoHash,
-                        ),
-                      );
-
                   context.read<WeatherBloc>().add(
                         WeatherEvent.getWeather(
                           geoHash: geoHash,
@@ -626,51 +553,6 @@ class _HomeViewState extends State<HomeView> {
               );
             },
           ),
-          BlocListener<DroneRushZonesBloc, DroneRushZonesState>(
-            listener: (_, droneRushZonesState) {
-              droneRushZonesState.whenOrNull(
-                gotOngoingDroneRushZones: (droneRushZoneEntities) {
-                  _mapboxMap?.addOrUpdateDroneRushZonesOnMap(
-                    droneRushZoneEntities: droneRushZoneEntities,
-                  );
-                },
-                noLatestDroneRushZone: () {
-                  _mapboxMap?.maybeRemoveDroneRushZonesFromMap();
-                },
-                noOngoingDroneRushZone: () {
-                  _mapboxMap?.maybeRemoveDroneRushZonesFromMap();
-                },
-              );
-            },
-          ),
-          BlocListener<CachedRemoteIDBloc, CachedRemoteIDState>(
-            listener: (_, cachedRemoteIDState) {
-              cachedRemoteIDState.whenOrNull(
-                gotCachedRemoteIDs: (geolocatedRemoteIDCollectionEntities) {
-                  showModalBottomSheet<void>(
-                    context: context,
-                    builder: (_) => CachedDroneDataInfo(
-                      cachedRemoteIDTransmitterBloc:
-                          context.read<CachedRemoteIDTransmitterBloc>(),
-                      dronesDataToSend: geolocatedRemoteIDCollectionEntities,
-                    ),
-                  );
-                },
-              );
-            },
-          ),
-          BlocListener<CachedRemoteIDTransmitterBloc,
-              CachedRemoteIDTransmitterState>(
-            listener: (_, cachedRemoteIDTransmitterState) {
-              cachedRemoteIDTransmitterState.whenOrNull(
-                transmittedRemoteID: () {
-                  context.read<CachedRemoteIDBloc>().add(
-                        const CachedRemoteIDEvent.clearCachedRemoteIDs(),
-                      );
-                },
-              );
-            },
-          ),
         ],
         child: Scaffold(
           resizeToAvoidBottomInset: false,
@@ -685,18 +567,6 @@ class _HomeViewState extends State<HomeView> {
                   }
 
                   _centerLocationNotifier.value = false;
-
-                  await _mapboxMap!.handleDroneRushZoneTapUsing(
-                    touchPosition: mapContentGestureContext.touchPosition,
-                    previousDroneRushZonesIdsAndIndexNotifier:
-                        _droneRushZonesIdsAndIndexNotifier,
-                    onTap: (_) => showModalBottomSheet<void>(
-                      context: context,
-                      builder: (_) => EventDetails(
-                        droneRushZonesBloc: context.read<DroneRushZonesBloc>(),
-                      ),
-                    ),
-                  );
 
                   if (_restrictionLayerIds.isEmpty) {
                     return;
@@ -777,7 +647,6 @@ class _HomeViewState extends State<HomeView> {
                 onStyleLoaded: (_) async {
                   await _mapboxMap?.setUpLayersForDrones(
                     bridGeoJsonData: _previousBridGeoJsonData,
-                    nridGeoJsonData: _previousNridGeoJsonData,
                   );
                 },
               ),
@@ -788,7 +657,7 @@ class _HomeViewState extends State<HomeView> {
                   valueListenable: _mapStyleNotifier,
                   builder: (_, mapStyleNotifierValue, __) => MapOverlay(
                     myLocationFollowed: centerLocationNotifierValue,
-                    isGuestUser: false,
+                    isGuestUser: true,
                     mapStyle: mapStyleNotifierValue,
                     onMyLocationIconTap: () {
                       context.read<LocationPermissionBloc>().state.whenOrNull(
@@ -869,8 +738,71 @@ class _HomeViewState extends State<HomeView> {
                 const SizedBox(
                   height: fourteenDotNil,
                 ),
-                DronesIndicator(
-                  newDronesCount: _newBridDronesCountNotifier,
+                Row(
+                  children: [
+                    SizedBox(
+                      width: MediaQuery.sizeOf(
+                            context,
+                          ).width /
+                          switch (MediaQuery.orientationOf(
+                            context,
+                          )) {
+                            Orientation.portrait => twelveDotNil,
+                            Orientation.landscape => fiveDotFive,
+                          },
+                    ),
+                    Expanded(
+                      child: ElevatedButton(
+                        onPressed: () {
+                          context.read<GuestUserBloc>().add(
+                                const GuestUserEvent.setUserIsGuest(
+                                  isGuest: false,
+                                ),
+                              );
+
+                          Navigator.of(
+                            context,
+                          ).pushReplacementNamed(
+                            getStartedRoutePath,
+                            arguments: true,
+                          );
+                        },
+                        style: Theme.of(
+                          context,
+                        ).elevatedButtonTheme.style?.copyWith(
+                              shape: WidgetStatePropertyAll<OutlinedBorder>(
+                                RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(
+                                    tenDotNil,
+                                  ),
+                                ),
+                              ),
+                              fixedSize: const WidgetStatePropertyAll<Size>(
+                                Size.fromHeight(
+                                  fiftyDotNil,
+                                ),
+                              ),
+                            ),
+                        child: Text(
+                          context.localize.getStartedAlt,
+                          style: Theme.of(
+                            context,
+                          ).textTheme.bodyMedium?.copyWith(
+                                fontWeight: FontWeight.w500,
+                                height: oneDotNil,
+                                letterSpacing: nilDotNil,
+                                color: hexFFFFFF,
+                              ),
+                        ),
+                      ),
+                    ),
+                    const SizedBox(
+                      width: fourteenDotNil,
+                    ),
+                    DronesIndicator(
+                      newDronesCount: _newBridDronesCountNotifier,
+                    ),
+                  ],
                 ),
               ],
             ),

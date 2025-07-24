@@ -487,10 +487,11 @@ const boundingBoxKey = 'boundingBox';
 const orderByPointsDescKey = 'orderByPointsDesc';
 const pirateKey = 'pirate';
 const locationNameKey = 'locationName';
+const remoteIDsKey = 'remoteIDs';
 // Error response data message
 const unauthorizedCode = 'UNAUTHORIZED';
 const invalidSignatureCode = 'INVALID_SIGNATURE';
-const userNotFoundCode = 'USER_NOT_FOUND'; // user does not exist
+const userNotFoundCode = 'USER_NOT_FOUND';
 const invalidEmailCode = 'INVALID_EMAIL';
 const userMismatchCode = 'USER_MISMATCH';
 const userDeletedCode = 'USER_DELETED';

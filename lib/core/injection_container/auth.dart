@@ -23,6 +23,8 @@ import 'package:sky_trade/features/auth/presentation/blocs/email_bloc/email_bloc
     show EmailBloc;
 import 'package:sky_trade/features/auth/presentation/blocs/get_sky_trade_user_bloc/get_sky_trade_user_bloc.dart'
     show GetSkyTradeUserBloc;
+import 'package:sky_trade/features/auth/presentation/blocs/guest_user_bloc/guest_user_bloc.dart'
+    show GuestUserBloc;
 import 'package:sky_trade/features/auth/presentation/blocs/s_f_a_configuration_bloc/s_f_a_configuration_bloc.dart'
     show SFAConfigurationBloc;
 import 'package:sky_trade/features/auth/presentation/blocs/s_f_a_user_session_bloc/s_f_a_user_session_bloc.dart'
@@ -90,6 +92,11 @@ Future<void> registerAuthServices() async {
     )
     ..registerFactory<SFAUserSessionBloc>(
       () => SFAUserSessionBloc(
+        _sl(),
+      ),
+    )
+    ..registerFactory<GuestUserBloc>(
+      () => GuestUserBloc(
         _sl(),
       ),
     )

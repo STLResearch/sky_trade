@@ -381,7 +381,7 @@ extension MapboxMapExtensions on MapboxMap {
 
   Future<void> setUpLayersForDrones({
     required String bridGeoJsonData,
-    required String nridGeoJsonData,
+    String? nridGeoJsonData,
   }) async {
     final droneStyleImage = await _addStyleImageUsing(
       styleImageName: iconDroneValue,
@@ -392,13 +392,6 @@ extension MapboxMapExtensions on MapboxMap {
       GeoJsonSource(
         id: bridDronesSourceId,
         data: bridGeoJsonData,
-      ),
-    );
-
-    await style.addSource(
-      GeoJsonSource(
-        id: nridDronesSourceId,
-        data: nridGeoJsonData,
       ),
     );
 
@@ -414,17 +407,26 @@ extension MapboxMapExtensions on MapboxMap {
       ),
     );
 
-    await style.addLayer(
-      SymbolLayer(
-        id: nridDronesLayerId,
-        sourceId: nridDronesSourceId,
-        iconImage: droneStyleImage,
-        iconRotateExpression: [
-          getExpression,
-          directionKey,
-        ],
-      ),
-    );
+    if(nridGeoJsonData != null) {
+      await style.addSource(
+        GeoJsonSource(
+          id: nridDronesSourceId,
+          data: nridGeoJsonData,
+        ),
+      );
+
+      await style.addLayer(
+        SymbolLayer(
+          id: nridDronesLayerId,
+          sourceId: nridDronesSourceId,
+          iconImage: droneStyleImage,
+          iconRotateExpression: [
+            getExpression,
+            directionKey,
+          ],
+        ),
+      );
+    }
   }
 
   Future<String> addOrUpdateDronesOnMap({

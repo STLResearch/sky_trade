@@ -35,6 +35,14 @@ class $AssetsPngsGen {
   AssetGenImage get droneFront =>
       const AssetGenImage('assets/pngs/drone_front.png');
 
+  /// File path: assets/pngs/drone_insights_eye.png
+  AssetGenImage get droneInsightsEye =>
+      const AssetGenImage('assets/pngs/drone_insights_eye.png');
+
+  /// File path: assets/pngs/drone_radar.png
+  AssetGenImage get droneRadar =>
+      const AssetGenImage('assets/pngs/drone_radar.png');
+
   /// File path: assets/pngs/drone_rush_zone_back.png
   AssetGenImage get droneRushZoneBack =>
       const AssetGenImage('assets/pngs/drone_rush_zone_back.png');
@@ -77,6 +85,8 @@ class $AssetsPngsGen {
     droneRush,
     droneBack,
     droneFront,
+    droneInsightsEye,
+    droneRadar,
     droneRushZoneBack,
     iconDrone,
     locationPuck,

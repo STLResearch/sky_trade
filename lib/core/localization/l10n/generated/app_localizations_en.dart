@@ -47,6 +47,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get getStarted => 'Get started';
 
   @override
+  String get getStartedAlt => 'Get Started';
+
+  @override
   String get welcomeToSkyTrade => 'Welcome to SkyTrade';
 
   @override
@@ -1146,4 +1149,65 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get trackedDrones => 'Tracked Drones';
+
+  @override
+  String get youNeedToBeLoggedInToAccessMoreOptions =>
+      'You need to be logged in to access more options';
+
+  @override
+  String get youveTrackedFivePlusDronesReadyToUnlockMore =>
+      'You\'ve tracked 5+ drones. Ready to unlock more?';
+
+  @override
+  String get logInToAccessReferralProgramSettingsAndMore =>
+      'Log in to access referral program, settings and more';
+
+  @override
+  String get createYourProfileToSaveProgressGetAlertsAndExploreDeeperInsights =>
+      'Create your profile to save progress, get alerts, and explore deeper insights';
+
+  @override
+  String get youNeedToBeLoggedInToParticipateInDroneRushEvents =>
+      'You need to be logged in to participate in drone rush events';
+
+  @override
+  String get logInToEarnExtraRewardsWhenYouParticipateInSpecialLimitedTimeDroneRushEvents =>
+      'Log in to earn extra rewards when you participate in special limited time drone rush events';
+
+  @override
+  String get or => 'or';
+
+  @override
+  String get continueAsGuest => 'Continue as Guest';
+
+  @override
+  String get youHaveExistingDroneDataThatIsReadyToBeSent =>
+      'You have existing drone data that is ready to be sent';
+
+  @override
+  String get weHaveDetectedThatThisDeviceHasSomeStoredDroneDataThatCanBeSentPleaseNoteThatSendingThisDataWillAssociateTheDroneDataWithThisAccountAndAnyRewardsAccumulatedWillBeCreditedToThisAccount =>
+      'We have detected that this device has some stored drone data that can be sent. Please note that sending this data will associate the drone data with this account and any rewards accumulated will be credited to this account';
+
+  @override
+  String get sendNow => 'Send Now';
+
+  @override
+  String get maybeLater => 'Maybe Later';
+
+  @override
+  String get dismiss => 'Dismiss';
+
+  @override
+  String get weAreSendingYourDroneData => 'We are sending your drone data';
+
+  @override
+  String get yourDroneDataIsCurrentlyBeingSentKindlyExerciseSomePatience =>
+      'Your drone data is currently being sent. Kindly exercise some patience';
+
+  @override
+  String get droneDataSent => 'Drone data sent';
+
+  @override
+  String get weHaveSentYourDroneDataNoFurtherActionIsRequired =>
+      'We have sent your drone data. No further action is required';
 }

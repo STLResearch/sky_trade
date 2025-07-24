@@ -8,25 +8,77 @@ import 'package:sky_trade/core/utils/adapters/hive/hive_adapters.dart';
 extension HiveRegistrar on HiveInterface {
   void registerAdapters() {
     registerAdapter(AdditionalLinkModelAdapter());
+    registerAdapter(AuthenticationModelAdapter());
+    registerAdapter(BasicIDModelAdapter());
+    registerAdapter(ConnectionModelAdapter());
+    registerAdapter(CoordinatesModelAdapter());
+    registerAdapter(DeviceModelAdapter());
+    registerAdapter(GeolocatedRemoteIDCollectionModelAdapter());
     registerAdapter(GeometryModelAdapter());
     registerAdapter(GeometryTypeAdapter());
+    registerAdapter(LocationModelAdapter());
+    registerAdapter(OperatorIDModelAdapter());
     registerAdapter(OwnedReferralCodeModelAdapter());
     registerAdapter(PropertiesModelAdapter());
+    registerAdapter(RemoteIDMessageSourceAdapter());
+    registerAdapter(RemoteIDModelAdapter());
     registerAdapter(RestrictionModelAdapter());
     registerAdapter(RestrictionTypeAdapter());
+    registerAdapter(SelfIDModelAdapter());
     registerAdapter(SkyTradeUserModelAdapter());
+    registerAdapter(SystemModelAdapter());
+    registerAdapter(UnmannedAircraftAuthenticationTypeAdapter());
+    registerAdapter(UnmannedAircraftCategoryAdapter());
+    registerAdapter(UnmannedAircraftClassValueAdapter());
+    registerAdapter(UnmannedAircraftClassificationTypeAdapter());
+    registerAdapter(UnmannedAircraftHeightTypeAdapter());
+    registerAdapter(UnmannedAircraftHorizontalAccuracyAdapter());
+    registerAdapter(UnmannedAircraftIDTypeAdapter());
+    registerAdapter(UnmannedAircraftOperationalStatusAdapter());
+    registerAdapter(UnmannedAircraftOperatorIDTypeAdapter());
+    registerAdapter(UnmannedAircraftOperatorLocationTypeAdapter());
+    registerAdapter(UnmannedAircraftSelfIDDescriptionTypeAdapter());
+    registerAdapter(UnmannedAircraftSpeedAccuracyAdapter());
+    registerAdapter(UnmannedAircraftTypeAdapter());
+    registerAdapter(UnmannedAircraftVerticalOrBarometerAccuracyAdapter());
   }
 }
 
 extension IsolatedHiveRegistrar on IsolatedHiveInterface {
   void registerAdapters() {
     registerAdapter(AdditionalLinkModelAdapter());
+    registerAdapter(AuthenticationModelAdapter());
+    registerAdapter(BasicIDModelAdapter());
+    registerAdapter(ConnectionModelAdapter());
+    registerAdapter(CoordinatesModelAdapter());
+    registerAdapter(DeviceModelAdapter());
+    registerAdapter(GeolocatedRemoteIDCollectionModelAdapter());
     registerAdapter(GeometryModelAdapter());
     registerAdapter(GeometryTypeAdapter());
+    registerAdapter(LocationModelAdapter());
+    registerAdapter(OperatorIDModelAdapter());
     registerAdapter(OwnedReferralCodeModelAdapter());
     registerAdapter(PropertiesModelAdapter());
+    registerAdapter(RemoteIDMessageSourceAdapter());
+    registerAdapter(RemoteIDModelAdapter());
     registerAdapter(RestrictionModelAdapter());
     registerAdapter(RestrictionTypeAdapter());
+    registerAdapter(SelfIDModelAdapter());
     registerAdapter(SkyTradeUserModelAdapter());
+    registerAdapter(SystemModelAdapter());
+    registerAdapter(UnmannedAircraftAuthenticationTypeAdapter());
+    registerAdapter(UnmannedAircraftCategoryAdapter());
+    registerAdapter(UnmannedAircraftClassValueAdapter());
+    registerAdapter(UnmannedAircraftClassificationTypeAdapter());
+    registerAdapter(UnmannedAircraftHeightTypeAdapter());
+    registerAdapter(UnmannedAircraftHorizontalAccuracyAdapter());
+    registerAdapter(UnmannedAircraftIDTypeAdapter());
+    registerAdapter(UnmannedAircraftOperationalStatusAdapter());
+    registerAdapter(UnmannedAircraftOperatorIDTypeAdapter());
+    registerAdapter(UnmannedAircraftOperatorLocationTypeAdapter());
+    registerAdapter(UnmannedAircraftSelfIDDescriptionTypeAdapter());
+    registerAdapter(UnmannedAircraftSpeedAccuracyAdapter());
+    registerAdapter(UnmannedAircraftTypeAdapter());
+    registerAdapter(UnmannedAircraftVerticalOrBarometerAccuracyAdapter());
   }
 }

@@ -16,6 +16,7 @@ import 'package:sky_trade/core/resources/strings/local.dart'
     show
         analyticsStateKey,
         auth0SessionForDeletedUserExistsKey,
+        isGuestUserKey,
         shouldShowRewardsOnboardingKey;
 import 'package:sky_trade/core/resources/strings/secret_keys.dart'
     show auth0ClientId, auth0Domain;
@@ -49,6 +50,7 @@ Future<void> registerExternalServices() async {
             analyticsStateKey,
             auth0SessionForDeletedUserExistsKey,
             shouldShowRewardsOnboardingKey,
+            isGuestUserKey,
           },
         ),
       ),

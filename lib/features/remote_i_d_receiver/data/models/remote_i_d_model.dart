@@ -24,6 +24,7 @@ import 'package:sky_trade/core/resources/strings/networking.dart'
         connectionKey,
         descriptionKey,
         descriptionTypeKey,
+        deviceKey,
         directionKey,
         heightKey,
         heightTypeKey,
@@ -48,6 +49,7 @@ import 'package:sky_trade/core/resources/strings/networking.dart'
         operatorLongitudeKey,
         rawDataKey,
         registrationIdKey,
+        remoteIDsKey,
         rssiKey,
         selfIdKey,
         serialNumberKey,
@@ -588,4 +590,52 @@ final class AuthenticationModel extends AuthenticationEntity {
   final Uint8List? mRawData;
 
   Map<String, dynamic> toJson() => _$AuthenticationModelToJson(this);
+}
+
+@JsonSerializable(explicitToJson: true)
+final class GeolocatedRemoteIDCollectionModel
+    extends GeolocatedRemoteIDCollectionEntity {
+  const GeolocatedRemoteIDCollectionModel({
+    required this.mRemoteIDs,
+    required this.mDevice,
+  }) : super(
+          remoteIDs: mRemoteIDs,
+          device: mDevice,
+        );
+
+  factory GeolocatedRemoteIDCollectionModel.fromJson(
+    Map<String, dynamic> json,
+  ) =>
+      _$GeolocatedRemoteIDCollectionModelFromJson(json);
+
+  @JsonKey(name: remoteIDsKey)
+  final List<RemoteIDModel> mRemoteIDs;
+
+  @JsonKey(name: deviceKey)
+  final DeviceModel? mDevice;
+
+  Map<String, dynamic> toJson() =>
+      _$GeolocatedRemoteIDCollectionModelToJson(this);
+}
+
+@JsonSerializable(explicitToJson: true)
+final class DeviceModel extends DeviceEntity {
+  const DeviceModel({
+    required this.mLatitude,
+    required this.mLongitude,
+  }) : super(
+          latitude: mLatitude,
+          longitude: mLongitude,
+        );
+
+  factory DeviceModel.fromJson(Map<String, dynamic> json) =>
+      _$DeviceModelFromJson(json);
+
+  @JsonKey(name: latitudeKey)
+  final double mLatitude;
+
+  @JsonKey(name: longitudeKey)
+  final double mLongitude;
+
+  Map<String, dynamic> toJson() => _$DeviceModelToJson(this);
 }

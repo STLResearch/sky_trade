@@ -168,6 +168,12 @@ abstract class AppLocalizations {
   /// **'Get started'**
   String get getStarted;
 
+  /// No description provided for @getStartedAlt.
+  ///
+  /// In en, this message translates to:
+  /// **'Get Started'**
+  String get getStartedAlt;
+
   /// No description provided for @welcomeToSkyTrade.
   ///
   /// In en, this message translates to:
@@ -2194,6 +2200,110 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Tracked Drones'**
   String get trackedDrones;
+
+  /// No description provided for @youNeedToBeLoggedInToAccessMoreOptions.
+  ///
+  /// In en, this message translates to:
+  /// **'You need to be logged in to access more options'**
+  String get youNeedToBeLoggedInToAccessMoreOptions;
+
+  /// No description provided for @youveTrackedFivePlusDronesReadyToUnlockMore.
+  ///
+  /// In en, this message translates to:
+  /// **'You\'ve tracked 5+ drones. Ready to unlock more?'**
+  String get youveTrackedFivePlusDronesReadyToUnlockMore;
+
+  /// No description provided for @logInToAccessReferralProgramSettingsAndMore.
+  ///
+  /// In en, this message translates to:
+  /// **'Log in to access referral program, settings and more'**
+  String get logInToAccessReferralProgramSettingsAndMore;
+
+  /// No description provided for @createYourProfileToSaveProgressGetAlertsAndExploreDeeperInsights.
+  ///
+  /// In en, this message translates to:
+  /// **'Create your profile to save progress, get alerts, and explore deeper insights'**
+  String get createYourProfileToSaveProgressGetAlertsAndExploreDeeperInsights;
+
+  /// No description provided for @youNeedToBeLoggedInToParticipateInDroneRushEvents.
+  ///
+  /// In en, this message translates to:
+  /// **'You need to be logged in to participate in drone rush events'**
+  String get youNeedToBeLoggedInToParticipateInDroneRushEvents;
+
+  /// No description provided for @logInToEarnExtraRewardsWhenYouParticipateInSpecialLimitedTimeDroneRushEvents.
+  ///
+  /// In en, this message translates to:
+  /// **'Log in to earn extra rewards when you participate in special limited time drone rush events'**
+  String
+      get logInToEarnExtraRewardsWhenYouParticipateInSpecialLimitedTimeDroneRushEvents;
+
+  /// No description provided for @or.
+  ///
+  /// In en, this message translates to:
+  /// **'or'**
+  String get or;
+
+  /// No description provided for @continueAsGuest.
+  ///
+  /// In en, this message translates to:
+  /// **'Continue as Guest'**
+  String get continueAsGuest;
+
+  /// No description provided for @youHaveExistingDroneDataThatIsReadyToBeSent.
+  ///
+  /// In en, this message translates to:
+  /// **'You have existing drone data that is ready to be sent'**
+  String get youHaveExistingDroneDataThatIsReadyToBeSent;
+
+  /// No description provided for @weHaveDetectedThatThisDeviceHasSomeStoredDroneDataThatCanBeSentPleaseNoteThatSendingThisDataWillAssociateTheDroneDataWithThisAccountAndAnyRewardsAccumulatedWillBeCreditedToThisAccount.
+  ///
+  /// In en, this message translates to:
+  /// **'We have detected that this device has some stored drone data that can be sent. Please note that sending this data will associate the drone data with this account and any rewards accumulated will be credited to this account'**
+  String
+      get weHaveDetectedThatThisDeviceHasSomeStoredDroneDataThatCanBeSentPleaseNoteThatSendingThisDataWillAssociateTheDroneDataWithThisAccountAndAnyRewardsAccumulatedWillBeCreditedToThisAccount;
+
+  /// No description provided for @sendNow.
+  ///
+  /// In en, this message translates to:
+  /// **'Send Now'**
+  String get sendNow;
+
+  /// No description provided for @maybeLater.
+  ///
+  /// In en, this message translates to:
+  /// **'Maybe Later'**
+  String get maybeLater;
+
+  /// No description provided for @dismiss.
+  ///
+  /// In en, this message translates to:
+  /// **'Dismiss'**
+  String get dismiss;
+
+  /// No description provided for @weAreSendingYourDroneData.
+  ///
+  /// In en, this message translates to:
+  /// **'We are sending your drone data'**
+  String get weAreSendingYourDroneData;
+
+  /// No description provided for @yourDroneDataIsCurrentlyBeingSentKindlyExerciseSomePatience.
+  ///
+  /// In en, this message translates to:
+  /// **'Your drone data is currently being sent. Kindly exercise some patience'**
+  String get yourDroneDataIsCurrentlyBeingSentKindlyExerciseSomePatience;
+
+  /// No description provided for @droneDataSent.
+  ///
+  /// In en, this message translates to:
+  /// **'Drone data sent'**
+  String get droneDataSent;
+
+  /// No description provided for @weHaveSentYourDroneDataNoFurtherActionIsRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'We have sent your drone data. No further action is required'**
+  String get weHaveSentYourDroneDataNoFurtherActionIsRequired;
 }
 
 class _AppLocalizationsDelegate
