@@ -18,43 +18,36 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$DeviceUUIDEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() checkDeviceUUIDExists,
-    required TResult Function() generateAndSaveDeviceUUID,
+    required TResult Function() checkAndMaybeGenerateAndCacheDeviceUUID,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? checkDeviceUUIDExists,
-    TResult? Function()? generateAndSaveDeviceUUID,
+    TResult? Function()? checkAndMaybeGenerateAndCacheDeviceUUID,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? checkDeviceUUIDExists,
-    TResult Function()? generateAndSaveDeviceUUID,
+    TResult Function()? checkAndMaybeGenerateAndCacheDeviceUUID,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_CheckDeviceUUIDExists value)
-        checkDeviceUUIDExists,
-    required TResult Function(_GenerateAndSaveDeviceUUID value)
-        generateAndSaveDeviceUUID,
+    required TResult Function(_CheckAndMaybeGenerateAndCacheDeviceUUID value)
+        checkAndMaybeGenerateAndCacheDeviceUUID,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_CheckDeviceUUIDExists value)? checkDeviceUUIDExists,
-    TResult? Function(_GenerateAndSaveDeviceUUID value)?
-        generateAndSaveDeviceUUID,
+    TResult? Function(_CheckAndMaybeGenerateAndCacheDeviceUUID value)?
+        checkAndMaybeGenerateAndCacheDeviceUUID,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_CheckDeviceUUIDExists value)? checkDeviceUUIDExists,
-    TResult Function(_GenerateAndSaveDeviceUUID value)?
-        generateAndSaveDeviceUUID,
+    TResult Function(_CheckAndMaybeGenerateAndCacheDeviceUUID value)?
+        checkAndMaybeGenerateAndCacheDeviceUUID,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -82,19 +75,21 @@ class _$DeviceUUIDEventCopyWithImpl<$Res, $Val extends DeviceUUIDEvent>
 }
 
 /// @nodoc
-abstract class _$$CheckDeviceUUIDExistsImplCopyWith<$Res> {
-  factory _$$CheckDeviceUUIDExistsImplCopyWith(
-          _$CheckDeviceUUIDExistsImpl value,
-          $Res Function(_$CheckDeviceUUIDExistsImpl) then) =
-      __$$CheckDeviceUUIDExistsImplCopyWithImpl<$Res>;
+abstract class _$$CheckAndMaybeGenerateAndCacheDeviceUUIDImplCopyWith<$Res> {
+  factory _$$CheckAndMaybeGenerateAndCacheDeviceUUIDImplCopyWith(
+          _$CheckAndMaybeGenerateAndCacheDeviceUUIDImpl value,
+          $Res Function(_$CheckAndMaybeGenerateAndCacheDeviceUUIDImpl) then) =
+      __$$CheckAndMaybeGenerateAndCacheDeviceUUIDImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$CheckDeviceUUIDExistsImplCopyWithImpl<$Res>
-    extends _$DeviceUUIDEventCopyWithImpl<$Res, _$CheckDeviceUUIDExistsImpl>
-    implements _$$CheckDeviceUUIDExistsImplCopyWith<$Res> {
-  __$$CheckDeviceUUIDExistsImplCopyWithImpl(_$CheckDeviceUUIDExistsImpl _value,
-      $Res Function(_$CheckDeviceUUIDExistsImpl) _then)
+class __$$CheckAndMaybeGenerateAndCacheDeviceUUIDImplCopyWithImpl<$Res>
+    extends _$DeviceUUIDEventCopyWithImpl<$Res,
+        _$CheckAndMaybeGenerateAndCacheDeviceUUIDImpl>
+    implements _$$CheckAndMaybeGenerateAndCacheDeviceUUIDImplCopyWith<$Res> {
+  __$$CheckAndMaybeGenerateAndCacheDeviceUUIDImplCopyWithImpl(
+      _$CheckAndMaybeGenerateAndCacheDeviceUUIDImpl _value,
+      $Res Function(_$CheckAndMaybeGenerateAndCacheDeviceUUIDImpl) _then)
       : super(_value, _then);
 
   /// Create a copy of DeviceUUIDEvent
@@ -103,19 +98,20 @@ class __$$CheckDeviceUUIDExistsImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$CheckDeviceUUIDExistsImpl implements _CheckDeviceUUIDExists {
-  const _$CheckDeviceUUIDExistsImpl();
+class _$CheckAndMaybeGenerateAndCacheDeviceUUIDImpl
+    implements _CheckAndMaybeGenerateAndCacheDeviceUUID {
+  const _$CheckAndMaybeGenerateAndCacheDeviceUUIDImpl();
 
   @override
   String toString() {
-    return 'DeviceUUIDEvent.checkDeviceUUIDExists()';
+    return 'DeviceUUIDEvent.checkAndMaybeGenerateAndCacheDeviceUUID()';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$CheckDeviceUUIDExistsImpl);
+            other is _$CheckAndMaybeGenerateAndCacheDeviceUUIDImpl);
   }
 
   @override
@@ -124,30 +120,27 @@ class _$CheckDeviceUUIDExistsImpl implements _CheckDeviceUUIDExists {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() checkDeviceUUIDExists,
-    required TResult Function() generateAndSaveDeviceUUID,
+    required TResult Function() checkAndMaybeGenerateAndCacheDeviceUUID,
   }) {
-    return checkDeviceUUIDExists();
+    return checkAndMaybeGenerateAndCacheDeviceUUID();
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? checkDeviceUUIDExists,
-    TResult? Function()? generateAndSaveDeviceUUID,
+    TResult? Function()? checkAndMaybeGenerateAndCacheDeviceUUID,
   }) {
-    return checkDeviceUUIDExists?.call();
+    return checkAndMaybeGenerateAndCacheDeviceUUID?.call();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? checkDeviceUUIDExists,
-    TResult Function()? generateAndSaveDeviceUUID,
+    TResult Function()? checkAndMaybeGenerateAndCacheDeviceUUID,
     required TResult orElse(),
   }) {
-    if (checkDeviceUUIDExists != null) {
-      return checkDeviceUUIDExists();
+    if (checkAndMaybeGenerateAndCacheDeviceUUID != null) {
+      return checkAndMaybeGenerateAndCacheDeviceUUID();
     }
     return orElse();
   }
@@ -155,153 +148,39 @@ class _$CheckDeviceUUIDExistsImpl implements _CheckDeviceUUIDExists {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_CheckDeviceUUIDExists value)
-        checkDeviceUUIDExists,
-    required TResult Function(_GenerateAndSaveDeviceUUID value)
-        generateAndSaveDeviceUUID,
+    required TResult Function(_CheckAndMaybeGenerateAndCacheDeviceUUID value)
+        checkAndMaybeGenerateAndCacheDeviceUUID,
   }) {
-    return checkDeviceUUIDExists(this);
+    return checkAndMaybeGenerateAndCacheDeviceUUID(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_CheckDeviceUUIDExists value)? checkDeviceUUIDExists,
-    TResult? Function(_GenerateAndSaveDeviceUUID value)?
-        generateAndSaveDeviceUUID,
+    TResult? Function(_CheckAndMaybeGenerateAndCacheDeviceUUID value)?
+        checkAndMaybeGenerateAndCacheDeviceUUID,
   }) {
-    return checkDeviceUUIDExists?.call(this);
+    return checkAndMaybeGenerateAndCacheDeviceUUID?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_CheckDeviceUUIDExists value)? checkDeviceUUIDExists,
-    TResult Function(_GenerateAndSaveDeviceUUID value)?
-        generateAndSaveDeviceUUID,
+    TResult Function(_CheckAndMaybeGenerateAndCacheDeviceUUID value)?
+        checkAndMaybeGenerateAndCacheDeviceUUID,
     required TResult orElse(),
   }) {
-    if (checkDeviceUUIDExists != null) {
-      return checkDeviceUUIDExists(this);
+    if (checkAndMaybeGenerateAndCacheDeviceUUID != null) {
+      return checkAndMaybeGenerateAndCacheDeviceUUID(this);
     }
     return orElse();
   }
 }
 
-abstract class _CheckDeviceUUIDExists implements DeviceUUIDEvent {
-  const factory _CheckDeviceUUIDExists() = _$CheckDeviceUUIDExistsImpl;
-}
-
-/// @nodoc
-abstract class _$$GenerateAndSaveDeviceUUIDImplCopyWith<$Res> {
-  factory _$$GenerateAndSaveDeviceUUIDImplCopyWith(
-          _$GenerateAndSaveDeviceUUIDImpl value,
-          $Res Function(_$GenerateAndSaveDeviceUUIDImpl) then) =
-      __$$GenerateAndSaveDeviceUUIDImplCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$GenerateAndSaveDeviceUUIDImplCopyWithImpl<$Res>
-    extends _$DeviceUUIDEventCopyWithImpl<$Res, _$GenerateAndSaveDeviceUUIDImpl>
-    implements _$$GenerateAndSaveDeviceUUIDImplCopyWith<$Res> {
-  __$$GenerateAndSaveDeviceUUIDImplCopyWithImpl(
-      _$GenerateAndSaveDeviceUUIDImpl _value,
-      $Res Function(_$GenerateAndSaveDeviceUUIDImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of DeviceUUIDEvent
-  /// with the given fields replaced by the non-null parameter values.
-}
-
-/// @nodoc
-
-class _$GenerateAndSaveDeviceUUIDImpl implements _GenerateAndSaveDeviceUUID {
-  const _$GenerateAndSaveDeviceUUIDImpl();
-
-  @override
-  String toString() {
-    return 'DeviceUUIDEvent.generateAndSaveDeviceUUID()';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$GenerateAndSaveDeviceUUIDImpl);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() checkDeviceUUIDExists,
-    required TResult Function() generateAndSaveDeviceUUID,
-  }) {
-    return generateAndSaveDeviceUUID();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? checkDeviceUUIDExists,
-    TResult? Function()? generateAndSaveDeviceUUID,
-  }) {
-    return generateAndSaveDeviceUUID?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? checkDeviceUUIDExists,
-    TResult Function()? generateAndSaveDeviceUUID,
-    required TResult orElse(),
-  }) {
-    if (generateAndSaveDeviceUUID != null) {
-      return generateAndSaveDeviceUUID();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_CheckDeviceUUIDExists value)
-        checkDeviceUUIDExists,
-    required TResult Function(_GenerateAndSaveDeviceUUID value)
-        generateAndSaveDeviceUUID,
-  }) {
-    return generateAndSaveDeviceUUID(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_CheckDeviceUUIDExists value)? checkDeviceUUIDExists,
-    TResult? Function(_GenerateAndSaveDeviceUUID value)?
-        generateAndSaveDeviceUUID,
-  }) {
-    return generateAndSaveDeviceUUID?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_CheckDeviceUUIDExists value)? checkDeviceUUIDExists,
-    TResult Function(_GenerateAndSaveDeviceUUID value)?
-        generateAndSaveDeviceUUID,
-    required TResult orElse(),
-  }) {
-    if (generateAndSaveDeviceUUID != null) {
-      return generateAndSaveDeviceUUID(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _GenerateAndSaveDeviceUUID implements DeviceUUIDEvent {
-  const factory _GenerateAndSaveDeviceUUID() = _$GenerateAndSaveDeviceUUIDImpl;
+abstract class _CheckAndMaybeGenerateAndCacheDeviceUUID
+    implements DeviceUUIDEvent {
+  const factory _CheckAndMaybeGenerateAndCacheDeviceUUID() =
+      _$CheckAndMaybeGenerateAndCacheDeviceUUIDImpl;
 }
 
 /// @nodoc
@@ -309,54 +188,64 @@ mixin _$DeviceUUIDState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
+    required TResult Function() checkingDeviceUUIDExists,
     required TResult Function() deviceUUIDExists,
-    required TResult Function() deviceUUIDDoesNotExist,
-    required TResult Function() generatedAndSavedDeviceUUID,
+    required TResult Function() generatingAndCachingDeviceUUID,
+    required TResult Function() generatedAndCachedDeviceUUID,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
+    TResult? Function()? checkingDeviceUUIDExists,
     TResult? Function()? deviceUUIDExists,
-    TResult? Function()? deviceUUIDDoesNotExist,
-    TResult? Function()? generatedAndSavedDeviceUUID,
+    TResult? Function()? generatingAndCachingDeviceUUID,
+    TResult? Function()? generatedAndCachedDeviceUUID,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
+    TResult Function()? checkingDeviceUUIDExists,
     TResult Function()? deviceUUIDExists,
-    TResult Function()? deviceUUIDDoesNotExist,
-    TResult Function()? generatedAndSavedDeviceUUID,
+    TResult Function()? generatingAndCachingDeviceUUID,
+    TResult Function()? generatedAndCachedDeviceUUID,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
+    required TResult Function(_CheckingDeviceUUIDExists value)
+        checkingDeviceUUIDExists,
     required TResult Function(_DeviceUUIDExists value) deviceUUIDExists,
-    required TResult Function(_DeviceUUIDDoesNotExist value)
-        deviceUUIDDoesNotExist,
-    required TResult Function(_GeneratedAndSavedDeviceUUID value)
-        generatedAndSavedDeviceUUID,
+    required TResult Function(_GeneratingAndCachingDeviceUUID value)
+        generatingAndCachingDeviceUUID,
+    required TResult Function(_GeneratedAndCachedDeviceUUID value)
+        generatedAndCachedDeviceUUID,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
+    TResult? Function(_CheckingDeviceUUIDExists value)?
+        checkingDeviceUUIDExists,
     TResult? Function(_DeviceUUIDExists value)? deviceUUIDExists,
-    TResult? Function(_DeviceUUIDDoesNotExist value)? deviceUUIDDoesNotExist,
-    TResult? Function(_GeneratedAndSavedDeviceUUID value)?
-        generatedAndSavedDeviceUUID,
+    TResult? Function(_GeneratingAndCachingDeviceUUID value)?
+        generatingAndCachingDeviceUUID,
+    TResult? Function(_GeneratedAndCachedDeviceUUID value)?
+        generatedAndCachedDeviceUUID,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
+    TResult Function(_CheckingDeviceUUIDExists value)? checkingDeviceUUIDExists,
     TResult Function(_DeviceUUIDExists value)? deviceUUIDExists,
-    TResult Function(_DeviceUUIDDoesNotExist value)? deviceUUIDDoesNotExist,
-    TResult Function(_GeneratedAndSavedDeviceUUID value)?
-        generatedAndSavedDeviceUUID,
+    TResult Function(_GeneratingAndCachingDeviceUUID value)?
+        generatingAndCachingDeviceUUID,
+    TResult Function(_GeneratedAndCachedDeviceUUID value)?
+        generatedAndCachedDeviceUUID,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -425,9 +314,10 @@ class _$InitialImpl implements _Initial {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
+    required TResult Function() checkingDeviceUUIDExists,
     required TResult Function() deviceUUIDExists,
-    required TResult Function() deviceUUIDDoesNotExist,
-    required TResult Function() generatedAndSavedDeviceUUID,
+    required TResult Function() generatingAndCachingDeviceUUID,
+    required TResult Function() generatedAndCachedDeviceUUID,
   }) {
     return initial();
   }
@@ -436,9 +326,10 @@ class _$InitialImpl implements _Initial {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
+    TResult? Function()? checkingDeviceUUIDExists,
     TResult? Function()? deviceUUIDExists,
-    TResult? Function()? deviceUUIDDoesNotExist,
-    TResult? Function()? generatedAndSavedDeviceUUID,
+    TResult? Function()? generatingAndCachingDeviceUUID,
+    TResult? Function()? generatedAndCachedDeviceUUID,
   }) {
     return initial?.call();
   }
@@ -447,9 +338,10 @@ class _$InitialImpl implements _Initial {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
+    TResult Function()? checkingDeviceUUIDExists,
     TResult Function()? deviceUUIDExists,
-    TResult Function()? deviceUUIDDoesNotExist,
-    TResult Function()? generatedAndSavedDeviceUUID,
+    TResult Function()? generatingAndCachingDeviceUUID,
+    TResult Function()? generatedAndCachedDeviceUUID,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -462,11 +354,13 @@ class _$InitialImpl implements _Initial {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
+    required TResult Function(_CheckingDeviceUUIDExists value)
+        checkingDeviceUUIDExists,
     required TResult Function(_DeviceUUIDExists value) deviceUUIDExists,
-    required TResult Function(_DeviceUUIDDoesNotExist value)
-        deviceUUIDDoesNotExist,
-    required TResult Function(_GeneratedAndSavedDeviceUUID value)
-        generatedAndSavedDeviceUUID,
+    required TResult Function(_GeneratingAndCachingDeviceUUID value)
+        generatingAndCachingDeviceUUID,
+    required TResult Function(_GeneratedAndCachedDeviceUUID value)
+        generatedAndCachedDeviceUUID,
   }) {
     return initial(this);
   }
@@ -475,10 +369,13 @@ class _$InitialImpl implements _Initial {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
+    TResult? Function(_CheckingDeviceUUIDExists value)?
+        checkingDeviceUUIDExists,
     TResult? Function(_DeviceUUIDExists value)? deviceUUIDExists,
-    TResult? Function(_DeviceUUIDDoesNotExist value)? deviceUUIDDoesNotExist,
-    TResult? Function(_GeneratedAndSavedDeviceUUID value)?
-        generatedAndSavedDeviceUUID,
+    TResult? Function(_GeneratingAndCachingDeviceUUID value)?
+        generatingAndCachingDeviceUUID,
+    TResult? Function(_GeneratedAndCachedDeviceUUID value)?
+        generatedAndCachedDeviceUUID,
   }) {
     return initial?.call(this);
   }
@@ -487,10 +384,12 @@ class _$InitialImpl implements _Initial {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
+    TResult Function(_CheckingDeviceUUIDExists value)? checkingDeviceUUIDExists,
     TResult Function(_DeviceUUIDExists value)? deviceUUIDExists,
-    TResult Function(_DeviceUUIDDoesNotExist value)? deviceUUIDDoesNotExist,
-    TResult Function(_GeneratedAndSavedDeviceUUID value)?
-        generatedAndSavedDeviceUUID,
+    TResult Function(_GeneratingAndCachingDeviceUUID value)?
+        generatingAndCachingDeviceUUID,
+    TResult Function(_GeneratedAndCachedDeviceUUID value)?
+        generatedAndCachedDeviceUUID,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -502,6 +401,140 @@ class _$InitialImpl implements _Initial {
 
 abstract class _Initial implements DeviceUUIDState {
   const factory _Initial() = _$InitialImpl;
+}
+
+/// @nodoc
+abstract class _$$CheckingDeviceUUIDExistsImplCopyWith<$Res> {
+  factory _$$CheckingDeviceUUIDExistsImplCopyWith(
+          _$CheckingDeviceUUIDExistsImpl value,
+          $Res Function(_$CheckingDeviceUUIDExistsImpl) then) =
+      __$$CheckingDeviceUUIDExistsImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$CheckingDeviceUUIDExistsImplCopyWithImpl<$Res>
+    extends _$DeviceUUIDStateCopyWithImpl<$Res, _$CheckingDeviceUUIDExistsImpl>
+    implements _$$CheckingDeviceUUIDExistsImplCopyWith<$Res> {
+  __$$CheckingDeviceUUIDExistsImplCopyWithImpl(
+      _$CheckingDeviceUUIDExistsImpl _value,
+      $Res Function(_$CheckingDeviceUUIDExistsImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of DeviceUUIDState
+  /// with the given fields replaced by the non-null parameter values.
+}
+
+/// @nodoc
+
+class _$CheckingDeviceUUIDExistsImpl implements _CheckingDeviceUUIDExists {
+  const _$CheckingDeviceUUIDExistsImpl();
+
+  @override
+  String toString() {
+    return 'DeviceUUIDState.checkingDeviceUUIDExists()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$CheckingDeviceUUIDExistsImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() checkingDeviceUUIDExists,
+    required TResult Function() deviceUUIDExists,
+    required TResult Function() generatingAndCachingDeviceUUID,
+    required TResult Function() generatedAndCachedDeviceUUID,
+  }) {
+    return checkingDeviceUUIDExists();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? checkingDeviceUUIDExists,
+    TResult? Function()? deviceUUIDExists,
+    TResult? Function()? generatingAndCachingDeviceUUID,
+    TResult? Function()? generatedAndCachedDeviceUUID,
+  }) {
+    return checkingDeviceUUIDExists?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? checkingDeviceUUIDExists,
+    TResult Function()? deviceUUIDExists,
+    TResult Function()? generatingAndCachingDeviceUUID,
+    TResult Function()? generatedAndCachedDeviceUUID,
+    required TResult orElse(),
+  }) {
+    if (checkingDeviceUUIDExists != null) {
+      return checkingDeviceUUIDExists();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_CheckingDeviceUUIDExists value)
+        checkingDeviceUUIDExists,
+    required TResult Function(_DeviceUUIDExists value) deviceUUIDExists,
+    required TResult Function(_GeneratingAndCachingDeviceUUID value)
+        generatingAndCachingDeviceUUID,
+    required TResult Function(_GeneratedAndCachedDeviceUUID value)
+        generatedAndCachedDeviceUUID,
+  }) {
+    return checkingDeviceUUIDExists(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(_CheckingDeviceUUIDExists value)?
+        checkingDeviceUUIDExists,
+    TResult? Function(_DeviceUUIDExists value)? deviceUUIDExists,
+    TResult? Function(_GeneratingAndCachingDeviceUUID value)?
+        generatingAndCachingDeviceUUID,
+    TResult? Function(_GeneratedAndCachedDeviceUUID value)?
+        generatedAndCachedDeviceUUID,
+  }) {
+    return checkingDeviceUUIDExists?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_CheckingDeviceUUIDExists value)? checkingDeviceUUIDExists,
+    TResult Function(_DeviceUUIDExists value)? deviceUUIDExists,
+    TResult Function(_GeneratingAndCachingDeviceUUID value)?
+        generatingAndCachingDeviceUUID,
+    TResult Function(_GeneratedAndCachedDeviceUUID value)?
+        generatedAndCachedDeviceUUID,
+    required TResult orElse(),
+  }) {
+    if (checkingDeviceUUIDExists != null) {
+      return checkingDeviceUUIDExists(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _CheckingDeviceUUIDExists implements DeviceUUIDState {
+  const factory _CheckingDeviceUUIDExists() = _$CheckingDeviceUUIDExistsImpl;
 }
 
 /// @nodoc
@@ -546,9 +579,10 @@ class _$DeviceUUIDExistsImpl implements _DeviceUUIDExists {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
+    required TResult Function() checkingDeviceUUIDExists,
     required TResult Function() deviceUUIDExists,
-    required TResult Function() deviceUUIDDoesNotExist,
-    required TResult Function() generatedAndSavedDeviceUUID,
+    required TResult Function() generatingAndCachingDeviceUUID,
+    required TResult Function() generatedAndCachedDeviceUUID,
   }) {
     return deviceUUIDExists();
   }
@@ -557,9 +591,10 @@ class _$DeviceUUIDExistsImpl implements _DeviceUUIDExists {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
+    TResult? Function()? checkingDeviceUUIDExists,
     TResult? Function()? deviceUUIDExists,
-    TResult? Function()? deviceUUIDDoesNotExist,
-    TResult? Function()? generatedAndSavedDeviceUUID,
+    TResult? Function()? generatingAndCachingDeviceUUID,
+    TResult? Function()? generatedAndCachedDeviceUUID,
   }) {
     return deviceUUIDExists?.call();
   }
@@ -568,9 +603,10 @@ class _$DeviceUUIDExistsImpl implements _DeviceUUIDExists {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
+    TResult Function()? checkingDeviceUUIDExists,
     TResult Function()? deviceUUIDExists,
-    TResult Function()? deviceUUIDDoesNotExist,
-    TResult Function()? generatedAndSavedDeviceUUID,
+    TResult Function()? generatingAndCachingDeviceUUID,
+    TResult Function()? generatedAndCachedDeviceUUID,
     required TResult orElse(),
   }) {
     if (deviceUUIDExists != null) {
@@ -583,11 +619,13 @@ class _$DeviceUUIDExistsImpl implements _DeviceUUIDExists {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
+    required TResult Function(_CheckingDeviceUUIDExists value)
+        checkingDeviceUUIDExists,
     required TResult Function(_DeviceUUIDExists value) deviceUUIDExists,
-    required TResult Function(_DeviceUUIDDoesNotExist value)
-        deviceUUIDDoesNotExist,
-    required TResult Function(_GeneratedAndSavedDeviceUUID value)
-        generatedAndSavedDeviceUUID,
+    required TResult Function(_GeneratingAndCachingDeviceUUID value)
+        generatingAndCachingDeviceUUID,
+    required TResult Function(_GeneratedAndCachedDeviceUUID value)
+        generatedAndCachedDeviceUUID,
   }) {
     return deviceUUIDExists(this);
   }
@@ -596,10 +634,13 @@ class _$DeviceUUIDExistsImpl implements _DeviceUUIDExists {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
+    TResult? Function(_CheckingDeviceUUIDExists value)?
+        checkingDeviceUUIDExists,
     TResult? Function(_DeviceUUIDExists value)? deviceUUIDExists,
-    TResult? Function(_DeviceUUIDDoesNotExist value)? deviceUUIDDoesNotExist,
-    TResult? Function(_GeneratedAndSavedDeviceUUID value)?
-        generatedAndSavedDeviceUUID,
+    TResult? Function(_GeneratingAndCachingDeviceUUID value)?
+        generatingAndCachingDeviceUUID,
+    TResult? Function(_GeneratedAndCachedDeviceUUID value)?
+        generatedAndCachedDeviceUUID,
   }) {
     return deviceUUIDExists?.call(this);
   }
@@ -608,10 +649,12 @@ class _$DeviceUUIDExistsImpl implements _DeviceUUIDExists {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
+    TResult Function(_CheckingDeviceUUIDExists value)? checkingDeviceUUIDExists,
     TResult Function(_DeviceUUIDExists value)? deviceUUIDExists,
-    TResult Function(_DeviceUUIDDoesNotExist value)? deviceUUIDDoesNotExist,
-    TResult Function(_GeneratedAndSavedDeviceUUID value)?
-        generatedAndSavedDeviceUUID,
+    TResult Function(_GeneratingAndCachingDeviceUUID value)?
+        generatingAndCachingDeviceUUID,
+    TResult Function(_GeneratedAndCachedDeviceUUID value)?
+        generatedAndCachedDeviceUUID,
     required TResult orElse(),
   }) {
     if (deviceUUIDExists != null) {
@@ -626,145 +669,21 @@ abstract class _DeviceUUIDExists implements DeviceUUIDState {
 }
 
 /// @nodoc
-abstract class _$$DeviceUUIDDoesNotExistImplCopyWith<$Res> {
-  factory _$$DeviceUUIDDoesNotExistImplCopyWith(
-          _$DeviceUUIDDoesNotExistImpl value,
-          $Res Function(_$DeviceUUIDDoesNotExistImpl) then) =
-      __$$DeviceUUIDDoesNotExistImplCopyWithImpl<$Res>;
+abstract class _$$GeneratingAndCachingDeviceUUIDImplCopyWith<$Res> {
+  factory _$$GeneratingAndCachingDeviceUUIDImplCopyWith(
+          _$GeneratingAndCachingDeviceUUIDImpl value,
+          $Res Function(_$GeneratingAndCachingDeviceUUIDImpl) then) =
+      __$$GeneratingAndCachingDeviceUUIDImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$DeviceUUIDDoesNotExistImplCopyWithImpl<$Res>
-    extends _$DeviceUUIDStateCopyWithImpl<$Res, _$DeviceUUIDDoesNotExistImpl>
-    implements _$$DeviceUUIDDoesNotExistImplCopyWith<$Res> {
-  __$$DeviceUUIDDoesNotExistImplCopyWithImpl(
-      _$DeviceUUIDDoesNotExistImpl _value,
-      $Res Function(_$DeviceUUIDDoesNotExistImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of DeviceUUIDState
-  /// with the given fields replaced by the non-null parameter values.
-}
-
-/// @nodoc
-
-class _$DeviceUUIDDoesNotExistImpl implements _DeviceUUIDDoesNotExist {
-  const _$DeviceUUIDDoesNotExistImpl();
-
-  @override
-  String toString() {
-    return 'DeviceUUIDState.deviceUUIDDoesNotExist()';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$DeviceUUIDDoesNotExistImpl);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function() deviceUUIDExists,
-    required TResult Function() deviceUUIDDoesNotExist,
-    required TResult Function() generatedAndSavedDeviceUUID,
-  }) {
-    return deviceUUIDDoesNotExist();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
-    TResult? Function()? deviceUUIDExists,
-    TResult? Function()? deviceUUIDDoesNotExist,
-    TResult? Function()? generatedAndSavedDeviceUUID,
-  }) {
-    return deviceUUIDDoesNotExist?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? deviceUUIDExists,
-    TResult Function()? deviceUUIDDoesNotExist,
-    TResult Function()? generatedAndSavedDeviceUUID,
-    required TResult orElse(),
-  }) {
-    if (deviceUUIDDoesNotExist != null) {
-      return deviceUUIDDoesNotExist();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_DeviceUUIDExists value) deviceUUIDExists,
-    required TResult Function(_DeviceUUIDDoesNotExist value)
-        deviceUUIDDoesNotExist,
-    required TResult Function(_GeneratedAndSavedDeviceUUID value)
-        generatedAndSavedDeviceUUID,
-  }) {
-    return deviceUUIDDoesNotExist(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(_DeviceUUIDExists value)? deviceUUIDExists,
-    TResult? Function(_DeviceUUIDDoesNotExist value)? deviceUUIDDoesNotExist,
-    TResult? Function(_GeneratedAndSavedDeviceUUID value)?
-        generatedAndSavedDeviceUUID,
-  }) {
-    return deviceUUIDDoesNotExist?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_DeviceUUIDExists value)? deviceUUIDExists,
-    TResult Function(_DeviceUUIDDoesNotExist value)? deviceUUIDDoesNotExist,
-    TResult Function(_GeneratedAndSavedDeviceUUID value)?
-        generatedAndSavedDeviceUUID,
-    required TResult orElse(),
-  }) {
-    if (deviceUUIDDoesNotExist != null) {
-      return deviceUUIDDoesNotExist(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _DeviceUUIDDoesNotExist implements DeviceUUIDState {
-  const factory _DeviceUUIDDoesNotExist() = _$DeviceUUIDDoesNotExistImpl;
-}
-
-/// @nodoc
-abstract class _$$GeneratedAndSavedDeviceUUIDImplCopyWith<$Res> {
-  factory _$$GeneratedAndSavedDeviceUUIDImplCopyWith(
-          _$GeneratedAndSavedDeviceUUIDImpl value,
-          $Res Function(_$GeneratedAndSavedDeviceUUIDImpl) then) =
-      __$$GeneratedAndSavedDeviceUUIDImplCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$GeneratedAndSavedDeviceUUIDImplCopyWithImpl<$Res>
+class __$$GeneratingAndCachingDeviceUUIDImplCopyWithImpl<$Res>
     extends _$DeviceUUIDStateCopyWithImpl<$Res,
-        _$GeneratedAndSavedDeviceUUIDImpl>
-    implements _$$GeneratedAndSavedDeviceUUIDImplCopyWith<$Res> {
-  __$$GeneratedAndSavedDeviceUUIDImplCopyWithImpl(
-      _$GeneratedAndSavedDeviceUUIDImpl _value,
-      $Res Function(_$GeneratedAndSavedDeviceUUIDImpl) _then)
+        _$GeneratingAndCachingDeviceUUIDImpl>
+    implements _$$GeneratingAndCachingDeviceUUIDImplCopyWith<$Res> {
+  __$$GeneratingAndCachingDeviceUUIDImplCopyWithImpl(
+      _$GeneratingAndCachingDeviceUUIDImpl _value,
+      $Res Function(_$GeneratingAndCachingDeviceUUIDImpl) _then)
       : super(_value, _then);
 
   /// Create a copy of DeviceUUIDState
@@ -773,20 +692,20 @@ class __$$GeneratedAndSavedDeviceUUIDImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$GeneratedAndSavedDeviceUUIDImpl
-    implements _GeneratedAndSavedDeviceUUID {
-  const _$GeneratedAndSavedDeviceUUIDImpl();
+class _$GeneratingAndCachingDeviceUUIDImpl
+    implements _GeneratingAndCachingDeviceUUID {
+  const _$GeneratingAndCachingDeviceUUIDImpl();
 
   @override
   String toString() {
-    return 'DeviceUUIDState.generatedAndSavedDeviceUUID()';
+    return 'DeviceUUIDState.generatingAndCachingDeviceUUID()';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$GeneratedAndSavedDeviceUUIDImpl);
+            other is _$GeneratingAndCachingDeviceUUIDImpl);
   }
 
   @override
@@ -796,35 +715,38 @@ class _$GeneratedAndSavedDeviceUUIDImpl
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
+    required TResult Function() checkingDeviceUUIDExists,
     required TResult Function() deviceUUIDExists,
-    required TResult Function() deviceUUIDDoesNotExist,
-    required TResult Function() generatedAndSavedDeviceUUID,
+    required TResult Function() generatingAndCachingDeviceUUID,
+    required TResult Function() generatedAndCachedDeviceUUID,
   }) {
-    return generatedAndSavedDeviceUUID();
+    return generatingAndCachingDeviceUUID();
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
+    TResult? Function()? checkingDeviceUUIDExists,
     TResult? Function()? deviceUUIDExists,
-    TResult? Function()? deviceUUIDDoesNotExist,
-    TResult? Function()? generatedAndSavedDeviceUUID,
+    TResult? Function()? generatingAndCachingDeviceUUID,
+    TResult? Function()? generatedAndCachedDeviceUUID,
   }) {
-    return generatedAndSavedDeviceUUID?.call();
+    return generatingAndCachingDeviceUUID?.call();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
+    TResult Function()? checkingDeviceUUIDExists,
     TResult Function()? deviceUUIDExists,
-    TResult Function()? deviceUUIDDoesNotExist,
-    TResult Function()? generatedAndSavedDeviceUUID,
+    TResult Function()? generatingAndCachingDeviceUUID,
+    TResult Function()? generatedAndCachedDeviceUUID,
     required TResult orElse(),
   }) {
-    if (generatedAndSavedDeviceUUID != null) {
-      return generatedAndSavedDeviceUUID();
+    if (generatingAndCachingDeviceUUID != null) {
+      return generatingAndCachingDeviceUUID();
     }
     return orElse();
   }
@@ -833,45 +755,189 @@ class _$GeneratedAndSavedDeviceUUIDImpl
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
+    required TResult Function(_CheckingDeviceUUIDExists value)
+        checkingDeviceUUIDExists,
     required TResult Function(_DeviceUUIDExists value) deviceUUIDExists,
-    required TResult Function(_DeviceUUIDDoesNotExist value)
-        deviceUUIDDoesNotExist,
-    required TResult Function(_GeneratedAndSavedDeviceUUID value)
-        generatedAndSavedDeviceUUID,
+    required TResult Function(_GeneratingAndCachingDeviceUUID value)
+        generatingAndCachingDeviceUUID,
+    required TResult Function(_GeneratedAndCachedDeviceUUID value)
+        generatedAndCachedDeviceUUID,
   }) {
-    return generatedAndSavedDeviceUUID(this);
+    return generatingAndCachingDeviceUUID(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
+    TResult? Function(_CheckingDeviceUUIDExists value)?
+        checkingDeviceUUIDExists,
     TResult? Function(_DeviceUUIDExists value)? deviceUUIDExists,
-    TResult? Function(_DeviceUUIDDoesNotExist value)? deviceUUIDDoesNotExist,
-    TResult? Function(_GeneratedAndSavedDeviceUUID value)?
-        generatedAndSavedDeviceUUID,
+    TResult? Function(_GeneratingAndCachingDeviceUUID value)?
+        generatingAndCachingDeviceUUID,
+    TResult? Function(_GeneratedAndCachedDeviceUUID value)?
+        generatedAndCachedDeviceUUID,
   }) {
-    return generatedAndSavedDeviceUUID?.call(this);
+    return generatingAndCachingDeviceUUID?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
+    TResult Function(_CheckingDeviceUUIDExists value)? checkingDeviceUUIDExists,
     TResult Function(_DeviceUUIDExists value)? deviceUUIDExists,
-    TResult Function(_DeviceUUIDDoesNotExist value)? deviceUUIDDoesNotExist,
-    TResult Function(_GeneratedAndSavedDeviceUUID value)?
-        generatedAndSavedDeviceUUID,
+    TResult Function(_GeneratingAndCachingDeviceUUID value)?
+        generatingAndCachingDeviceUUID,
+    TResult Function(_GeneratedAndCachedDeviceUUID value)?
+        generatedAndCachedDeviceUUID,
     required TResult orElse(),
   }) {
-    if (generatedAndSavedDeviceUUID != null) {
-      return generatedAndSavedDeviceUUID(this);
+    if (generatingAndCachingDeviceUUID != null) {
+      return generatingAndCachingDeviceUUID(this);
     }
     return orElse();
   }
 }
 
-abstract class _GeneratedAndSavedDeviceUUID implements DeviceUUIDState {
-  const factory _GeneratedAndSavedDeviceUUID() =
-      _$GeneratedAndSavedDeviceUUIDImpl;
+abstract class _GeneratingAndCachingDeviceUUID implements DeviceUUIDState {
+  const factory _GeneratingAndCachingDeviceUUID() =
+      _$GeneratingAndCachingDeviceUUIDImpl;
+}
+
+/// @nodoc
+abstract class _$$GeneratedAndCachedDeviceUUIDImplCopyWith<$Res> {
+  factory _$$GeneratedAndCachedDeviceUUIDImplCopyWith(
+          _$GeneratedAndCachedDeviceUUIDImpl value,
+          $Res Function(_$GeneratedAndCachedDeviceUUIDImpl) then) =
+      __$$GeneratedAndCachedDeviceUUIDImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$GeneratedAndCachedDeviceUUIDImplCopyWithImpl<$Res>
+    extends _$DeviceUUIDStateCopyWithImpl<$Res,
+        _$GeneratedAndCachedDeviceUUIDImpl>
+    implements _$$GeneratedAndCachedDeviceUUIDImplCopyWith<$Res> {
+  __$$GeneratedAndCachedDeviceUUIDImplCopyWithImpl(
+      _$GeneratedAndCachedDeviceUUIDImpl _value,
+      $Res Function(_$GeneratedAndCachedDeviceUUIDImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of DeviceUUIDState
+  /// with the given fields replaced by the non-null parameter values.
+}
+
+/// @nodoc
+
+class _$GeneratedAndCachedDeviceUUIDImpl
+    implements _GeneratedAndCachedDeviceUUID {
+  const _$GeneratedAndCachedDeviceUUIDImpl();
+
+  @override
+  String toString() {
+    return 'DeviceUUIDState.generatedAndCachedDeviceUUID()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$GeneratedAndCachedDeviceUUIDImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() checkingDeviceUUIDExists,
+    required TResult Function() deviceUUIDExists,
+    required TResult Function() generatingAndCachingDeviceUUID,
+    required TResult Function() generatedAndCachedDeviceUUID,
+  }) {
+    return generatedAndCachedDeviceUUID();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? checkingDeviceUUIDExists,
+    TResult? Function()? deviceUUIDExists,
+    TResult? Function()? generatingAndCachingDeviceUUID,
+    TResult? Function()? generatedAndCachedDeviceUUID,
+  }) {
+    return generatedAndCachedDeviceUUID?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? checkingDeviceUUIDExists,
+    TResult Function()? deviceUUIDExists,
+    TResult Function()? generatingAndCachingDeviceUUID,
+    TResult Function()? generatedAndCachedDeviceUUID,
+    required TResult orElse(),
+  }) {
+    if (generatedAndCachedDeviceUUID != null) {
+      return generatedAndCachedDeviceUUID();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_CheckingDeviceUUIDExists value)
+        checkingDeviceUUIDExists,
+    required TResult Function(_DeviceUUIDExists value) deviceUUIDExists,
+    required TResult Function(_GeneratingAndCachingDeviceUUID value)
+        generatingAndCachingDeviceUUID,
+    required TResult Function(_GeneratedAndCachedDeviceUUID value)
+        generatedAndCachedDeviceUUID,
+  }) {
+    return generatedAndCachedDeviceUUID(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(_CheckingDeviceUUIDExists value)?
+        checkingDeviceUUIDExists,
+    TResult? Function(_DeviceUUIDExists value)? deviceUUIDExists,
+    TResult? Function(_GeneratingAndCachingDeviceUUID value)?
+        generatingAndCachingDeviceUUID,
+    TResult? Function(_GeneratedAndCachedDeviceUUID value)?
+        generatedAndCachedDeviceUUID,
+  }) {
+    return generatedAndCachedDeviceUUID?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_CheckingDeviceUUIDExists value)? checkingDeviceUUIDExists,
+    TResult Function(_DeviceUUIDExists value)? deviceUUIDExists,
+    TResult Function(_GeneratingAndCachingDeviceUUID value)?
+        generatingAndCachingDeviceUUID,
+    TResult Function(_GeneratedAndCachedDeviceUUID value)?
+        generatedAndCachedDeviceUUID,
+    required TResult orElse(),
+  }) {
+    if (generatedAndCachedDeviceUUID != null) {
+      return generatedAndCachedDeviceUUID(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _GeneratedAndCachedDeviceUUID implements DeviceUUIDState {
+  const factory _GeneratedAndCachedDeviceUUID() =
+      _$GeneratedAndCachedDeviceUUIDImpl;
 }

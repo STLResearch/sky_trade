@@ -65,7 +65,8 @@ import 'package:sky_trade/features/bluetooth/presentation/blocs/bluetooth_permis
         BluetoothPermissionsBloc,
         BluetoothPermissionsEvent,
         BluetoothPermissionsState;
-import 'package:sky_trade/features/device_profile/presentation/blocs/device_metadata_bloc/device_metadata_bloc.dart';
+import 'package:sky_trade/features/device_profile/presentation/blocs/device_metadata_bloc/device_metadata_bloc.dart'
+    show DeviceMetadataBloc, DeviceMetadataEvent;
 import 'package:sky_trade/features/geo_hash/presentation/blocs/geo_hash_bloc/geo_hash_bloc.dart'
     show GeoHashBloc, GeoHashEvent, GeoHashState;
 import 'package:sky_trade/features/location/presentation/blocs/location_permission_bloc/location_permission_bloc.dart'
@@ -263,7 +264,7 @@ class _HomeViewState extends State<HomeView> {
       ),
     );
 
-    _sendLatestDeviceMetadata();
+    _sendDeviceMetadata();
 
     _startTransmitter();
 
@@ -278,9 +279,9 @@ class _HomeViewState extends State<HomeView> {
     super.initState();
   }
 
-  void _sendLatestDeviceMetadata() => context.read<DeviceMetadataBloc>().add(
-    const DeviceMetadataEvent.sendLatestDeviceMetadata(),
-  );
+  void _sendDeviceMetadata() => context.read<DeviceMetadataBloc>().add(
+        const DeviceMetadataEvent.sendDeviceMetadata(),
+      );
 
   void _startTransmitter() => context.read<RemoteIDTransmitterBloc>().add(
         const RemoteIDTransmitterEvent.startTransmitter(),

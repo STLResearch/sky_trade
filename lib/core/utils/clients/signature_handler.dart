@@ -5,9 +5,9 @@ import 'dart:math' show Random;
 
 import 'package:auth0_flutter/auth0_flutter.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart' show dotenv;
-import 'package:get_it/get_it.dart' show GetIt;
 import 'package:hex/hex.dart' show HEX;
-import 'package:shared_preferences/shared_preferences.dart' show SharedPreferencesWithCache;
+import 'package:shared_preferences/shared_preferences.dart'
+    show SharedPreferencesWithCache;
 import 'package:single_factor_auth_flutter/single_factor_auth_flutter.dart';
 import 'package:sky_trade/core/resources/numbers/local.dart'
     show sixteen, thirtyTwo;
@@ -47,10 +47,13 @@ mixin class SignatureHandler {
     return base58EncodedSignature;
   }
 
-  Future<String?> getDeviceUUID() async{
-    final sl = GetIt.I;
-    final sharedPreferences = await sl<Future<SharedPreferencesWithCache>>();
-    return sharedPreferences.getString(deviceUUIDKey);
+  Future<String?> getDeviceUUID() async {
+    final sharedPreferences =
+        await serviceLocator<Future<SharedPreferencesWithCache>>();
+
+    return sharedPreferences.getString(
+      deviceUUIDKey,
+    );
   }
 
   String computeIssuedAt() {

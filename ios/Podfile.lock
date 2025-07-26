@@ -331,7 +331,7 @@ SPEC CHECKSUMS:
   BigInt: f668a80089607f521586bbe29513d708491ef2f7
   connectivity_plus: cb623214f4e1f6ef8fe7403d580fdad517d2f7dd
   curvelib.swift: b9223e5cac801effed8a5fe8968e952b3fe427a5
-  device_info_plus: 335f3ce08d2e174b9fdc3db3db0f4e3b1f66bd89
+  device_info_plus: 21fcca2080fbcd348be798aa36c3e5ed849eefbe
   Firebase: 1fe1c0a7d9aaea32efe01fbea5f0ebd8d70e53a2
   firebase_analytics: 23a2678c8f20c46ef305c2f05a9ead0e681163cf
   firebase_core: ba71b44041571da878cb624ce0d80250bcbe58ad

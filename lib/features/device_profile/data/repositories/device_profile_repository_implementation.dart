@@ -2,83 +2,89 @@ import 'dart:io' show Platform;
 
 import 'package:dartz/dartz.dart' show Either;
 import 'package:device_info_plus/device_info_plus.dart' show DeviceInfoPlugin;
-import 'package:sky_trade/core/errors/failures/device_profile_failure.dart'
-    show DeviceProfileFailure;
+import 'package:sky_trade/core/errors/exceptions/device_profile_exception.dart';
+import 'package:sky_trade/core/errors/failures/device_profile_failure.dart';
 import 'package:sky_trade/core/resources/strings/networking.dart'
     show androidValue, deviceNameKey, iosValue, osVersionKey;
 import 'package:sky_trade/core/resources/strings/special_characters.dart'
     show whiteSpace;
-import 'package:sky_trade/core/utils/clients/data_handler.dart'
-    show DataHandler;
+import 'package:sky_trade/core/utils/clients/data_handler.dart';
 import 'package:sky_trade/features/device_profile/data/data_sources/device_profile_local_data_source.dart'
-    show DeviceUUIDLocalDataSource;
+    show DeviceProfileLocalDataSource;
 import 'package:sky_trade/features/device_profile/data/data_sources/device_profile_remote_data_source.dart'
-    show DeviceUUIDRemoteDataSource;
-import 'package:sky_trade/features/device_profile/domain/repositories/device_profile_repository.dart'
-    show DeviceProfileRepository;
-import 'package:uuid/data.dart' show V4Options;
-import 'package:uuid/rng.dart' show CryptoRNG;
-import 'package:uuid/uuid.dart' show Uuid;
+    show DeviceProfileRemoteDataSource;
+import 'package:sky_trade/features/device_profile/domain/entities/device_profile_entity.dart';
+import 'package:sky_trade/features/device_profile/domain/repositories/device_profile_repository.dart';
 
-final class DeviceUUIDRepositoryImplementation
+final class DeviceProfileRepositoryImplementation
     with DataHandler
     implements DeviceProfileRepository {
-  const DeviceUUIDRepositoryImplementation({
-    required DeviceUUIDLocalDataSource deviceUUIDLocalDataSource,
-    required DeviceUUIDRemoteDataSource deviceUUIDRemoteDataSource,
-  })  : _deviceUUIDLocalDataSource = deviceUUIDLocalDataSource,
-        _deviceUUIDRemoteDataSource = deviceUUIDRemoteDataSource;
+  const DeviceProfileRepositoryImplementation({
+    required DeviceInfoPlugin deviceInfoPlugin,
+    required DeviceProfileLocalDataSource deviceProfileLocalDataSource,
+    required DeviceProfileRemoteDataSource deviceProfileRemoteDataSource,
+  })  : _deviceInfoPlugin = deviceInfoPlugin,
+        _deviceProfileLocalDataSource = deviceProfileLocalDataSource,
+        _deviceProfileRemoteDataSource = deviceProfileRemoteDataSource;
 
-  final DeviceUUIDLocalDataSource _deviceUUIDLocalDataSource;
-  final DeviceUUIDRemoteDataSource _deviceUUIDRemoteDataSource;
+  final DeviceInfoPlugin _deviceInfoPlugin;
 
-  @override
-  Future<bool> checkDeviceUUIDExists() async =>
-      _deviceUUIDLocalDataSource.checkDeviceUUIDExists();
+  final DeviceProfileLocalDataSource _deviceProfileLocalDataSource;
 
-  @override
-  Future<void> generateAndSaveDeviceUUID() async {
-    final deviceUUID = const Uuid().v4(
-      config: V4Options(
-        null,
-        CryptoRNG(),
-      ),
-    );
-    await _deviceUUIDLocalDataSource.saveDeviceUUIDToCache(
-      deviceUUIDValue: deviceUUID,
-    );
-  }
+  final DeviceProfileRemoteDataSource _deviceProfileRemoteDataSource;
 
   @override
-  Future<Either<DeviceProfileFailure, int>> sendLatestDeviceMetadata() async =>
-      handleData(
-        dataSourceOperation: () async =>
-            _deviceUUIDRemoteDataSource.sendDeviceMetadata(
-          deviceMetadata: await _getLatestDeviceMetadata(),
-        ),
-        onSuccess: (success) => success,
-        onFailure: (_) => DeviceProfileFailure(),
-      );
+  Future<bool> checkDeviceUUIDExists() =>
+      _deviceProfileLocalDataSource.checkDeviceUUIDExists();
 
-  Future<Map<String, String>> _getLatestDeviceMetadata() async {
-    final Map<String, String> deviceInfo;
-    final deviceInfoPlugin = DeviceInfoPlugin();
+  @override
+  Future<void> generateAndCacheDeviceUUID() =>
+      _deviceProfileLocalDataSource.generateAndCacheDeviceUUID();
+
+  @override
+  Future<Either<DeviceMetadataFailure, DeviceMetadataEntity>>
+      sendDeviceMetadata() =>
+          handleData<DeviceMetadataFailure, DeviceMetadataEntity>(
+            dataSourceOperation: () async {
+              final metadata = await _deviceMetadata;
+
+              final data =
+                  await _deviceProfileRemoteDataSource.sendDeviceMetadata(
+                metadata: metadata,
+              );
+
+              return DeviceMetadataEntity(
+                data: data,
+              );
+            },
+            onSuccess: (deviceMetadataEntity) => deviceMetadataEntity,
+            onFailure: (e) => switch (e is DeviceMetadataException) {
+              true when e is DeviceMetadataFailedToSendException =>
+                DeviceMetadataFailedToSendFailure(),
+              _ => DeviceMetadataUnknownFailure(),
+            },
+          );
+
+  Future<Map<String, String>> get _deviceMetadata async {
+    final deviceInfo = <String, String>{};
+
     if (Platform.isAndroid) {
-      final androidDeviceInfo = await deviceInfoPlugin.androidInfo;
-      deviceInfo = {
-        deviceNameKey: androidDeviceInfo.manufacturer +
-            whiteSpace +
-            androidDeviceInfo.model,
-        osVersionKey:
-            androidValue + whiteSpace + androidDeviceInfo.version.release,
-      };
-    } else {
-      final iosDeviceInfo = await deviceInfoPlugin.iosInfo;
-      deviceInfo = {
-        deviceNameKey: iosDeviceInfo.modelName,
-        osVersionKey: iosValue + whiteSpace + iosDeviceInfo.systemVersion,
-      };
+      final androidDeviceInfo = await _deviceInfoPlugin.androidInfo;
+
+      deviceInfo[deviceNameKey] =
+          androidDeviceInfo.manufacturer + whiteSpace + androidDeviceInfo.model;
+
+      deviceInfo[osVersionKey] =
+          androidValue + whiteSpace + androidDeviceInfo.version.release;
+    } else if (Platform.isIOS) {
+      final iosDeviceInfo = await _deviceInfoPlugin.iosInfo;
+
+      deviceInfo[deviceNameKey] = iosDeviceInfo.modelName;
+
+      deviceInfo[osVersionKey] =
+          iosValue + whiteSpace + iosDeviceInfo.systemVersion;
     }
+
     return deviceInfo;
   }
 }

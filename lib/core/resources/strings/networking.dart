@@ -491,7 +491,7 @@ const pirateKey = 'pirate';
 const locationNameKey = 'locationName';
 const remoteIDsKey = 'remoteIDs';
 const androidValue = 'Android';
-const iosValue = 'IOS';
+const iosValue = 'iOS';
 const deviceNameKey = 'deviceName';
 const osVersionKey = 'osVersion';
 // Error response data message

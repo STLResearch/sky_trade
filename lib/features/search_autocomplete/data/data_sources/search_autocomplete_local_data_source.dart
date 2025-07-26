@@ -3,7 +3,9 @@ import 'package:sky_trade/core/resources/numbers/local.dart'
     show fifty, one, sixty, zero;
 import 'package:sky_trade/core/resources/strings/local.dart'
     show sessionTokenAgeKey, sessionTokenKey, sessionTokenUsageCountKey;
-import 'package:uuid_v4/uuid_v4.dart';
+import 'package:uuid/data.dart' show V4Options;
+import 'package:uuid/rng.dart' show CryptoRNG;
+import 'package:uuid/uuid.dart' show Uuid;
 
 abstract interface class SearchAutocompleteLocalDataSource {
   Future<String> get sessionToken;
@@ -71,8 +73,12 @@ final class SearchAutocompleteLocalDataSourceImplementation
   }
 
   String _generateNewSessionToken() {
-    final uuidV4 = UUIDv4();
-    final sessionToken = uuidV4.toString();
+    final sessionToken = const Uuid().v4(
+      config: V4Options(
+        null,
+        CryptoRNG(),
+      ),
+    );
 
     return sessionToken;
   }

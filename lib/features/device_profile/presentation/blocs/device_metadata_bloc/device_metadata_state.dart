@@ -7,9 +7,10 @@ class DeviceMetadataState with _$DeviceMetadataState {
   const factory DeviceMetadataState.sendingDeviceMetadata() =
       _SendingDeviceMetadata;
 
-  const factory DeviceMetadataState.sentDeviceMetadataSuccessfully() =
-      _SentDeviceMetadataSentSuccessfully;
+  const factory DeviceMetadataState.sentDeviceMetadata() =
+      _SentDeviceMetadataSent;
 
-  const factory DeviceMetadataState.failedToSentDeviceMetadata() =
-      _FailedToSentDeviceMetadata;
+  const factory DeviceMetadataState.failedToSendDeviceMetadata({
+    required DeviceMetadataFailure deviceMetadataFailure,
+  }) = _FailedToSendDeviceMetadata;
 }

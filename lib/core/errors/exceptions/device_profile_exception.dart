@@ -1,1 +1,4 @@
-final class DeviceProfileException implements Exception {}
+final class DeviceMetadataException implements Exception {}
+
+final class DeviceMetadataFailedToSendException
+    implements DeviceMetadataException {}

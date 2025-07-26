@@ -14,7 +14,24 @@ import 'package:sky_trade/core/resources/numbers/networking.dart'
         requestSendTimeoutSeconds,
         zero;
 import 'package:sky_trade/core/resources/strings/networking.dart'
-    show acceptAllHeaderValue, acceptHeaderKey, anErrorOccurredWhileProcessingTheEventLogMessage, applicationJsonHeaderValue, bodyKey, contentTypeHeaderKey, deviceUUIDKey, emailAddressHeaderKey, expectedTypeLogMessage, radarPath, signAddressHeaderKey, signHeaderKey, signIssueAtHeaderKey, signNonceHeaderKey, socketExceptionLogMessage, unexpectedResponseTypeReceivedLogMessage, websocketTransport;
+    show
+        acceptAllHeaderValue,
+        acceptHeaderKey,
+        anErrorOccurredWhileProcessingTheEventLogMessage,
+        applicationJsonHeaderValue,
+        bodyKey,
+        contentTypeHeaderKey,
+        deviceUUIDKey,
+        emailAddressHeaderKey,
+        expectedTypeLogMessage,
+        radarPath,
+        signAddressHeaderKey,
+        signHeaderKey,
+        signIssueAtHeaderKey,
+        signNonceHeaderKey,
+        socketExceptionLogMessage,
+        unexpectedResponseTypeReceivedLogMessage,
+        websocketTransport;
 import 'package:sky_trade/core/resources/strings/secret_keys.dart'
     show skyTradeServerHttpBaseUrl, skyTradeServerSocketIOBaseUrl;
 import 'package:sky_trade/core/resources/strings/special_characters.dart'

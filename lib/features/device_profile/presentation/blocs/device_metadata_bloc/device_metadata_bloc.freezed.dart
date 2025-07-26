@@ -18,35 +18,33 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$DeviceMetadataEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() sendLatestDeviceMetadata,
+    required TResult Function() sendDeviceMetadata,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? sendLatestDeviceMetadata,
+    TResult? Function()? sendDeviceMetadata,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? sendLatestDeviceMetadata,
+    TResult Function()? sendDeviceMetadata,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_SendLatestDeviceMetadata value)
-        sendLatestDeviceMetadata,
+    required TResult Function(_SendDeviceMetadata value) sendDeviceMetadata,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_SendLatestDeviceMetadata value)?
-        sendLatestDeviceMetadata,
+    TResult? Function(_SendDeviceMetadata value)? sendDeviceMetadata,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_SendLatestDeviceMetadata value)? sendLatestDeviceMetadata,
+    TResult Function(_SendDeviceMetadata value)? sendDeviceMetadata,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -74,21 +72,18 @@ class _$DeviceMetadataEventCopyWithImpl<$Res, $Val extends DeviceMetadataEvent>
 }
 
 /// @nodoc
-abstract class _$$SendLatestDeviceMetadataImplCopyWith<$Res> {
-  factory _$$SendLatestDeviceMetadataImplCopyWith(
-          _$SendLatestDeviceMetadataImpl value,
-          $Res Function(_$SendLatestDeviceMetadataImpl) then) =
-      __$$SendLatestDeviceMetadataImplCopyWithImpl<$Res>;
+abstract class _$$SendDeviceMetadataImplCopyWith<$Res> {
+  factory _$$SendDeviceMetadataImplCopyWith(_$SendDeviceMetadataImpl value,
+          $Res Function(_$SendDeviceMetadataImpl) then) =
+      __$$SendDeviceMetadataImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$SendLatestDeviceMetadataImplCopyWithImpl<$Res>
-    extends _$DeviceMetadataEventCopyWithImpl<$Res,
-        _$SendLatestDeviceMetadataImpl>
-    implements _$$SendLatestDeviceMetadataImplCopyWith<$Res> {
-  __$$SendLatestDeviceMetadataImplCopyWithImpl(
-      _$SendLatestDeviceMetadataImpl _value,
-      $Res Function(_$SendLatestDeviceMetadataImpl) _then)
+class __$$SendDeviceMetadataImplCopyWithImpl<$Res>
+    extends _$DeviceMetadataEventCopyWithImpl<$Res, _$SendDeviceMetadataImpl>
+    implements _$$SendDeviceMetadataImplCopyWith<$Res> {
+  __$$SendDeviceMetadataImplCopyWithImpl(_$SendDeviceMetadataImpl _value,
+      $Res Function(_$SendDeviceMetadataImpl) _then)
       : super(_value, _then);
 
   /// Create a copy of DeviceMetadataEvent
@@ -97,19 +92,18 @@ class __$$SendLatestDeviceMetadataImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$SendLatestDeviceMetadataImpl implements _SendLatestDeviceMetadata {
-  const _$SendLatestDeviceMetadataImpl();
+class _$SendDeviceMetadataImpl implements _SendDeviceMetadata {
+  const _$SendDeviceMetadataImpl();
 
   @override
   String toString() {
-    return 'DeviceMetadataEvent.sendLatestDeviceMetadata()';
+    return 'DeviceMetadataEvent.sendDeviceMetadata()';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$SendLatestDeviceMetadataImpl);
+        (other.runtimeType == runtimeType && other is _$SendDeviceMetadataImpl);
   }
 
   @override
@@ -118,27 +112,27 @@ class _$SendLatestDeviceMetadataImpl implements _SendLatestDeviceMetadata {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() sendLatestDeviceMetadata,
+    required TResult Function() sendDeviceMetadata,
   }) {
-    return sendLatestDeviceMetadata();
+    return sendDeviceMetadata();
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? sendLatestDeviceMetadata,
+    TResult? Function()? sendDeviceMetadata,
   }) {
-    return sendLatestDeviceMetadata?.call();
+    return sendDeviceMetadata?.call();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? sendLatestDeviceMetadata,
+    TResult Function()? sendDeviceMetadata,
     required TResult orElse(),
   }) {
-    if (sendLatestDeviceMetadata != null) {
-      return sendLatestDeviceMetadata();
+    if (sendDeviceMetadata != null) {
+      return sendDeviceMetadata();
     }
     return orElse();
   }
@@ -146,36 +140,34 @@ class _$SendLatestDeviceMetadataImpl implements _SendLatestDeviceMetadata {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_SendLatestDeviceMetadata value)
-        sendLatestDeviceMetadata,
+    required TResult Function(_SendDeviceMetadata value) sendDeviceMetadata,
   }) {
-    return sendLatestDeviceMetadata(this);
+    return sendDeviceMetadata(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_SendLatestDeviceMetadata value)?
-        sendLatestDeviceMetadata,
+    TResult? Function(_SendDeviceMetadata value)? sendDeviceMetadata,
   }) {
-    return sendLatestDeviceMetadata?.call(this);
+    return sendDeviceMetadata?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_SendLatestDeviceMetadata value)? sendLatestDeviceMetadata,
+    TResult Function(_SendDeviceMetadata value)? sendDeviceMetadata,
     required TResult orElse(),
   }) {
-    if (sendLatestDeviceMetadata != null) {
-      return sendLatestDeviceMetadata(this);
+    if (sendDeviceMetadata != null) {
+      return sendDeviceMetadata(this);
     }
     return orElse();
   }
 }
 
-abstract class _SendLatestDeviceMetadata implements DeviceMetadataEvent {
-  const factory _SendLatestDeviceMetadata() = _$SendLatestDeviceMetadataImpl;
+abstract class _SendDeviceMetadata implements DeviceMetadataEvent {
+  const factory _SendDeviceMetadata() = _$SendDeviceMetadataImpl;
 }
 
 /// @nodoc
@@ -184,24 +176,27 @@ mixin _$DeviceMetadataState {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() sendingDeviceMetadata,
-    required TResult Function() sentDeviceMetadataSuccessfully,
-    required TResult Function() failedToSentDeviceMetadata,
+    required TResult Function() sentDeviceMetadata,
+    required TResult Function(DeviceMetadataFailure deviceMetadataFailure)
+        failedToSendDeviceMetadata,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? sendingDeviceMetadata,
-    TResult? Function()? sentDeviceMetadataSuccessfully,
-    TResult? Function()? failedToSentDeviceMetadata,
+    TResult? Function()? sentDeviceMetadata,
+    TResult? Function(DeviceMetadataFailure deviceMetadataFailure)?
+        failedToSendDeviceMetadata,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? sendingDeviceMetadata,
-    TResult Function()? sentDeviceMetadataSuccessfully,
-    TResult Function()? failedToSentDeviceMetadata,
+    TResult Function()? sentDeviceMetadata,
+    TResult Function(DeviceMetadataFailure deviceMetadataFailure)?
+        failedToSendDeviceMetadata,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -210,30 +205,27 @@ mixin _$DeviceMetadataState {
     required TResult Function(_Initial value) initial,
     required TResult Function(_SendingDeviceMetadata value)
         sendingDeviceMetadata,
-    required TResult Function(_SentDeviceMetadataSentSuccessfully value)
-        sentDeviceMetadataSuccessfully,
-    required TResult Function(_FailedToSentDeviceMetadata value)
-        failedToSentDeviceMetadata,
+    required TResult Function(_SentDeviceMetadataSent value) sentDeviceMetadata,
+    required TResult Function(_FailedToSendDeviceMetadata value)
+        failedToSendDeviceMetadata,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
     TResult? Function(_SendingDeviceMetadata value)? sendingDeviceMetadata,
-    TResult? Function(_SentDeviceMetadataSentSuccessfully value)?
-        sentDeviceMetadataSuccessfully,
-    TResult? Function(_FailedToSentDeviceMetadata value)?
-        failedToSentDeviceMetadata,
+    TResult? Function(_SentDeviceMetadataSent value)? sentDeviceMetadata,
+    TResult? Function(_FailedToSendDeviceMetadata value)?
+        failedToSendDeviceMetadata,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_SendingDeviceMetadata value)? sendingDeviceMetadata,
-    TResult Function(_SentDeviceMetadataSentSuccessfully value)?
-        sentDeviceMetadataSuccessfully,
-    TResult Function(_FailedToSentDeviceMetadata value)?
-        failedToSentDeviceMetadata,
+    TResult Function(_SentDeviceMetadataSent value)? sentDeviceMetadata,
+    TResult Function(_FailedToSendDeviceMetadata value)?
+        failedToSendDeviceMetadata,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -303,8 +295,9 @@ class _$InitialImpl implements _Initial {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() sendingDeviceMetadata,
-    required TResult Function() sentDeviceMetadataSuccessfully,
-    required TResult Function() failedToSentDeviceMetadata,
+    required TResult Function() sentDeviceMetadata,
+    required TResult Function(DeviceMetadataFailure deviceMetadataFailure)
+        failedToSendDeviceMetadata,
   }) {
     return initial();
   }
@@ -314,8 +307,9 @@ class _$InitialImpl implements _Initial {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? sendingDeviceMetadata,
-    TResult? Function()? sentDeviceMetadataSuccessfully,
-    TResult? Function()? failedToSentDeviceMetadata,
+    TResult? Function()? sentDeviceMetadata,
+    TResult? Function(DeviceMetadataFailure deviceMetadataFailure)?
+        failedToSendDeviceMetadata,
   }) {
     return initial?.call();
   }
@@ -325,8 +319,9 @@ class _$InitialImpl implements _Initial {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? sendingDeviceMetadata,
-    TResult Function()? sentDeviceMetadataSuccessfully,
-    TResult Function()? failedToSentDeviceMetadata,
+    TResult Function()? sentDeviceMetadata,
+    TResult Function(DeviceMetadataFailure deviceMetadataFailure)?
+        failedToSendDeviceMetadata,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -341,10 +336,9 @@ class _$InitialImpl implements _Initial {
     required TResult Function(_Initial value) initial,
     required TResult Function(_SendingDeviceMetadata value)
         sendingDeviceMetadata,
-    required TResult Function(_SentDeviceMetadataSentSuccessfully value)
-        sentDeviceMetadataSuccessfully,
-    required TResult Function(_FailedToSentDeviceMetadata value)
-        failedToSentDeviceMetadata,
+    required TResult Function(_SentDeviceMetadataSent value) sentDeviceMetadata,
+    required TResult Function(_FailedToSendDeviceMetadata value)
+        failedToSendDeviceMetadata,
   }) {
     return initial(this);
   }
@@ -354,10 +348,9 @@ class _$InitialImpl implements _Initial {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
     TResult? Function(_SendingDeviceMetadata value)? sendingDeviceMetadata,
-    TResult? Function(_SentDeviceMetadataSentSuccessfully value)?
-        sentDeviceMetadataSuccessfully,
-    TResult? Function(_FailedToSentDeviceMetadata value)?
-        failedToSentDeviceMetadata,
+    TResult? Function(_SentDeviceMetadataSent value)? sentDeviceMetadata,
+    TResult? Function(_FailedToSendDeviceMetadata value)?
+        failedToSendDeviceMetadata,
   }) {
     return initial?.call(this);
   }
@@ -367,10 +360,9 @@ class _$InitialImpl implements _Initial {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_SendingDeviceMetadata value)? sendingDeviceMetadata,
-    TResult Function(_SentDeviceMetadataSentSuccessfully value)?
-        sentDeviceMetadataSuccessfully,
-    TResult Function(_FailedToSentDeviceMetadata value)?
-        failedToSentDeviceMetadata,
+    TResult Function(_SentDeviceMetadataSent value)? sentDeviceMetadata,
+    TResult Function(_FailedToSendDeviceMetadata value)?
+        failedToSendDeviceMetadata,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -429,8 +421,9 @@ class _$SendingDeviceMetadataImpl implements _SendingDeviceMetadata {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() sendingDeviceMetadata,
-    required TResult Function() sentDeviceMetadataSuccessfully,
-    required TResult Function() failedToSentDeviceMetadata,
+    required TResult Function() sentDeviceMetadata,
+    required TResult Function(DeviceMetadataFailure deviceMetadataFailure)
+        failedToSendDeviceMetadata,
   }) {
     return sendingDeviceMetadata();
   }
@@ -440,8 +433,9 @@ class _$SendingDeviceMetadataImpl implements _SendingDeviceMetadata {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? sendingDeviceMetadata,
-    TResult? Function()? sentDeviceMetadataSuccessfully,
-    TResult? Function()? failedToSentDeviceMetadata,
+    TResult? Function()? sentDeviceMetadata,
+    TResult? Function(DeviceMetadataFailure deviceMetadataFailure)?
+        failedToSendDeviceMetadata,
   }) {
     return sendingDeviceMetadata?.call();
   }
@@ -451,8 +445,9 @@ class _$SendingDeviceMetadataImpl implements _SendingDeviceMetadata {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? sendingDeviceMetadata,
-    TResult Function()? sentDeviceMetadataSuccessfully,
-    TResult Function()? failedToSentDeviceMetadata,
+    TResult Function()? sentDeviceMetadata,
+    TResult Function(DeviceMetadataFailure deviceMetadataFailure)?
+        failedToSendDeviceMetadata,
     required TResult orElse(),
   }) {
     if (sendingDeviceMetadata != null) {
@@ -467,10 +462,9 @@ class _$SendingDeviceMetadataImpl implements _SendingDeviceMetadata {
     required TResult Function(_Initial value) initial,
     required TResult Function(_SendingDeviceMetadata value)
         sendingDeviceMetadata,
-    required TResult Function(_SentDeviceMetadataSentSuccessfully value)
-        sentDeviceMetadataSuccessfully,
-    required TResult Function(_FailedToSentDeviceMetadata value)
-        failedToSentDeviceMetadata,
+    required TResult Function(_SentDeviceMetadataSent value) sentDeviceMetadata,
+    required TResult Function(_FailedToSendDeviceMetadata value)
+        failedToSendDeviceMetadata,
   }) {
     return sendingDeviceMetadata(this);
   }
@@ -480,10 +474,9 @@ class _$SendingDeviceMetadataImpl implements _SendingDeviceMetadata {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
     TResult? Function(_SendingDeviceMetadata value)? sendingDeviceMetadata,
-    TResult? Function(_SentDeviceMetadataSentSuccessfully value)?
-        sentDeviceMetadataSuccessfully,
-    TResult? Function(_FailedToSentDeviceMetadata value)?
-        failedToSentDeviceMetadata,
+    TResult? Function(_SentDeviceMetadataSent value)? sentDeviceMetadata,
+    TResult? Function(_FailedToSendDeviceMetadata value)?
+        failedToSendDeviceMetadata,
   }) {
     return sendingDeviceMetadata?.call(this);
   }
@@ -493,10 +486,9 @@ class _$SendingDeviceMetadataImpl implements _SendingDeviceMetadata {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_SendingDeviceMetadata value)? sendingDeviceMetadata,
-    TResult Function(_SentDeviceMetadataSentSuccessfully value)?
-        sentDeviceMetadataSuccessfully,
-    TResult Function(_FailedToSentDeviceMetadata value)?
-        failedToSentDeviceMetadata,
+    TResult Function(_SentDeviceMetadataSent value)? sentDeviceMetadata,
+    TResult Function(_FailedToSendDeviceMetadata value)?
+        failedToSendDeviceMetadata,
     required TResult orElse(),
   }) {
     if (sendingDeviceMetadata != null) {
@@ -511,21 +503,21 @@ abstract class _SendingDeviceMetadata implements DeviceMetadataState {
 }
 
 /// @nodoc
-abstract class _$$SentDeviceMetadataSentSuccessfullyImplCopyWith<$Res> {
-  factory _$$SentDeviceMetadataSentSuccessfullyImplCopyWith(
-          _$SentDeviceMetadataSentSuccessfullyImpl value,
-          $Res Function(_$SentDeviceMetadataSentSuccessfullyImpl) then) =
-      __$$SentDeviceMetadataSentSuccessfullyImplCopyWithImpl<$Res>;
+abstract class _$$SentDeviceMetadataSentImplCopyWith<$Res> {
+  factory _$$SentDeviceMetadataSentImplCopyWith(
+          _$SentDeviceMetadataSentImpl value,
+          $Res Function(_$SentDeviceMetadataSentImpl) then) =
+      __$$SentDeviceMetadataSentImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$SentDeviceMetadataSentSuccessfullyImplCopyWithImpl<$Res>
+class __$$SentDeviceMetadataSentImplCopyWithImpl<$Res>
     extends _$DeviceMetadataStateCopyWithImpl<$Res,
-        _$SentDeviceMetadataSentSuccessfullyImpl>
-    implements _$$SentDeviceMetadataSentSuccessfullyImplCopyWith<$Res> {
-  __$$SentDeviceMetadataSentSuccessfullyImplCopyWithImpl(
-      _$SentDeviceMetadataSentSuccessfullyImpl _value,
-      $Res Function(_$SentDeviceMetadataSentSuccessfullyImpl) _then)
+        _$SentDeviceMetadataSentImpl>
+    implements _$$SentDeviceMetadataSentImplCopyWith<$Res> {
+  __$$SentDeviceMetadataSentImplCopyWithImpl(
+      _$SentDeviceMetadataSentImpl _value,
+      $Res Function(_$SentDeviceMetadataSentImpl) _then)
       : super(_value, _then);
 
   /// Create a copy of DeviceMetadataState
@@ -534,20 +526,19 @@ class __$$SentDeviceMetadataSentSuccessfullyImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$SentDeviceMetadataSentSuccessfullyImpl
-    implements _SentDeviceMetadataSentSuccessfully {
-  const _$SentDeviceMetadataSentSuccessfullyImpl();
+class _$SentDeviceMetadataSentImpl implements _SentDeviceMetadataSent {
+  const _$SentDeviceMetadataSentImpl();
 
   @override
   String toString() {
-    return 'DeviceMetadataState.sentDeviceMetadataSuccessfully()';
+    return 'DeviceMetadataState.sentDeviceMetadata()';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$SentDeviceMetadataSentSuccessfullyImpl);
+            other is _$SentDeviceMetadataSentImpl);
   }
 
   @override
@@ -558,10 +549,11 @@ class _$SentDeviceMetadataSentSuccessfullyImpl
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() sendingDeviceMetadata,
-    required TResult Function() sentDeviceMetadataSuccessfully,
-    required TResult Function() failedToSentDeviceMetadata,
+    required TResult Function() sentDeviceMetadata,
+    required TResult Function(DeviceMetadataFailure deviceMetadataFailure)
+        failedToSendDeviceMetadata,
   }) {
-    return sentDeviceMetadataSuccessfully();
+    return sentDeviceMetadata();
   }
 
   @override
@@ -569,10 +561,11 @@ class _$SentDeviceMetadataSentSuccessfullyImpl
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? sendingDeviceMetadata,
-    TResult? Function()? sentDeviceMetadataSuccessfully,
-    TResult? Function()? failedToSentDeviceMetadata,
+    TResult? Function()? sentDeviceMetadata,
+    TResult? Function(DeviceMetadataFailure deviceMetadataFailure)?
+        failedToSendDeviceMetadata,
   }) {
-    return sentDeviceMetadataSuccessfully?.call();
+    return sentDeviceMetadata?.call();
   }
 
   @override
@@ -580,12 +573,13 @@ class _$SentDeviceMetadataSentSuccessfullyImpl
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? sendingDeviceMetadata,
-    TResult Function()? sentDeviceMetadataSuccessfully,
-    TResult Function()? failedToSentDeviceMetadata,
+    TResult Function()? sentDeviceMetadata,
+    TResult Function(DeviceMetadataFailure deviceMetadataFailure)?
+        failedToSendDeviceMetadata,
     required TResult orElse(),
   }) {
-    if (sentDeviceMetadataSuccessfully != null) {
-      return sentDeviceMetadataSuccessfully();
+    if (sentDeviceMetadata != null) {
+      return sentDeviceMetadata();
     }
     return orElse();
   }
@@ -596,12 +590,11 @@ class _$SentDeviceMetadataSentSuccessfullyImpl
     required TResult Function(_Initial value) initial,
     required TResult Function(_SendingDeviceMetadata value)
         sendingDeviceMetadata,
-    required TResult Function(_SentDeviceMetadataSentSuccessfully value)
-        sentDeviceMetadataSuccessfully,
-    required TResult Function(_FailedToSentDeviceMetadata value)
-        failedToSentDeviceMetadata,
+    required TResult Function(_SentDeviceMetadataSent value) sentDeviceMetadata,
+    required TResult Function(_FailedToSendDeviceMetadata value)
+        failedToSendDeviceMetadata,
   }) {
-    return sentDeviceMetadataSuccessfully(this);
+    return sentDeviceMetadata(this);
   }
 
   @override
@@ -609,12 +602,11 @@ class _$SentDeviceMetadataSentSuccessfullyImpl
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
     TResult? Function(_SendingDeviceMetadata value)? sendingDeviceMetadata,
-    TResult? Function(_SentDeviceMetadataSentSuccessfully value)?
-        sentDeviceMetadataSuccessfully,
-    TResult? Function(_FailedToSentDeviceMetadata value)?
-        failedToSentDeviceMetadata,
+    TResult? Function(_SentDeviceMetadataSent value)? sentDeviceMetadata,
+    TResult? Function(_FailedToSendDeviceMetadata value)?
+        failedToSendDeviceMetadata,
   }) {
-    return sentDeviceMetadataSuccessfully?.call(this);
+    return sentDeviceMetadata?.call(this);
   }
 
   @override
@@ -622,76 +614,102 @@ class _$SentDeviceMetadataSentSuccessfullyImpl
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_SendingDeviceMetadata value)? sendingDeviceMetadata,
-    TResult Function(_SentDeviceMetadataSentSuccessfully value)?
-        sentDeviceMetadataSuccessfully,
-    TResult Function(_FailedToSentDeviceMetadata value)?
-        failedToSentDeviceMetadata,
+    TResult Function(_SentDeviceMetadataSent value)? sentDeviceMetadata,
+    TResult Function(_FailedToSendDeviceMetadata value)?
+        failedToSendDeviceMetadata,
     required TResult orElse(),
   }) {
-    if (sentDeviceMetadataSuccessfully != null) {
-      return sentDeviceMetadataSuccessfully(this);
+    if (sentDeviceMetadata != null) {
+      return sentDeviceMetadata(this);
     }
     return orElse();
   }
 }
 
-abstract class _SentDeviceMetadataSentSuccessfully
-    implements DeviceMetadataState {
-  const factory _SentDeviceMetadataSentSuccessfully() =
-      _$SentDeviceMetadataSentSuccessfullyImpl;
+abstract class _SentDeviceMetadataSent implements DeviceMetadataState {
+  const factory _SentDeviceMetadataSent() = _$SentDeviceMetadataSentImpl;
 }
 
 /// @nodoc
-abstract class _$$FailedToSentDeviceMetadataImplCopyWith<$Res> {
-  factory _$$FailedToSentDeviceMetadataImplCopyWith(
-          _$FailedToSentDeviceMetadataImpl value,
-          $Res Function(_$FailedToSentDeviceMetadataImpl) then) =
-      __$$FailedToSentDeviceMetadataImplCopyWithImpl<$Res>;
+abstract class _$$FailedToSendDeviceMetadataImplCopyWith<$Res> {
+  factory _$$FailedToSendDeviceMetadataImplCopyWith(
+          _$FailedToSendDeviceMetadataImpl value,
+          $Res Function(_$FailedToSendDeviceMetadataImpl) then) =
+      __$$FailedToSendDeviceMetadataImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({DeviceMetadataFailure deviceMetadataFailure});
 }
 
 /// @nodoc
-class __$$FailedToSentDeviceMetadataImplCopyWithImpl<$Res>
+class __$$FailedToSendDeviceMetadataImplCopyWithImpl<$Res>
     extends _$DeviceMetadataStateCopyWithImpl<$Res,
-        _$FailedToSentDeviceMetadataImpl>
-    implements _$$FailedToSentDeviceMetadataImplCopyWith<$Res> {
-  __$$FailedToSentDeviceMetadataImplCopyWithImpl(
-      _$FailedToSentDeviceMetadataImpl _value,
-      $Res Function(_$FailedToSentDeviceMetadataImpl) _then)
+        _$FailedToSendDeviceMetadataImpl>
+    implements _$$FailedToSendDeviceMetadataImplCopyWith<$Res> {
+  __$$FailedToSendDeviceMetadataImplCopyWithImpl(
+      _$FailedToSendDeviceMetadataImpl _value,
+      $Res Function(_$FailedToSendDeviceMetadataImpl) _then)
       : super(_value, _then);
 
   /// Create a copy of DeviceMetadataState
   /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? deviceMetadataFailure = null,
+  }) {
+    return _then(_$FailedToSendDeviceMetadataImpl(
+      deviceMetadataFailure: null == deviceMetadataFailure
+          ? _value.deviceMetadataFailure
+          : deviceMetadataFailure // ignore: cast_nullable_to_non_nullable
+              as DeviceMetadataFailure,
+    ));
+  }
 }
 
 /// @nodoc
 
-class _$FailedToSentDeviceMetadataImpl implements _FailedToSentDeviceMetadata {
-  const _$FailedToSentDeviceMetadataImpl();
+class _$FailedToSendDeviceMetadataImpl implements _FailedToSendDeviceMetadata {
+  const _$FailedToSendDeviceMetadataImpl({required this.deviceMetadataFailure});
+
+  @override
+  final DeviceMetadataFailure deviceMetadataFailure;
 
   @override
   String toString() {
-    return 'DeviceMetadataState.failedToSentDeviceMetadata()';
+    return 'DeviceMetadataState.failedToSendDeviceMetadata(deviceMetadataFailure: $deviceMetadataFailure)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$FailedToSentDeviceMetadataImpl);
+            other is _$FailedToSendDeviceMetadataImpl &&
+            (identical(other.deviceMetadataFailure, deviceMetadataFailure) ||
+                other.deviceMetadataFailure == deviceMetadataFailure));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(runtimeType, deviceMetadataFailure);
+
+  /// Create a copy of DeviceMetadataState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$FailedToSendDeviceMetadataImplCopyWith<_$FailedToSendDeviceMetadataImpl>
+      get copyWith => __$$FailedToSendDeviceMetadataImplCopyWithImpl<
+          _$FailedToSendDeviceMetadataImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() sendingDeviceMetadata,
-    required TResult Function() sentDeviceMetadataSuccessfully,
-    required TResult Function() failedToSentDeviceMetadata,
+    required TResult Function() sentDeviceMetadata,
+    required TResult Function(DeviceMetadataFailure deviceMetadataFailure)
+        failedToSendDeviceMetadata,
   }) {
-    return failedToSentDeviceMetadata();
+    return failedToSendDeviceMetadata(deviceMetadataFailure);
   }
 
   @override
@@ -699,10 +717,11 @@ class _$FailedToSentDeviceMetadataImpl implements _FailedToSentDeviceMetadata {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? sendingDeviceMetadata,
-    TResult? Function()? sentDeviceMetadataSuccessfully,
-    TResult? Function()? failedToSentDeviceMetadata,
+    TResult? Function()? sentDeviceMetadata,
+    TResult? Function(DeviceMetadataFailure deviceMetadataFailure)?
+        failedToSendDeviceMetadata,
   }) {
-    return failedToSentDeviceMetadata?.call();
+    return failedToSendDeviceMetadata?.call(deviceMetadataFailure);
   }
 
   @override
@@ -710,12 +729,13 @@ class _$FailedToSentDeviceMetadataImpl implements _FailedToSentDeviceMetadata {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? sendingDeviceMetadata,
-    TResult Function()? sentDeviceMetadataSuccessfully,
-    TResult Function()? failedToSentDeviceMetadata,
+    TResult Function()? sentDeviceMetadata,
+    TResult Function(DeviceMetadataFailure deviceMetadataFailure)?
+        failedToSendDeviceMetadata,
     required TResult orElse(),
   }) {
-    if (failedToSentDeviceMetadata != null) {
-      return failedToSentDeviceMetadata();
+    if (failedToSendDeviceMetadata != null) {
+      return failedToSendDeviceMetadata(deviceMetadataFailure);
     }
     return orElse();
   }
@@ -726,12 +746,11 @@ class _$FailedToSentDeviceMetadataImpl implements _FailedToSentDeviceMetadata {
     required TResult Function(_Initial value) initial,
     required TResult Function(_SendingDeviceMetadata value)
         sendingDeviceMetadata,
-    required TResult Function(_SentDeviceMetadataSentSuccessfully value)
-        sentDeviceMetadataSuccessfully,
-    required TResult Function(_FailedToSentDeviceMetadata value)
-        failedToSentDeviceMetadata,
+    required TResult Function(_SentDeviceMetadataSent value) sentDeviceMetadata,
+    required TResult Function(_FailedToSendDeviceMetadata value)
+        failedToSendDeviceMetadata,
   }) {
-    return failedToSentDeviceMetadata(this);
+    return failedToSendDeviceMetadata(this);
   }
 
   @override
@@ -739,12 +758,11 @@ class _$FailedToSentDeviceMetadataImpl implements _FailedToSentDeviceMetadata {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
     TResult? Function(_SendingDeviceMetadata value)? sendingDeviceMetadata,
-    TResult? Function(_SentDeviceMetadataSentSuccessfully value)?
-        sentDeviceMetadataSuccessfully,
-    TResult? Function(_FailedToSentDeviceMetadata value)?
-        failedToSentDeviceMetadata,
+    TResult? Function(_SentDeviceMetadataSent value)? sentDeviceMetadata,
+    TResult? Function(_FailedToSendDeviceMetadata value)?
+        failedToSendDeviceMetadata,
   }) {
-    return failedToSentDeviceMetadata?.call(this);
+    return failedToSendDeviceMetadata?.call(this);
   }
 
   @override
@@ -752,20 +770,28 @@ class _$FailedToSentDeviceMetadataImpl implements _FailedToSentDeviceMetadata {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_SendingDeviceMetadata value)? sendingDeviceMetadata,
-    TResult Function(_SentDeviceMetadataSentSuccessfully value)?
-        sentDeviceMetadataSuccessfully,
-    TResult Function(_FailedToSentDeviceMetadata value)?
-        failedToSentDeviceMetadata,
+    TResult Function(_SentDeviceMetadataSent value)? sentDeviceMetadata,
+    TResult Function(_FailedToSendDeviceMetadata value)?
+        failedToSendDeviceMetadata,
     required TResult orElse(),
   }) {
-    if (failedToSentDeviceMetadata != null) {
-      return failedToSentDeviceMetadata(this);
+    if (failedToSendDeviceMetadata != null) {
+      return failedToSendDeviceMetadata(this);
     }
     return orElse();
   }
 }
 
-abstract class _FailedToSentDeviceMetadata implements DeviceMetadataState {
-  const factory _FailedToSentDeviceMetadata() =
-      _$FailedToSentDeviceMetadataImpl;
+abstract class _FailedToSendDeviceMetadata implements DeviceMetadataState {
+  const factory _FailedToSendDeviceMetadata(
+          {required final DeviceMetadataFailure deviceMetadataFailure}) =
+      _$FailedToSendDeviceMetadataImpl;
+
+  DeviceMetadataFailure get deviceMetadataFailure;
+
+  /// Create a copy of DeviceMetadataState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$FailedToSendDeviceMetadataImplCopyWith<_$FailedToSendDeviceMetadataImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }

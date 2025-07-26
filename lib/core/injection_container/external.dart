@@ -1,5 +1,6 @@
 import 'package:app_links/app_links.dart';
 import 'package:auth0_flutter/auth0_flutter.dart' show Auth0;
+import 'package:device_info_plus/device_info_plus.dart' show DeviceInfoPlugin;
 import 'package:firebase_analytics/firebase_analytics.dart'
     show FirebaseAnalytics;
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
@@ -65,5 +66,8 @@ Future<void> registerExternalServices() async {
     )
     ..registerLazySingleton<SharePlus>(
       () => SharePlus.instance,
+    )
+    ..registerLazySingleton<DeviceInfoPlugin>(
+      DeviceInfoPlugin.new,
     );
 }
