@@ -71,6 +71,8 @@ import 'package:sky_trade/features/auth/presentation/blocs/s_f_a_configuration_b
     show SFAConfigurationBloc, SFAConfigurationEvent, SFAConfigurationState;
 import 'package:sky_trade/features/auth/presentation/blocs/s_f_a_user_session_bloc/s_f_a_user_session_bloc.dart'
     show SFAUserSessionBloc, SFAUserSessionEvent, SFAUserSessionState;
+import 'package:sky_trade/features/device_profile/presentation/blocs/device_uuid_bloc/device_uuid_bloc.dart'
+    show DeviceUUIDBloc, DeviceUUIDEvent, DeviceUUIDState;
 import 'package:sky_trade/features/internet_connection_checker/presentation/blocs/internet_connection_checker_bloc/internet_connection_checker_bloc.dart'
     show
         InternetConnectionCheckerBloc,
@@ -91,6 +93,9 @@ class LoadingScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) => MultiBlocProvider(
         providers: [
+          BlocProvider<DeviceUUIDBloc>(
+            create: (_) => serviceLocator(),
+          ),
           BlocProvider<SFAConfigurationBloc>(
             create: (_) => serviceLocator(),
           ),
@@ -133,14 +138,24 @@ class LoadingView extends StatefulWidget {
 class _LoadingViewState extends State<LoadingView> {
   @override
   void initState() {
-    _checkCompatibleBackendApiVersion();
+    _checkDeviceUUIDExist();
     super.initState();
   }
+
+  void _checkDeviceUUIDExist() => context.read<DeviceUUIDBloc>().add(
+        const DeviceUUIDEvent.checkAndMaybeGenerateAndCacheDeviceUUID(),
+      );
 
   void _checkCompatibleBackendApiVersion() =>
       context.read<CompatibleBackendApiVersionBloc>().add(
             const CompatibleBackendApiVersionEvent.checkVersion(),
           );
+
+  void _checkActiveInternetConnection() => context
+      .read<InternetConnectionCheckerBloc>()
+      .add(
+        const InternetConnectionCheckerEvent.checkActiveInternetConnection(),
+      );
 
   void _removeSplashScreenAndNavigateTo({
     required String route,
@@ -159,6 +174,18 @@ class _LoadingViewState extends State<LoadingView> {
   @override
   Widget build(BuildContext context) => MultiBlocListener(
         listeners: [
+          BlocListener<DeviceUUIDBloc, DeviceUUIDState>(
+            listener: (_, deviceUUIDState) {
+              deviceUUIDState.whenOrNull(
+                deviceUUIDExists: () {
+                  _checkCompatibleBackendApiVersion();
+                },
+                generatedAndCachedDeviceUUID: () {
+                  _checkCompatibleBackendApiVersion();
+                },
+              );
+            },
+          ),
           BlocListener<CompatibleBackendApiVersionBloc,
               CompatibleBackendApiVersionState>(
             listener: (_, compatibleBackendApiVersionState) {
@@ -249,16 +276,10 @@ class _LoadingViewState extends State<LoadingView> {
                           );
                     },
                     noLink: () {
-                      context.read<InternetConnectionCheckerBloc>().add(
-                            const InternetConnectionCheckerEvent
-                                .checkActiveInternetConnection(),
-                          );
+                      _checkActiveInternetConnection();
                     },
                     unrecognizedLink: () {
-                      context.read<InternetConnectionCheckerBloc>().add(
-                            const InternetConnectionCheckerEvent
-                                .checkActiveInternetConnection(),
-                          );
+                      _checkActiveInternetConnection();
                     },
                   );
                 },
@@ -274,10 +295,7 @@ class _LoadingViewState extends State<LoadingView> {
             listener: (_, auth0CredentialsState) {
               auth0CredentialsState.whenOrNull(
                 renewedCredentials: () {
-                  context.read<InternetConnectionCheckerBloc>().add(
-                        const InternetConnectionCheckerEvent
-                            .checkActiveInternetConnection(),
-                      );
+                  _checkActiveInternetConnection();
                 },
                 failedToRenewCredentials: () {
                   _removeSplashScreenAndNavigateTo(

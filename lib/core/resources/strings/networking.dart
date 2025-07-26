@@ -80,6 +80,7 @@ const getDailyQuestPath = '/get-daily-quest';
 const droneRadarPath = '/drone-radar';
 const getDroneRushZonesPath = '/get-drone-rush-zones';
 const getDroneRushZonesInTimeRangePath = '/get-drone-rush-zones-in-time-range';
+const sendDeviceMetadataPath = '/send-device-metadata';
 // Signature
 const signatureFirstLine = 'wants you to sign in with your Solana account:';
 const signatureThirdLine = 'Sign in to SkyTrade app.';
@@ -112,6 +113,7 @@ const signIssueAtHeaderKey = 'sign_issue_at';
 const signNonceHeaderKey = 'sign_nonce';
 const signAddressHeaderKey = 'sign_address';
 const emailAddressHeaderKey = 'email_address';
+const deviceUUIDKey = 'device_uuid';
 // Body
 const additionalLinksKey = 'additional_links';
 const countryKey = 'country';
@@ -488,6 +490,10 @@ const orderByPointsDescKey = 'orderByPointsDesc';
 const pirateKey = 'pirate';
 const locationNameKey = 'locationName';
 const remoteIDsKey = 'remoteIDs';
+const androidValue = 'Android';
+const iosValue = 'iOS';
+const deviceNameKey = 'deviceName';
+const osVersionKey = 'osVersion';
 // Error response data message
 const unauthorizedCode = 'UNAUTHORIZED';
 const invalidSignatureCode = 'INVALID_SIGNATURE';

@@ -21,6 +21,7 @@ import 'package:sky_trade/core/resources/strings/networking.dart'
         applicationJsonHeaderValue,
         bodyKey,
         contentTypeHeaderKey,
+        deviceUUIDKey,
         emailAddressHeaderKey,
         expectedTypeLogMessage,
         radarPath,
@@ -464,6 +465,7 @@ final class HttpClient with SignatureHandler {
       queryParameters: queryParameters,
     );
     final email = await computeUserEmail();
+    final deviceUUID = await getDeviceUUID();
     final sign = await signMessage(
       message,
     );
@@ -475,6 +477,7 @@ final class HttpClient with SignatureHandler {
         signNonceHeaderKey: nonce,
         signAddressHeaderKey: walletAddress,
         if (email != null) emailAddressHeaderKey: email,
+        if (deviceUUID != null) deviceUUIDKey: deviceUUID,
         if (headers != null) ...headers,
       },
       sendTimeout: overrideSendTimeout,

@@ -13,6 +13,7 @@ const analyticsStateKey = 'analyticsState';
 const auth0SessionForDeletedUserExistsKey = 'auth0SessionForDeletedUserExists';
 const shouldShowRewardsOnboardingKey = 'shouldShowRewardsOnboarding';
 const isGuestUserKey = 'isGuestUser';
+const deviceUUIDKey = 'deviceUUID';
 
 // Hive
 const restrictionsBoxKey = 'restrictions_box';

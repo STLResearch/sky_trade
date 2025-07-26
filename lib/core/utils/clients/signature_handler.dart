@@ -6,11 +6,13 @@ import 'dart:math' show Random;
 import 'package:auth0_flutter/auth0_flutter.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart' show dotenv;
 import 'package:hex/hex.dart' show HEX;
+import 'package:shared_preferences/shared_preferences.dart'
+    show SharedPreferencesWithCache;
 import 'package:single_factor_auth_flutter/single_factor_auth_flutter.dart';
 import 'package:sky_trade/core/resources/numbers/local.dart'
     show sixteen, thirtyTwo;
 import 'package:sky_trade/core/resources/strings/local.dart'
-    show nonceCharacterSet;
+    show deviceUUIDKey, nonceCharacterSet;
 import 'package:sky_trade/core/resources/strings/networking.dart'
     show
         radarPath,
@@ -43,6 +45,15 @@ mixin class SignatureHandler {
     final base58EncodedSignature = signature.toBase58();
 
     return base58EncodedSignature;
+  }
+
+  Future<String?> getDeviceUUID() async {
+    final sharedPreferences =
+        await serviceLocator<Future<SharedPreferencesWithCache>>();
+
+    return sharedPreferences.getString(
+      deviceUUIDKey,
+    );
   }
 
   String computeIssuedAt() {
