@@ -561,10 +561,12 @@ class _HomeViewState extends State<HomeView> {
                   if (restrictionEntities.isEmpty) {
                     return;
                   }
+
                   await _mapboxMap?.addRestrictionsOnMap(
                     geoHash: geoHash,
                     restrictionEntities: restrictionEntities,
                   );
+
                   _layerIds.add(
                     geoHash + layerId,
                   );
@@ -670,19 +672,25 @@ class _HomeViewState extends State<HomeView> {
                   }
 
                   var skipFlag = false;
+
                   String? selectedFeatureId;
                   String? selectedFeatureSourceId;
+
                   _centerLocationNotifier.value = false;
 
                   await _mapboxMap!.maybeHandleFeatureTap(
                     touchPosition: mapContentGestureContext.touchPosition,
                     layerIds: _layerIds,
                     onFeatureTap: (featureType, featureId, sourceId, data) {
+                      if (featureType == null) return;
+
                       selectedFeatureId = featureId;
                       selectedFeatureSourceId = sourceId;
+
                       switch (featureType) {
                         case FeatureType.uasRestriction:
                           skipFlag = true;
+
                           context.read<UASRestrictionsBloc>().add(
                                 UASRestrictionsEvent.selectRestriction(
                                   restrictionId: featureId,
@@ -709,14 +717,17 @@ class _HomeViewState extends State<HomeView> {
                       }
                     },
                   );
+
                   await _mapboxMap!.selectAndUnselectFeature(
                     selectFeatureId: selectedFeatureId,
                     selectFeatureSourceId: selectedFeatureSourceId,
                     unselectFeatureId: _currentlySelectedFeatureId,
                     unselectFeatureSourceId: _currentlySelectedSourceId,
                   );
+
                   _currentlySelectedFeatureId = selectedFeatureId;
                   _currentlySelectedSourceId = selectedFeatureSourceId;
+
                   if (!skipFlag) _clickedRestriction.value = null;
                 },
                 onScroll: (_) => _centerLocationNotifier.value = false,

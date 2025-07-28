@@ -79,8 +79,11 @@ class EventDetails extends StatelessWidget {
   });
 
   final DroneRushZonesBloc droneRushZonesBloc;
+
   final String locationName;
+
   final DateTime startDateTime;
+
   final DateTime endDateTime;
 
   @override

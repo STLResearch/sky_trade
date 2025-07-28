@@ -59,6 +59,3 @@ const droneRushZonesLayerId = 'drone-rush-zones-layer';
 const droneRushZonesBoundaryLayerId = 'drone-rush-zones-boundary-layer';
 // Hardcoded strings
 const r = 'r';
-//Other
-const uasRestrictionValue = 'uasRestriction';
-const droneRushValue = 'droneRush';

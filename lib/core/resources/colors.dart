@@ -90,3 +90,4 @@ const hexE2E2E2 = Color(0xFFE2E2E2);
 const hex8A8A8A = Color(0xFF8A8A8A);
 
 const rawHex2A60C4 = 0xFF2A60C4;
+const rawHexFF = 0xff;

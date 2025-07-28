@@ -74,12 +74,10 @@ import 'package:sky_trade/core/resources/strings/secret_keys.dart'
         mapboxMapsDarkStyleUri,
         mapboxMapsPublicKey,
         mapboxMapsSatelliteStyleUri;
-import 'package:sky_trade/core/resources/strings/special_characters.dart'
-    show emptyString;
 import 'package:sky_trade/core/resources/strings/ui.dart'
     show bridDronesSourceId, layerId;
 import 'package:sky_trade/core/utils/enums/environment.dart' show Settings;
-import 'package:sky_trade/core/utils/enums/ui.dart' show MapStyle;
+import 'package:sky_trade/core/utils/enums/ui.dart' show FeatureType, MapStyle;
 import 'package:sky_trade/core/utils/extensions/build_context_extensions.dart';
 import 'package:sky_trade/core/utils/extensions/mapbox_map_extensions.dart';
 import 'package:sky_trade/features/auth/presentation/blocs/guest_user_bloc/guest_user_bloc.dart'
@@ -200,16 +198,15 @@ class _GuestHomeViewState extends State<GuestHomeView> {
   late final ValueNotifier<RestrictionEntity?> _clickedRestriction;
   late final ValueNotifier<bool> _centerLocationNotifier;
   late final ValueNotifier<MapStyle> _mapStyleNotifier;
-  late final List<String> _restrictionLayerIds;
+  late final List<String> _layerIds;
   late final ValueNotifier<int> _newBridDronesCountNotifier;
 
   late int _previousBridDronesCount;
-  late String _previousBridGeoJsonData;
 
   late bool _hasShownAccumulatedDronesBottomSheetBefore;
 
-  String? _currentlySelectedRestrictionFeatureId;
-  String? _currentlySelectedRestrictionSourceId;
+  String? _currentlySelectedFeatureId;
+  String? _currentlySelectedSourceId;
 
   @override
   void initState() {
@@ -233,11 +230,7 @@ class _GuestHomeViewState extends State<GuestHomeView> {
       MapStyle.dark,
     );
 
-    _restrictionLayerIds = List<String>.empty(
-      growable: true,
-    );
-
-    _previousBridGeoJsonData = emptyString;
+    _layerIds = [];
 
     _previousBridDronesCount = zero;
 
@@ -489,8 +482,7 @@ class _GuestHomeViewState extends State<GuestHomeView> {
                   }
 
                   if (_mapboxMap != null) {
-                    _previousBridGeoJsonData =
-                        await _mapboxMap!.addOrUpdateDronesOnMap(
+                    await _mapboxMap!.updateDronesOnMap(
                       remoteIDEntities: bridEntities,
                       geoJsonSourceId: bridDronesSourceId,
                     );
@@ -506,11 +498,13 @@ class _GuestHomeViewState extends State<GuestHomeView> {
                   if (restrictionEntities.isEmpty) {
                     return;
                   }
+
                   await _mapboxMap?.addRestrictionsOnMap(
                     geoHash: geoHash,
                     restrictionEntities: restrictionEntities,
                   );
-                  _restrictionLayerIds.add(
+
+                  _layerIds.add(
                     geoHash + layerId,
                   );
                 },
@@ -566,34 +560,45 @@ class _GuestHomeViewState extends State<GuestHomeView> {
                     return;
                   }
 
+                  var skipFlag = false;
+
+                  String? selectedFeatureId;
+                  String? selectedFeatureSourceId;
+
                   _centerLocationNotifier.value = false;
 
-                  if (_restrictionLayerIds.isEmpty) {
-                    return;
-                  }
-
-                  final featureAndSourceId =
-                      await _mapboxMap!.handleRestrictionSelection(
+                  await _mapboxMap!.maybeHandleFeatureTap(
                     touchPosition: mapContentGestureContext.touchPosition,
-                    restrictionLayerIds: _restrictionLayerIds,
-                    previousRestrictionFeatureId:
-                        _currentlySelectedRestrictionFeatureId,
-                    previousRestrictionSourceId:
-                        _currentlySelectedRestrictionSourceId,
+                    layerIds: _layerIds,
+                    onFeatureTap: (featureType, featureId, sourceId, data) {
+                      if (featureType == null) return;
+
+                      selectedFeatureId = featureId;
+                      selectedFeatureSourceId = sourceId;
+
+                      if (featureType == FeatureType.uasRestriction) {
+                        skipFlag = true;
+
+                        context.read<UASRestrictionsBloc>().add(
+                              UASRestrictionsEvent.selectRestriction(
+                                restrictionId: featureId,
+                              ),
+                            );
+                      }
+                    },
                   );
 
-                  if (context.mounted) {
-                    context.read<UASRestrictionsBloc>().add(
-                          UASRestrictionsEvent.selectRestriction(
-                            restrictionId: featureAndSourceId.featureId,
-                          ),
-                        );
-                  }
+                  await _mapboxMap!.selectAndUnselectFeature(
+                    selectFeatureId: selectedFeatureId,
+                    selectFeatureSourceId: selectedFeatureSourceId,
+                    unselectFeatureId: _currentlySelectedFeatureId,
+                    unselectFeatureSourceId: _currentlySelectedSourceId,
+                  );
 
-                  _currentlySelectedRestrictionFeatureId =
-                      featureAndSourceId.featureId;
-                  _currentlySelectedRestrictionSourceId =
-                      featureAndSourceId.sourceId;
+                  _currentlySelectedFeatureId = selectedFeatureId;
+                  _currentlySelectedSourceId = selectedFeatureSourceId;
+
+                  if (!skipFlag) _clickedRestriction.value = null;
                 },
                 onScroll: (_) => _centerLocationNotifier.value = false,
                 onCreated: (mapboxMap) {
@@ -645,9 +650,7 @@ class _GuestHomeViewState extends State<GuestHomeView> {
                   );
                 },
                 onStyleLoaded: (_) async {
-                  await _mapboxMap?.setUpLayersForDrones(
-                    bridGeoJsonData: _previousBridGeoJsonData,
-                  );
+                  await _mapboxMap?.setUpLayersForDrones();
                 },
               ),
               ValueListenableBuilder<bool>(

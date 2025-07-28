@@ -1,6 +1,7 @@
 import 'dart:convert' show json;
 import 'dart:ui' show instantiateImageCodec;
 
+import 'package:collection/collection.dart' show IterableExtension;
 import 'package:dartz/dartz.dart' show Function4;
 import 'package:flutter/material.dart' show Color;
 import 'package:flutter/services.dart' show rootBundle;
@@ -33,7 +34,8 @@ import 'package:mapbox_maps_flutter/mapbox_maps_flutter.dart'
         SymbolLayer;
 import 'package:sky_trade/core/assets/generated/assets.gen.dart'
     show AssetGenImage, Assets;
-import 'package:sky_trade/core/resources/colors.dart' show rawHex2A60C4;
+import 'package:sky_trade/core/resources/colors.dart'
+    show rawHex2A60C4, rawHexFF;
 import 'package:sky_trade/core/resources/numbers/ui.dart'
     show
         fiftyDotNil,
@@ -47,7 +49,9 @@ import 'package:sky_trade/core/resources/numbers/ui.dart'
         oneThousandThreeHundred,
         sixDotNil,
         tenDotNil,
+        three,
         twoDotNil,
+        twoFiftyFiveDotNil,
         zero;
 import 'package:sky_trade/core/resources/strings/special_characters.dart'
     show closingParenthesis, comma, openingParenthesis;
@@ -89,7 +93,7 @@ import 'package:sky_trade/core/resources/strings/ui.dart'
         southWestKey,
         startTimeKey,
         typeKey;
-import 'package:sky_trade/core/utils/enums/ui.dart';
+import 'package:sky_trade/core/utils/enums/ui.dart' show FeatureType;
 import 'package:sky_trade/core/utils/extensions/drone_rush_zone_entity_extensions.dart';
 import 'package:sky_trade/core/utils/extensions/restriction_entity_extensions.dart';
 import 'package:sky_trade/core/utils/typedefs/ui.dart' show Bounds;
@@ -416,6 +420,7 @@ extension MapboxMapExtensions on MapboxMap {
             switch (T) {
               case const (RemoteIDEntity):
                 final remoteIDEntity = entity as RemoteIDEntity;
+
                 if (remoteIDEntity.location != null &&
                     remoteIDEntity.location!.location != null) {
                   return Feature(
@@ -439,15 +444,18 @@ extension MapboxMapExtensions on MapboxMap {
 
               case const (RestrictionEntity):
                 final restrictionEntity = entity as RestrictionEntity;
+
                 final alpha = switch (featureGeometryType == polygonGeometry) {
                   true => nilDotThree,
                   false => oneDotNil,
                 };
+
                 final geometryCoordinates =
                     restrictionEntity.geometry.coordinates;
                 final bounds = _getBoundsFromCoordinates(
                   geometryCoordinates[zero],
                 );
+
                 final properties = <String, dynamic>{
                   featureTypeKey: FeatureType.uasRestriction.name,
                   colorKey: _getRGBAColorString(
@@ -461,6 +469,7 @@ extension MapboxMapExtensions on MapboxMap {
                     bounds.northEast.longitude,
                     bounds.northEast.latitude,
                   ];
+
                   properties[southWestKey] = [
                     bounds.southWest.longitude,
                     bounds.southWest.latitude,
@@ -484,15 +493,18 @@ extension MapboxMapExtensions on MapboxMap {
 
               case const (DroneRushZoneEntity):
                 final droneRushZoneEntity = entity as DroneRushZoneEntity;
+
                 final geometryCoordinates =
-                    droneRushZoneEntity.generateCirclePolygon();
+                    droneRushZoneEntity.computeCirclePolygon();
                 final bounds = _getBoundsFromCoordinates(
                   geometryCoordinates[zero],
                 );
+
                 final alpha = switch (featureGeometryType == polygonGeometry) {
                   true => nilDotThree,
                   false => oneDotNil,
                 };
+
                 final properties = <String, dynamic>{
                   featureTypeKey: FeatureType.droneRush.name,
                   colorKey: _getRGBAColorString(
@@ -504,14 +516,18 @@ extension MapboxMapExtensions on MapboxMap {
                 if (featureGeometryType == polygonGeometry) {
                   properties[startTimeKey] =
                       droneRushZoneEntity.startTime.toIso8601String();
+
                   properties[endTimeKey] =
                       droneRushZoneEntity.endTime.toIso8601String();
+
                   properties[locationNameKey] =
                       droneRushZoneEntity.locationName;
+
                   properties[northEastKey] = [
                     bounds.northEast.longitude,
                     bounds.northEast.latitude,
                   ];
+
                   properties[southWestKey] = [
                     bounds.southWest.longitude,
                     bounds.southWest.latitude,
@@ -540,7 +556,7 @@ extension MapboxMapExtensions on MapboxMap {
 
     if (geoJsonFeatures.isEmpty) return null;
 
-    final geoJsonData =  FeatureCollection(
+    final geoJsonData = FeatureCollection(
       features: geoJsonFeatures,
     );
 
@@ -555,11 +571,11 @@ extension MapboxMapExtensions on MapboxMap {
   }) =>
       rgba +
       openingParenthesis +
-      ((color.r * 255.0).round() & 0xff).toString() +
+      ((color.r * twoFiftyFiveDotNil).round() & rawHexFF).toString() +
       comma +
-      ((color.g * 255.0).round() & 0xff).toString() +
+      ((color.g * twoFiftyFiveDotNil).round() & rawHexFF).toString() +
       comma +
-      ((color.b * 255.0).round() & 0xff).toString() +
+      ((color.b * twoFiftyFiveDotNil).round() & rawHexFF).toString() +
       comma +
       alpha.toString() +
       closingParenthesis;
@@ -571,6 +587,7 @@ extension MapboxMapExtensions on MapboxMap {
     final imageByteData = await rootBundle.load(
       imageAsset.path,
     );
+
     final imageBytes = imageByteData.buffer.asUint8List();
     final codec = await instantiateImageCodec(
       imageBytes,
@@ -598,7 +615,7 @@ extension MapboxMapExtensions on MapboxMap {
   Future<void> maybeHandleFeatureTap({
     required ScreenCoordinate touchPosition,
     required List<String> layerIds,
-    required Function4<FeatureType, String?, String?, Map<String, dynamic>?,
+    required Function4<FeatureType?, String?, String?, Map<String, dynamic>?,
             void>
         onFeatureTap,
   }) async {
@@ -613,12 +630,14 @@ extension MapboxMapExtensions on MapboxMap {
 
     String? featureId;
     String? sourceId;
+
     Map<String, dynamic>? data;
     Map<dynamic, dynamic>? featurePropertiesMap;
 
     if (queriedFeatures.length == one) {
       featureId = queriedFeatures.first.feature[idKey]?.toString();
       sourceId = queriedFeatures.firstOrNull?.source;
+
       featurePropertiesMap =
           queriedFeatures.first.feature[propertiesKey] as Map?;
     } else if (queriedFeatures.length > one) {
@@ -627,17 +646,22 @@ extension MapboxMapExtensions on MapboxMap {
       );
       featureId = feature.feature[idKey]?.toString();
       sourceId = feature.source;
+
       featurePropertiesMap = feature.feature[propertiesKey] as Map?;
     }
 
     if (featurePropertiesMap != null) {
-      final featureType = FeatureType.fromString(
-        featurePropertiesMap[featureTypeKey] as String,
+      final featureType = FeatureType.values.firstWhereOrNull(
+        (featureType) =>
+            featureType.name == featurePropertiesMap![featureTypeKey] as String,
       );
+
       final northEast =
           (featurePropertiesMap[northEastKey]! as List).cast<num>();
+
       final southWest =
           (featurePropertiesMap[southWestKey]! as List).cast<num>();
+
       final coordinateBounds = CoordinateBounds(
         southwest: Point(
           coordinates: Position(
@@ -653,6 +677,7 @@ extension MapboxMapExtensions on MapboxMap {
         ),
         infiniteBounds: false,
       );
+
       final cameraOptions = await cameraForCoordinateBounds(
         coordinateBounds,
         MbxEdgeInsets(
@@ -666,8 +691,8 @@ extension MapboxMapExtensions on MapboxMap {
         null,
         null,
       );
+
       data = switch (featureType) {
-        FeatureType.uasRestriction => null,
         FeatureType.droneRush => <String, dynamic>{
             locationNameKey: featurePropertiesMap[locationNameKey] as String,
             startTimeKey: DateTime.parse(
@@ -677,6 +702,7 @@ extension MapboxMapExtensions on MapboxMap {
               featurePropertiesMap[endTimeKey] as String,
             ),
           },
+        _ => null,
       };
 
       if (cameraOptions.zoom! < sixDotNil) {
@@ -691,6 +717,7 @@ extension MapboxMapExtensions on MapboxMap {
           duration: oneThousandThreeHundred,
         ),
       );
+
       onFeatureTap(
         featureType,
         featureId,
@@ -848,11 +875,11 @@ extension MapboxMapExtensions on MapboxMap {
     }
 
     final subString = featureSourceId.substring(
-      0,
+      zero,
       featureSourceId.length - sourceId.length,
     );
 
-    if (subString.length == 3) {
+    if (subString.length == three) {
       return subString + boundaryId + sourceId;
     }
 
