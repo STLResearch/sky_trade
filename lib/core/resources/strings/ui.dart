@@ -16,6 +16,7 @@ const caseExpression = 'case';
 const booleanExpression = 'boolean';
 const featureStateExpression = 'feature-state';
 // GeoJSON
+const featureTypeKey = 'featureType';
 const idKey = 'id';
 const coordinatesKey = 'coordinates';
 const propertiesKey = 'properties';
@@ -53,7 +54,8 @@ const nridDronesSourceId = 'nrid-drones-source';
 const nridDronesLayerId = 'nrid-drones-layer';
 const iconDroneValue = 'icon-drone';
 const droneRushZonesSourceId = 'drone-rush-zones-source';
+const droneRushZonesBoundarySourceId = 'drone-rush-zones-boundary-source';
 const droneRushZonesLayerId = 'drone-rush-zones-layer';
-
+const droneRushZonesBoundaryLayerId = 'drone-rush-zones-boundary-layer';
 // Hardcoded strings
 const r = 'r';

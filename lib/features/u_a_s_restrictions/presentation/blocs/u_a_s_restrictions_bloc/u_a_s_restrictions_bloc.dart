@@ -110,6 +110,10 @@ class UASRestrictionsBloc
         },
       ),
     );
+
+    emit(
+      const UASRestrictionsState.initial(),
+    );
   }
 
   Future<void> _cleanUpResources() =>

@@ -50,12 +50,16 @@ import 'package:sky_trade/core/resources/strings/secret_keys.dart'
         mapboxMapsDarkStyleUri,
         mapboxMapsPublicKey,
         mapboxMapsSatelliteStyleUri;
-import 'package:sky_trade/core/resources/strings/special_characters.dart'
-    show emptyString;
 import 'package:sky_trade/core/resources/strings/ui.dart'
-    show bridDronesSourceId, layerId;
+    show
+        bridDronesSourceId,
+        droneRushZonesLayerId,
+        endTimeKey,
+        layerId,
+        locationNameKey,
+        startTimeKey;
 import 'package:sky_trade/core/utils/enums/environment.dart' show Settings;
-import 'package:sky_trade/core/utils/enums/ui.dart' show MapStyle;
+import 'package:sky_trade/core/utils/enums/ui.dart' show FeatureType, MapStyle;
 import 'package:sky_trade/core/utils/extensions/build_context_extensions.dart';
 import 'package:sky_trade/core/utils/extensions/mapbox_map_extensions.dart';
 import 'package:sky_trade/features/auth/presentation/blocs/auth_0_logout_bloc/auth_0_logout_bloc.dart'
@@ -203,21 +207,13 @@ class _HomeViewState extends State<HomeView> {
   late final ValueNotifier<RestrictionEntity?> _clickedRestriction;
   late final ValueNotifier<bool> _centerLocationNotifier;
   late final ValueNotifier<MapStyle> _mapStyleNotifier;
-  late final List<String> _restrictionLayerIds;
+  late final List<String> _layerIds;
   late final ValueNotifier<int> _newBridDronesCountNotifier;
 
   late int _previousBridDronesCount;
-  late String _previousBridGeoJsonData;
-  late String _previousNridGeoJsonData;
 
-  String? _currentlySelectedRestrictionFeatureId;
-  String? _currentlySelectedRestrictionSourceId;
-
-  late final ValueNotifier<
-      ({
-        List<String> list,
-        int index,
-      })> _droneRushZonesIdsAndIndexNotifier;
+  String? _currentlySelectedFeatureId;
+  String? _currentlySelectedSourceId;
 
   @override
   void initState() {
@@ -241,28 +237,11 @@ class _HomeViewState extends State<HomeView> {
       MapStyle.dark,
     );
 
-    _restrictionLayerIds = List<String>.empty(
-      growable: true,
-    );
-
-    _previousBridGeoJsonData = emptyString;
-
-    _previousNridGeoJsonData = emptyString;
+    _layerIds = [
+      droneRushZonesLayerId,
+    ];
 
     _previousBridDronesCount = zero;
-
-    _droneRushZonesIdsAndIndexNotifier = ValueNotifier<
-        ({
-          List<String> list,
-          int index,
-        })>(
-      (
-        list: List.empty(
-          growable: true,
-        ),
-        index: zero,
-      ),
-    );
 
     _sendDeviceMetadata();
 
@@ -386,7 +365,6 @@ class _HomeViewState extends State<HomeView> {
     _centerLocationNotifier.dispose();
     _newBridDronesCountNotifier.dispose();
     _mapStyleNotifier.dispose();
-    _droneRushZonesIdsAndIndexNotifier.dispose();
 
     super.dispose();
   }
@@ -552,8 +530,7 @@ class _HomeViewState extends State<HomeView> {
                       );
 
                   if (_mapboxMap != null) {
-                    _previousBridGeoJsonData =
-                        await _mapboxMap!.addOrUpdateDronesOnMap(
+                    await _mapboxMap!.updateDronesOnMap(
                       remoteIDEntities: bridEntities,
                       geoJsonSourceId: bridDronesSourceId,
                     );
@@ -584,11 +561,13 @@ class _HomeViewState extends State<HomeView> {
                   if (restrictionEntities.isEmpty) {
                     return;
                   }
+
                   await _mapboxMap?.addRestrictionsOnMap(
                     geoHash: geoHash,
                     restrictionEntities: restrictionEntities,
                   );
-                  _restrictionLayerIds.add(
+
+                  _layerIds.add(
                     geoHash + layerId,
                   );
                 },
@@ -640,16 +619,13 @@ class _HomeViewState extends State<HomeView> {
           BlocListener<DroneRushZonesBloc, DroneRushZonesState>(
             listener: (_, droneRushZonesState) {
               droneRushZonesState.whenOrNull(
-                gotOngoingDroneRushZones: (droneRushZoneEntities) {
-                  _mapboxMap?.addOrUpdateDroneRushZonesOnMap(
+                gotOngoingDroneRushZones: (droneRushZoneEntities) async {
+                  if (_mapboxMap == null) {
+                    return;
+                  }
+                  await _mapboxMap!.updateDroneRushZonesOnMap(
                     droneRushZoneEntities: droneRushZoneEntities,
                   );
-                },
-                noLatestDroneRushZone: () {
-                  _mapboxMap?.maybeRemoveDroneRushZonesFromMap();
-                },
-                noOngoingDroneRushZone: () {
-                  _mapboxMap?.maybeRemoveDroneRushZonesFromMap();
                 },
               );
             },
@@ -695,46 +671,64 @@ class _HomeViewState extends State<HomeView> {
                     return;
                   }
 
+                  var skipFlag = false;
+
+                  String? selectedFeatureId;
+                  String? selectedFeatureSourceId;
+
                   _centerLocationNotifier.value = false;
 
-                  await _mapboxMap!.handleDroneRushZoneTapUsing(
+                  await _mapboxMap!.maybeHandleFeatureTap(
                     touchPosition: mapContentGestureContext.touchPosition,
-                    previousDroneRushZonesIdsAndIndexNotifier:
-                        _droneRushZonesIdsAndIndexNotifier,
-                    onTap: (_) => showModalBottomSheet<void>(
-                      context: context,
-                      builder: (_) => EventDetails(
-                        droneRushZonesBloc: context.read<DroneRushZonesBloc>(),
-                      ),
-                    ),
+                    layerIds: _layerIds,
+                    onFeatureTap: (featureType, featureId, sourceId, data) {
+                      if (featureType == null) return;
+
+                      selectedFeatureId = featureId;
+                      selectedFeatureSourceId = sourceId;
+
+                      switch (featureType) {
+                        case FeatureType.uasRestriction:
+                          skipFlag = true;
+
+                          context.read<UASRestrictionsBloc>().add(
+                                UASRestrictionsEvent.selectRestriction(
+                                  restrictionId: featureId,
+                                ),
+                              );
+
+                        case FeatureType.droneRush:
+                          if (data == null) return;
+
+                          final locationName = data[locationNameKey];
+                          final startDateTime = data[startTimeKey];
+                          final endDateTime = data[endTimeKey];
+
+                          showModalBottomSheet<void>(
+                            context: context,
+                            builder: (_) => EventDetails(
+                              droneRushZonesBloc:
+                                  context.read<DroneRushZonesBloc>(),
+                              locationName: locationName as String,
+                              startDateTime: startDateTime as DateTime,
+                              endDateTime: endDateTime as DateTime,
+                            ),
+                          );
+                      }
+                    },
                   );
 
-                  if (_restrictionLayerIds.isEmpty) {
-                    return;
-                  }
-
-                  final featureAndSourceId =
-                      await _mapboxMap!.handleRestrictionSelection(
-                    touchPosition: mapContentGestureContext.touchPosition,
-                    restrictionLayerIds: _restrictionLayerIds,
-                    previousRestrictionFeatureId:
-                        _currentlySelectedRestrictionFeatureId,
-                    previousRestrictionSourceId:
-                        _currentlySelectedRestrictionSourceId,
+                  await _mapboxMap!.selectAndUnselectFeature(
+                    selectFeatureId: selectedFeatureId,
+                    selectFeatureSourceId: selectedFeatureSourceId,
+                    unselectFeatureId: _currentlySelectedFeatureId,
+                    unselectFeatureSourceId: _currentlySelectedSourceId,
                   );
 
-                  if (context.mounted) {
-                    context.read<UASRestrictionsBloc>().add(
-                          UASRestrictionsEvent.selectRestriction(
-                            restrictionId: featureAndSourceId.featureId,
-                          ),
-                        );
-                  }
+                  _currentlySelectedFeatureId = selectedFeatureId;
+                  _currentlySelectedSourceId = selectedFeatureSourceId;
 
-                  _currentlySelectedRestrictionFeatureId =
-                      featureAndSourceId.featureId;
-                  _currentlySelectedRestrictionSourceId =
-                      featureAndSourceId.sourceId;
+                  if (!skipFlag) _clickedRestriction.value = null;
                 },
                 onScroll: (_) => _centerLocationNotifier.value = false,
                 onCreated: (mapboxMap) {
@@ -786,10 +780,8 @@ class _HomeViewState extends State<HomeView> {
                   );
                 },
                 onStyleLoaded: (_) async {
-                  await _mapboxMap?.setUpLayersForDrones(
-                    bridGeoJsonData: _previousBridGeoJsonData,
-                    nridGeoJsonData: _previousNridGeoJsonData,
-                  );
+                  await _mapboxMap?.setUpLayersForDrones();
+                  await _mapboxMap?.setUpLayersForDroneRushZones();
                 },
               ),
               ValueListenableBuilder<bool>(

@@ -76,3 +76,8 @@ enum UserCategory {
   individual,
   corporateEntity;
 }
+
+enum FeatureType {
+  uasRestriction,
+  droneRush,
+}
