@@ -263,3 +263,12 @@ and registers them for dependency injection. It is registered in `main` before t
 `main` is the entry point of the entire app. `main` contains some initialization code that needs to
 be run before `app` is loaded- loading `dotenv`, initializing sentry reporting, Firebase analytics,
 hydrated storage, dependency injection and registering the BLoC observer to mention a few
+
+#### Top level overview of app
+<img width="1622" height="1151" alt="App flow drawio" src="https://github.com/user-attachments/assets/8569ef03-fcff-4743-acbd-421563163bfc" />
+
+
+
+
+
+
