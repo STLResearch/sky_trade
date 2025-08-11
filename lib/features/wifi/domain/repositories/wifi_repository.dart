@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: UNLICENSED
+                            
 import 'package:dartz/dartz.dart' show Either;
 import 'package:sky_trade/core/errors/failures/wifi_failure.dart';
 import 'package:sky_trade/features/wifi/domain/entities/wifi_entity.dart';

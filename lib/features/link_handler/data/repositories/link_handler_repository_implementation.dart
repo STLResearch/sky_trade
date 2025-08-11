@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: UNLICENSED
+                            
 import 'package:app_links/app_links.dart';
 import 'package:dartz/dartz.dart' show Either;
 import 'package:sky_trade/core/errors/failures/link_handler_failure.dart';

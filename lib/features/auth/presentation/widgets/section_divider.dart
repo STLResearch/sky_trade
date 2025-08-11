@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: UNLICENSED
+                            
 import 'package:flutter/material.dart'
     show BuildContext, Divider, Expanded, StatelessWidget, Widget;
 import 'package:sky_trade/core/resources/numbers/ui.dart' show oneDotNil;

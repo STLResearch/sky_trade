@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: UNLICENSED
+                            
 // ignore_for_file: strict_raw_type, avoid_dynamic_calls, unnecessary_null_checks, lines_longer_than_80_chars
 
 import 'dart:async' show StreamController, StreamSubscription;

@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: UNLICENSED
+                            
 part of 'track_drone_insights_bloc.dart';
 
 @freezed

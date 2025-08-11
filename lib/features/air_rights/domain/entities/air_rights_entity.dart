@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: UNLICENSED
+                            
 import 'package:equatable/equatable.dart' show Equatable;
 import 'package:sky_trade/features/rent_air_rights/domain/entities/rent_air_rights_entity.dart'
     show PropertyEntity;

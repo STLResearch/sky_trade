@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: UNLICENSED
+                            
 // ignore_for_file: strict_raw_type
 
 import 'package:get_it/get_it.dart' show GetIt;

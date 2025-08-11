@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: UNLICENSED
+                            
 import 'package:flutter_dotenv/flutter_dotenv.dart' show dotenv;
 import 'package:sky_trade/core/resources/strings/local.dart' show pngFileEnding;
 import 'package:sky_trade/core/resources/strings/networking.dart'

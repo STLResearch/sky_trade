@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: UNLICENSED
+                            
 import 'package:get_it/get_it.dart' show GetIt;
 import 'package:sky_trade/features/drone_flight_path/data/data_sources/drone_flight_path_remote_data_source.dart';
 import 'package:sky_trade/features/drone_flight_path/data/repositories/drone_flight_path_repository_implementation.dart';

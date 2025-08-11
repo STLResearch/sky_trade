@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: UNLICENSED
+                            
 // ignore_for_file: lines_longer_than_80_chars
 
 part of 'location_service_status_bloc.dart';

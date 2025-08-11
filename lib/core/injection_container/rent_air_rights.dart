@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: UNLICENSED
+                            
 import 'package:get_it/get_it.dart' show GetIt;
 import 'package:sky_trade/features/rent_air_rights/data/data_sources/rent_air_rights_remote_data_source.dart';
 import 'package:sky_trade/features/rent_air_rights/data/repositories/rent_air_rights_repository_implementation.dart';

@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: UNLICENSED
+                            
 part of 'geo_hash_bloc.dart';
 
 @freezed

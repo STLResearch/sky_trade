@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: UNLICENSED
+                            
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:sky_trade/core/resources/numbers/local.dart'
     show fifty, one, sixty, zero;

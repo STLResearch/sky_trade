@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: UNLICENSED
+                            
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:sky_trade/core/resources/strings/networking.dart'
     show coordinatesKey, dataKey, featuresKey, geoJsonKey, geometryKey, typeKey;

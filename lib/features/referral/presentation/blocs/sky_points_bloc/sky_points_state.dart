@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: UNLICENSED
+                            
 part of 'sky_points_bloc.dart';
 
 @freezed

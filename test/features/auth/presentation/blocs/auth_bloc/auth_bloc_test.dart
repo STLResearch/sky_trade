@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: UNLICENSED
+                            
 import 'package:bloc_test/bloc_test.dart' show blocTest;
 import 'package:dartz/dartz.dart' show Left, Right;
 import 'package:flutter_test/flutter_test.dart' show setUp, tearDown;

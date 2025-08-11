@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: UNLICENSED
+                            
 part of 'delete_account_bloc.dart';
 
 @freezed

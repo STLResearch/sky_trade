@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: UNLICENSED
+                            
 // ignore_for_file: lines_longer_than_80_chars
 
 part of 'retrieve_geometric_coordinates_bloc.dart';

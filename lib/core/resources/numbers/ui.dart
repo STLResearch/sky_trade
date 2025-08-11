@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: UNLICENSED
+                            
 // Integers
 const zero = 0;
 const one = 1;

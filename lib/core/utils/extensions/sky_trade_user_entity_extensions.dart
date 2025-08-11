@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: UNLICENSED
+                            
 import 'package:sky_trade/core/resources/numbers/ui.dart' show one, two, zero;
 import 'package:sky_trade/core/resources/strings/networking.dart'
     show pirateKey;

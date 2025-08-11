@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: UNLICENSED
+                            
 part of 'auth_0_credentials_bloc.dart';
 
 @freezed

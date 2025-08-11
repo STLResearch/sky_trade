@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: UNLICENSED
+                            
 import 'package:freezed_annotation/freezed_annotation.dart' show JsonConverter;
 
 final class NullableDurationConverter

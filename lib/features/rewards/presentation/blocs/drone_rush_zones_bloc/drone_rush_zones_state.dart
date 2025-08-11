@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: UNLICENSED
+                            
 part of 'drone_rush_zones_bloc.dart';
 
 @freezed

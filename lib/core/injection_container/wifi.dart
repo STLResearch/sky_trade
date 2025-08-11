@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: UNLICENSED
+                            
 import 'package:get_it/get_it.dart' show GetIt;
 import 'package:sky_trade/features/wifi/data/repositories/wifi_repository_implementation.dart';
 import 'package:sky_trade/features/wifi/domain/repositories/wifi_repository.dart';

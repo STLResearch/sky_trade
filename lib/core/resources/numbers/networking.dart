@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: UNLICENSED
+                            
 // Durations
 const requestConnectTimeoutSeconds = 10;
 const requestConnectTimeoutMilliSeconds = requestConnectTimeoutSeconds * 1000;

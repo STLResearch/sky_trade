@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: UNLICENSED
+                            
 part of 'request_tracking_authorization_bloc.dart';
 
 @freezed

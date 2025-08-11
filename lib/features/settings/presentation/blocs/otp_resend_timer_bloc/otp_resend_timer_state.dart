@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: UNLICENSED
+                            
 part of 'otp_resend_timer_bloc.dart';
 
 @freezed

@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: UNLICENSED
+                            
 final class SkyPointsException implements Exception {}
 
 final class HighlightsException implements Exception {}

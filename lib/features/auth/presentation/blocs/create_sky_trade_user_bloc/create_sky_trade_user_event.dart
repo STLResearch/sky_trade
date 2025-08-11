@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: UNLICENSED
+                            
 part of 'create_sky_trade_user_bloc.dart';
 
 @freezed

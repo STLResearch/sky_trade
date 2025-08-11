@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: UNLICENSED
+                            
 import 'package:hive_ce/hive.dart' show Box, Hive;
 import 'package:shared_preferences/shared_preferences.dart'
     show SharedPreferencesWithCache;

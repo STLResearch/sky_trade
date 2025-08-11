@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: UNLICENSED
+                            
 import 'package:dart_geohash/dart_geohash.dart' show GeoHash;
 import 'package:sky_trade/core/utils/typedefs/ui.dart' show LatLng;
 import 'package:sky_trade/features/geo_hash/domain/repositories/geo_hash_repository.dart';

@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: UNLICENSED
+                            
 import 'package:bloc/bloc.dart' show Bloc, Emitter, EventTransformer;
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:rxdart/rxdart.dart' show DebounceExtensions, SwitchMapExtension;

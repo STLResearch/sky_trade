@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: UNLICENSED
+                            
 import 'dart:typed_data' show Uint8List;
 
 import 'package:hive_ce/hive.dart'

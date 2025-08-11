@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: UNLICENSED
+                            
 import 'package:shared_preferences/shared_preferences.dart'
     show SharedPreferencesWithCache;
 import 'package:sky_trade/core/resources/strings/local.dart'

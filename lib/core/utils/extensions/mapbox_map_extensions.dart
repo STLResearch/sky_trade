@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: UNLICENSED
+                            
 import 'dart:convert' show json;
 import 'dart:ui' show instantiateImageCodec;
 

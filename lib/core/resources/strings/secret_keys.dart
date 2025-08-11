@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: UNLICENSED
+                            
 // Mapbox
 const mapboxMapsPublicKey = 'MAPBOX_MAPS_PUBLIC_KEY';
 const mapboxMapsDarkStyleUri = 'MAPBOX_MAPS_DARK_STYLE_URI';

@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: UNLICENSED
+                            
 enum LogLevel {
   trace,
   debug,

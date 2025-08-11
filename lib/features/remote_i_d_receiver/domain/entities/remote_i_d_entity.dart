@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: UNLICENSED
+                            
 // ignore_for_file: depend_on_referenced_packages, implementation_imports
 
 import 'dart:typed_data' show Uint8List;
