@@ -1,5 +1,7 @@
 [![style: very good analysis](https://img.shields.io/badge/style-very_good_analysis-B22C89.svg)](https://pub.dev/packages/very_good_analysis)
 
+**SPDX-License-Identifier: UNLICENSED**
+
 # SkyTrade UTM
 
 SkyTrade UTM is our drone restrictions app. It allows drone operators to view airspace
