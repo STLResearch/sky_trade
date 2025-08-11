@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: UNLICENSED
+                            
 part of 'bluetooth_permissions_bloc.dart';
 
 @freezed

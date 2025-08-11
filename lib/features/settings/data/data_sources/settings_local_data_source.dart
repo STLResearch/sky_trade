@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: UNLICENSED
+                            
 import 'package:firebase_analytics/firebase_analytics.dart'
     show FirebaseAnalytics;
 import 'package:shared_preferences/shared_preferences.dart'

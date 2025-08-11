@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: UNLICENSED
+                            
 import 'package:get_it/get_it.dart' show GetIt;
 import 'package:sky_trade/features/device_profile/data/data_sources/device_profile_local_data_source.dart';
 import 'package:sky_trade/features/device_profile/data/data_sources/device_profile_remote_data_source.dart';

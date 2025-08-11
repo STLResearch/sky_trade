@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: UNLICENSED
+                            
 import 'package:flutter/material.dart' show BuildContext;
 import 'package:sky_trade/core/resources/numbers/ui.dart' show eight, one;
 import 'package:sky_trade/core/resources/strings/special_characters.dart'

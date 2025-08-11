@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: UNLICENSED
+                            
 import 'package:get_it/get_it.dart' show GetIt;
 import 'package:sky_trade/features/remote_i_d_transmitter/data/data_sources/remote_i_d_transmitter_remote_data_source.dart';
 import 'package:sky_trade/features/remote_i_d_transmitter/data/repositories/remote_i_d_transmitter_repository_implementation.dart';

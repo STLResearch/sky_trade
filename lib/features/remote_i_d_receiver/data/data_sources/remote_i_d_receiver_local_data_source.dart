@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: UNLICENSED
+                            
 import 'package:hive_ce/hive.dart' show Box, Hive;
 import 'package:sky_trade/core/resources/strings/local.dart'
     show geolocatedRemoteIDCollectionsBoxKey, geolocatedRemoteIDCollectionsKey;

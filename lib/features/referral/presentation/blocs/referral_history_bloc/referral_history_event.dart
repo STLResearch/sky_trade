@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: UNLICENSED
+                            
 part of 'referral_history_bloc.dart';
 
 @freezed

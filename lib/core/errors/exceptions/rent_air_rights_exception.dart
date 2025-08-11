@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: UNLICENSED
+                            
 final class GetPropertiesException implements Exception {}
 
 final class CreateMintRentalTokenException implements Exception {}

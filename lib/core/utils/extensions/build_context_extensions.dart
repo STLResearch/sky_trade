@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: UNLICENSED
+                            
 import 'package:flutter/material.dart' show BuildContext;
 import 'package:sky_trade/core/localization/l10n/generated/app_localizations.dart';
 

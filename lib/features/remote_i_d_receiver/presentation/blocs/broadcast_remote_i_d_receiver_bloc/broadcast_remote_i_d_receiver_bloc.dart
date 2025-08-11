@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: UNLICENSED
+                            
 import 'dart:async' show StreamSubscription;
 
 import 'package:bloc/bloc.dart' show Bloc, Emitter;

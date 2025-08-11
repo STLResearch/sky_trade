@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: UNLICENSED
+                            
 import 'package:json_annotation/json_annotation.dart' show JsonValue;
 import 'package:sky_trade/core/resources/strings/environments.dart'
     show

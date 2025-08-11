@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: UNLICENSED
+                            
 package mobile.trade.sky.features.wifi
 
 import android.content.BroadcastReceiver

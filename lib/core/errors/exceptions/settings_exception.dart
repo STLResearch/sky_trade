@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: UNLICENSED
+                            
 final class RequestDeleteAccountException implements Exception {}
 
 abstract final class DeleteAccountException implements Exception {}

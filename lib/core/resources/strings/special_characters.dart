@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: UNLICENSED
+                            
 const forwardSlash = '/';
 const whiteSpace = ' ';
 const asterisk = '*';

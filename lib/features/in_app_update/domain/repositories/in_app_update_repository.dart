@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: UNLICENSED
+                            
 abstract interface class InAppUpdateRepository {
   void checkAndStartUpdate();
 

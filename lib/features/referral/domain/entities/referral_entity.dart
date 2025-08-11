@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: UNLICENSED
+                            
 import 'package:equatable/equatable.dart' show Equatable;
 import 'package:sky_trade/core/utils/enums/ui.dart' show ShareResult;
 

@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: UNLICENSED
+                            
 import 'package:get_it/get_it.dart' show GetIt;
 import 'package:sky_trade/features/internet_connection_checker/data/repositories/internet_connection_checker_repository_implementation.dart';
 import 'package:sky_trade/features/internet_connection_checker/domain/repositories/internet_connection_checker_repository.dart';

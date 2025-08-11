@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: UNLICENSED
+                            
 import 'package:dartz/dartz.dart' show Function0;
 import 'package:flutter/material.dart'
     show

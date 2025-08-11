@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: UNLICENSED
+                            
 package mobile.trade.sky.core.utils.enums
 
 enum class WifiAdapterState(val value: String) {

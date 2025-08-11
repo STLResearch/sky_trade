@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: UNLICENSED
+                            
 package mobile.trade.sky
 
 import io.flutter.embedding.android.FlutterActivity

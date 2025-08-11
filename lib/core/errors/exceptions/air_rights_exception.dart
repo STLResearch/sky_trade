@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: UNLICENSED
+                            
 final class AirspaceDetailsException implements Exception {}
 
 final class AirspaceHistoryInfoException implements Exception {}

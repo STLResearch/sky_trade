@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: UNLICENSED
+                            
 // ignore_for_file: lines_longer_than_80_chars
 
 part of 'auth_0_user_session_after_account_deletion_bloc.dart';

@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: UNLICENSED
+                            
 typedef LatLng = ({
   double latitude,
   double longitude,

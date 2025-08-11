@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: UNLICENSED
+                            
 import 'package:equatable/equatable.dart' show Equatable;
 
 final class RewardPointsFailure extends Equatable {

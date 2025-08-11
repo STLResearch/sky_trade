@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: UNLICENSED
+                            
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
 part of 'rent_air_rights_model.dart';

@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: UNLICENSED
+                            
 part of 'wifi_adapter_state_bloc.dart';
 
 @freezed

@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: UNLICENSED
+                            
 import 'package:get_it/get_it.dart' show GetIt;
 import 'package:sky_trade/core/injection_container/about.dart';
 import 'package:sky_trade/core/injection_container/air_rights.dart';

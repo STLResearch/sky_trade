@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: UNLICENSED
+                            
 import 'package:flutter/services.dart' show MethodChannel;
 import 'package:sky_trade/core/resources/strings/environments.dart'
     show inAppUpdateChannelName;

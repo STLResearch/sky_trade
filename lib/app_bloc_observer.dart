@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: UNLICENSED
+                            
 import 'package:bloc/bloc.dart'
     show Bloc, BlocBase, BlocObserver, Change, Transition;
 import 'package:sky_trade/core/utils/clients/app_logger.dart' show AppLogger;

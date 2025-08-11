@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: UNLICENSED
+                            
 import 'dart:math' show cos, pi, sin;
 import 'dart:ui' show Color;
 

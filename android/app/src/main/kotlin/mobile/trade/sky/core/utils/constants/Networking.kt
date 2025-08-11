@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: UNLICENSED
+                            
 package mobile.trade.sky.core.utils.constants
 
 const val WIFI_ADAPTER_STATE_BROADCAST_RECEIVER_CHANNEL_NAME =

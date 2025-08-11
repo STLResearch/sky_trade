@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: UNLICENSED
+                            
 import 'package:get_it/get_it.dart' show GetIt;
 import 'package:sky_trade/features/bluetooth/data/repositories/bluetooth_repository_implementation.dart';
 import 'package:sky_trade/features/bluetooth/domain/repositories/bluetooth_repository.dart';

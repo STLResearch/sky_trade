@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: UNLICENSED
+                            
 import 'package:dartz/dartz.dart' show Either, Function1;
 import 'package:sky_trade/core/errors/failures/remote_i_d_receiver_failure.dart'
     show BroadcastRemoteIDReceiverFailure;

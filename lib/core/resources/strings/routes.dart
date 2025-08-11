@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: UNLICENSED
+                            
 const baseRoutePath = '/';
 const loadingRoutePath = '/loading';
 const errorRoutePath = '/error';

@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: UNLICENSED
+                            
 import 'package:dartz/dartz.dart' show Function0, Function1;
 import 'package:flutter_dotenv/flutter_dotenv.dart' show dotenv;
 import 'package:sky_trade/core/resources/strings/networking.dart'

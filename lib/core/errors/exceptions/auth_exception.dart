@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: UNLICENSED
+                            
 abstract final class CreateSkyTradeUserException implements Exception {}
 
 final class InvalidEmailException implements CreateSkyTradeUserException {}

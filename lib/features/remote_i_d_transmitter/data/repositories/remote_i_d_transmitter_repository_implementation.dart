@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: UNLICENSED
+                            
 import 'package:dartz/dartz.dart' show Function0, Function1;
 import 'package:sky_trade/core/utils/enums/networking.dart'
     show ConnectionState;

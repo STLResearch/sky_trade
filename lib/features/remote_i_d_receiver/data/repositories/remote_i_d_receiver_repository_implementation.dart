@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: UNLICENSED
+                            
 import 'dart:async' show StreamController, StreamSubscription;
 import 'dart:io' show Platform;
 

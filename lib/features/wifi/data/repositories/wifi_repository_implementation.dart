@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: UNLICENSED
+                            
 import 'dart:io' show Platform;
 
 import 'package:dartz/dartz.dart' show Either, Left, Right;

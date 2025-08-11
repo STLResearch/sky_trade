@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: UNLICENSED
+                            
 import 'package:dartz/dartz.dart' show Either, Left, Right;
 import 'package:geolocator/geolocator.dart'
     show

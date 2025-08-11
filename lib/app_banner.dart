@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: UNLICENSED
+                            
 import 'dart:io' show Platform;
 
 import 'package:flutter/foundation.dart' show kDebugMode, kProfileMode;

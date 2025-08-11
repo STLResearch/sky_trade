@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: UNLICENSED
+                            
 import 'package:sky_trade/core/errors/exceptions/u_a_s_restrictions_exception.dart';
 import 'package:sky_trade/core/resources/numbers/networking.dart' show twenty;
 import 'package:sky_trade/core/resources/strings/networking.dart'

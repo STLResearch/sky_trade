@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: UNLICENSED
+                            
 import 'package:get_it/get_it.dart' show GetIt;
 import 'package:sky_trade/features/referral/data/data_sources/referral_remote_data_source.dart';
 import 'package:sky_trade/features/referral/data/repositories/referral_repository_implementation.dart';

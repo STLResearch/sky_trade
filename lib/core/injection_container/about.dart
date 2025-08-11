@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: UNLICENSED
+                            
 import 'package:get_it/get_it.dart' show GetIt;
 import 'package:sky_trade/features/about/data/repositories/about_repository_implementation.dart';
 import 'package:sky_trade/features/about/domain/repositories/about_repository.dart';

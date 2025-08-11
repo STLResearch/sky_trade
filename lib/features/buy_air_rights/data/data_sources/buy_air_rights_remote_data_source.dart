@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: UNLICENSED
+                            
 import 'package:sky_trade/core/errors/exceptions/buy_air_rights_exception.dart';
 import 'package:sky_trade/core/resources/strings/networking.dart'
     show

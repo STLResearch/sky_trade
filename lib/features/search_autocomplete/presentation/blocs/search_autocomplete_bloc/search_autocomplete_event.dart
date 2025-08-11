@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: UNLICENSED
+                            
 part of 'search_autocomplete_bloc.dart';
 
 @freezed

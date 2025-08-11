@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: UNLICENSED
+                            
 import 'dart:typed_data' show Uint8List;
 
 import 'package:freezed_annotation/freezed_annotation.dart' show JsonConverter;

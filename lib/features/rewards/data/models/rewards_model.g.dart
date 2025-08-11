@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: UNLICENSED
+                            
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
 part of 'rewards_model.dart';

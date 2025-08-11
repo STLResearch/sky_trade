@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: UNLICENSED
+                            
 import 'package:auth0_flutter/auth0_flutter.dart' show Credentials;
 import 'package:dartz/dartz.dart' show Either, Unit;
 import 'package:sky_trade/core/errors/failures/auth_failure.dart';

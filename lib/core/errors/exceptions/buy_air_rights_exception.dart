@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: UNLICENSED
+                            
 final class GetAllAuctionsException implements Exception {}
 
 final class GetAuctionWithBidsException implements Exception {}

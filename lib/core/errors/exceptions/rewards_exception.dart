@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: UNLICENSED
+                            
 final class RewardPointsException implements Exception {}
 
 final class QuestException implements Exception {}

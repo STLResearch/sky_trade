@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: UNLICENSED
+                            
 package mobile.trade.sky.features.in_app_update
 
 import android.app.Activity

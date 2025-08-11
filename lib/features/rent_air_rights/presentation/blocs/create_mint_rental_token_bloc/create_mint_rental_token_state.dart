@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: UNLICENSED
+                            
 part of 'create_mint_rental_token_bloc.dart';
 
 @freezed

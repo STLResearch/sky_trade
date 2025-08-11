@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: UNLICENSED
+                            
 part of 'remote_i_d_transmitter_bloc.dart';
 
 @freezed

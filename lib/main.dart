@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: UNLICENSED
+                            
 import 'package:sky_trade/core/resources/strings/environments.dart'
     show devEnvironment, flavours, liveEnvironment, stageEnvironment;
 import 'package:sky_trade/main_dev.dart' as dev;

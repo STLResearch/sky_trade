@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: UNLICENSED
+                            
 part of 'earnings_report_bloc.dart';
 
 @freezed
